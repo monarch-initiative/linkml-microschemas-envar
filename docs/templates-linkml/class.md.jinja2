@@ -131,8 +131,8 @@ search:
 {% endif %}
 {% set cb = s.annotations['covered_by'] if (s.annotations and 'covered_by' in s.annotations) else None %}
 {% if cb and cb.annotations %}
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — {{ cb.annotations|length }} standard{% if cb.annotations|length != 1 %}s{% endif %}</summary>
 {% for stdkey, stdann in cb.annotations.items() %}
 {% set inner = stdann.annotations or {} %}
 {% set c_extent = inner['extent'].value if 'extent' in inner else '' %}
@@ -142,12 +142,14 @@ search:
 {% set c_note = inner['note'].value if 'note' in inner else '' %}
 <div class="envar-cov st-{{ c_status }}">
 <div class="envar-cov-head"><span class="envar-cov-std">{{ stdkey }}</span>{% if c_status %}<span class="envar-cov-status st-{{ c_status }}">{{ c_status }}</span>{% endif %}{% if c_extent %}<span class="envar-cov-extent">{{ c_extent }} coverage</span>{% endif %}</div>
-{% if c_where %}<div class="envar-cov-row"><span class="k">where</span> {{ c_where }}</div>{% endif %}
-{% if c_evidence %}<div class="envar-cov-row"><span class="k">evidence</span> <code>{{ c_evidence }}</code></div>{% endif %}
+{# `where` = the grep target in this standard's output. Show it small; skip the
+   noisy "no column" placeholders. `evidence` only when it resolves in-repo. #}
+{% if c_where and c_where|trim|lower != 'no column' %}<div class="envar-cov-row envar-cov-where"><span class="k">where</span> {{ c_where }}</div>{% endif %}
+{% if c_evidence and (c_evidence.startswith('examples/') or c_evidence.startswith('docs/') or c_evidence.startswith('src/') or c_evidence.startswith('tests/')) %}<div class="envar-cov-row"><span class="k">evidence</span> <code>{{ c_evidence }}</code></div>{% endif %}
 {% if c_note %}<div class="envar-cov-note">{{ c_note }}</div>{% endif %}
 </div>
 {% endfor %}
-</div>
+</details>
 {% endif %}
 {% if s.pattern or s.minimum_value is not none or s.maximum_value is not none or s.equals_string %}
 <div class="envar-block envar-constraints" markdown="1">

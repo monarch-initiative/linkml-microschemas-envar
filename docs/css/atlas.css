@@ -242,6 +242,19 @@
 .envar-constraints code { font-size: 0.78rem; }
 
 /* coverage: which downstream standards cover this field ---------------------- */
+.envar-card details.envar-cov-details {
+  margin: 0.55rem 0 0;
+  border-top: 1px dashed var(--envar-line);
+  padding-top: 0.4rem;
+}
+.envar-cov-details > summary {
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--envar-muted);
+  letter-spacing: 0.03em;
+}
+.envar-cov-details > summary + .envar-cov { margin-top: 0.45rem; }
 .envar-cov {
   border: 1px solid var(--envar-line);
   border-left: 3px solid var(--t-optional);
@@ -283,6 +296,9 @@
 }
 .envar-cov-row code { font-size: 0.74rem; }
 .envar-cov-note { font-size: 0.83rem; line-height: 1.42; margin-top: 0.28rem; }
+/* `where` grep-target pointer: kept deliberately tiny to stay out of the way */
+.envar-cov-row.envar-cov-where { font-size: 0.64rem; line-height: 1.35; margin-top: 0.18rem; }
+.envar-cov-where .k { font-size: 0.56rem; }
 
 .envar-card details.envar-why {
   margin: 0.55rem 0 0;
