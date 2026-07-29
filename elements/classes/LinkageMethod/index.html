@@ -380,39 +380,36 @@
 <span class="envar-value" title="Combine the values over an area around the residence, but weight each part of that area by how many people live there, so densely populated locations count for more than empty ones. The result approximates the exposure of a typical resident rather than a plain geographic average — useful when population is unevenly spread across the area. Requires a summary function (`linkage_buffer_aggregation_method`) for how the weighted values were combined."><code>population_weighted_area_to_residence</code> <span class="vdesc">Combine the values over an area around the residence, but weight each part of...</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4.2 (nearest-hex spatial join)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.4.2 (nearest-hex spatial join)</div>
 <div class="envar-cov-note">CHEL's linkage strategy is first-class: participant lat/lon to point to nearest-hex spatial join.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt</div>
-<div class="envar-cov-note">GAIA's linkage strategy is only implicit in the st_within SQL join semantics, not exposed as a documented structured slot (COMPARISON.md §J: ➖). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt</div>
+<div class="envar-cov-note">GAIA's linkage strategy is only implicit in the st_within SQL join semantics, not exposed as a documented structured slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no structured linkage-strategy slot; the point-extraction rule is implicit (COMPARISON.md §J: ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no structured linkage-strategy slot; the point-extraction rule is implicit.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no linkage-strategy slot; the value is extracted at request coordinates with no recorded strategy (COMPARISON.md §J: ❌).</div>
+<div class="envar-cov-note">Amadeus carries no linkage-strategy slot; the value is extracted at request coordinates with no recorded strategy.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary column tagged Spatial – Primary + reference to boundaries schema</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Spatial – Primary + reference to boundaries schema</div>
 <div class="envar-cov-note">C-HER's Spatial tags and boundaries-schema references encode a spatial join relationship, though not EnVar's linkage-strategy enum. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The gridded-to-patient linkage strategy is an instance-layer derivation choice, outside CODATA's conceptual variable layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -584,40 +581,35 @@
 <span class="envar-value" title="Precision is unknown."><code>unknown</code> <span class="vdesc">Precision is unknown</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4 (participant lat/lon to point to nearest-hex)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.4 (participant lat/lon to point to nearest-hex)</div>
 <div class="envar-cov-note">CHEL geocodes participants to points and joins to nearest hex, but the precision of the geocode itself is not carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No geocoding-precision column on location.csv or external_exposure.csv (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">No geocoding-precision column on location.csv or external_exposure.csv.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> geocoder + daymet CSV `precision` column (range/street/zip/etc.)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §B (Geocoding precision — ✅ for DeGAUSS)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoder + daymet CSV `precision` column (range/street/zip/etc.)</div>
 <div class="envar-cov-note">DeGAUSS carries the geocoding precision category first-class in the `precision` column — the motivating source for this slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and carries no geocoding precision (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and carries no geocoding precision.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER geocodes participants to points but does not carry the precision of the geocode.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Propagated geocoder precision is an instance-layer linkage quality signal, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -645,40 +637,35 @@
 <p><code>0.95</code></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.4</div>
 <div class="envar-cov-note">The geocode-to-hex join is defined, but no geocoder confidence score is propagated. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No geocoder match-score column on location.csv or external_exposure.csv (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">No geocoder match-score column on location.csv or external_exposure.csv.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> geocoder + daymet CSV `score` column</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §B (Geocoder match score — ✅ for DeGAUSS)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoder + daymet CSV `score` column</div>
 <div class="envar-cov-note">DeGAUSS carries the geocoder match score first-class in the `score` column.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no geocoder match score (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">Amadeus carries no geocoder match score.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER carries no geocoder confidence score.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A propagated geocoder score is an instance-layer linkage quality signal, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -715,39 +702,34 @@
 <span class="envar-value" title="A synthetic residence period was constructed for the patient."><code>synthetic_residence_period</code> <span class="vdesc">A synthetic residence period was constructed for the patient</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4 (point join; no location-over-time model)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.4 (point join; no location-over-time model)</div>
 <div class="envar-cov-note">CHEL joins a participant point to a hex; it carries no address-period / location-over-time alignment.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA/OMOP models a single static location per person and no address-history / location-over-time alignment (COMPARISON.md §A/§B: ❌).</div>
+<div class="envar-cov-note">GAIA/OMOP models a single static location per person and no address-history / location-over-time alignment.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS geocodes one address per row and models no location-over- time period (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">DeGAUSS geocodes one address per row and models no location-over- time period.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus takes fixed lat/lon and models no address period (COMPARISON.md §B: ❌).</div>
+<div class="envar-cov-note">Amadeus takes fixed lat/lon and models no address period.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER joins a participant point to a hex with no location-over- time alignment.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">How patient location-over-time is modelled is an instance-layer linkage concern, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -782,39 +764,34 @@
 <span class="envar-value" title="No trajectory transitions occur (e.g. a single static address), so the rule does not apply."><code>not_applicable</code> <span class="vdesc">No trajectory transitions occur (e</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; no clinical-date / trajectory model)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; no clinical-date / trajectory model)</div>
 <div class="envar-cov-note">CHEL is spatial-only and models no clinical-date or trajectory transitions, so partial-day attribution is not carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">GAIA/OMOP models no trajectory transitions, so no partial-day attribution rule is carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS models no travel/transition days, so no partial-day attribution is carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus models no trajectory transitions, so no partial-day attribution is carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER is spatial-only and models no transition-day attribution.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Transition-day attribution is an instance-layer trajectory concern, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -847,39 +824,34 @@
 <span 0-21"`)."="" class="envar-value" title="A distributed lag over a range of days has been applied. Range captured in `lag_alignment_specifier` (e.g. `"><code>distributed_lag</code> <span class="vdesc">A distributed lag over a range of days has been applied</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; no clinical-date / lag alignment)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; no clinical-date / lag alignment)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no clinical-date / lag alignment.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA/OMOP emits values at native dates with no lag-alignment record (COMPARISON.md §J: no lag slot).</div>
+<div class="envar-cov-note">GAIA/OMOP emits values at native dates with no lag-alignment record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS emits per-day values at native dates with no lag-alignment record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus emits per-day values at native dates with no lag-alignment record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER is spatial-only and carries no lag-alignment record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Lag alignment to a clinical event is an instance-layer linkage concern, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -920,39 +892,35 @@
 <span class="envar-value" title="The location is perturbed by a random (non-deterministic) offset — contrast the deterministic jitter above."><code>stochastic_perturbation</code> <span class="vdesc">The location is perturbed by a random (non-deterministic) offset — contrast t...</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.5 deterministic privacy jitter</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.5 deterministic privacy jitter</div>
 <div class="envar-cov-note">CHEL §4.5 applies a deterministic hex-reassignment jitter at linkage time (reassign to the largest hex in the same ZIP3 when the hex's ZIP3 population is below threshold).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The heat-scenario GAIA/OMOP join carries the true geocoded location with no privacy-transformation record on location.csv or external_exposure.csv.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS runs inside the institution and emits the true geocoded location; no privacy transform is recorded in its CSVs.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus extracts at the true request coordinates with no privacy-transformation record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)</div>
 <div class="envar-cov-note">C-HER (the CHEL platform, §4.5) applies the deterministic hex-reassignment privacy jitter this slot models — it is the motivating case.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A post-join privacy transformation is an instance-layer linkage step, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -980,39 +948,35 @@
 <p><code>reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic</code> — <span class="egdesc">CHEL §4.5 deterministic privacy jitter, spelled out</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.5 deterministic privacy jitter</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.5 deterministic privacy jitter</div>
 <div class="envar-cov-note">CHEL §4.5 states the concrete trigger (hex∩ZIP3 population threshold), the deterministic rule, and the HIPAA expert-determination basis this note captures.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">No privacy transform is applied in the GAIA/OMOP heat scenario, so there is no trigger/threshold/governance detail to record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">No privacy transform is applied by DeGAUSS here, so there is no transform detail to record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">No privacy transform is applied by Amadeus, so there is no transform detail to record.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> C-HER §4.5 trigger (hex∩ZIP3 population threshold), deterministic rule, HIPAA expert-determination basis</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER §4.5 trigger (hex∩ZIP3 population threshold), deterministic rule, HIPAA expert-determination basis</div>
 <div class="envar-cov-note">C-HER spells out the concrete trigger, determinism, and legal basis of its jitter — exactly the detail this note slot captures.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The detail of a post-join privacy transform is instance-layer, outside CODATA's conceptual scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1813,8 +1777,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">linkage</span><span class="nv"> </span><span class="s">strategy</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">implicit</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">st_within</span>
-<span class="w">                  </span><span class="s">SQL</span><span class="nv"> </span><span class="s">join</span><span class="nv"> </span><span class="s">semantics,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">exposed</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">documented</span><span class="nv"> </span><span class="s">structured</span><span class="nv"> </span><span class="s">slot</span>
-<span class="w">                  </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§J:</span><span class="nv"> </span><span class="s">➖).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">SQL</span><span class="nv"> </span><span class="s">join</span><span class="nv"> </span><span class="s">semantics,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">exposed</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">documented</span><span class="nv"> </span><span class="s">structured</span><span class="nv"> </span><span class="s">slot.</span>
+<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1829,8 +1793,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">structured</span><span class="nv"> </span><span class="s">linkage-strategy</span><span class="nv"> </span><span class="s">slot;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">point-extraction</span>
-<span class="w">                  </span><span class="s">rule</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">implicit</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§J:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no structured linkage-strategy slot; the point-extraction</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">rule is implicit.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1845,9 +1809,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">linkage-strategy</span><span class="nv"> </span><span class="s">slot;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">extracted</span>
-<span class="w">                  </span><span class="s">at</span><span class="nv"> </span><span class="s">request</span><span class="nv"> </span><span class="s">coordinates</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">recorded</span><span class="nv"> </span><span class="s">strategy</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§J:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no linkage-strategy slot; the value is extracted</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">at request coordinates with no recorded strategy.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2141,8 +2104,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'No</span><span class="nv"> </span><span class="s">geocoding-precision</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">location.csv</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">external_exposure.csv</span>
-<span class="w">                  </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§B:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No geocoding-precision column on location.csv or external_exposure.csv.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2177,8 +2139,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">collapses</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">address</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">lat/lon</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">THREDDS</span><span class="nv"> </span><span class="s">request</span>
-<span class="w">                  </span><span class="s">and</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">geocoding</span><span class="nv"> </span><span class="s">precision</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§B:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus collapses the address to lat/lon at the THREDDS request</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">and carries no geocoding precision.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2273,8 +2235,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'No</span><span class="nv"> </span><span class="s">geocoder</span><span class="nv"> </span><span class="s">match-score</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">location.csv</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">external_exposure.csv</span>
-<span class="w">                  </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§B:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No geocoder match-score column on location.csv or external_exposure.csv.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2309,8 +2270,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">geocoder</span><span class="nv"> </span><span class="s">match</span><span class="nv"> </span><span class="s">score</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§B:</span>
-<span class="w">                  </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no geocoder match score.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2427,9 +2387,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA/OMOP</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">static</span><span class="nv"> </span><span class="s">location</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">person</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">no</span>
-<span class="w">                  </span><span class="s">address-history</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">location-over-time</span><span class="nv"> </span><span class="s">alignment</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§A/§B:</span>
-<span class="w">                  </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA/OMOP models a single static location per person and no</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">address-history / location-over-time alignment.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2444,8 +2403,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">geocodes</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">address</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">location-over-</span>
-<span class="w">                  </span><span class="s">time</span><span class="nv"> </span><span class="s">period</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§B:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS geocodes one address per row and models no location-over-</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">time period.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2460,8 +2419,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">fixed</span><span class="nv"> </span><span class="s">lat/lon</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">address</span><span class="nv"> </span><span class="s">period</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§B:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus takes fixed lat/lon and models no address period.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2767,8 +2725,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA/OMOP</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">native</span><span class="nv"> </span><span class="s">dates</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">lag-alignment</span>
-<span class="w">                  </span><span class="s">record</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§J:</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">lag</span><span class="nv"> </span><span class="s">slot).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA/OMOP emits values at native dates with no lag-alignment</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">record.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

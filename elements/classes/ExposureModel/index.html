@@ -384,39 +384,35 @@
 <span class="envar-value" title="Satellite-based retrieval algorithm."><code>satellite_retrieval</code> <span class="vdesc">Satellite-based retrieval algorithm</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 3 (aggregation operator explicit; source model inherited from EJI)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 3 (aggregation operator explicit; source model inherited from EJI)</div>
 <div class="envar-cov-note">CHEL makes the aggregation operator explicit, but the source exposure-model type (reanalysis vs station-interp) is inherited from EJI, not modelled by CLAD.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA has no first-class exposure-model-type slot; it is present only via the EnVar JSON-LD extension. Natively GAIA carries only a free-text measurement_technique (COMPARISON.md §J → ❌ for the structured slot).</div>
+<div class="envar-cov-note">GAIA has no first-class exposure-model-type slot; it is present only via the EnVar JSON-LD extension. Natively GAIA carries only a free-text measurement_technique.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no exposure-model-type slot (COMPARISON.md §J → ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no exposure-model-type slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no exposure-model-type slot (COMPARISON.md §J → ❌).</div>
+<div class="envar-cov-note">Amadeus carries no exposure-model-type slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_dictionary data_level (mXX = modeled data)</div>
-<div class="envar-cov-note">C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX) from modeled, but does not name the model class (reanalysis vs interpolation) — metadata_model.md §2.5.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary data_level (mXX = modeled data)</div>
+<div class="envar-cov-note">C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX) from modeled, but does not name the model class (reanalysis vs interpolation).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The exposure-model class is instance-layer methodology that CDIF / DDI-CDI conceptual and represented layers explicitly do not carry (related-approaches.md §4).</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -489,39 +485,35 @@
 <p><code>GHCN-Daily station observations</code> — <span class="egdesc">sole element of the Daymet V4 input list</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.7 lineage / Part 3 inputs</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.7 lineage / Part 3 inputs</div>
 <div class="envar-cov-note">Inputs enter mostly via EJI and are listed in the lineage table, but not as a per-value model-input list. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA has no slot anywhere for model inputs (COMPARISON.md §J → ❌).</div>
+<div class="envar-cov-note">GAIA has no slot anywhere for model inputs.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no model-input list (COMPARISON.md §J → ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no model-input list.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no model-input list (COMPARISON.md §J → ❌).</div>
+<div class="envar-cov-note">Amadeus carries no model-input list.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> dataset_lineage (parent resources of a computed/modeled resource)</div>
-<div class="envar-cov-note">C-HER's dataset_lineage links parent resources a child was calculated/modeled from, but as resource FKs, not a named model-input variable list (metadata_model.md §4).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage (parent resources of a computed/modeled resource)</div>
+<div class="envar-cov-note">C-HER's dataset_lineage links parent resources a child was calculated/modeled from, but as resource FKs, not a named model-input variable list.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Model inputs are instance-layer derivation provenance that the CDIF / DDI-CDI conceptual and represented layers do not carry (related-approaches.md §4).</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -549,39 +541,34 @@
 <p><code>10.1021/acs.est.1c05309</code> — <span class="egdesc">van Donkelaar et al. 2021 methods paper for ACAG PM2.5</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 5 (validates own geometry, not source-model skill)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 5 (validates own geometry, not source-model skill)</div>
 <div class="envar-cov-note">CHEL validates its own geometry/conservation, not the source model; it carries no source methods-paper DOI.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">GAIA carries a dataset DOI (dct:identifier) but no methods-paper DOI describing the exposure model; no such slot exists.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS carries no methods-paper DOI for the source model.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus carries no methods-paper DOI for the source model.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">C-HER's doi field is the resource's own DOI, not a methods-paper DOI for the model that produced the values (metadata_model.md §3).</div>
+<div class="envar-cov-note">C-HER's doi field is the resource's own DOI, not a methods-paper DOI for the model that produced the values.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A model methods-paper DOI is instance-layer derivation metadata the CDIF / DDI-CDI conceptual and represented layers do not carry.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -609,39 +596,34 @@
 <p><code>0.90</code> — <span class="egdesc">reported for ACAG V5.GL satellite-derived PM2.5</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 5 (validates own geometry, not source-model skill)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 5 (validates own geometry, not source-model skill)</div>
 <div class="envar-cov-note">CHEL validates its own geometry/conservation, not source-model skill (R2), so it carries no source-model cross-validation R2.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">GAIA carries no model cross-validation R2; no such slot exists in gaiaCatalog or gaia-db.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS carries no model cross-validation R2.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus carries no model cross-validation R2.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">C-HER carries no source-model skill/cross-validation field (metadata_model.md §3, §6).</div>
+<div class="envar-cov-note">C-HER carries no source-model skill/cross-validation field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Model cross-validation skill is instance-layer quality metadata the CDIF / DDI-CDI conceptual and represented layers do not carry.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -672,39 +654,34 @@
 <p><code>interpolation degrades in sparse-station areas</code> — <span class="egdesc">another element of the same Daymet V4 bias list</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 5</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 5</div>
 <div class="envar-cov-note">CHEL validates geometry/conservation, not source-model skill, so it records no source-model biases.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">GAIA carries no known-model-biases field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS carries no known-model-biases field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus carries no known-model-biases field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">C-HER has free-text description/notes but no structured known-biases field for the source model (metadata_model.md §3).</div>
+<div class="envar-cov-note">C-HER has free-text description/notes but no structured known-biases field for the source model.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Known model biases are instance-layer quality metadata the CDIF / DDI-CDI conceptual and represented layers do not carry.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -742,39 +719,34 @@
 <span class="envar-value" title="Some other bias-correction method has been applied."><code>other</code> <span class="vdesc">Some other bias-correction method has been applied</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 5</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 5</div>
 <div class="envar-cov-note">CHEL carries no source-model bias-correction flag; it validates its own geometry/conservation, not source-model skill.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">GAIA carries no bias-correction flag for the source model.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS carries no bias-correction flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus carries no bias-correction flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">C-HER's data_level codes track processing stage but do not flag whether statistical bias correction was applied (metadata_model.md §2.5).</div>
+<div class="envar-cov-note">C-HER's data_level codes track processing stage but do not flag whether statistical bias correction was applied.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Bias correction is instance-layer derivation metadata the CDIF / DDI-CDI conceptual and represented layers do not carry.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1198,8 +1170,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA has no first-class exposure-model-type slot; it is present</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">only via the EnVar JSON-LD extension. Natively GAIA carries only</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a free-text measurement_technique (COMPARISON.md §J → ❌ for the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">structured slot).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a free-text measurement_technique.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1214,8 +1185,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no exposure-model-type slot (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§J → ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no exposure-model-type slot.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1230,8 +1200,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no exposure-model-type slot (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§J → ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no exposure-model-type slot.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1248,7 +1217,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's data_level code flags modeled data (mXX) and distinguishes</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">calculated (dXX) from modeled, but does not name the model class</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(reanalysis vs interpolation) — metadata_model.md §2.5.</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(reanalysis vs interpolation).</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1335,8 +1304,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA has no slot anywhere for model inputs (COMPARISON.md §J</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">→ ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA has no slot anywhere for model inputs.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1351,7 +1319,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no model-input list (COMPARISON.md §J → ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no model-input list.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1366,7 +1334,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no model-input list (COMPARISON.md §J → ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no model-input list.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1383,7 +1351,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's dataset_lineage links parent resources a child was</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">calculated/modeled from, but as resource FKs, not a named model-input</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">variable list (metadata_model.md §4).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">variable list.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1513,7 +1481,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's doi field is the resource's own DOI, not a methods-paper</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">DOI for the model that produced the values (metadata_model.md §3).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">DOI for the model that produced the values.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1666,8 +1634,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER carries no source-model skill/cross-validation field</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(metadata_model.md §3, §6).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER carries no source-model skill/cross-validation field.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1819,7 +1786,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER has free-text description/notes but no structured known-biases</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field for the source model (metadata_model.md §3).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field for the source model.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2007,8 +1974,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's data_level codes track processing stage but do not</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">flag whether statistical bias correction was applied (metadata_model.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§2.5).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">flag whether statistical bias correction was applied.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

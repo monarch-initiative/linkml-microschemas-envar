@@ -387,39 +387,34 @@
 <span class="envar-value" title="Cooling degree-days."><code>cooling_degree_days</code> <span class="vdesc">Cooling degree-days</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no heat-metric methodology; EJI vulnerability indices)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no heat-metric methodology; EJI vulnerability indices)</div>
 <div class="envar-cov-note">CHEL carries EJI-derived vulnerability indicators, not derived heat-metric methodology, so no heat-metric family is recorded.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">The scenario is a plain Tmax extraction, not a heat index; the variable family is implicit in variable_name tmax, with no derived heat-metric family slot (COMPARISON.md).</div>
+<div class="envar-cov-note">The scenario is a plain Tmax extraction, not a heat index; the variable family is implicit in variable_name tmax, with no derived heat-metric family slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits plain tmax with no heat-metric family field (COMPARISON.md).</div>
+<div class="envar-cov-note">DeGAUSS emits plain tmax with no heat-metric family field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus emits plain tmmx with no heat-metric family field (COMPARISON.md).</div>
+<div class="envar-cov-note">Amadeus emits plain tmmx with no heat-metric family field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER models no derived heat-metric family.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Heat-metric methodology is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -702,39 +697,34 @@
 <p><code>10</code> — <span class="egdesc">ERA5 10 m wind used without height adjustment</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no derived-heat-metric methodology)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no derived-heat-metric methodology)</div>
 <div class="envar-cov-note">CHEL models no WBGT/UTCI heat metrics, so wind-measurement height is not carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height (COMPARISON.md).</div>
+<div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height (COMPARISON.md).</div>
+<div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height (COMPARISON.md).</div>
+<div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">WBGT wind-height metadata is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -770,39 +760,34 @@
 <span class="envar-value" title="Solar radiation input not available; metric falls back."><code>not_available</code> <span class="vdesc">Solar radiation input not available; metric falls back</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no derived-heat-metric methodology)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no derived-heat-metric methodology)</div>
 <div class="envar-cov-note">CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis is not carried.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis (COMPARISON.md).</div>
+<div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis (COMPARISON.md).</div>
+<div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis (COMPARISON.md).</div>
+<div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Solar-radiation basis is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -827,39 +812,34 @@
 <p><code>local_county</code> — <span class="egdesc">reference distribution computed over Maricopa County</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §3.10 (EJI percentile normalization 0-100)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §3.10 (EJI percentile normalization 0-100)</div>
 <div class="envar-cov-note">CHEL applies EJI percentile-normalization (0-100) and computes it over defined scopes, but not as a first-class heat-metric percentile-baseline slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Tmax scenario computes no percentile-based threshold, so no reference geographic scope (COMPARISON.md).</div>
+<div class="envar-cov-note">Tmax scenario computes no percentile-based threshold, so no reference geographic scope.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No percentile-based metric, so no reference geographic scope (COMPARISON.md).</div>
+<div class="envar-cov-note">No percentile-based metric, so no reference geographic scope.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No percentile-based metric, so no reference geographic scope (COMPARISON.md).</div>
+<div class="envar-cov-note">No percentile-based metric, so no reference geographic scope.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's percentile normalization is EJI vulnerability, not a heat-metric percentile baseline scope.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Percentile-baseline scope is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -884,39 +864,34 @@
 <p><code>warm_season_may_sep</code></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; no seasonal window)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; no seasonal window)</div>
 <div class="envar-cov-note">CHEL's percentile normalization is spatial (EJI), with no temporal/seasonal reference window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No percentile-based metric in the Tmax scenario, so no seasonal reference window (COMPARISON.md).</div>
+<div class="envar-cov-note">No percentile-based metric in the Tmax scenario, so no seasonal reference window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No percentile-based metric, so no seasonal reference window (COMPARISON.md).</div>
+<div class="envar-cov-note">No percentile-based metric, so no seasonal reference window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No percentile-based metric, so no seasonal reference window (COMPARISON.md).</div>
+<div class="envar-cov-note">No percentile-based metric, so no seasonal reference window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER carries no heat-metric seasonal reference window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Seasonal reference window is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -941,39 +916,34 @@
 <p><code>each_day_of_event</code></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; no multi-day event stamping)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; no multi-day event stamping)</div>
 <div class="envar-cov-note">CHEL is spatial-only and stamps no multi-day heat events onto days.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping rule (COMPARISON.md).</div>
+<div class="envar-cov-note">Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping rule.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule (COMPARISON.md).</div>
+<div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule (COMPARISON.md).</div>
+<div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER stamps no multi-day heat events onto days.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Multi-day event stamping is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1928,7 +1898,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The scenario is a plain Tmax extraction, not a heat index;</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the variable family is implicit in variable_name tmax, with no derived</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">heat-metric family slot (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">heat-metric family slot.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1943,7 +1913,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits plain tmax with no heat-metric family field (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits plain tmax with no heat-metric family field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1958,7 +1928,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits plain tmmx with no heat-metric family field (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits plain tmmx with no heat-metric family field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2259,7 +2229,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">height (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">height.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2274,7 +2244,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2289,7 +2259,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2410,7 +2380,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">basis (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">basis.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2425,7 +2395,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2440,7 +2410,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2793,7 +2763,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario computes no percentile-based threshold, so no</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference geographic scope (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference geographic scope.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2808,8 +2778,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2824,8 +2793,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2944,7 +2912,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric in the Tmax scenario, so no seasonal</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference window (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference window.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2959,8 +2927,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2975,8 +2942,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3092,7 +3058,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario is per-day values, not a heat-wave flag; no multi-day</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">event-stamping rule (COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">event-stamping rule.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3107,7 +3073,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3122,7 +3088,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule (COMPARISON.md).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

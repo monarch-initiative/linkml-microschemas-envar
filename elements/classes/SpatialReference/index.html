@@ -367,39 +367,36 @@
 <p><code>1000</code> — <span class="egdesc">Daymet V4 1 km grid</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
 <div class="envar-cov-note">CHEL fixes native resolution first-class as Uber H3 Resolution-3 hexagons (~12,000 km2).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot (COMPARISON.md §G); it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
+<div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no resolution field (COMPARISON.md §G); "Daymet = 1 km" is out-of-band knowledge, not written to any output.</div>
+<div class="envar-cov-note">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band knowledge, not written to any output.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml axis lat/lon increment (0.041666 deg)</div>
-<div class="envar-cov-note">Only derivable from the grid-axis increment in thredds_dataset.xml (COMPARISON.md §G ➖); never written as a resolution number in metres.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml axis lat/lon increment (0.041666 deg)</div>
+<div class="envar-cov-note">Only derivable from the grid-axis increment in thredds_dataset.xml; never written as a resolution number in metres.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name spatial-res code (e.g. m30, k05, h08)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code (e.g. m30, k05, h08)</div>
 <div class="envar-cov-note">C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3 metric/H3 codes) and as the inheritable spatial_resolution field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">CODATA EVs / DDI-CDI operate at the conceptual/represented layer; native grid resolution of one run is instance-layer detail deliberately outside their scope.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -427,41 +424,36 @@
 <p><code>EPSG:4326</code> — <span class="egdesc">WGS 84, used by the Daymet and ACAG PM2.5 scenarios</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.2.2/§5.2.1 (EPSG:5070 for areas, EPSG:4269 for points)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.2.2/§5.2.1 (EPSG:5070 for areas, EPSG:4269 for points)</div>
 <div class="envar-cov-note">CHEL fixes CRS first-class: equal-area EPSG:5070 for area math, EPSG:4269 for participant points.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom EPSG:4326</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom EPSG:4326</div>
 <div class="envar-cov-note">GAIA carries the source-raster CRS first-class via data_source.srid, meta_etl epsg/local_epsg, and the enforced PostGIS geom SRID.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS leaves CRS implicit WGS84 with no column (COMPARISON.md §C ❌).</div>
+<div class="envar-cov-note">DeGAUSS leaves CRS implicit WGS84 with no column.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml coordinate_system = "WGS84,EPSG:4326"</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml coordinate_system = "WGS84,EPSG:4326"</div>
 <div class="envar-cov-note">Amadeus's THREDDS grid declares the raster CRS explicitly as an EPSG code.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's metadata model (table_dictionary / column dictionary) documents spatial extent/resolution codes but no per-resource CRS/EPSG field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">CRS of a specific extract is an instance-layer representation detail; the conceptual EV/DDI-CDI layer does not carry it.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -506,39 +498,34 @@
 <span class="envar-value" title="Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads)."><code>feature_density</code> <span class="vdesc">Count (or line-length) of source features per unit target area</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 3 (aggregation operators)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 3 (aggregation operators)</div>
 <div class="envar-cov-note">CHEL carries the extraction/aggregation operator first-class: area-weighted interpolation, nearest-hex join, density, intersection-proportion.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No extraction-method slot in gaiaCatalog or gaia-db (COMPARISON.md §G ❌); only the implicit st_within join semantics of working.spatial_join_exposure exist, undocumented.</div>
+<div class="envar-cov-note">No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join semantics of working.spatial_join_exposure exist, undocumented.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS applies IDW-4-nearest by default but records no extraction-method field (COMPARISON.md §G ❌).</div>
+<div class="envar-cov-note">DeGAUSS applies IDW-4-nearest by default but records no extraction-method field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus emits no extraction-method field (COMPARISON.md §G ❌).</div>
+<div class="envar-cov-note">Amadeus emits no extraction-method field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's data-level codes track processing stage, not the point-to-cell extraction rule; no extraction-method field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">How a value was extracted from a grid is instance-layer provenance the conceptual EV/DDI-CDI layer deliberately omits.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -581,39 +568,36 @@
 <span class="envar-value" title="Public water system service area polygon."><code>public_water_system</code> <span class="vdesc">Public water system service area polygon</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.2.1 (H3 hex target)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.2.1 (H3 hex target)</div>
 <div class="envar-cov-note">CHEL's target geography is first-class: every value is attached to an H3 Hex3 cell.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.geom_type (point); location.geom</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type (point); location.geom</div>
 <div class="envar-cov-note">GAIA records the geometry type (point) but not the full EnVar target-geography vocabulary (tract/ZCTA/county); values land on the person's point location.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS attaches values to the geocoded point residence but has no explicit target-geography-type field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus collapses to lat/lon at the THREDDS request with no geography-type field (COMPARISON.md §B).</div>
+<div class="envar-cov-note">Amadeus collapses to lat/lon at the THREDDS request with no geography-type field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary</div>
 <div class="envar-cov-note">C-HER's spatial-resolution code names the geographic unit (county/tract/block group/ZCTA/H3) and column_tag flags the spatial-primary column (§2.3, §6.1).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The target geographic unit of a specific value is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -710,39 +694,36 @@
 <p><code>1 km regular grid</code> — <span class="egdesc">Daymet V4 native grid</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.2.1 (H3 Hex3 descriptor)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.2.1 (H3 Hex3 descriptor)</div>
 <div class="envar-cov-note">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
-<div class="envar-cov-note">GAIA records geometry type (point/raster) but no human-readable resolution-layout descriptor; the resolution label itself is absent (COMPARISON.md §G).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
+<div class="envar-cov-note">GAIA records geometry type (point/raster) but no human-readable resolution-layout descriptor; the resolution label itself is absent.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS writes no resolution descriptor of any kind.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No resolution-layout label is emitted; only a derivable axis increment exists (COMPARISON.md §G).</div>
+<div class="envar-cov-note">No resolution-layout label is emitted; only a derivable axis increment exists.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
 <div class="envar-cov-note">The spatial-resolution code prefix distinguishes grid (m/k), H3 (h), and polygon (tract/block/ZIP) layouts (§2.3), a coded rather than free-text descriptor.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Resolution-layout description of a specific product is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -767,41 +748,37 @@
 <p><code>[-131.104, 14.075, -52.95, 53.038]</code> — <span class="egdesc">Daymet V4 product bounding box (CONUS + Hawaii + Puerto Rico); one float per list element, ordered min_lon, min_lat, max_lon, max_lat</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.7 input lineage (national US extent)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.7 input lineage (national US extent)</div>
 <div class="envar-cov-note">CHEL's national-US extent is carried through the input-lineage table.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)</div>
 <div class="envar-cov-note">GAIA records the product footprint as a WKT polygon extent and a DCAT spatialCoverage string.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no product bounding box (COMPARISON.md §G ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no product bounding box.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)</div>
 <div class="envar-cov-note">The THREDDS dataset.xml gives the product footprint as projectionBox and LatLonBox.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</div>
 <div class="envar-cov-note">C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding box.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A product's spatial bounding box is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -829,39 +806,36 @@
 <p><code>CONUS + Hawaii + Puerto Rico</code> — <span class="egdesc">Daymet V4 product extent</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.7 input lineage (national US extent)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.7 input lineage (national US extent)</div>
 <div class="envar-cov-note">The national-US spatial extent is stated for CHEL products.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage</div>
 <div class="envar-cov-note">GAIA's spatialCoverage string can act as a human-readable extent label, though it is not guaranteed to be a curated prose descriptor.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no extent descriptor (COMPARISON.md §G ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no extent descriptor.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus carries a numeric bbox (projectionBox/LatLonBox) but no human-readable extent description.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)</div>
 <div class="envar-cov-note">The coded spatial-extent prefix conveys a controlled-vocabulary extent label (§2.2) rather than free-text prose.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Human-readable extent of a specific product is instance/discovery-layer detail outside the conceptual layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -898,39 +872,34 @@
 <span class="envar-value" title="Preserves fractional areal coverage — the proportion of the target cell intersected by the source feature. For coverage quantities — e.g. impaired waters."><code>areal_coverage</code> <span class="vdesc">Preserves fractional areal coverage — the proportion of the target cell inter...</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §3.10 (geometry-weighted operator; preserved-quantity table)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §3.10 (geometry-weighted operator; preserved-quantity table)</div>
 <div class="envar-cov-note">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary (mean intensity / mass conservation / occurrence intensity / areal coverage) and selects the operator from it.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant an aggregation holds fixed is not recorded.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS does point extraction only and records no aggregation-preservation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus records no preserved-quantity of any spatial aggregation.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER captures resolution and data-level but not which quantity a re-gridding operator preserves.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The preserved quantity of an aggregation is instance-layer methodological detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1273,8 +1242,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaiaCatalog has no first-class native-resolution slot (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§G); it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaiaCatalog has no first-class native-resolution slot; it appears</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not natively.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
@@ -1290,8 +1259,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no resolution field (COMPARISON.md §G); "Daymet</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">= 1 km" is out-of-band knowledge, not written to any output.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">knowledge, not written to any output.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1306,8 +1275,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml axis lat/lon increment (0.041666 deg)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the grid-axis increment in thredds_dataset.xml</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §G ➖); never written as a resolution number in metres.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the grid-axis increment in thredds_dataset.xml;</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">never written as a resolution number in metres.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1409,8 +1378,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records geometry type (point/raster) but no human-readable</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">resolution-layout descriptor; the resolution label itself is absent</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §G).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">resolution-layout descriptor; the resolution label itself is absent.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1441,7 +1409,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No resolution-layout label is emitted; only a derivable axis</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">increment exists (COMPARISON.md §G).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">increment exists.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1559,8 +1527,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS leaves CRS implicit WGS84 with no column (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§C ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS leaves CRS implicit WGS84 with no column.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1702,7 +1669,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product bounding box (COMPARISON.md §G ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product bounding box.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1834,7 +1801,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no extent descriptor (COMPARISON.md §G ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no extent descriptor.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1946,8 +1913,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No extraction-method slot in gaiaCatalog or gaia-db (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§G ❌); only the implicit st_within join semantics of working.spatial_join_exposure</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No extraction-method slot in gaiaCatalog or gaia-db; only the</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">implicit st_within join semantics of working.spatial_join_exposure</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">exist, undocumented.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
@@ -1964,7 +1931,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS applies IDW-4-nearest by default but records no extraction-method</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field (COMPARISON.md §G ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1979,8 +1946,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits no extraction-method field (COMPARISON.md §G</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits no extraction-method field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2243,7 +2209,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus collapses to lat/lon at the THREDDS request with no</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">geography-type field (COMPARISON.md §B).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">geography-type field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

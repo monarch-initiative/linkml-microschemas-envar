@@ -385,39 +385,37 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (indicator names; no substance vocabulary)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (indicator names; no substance vocabulary)</div>
 <div class="envar-cov-note">CHEL carries indicator names but no environmental-substance vocabulary; the exposure concept is unfilled (EnVar-Tracker #38). Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db variable_source.variable_name/variable_description + JSON-LD variableMeasured.propertyID (NERC air_temperature); unit_concept_id 8653</div>
-<div class="envar-cov-note">Gaia carries variable name, description, unit, and a CF-mirror propertyID, but CF cell_methods has no slot (COMPARISON.md §F — mixed ✅/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db variable_source.variable_name/variable_description + JSON-LD variableMeasured.propertyID (NERC air_temperature); unit_concept_id 8653</div>
+<div class="envar-cov-note">Gaia carries variable name, description, unit, and a CF-mirror propertyID, but CF cell_methods has no slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Variable identity is implicit in the column header tmax with no CF standard name, cell methods, or unit annotation (COMPARISON.md §E/§F — ❌).</div>
+<div class="envar-cov-note">Variable identity is implicit in the column header tmax with no CF standard name, cell methods, or unit annotation.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml long_name/standard_name/description + gridmet_tmmx.cf_metadata.json units</div>
-<div class="envar-cov-note">Amadeus carries a CF-style blob (long_name, units K), but standard_name is overloaded with the gridMET shortcode, not a real CF term (COMPARISON.md §F — ➖). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml long_name/standard_name/description + gridmet_tmmx.cf_metadata.json units</div>
+<div class="envar-cov-note">Amadeus carries a CF-style blob (long_name, units K), but standard_name is overloaded with the gridMET shortcode, not a real CF term. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_tag=Value + column_unit_id (+ planned ontology tag)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag=Value + column_unit_id (+ planned ontology tag)</div>
 <div class="envar-cov-note">C-HER tags a Value column with a unit and (planned) ontology tag, but carries no CF standard name / cell-methods identity.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Variable identity is exactly the conceptual/represented layer CODATA EVs occupy, but as a conceptual framework it is excluded from instance-layer scoring.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -448,39 +446,38 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §1.3/§4.2/Part 3 (hex resolution, CRS, aggregation)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §1.3/§4.2/Part 3 (hex resolution, CRS, aggregation)</div>
 <div class="envar-cov-note">The spatial block is where CHEL is strongest: fixed hex resolution, equal-area CRS, and explicit aggregation operators are all first-class.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db location.geom EPSG:4326 / data_source.srid; meta_etl_*.json epsg / extent; data_source.spatial_coverage</div>
-<div class="envar-cov-note">Gaia carries CRS/SRID and dataset spatial coverage, but has no first-class native-resolution or extraction-method slot (COMPARISON.md §C/§G — mixed ✅/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db location.geom EPSG:4326 / data_source.srid; meta_etl_*.json epsg / extent; data_source.spatial_coverage</div>
+<div class="envar-cov-note">Gaia carries CRS/SRID and dataset spatial coverage, but has no first-class native-resolution or extraction-method slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> lat / lon columns on the geocoded CSV (implicit WGS84)</div>
-<div class="envar-cov-note">DeGAUSS carries coordinates but no explicit CRS, native resolution, or extraction method (COMPARISON.md §C/§G — ➖/❌).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> lat / lon columns on the geocoded CSV (implicit WGS84)</div>
+<div class="envar-cov-note">DeGAUSS carries coordinates but no explicit CRS, native resolution, or extraction method.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml coordinate_system=WGS84,EPSG:4326 + axis lat/lon increment + projectionBox/LatLonBox</div>
-<div class="envar-cov-note">Amadeus declares source-raster CRS and bbox and grid increment, but no extraction-method slot and resolution is only derivable (COMPARISON.md §C/§G — mixed ✅/➖/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml coordinate_system=WGS84,EPSG:4326 + axis lat/lon increment + projectionBox/LatLonBox</div>
+<div class="envar-cov-note">Amadeus declares source-raster CRS and bbox and grid increment, but no extraction-method slot and resolution is only derivable. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name spatial extent + spatial resolution codes (e.g. h08 / k05 / m30); column_tag Spatial-Primary</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial extent + spatial resolution codes (e.g. h08 / k05 / m30); column_tag Spatial-Primary</div>
 <div class="envar-cov-note">C-HER encodes spatial extent and organisation resolution in the table_name and tags spatial columns, but carries no per-value extraction method or CRS field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Extraction geometry is instance-layer; out of scope for CODATA's conceptual framework.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -511,39 +508,37 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db variable_source.start_date/end_date; meta_dcat_*.json dct:temporal</div>
-<div class="envar-cov-note">Gaia carries the dataset time span but has no first-class temporal-resolution, aggregation-method, or day-boundary slot (COMPARISON.md §H — ❌ for those). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db variable_source.start_date/end_date; meta_dcat_*.json dct:temporal</div>
+<div class="envar-cov-note">Gaia carries the dataset time span but has no first-class temporal-resolution, aggregation-method, or day-boundary slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Temporal resolution is implicit (one row per day); aggregation method and day boundary are absent (COMPARISON.md §H — ❌).</div>
+<div class="envar-cov-note">Temporal resolution is implicit (one row per day); aggregation method and day boundary are absent.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml day axis (days since 1900-01-01, calendar=gregorian) + TimeSpan; long_name daily_maximum_temperature</div>
-<div class="envar-cov-note">Amadeus carries time-origin, calendar, and dataset span, and aggregation is encoded only in the long_name; day-boundary is pure ambiguity (COMPARISON.md §H — ➖/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml day axis (days since 1900-01-01, calendar=gregorian) + TimeSpan; long_name daily_maximum_temperature</div>
+<div class="envar-cov-note">Amadeus carries time-origin, calendar, and dataset span, and aggregation is encoded only in the long_name; day-boundary is pure ambiguity. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name temporal extent (YYYYMMDDYYYYMMDD) + temporal resolution code; column_tag Temporal-Primary</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal extent (YYYYMMDDYYYYMMDD) + temporal resolution code; column_tag Temporal-Primary</div>
 <div class="envar-cov-note">C-HER encodes temporal extent and resolution in the table_name and tags temporal columns, but carries no aggregation-method or day-boundary-convention field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Temporal-aggregation semantics are instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -574,39 +569,36 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus Part 3 / Part 5 (aggregation explicit; source model inherited)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus Part 3 / Part 5 (aggregation explicit; source model inherited)</div>
 <div class="envar-cov-note">CHEL makes the aggregation operator explicit but inherits the source exposure model from EJI and validates only its own geometry. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.measurement_technique + meta_dcat_*.json measurementTechnique (free-text)</div>
-<div class="envar-cov-note">Gaia carries a free-text method description but no structured exposure-model type or model-inputs list (COMPARISON.md §J — ➖/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.measurement_technique + meta_dcat_*.json measurementTechnique (free-text)</div>
+<div class="envar-cov-note">Gaia carries a free-text method description but no structured exposure-model type or model-inputs list. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS records no exposure-model type or model description (COMPARISON.md §J — ❌).</div>
+<div class="envar-cov-note">DeGAUSS records no exposure-model type or model description.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus records no exposure-model type or model description (COMPARISON.md §J — ❌).</div>
+<div class="envar-cov-note">Amadeus records no exposure-model type or model description.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes</div>
 <div class="envar-cov-note">C-HER's data_level codes signal that a resource is calculated or modeled, but do not carry a structured exposure-model type or inputs. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Exposure-model identity is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -634,39 +626,38 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (hex-indexed tables; no portable sidecar)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (hex-indexed tables; no portable sidecar)</div>
 <div class="envar-cov-note">CHEL emits hex-indexed tables with a value/subject/time structure but no portable sidecar column layout. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> external_exposure.person_id/value_as_number + gaia_db location.csv columns (implicit layout)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.person_id/value_as_number + gaia_db location.csv columns (implicit layout)</div>
 <div class="envar-cov-note">Gaia's OMOP/gaia-db tables have value/subject/time columns but no portable sidecar column-binding document. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> geocoded CSV columns id / lat / lon / tmax / date (implicit layout)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoded CSV columns id / lat / lon / tmax / date (implicit layout)</div>
 <div class="envar-cov-note">DeGAUSS's CSV has value/subject/date columns but no portable sidecar layout describing them. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gridmet_tmmx.csv columns person_loc_id / lat / lon / value_kelvin / value_celsius (implicit layout)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gridmet_tmmx.csv columns person_loc_id / lat / lon / value_kelvin / value_celsius (implicit layout)</div>
 <div class="envar-cov-note">Amadeus's CSV has value/subject columns but no portable sidecar column-binding document. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary (column_name, description, column_tag Index/Value/Temporal/Spatial, column_unit)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary (column_name, description, column_tag Index/Value/Temporal/Spatial, column_unit)</div>
 <div class="envar-cov-note">C-HER's column dictionary is a first-class, portable per-column layout with a role tag and unit for every column — the closest analogue to the sidecar's data-layout block.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Companion-file column binding is instance/packaging-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -691,40 +682,36 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.7 lineage table / Part 6 (dataset name + RID + release)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.7 lineage table / Part 6 (dataset name + RID + release)</div>
 <div class="envar-cov-note">CHEL identifies each source dataset first-class in the §2.7 lineage table with Foundry RID and release version.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.dataset_name/dataset_version/license/creator/date_published + meta_dcat_*.json dct:title/dct:identifier(DOI)/dct:license</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>COMPARISON.md §I — dataset name ✅, version ✅, DOI ✅, license ✅, publisher ✅, date published/modified ✅</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.dataset_name/dataset_version/license/creator/date_published + meta_dcat_*.json dct:title/dct:identifier(DOI)/dct:license</div>
 <div class="envar-cov-note">Gaia natively carries full dataset-level discovery metadata (name, version, DOI, license, publisher).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no dataset name, version, DOI, license, or publisher (COMPARISON.md §I — ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no dataset name, version, DOI, license, or publisher.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no dataset-identity metadata (no name, DOI, license, publisher) natively (COMPARISON.md §I — ❌).</div>
+<div class="envar-cov-note">Amadeus carries no dataset-identity metadata (no name, DOI, license, publisher) natively.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_dictionary (dataset, doi, rights, resource_type/format, contributors) + version + source_update_frequency</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary (dataset, doi, rights, resource_type/format, contributors) + version + source_update_frequency</div>
 <div class="envar-cov-note">C-HER's table_dictionary and its foreign-key vocabularies identify the source dataset first-class (dataset, rights, DOI, contributors, version).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Dataset identity/discovery is catalogue-layer; CODATA operates at the conceptual variable layer and is out of scope for scoring.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -752,39 +739,38 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §6.5 (Foundry RID + CHEL release)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §6.5 (Foundry RID + CHEL release)</div>
 <div class="envar-cov-note">CHEL identifies its pipeline via Foundry RID + CHEL release, but carries no container digest, run args, timestamps, or hashes. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)</div>
-<div class="envar-cov-note">Gaia carries per-row load times and a join log, but no tool name/version, container digest, run args, or hashes (COMPARISON.md §K — mostly ❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)</div>
+<div class="envar-cov-note">Gaia carries per-row load times and a join log, but no tool name/version, container digest, run args, or hashes. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> output filename tool name + container image tag (e.g. daymet_1.0.0); ghcr.io/degauss-org/... reference</div>
-<div class="envar-cov-note">DeGAUSS pins tool name and version via the filename/container tag, but no digest, run args, timestamp, or hashes (COMPARISON.md §K). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> output filename tool name + container image tag (e.g. daymet_1.0.0); ghcr.io/degauss-org/... reference</div>
+<div class="envar-cov-note">DeGAUSS pins tool name and version via the filename/container tag, but no digest, run args, timestamp, or hashes. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_response_headers.json HTTP Date header (run timestamp only)</div>
-<div class="envar-cov-note">Amadeus records only the HTTP Date header; no tool name/version, container, run args, or hashes natively (COMPARISON.md §K — ➖/❌). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_response_headers.json HTTP Date header (run timestamp only)</div>
+<div class="envar-cov-note">Amadeus records only the HTTP Date header; no tool name/version, container, run args, or hashes natively. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_dictionary.metadata_created_at/updated_at + uploaded_by + version</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary.metadata_created_at/updated_at + uploaded_by + version</div>
 <div class="envar-cov-note">C-HER records registration time, uploader, and version, but no per-run producing-tool name/version, container digest, args, or hashes. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Tool-run provenance is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -809,40 +795,37 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4/§4.5 (nearest-hex join + deterministic privacy jitter)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.4/§4.5 (nearest-hex join + deterministic privacy jitter)</div>
 <div class="envar-cov-note">CHEL's linkage is first-class: nearest-hex spatial join plus a deterministic privacy jitter at the linkage stage.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt</div>
-<div class="envar-cov-note">Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented linkage-strategy column (COMPARISON.md §J — ➖). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt</div>
+<div class="envar-cov-note">Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented linkage-strategy column. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>COMPARISON.md §B — geocoder match score ✅, precision ✅, geocode-result flag ✅ on every row</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state</div>
 <div class="envar-cov-note">DeGAUSS's linkage event (geocoding precision, match score, result flag, matched address) is first-class per row.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and records no linkage/geocoding quality (COMPARISON.md §B/§J — ❌).</div>
+<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and records no linkage/geocoding quality.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)</div>
 <div class="envar-cov-note">C-HER models cross-table join references and spatial-column tags, but no patient-to-place linkage-strategy field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Patient-to-place linkage is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -867,39 +850,34 @@
 <p><code>0.1</code></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no schema-version construct)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no schema-version construct)</div>
 <div class="envar-cov-note">CHEL is a pipeline, not a metadata sidecar standard; it carries no schema-version field on emitted records.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level construct (COMPARISON.md tracks the sidecar layer separately).</div>
+<div class="envar-cov-note">No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level construct.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS produces no metadata sidecar and carries no schema-version field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus's native metadata carries no sidecar schema-version field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's version code versions the data resource, not a metadata sidecar schema, so no EnVar-style schema-version field exists.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Sidecar schema versioning is packaging-layer; out of scope for CODATA's conceptual framework.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -927,39 +905,36 @@
 <p><code>01HFA7K8R3M6XP-daymet-deposit</code> — <span class="egdesc">ULID-based sidecar identifier for the Daymet Tmax deposit</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.7 lineage table (Foundry RID)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.7 lineage table (Foundry RID)</div>
 <div class="envar-cov-note">CHEL identifies datasets by Foundry RID in the lineage table, but has no per-sidecar stable record id that a health layer's source-value field carries.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> external_exposure.exposure_source_value (empty slot that could carry a provenance id) + gaia_db data_source id</div>
-<div class="envar-cov-note">The OMOP source-value field exists as the natural carrier, but gaia populates no per-sidecar stable record id into it (COMPARISON.md §D). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value (empty slot that could carry a provenance id) + gaia_db data_source id</div>
+<div class="envar-cov-note">The OMOP source-value field exists as the natural carrier, but gaia populates no per-sidecar stable record id into it. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS produces no sidecar and no stable per-record provenance id.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus produces no stable per-record provenance id; only file hashes for citation.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name reproducible resource identifier (org_dataset_..._version) + osti_id / ornl_res_pub_id</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name reproducible resource identifier (org_dataset_..._version) + osti_id / ornl_res_pub_id</div>
 <div class="envar-cov-note">C-HER assigns each resource a reproducible identifier, but it names the dataset resource, not an EnVar sidecar that a health layer's source-value field carries. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A per-sidecar provenance id is packaging-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -995,39 +970,35 @@
 <span class="envar-value" title="The sidecar carries PHI. Should never happen; sidecars are by design PHI-free."><code>phi_present</code> <span class="vdesc">The sidecar carries PHI</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.5 privacy architecture</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §4.5 privacy architecture</div>
 <div class="envar-cov-note">Privacy architecture is central to CHEL (ZIP3/hex separation, jitter) but there is no per-record PHI-status assertion flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Gaia carries PHI in OMOP person/location tables but emits no per-record PHI-free assertion flag on its metadata (COMPARISON.md §A).</div>
+<div class="envar-cov-note">Gaia carries PHI in OMOP person/location tables but emits no per-record PHI-free assertion flag on its metadata.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS's privacy-preserving design keeps PHI on-site, but it emits no per-record PHI-status assertion flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus handles no PHI and emits no per-record PHI-status flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> PostgreSQL schemas private / embargo (access-tier separation) + rights FK</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schemas private / embargo (access-tier separation) + rights FK</div>
 <div class="envar-cov-note">C-HER separates private/embargoed resources into dedicated schemas and records rights, but has no per-record PHI-status assertion flag. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Per-record PHI assertion is packaging/governance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1097,39 +1068,35 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §5.3 (conservation/range diagnostics); §5.6.4 (source uncertainty acknowledged)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §5.3 (conservation/range diagnostics); §5.6.4 (source uncertainty acknowledged)</div>
 <div class="envar-cov-note">CHEL has conservation and range/domain validation and a null taxonomy, but carries no per-value uncertainty. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No gaia output carries per-value or model-aggregate uncertainty (per-value uncertainty is ❌ across all pipelines in COMPARISON.md).</div>
+<div class="envar-cov-note">No gaia output carries per-value or model-aggregate uncertainty (per-value uncertainty is ❌ across all pipelines).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no uncertainty block (COMPARISON.md — ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no uncertainty block.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no uncertainty block; only a _FillValue sentinel (COMPARISON.md — ❌).</div>
+<div class="envar-cov-note">Amadeus carries no uncertainty block; only a _FillValue sentinel.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)</div>
 <div class="envar-cov-note">C-HER classifies null cells and encodes QA level, but carries no per-value uncertainty or completeness percentage. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Per-value uncertainty is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1154,39 +1121,36 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §2.1 (Source to Module Assignment pathway)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §2.1 (Source to Module Assignment pathway)</div>
 <div class="envar-cov-note">CHEL documents a lineage pathway but not an ordered per-run W3C-PROV chain. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt</div>
-<div class="envar-cov-note">Gaia's ETL descriptor plus join log capture upstream steps but not as an ordered per-run W3C-PROV chain (COMPARISON.md §K). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt</div>
+<div class="envar-cov-note">Gaia's ETL descriptor plus join log capture upstream steps but not as an ordered per-run W3C-PROV chain. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no ordered upstream-run chain (COMPARISON.md §K).</div>
+<div class="envar-cov-note">DeGAUSS emits no ordered upstream-run chain.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus emits no ordered upstream-run chain (COMPARISON.md §K).</div>
+<div class="envar-cov-note">Amadeus emits no ordered upstream-run chain.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> dataset_lineage (parent-child links) + lineage_notes</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage (parent-child links) + lineage_notes</div>
 <div class="envar-cov-note">C-HER's dataset_lineage links parent and child resources, but is a dataset-lineage graph, not an ordered per-run W3C-PROV chain. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Ordered tool-run provenance is instance-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1214,39 +1178,36 @@
 <p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no unified external_exposure assembly)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no unified external_exposure assembly)</div>
 <div class="envar-cov-note">CHEL produces hex tables + a participant-linkage table but no unified (person, start/end, location, concept, value) assembly to link into a health layer (EnVar-Tracker #38).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> external_exposure.exposure_source_value / exposure_concept_id + external_exposure.person_id</div>
-<div class="envar-cov-note">Gaia lands values in OMOP external_exposure with a person link and a source-value hook, but names no explicit sidecar provenance-id join field (COMPARISON.md §A/§D — ➖). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value / exposure_concept_id + external_exposure.person_id</div>
+<div class="envar-cov-note">Gaia lands values in OMOP external_exposure with a person link and a source-value hook, but names no explicit sidecar provenance-id join field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS appends geomarker columns to the cohort CSV but names no downstream health-layer target or join field (COMPARISON.md — ❌).</div>
+<div class="envar-cov-note">DeGAUSS appends geomarker columns to the cohort CSV but names no downstream health-layer target or join field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus emits a data CSV with no downstream health-layer target or join field (COMPARISON.md — ❌).</div>
+<div class="envar-cov-note">Amadeus emits a data CSV with no downstream health-layer target or join field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table join to health resources)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table join to health resources)</div>
 <div class="envar-cov-note">C-HER has a health schema and cross-table reference columns, but no sidecar-to-health-layer link-field declaration. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Health-layer linkage hooks are instance/integration-layer; out of scope for CODATA.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1726,8 +1687,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">name,</span><span class="nv"> </span><span class="s">description,</span><span class="nv"> </span><span class="s">unit,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF-mirror</span>
-<span class="w">                  </span><span class="s">propertyID,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">cell_methods</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F</span><span class="nv"> </span><span class="s">—</span>
-<span class="w">                  </span><span class="s">mixed</span><span class="nv"> </span><span class="s">✅/❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">propertyID,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">cell_methods</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1743,8 +1703,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable identity is implicit in the column header tmax with</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no CF standard name, cell methods, or unit annotation (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§E/§F — ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no CF standard name, cell methods, or unit annotation.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1762,7 +1721,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF-style</span><span class="nv"> </span><span class="s">blob</span><span class="nv"> </span><span class="s">(long_name,</span><span class="nv"> </span><span class="s">units</span><span class="nv"> </span><span class="s">K),</span><span class="nv"> </span><span class="s">but</span>
 <span class="w">                  </span><span class="s">standard_name</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">overloaded</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">gridMET</span><span class="nv"> </span><span class="s">shortcode,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">real</span>
-<span class="w">                  </span><span class="s">CF</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">CF</span><span class="nv"> </span><span class="s">term.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1880,8 +1839,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">CRS/SRID</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">spatial</span><span class="nv"> </span><span class="s">coverage,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">has</span>
-<span class="w">                  </span><span class="s">no</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">native-resolution</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">extraction-method</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§C/§G</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">mixed</span><span class="nv"> </span><span class="s">✅/❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">no</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">native-resolution</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">extraction-method</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1897,7 +1856,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries coordinates but no explicit CRS, native resolution,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">or extraction method (COMPARISON.md §C/§G — ➖/❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">or extraction method.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1914,8 +1873,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">source-raster</span><span class="nv"> </span><span class="s">CRS</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">bbox</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">grid</span><span class="nv"> </span><span class="s">increment,</span>
-<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">extraction-method</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">resolution</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">derivable</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§C/§G</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">mixed</span><span class="nv"> </span><span class="s">✅/➖/❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">extraction-method</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">resolution</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">derivable.</span>
+<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2032,8 +1991,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">span</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">first-class</span>
-<span class="w">                  </span><span class="s">temporal-resolution,</span><span class="nv"> </span><span class="s">aggregation-method,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">day-boundary</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§H</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">❌</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">those).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">temporal-resolution,</span><span class="nv"> </span><span class="s">aggregation-method,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">day-boundary</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2049,7 +2008,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temporal resolution is implicit (one row per day); aggregation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">method and day boundary are absent (COMPARISON.md §H — ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">method and day boundary are absent.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2067,7 +2026,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">time-origin,</span><span class="nv"> </span><span class="s">calendar,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">span,</span><span class="nv"> </span><span class="s">and</span>
 <span class="w">                  </span><span class="s">aggregation</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">encoded</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">long_name;</span><span class="nv"> </span><span class="s">day-boundary</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">pure</span>
-<span class="w">                  </span><span class="s">ambiguity</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§H</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖/❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">ambiguity.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2186,8 +2145,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">free-text</span><span class="nv"> </span><span class="s">method</span><span class="nv"> </span><span class="s">description</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">structured</span>
-<span class="w">                  </span><span class="s">exposure-model</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">model-inputs</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§J</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖/❌).</span>
-<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">exposure-model</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">model-inputs</span><span class="nv"> </span><span class="s">list.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2202,8 +2160,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS records no exposure-model type or model description</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §J — ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS records no exposure-model type or model description.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2218,8 +2175,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus records no exposure-model type or model description</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §J — ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus records no exposure-model type or model description.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2334,7 +2290,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No gaia output carries per-value or model-aggregate uncertainty</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(per-value uncertainty is ❌ across all pipelines in COMPARISON.md).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(per-value uncertainty is ❌ across all pipelines).</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2349,7 +2305,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no uncertainty block (COMPARISON.md — ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no uncertainty block.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2364,8 +2320,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no uncertainty block; only a _FillValue sentinel</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md — ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no uncertainty block; only a _FillValue sentinel.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2672,7 +2627,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no dataset name, version, DOI, license, or</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">publisher (COMPARISON.md §I — ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">publisher.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2688,7 +2643,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no dataset-identity metadata (no name, DOI,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">license, publisher) natively (COMPARISON.md §I — ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">license, publisher) natively.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2797,8 +2752,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">per-row</span><span class="nv"> </span><span class="s">load</span><span class="nv"> </span><span class="s">times</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">join</span><span class="nv"> </span><span class="s">log,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">tool</span>
-<span class="w">                  </span><span class="s">name/version,</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">digest,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§K</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">mostly</span><span class="nv"> </span><span class="s">❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">name/version,</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">digest,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2815,8 +2770,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">pins</span><span class="nv"> </span><span class="s">tool</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">filename/container</span>
-<span class="w">                  </span><span class="s">tag,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">digest,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">timestamp,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§K).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">tag,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">digest,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">timestamp,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2833,8 +2788,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">HTTP</span><span class="nv"> </span><span class="s">Date</span><span class="nv"> </span><span class="s">header;</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">tool</span><span class="nv"> </span><span class="s">name/version,</span>
-<span class="w">                  </span><span class="s">container,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes</span><span class="nv"> </span><span class="s">natively</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§K</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖/❌).</span>
-<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">container,</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">args,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">hashes</span><span class="nv"> </span><span class="s">natively.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2938,8 +2892,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">ETL</span><span class="nv"> </span><span class="s">descriptor</span><span class="nv"> </span><span class="s">plus</span><span class="nv"> </span><span class="s">join</span><span class="nv"> </span><span class="s">log</span><span class="nv"> </span><span class="s">capture</span><span class="nv"> </span><span class="s">upstream</span><span class="nv"> </span><span class="s">steps</span>
-<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">ordered</span><span class="nv"> </span><span class="s">per-run</span><span class="nv"> </span><span class="s">W3C-PROV</span><span class="nv"> </span><span class="s">chain</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§K).</span>
-<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">ordered</span><span class="nv"> </span><span class="s">per-run</span><span class="nv"> </span><span class="s">W3C-PROV</span><span class="nv"> </span><span class="s">chain.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2954,8 +2907,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no ordered upstream-run chain (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§K).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no ordered upstream-run chain.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2970,8 +2922,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits no ordered upstream-run chain (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§K).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits no ordered upstream-run chain.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3083,8 +3034,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">linkage</span><span class="nv"> </span><span class="s">lives</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">SQL-join</span><span class="nv"> </span><span class="s">semantics</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">NOTICE</span>
-<span class="w">                  </span><span class="s">log,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">documented</span><span class="nv"> </span><span class="s">linkage-strategy</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§J</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">log,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">documented</span><span class="nv"> </span><span class="s">linkage-strategy</span><span class="nv"> </span><span class="s">column.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3120,8 +3071,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus collapses the address to lat/lon at the THREDDS request</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">and records no linkage/geocoding quality (COMPARISON.md §B/§J —</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">and records no linkage/geocoding quality.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3230,7 +3180,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">lands</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">OMOP</span><span class="nv"> </span><span class="s">external_exposure</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">person</span>
 <span class="w">                  </span><span class="s">link</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">source-value</span><span class="nv"> </span><span class="s">hook,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">explicit</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">provenance-id</span>
-<span class="w">                  </span><span class="s">join</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§A/§D</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">➖).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">join</span><span class="nv"> </span><span class="s">field.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3246,8 +3196,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS appends geomarker columns to the cohort CSV but names</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no downstream health-layer target or join field (COMPARISON.md —</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no downstream health-layer target or join field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3263,7 +3212,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits a data CSV with no downstream health-layer target</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">or join field (COMPARISON.md — ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">or join field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3408,8 +3357,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No native gaia output carries a sidecar schema-version field;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">this is an EnVar-sidecar-level construct (COMPARISON.md tracks the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sidecar layer separately).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">this is an EnVar-sidecar-level construct.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3543,8 +3491,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">OMOP</span><span class="nv"> </span><span class="s">source-value</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">exists</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">carrier,</span>
-<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">gaia</span><span class="nv"> </span><span class="s">populates</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">per-sidecar</span><span class="nv"> </span><span class="s">stable</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§D).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">gaia</span><span class="nv"> </span><span class="s">populates</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">per-sidecar</span><span class="nv"> </span><span class="s">stable</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">it.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3681,8 +3629,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaia carries PHI in OMOP person/location tables but emits no</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">per-record PHI-free assertion flag on its metadata (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§A).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">per-record PHI-free assertion flag on its metadata.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

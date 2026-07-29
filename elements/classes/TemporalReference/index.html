@@ -382,39 +382,36 @@
 <span class="envar-value" title="One value per year."><code>annual</code> <span class="vdesc">One value per year</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No first-class temporal_resolution slot in gaiaCatalog or gaia-db (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">No first-class temporal_resolution slot in gaiaCatalog or gaia-db.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS's daily grain is implicit in one-row-per-day, with no resolution field (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS's daily grain is implicit in one-row-per-day, with no resolution field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)</div>
-<div class="envar-cov-note">Only derivable from the THREDDS time-axis increment (COMPARISON.md §H ➖); not written as a discrete resolution field.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)</div>
+<div class="envar-cov-note">Only derivable from the THREDDS time-axis increment; not written as a discrete resolution field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name temporal-resolution code (§2.4); inheritable temporal_resolution</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-resolution code (§2.4); inheritable temporal_resolution</div>
 <div class="envar-cov-note">C-HER carries temporal resolution first-class as a code in the table_name pattern and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The native temporal grain of a specific run is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -456,39 +453,35 @@
 <span class="envar-value" title="A point-in-time sample with no aggregation applied."><code>point_in_time</code> <span class="vdesc">A point-in-time sample with no aggregation applied</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No aggregation-method slot in gaiaCatalog or gaia-db (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">No aggregation-method slot in gaiaCatalog or gaia-db.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no temporal-aggregation field (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no temporal-aggregation field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml long_name / grid name (daily_maximum_temperature)</div>
-<div class="envar-cov-note">The aggregation (daily maximum) is recoverable only from the variable long_name, not a structured field (COMPARISON.md §H ➖).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml long_name / grid name (daily_maximum_temperature)</div>
+<div class="envar-cov-note">The aggregation (daily maximum) is recoverable only from the variable long_name, not a structured field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's data-level codes track processing stage, not which statistic summarises a sub-period; no aggregation-method field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">How sub-period values were aggregated in one run is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -530,39 +523,34 @@
 <span class="envar-value" title="No day boundary applies — e.g. an annual or monthly aggregate where the sub-daily window is not a meaningful concept (SPEC §5)."><code>not_applicable</code> <span class="vdesc">No day boundary applies — e</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No day-boundary slot anywhere in gaiaCatalog or gaia-db (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">No day-boundary slot anywhere in gaiaCatalog or gaia-db.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS records no day-boundary convention (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS records no day-boundary convention.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">The NetCDF time axis (days since 1900-01-01) has no calendar day-edge clarification — pure ambiguity (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">The NetCDF time axis (days since 1900-01-01) has no calendar day-edge clarification — pure ambiguity.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER has no field for where the 24-hour day window starts.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Day-boundary convention is an EnVar-novel commensurability slot no standard carries; not merely out-of-layer — genuinely absent.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -602,39 +590,35 @@
 <p><code>31536000</code> — <span class="egdesc">Annual window (satellite PM2.5).</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No aggregation-window field; the temporal grain itself is absent (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">No aggregation-window field; the temporal grain itself is absent.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no explicit window-length field (COMPARISON.md §H).</div>
+<div class="envar-cov-note">DeGAUSS emits no explicit window-length field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)</div>
-<div class="envar-cov-note">The 1-day window is derivable in the THREDDS time axis but not emitted as an explicit seconds value (COMPARISON.md §H ➖).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)</div>
+<div class="envar-cov-note">The 1-day window is derivable in the THREDDS time axis but not emitted as an explicit seconds value.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER encodes a temporal-resolution code but not a machine seconds-per-step window.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The numeric aggregation window of one run is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -659,41 +643,37 @@
 <p><code>1980-01-01</code> — <span class="egdesc">Daymet V4 coverage starts in 1980.</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date</div>
 <div class="envar-cov-note">GAIA records the product time-span via DCAT dct:temporal and variable_source.start_date/end_date.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no product coverage-start (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no product coverage-start.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml TimeSpan (1979 -&gt; present)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml TimeSpan (1979 -&gt; present)</div>
 <div class="envar-cov-note">The THREDDS dataset.xml TimeSpan gives the product's full temporal coverage.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent</div>
 <div class="envar-cov-note">C-HER encodes the coverage start in the concatenated temporal-extent code (§2.4) and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A product's coverage start is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -718,41 +698,37 @@
 <p><code>2024-12-31</code> — <span class="egdesc">End of Daymet V4 coverage at extraction time.</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.end_date</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.end_date</div>
 <div class="envar-cov-note">GAIA records the product coverage-end via DCAT dct:temporal and variable_source.end_date.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no product coverage-end (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no product coverage-end.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml TimeSpan (-&gt; present)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml TimeSpan (-&gt; present)</div>
 <div class="envar-cov-note">The THREDDS TimeSpan closes the product's coverage window (open to present for live products).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent</div>
 <div class="envar-cov-note">C-HER encodes the coverage end in the concatenated temporal-extent code (§2.4) and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A product's coverage end is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -777,39 +753,34 @@
 <p><code>2022-07-18</code> — <span class="egdesc">Day before the Phoenix index date, for lag analysis.</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">gaia-native output collapses per-day to the variable's window-wide validity range; the run's actual extraction window start is not recorded (COMPARISON.md §D).</div>
+<div class="envar-cov-note">gaia-native output collapses per-day to the variable's window-wide validity range; the run's actual extraction window start is not recorded.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS writes per-day rows but records no explicit run extraction-window-start field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus records the product TimeSpan but not the start date this particular run pulled.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's temporal_extent is the dataset's coverage span, not the window an individual extraction job pulled.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The window a specific run pulled is instance-layer provenance outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -834,39 +805,34 @@
 <p><code>2022-07-20</code> — <span class="egdesc">Day after the Phoenix index date, for lag analysis.</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">gaia collapses to the variable's window; no per-run extraction-window-end is recorded (COMPARISON.md §D).</div>
+<div class="envar-cov-note">gaia collapses to the variable's window; no per-run extraction-window-end is recorded.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS records no explicit run extraction-window-end field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus records the product TimeSpan but not the end date this particular run pulled.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's temporal_extent is the dataset span, not the window a specific extraction job pulled.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The window a specific run pulled is instance-layer provenance outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -906,40 +872,35 @@
 <span class="envar-value" title="Proleptic Gregorian calendar."><code>proleptic_gregorian</code> <span class="vdesc">Proleptic Gregorian calendar</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (spatial-only; start_date only)</div>
 <div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No calendar/time-origin slot in gaia (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">No calendar/time-origin slot in gaia.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits no calendar field (COMPARISON.md §H ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits no calendar field.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml day axis (days since 1900-01-01, calendar = gregorian)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §H (time-origin / calendar ✅)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml day axis (days since 1900-01-01, calendar = gregorian)</div>
 <div class="envar-cov-note">The THREDDS day axis declares the calendar (gregorian) and time origin explicitly.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER has no calendar-of-time-axis field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">The calendar of a specific product's time axis is instance-layer representation detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1167,8 +1128,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No first-class temporal_resolution slot in gaiaCatalog or gaia-db</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No first-class temporal_resolution slot in gaiaCatalog or gaia-db.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1184,7 +1144,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS's daily grain is implicit in one-row-per-day, with</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no resolution field (COMPARISON.md §H ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no resolution field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1199,8 +1159,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the THREDDS time-axis increment (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§H ➖); not written as a discrete resolution field.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the THREDDS time-axis increment; not written</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">as a discrete resolution field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1299,8 +1259,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No aggregation-method slot in gaiaCatalog or gaia-db (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No aggregation-method slot in gaiaCatalog or gaia-db.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1315,8 +1274,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no temporal-aggregation field (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no temporal-aggregation field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1332,7 +1290,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The aggregation (daily maximum) is recoverable only from the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">variable long_name, not a structured field (COMPARISON.md §H ➖).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">variable long_name, not a structured field.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1431,8 +1389,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No aggregation-window field; the temporal grain itself is absent</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No aggregation-window field; the temporal grain itself is absent.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1447,8 +1404,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no explicit window-length field (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§H).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no explicit window-length field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1464,7 +1420,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The 1-day window is derivable in the THREDDS time axis but</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not emitted as an explicit seconds value (COMPARISON.md §H ➖).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not emitted as an explicit seconds value.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1562,8 +1518,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No day-boundary slot anywhere in gaiaCatalog or gaia-db (COMPARISON.md</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No day-boundary slot anywhere in gaiaCatalog or gaia-db.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1578,8 +1533,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS records no day-boundary convention (COMPARISON.md §H</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS records no day-boundary convention.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1595,7 +1549,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The NetCDF time axis (days since 1900-01-01) has no calendar</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">day-edge clarification — pure ambiguity (COMPARISON.md §H ❌).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">day-edge clarification — pure ambiguity.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1715,7 +1669,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product coverage-start (COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product coverage-start.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1847,7 +1801,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product coverage-end (COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product coverage-end.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1962,7 +1916,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia-native output collapses per-day to the variable's window-wide</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">validity range; the run's actual extraction window start is not</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">recorded (COMPARISON.md §D).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">recorded.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2087,7 +2041,7 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia collapses to the variable's window; no per-run extraction-window-end</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is recorded (COMPARISON.md §D).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is recorded.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2212,7 +2166,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No calendar/time-origin slot in gaia (COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No calendar/time-origin slot in gaia.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2227,7 +2181,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no calendar field (COMPARISON.md §H ❌).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no calendar field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

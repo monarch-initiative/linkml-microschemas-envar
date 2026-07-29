@@ -367,40 +367,38 @@
 <p><code>tmax</code> — <span class="egdesc">Daymet daily maximum air temperature variable</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (EJI indicator names)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (EJI indicator names)</div>
 <div class="envar-cov-note">CHEL carries indicator names (from EJI etc.), but not as a portable variable short-name. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as a bare column header (tmax / tmmx)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (Variable short name — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as a bare column header (tmax / tmmx)</div>
 <div class="envar-cov-note">GAIA carries the variable short name first-class in variable_source.variable_name; the combined stack surfaces it as a named slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> cohort_addresses_geocoded_daymet CSV column header `tmax`</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> cohort_addresses_geocoded_daymet CSV column header `tmax`</div>
 <div class="envar-cov-note">DeGAUSS carries the short name only as the value column header, not as a first-class named slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gridmet_tmmx.csv column header `tmmx`; thredds_dataset.xml long_name/standard_name = tmmx</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gridmet_tmmx.csv column header `tmmx`; thredds_dataset.xml long_name/standard_name = tmmx</div>
 <div class="envar-cov-note">Amadeus carries the short name as a column header and in the THREDDS long_name, not as a portable variable-name slot. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_name (literal column name)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_name (literal column name)</div>
 <div class="envar-cov-note">C-HER records each resource's literal column_name, which serves as the variable's machine-readable handle; not a portable sidecar short-name. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A tool-specific short name is an instance-layer handle; the CODATA/I-ADOPT conceptual layer names the property canonically, not the upstream tool's nickname.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -428,40 +426,38 @@
 <p><code>CF:mass_concentration_of_pm2p5_ambient_aerosol_particles_in_air</code> — <span class="egdesc">CF Standard Name for the ACAG PM2.5 scenario</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no environmental-substance vocabulary; EnVar-Tracker #38)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no environmental-substance vocabulary; EnVar-Tracker #38)</div>
 <div class="envar-cov-note">CHEL carries no environmental-substance vocabulary; the concept associated with the exposure is unfilled (EnVar-Tracker #38).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature (NERC/CF mirror)</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (CF standard name — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature (NERC/CF mirror)</div>
 <div class="envar-cov-note">GAIA is the only stack carrying a real CF standard name, via the hand-authored NERC propertyID in variable_source / JSON-LD.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no standard-name identifier — the quantity is implicit in the `tmax` column name (COMPARISON.md §F: ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no standard-name identifier — the quantity is implicit in the `tmax` column name.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml standard_name = "tmmx" (gridMET shortcode overloaded, not a real CF term)</div>
-<div class="envar-cov-note">Amadeus populates a standard_name slot but with the gridMET shortcode rather than a CF term, so a CF lookup fails (COMPARISON.md §F: ➖). Conservative: partial.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml standard_name = "tmmx" (gridMET shortcode overloaded, not a real CF term)</div>
+<div class="envar-cov-note">Amadeus populates a standard_name slot but with the gridMET shortcode rather than a CF term, so a CF lookup fails. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_tag_id (ontology tag planned §8)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag_id (ontology tag planned §8)</div>
 <div class="envar-cov-note">C-HER's column_tag / planned ontology encoding will tag columns to its MORPH-built ontology, but no CF/standard-name binding exists today. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> I-ADOPT Object + Property decomposition; DDI-CDI RepresentedVariable (value domain + units)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Object + Property decomposition; DDI-CDI RepresentedVariable (value domain + units)</div>
 <div class="envar-cov-note">Naming the physical quantity canonically is exactly CODATA's RepresentedVariable / I-ADOPT layer — its strongest zone — but it names the concept, not this run's specific CURIE.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -492,41 +488,38 @@
 <p><code>ug/m3</code> — <span class="egdesc">micrograms per cubic metre (PM2.5 mass concentration)</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §3.10 (percentile-normalized 0-100 or native)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §3.10 (percentile-normalized 0-100 or native)</div>
 <div class="envar-cov-note">CHEL values are percentile-normalized 0-100 or native, not first-class UCUM units. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode; external_exposure.unit_concept_id 8653</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode; external_exposure.unit_concept_id 8653</div>
 <div class="envar-cov-note">GAIA carries the unit as a first-class UCUM code (CEL) plus the OMOP unit_concept_id.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml units = "K"; gridmet_tmmx.cf_metadata.json mirrors it</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for Amadeus)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml units = "K"; gridmet_tmmx.cf_metadata.json mirrors it</div>
 <div class="envar-cov-note">Amadeus declares the native unit K in a machine-readable CF metadata slot (though not in UCUM syntax).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS's `tmax` column has no unit annotation; °C is only a container convention (COMPARISON.md §E: ❌).</div>
+<div class="envar-cov-note">DeGAUSS's `tmax` column has no unit annotation; °C is only a container convention.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_unit_id (required for Value-tagged columns)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_unit_id (required for Value-tagged columns)</div>
 <div class="envar-cov-note">C-HER requires column_unit on Value-tagged columns, but the unit vocabulary is not asserted to be UCUM. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> DDI-CDI RepresentedVariable (value domain + units); I-ADOPT decomposition</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> DDI-CDI RepresentedVariable (value domain + units); I-ADOPT decomposition</div>
 <div class="envar-cov-note">Units live at CODATA's RepresentedVariable layer — canonical unit semantics — but not the specific UCUM string of this run's file.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -562,39 +555,34 @@
 <span class="envar-value" title="No concept exists yet and none is yet proposed."><code>gap</code> <span class="vdesc">No concept exists yet and none is yet proposed</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no target-vocabulary binding; EnVar-Tracker #38)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no target-vocabulary binding; EnVar-Tracker #38)</div>
 <div class="envar-cov-note">With no target-concept binding, CHEL records no existing/proposed/gap concept status (EnVar-Tracker #38).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap status flag saying whether a real OMOP concept exists — an EnVar-novel slot (COMPARISON.md §D notes the placeholder, not a status).</div>
+<div class="envar-cov-note">GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap status flag saying whether a real OMOP concept exists — an EnVar-novel slot.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS has no concept binding and so no coverage-status flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus has no concept binding and so no coverage-status flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER carries no existing/proposed/gap coverage status for a target vocabulary.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A gap-status flag against a target vocabulary is instance/target bookkeeping, outside CODATA's conceptual-alignment layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -629,40 +617,38 @@
 <span class="envar-value" title="Date-stamped event (e.g. wildfire smoke plume)."><code>event_marker</code> <span class="vdesc">Date-stamped event (e</span></span>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)</div>
 <div class="envar-cov-row"><span class="k">evidence</span> <code>examples/scenarios/standards/omop_gaia_daymet_tmax.yaml (value_data_type)</code></div>
 <div class="envar-cov-note">GAIA registers the attribute's numeric qudt:dataType at dataset-registration time; the EnVar translation carries it first-class as value_data_type.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §3.10 (numeric / percentile / binary-flag)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §3.10 (numeric / percentile / binary-flag)</div>
 <div class="envar-cov-note">CHEL carries the value data type first-class: numeric, percentile-normalized, or binary vulnerability flag.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">DeGAUSS emits a numeric `tmax` column but declares no explicit value data type; the type is implicit in the data.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Amadeus emits numeric value_kelvin/value_celsius columns with no explicit value-data-type declaration.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_tag (Value) + column_unit (unit present ⇒ numeric)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag (Value) + column_unit (unit present ⇒ numeric)</div>
 <div class="envar-cov-note">C-HER's Value tag plus the presence/absence of a column_unit distinguishes numeric from free-text value columns, but not the full continuous/categorical/flag taxonomy. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> DDI-CDI RepresentedVariable value domain (numeric vs categorical value domain)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> DDI-CDI RepresentedVariable value domain (numeric vs categorical value domain)</div>
 <div class="envar-cov-note">A value domain is exactly what CDI's RepresentedVariable carries, so the numeric/categorical distinction lives at CODATA's represented layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -759,41 +745,37 @@
 <p><code>daily maximum air temperature at 2 m</code></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (EJI indicator labels)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (EJI indicator labels)</div>
 <div class="envar-cov-note">Indicator labels exist in CHEL's EJI-derived indicators but not as a first-class variable label. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description</div>
 <div class="envar-cov-note">GAIA carries a variable long name / description first-class in variable_source.variable_description and the JSON-LD.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS CSVs carry no variable description / long name — only the bare `tmax` column header (COMPARISON.md §F: ❌).</div>
+<div class="envar-cov-note">DeGAUSS CSVs carry no variable description / long name — only the bare `tmax` column header.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml description = "Daily Maximum Temperature (2m)"; grid named daily_maximum_temperature</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for Amadeus)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml description = "Daily Maximum Temperature (2m)"; grid named daily_maximum_temperature</div>
 <div class="envar-cov-note">Amadeus's THREDDS metadata carries a human-readable variable description first-class.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.name (human-readable, optional) / description</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.name (human-readable, optional) / description</div>
 <div class="envar-cov-note">C-HER's optional `name` and required column `description` carry a human-readable label, though `name` is optional. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A display label is instance-layer presentation; CODATA's conceptual layer names the property via I-ADOPT Object/Property, not a free-text label.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -818,40 +800,35 @@
 <p><code>K</code> — <span class="egdesc">gridMET tmmx stores Kelvin; the Amadeus scenario emits Celsius</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §3.10 (native vs percentile-normalized)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §3.10 (native vs percentile-normalized)</div>
 <div class="envar-cov-note">CHEL distinguishes native from percentile-normalized values but carries no first-class UCUM native unit. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number and the upstream native unit is not on the row (COMPARISON.md §D/§E: ❌).</div>
+<div class="envar-cov-note">GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number and the upstream native unit is not on the row.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml units = "K" (native) alongside the derived value_celsius; gridmet_tmmx.csv value_kelvin column</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D/§E (Value in native source units — ✅ for Amadeus)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml units = "K" (native) alongside the derived value_celsius; gridmet_tmmx.csv value_kelvin column</div>
 <div class="envar-cov-note">Amadeus ships the native Kelvin value and its unit declaration side by side with the converted Celsius.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS does the K→°C conversion inside the container, so the native unit never appears in any output (COMPARISON.md §D: ❌).</div>
+<div class="envar-cov-note">DeGAUSS does the K→°C conversion inside the container, so the native unit never appears in any output.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER records one column_unit per column; it has no notion of a distinct source-native unit and conversion.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A source-native unit and its packing are instance-layer decode details; CODATA's conceptual/represented layers do not carry per-run storage conventions.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -879,40 +856,35 @@
 <p><code>omop</code> — <span class="egdesc">OHDSI Standardised Vocabulary (OMOP CDM)</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (no substance/target vocabulary; EnVar-Tracker #38)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (no substance/target vocabulary; EnVar-Tracker #38)</div>
 <div class="envar-cov-note">CHEL carries no environmental-substance or target-concept vocabulary (ENVO/ECTO/CHEBI); the exposure concept is unfilled (EnVar-Tracker #38).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id (8653) — OMOP vocabulary is the implicit target</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id (8653) — OMOP vocabulary is the implicit target</div>
 <div class="envar-cov-note">The OMOP CDM is the target vocabulary itself; the concept slots land the value against OHDSI concept ids.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS emits a bare `tmax` value with no target-vocabulary binding (COMPARISON.md §D: ❌).</div>
+<div class="envar-cov-note">DeGAUSS emits a bare `tmax` value with no target-vocabulary binding.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no target-vocabulary binding; the variable is implicit in the `tmmx` column name (COMPARISON.md §D: ❌).</div>
+<div class="envar-cov-note">Amadeus carries no target-vocabulary binding; the variable is implicit in the `tmmx` column name.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER's controlled vocabs (DCMI Type, IANA media types) describe resource type/format, not a downstream health-data target vocabulary for the variable.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">Binding to a downstream health-data layer is an instance/target concern; CODATA aligns concepts across standards but names no single target vocabulary.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -940,40 +912,35 @@
 <p><code>2005200123</code> — <span class="egdesc">illustrative OHDSI concept_id; in the canonical Tmax and PM2.5 scenarios this slot is null with a missing reason</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (exposure concept unfilled; EnVar-Tracker #38)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus (exposure concept unfilled; EnVar-Tracker #38)</div>
 <div class="envar-cov-note">CHEL leaves the exposure concept unfilled and binds no target-vocabulary concept id (EnVar-Tracker #38).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id 32885</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id 32885</div>
 <div class="envar-cov-note">GAIA fills the concept-id slot even though no real OMOP concept is yet minted for daily-max-air-temperature; the binding exists.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No concept-id column in DeGAUSS output (COMPARISON.md §D: ❌).</div>
+<div class="envar-cov-note">No concept-id column in DeGAUSS output.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">No concept-id column in Amadeus output (COMPARISON.md §D: ❌).</div>
+<div class="envar-cov-note">No concept-id column in Amadeus output.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER binds no downstream concept id for the variable; only planned ontology tags on columns (§8).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">A concrete concept id in a target vocabulary is instance-layer; CODATA names the concept, not this run's downstream id.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1001,40 +968,36 @@
 <p><code>-50</code> — <span class="egdesc">plausible lower bound for ambient Tmax in °C</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)</div>
 <div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured</div>
 <div class="envar-cov-note">GAIA carries a first-class min_value (−50) as variable metadata.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no plausible-range metadata (COMPARISON.md §F: ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no plausible-range metadata.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no plausible-range bounds; only a _FillValue sentinel (COMPARISON.md §F: ❌ for valid range).</div>
+<div class="envar-cov-note">Amadeus carries no plausible-range bounds; only a _FillValue sentinel.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
 <div class="envar-cov-note">Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI value-domain restriction at the conceptual layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1059,40 +1022,36 @@
 <p><code>60</code> — <span class="egdesc">plausible upper bound for ambient Tmax in °C</span></p>
 </div>
 </div>
-<div class="envar-block envar-coverage">
-<p class="envar-blocklabel">Covered by</p>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)</div>
 <div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured</div>
-<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured</div>
 <div class="envar-cov-note">GAIA carries a first-class max_value (60) as variable metadata.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">DeGAUSS carries no plausible-range metadata (COMPARISON.md §F: ❌).</div>
+<div class="envar-cov-note">DeGAUSS carries no plausible-range metadata.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
-<div class="envar-cov-note">Amadeus carries no plausible-range bounds; only a _FillValue sentinel (COMPARISON.md §F: ❌ for valid range).</div>
+<div class="envar-cov-note">Amadeus carries no plausible-range bounds; only a _FillValue sentinel.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> no column</div>
 <div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
 <div class="envar-cov-note">Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI value-domain restriction at the conceptual layer.</div>
 </div>
-</div>
+</details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1742,8 +1701,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">CSVs</span><span class="nv"> </span><span class="s">carry</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">description</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">long</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">only</span>
-<span class="w">                  </span><span class="s">the</span><span class="nv"> </span><span class="s">bare</span><span class="nv"> </span><span class="s">`tmax`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">header</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS CSVs carry no variable description / long name — only</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the bare `tmax` column header.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1882,8 +1841,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">standard-name</span><span class="nv"> </span><span class="s">identifier</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quantity</span>
-<span class="w">                  </span><span class="s">is</span><span class="nv"> </span><span class="s">implicit</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`tmax`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no standard-name identifier — the quantity</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is implicit in the `tmax` column name.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1900,8 +1859,8 @@
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">populates</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">standard_name</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">gridMET</span>
-<span class="w">                  </span><span class="s">shortcode</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">term,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">lookup</span><span class="nv"> </span><span class="s">fails</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§F:</span><span class="nv"> </span><span class="s">➖).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">                  </span><span class="s">shortcode</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">term,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">lookup</span><span class="nv"> </span><span class="s">fails.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2107,8 +2066,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">`tmax`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">annotation;</span><span class="nv"> </span><span class="s">°C</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">only</span>
-<span class="w">                  </span><span class="s">a</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">convention</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§E:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS's `tmax` column has no unit annotation; °C is only</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a container convention.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2237,9 +2196,9 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA</span><span class="nv"> </span><span class="s">stores</span><span class="nv"> </span><span class="s">°C</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">were</span><span class="nv"> </span><span class="s">always</span><span class="nv"> </span><span class="s">°C;</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">OMOP-side</span>
-<span class="w">                  </span><span class="s">unit</span><span class="nv"> </span><span class="s">lands</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">value_as_number</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">upstream</span><span class="nv"> </span><span class="s">native</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span>
-<span class="w">                  </span><span class="s">on</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D/§E:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA stores °C as if it were always °C; only the OMOP-side</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">unit lands in value_as_number and the upstream native unit is not</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">on the row.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2275,8 +2234,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">K→°C</span><span class="nv"> </span><span class="s">conversion</span><span class="nv"> </span><span class="s">inside</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">container,</span><span class="nv"> </span><span class="s">so</span>
-<span class="w">                  </span><span class="s">the</span><span class="nv"> </span><span class="s">native</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">never</span><span class="nv"> </span><span class="s">appears</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS does the K→°C conversion inside the container, so the</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">native unit never appears in any output.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2427,9 +2386,8 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'Added</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reverse</span><span class="nv"> </span><span class="s">gap</span><span class="nv"> </span><span class="s">survey</span><span class="nv"> </span><span class="s">(docs/reverse-gap-survey.md,</span><span class="nv"> </span><span class="s">2026-07):</span><span class="nv"> </span><span class="s">the</span>
 <span class="w">      </span><span class="s">Amadeus</span><span class="nv"> </span><span class="s">translation</span><span class="nv"> </span><span class="s">carried</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">exact</span><span class="nv"> </span><span class="s">math</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">YAML</span><span class="nv"> </span><span class="s">comment</span><span class="nv"> </span><span class="s">("the</span><span class="nv"> </span><span class="s">schema</span>
 <span class="w">      </span><span class="s">has</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">it"),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">GAIA</span><span class="nv"> </span><span class="s">scenario</span><span class="nv"> </span><span class="s">hand-added</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">`envar:unit_conversion`</span>
-<span class="w">      </span><span class="s">PropertyValue.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">comparison</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">EnVar</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">repo</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">      </span><span class="s">§E)</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">"K→°C</span><span class="nv"> </span><span class="s">conversion</span><span class="nv"> </span><span class="s">math</span><span class="nv"> </span><span class="s">recorded:</span><span class="nv"> </span><span class="s">❌"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">slot</span>
-<span class="w">      </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">fix.'</span>
+<span class="w">      </span><span class="s">PropertyValue.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">comparison</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">EnVar</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">repo</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">"K→°C</span><span class="nv"> </span><span class="s">conversion</span>
+<span class="w">      </span><span class="s">math</span><span class="nv"> </span><span class="s">recorded:</span><span class="nv"> </span><span class="s">❌"</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">fix.'</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">K = stored * 0.1 + 220.0; Cel = K - 273.15</span>
 <span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gridMET tmmx unpack-then-convert chain in the Amadeus scenario</span>
@@ -2513,8 +2471,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">bare</span><span class="nv"> </span><span class="s">`tmax`</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">target-vocabulary</span>
-<span class="w">                  </span><span class="s">binding</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits a bare `tmax` value with no target-vocabulary</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">binding.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2529,8 +2487,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">target-vocabulary</span><span class="nv"> </span><span class="s">binding;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">variable</span>
-<span class="w">                  </span><span class="s">is</span><span class="nv"> </span><span class="s">implicit</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`tmmx`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no target-vocabulary binding; the variable</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is implicit in the `tmmx` column name.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2653,8 +2611,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'No</span><span class="nv"> </span><span class="s">concept-id</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">DeGAUSS</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span>
-<span class="w">                  </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No concept-id column in DeGAUSS output.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2669,8 +2626,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'No</span><span class="nv"> </span><span class="s">concept-id</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Amadeus</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span>
-<span class="w">                  </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No concept-id column in Amadeus output.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2798,8 +2754,7 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA fills a placeholder exposure_concept_id but carries no</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">existing/proposed/gap status flag saying whether a real OMOP concept</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">exists — an EnVar-novel slot (COMPARISON.md §D notes the placeholder,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not a status).</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">exists — an EnVar-novel slot.</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3122,8 +3077,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">plausible-range</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no plausible-range metadata.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3138,8 +3092,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">plausible-range</span><span class="nv"> </span><span class="s">bounds;</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">_FillValue</span>
-<span class="w">                  </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">valid</span><span class="nv"> </span><span class="s">range).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no plausible-range bounds; only a _FillValue</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sentinel.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3252,8 +3206,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'DeGAUSS</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">plausible-range</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">(COMPARISON.md</span>
-<span class="w">                  </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no plausible-range metadata.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -3268,8 +3221,8 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">plausible-range</span><span class="nv"> </span><span class="s">bounds;</span><span class="nv"> </span><span class="s">only</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">_FillValue</span>
-<span class="w">                  </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§F:</span><span class="nv"> </span><span class="s">❌</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">valid</span><span class="nv"> </span><span class="s">range).'</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no plausible-range bounds; only a _FillValue</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sentinel.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
