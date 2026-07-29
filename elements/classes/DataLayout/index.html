@@ -316,7 +316,7 @@
 <p><span class="envar-classname">DataLayout</span></p>
 <p class="envar-lead">How the companion data file (CSV / parquet) is laid out and how this record's values are located inside it. Separates the file-layout concern from variable identity: <code>VariableIdentity.variable_name</code> says what the variable is; <code>DataLayout</code> says which column (and, for long format, which rows) carry its values. One per record.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">11 fields</span>
+<p><span class="envar-metachip">13 fields</span>
 <span class="envar-metachip">2 core</span></p>
 <p><span class="envar-metachip">URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/class/DataLayout">envar:class/DataLayout</a></span></p>
 </div>
@@ -368,6 +368,39 @@
 <span class="envar-value" title="One shared value column; the variable is discriminated by a row value in a variable column (tidy format)."><code>long</code> <span class="vdesc">One shared value column; the variable is discriminated by a row value in a va...</span></span>
 </div>
 </div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (hex-indexed tables; no portable sidecar)</div>
+<div class="envar-cov-note">CHEL emits hex-indexed tables with a value/subject/time column structure, but not as a portable sidecar layout declaration. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">The OMOP external_exposure table is implicitly long, but no orientation flag is declared as a field — it is a structural property a consumer must infer.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">DeGAUSS's daymet CSV is wide (a `tmax` column) but declares no orientation field.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">Amadeus's gridmet_tmmx.csv is wide but declares no orientation field.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary.column_tag (Index / Value distinguishes table structure)</div>
+<div class="envar-cov-note">C-HER's per-column tags (Index vs Value) expose table structure, though not a wide/long orientation flag. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">File orientation is an instance-layer layout detail; CODATA's conceptual layer does not describe physical table shape.</div>
+</div>
+</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -396,6 +429,42 @@
 </div>
 <div class="envar-eg">
 <p><code>value</code> — <span class="egdesc">long file — the shared value column</span></p>
+</div>
+</div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (hex-indexed per-dataset tables)</div>
+<div class="envar-cov-note">CHEL emits hex-indexed value tables, but the column binding is not a portable sidecar declaration. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> external_exposure.value_as_number (Cel)</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for GAIA)</code></div>
+<div class="envar-cov-note">The OMOP CDM binds the value to the stable external_exposure.value_as_number column.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> cohort_addresses_geocoded_daymet CSV `tmax` column</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for DeGAUSS)</code></div>
+<div class="envar-cov-note">DeGAUSS writes the value to a stable `tmax` column on every row.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> gridmet_tmmx.csv `value_celsius` column</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for Amadeus)</code></div>
+<div class="envar-cov-note">Amadeus writes the converted value to a stable `value_celsius` column.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary column tagged Value (column_tag = Value)</div>
+<div class="envar-cov-note">C-HER identifies the value-carrying column first-class via the Value column tag.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">Binding a value to a physical column is instance-layer; CODATA's conceptual layer does not name file columns.</div>
 </div>
 </div>
 <details class="envar-why">
@@ -474,7 +543,7 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Recommended</span>
 <span class="envar-groupnote">Strongly encouraged</span>
-<span class="envar-groupcount">3 fields</span>
+<span class="envar-groupcount">4 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card recommended">
@@ -495,6 +564,42 @@
 </div>
 <div class="envar-eg">
 <p><code>tract_id</code> — <span class="egdesc">census-tract-level extract</span></p>
+</div>
+</div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §4.4 (participant-linkage table)</div>
+<div class="envar-cov-note">The participant-linkage table has a subject column, but not as a portable sidecar binding. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> external_exposure.person_id; person.person_id; location.location_id</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for OMOP/GAIA)</code></div>
+<div class="envar-cov-note">OMOP carries the subject identifier first-class on external_exposure.person_id (and person/location).</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> `id` column on every CSV row</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for DeGAUSS)</code></div>
+<div class="envar-cov-note">DeGAUSS carries the person identifier in the `id` column on every row.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> `person_loc_id` / `person_id` column on every row</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for Amadeus)</code></div>
+<div class="envar-cov-note">Amadeus carries the person identifier on every row.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary column tagged Index / Foreign Reference (participant linkage)</div>
+<div class="envar-cov-note">C-HER can tag a subject/participant column via Index or Foreign Reference, but not as a dedicated sidecar subject binding. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">The subject/cohort column binding is instance-layer layout, outside CODATA's conceptual scope.</div>
 </div>
 </div>
 <details class="envar-why">
@@ -524,6 +629,41 @@
 <p><code>year</code> — <span class="egdesc">annual aggregate</span></p>
 </div>
 </div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus (participant start_date)</div>
+<div class="envar-cov-note">CHEL carries a participant start_date column, but not as a portable sidecar time-column binding. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> external_exposure attr_start_date / attr_end_date (window-wide, not per-day)</div>
+<div class="envar-cov-note">GAIA carries date columns but collapses every row to the variable's window-wide attr_start_date/attr_end_date — per-day external_exposure does not come out (COMPARISON.md §D: ➖/❌). Conservative: partial.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> one row per (person × day) in cohort_addresses_geocoded_daymet CSV (per-day date)</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for DeGAUSS)</code></div>
+<div class="envar-cov-note">DeGAUSS emits a per-day date on every row (24 rows, per-day).</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> one row per (person × day) in gridmet_tmmx.csv (per-day date)</div>
+<div class="envar-cov-row"><span class="k">evidence</span> <code>EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for Amadeus)</code></div>
+<div class="envar-cov-note">Amadeus emits a per-day date on every row (24 rows, per-day).</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary column tagged Temporal – Primary</div>
+<div class="envar-cov-note">C-HER tags time columns first-class via the Temporal – Primary tag, but not as a portable sidecar time binding. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">The time-column binding is instance-layer layout, outside CODATA's conceptual scope.</div>
+</div>
+</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -548,10 +688,103 @@
 <p><code>tmax_stderr</code></p>
 </div>
 </div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §5.6.4 (no per-value uncertainty carried)</div>
+<div class="envar-cov-note">CHEL carries no per-value uncertainty, so no uncertainty column is bound.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">No per-value uncertainty column on external_exposure; the OMOP stack carries no measurement-error column for the value.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">DeGAUSS's daymet CSV carries the value only, no per-value standard-error column.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">Amadeus's gridmet_tmmx.csv carries no per-value uncertainty column.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> table_column_dictionary column tagged Meta value (info about a Value column)</div>
+<div class="envar-cov-note">C-HER's Meta value tag could carry a per-value uncertainty column referencing its Value column, but none is asserted here. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">A per-value uncertainty column binding is instance-layer layout, outside CODATA's conceptual scope.</div>
+</div>
+</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
 <p>Products like Daymet ship per-value standard errors that most pipelines silently drop. Without this binding, downstream analyses cannot find or propagate the measurement error attached to each value, and dropped uncertainty is indistinguishable from uncertainty that never existed.</p>
+</div>
+</details>
+</div>
+<div class="envar-card recommended">
+<div class="envar-cardhead"><span class="envar-cardtitle">Null-Semantics Column</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
+<div class="envar-cardmeta">
+<p><code>null_semantics_column</code> · range <a href="../../types/String/">String</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>A blank cell or a <code>0</code> can mean three very different things: there was never any data here, we could not compute a value here, or the value is genuinely zero. Each needs different treatment. This names the column that tags every value with which kind it is, so nobody mistakes "no data" for "zero exposure".</p>
+</div>
+<div class="envar-desc">
+<p>Name of a per-value column carrying a null-semantics indicator drawn from <code>NullSemanticsEnum</code> (<code>present</code> / <code>structural_null</code> / <code>derived_null</code> / <code>true_zero</code>; see envar_common). Bound here in <code>DataLayout</code> — mirroring the existing per-value <code>value_uncertainty_column</code> / <code>quality_flag_column</code> pattern — because the distinction is per-value: whether a given blank or <code>0</code> means "no source data", "aggregation impossible", or "measured zero" varies row by row and so must be carried alongside the values, not declared once for the dataset. Null with reason when the producer does not distinguish null kinds. The vocabulary itself lives in the Uncertainty / shared layer (<code>NullSemanticsEnum</code>).</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>null_kind</code> — <span class="egdesc">per-value column tagging each cell present / structural_null / derived_null / true_zero, next to the value column</span></p>
+</div>
+</div>
+<div class="envar-block envar-coverage">
+<p class="envar-blocklabel">Covered by</p>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> CHEL Omnibus §5.3.3 Null Handling</div>
+<div class="envar-cov-note">CHEL §5.3.3 defines exactly this three-way null taxonomy (structural / derived / true-zero) and excludes nulls from percentile-ranking denominators on its basis.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> gaia_catalog meta_etl_*.json nodata = ["float4", "-9999"] (dataset-level sentinel, not per-value null-kind)</div>
+<div class="envar-cov-note">GAIA declares a dataset-level nodata sentinel for daymet but no per-value column tagging present / structural_null / derived_null / true_zero. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">DeGAUSS emits no null-kind indicator column and no missing-value sentinel in its CSV output.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level sentinel, not per-value null-kind)</div>
+<div class="envar-cov-note">Amadeus declares a fill/missing-value sentinel that marks structural nulls, but no per-value column distinguishing the three null kinds. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">C-HER handles null semantics in its validation rules (§5.3.3 concepts live in CHEL), but binds no per-value null-kind column in table_column_dictionary.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-row"><span class="k">where</span> no column</div>
+<div class="envar-cov-note">A per-value null-semantics column binding is instance-layer layout, outside CODATA's conceptual scope.</div>
+</div>
+</div>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>A blank or a <code>0</code> is ambiguous, and the three kinds of "missing/zero" have OPPOSITE correct handling — structural_null and derived_null must be dropped (the latter also excluded from denominators) while true_zero must be kept as a real zero; conflating them biases the health-effect estimate. CHEL §5.3.3 excludes nulls from percentile denominators for exactly this reason, so binding a per-value null-kind column is what lets a consumer handle each cell correctly instead of reading missingness as low or zero exposure.</p>
+</div>
+<div class="envar-whyblock">
+<p><strong>See also:</strong> <a href="https://github.com/cladteam/CHEL">https://github.com/cladteam/CHEL</a></p>
 </div>
 </details>
 </div>
@@ -561,7 +794,7 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Optional</span>
 <span class="envar-groupnote">Include when available</span>
-<span class="envar-groupcount">4 fields</span>
+<span class="envar-groupcount">5 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card optional">
@@ -683,6 +916,40 @@
 </div>
 </details>
 </div>
+<div class="envar-card optional">
+<div class="envar-cardhead"><span class="envar-cardtitle">Reason Null-Semantics Column Is Missing</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
+<div class="envar-cardmeta">
+<p><code>null_semantics_column_missing_reason</code> · range <a href="../../enums/MissingReasonEnum/">MissingReasonEnum</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>When there is no null-kind column, this slot says why — for example because the source never separates "no data" from "real zero" in the first place.</p>
+</div>
+<div class="envar-desc">
+<p>Reason <code>null_semantics_column</code> is null.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>not_provided_by_source</code> — <span class="egdesc">the producer does not distinguish kinds of missing / zero</span></p>
+</div>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Allowed values</p>
+<div class="envar-values">
+<span class="envar-value" title="Source product does not produce this information. Terminal."><code>not_provided_by_source</code> <span class="vdesc">Source product does not produce this information</span></span>
+<span class="envar-value" title="Source produces this information but the current pipeline does not surface it. Roadmap item."><code>available_but_not_extracted</code> <span class="vdesc">Source produces this information but the current pipeline does not surface it</span></span>
+<span class="envar-value" title="An upstream tool emitted this information but the current pipeline dropped it on the way through. Bug."><code>upstream_data_not_propagated</code> <span class="vdesc">An upstream tool emitted this information but the current pipeline dropped it...</span></span>
+<span class="envar-value" title="We are working on populating this slot."><code>under_investigation</code> <span class="vdesc">We are working on populating this slot</span></span>
+<span class="envar-value" title="This slot does not apply to this variable / record."><code>not_applicable</code> <span class="vdesc">This slot does not apply to this variable / record</span></span>
+</div>
+</div>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>A bare null is ambiguous: the producer may not distinguish null kinds at all, or the pipeline may have dropped the indicator. Stating the reason makes the absence deliberate and auditable rather than a silent gap.</p>
+</div>
+</details>
+</div>
 </div>
 </div>
 <details class="envar-details">
@@ -775,6 +1042,20 @@
 <td>0..1 <br/> <a href="../../enums/MissingReasonEnum/">MissingReasonEnum</a></td>
 <td>Reason <code>quality_flag_column</code> is null</td>
 </tr>
+<tr>
+<td><strong>Null-Semantics Column</strong></td>
+<td><code>null_semantics_column</code></td>
+<td>recommended</td>
+<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>Name of a per-value column carrying a null-semantics indicator drawn from `Nu...</td>
+</tr>
+<tr>
+<td><strong>Reason Null-Semantics Column Is Missing</strong></td>
+<td><code>null_semantics_column_missing_reason</code></td>
+<td>optional</td>
+<td>0..1 <br/> <a href="../../enums/MissingReasonEnum/">MissingReasonEnum</a></td>
+<td>Reason <code>null_semantics_column</code> is null</td>
+</tr>
 </tbody>
 </table>
 </details>
@@ -804,6 +1085,19 @@
     class DataLayout
     click DataLayout href "../../classes/DataLayout/"
       DataLayout : native_value_column
+
+      DataLayout : null_semantics_column
+
+      DataLayout : null_semantics_column_missing_reason
+
+
+
+
+
+        DataLayout --&gt; "0..1" MissingReasonEnum : null_semantics_column_missing_reason
+        click MissingReasonEnum href "../../enums/MissingReasonEnum/"
+
+
 
       DataLayout : quality_flag_column
 
@@ -892,6 +1186,108 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">column, and so on); long means one row per measurement, with a shared `value`</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">column and a label column saying which measurement each row is. Long is</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">also known as "tidy" format.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus (hex-indexed tables; no portable sidecar)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">hex-indexed</span><span class="nv"> </span><span class="s">tables</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value/subject/time</span><span class="nv"> </span><span class="s">column</span>
+<span class="w">                  </span><span class="s">structure,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">portable</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">layout</span><span class="nv"> </span><span class="s">declaration.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The OMOP external_exposure table is implicitly long, but no</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">orientation flag is declared as a field — it is a structural property</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a consumer must infer.</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS's daymet CSV is wide (a `tmax` column) but declares</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no orientation field.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus's gridmet_tmmx.csv is wide but declares no orientation</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary.column_tag (Index / Value distinguishes</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">table structure)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">per-column</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">(Index</span><span class="nv"> </span><span class="s">vs</span><span class="nv"> </span><span class="s">Value)</span><span class="nv"> </span><span class="s">expose</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">structure,</span>
+<span class="w">                  </span><span class="s">though</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">wide/long</span><span class="nv"> </span><span class="s">orientation</span><span class="nv"> </span><span class="s">flag.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">File orientation is an instance-layer layout detail; CODATA's</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">conceptual layer does not describe physical table shape.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether the companion file is wide (one column per variable) or long</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(one `value` column, variables discriminated by row). Required.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Table Orientation</span>
@@ -925,6 +1321,117 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This is simply the name of the spreadsheet column where the actual</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">numbers live — for example a column headed `tmax` holding daily maximum</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">temperatures, or a generic column headed `value` in a long table.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus (hex-indexed per-dataset tables)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">hex-indexed</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">tables,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">binding</span>
+<span class="w">                  </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">portable</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">declaration.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure.value_as_number (Cel)</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">°C — ✅ for GAIA)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The OMOP CDM binds the value to the stable external_exposure.value_as_number</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">column.</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cohort_addresses_geocoded_daymet CSV `tmax` column</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">°C — ✅ for DeGAUSS)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS writes the value to a stable `tmax` column on every</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">row.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gridmet_tmmx.csv `value_celsius` column</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">°C — ✅ for Amadeus)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus writes the converted value to a stable `value_celsius`</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">column.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary column tagged Value (column_tag = Value)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER identifies the value-carrying column first-class via</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the Value column tag.</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Binding a value to a physical column is instance-layer; CODATA's</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">conceptual layer does not name file columns.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name of the column carrying this record's exposure values, e.g. `tmax`</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in a wide file or `value` in a long file. Required.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Value Column</span>
@@ -1016,6 +1523,118 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This names the ID column that says who (or where) each row belongs</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">to — a patient identifier like `subject_id`, or a place identifier like</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">a census-tract code.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus §4.4 (participant-linkage table)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">participant-linkage</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">column,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span>
+<span class="w">                  </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">portable</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">binding.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure.person_id; person.person_id; location.location_id</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">for OMOP/GAIA)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OMOP carries the subject identifier first-class on external_exposure.person_id</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(and person/location).</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'`id`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">CSV</span><span class="nv"> </span><span class="s">row'</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">for DeGAUSS)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries the person identifier in the `id` column on</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">every row.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'`person_loc_id`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`person_id`</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">row'</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">for Amadeus)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries the person identifier on every row.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary column tagged Index / Foreign Reference</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(participant linkage)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">tag</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">subject/participant</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">Index</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Foreign</span>
+<span class="w">                  </span><span class="s">Reference,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dedicated</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">binding.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The subject/cohort column binding is instance-layer layout,</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">outside CODATA's conceptual scope.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name of the column carrying the opaque subject / cohort identifier</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the record-level `subject` refers to (e.g. `subject_id`).</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject Column</span>
@@ -1045,6 +1664,114 @@
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This names the column that gives each measurement its "when" — a `date`</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">column for daily data, or a `year` column for annual summaries.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus (participant start_date)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">participant</span><span class="nv"> </span><span class="s">start_date</span><span class="nv"> </span><span class="s">column,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">                  </span><span class="s">portable</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">time-column</span><span class="nv"> </span><span class="s">binding.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure attr_start_date / attr_end_date (window-wide,</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not per-day)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">date</span><span class="nv"> </span><span class="s">columns</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">collapses</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">variable</span><span class="se">''</span><span class="s">s</span>
+<span class="w">                  </span><span class="s">window-wide</span><span class="nv"> </span><span class="s">attr_start_date/attr_end_date</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">per-day</span><span class="nv"> </span><span class="s">external_exposure</span>
+<span class="w">                  </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">come</span><span class="nv"> </span><span class="s">out</span><span class="nv"> </span><span class="s">(COMPARISON.md</span><span class="nv"> </span><span class="s">§D:</span><span class="nv"> </span><span class="s">➖/❌).</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">one row per (person × day) in cohort_addresses_geocoded_daymet</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CSV (per-day date)</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §D (One row per person ×</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">day — ✅ for DeGAUSS)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits a per-day date on every row (24 rows, per-day).</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">one row per (person × day) in gridmet_tmmx.csv (per-day date)</span>
+<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §D (One row per person ×</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">day — ✅ for Amadeus)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits a per-day date on every row (24 rows, per-day).</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary column tagged Temporal – Primary</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">columns</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Temporal</span><span class="nv"> </span><span class="s">–</span><span class="nv"> </span><span class="s">Primary</span>
+<span class="w">                  </span><span class="s">tag,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">portable</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">binding.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The time-column binding is instance-layer layout, outside CODATA's</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">conceptual scope.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name of the column carrying the observation date / timestamp (e.g.</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">`date`).</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Time Column</span>
@@ -1111,6 +1838,107 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Some datasets include a "plus or minus" column next to each value —</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">an estimate of how far off each number might be. This slot names that column</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">so the uncertainty travels with the data instead of being lost.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus §5.6.4 (no per-value uncertainty carried)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL carries no per-value uncertainty, so no uncertainty column</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is bound.</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No per-value uncertainty column on external_exposure; the OMOP</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">stack carries no measurement-error column for the value.</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS's daymet CSV carries the value only, no per-value standard-error</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">column.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus's gridmet_tmmx.csv carries no per-value uncertainty</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">column.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary column tagged Meta value (info about</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a Value column)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">Meta</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">tag</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">carry</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">uncertainty</span>
+<span class="w">                  </span><span class="s">column</span><span class="nv"> </span><span class="s">referencing</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">Value</span><span class="nv"> </span><span class="s">column,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">none</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">asserted</span><span class="nv"> </span><span class="s">here.</span>
+<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A per-value uncertainty column binding is instance-layer layout,</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">outside CODATA's conceptual scope.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name of the column carrying per-value uncertainty (e.g. `pm_se`,</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">`tmax_stderr`). Its semantics (uncertainty type, units) live in the Uncertainty</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">microschema. Null with reason for products whose per-value uncertainty exists</span>
@@ -1199,6 +2027,181 @@
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reason Quality Flag Column Is Missing</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not_provided_by_source</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataLayout</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataLayout</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MissingReasonEnum</span>
+<span class="w">  </span><span class="nt">null_semantics_column</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null_semantics_column</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recommended</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A blank or a `0` is ambiguous, and the three kinds of "missing/zero"</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">have OPPOSITE correct handling — structural_null and derived_null must be</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">dropped (the latter also excluded from denominators) while true_zero must</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">be kept as a real zero; conflating them biases the health-effect estimate.</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">CHEL §5.3.3 excludes nulls from percentile denominators for exactly this</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">reason, so binding a per-value null-kind column is what lets a consumer</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">handle each cell correctly instead of reading missingness as low or zero</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">exposure.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">blank</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">`0`</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">mean</span><span class="nv"> </span><span class="s">three</span><span class="nv"> </span><span class="s">very</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">things:</span><span class="nv"> </span><span class="s">there</span>
+<span class="w">          </span><span class="s">was</span><span class="nv"> </span><span class="s">never</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">we</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">compute</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span>
+<span class="w">          </span><span class="s">is</span><span class="nv"> </span><span class="s">genuinely</span><span class="nv"> </span><span class="s">zero.</span><span class="nv"> </span><span class="s">Each</span><span class="nv"> </span><span class="s">needs</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">treatment.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">column</span>
+<span class="w">          </span><span class="s">that</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">nobody</span><span class="nv"> </span><span class="s">mistakes</span><span class="nv"> </span><span class="s">"no</span><span class="nv"> </span><span class="s">data"</span>
+<span class="w">          </span><span class="s">for</span><span class="nv"> </span><span class="s">"zero</span><span class="nv"> </span><span class="s">exposure".'</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus §5.3.3 Null Handling</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §5.3.3 defines exactly this three-way null taxonomy (structural</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">/ derived / true-zero) and excludes nulls from percentile-ranking</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">denominators on its basis.</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_catalog meta_etl_*.json nodata = ["float4", "-9999"] (dataset-level</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sentinel, not per-value null-kind)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'GAIA</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset-level</span><span class="nv"> </span><span class="s">nodata</span><span class="nv"> </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">daymet</span><span class="nv"> </span><span class="s">but</span>
+<span class="w">                  </span><span class="s">no</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">tagging</span><span class="nv"> </span><span class="s">present</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">structural_null</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">derived_null</span>
+<span class="w">                  </span><span class="s">/</span><span class="nv"> </span><span class="s">true_zero.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no null-kind indicator column and no missing-value</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sentinel in its CSV output.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sentinel, not per-value null-kind)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Amadeus</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">fill/missing-value</span><span class="nv"> </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">marks</span>
+<span class="w">                  </span><span class="s">structural</span><span class="nv"> </span><span class="s">nulls,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">distinguishing</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">three</span>
+<span class="w">                  </span><span class="s">null</span><span class="nv"> </span><span class="s">kinds.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER handles null semantics in its validation rules (§5.3.3</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">concepts live in CHEL), but binds no per-value null-kind column</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">in table_column_dictionary.</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A per-value null-semantics column binding is instance-layer</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">layout, outside CODATA's conceptual scope.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">carrying</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">null-semantics</span><span class="nv"> </span><span class="s">indicator</span><span class="nv"> </span><span class="s">drawn</span>
+<span class="w">      </span><span class="s">from</span><span class="nv"> </span><span class="s">`NullSemanticsEnum`</span><span class="nv"> </span><span class="s">(`present`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`structural_null`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`derived_null`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`true_zero`;</span>
+<span class="w">      </span><span class="s">see</span><span class="nv"> </span><span class="s">envar_common).</span><span class="nv"> </span><span class="s">Bound</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">`DataLayout`</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">mirroring</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">existing</span><span class="nv"> </span><span class="s">per-value</span>
+<span class="w">      </span><span class="s">`value_uncertainty_column`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`quality_flag_column`</span><span class="nv"> </span><span class="s">pattern</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">distinction</span>
+<span class="w">      </span><span class="s">is</span><span class="nv"> </span><span class="s">per-value:</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">given</span><span class="nv"> </span><span class="s">blank</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">`0`</span><span class="nv"> </span><span class="s">means</span><span class="nv"> </span><span class="s">"no</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">data",</span><span class="nv"> </span><span class="s">"aggregation</span>
+<span class="w">      </span><span class="s">impossible",</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">"measured</span><span class="nv"> </span><span class="s">zero"</span><span class="nv"> </span><span class="s">varies</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">carried</span><span class="nv"> </span><span class="s">alongside</span>
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">values,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declared</span><span class="nv"> </span><span class="s">once</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">Null</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">reason</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">producer</span>
+<span class="w">      </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">null</span><span class="nv"> </span><span class="s">kinds.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">vocabulary</span><span class="nv"> </span><span class="s">itself</span><span class="nv"> </span><span class="s">lives</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Uncertainty</span>
+<span class="w">      </span><span class="s">/</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">layer</span><span class="nv"> </span><span class="s">(`NullSemanticsEnum`).'</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Null-Semantics Column</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null_kind</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">per-value column tagging each cell present / structural_null /</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">derived_null / true_zero, next to the value column</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">see_also</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/cladteam/CHEL</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataLayout</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataLayout</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">null_semantics_column_missing_reason</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null_semantics_column_missing_reason</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optional</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">bare</span><span class="nv"> </span><span class="s">null</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">ambiguous:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">producer</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">distinguish</span><span class="nv"> </span><span class="s">null</span><span class="nv"> </span><span class="s">kinds</span>
+<span class="w">          </span><span class="s">at</span><span class="nv"> </span><span class="s">all,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">dropped</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">indicator.</span><span class="nv"> </span><span class="s">Stating</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reason</span>
+<span class="w">          </span><span class="s">makes</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">absence</span><span class="nv"> </span><span class="s">deliberate</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">auditable</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">silent</span><span class="nv"> </span><span class="s">gap.'</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">When there is no null-kind column, this slot says why — for example</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">because the source never separates "no data" from "real zero" in the first</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">place.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reason `null_semantics_column` is null.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reason Null-Semantics Column Is Missing</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not_provided_by_source</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the producer does not distinguish kinds of missing / zero</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataLayout</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>

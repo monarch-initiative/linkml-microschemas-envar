@@ -790,6 +790,20 @@ name and value type in small print), then four columns:</p>
 <td><code>not_provided_by_source</code></td>
 <td>⬜ Optional</td>
 </tr>
+<tr>
+<td><strong>Null-Semantics Column</strong><br><small><code>null_semantics_column</code> · text</small></td>
+<td>Name of a per-value column carrying a null-semantics indicator drawn from <code>NullSemanticsEnum</code> (<code>present</code> / <code>structural_null</code> / <code>derived_null</code> / <code>true_zero</code>; see envar_common). Bound here in <code>DataLayout</code> — mirroring the existing per-value <code>value_uncertainty_column</code> / <code>quality_flag_column</code> pattern — because the distinction is per-value: whether a given blank or <code>0</code> means "no source data", "aggregation impossible", or "measured zero" varies row by row and so must be carried alongside the values, not declared once for the dataset. Null with reason when the producer does not distinguish null kinds. The vocabulary itself lives in the Uncertainty / shared layer (<code>NullSemanticsEnum</code>).<br>💡 <em>A blank cell or a <code>0</code> can mean three very different things: there was never any data here, we could not compute a value here, or the value is genuinely zero. Each needs different treatment. This names the column that tags every value with which kind it is, so nobody mistakes "no data" for "zero exposure".</em><br>↗ <a href="https://github.com/cladteam/CHEL">github.com</a></td>
+<td>A blank or a <code>0</code> is ambiguous, and the three kinds of "missing/zero" have OPPOSITE correct handling — structural_null and derived_null must be dropped (the latter also excluded from denominators) while true_zero must be kept as a real zero; conflating them biases the health-effect estimate. CHEL §5.3.3 excludes nulls from percentile denominators for exactly this reason, so binding a per-value null-kind column is what lets a consumer handle each cell correctly instead of reading missingness as low or zero exposure.</td>
+<td><code>null_kind</code> — per-value column tagging each cell present / structural_null / derived_null / true_zero, next to the value column</td>
+<td>🟨 Recommended</td>
+</tr>
+<tr>
+<td><strong>Reason Null-Semantics Column Is Missing</strong><br><small><code>null_semantics_column_missing_reason</code> · <a href="#missing-value-reason">Missing-Value Reason</a> value</small></td>
+<td>Reason <code>null_semantics_column</code> is null.<br>💡 <em>When there is no null-kind column, this slot says why — for example because the source never separates "no data" from "real zero" in the first place.</em></td>
+<td>A bare null is ambiguous: the producer may not distinguish null kinds at all, or the pipeline may have dropped the indicator. Stating the reason makes the absence deliberate and auditable rather than a silent gap.</td>
+<td><code>not_provided_by_source</code> — the producer does not distinguish kinds of missing / zero</td>
+<td>⬜ Optional</td>
+</tr>
 </tbody>
 </table>
 <h3 id="table-orientation">Table Orientation<a class="headerlink" href="#table-orientation" title="Permanent link">¶</a></h3>
@@ -905,6 +919,13 @@ name and value type in small print), then four columns:</p>
 <td><code>point_residence</code> — patient's exact residence coordinates (Daymet Tmax scenario)<br><code>census_tract</code> — tract-level aggregate (ACAG PM2.5 scenario)</td>
 <td>🟥 Core<br><em>(required)</em></td>
 </tr>
+<tr>
+<td><strong>Spatial Aggregation Preserved Quantity</strong><br><small><code>spatial_aggregation_preserves</code> · <a href="#spatial-aggregation-preserved-quantity">Spatial Aggregation Preserved Quantity</a> value</small></td>
+<td>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.<br>💡 <em>Turning map data measured on one set of shapes into values on another set of shapes can aim to keep different things unchanged — the average level of something, the total amount of it, how densely it occurs, or how much of an area it covers. This records which of those the conversion was designed to keep true, because the same input handled two different ways produces two different numbers.</em></td>
+<td>Recording <em>what quantity the operator preserves</em> — not just the operator name — is what makes two datasets' spatial values comparable and poolable: an area-weighted mean and a mass-conserving allocation applied to the same input give different numbers, and only the preserved-quantity tag tells a downstream analyst which one a value is, so two supports can be reconciled rather than silently mixed.</td>
+<td><code>mean_intensity</code> — area-weighted interpolation of a modeled concentration preserves the area-mean intensity (CHEL tract-to-hex concentration case)<br><code>total_mass_conservation</code> — population-weighted / area-proportional allocation of a count preserves the total (CHEL population-count case)</td>
+<td>🟨 Recommended</td>
+</tr>
 </tbody>
 </table>
 <h3 id="extraction-method">Extraction Method<a class="headerlink" href="#extraction-method" title="Permanent link">¶</a></h3>
@@ -940,6 +961,47 @@ name and value type in small print), then four columns:</p>
 <tr>
 <td><strong>point station lookup</strong></td>
 <td>Direct lookup at a point station observation.</td>
+</tr>
+<tr>
+<td><strong>intersection area proportion</strong></td>
+<td>Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters).</td>
+</tr>
+<tr>
+<td><strong>raster zonal sum</strong></td>
+<td>Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex).</td>
+</tr>
+<tr>
+<td><strong>feature density</strong></td>
+<td>Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spatial-aggregation-preserved-quantity">Spatial Aggregation Preserved Quantity<a class="headerlink" href="#spatial-aggregation-preserved-quantity" title="Permanent link">¶</a></h3>
+<p>The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. Adopted from CHEL Omnibus §3.10 ("aggregation as a geometry-weighted operator; aggregation must match meaning"), which keys the operator on <em>what is preserved</em> rather than on the mechanics of the operator.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mean intensity</strong></td>
+<td>Preserves the area-mean intensity of the quantity (area-weighted interpolation). For intensive quantities that do not sum over area — e.g. modeled concentration, prevalence.</td>
+</tr>
+<tr>
+<td><strong>total mass conservation</strong></td>
+<td>Preserves the total amount (area-proportional or population-weighted allocation), so the sum over the target matches the sum over the source. For extensive quantities — e.g. population counts.</td>
+</tr>
+<tr>
+<td><strong>occurrence intensity</strong></td>
+<td>Preserves occurrence density — count or line-length per unit area. For discrete features — e.g. facilities, roads.</td>
+</tr>
+<tr>
+<td><strong>areal coverage</strong></td>
+<td>Preserves fractional areal coverage — the proportion of the target cell intersected by the source feature. For coverage quantities — e.g. impaired waters.</td>
 </tr>
 </tbody>
 </table>
@@ -1057,10 +1119,10 @@ name and value type in small print), then four columns:</p>
 <td>🟨 Recommended</td>
 </tr>
 <tr>
-<td><strong>Calendar (CF)</strong><br><small><code>calendar</code> · <a href="#cf-calendar">CF Calendar</a> value</small></td>
-<td>CF calendar. <code>gregorian</code> is the default; only matters when a source uses a non-standard calendar (some climate model output does).<br>💡 <em>Most data uses the ordinary calendar, but some climate models simplify — for example pretending every year has exactly 365 days (no leap days) or twelve 30-day months. If you line those dates up against a real calendar without converting, they slowly drift out of sync.</em><br>↗ <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#calendar">CF calendar</a></td>
+<td><strong>Calendar (CF)</strong><br><small><code>calendar</code> · <a href="#calendar">Calendar</a> value</small></td>
+<td>Calendar of the time axis. <code>gregorian</code> is the default; only matters when a source uses a non-standard calendar. Covers both the CF <code>calendar</code> values and product-specific conventions that CF has no term for — e.g. Daymet's fixed 365-day year (<code>daymet_365</code>), which keeps Feb 29 but drops Dec 31 in leap years and is therefore neither <code>gregorian</code> nor <code>noleap</code>.<br>💡 <em>Most data uses the ordinary calendar, but some climate models simplify — for example pretending every year has exactly 365 days (no leap days) or twelve 30-day months. If you line those dates up against a real calendar without converting, they slowly drift out of sync.</em><br>↗ <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#calendar">CF calendar</a></td>
 <td>Some climate-model output uses non-standard calendars (365-day noleap, 360-day); joining such a series to real-world Gregorian clinical dates without converting shifts daily values progressively through the year — a silent, cumulative misalignment.</td>
-<td><code>gregorian</code> — The default; used by Daymet and ACAG PM2.5 alike.</td>
+<td><code>gregorian</code> — The default; used by ACAG PM2.5.<br><code>daymet_365</code> — Daymet — fixed 365-day year; keeps Feb 29, drops Dec 31 in leap years.</td>
 <td>🟨 Recommended</td>
 </tr>
 </tbody>
@@ -1178,8 +1240,8 @@ name and value type in small print), then four columns:</p>
 </tr>
 </tbody>
 </table>
-<h3 id="cf-calendar">CF Calendar<a class="headerlink" href="#cf-calendar" title="Permanent link">¶</a></h3>
-<p>CF <code>calendar</code> values.</p>
+<h3 id="calendar">Calendar<a class="headerlink" href="#calendar" title="Permanent link">¶</a></h3>
+<p>Calendar of the time axis. Comprises the CF <code>calendar</code> values plus product-specific conventions with no CF equivalent (e.g. <code>daymet_365</code>).</p>
 <p><strong>Standards &amp; references:</strong> <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#calendar">CF calendar</a></p>
 <table>
 <thead>
@@ -1195,7 +1257,11 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>noleap</strong></td>
-<td>365-day calendar with no leap days. Common in climate-model output.</td>
+<td>365-day calendar with no leap days (Feb 29 dropped). Common in climate-model output.</td>
+</tr>
+<tr>
+<td><strong>Daymet 365-day</strong></td>
+<td>Fixed 365-day year that keeps Feb 29 but drops Dec 31 in leap years — the Daymet convention. Not a CF calendar: distinct from <code>noleap</code> (which drops Feb 29) and from <code>gregorian</code> (which keeps Dec 31), so neither substitute preserves Daymet's day-of-year alignment.</td>
 </tr>
 <tr>
 <td><strong>all leap</strong></td>
@@ -1954,6 +2020,20 @@ name and value type in small print), then four columns:</p>
 <td><code>under_investigation</code> — lag-alignment documentation for this ETL is still being populated</td>
 <td>⬜ Optional</td>
 </tr>
+<tr>
+<td><strong>Privacy Transformation</strong><br><small><code>privacy_transformation</code> · <a href="#privacy-transformation">Privacy Transformation</a> value</small></td>
+<td>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.<br>💡 <em>To protect privacy, a pipeline may deliberately move, blur, or drop a person's location after matching them to environmental data — so the value they end up with may be the value at a nearby place, not their real one. This records whether such a change was made and of what kind, so the perturbation is visible instead of hidden.</em><br>↗ <a href="https://github.com/cladteam/CHEL">github.com</a></td>
+<td>A privacy transform applied AFTER the spatial join changes the recorded location of the exposure, so a downstream analyst cannot tell a faithfully-linked value from a privacy-perturbed one; the ambient value attached to a person may be the value at a reassigned location, not the true one. Recording the transform is what keeps that perturbation declared rather than silent — and it is a linkage-stage concern, squarely in the layer EnVar defers to whoever performs the person-join.</td>
+<td><code>deterministic_geographic_jitter</code> — CHEL reassigns the participant to the largest hex in the same ZIP3 when the true hex's ZIP3 population is small (§4.5)<br><code>none</code> — no privacy transform applied; the linked location is the true one</td>
+<td>🟨 Recommended</td>
+</tr>
+<tr>
+<td><strong>Privacy Transformation Note</strong><br><small><code>privacy_transformation_note</code> · text</small></td>
+<td>Free-text detail of the privacy transformation named in <code>privacy_transformation</code>: the trigger / threshold, determinism, and governance basis. E.g. "reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic".<br>💡 <em>The spelled-out details of the privacy change: what set it off (for example a small local population), the exact cutoff used, whether it always does the same thing, and the legal rule it follows.</em></td>
+<td>The transform name alone does not say what triggered it, at what threshold, or under what governance — two deterministic-jitter records with different thresholds perturb locations differently. Recording the trigger, determinism, and legal basis is what makes the perturbation reproducible and auditable rather than merely acknowledged.</td>
+<td><code>reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic</code> — CHEL §4.5 deterministic privacy jitter, spelled out</td>
+<td>🟨 Recommended</td>
+</tr>
 </tbody>
 </table>
 <h3 id="linkage-strategy">Linkage Strategy<a class="headerlink" href="#linkage-strategy" title="Permanent link">¶</a></h3>
@@ -2166,6 +2246,39 @@ name and value type in small print), then four columns:</p>
 <tr>
 <td><strong>distributed lag</strong></td>
 <td>A distributed lag over a range of days has been applied. Range captured in <code>lag_alignment_specifier</code> (e.g. <code>"0-21"</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="privacy-transformation">Privacy Transformation<a class="headerlink" href="#privacy-transformation" title="Permanent link">¶</a></h3>
+<p>A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a> · <a href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">hhs.gov</a></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>none</strong></td>
+<td>No privacy transformation applied; the linked location is the true one.</td>
+</tr>
+<tr>
+<td><strong>deterministic geographic jitter</strong></td>
+<td>The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL reassigns to the largest hex in the same ZIP3 below a population threshold).</td>
+</tr>
+<tr>
+<td><strong>suppression</strong></td>
+<td>The value or location is suppressed (dropped / withheld) when a disclosure risk threshold is exceeded.</td>
+</tr>
+<tr>
+<td><strong>aggregation to coarser unit</strong></td>
+<td>The location is coarsened to a larger geographic unit (e.g. hex → ZIP3 or county) to protect privacy.</td>
+</tr>
+<tr>
+<td><strong>stochastic perturbation</strong></td>
+<td>The location is perturbed by a random (non-deterministic) offset — contrast the deterministic jitter above.</td>
 </tr>
 </tbody>
 </table>
@@ -3063,6 +3176,35 @@ name and value type in small print), then four columns:</p>
 <tr>
 <td><strong>not applicable</strong></td>
 <td>This slot does not apply to this variable / record.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="null-semantics">Null Semantics<a class="headerlink" href="#null-semantics" title="Permanent link">¶</a></h3>
+<p>The kind of "missing or zero" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 ("Null Handling"). A blank or a <code>0</code> is ambiguous: <code>structural_null</code>, <code>derived_null</code> and <code>true_zero</code> have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>present</strong></td>
+<td>A real, non-missing value.</td>
+</tr>
+<tr>
+<td><strong>structural null</strong></td>
+<td>No source data for this cell — the cell lies outside the source product's coverage. Drop; do not impute from neighbours.</td>
+</tr>
+<tr>
+<td><strong>derived null</strong></td>
+<td>Aggregation was impossible — geometry mismatch, no overlap between source and target support. Drop from denominators; flag the geometry mismatch.</td>
+</tr>
+<tr>
+<td><strong>true zero</strong></td>
+<td>A real, measured absence of the exposure or event. Keep as zero.</td>
 </tr>
 </tbody>
 </table>

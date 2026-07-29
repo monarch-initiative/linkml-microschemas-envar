@@ -21,7 +21,7 @@
     
     
       
-        <title>Enum: CF Calendar (CalendarEnum) - linkml-microschemas-envar</title>
+        <title>Enum: Calendar (CalendarEnum) - linkml-microschemas-envar</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-cf-calendar-calendarenum" class="md-skip">
+        <a href="#enum-calendar-calendarenum" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: CF Calendar (CalendarEnum)
+              Enum: Calendar (CalendarEnum)
             
           </span>
         </div>
@@ -621,8 +621,8 @@
   
 
 
-<h1 id="enum-cf-calendar-calendarenum">Enum: CF Calendar (CalendarEnum)</h1>
-<p><em>CF <code>calendar</code> values.</em></p>
+<h1 id="enum-calendar-calendarenum">Enum: Calendar (CalendarEnum)</h1>
+<p><em>Calendar of the time axis. Comprises the CF <code>calendar</code> values plus product-specific conventions with no CF equivalent (e.g. <code>daymet_365</code>).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/enum/CalendarEnum">envar:enum/CalendarEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -645,8 +645,14 @@
 <tr>
 <td>noleap</td>
 <td>None</td>
-<td>365-day calendar with no leap days</td>
+<td>365-day calendar with no leap days (Feb 29 dropped)</td>
 <td></td>
+</tr>
+<tr>
+<td>daymet_365</td>
+<td>None</td>
+<td>Fixed 365-day year that keeps Feb 29 but drops Dec 31 in leap years — the Day...</td>
+<td>Title: Daymet 365-day<br></td>
 </tr>
 <tr>
 <td>all_leap</td>
@@ -685,7 +691,7 @@
 <tbody>
 <tr>
 <td><a href="../../slots/calendar/">calendar</a></td>
-<td>CF calendar</td>
+<td>Calendar of the time axis</td>
 </tr>
 </tbody>
 </table>
@@ -701,8 +707,9 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalendarEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CF `calendar` values.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CF Calendar</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calendar of the time axis. Comprises the CF `calendar` values plus product-specific</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">conventions with no CF equivalent (e.g. `daymet_365`).</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calendar</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="nt">see_also</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://cfconventions.org/cf-conventions/cf-conventions.html#calendar</span>
@@ -713,7 +720,15 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Standard mixed Julian / Gregorian calendar (default).</span>
 <span class="w">  </span><span class="nt">noleap</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">noleap</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365-day calendar with no leap days. Common in climate-model output.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365-day calendar with no leap days (Feb 29 dropped). Common in climate-model</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">output.</span>
+<span class="w">  </span><span class="nt">daymet_365</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">daymet_365</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Fixed</span><span class="nv"> </span><span class="s">365-day</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">keeps</span><span class="nv"> </span><span class="s">Feb</span><span class="nv"> </span><span class="s">29</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">drops</span><span class="nv"> </span><span class="s">Dec</span><span class="nv"> </span><span class="s">31</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">leap</span><span class="nv"> </span><span class="s">years</span>
+<span class="w">      </span><span class="s">—</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Daymet</span><span class="nv"> </span><span class="s">convention.</span><span class="nv"> </span><span class="s">Not</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CF</span><span class="nv"> </span><span class="s">calendar:</span><span class="nv"> </span><span class="s">distinct</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">`noleap`</span><span class="nv"> </span><span class="s">(which</span><span class="nv"> </span><span class="s">drops</span>
+<span class="w">      </span><span class="s">Feb</span><span class="nv"> </span><span class="s">29)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">`gregorian`</span><span class="nv"> </span><span class="s">(which</span><span class="nv"> </span><span class="s">keeps</span><span class="nv"> </span><span class="s">Dec</span><span class="nv"> </span><span class="s">31),</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">neither</span><span class="nv"> </span><span class="s">substitute</span><span class="nv"> </span><span class="s">preserves</span>
+<span class="w">      </span><span class="s">Daymet</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">day-of-year</span><span class="nv"> </span><span class="s">alignment.&#39;</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Daymet 365-day</span>
 <span class="w">  </span><span class="nt">all_leap</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all_leap</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">366-day calendar with all years leap.</span>
