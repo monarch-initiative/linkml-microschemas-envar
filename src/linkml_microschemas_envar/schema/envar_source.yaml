@@ -119,7 +119,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS emits no dataset-name field; only the container name is
-                baked into the CSV filename (COMPARISON.md §I → ❌).
+                baked into the CSV filename.
           amadeus:
             annotations:
               extent: absent
@@ -127,7 +127,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no dataset name; it has to be inferred from the
-                THREDDS URL path (COMPARISON.md §I → ❌).
+                THREDDS URL path.
           cher:
             annotations:
               extent: full
@@ -181,23 +181,21 @@ slots:
               where: "gaia_db data_source.dataset_name (no registry short code)"
               note: >-
                 GAIA carries the dataset name but no stable per-product short
-                registry code; inferred partial from COMPARISON.md §I name row.
+                registry code; scored partial.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no dataset short code (COMPARISON.md §I → ❌ for
-                dataset name).
+                DeGAUSS emits no dataset short code.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus emits no dataset short code (COMPARISON.md §I → ❌ for
-                dataset name).
+                Amadeus emits no dataset short code.
           cher:
             annotations:
               extent: full
@@ -254,22 +252,22 @@ slots:
               where: "meta_dcat_*.json dct:identifier"
               note: >-
                 GAIA carries a DOI in DCAT dct:identifier for daymet, but not all
-                entries carry one (gridmet has only a url) — COMPARISON.md §I DOI
-                row is ✅ with that caveat, scored conservatively as partial.
+                entries carry one (gridmet has only a url), so scored
+                conservatively as partial.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no DOI (COMPARISON.md §I → ❌).
+                DeGAUSS carries no DOI.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no DOI (COMPARISON.md §I → ❌).
+                Amadeus carries no DOI.
           cher:
             annotations:
               extent: partial
@@ -352,14 +350,14 @@ slots:
               where: "CSV filename token (daymet_1.0.0)"
               note: >-
                 DeGAUSS bakes only the container version into the filename, not
-                the upstream dataset version (COMPARISON.md §I → ➖).
+                the upstream dataset version.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no dataset version (COMPARISON.md §I → ❌).
+                Amadeus carries no dataset version.
           cher:
             annotations:
               extent: full
@@ -423,7 +421,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no dataset time-span (COMPARISON.md §H → ❌).
+                DeGAUSS carries no dataset time-span.
           amadeus:
             annotations:
               extent: full
@@ -494,7 +492,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no source spatial coverage (COMPARISON.md §G → ❌).
+                DeGAUSS carries no source spatial coverage.
           amadeus:
             annotations:
               extent: full
@@ -564,14 +562,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no producer/publisher field (COMPARISON.md §I → ❌).
+                DeGAUSS carries no producer/publisher field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no producer/publisher field (COMPARISON.md §I → ❌).
+                Amadeus carries no producer/publisher field.
           cher:
             annotations:
               extent: full
@@ -624,15 +622,14 @@ slots:
               where: "no column"
               note: >-
                 GAIA carries publisher and DOI but no assembled APA citation
-                string; no citation row exists in COMPARISON.md §I.
+                string; none is emitted.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no citation (COMPARISON.md §I has no DeGAUSS
-                identity metadata).
+                DeGAUSS carries no citation.
           amadeus:
             annotations:
               extent: partial
@@ -649,7 +646,7 @@ slots:
               where: "no column"
               note: >-
                 C-HER carries contributors, rights, and DOI but no assembled APA
-                citation string (metadata_model.md §3).
+                citation string.
           codata:
             annotations:
               extent: out_of_layer
@@ -732,7 +729,7 @@ slots:
               status: asserted
               where: "gaia_db data_source.license; meta_dcat_*.json dct:license"
               note: >-
-                GAIA carries a license first-class (✅ in COMPARISON.md §I) but as
+                GAIA carries a license first-class but as
                 a freeform string with no SPDX normalisation, so it only partly
                 satisfies this SPDX-specific slot.
           degauss:
@@ -741,14 +738,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no license field (COMPARISON.md §I → ❌).
+                DeGAUSS carries no license field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no license field (COMPARISON.md §I → ❌).
+                Amadeus carries no license field.
           cher:
             annotations:
               extent: partial
@@ -756,8 +753,7 @@ slots:
               where: "table_dictionary rights (via rights FK)"
               note: >-
                 C-HER carries a required rights field, but it is not SPDX-coded,
-                so it only partly satisfies this SPDX-specific slot
-                (metadata_model.md §3, §5).
+                so it only partly satisfies this SPDX-specific slot.
           codata:
             annotations:
               extent: out_of_layer
@@ -809,7 +805,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no source landing-page URL (COMPARISON.md §I → ❌).
+                DeGAUSS carries no source landing-page URL.
           amadeus:
             annotations:
               extent: partial
@@ -817,7 +813,7 @@ slots:
               where: "thredds_dataset.xml @location (NCSS data endpoint)"
               note: >-
                 Amadeus carries only the THREDDS NCSS data-endpoint URL, not the
-                human landing page (COMPARISON.md §I → ➖).
+                human landing page.
           cher:
             annotations:
               extent: absent
@@ -825,7 +821,7 @@ slots:
               where: "no column"
               note: >-
                 C-HER records an S3-protocol storage location for the resource,
-                not a source landing-page URL (metadata_model.md §2.1).
+                not a source landing-page URL.
           codata:
             annotations:
               extent: out_of_layer
@@ -868,16 +864,14 @@ slots:
               where: "meta_etl_*.json structure/geometry (raster); gaia_db data_source.geom_type"
               note: >-
                 GAIA records dataset structure (raster) and geometry type but not
-                the native file format (e.g. NetCDF-4/CF) as a first-class slot
-                (COMPARISON.md §G geometry-type row is ✅, format itself is not).
+                the native file format (e.g. NetCDF-4/CF) as a first-class slot.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS records no source native format (COMPARISON.md carries no
-                format field for it).
+                DeGAUSS records no source native format.
           amadeus:
             annotations:
               extent: partial
@@ -885,7 +879,7 @@ slots:
               where: "gridmet_tmmx.cf_metadata.json (CF metadata implies NetCDF)"
               note: >-
                 Amadeus's CF metadata blob implies the NetCDF/CF native format but
-                does not declare it in a dedicated format field (COMPARISON.md §F).
+                does not declare it in a dedicated format field.
           cher:
             annotations:
               extent: full
@@ -893,7 +887,7 @@ slots:
               where: "table_dictionary resource_format (IANA Media Types controlled vocab)"
               note: >-
                 C-HER carries resource_format first-class against the IANA Media
-                Types controlled vocabulary (metadata_model.md §3.1).
+                Types controlled vocabulary.
           codata:
             annotations:
               extent: out_of_layer

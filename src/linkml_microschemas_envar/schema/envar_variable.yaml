@@ -234,7 +234,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS CSVs carry no variable description / long name — only the
-                bare `tmax` column header (COMPARISON.md §F: ❌).
+                bare `tmax` column header.
           amadeus:
             annotations:
               extent: full
@@ -322,7 +322,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS carries no standard-name identifier — the quantity is
-                implicit in the `tmax` column name (COMPARISON.md §F: ❌).
+                implicit in the `tmax` column name.
           amadeus:
             annotations:
               extent: partial
@@ -330,8 +330,7 @@ slots:
               where: "thredds_dataset.xml standard_name = \"tmmx\" (gridMET shortcode overloaded, not a real CF term)"
               note: >-
                 Amadeus populates a standard_name slot but with the gridMET
-                shortcode rather than a CF term, so a CF lookup fails
-                (COMPARISON.md §F: ➖). Conservative: partial.
+                shortcode rather than a CF term, so a CF lookup fails. Conservative: partial.
           cher:
             annotations:
               extent: partial
@@ -464,7 +463,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS's `tmax` column has no unit annotation; °C is only a
-                container convention (COMPARISON.md §E: ❌).
+                container convention.
           cher:
             annotations:
               extent: partial
@@ -557,7 +556,7 @@ slots:
               note: >-
                 GAIA stores °C as if it were always °C; only the OMOP-side unit
                 lands in value_as_number and the upstream native unit is not on
-                the row (COMPARISON.md §D/§E: ❌).
+                the row.
           amadeus:
             annotations:
               extent: full
@@ -574,7 +573,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS does the K→°C conversion inside the container, so the
-                native unit never appears in any output (COMPARISON.md §D: ❌).
+                native unit never appears in any output.
           cher:
             annotations:
               extent: absent
@@ -668,7 +667,7 @@ slots:
       2026-07): the Amadeus translation carried this exact math only as a
       YAML comment ("the schema has no slot for it"), and the GAIA scenario
       hand-added it as an `envar:unit_conversion` PropertyValue. The
-      comparison table in the EnVar pipeline repo (COMPARISON.md §E) lists
+      comparison table in the EnVar pipeline repo lists
       "K→°C conversion math recorded: ❌" for every pipeline — this slot is
       the fix.
 
@@ -738,7 +737,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS emits a bare `tmax` value with no target-vocabulary
-                binding (COMPARISON.md §D: ❌).
+                binding.
           amadeus:
             annotations:
               extent: absent
@@ -746,7 +745,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no target-vocabulary binding; the variable is
-                implicit in the `tmmx` column name (COMPARISON.md §D: ❌).
+                implicit in the `tmmx` column name.
           cher:
             annotations:
               extent: absent
@@ -818,14 +817,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No concept-id column in DeGAUSS output (COMPARISON.md §D: ❌).
+                No concept-id column in DeGAUSS output.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No concept-id column in Amadeus output (COMPARISON.md §D: ❌).
+                No concept-id column in Amadeus output.
           cher:
             annotations:
               extent: absent
@@ -902,8 +901,7 @@ slots:
               note: >-
                 GAIA fills a placeholder exposure_concept_id but carries no
                 existing/proposed/gap status flag saying whether a real OMOP
-                concept exists — an EnVar-novel slot (COMPARISON.md §D notes the
-                placeholder, not a status).
+                concept exists — an EnVar-novel slot.
           degauss:
             annotations:
               extent: absent
@@ -1097,8 +1095,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no plausible-range metadata (COMPARISON.md §F:
-                ❌).
+                DeGAUSS carries no plausible-range metadata.
           amadeus:
             annotations:
               extent: absent
@@ -1106,7 +1103,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no plausible-range bounds; only a _FillValue
-                sentinel (COMPARISON.md §F: ❌ for valid range).
+                sentinel.
           cher:
             annotations:
               extent: absent
@@ -1166,8 +1163,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no plausible-range metadata (COMPARISON.md §F:
-                ❌).
+                DeGAUSS carries no plausible-range metadata.
           amadeus:
             annotations:
               extent: absent
@@ -1175,7 +1171,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no plausible-range bounds; only a _FillValue
-                sentinel (COMPARISON.md §F: ❌ for valid range).
+                sentinel.
           cher:
             annotations:
               extent: absent

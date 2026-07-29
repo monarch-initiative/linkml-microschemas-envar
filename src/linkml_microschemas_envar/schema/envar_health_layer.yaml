@@ -128,14 +128,14 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS appends columns to the cohort CSV and names no downstream
-                health-layer target (COMPARISON.md — ❌).
+                health-layer target.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus names no downstream health-layer target (COMPARISON.md — ❌).
+                Amadeus names no downstream health-layer target.
           cher:
             annotations:
               extent: partial
@@ -197,7 +197,7 @@ slots:
               note: >-
                 The OMOP external_exposure.exposure_source_value field exists and
                 is the natural provenance-id carrier, but gaia does not populate it
-                with a sidecar provenance id (COMPARISON.md §D). Conservative:
+                with a sidecar provenance id. Conservative:
                 partial.
           degauss:
             annotations:
@@ -205,14 +205,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS declares no health-layer join field (COMPARISON.md — ❌).
+                DeGAUSS declares no health-layer join field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus declares no health-layer join field (COMPARISON.md — ❌).
+                Amadeus declares no health-layer join field.
           cher:
             annotations:
               extent: partial

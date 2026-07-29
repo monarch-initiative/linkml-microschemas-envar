@@ -437,7 +437,7 @@ slots:
               note: >-
                 GAIA carries date columns but collapses every row to the
                 variable's window-wide attr_start_date/attr_end_date — per-day
-                external_exposure does not come out (COMPARISON.md §D: ➖/❌).
+                external_exposure does not come out.
                 Conservative: partial.
           degauss:
             annotations:

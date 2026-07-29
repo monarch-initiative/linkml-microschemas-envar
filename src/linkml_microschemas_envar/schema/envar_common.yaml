@@ -95,8 +95,7 @@ slots:
               where: "no column"
               note: >-
                 No native gaia output carries a sidecar schema-version field; this
-                is an EnVar-sidecar-level construct (COMPARISON.md tracks the
-                sidecar layer separately).
+                is an EnVar-sidecar-level construct.
           degauss:
             annotations:
               extent: absent
@@ -175,8 +174,7 @@ slots:
               where: "external_exposure.exposure_source_value (empty slot that could carry a provenance id) + gaia_db data_source id"
               note: >-
                 The OMOP source-value field exists as the natural carrier, but gaia
-                populates no per-sidecar stable record id into it (COMPARISON.md
-                §D). Conservative: partial.
+                populates no per-sidecar stable record id into it. Conservative: partial.
           degauss:
             annotations:
               extent: absent
@@ -251,8 +249,7 @@ slots:
               where: "no column"
               note: >-
                 Gaia carries PHI in OMOP person/location tables but emits no
-                per-record PHI-free assertion flag on its metadata (COMPARISON.md
-                §A).
+                per-record PHI-free assertion flag on its metadata.
           degauss:
             annotations:
               extent: absent

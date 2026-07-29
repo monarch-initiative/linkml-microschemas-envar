@@ -109,8 +109,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                gaiaCatalog has no first-class native-resolution slot
-                (COMPARISON.md §G); it appears only via the EnVar extension
+                gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension
                 PropertyValue envar:native_spatial_resolution_m, not natively.
           degauss:
             annotations:
@@ -118,7 +117,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no resolution field (COMPARISON.md §G); "Daymet =
+                DeGAUSS emits no resolution field; "Daymet =
                 1 km" is out-of-band knowledge, not written to any output.
           amadeus:
             annotations:
@@ -127,7 +126,7 @@ slots:
               where: "thredds_dataset.xml axis lat/lon increment (0.041666 deg)"
               note: >-
                 Only derivable from the grid-axis increment in
-                thredds_dataset.xml (COMPARISON.md §G ➖); never written as a
+                thredds_dataset.xml; never written as a
                 resolution number in metres.
           cher:
             annotations:
@@ -186,7 +185,7 @@ slots:
               note: >-
                 GAIA records geometry type (point/raster) but no human-readable
                 resolution-layout descriptor; the resolution label itself is
-                absent (COMPARISON.md §G).
+                absent.
           degauss:
             annotations:
               extent: absent
@@ -201,7 +200,7 @@ slots:
               where: "no column"
               note: >-
                 No resolution-layout label is emitted; only a derivable axis
-                increment exists (COMPARISON.md §G).
+                increment exists.
           cher:
             annotations:
               extent: partial
@@ -271,8 +270,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS leaves CRS implicit WGS84 with no column (COMPARISON.md
-                §C ❌).
+                DeGAUSS leaves CRS implicit WGS84 with no column.
           amadeus:
             annotations:
               extent: full
@@ -351,7 +349,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no product bounding box (COMPARISON.md §G ❌).
+                DeGAUSS emits no product bounding box.
           amadeus:
             annotations:
               extent: full
@@ -421,7 +419,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no extent descriptor (COMPARISON.md §G ❌).
+                DeGAUSS emits no extent descriptor.
           amadeus:
             annotations:
               extent: absent
@@ -489,8 +487,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No extraction-method slot in gaiaCatalog or gaia-db
-                (COMPARISON.md §G ❌); only the implicit st_within join semantics
+                No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join semantics
                 of working.spatial_join_exposure exist, undocumented.
           degauss:
             annotations:
@@ -499,14 +496,14 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS applies IDW-4-nearest by default but records no
-                extraction-method field (COMPARISON.md §G ❌).
+                extraction-method field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus emits no extraction-method field (COMPARISON.md §G ❌).
+                Amadeus emits no extraction-method field.
           cher:
             annotations:
               extent: absent
@@ -682,7 +679,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus collapses to lat/lon at the THREDDS request with no
-                geography-type field (COMPARISON.md §B).
+                geography-type field.
           cher:
             annotations:
               extent: full

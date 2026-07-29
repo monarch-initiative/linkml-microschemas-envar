@@ -166,22 +166,21 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia output carries a per-value uncertainty type (COMPARISON.md
-                has no per-value uncertainty for any pipeline).
+                No gaia output carries a per-value uncertainty type.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no per-value uncertainty (COMPARISON.md — ❌).
+                DeGAUSS emits no per-value uncertainty.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus emits no per-value uncertainty type (COMPARISON.md — ❌).
+                Amadeus emits no per-value uncertainty type.
           cher:
             annotations:
               extent: absent
@@ -491,7 +490,7 @@ slots:
               where: "no column"
               note: >-
                 Gaia's meta_etl nodata registers the missing-value sentinel, not
-                the source's missing-data handling method (COMPARISON.md §F).
+                the source's missing-data handling method.
           degauss:
             annotations:
               extent: absent
@@ -506,7 +505,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus's THREDDS metadata declares a _FillValue sentinel but not
-                the source's gap-filling method (COMPARISON.md §F).
+                the source's gap-filling method.
           cher:
             annotations:
               extent: absent
@@ -619,8 +618,7 @@ slots:
               where: "no column"
               note: >-
                 No gaia output carries a data-completeness percentage for the
-                extracted window (COMPARISON.md §K notes row counts are not even
-                emitted).
+                extracted window.
           degauss:
             annotations:
               extent: absent

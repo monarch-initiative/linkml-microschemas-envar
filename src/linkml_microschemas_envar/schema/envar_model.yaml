@@ -119,22 +119,21 @@ slots:
               note: >-
                 GAIA has no first-class exposure-model-type slot; it is present
                 only via the EnVar JSON-LD extension. Natively GAIA carries only
-                a free-text measurement_technique (COMPARISON.md §J → ❌ for the
-                structured slot).
+                a free-text measurement_technique.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no exposure-model-type slot (COMPARISON.md §J → ❌).
+                DeGAUSS carries no exposure-model-type slot.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no exposure-model-type slot (COMPARISON.md §J → ❌).
+                Amadeus carries no exposure-model-type slot.
           cher:
             annotations:
               extent: partial
@@ -143,7 +142,7 @@ slots:
               note: >-
                 C-HER's data_level code flags modeled data (mXX) and distinguishes
                 calculated (dXX) from modeled, but does not name the model class
-                (reanalysis vs interpolation) — metadata_model.md §2.5.
+                (reanalysis vs interpolation).
           codata:
             annotations:
               extent: out_of_layer
@@ -193,21 +192,21 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                GAIA has no slot anywhere for model inputs (COMPARISON.md §J → ❌).
+                GAIA has no slot anywhere for model inputs.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no model-input list (COMPARISON.md §J → ❌).
+                DeGAUSS carries no model-input list.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no model-input list (COMPARISON.md §J → ❌).
+                Amadeus carries no model-input list.
           cher:
             annotations:
               extent: partial
@@ -216,7 +215,7 @@ slots:
               note: >-
                 C-HER's dataset_lineage links parent resources a child was
                 calculated/modeled from, but as resource FKs, not a named
-                model-input variable list (metadata_model.md §4).
+                model-input variable list.
           codata:
             annotations:
               extent: out_of_layer
@@ -288,7 +287,7 @@ slots:
               where: "no column"
               note: >-
                 C-HER's doi field is the resource's own DOI, not a methods-paper
-                DOI for the model that produced the values (metadata_model.md §3).
+                DOI for the model that produced the values.
           codata:
             annotations:
               extent: out_of_layer
@@ -375,8 +374,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                C-HER carries no source-model skill/cross-validation field
-                (metadata_model.md §3, §6).
+                C-HER carries no source-model skill/cross-validation field.
           codata:
             annotations:
               extent: out_of_layer
@@ -470,7 +468,7 @@ slots:
               where: "no column"
               note: >-
                 C-HER has free-text description/notes but no structured
-                known-biases field for the source model (metadata_model.md §3).
+                known-biases field for the source model.
           codata:
             annotations:
               extent: out_of_layer
@@ -582,8 +580,7 @@ slots:
               where: "no column"
               note: >-
                 C-HER's data_level codes track processing stage but do not flag
-                whether statistical bias correction was applied (metadata_model.md
-                §2.5).
+                whether statistical bias correction was applied.
           codata:
             annotations:
               extent: out_of_layer

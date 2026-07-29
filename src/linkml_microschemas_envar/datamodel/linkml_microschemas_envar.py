@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-29T14:18:42
+# Generation date: 2026-07-29T15:10:21
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar

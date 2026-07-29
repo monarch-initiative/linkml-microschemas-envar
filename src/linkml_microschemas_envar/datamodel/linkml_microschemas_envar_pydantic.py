@@ -1485,10 +1485,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'bare '
                                                                                                       '`tmax` '
                                                                                                       'column '
-                                                                                                      'header '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌).'},
+                                                                                                      'header.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -1574,10 +1571,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'a '
                                                                                                       'CF '
                                                                                                       'lookup '
-                                                                                                      'fails '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '➖). '
+                                                                                                      'fails. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -1720,10 +1714,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       '`tmax` '
                                                                                                       'column '
-                                                                                                      'name '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌).'},
+                                                                                                      'name.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2017,10 +2008,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       'container '
-                                                                                                      'convention '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E: '
-                                                                                                      '❌).'},
+                                                                                                      'convention.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2262,10 +2250,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'appears '
                                                                                                       'in '
                                                                                                       'any '
-                                                                                                      'output '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§D: '
-                                                                                                      '❌).'},
+                                                                                                      'output.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2300,10 +2285,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                         'not '
                                                                                                         'on '
                                                                                                         'the '
-                                                                                                        'row '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D/§E: '
-                                                                                                        '❌).'},
+                                                                                                        'row.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -2422,8 +2404,8 @@ class VariableIdentity(ConfiguredBaseModel):
                       'as a YAML comment ("the schema has no slot for it"), and the '
                       'GAIA scenario hand-added it as an `envar:unit_conversion` '
                       'PropertyValue. The comparison table in the EnVar pipeline repo '
-                      '(COMPARISON.md §E) lists "K→°C conversion math recorded: ❌" for '
-                      'every pipeline — this slot is the fix.'],
+                      'lists "K→°C conversion math recorded: ❌" for every pipeline — '
+                      'this slot is the fix.'],
          'domain_of': ['VariableIdentity'],
          'examples': [{'description': 'gridMET tmmx unpack-then-convert chain in the '
                                       'Amadeus scenario',
@@ -2444,10 +2426,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       '`tmmx` '
                                                                                                       'column '
-                                                                                                      'name '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§D: '
-                                                                                                      '❌).'},
+                                                                                                      'name.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2554,10 +2533,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'with '
                                                                                                       'no '
                                                                                                       'target-vocabulary '
-                                                                                                      'binding '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§D: '
-                                                                                                      '❌).'},
+                                                                                                      'binding.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2648,10 +2624,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'column '
                                                                                                       'in '
                                                                                                       'Amadeus '
-                                                                                                      'output '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§D: '
-                                                                                                      '❌).'},
+                                                                                                      'output.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2747,10 +2720,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'column '
                                                                                                       'in '
                                                                                                       'DeGAUSS '
-                                                                                                      'output '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§D: '
-                                                                                                      '❌).'},
+                                                                                                      'output.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -2978,15 +2948,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                         '— '
                                                                                                         'an '
                                                                                                         'EnVar-novel '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D '
-                                                                                                        'notes '
-                                                                                                        'the '
-                                                                                                        'placeholder, '
-                                                                                                        'not '
-                                                                                                        'a '
-                                                                                                        'status).'},
+                                                                                                        'slot.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -3258,13 +3220,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌ '
-                                                                                                      'for '
-                                                                                                      'valid '
-                                                                                                      'range).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -3358,10 +3314,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'plausible-range '
-                                                                                                      'metadata '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌).'},
+                                                                                                      'metadata.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -3430,13 +3383,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌ '
-                                                                                                      'for '
-                                                                                                      'valid '
-                                                                                                      'range).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -3530,10 +3477,7 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'plausible-range '
-                                                                                                      'metadata '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F: '
-                                                                                                      '❌).'},
+                                                                                                      'metadata.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -4450,10 +4394,7 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                         'does '
                                                                                                         'not '
                                                                                                         'come '
-                                                                                                        'out '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D: '
-                                                                                                        '➖/❌). '
+                                                                                                        'out. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -5019,10 +4960,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'grid-axis '
                                                                                                       'increment '
                                                                                                       'in '
-                                                                                                      'thredds_dataset.xml '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '➖); '
+                                                                                                      'thredds_dataset.xml; '
                                                                                                       'never '
                                                                                                       'written '
                                                                                                       'as '
@@ -5138,9 +5076,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'resolution '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G); '
+                                                                                                      'field; '
                                                                                                       '"Daymet '
                                                                                                       '= '
                                                                                                       '1 '
@@ -5167,9 +5103,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                         'no '
                                                                                                         'first-class '
                                                                                                         'native-resolution '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§G); '
+                                                                                                        'slot; '
                                                                                                         'it '
                                                                                                         'appears '
                                                                                                         'only '
@@ -5228,9 +5162,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'derivable '
                                                                                                       'axis '
                                                                                                       'increment '
-                                                                                                      'exists '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G).'},
+                                                                                                      'exists.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -5349,9 +5281,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                         'label '
                                                                                                         'itself '
                                                                                                         'is '
-                                                                                                        'absent '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§G).'},
+                                                                                                        'absent.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -5506,10 +5436,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'WGS84 '
                                                                                                       'with '
                                                                                                       'no '
-                                                                                                      'column '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C '
-                                                                                                      '❌).'},
+                                                                                                      'column.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -5693,10 +5620,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'product '
                                                                                                       'bounding '
-                                                                                                      'box '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '❌).'},
+                                                                                                      'box.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -5869,10 +5793,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'extent '
-                                                                                                      'descriptor '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '❌).'},
+                                                                                                      'descriptor.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -5940,10 +5861,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'extraction-method '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6036,10 +5954,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'extraction-method '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6055,10 +5970,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                         'in '
                                                                                                         'gaiaCatalog '
                                                                                                         'or '
-                                                                                                        'gaia-db '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§G '
-                                                                                                        '❌); '
+                                                                                                        'gaia-db; '
                                                                                                         'only '
                                                                                                         'the '
                                                                                                         'implicit '
@@ -6238,9 +6150,7 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                       'with '
                                                                                                       'no '
                                                                                                       'geography-type '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6628,10 +6538,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       'THREDDS '
                                                                                                       'time-axis '
-                                                                                                      'increment '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '➖); '
+                                                                                                      'increment; '
                                                                                                       'not '
                                                                                                       'written '
                                                                                                       'as '
@@ -6744,10 +6651,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'with '
                                                                                                       'no '
                                                                                                       'resolution '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6764,10 +6668,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'in '
                                                                                                         'gaiaCatalog '
                                                                                                         'or '
-                                                                                                        'gaia-db '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '❌).'},
+                                                                                                        'gaia-db.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -6820,10 +6721,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'not '
                                                                                                       'a '
                                                                                                       'structured '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '➖).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6913,10 +6811,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'temporal-aggregation '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -6932,10 +6827,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'in '
                                                                                                         'gaiaCatalog '
                                                                                                         'or '
-                                                                                                        'gaia-db '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '❌).'},
+                                                                                                        'gaia-db.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -6991,10 +6883,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'an '
                                                                                                       'explicit '
                                                                                                       'seconds '
-                                                                                                      'value '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '➖).'},
+                                                                                                      'value.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7083,9 +6972,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'explicit '
                                                                                                       'window-length '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7103,10 +6990,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'grain '
                                                                                                         'itself '
                                                                                                         'is '
-                                                                                                        'absent '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '❌).'},
+                                                                                                        'absent.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -7154,10 +7038,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'clarification '
                                                                                                       '— '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'ambiguity.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7239,10 +7120,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'day-boundary '
-                                                                                                      'convention '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'convention.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7259,10 +7137,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'in '
                                                                                                         'gaiaCatalog '
                                                                                                         'or '
-                                                                                                        'gaia-db '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '❌).'},
+                                                                                                        'gaia-db.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -7415,10 +7290,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'product '
-                                                                                                      'coverage-start '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'coverage-start.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7587,10 +7459,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'product '
-                                                                                                      'coverage-end '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'coverage-end.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -7780,9 +7649,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'start '
                                                                                                         'is '
                                                                                                         'not '
-                                                                                                        'recorded '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D).'},
+                                                                                                        'recorded.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -7932,9 +7799,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'per-run '
                                                                                                         'extraction-window-end '
                                                                                                         'is '
-                                                                                                        'recorded '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D).'},
+                                                                                                        'recorded.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -8067,10 +7932,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'calendar '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8084,10 +7946,7 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                         'calendar/time-origin '
                                                                                                         'slot '
                                                                                                         'in '
-                                                                                                        'gaia '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '❌).'},
+                                                                                                        'gaia.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -8156,11 +8015,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       'THREDDS '
                                                                                                       'URL '
-                                                                                                      'path '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'path.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8277,11 +8132,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'into '
                                                                                                       'the '
                                                                                                       'CSV '
-                                                                                                      'filename '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'filename.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8350,14 +8201,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'dataset '
                                                                                                       'short '
-                                                                                                      'code '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌ '
-                                                                                                      'for '
-                                                                                                      'dataset '
-                                                                                                      'name).'},
+                                                                                                      'code.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8456,14 +8300,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'dataset '
                                                                                                       'short '
-                                                                                                      'code '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌ '
-                                                                                                      'for '
-                                                                                                      'dataset '
-                                                                                                      'name).'},
+                                                                                                      'code.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8485,13 +8322,8 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                         'short '
                                                                                                         'registry '
                                                                                                         'code; '
-                                                                                                        'inferred '
-                                                                                                        'partial '
-                                                                                                        'from '
-                                                                                                        'COMPARISON.md '
-                                                                                                        '§I '
-                                                                                                        'name '
-                                                                                                        'row.'},
+                                                                                                        'scored '
+                                                                                                        'partial.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -8525,11 +8357,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                              'value': 'Amadeus '
                                                                                                       'carries '
                                                                                                       'no '
-                                                                                                      'DOI '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'DOI.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8621,11 +8449,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                              'value': 'DeGAUSS '
                                                                                                       'carries '
                                                                                                       'no '
-                                                                                                      'DOI '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'DOI.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8654,17 +8478,8 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                         'has '
                                                                                                         'only '
                                                                                                         'a '
-                                                                                                        'url) '
-                                                                                                        '— '
-                                                                                                        'COMPARISON.md '
-                                                                                                        '§I '
-                                                                                                        'DOI '
-                                                                                                        'row '
-                                                                                                        'is '
-                                                                                                        '✅ '
-                                                                                                        'with '
-                                                                                                        'that '
-                                                                                                        'caveat, '
+                                                                                                        'url), '
+                                                                                                        'so '
                                                                                                         'scored '
                                                                                                         'conservatively '
                                                                                                         'as '
@@ -8719,11 +8534,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'dataset '
-                                                                                                      'version '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'version.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -8827,11 +8638,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       'upstream '
                                                                                                       'dataset '
-                                                                                                      'version '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '➖).'},
+                                                                                                      'version.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9008,11 +8815,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'dataset '
-                                                                                                      'time-span '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'time-span.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9192,11 +8995,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'source '
                                                                                                       'spatial '
-                                                                                                      'coverage '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§G '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'coverage.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9270,11 +9069,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'producer/publisher '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9372,11 +9167,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'producer/publisher '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9474,9 +9265,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                    'assembled '
                                                                                                    'APA '
                                                                                                    'citation '
-                                                                                                   'string '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3).'},
+                                                                                                   'string.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -9538,14 +9327,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                              'value': 'DeGAUSS '
                                                                                                       'carries '
                                                                                                       'no '
-                                                                                                      'citation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      'has '
-                                                                                                      'no '
-                                                                                                      'DeGAUSS '
-                                                                                                      'identity '
-                                                                                                      'metadata).'},
+                                                                                                      'citation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9566,13 +9348,9 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                         'APA '
                                                                                                         'citation '
                                                                                                         'string; '
-                                                                                                        'no '
-                                                                                                        'citation '
-                                                                                                        'row '
-                                                                                                        'exists '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md '
-                                                                                                        '§I.'},
+                                                                                                        'none '
+                                                                                                        'is '
+                                                                                                        'emitted.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -9643,11 +9421,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'license '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9675,10 +9449,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                    'satisfies '
                                                                                                    'this '
                                                                                                    'SPDX-specific '
-                                                                                                   'slot '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3, '
-                                                                                                   '§5).'},
+                                                                                                   'slot.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -9741,11 +9512,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'license '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9760,10 +9527,6 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'license '
                                                                                                         'first-class '
-                                                                                                        '(✅ '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md '
-                                                                                                        '§I) '
                                                                                                         'but '
                                                                                                         'as '
                                                                                                         'a '
@@ -9826,11 +9589,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       'human '
                                                                                                       'landing '
-                                                                                                      'page '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '➖).'},
+                                                                                                      'page.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -9856,9 +9615,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                    'a '
                                                                                                    'source '
                                                                                                    'landing-page '
-                                                                                                   'URL '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§2.1).'},
+                                                                                                   'URL.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -9929,11 +9686,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'source '
                                                                                                       'landing-page '
-                                                                                                      'URL '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'URL.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10014,9 +9767,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'a '
                                                                                                       'dedicated '
                                                                                                       'format '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10039,9 +9790,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                    'Media '
                                                                                                    'Types '
                                                                                                    'controlled '
-                                                                                                   'vocabulary '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3.1).'},
+                                                                                                   'vocabulary.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -10117,14 +9866,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'source '
                                                                                                       'native '
-                                                                                                      'format '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      'carries '
-                                                                                                      'no '
-                                                                                                      'format '
-                                                                                                      'field '
-                                                                                                      'for '
-                                                                                                      'it).'},
+                                                                                                      'format.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10153,17 +9895,7 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                         'as '
                                                                                                         'a '
                                                                                                         'first-class '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§G '
-                                                                                                        'geometry-type '
-                                                                                                        'row '
-                                                                                                        'is '
-                                                                                                        '✅, '
-                                                                                                        'format '
-                                                                                                        'itself '
-                                                                                                        'is '
-                                                                                                        'not).'},
+                                                                                                        'slot.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -10311,11 +10043,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'exposure-model-type '
-                                                                                                      'slot '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'slot.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10347,10 +10075,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'class '
                                                                                                    '(reanalysis '
                                                                                                    'vs '
-                                                                                                   'interpolation) '
-                                                                                                   '— '
-                                                                                                   'metadata_model.md '
-                                                                                                   '§2.5.'},
+                                                                                                   'interpolation).'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -10438,11 +10163,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'exposure-model-type '
-                                                                                                      'slot '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'slot.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10473,15 +10194,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                         'only '
                                                                                                         'a '
                                                                                                         'free-text '
-                                                                                                        'measurement_technique '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '→ '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'the '
-                                                                                                        'structured '
-                                                                                                        'slot).'},
+                                                                                                        'measurement_technique.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -10524,11 +10237,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'model-input '
-                                                                                                      'list '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'list.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10557,9 +10266,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'named '
                                                                                                    'model-input '
                                                                                                    'variable '
-                                                                                                   'list '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§4).'},
+                                                                                                   'list.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -10643,11 +10350,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'model-input '
-                                                                                                      'list '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '→ '
-                                                                                                      '❌).'},
+                                                                                                      'list.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -10664,11 +10367,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                         'anywhere '
                                                                                                         'for '
                                                                                                         'model '
-                                                                                                        'inputs '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '→ '
-                                                                                                        '❌).'},
+                                                                                                        'inputs.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -10734,9 +10433,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'that '
                                                                                                    'produced '
                                                                                                    'the '
-                                                                                                   'values '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3).'},
+                                                                                                   'values.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -10910,10 +10607,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'no '
                                                                                                    'source-model '
                                                                                                    'skill/cross-validation '
-                                                                                                   'field '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3, '
-                                                                                                   '§6).'},
+                                                                                                   'field.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -11089,9 +10783,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'for '
                                                                                                    'the '
                                                                                                    'source '
-                                                                                                   'model '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§3).'},
+                                                                                                   'model.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -11282,9 +10974,7 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                    'bias '
                                                                                                    'correction '
                                                                                                    'was '
-                                                                                                   'applied '
-                                                                                                   '(metadata_model.md '
-                                                                                                   '§2.5).'},
+                                                                                                   'applied.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
@@ -11433,10 +11123,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'per-value '
                                                                                                       'uncertainty '
-                                                                                                      'type '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'type.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -11521,10 +11208,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'per-value '
-                                                                                                      'uncertainty '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'uncertainty.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -11541,15 +11225,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'per-value '
                                                                                                         'uncertainty '
-                                                                                                        'type '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'has '
-                                                                                                        'no '
-                                                                                                        'per-value '
-                                                                                                        'uncertainty '
-                                                                                                        'for '
-                                                                                                        'any '
-                                                                                                        'pipeline).'},
+                                                                                                        'type.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -12004,9 +11680,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       "source's "
                                                                                                       'gap-filling '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -12115,9 +11789,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                         "source's "
                                                                                                         'missing-data '
                                                                                                         'handling '
-                                                                                                        'method '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F).'},
+                                                                                                        'method.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -12316,16 +11988,7 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                                         'for '
                                                                                                         'the '
                                                                                                         'extracted '
-                                                                                                        'window '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        'notes '
-                                                                                                        'row '
-                                                                                                        'counts '
-                                                                                                        'are '
-                                                                                                        'not '
-                                                                                                        'even '
-                                                                                                        'emitted).'},
+                                                                                                        'window.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -12514,10 +12177,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'with '
                                                                                                       'no '
                                                                                                       'recorded '
-                                                                                                      'strategy '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J: '
-                                                                                                      '❌).'},
+                                                                                                      'strategy.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -12622,10 +12282,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'point-extraction '
                                                                                                       'rule '
                                                                                                       'is '
-                                                                                                      'implicit '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J: '
-                                                                                                      '❌).'},
+                                                                                                      'implicit.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -12653,10 +12310,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'structured '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J: '
-                                                                                                        '➖). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -12856,10 +12510,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'geocoding '
-                                                                                                      'precision '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B: '
-                                                                                                      '❌).'},
+                                                                                                      'precision.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -12997,10 +12648,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                         'on '
                                                                                                         'location.csv '
                                                                                                         'or '
-                                                                                                        'external_exposure.csv '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§B: '
-                                                                                                        '❌).'},
+                                                                                                        'external_exposure.csv.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -13041,10 +12689,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'geocoder '
                                                                                                       'match '
-                                                                                                      'score '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B: '
-                                                                                                      '❌).'},
+                                                                                                      'score.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -13157,10 +12802,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                         'on '
                                                                                                         'location.csv '
                                                                                                         'or '
-                                                                                                        'external_exposure.csv '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§B: '
-                                                                                                        '❌).'},
+                                                                                                        'external_exposure.csv.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -13212,10 +12854,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'models '
                                                                                                       'no '
                                                                                                       'address '
-                                                                                                      'period '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B: '
-                                                                                                      '❌).'},
+                                                                                                      'period.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -13311,10 +12950,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'location-over- '
                                                                                                       'time '
-                                                                                                      'period '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B: '
-                                                                                                      '❌).'},
+                                                                                                      'period.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -13337,10 +12973,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                         'address-history '
                                                                                                         '/ '
                                                                                                         'location-over-time '
-                                                                                                        'alignment '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§B: '
-                                                                                                        '❌).'},
+                                                                                                        'alignment.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -13696,12 +13329,7 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                         'with '
                                                                                                         'no '
                                                                                                         'lag-alignment '
-                                                                                                        'record '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J: '
-                                                                                                        'no '
-                                                                                                        'lag '
-                                                                                                        'slot).'},
+                                                                                                        'record.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -14209,9 +13837,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'records '
                                                                                                       'the '
                                                                                                       'tool '
-                                                                                                      'name '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'name.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14312,9 +13938,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'not '
                                                                                                       'a '
                                                                                                       'first-class '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14346,9 +13970,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'on '
                                                                                                         'any '
                                                                                                         'native '
-                                                                                                        'output '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K).'},
+                                                                                                        'output.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -14395,9 +14017,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'native '
                                                                                                       'file '
                                                                                                       'records '
-                                                                                                      'it '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'it.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14547,9 +14167,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'the '
                                                                                                         'gaia-db '
                                                                                                         'image '
-                                                                                                        'version '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K).'},
+                                                                                                        'version.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -14699,9 +14317,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'any '
                                                                                                       'native '
                                                                                                       'output '
-                                                                                                      'column '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'column.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14723,9 +14339,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'container '
                                                                                                         'image '
-                                                                                                        'repository '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K).'},
+                                                                                                        'repository.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -14783,11 +14397,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'image '
                                                                                                       'digest '
                                                                                                       'is '
-                                                                                                      'emitted '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'emitted.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14869,11 +14479,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'SHA256 '
                                                                                                       'digest '
                                                                                                       'is '
-                                                                                                      'emitted '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'emitted.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -14893,11 +14499,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'any '
                                                                                                         'native '
                                                                                                         'gaia '
-                                                                                                        'output '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '❌).'},
+                                                                                                        'output.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -14956,9 +14558,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'the '
                                                                                                       'run '
                                                                                                       'argument '
-                                                                                                      'map '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'map.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15029,9 +14629,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'on '
                                                                                                       'its '
                                                                                                       'native '
-                                                                                                      'outputs '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'outputs.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15048,9 +14646,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'the '
                                                                                                         'invocation '
                                                                                                         'argument '
-                                                                                                        'map '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K).'},
+                                                                                                        'map.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15095,11 +14691,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'a '
                                                                                                       'first-class '
                                                                                                       'run-timestamp '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15186,11 +14778,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'run '
                                                                                                       'timestamp '
                                                                                                       'is '
-                                                                                                      'emitted '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'emitted.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15213,12 +14801,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'the '
                                                                                                         'tool-run '
                                                                                                         'start '
-                                                                                                        'timestamp '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '➖ '
-                                                                                                        'semantics).'},
+                                                                                                        'timestamp.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15305,11 +14888,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'SHA256 '
                                                                                                       'in '
                                                                                                       'this '
-                                                                                                      'scenario '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'scenario.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15378,11 +14957,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'input-file '
-                                                                                                      'checksum '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'checksum.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15398,11 +14973,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'records '
                                                                                                         'an '
                                                                                                         'input-file '
-                                                                                                        'SHA256 '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '❌).'},
+                                                                                                        'SHA256.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15440,11 +15011,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'an '
                                                                                                       'input '
                                                                                                       'row '
-                                                                                                      'count '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'count.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15517,11 +15084,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'input '
                                                                                                       'row '
-                                                                                                      'count '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'count.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15543,11 +15106,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'you '
                                                                                                         'would '
                                                                                                         'wc '
-                                                                                                        '-l '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '❌).'},
+                                                                                                        '-l.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15585,11 +15144,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'SHA256 '
                                                                                                       'in '
                                                                                                       'this '
-                                                                                                      'scenario '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'scenario.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15658,11 +15213,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'emits '
                                                                                                       'no '
                                                                                                       'output-file '
-                                                                                                      'checksum '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'checksum.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15678,11 +15229,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'records '
                                                                                                         'an '
                                                                                                         'output-file '
-                                                                                                        'SHA256 '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '❌).'},
+                                                                                                        'SHA256.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15718,11 +15265,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'an '
                                                                                                       'output '
                                                                                                       'row '
-                                                                                                      'count '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'count.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15795,11 +15338,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'output '
                                                                                                       'row '
-                                                                                                      'count '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'count.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -15821,11 +15360,7 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                         'you '
                                                                                                         'would '
                                                                                                         'wc '
-                                                                                                        '-l '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        '❌).'},
+                                                                                                        '-l.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -15914,9 +15449,7 @@ class ProvenanceChain(ConfiguredBaseModel):
                                                                                                       'an '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16029,9 +15562,7 @@ class ProvenanceChain(ConfiguredBaseModel):
                                                                                                       'on '
                                                                                                       'its '
                                                                                                       'native '
-                                                                                                      'outputs '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'outputs.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16058,13 +15589,7 @@ class ProvenanceChain(ConfiguredBaseModel):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'SQL '
-                                                                                                        'functions '
-                                                                                                        '➖). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -16334,8 +15859,7 @@ class DerivedHeatMetric(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'heat-metric '
                                                                                                       'family '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16416,8 +15940,7 @@ class DerivedHeatMetric(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'heat-metric '
                                                                                                       'family '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16451,8 +15974,7 @@ class DerivedHeatMetric(ConfiguredBaseModel):
                                                                                                         'derived '
                                                                                                         'heat-metric '
                                                                                                         'family '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'slot.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -16637,8 +16159,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'wind-measurement '
-                                                                                                      'height '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'height.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16712,8 +16233,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'wind-measurement '
-                                                                                                      'height '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'height.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16732,8 +16252,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                         'so '
                                                                                                         'no '
                                                                                                         'wind-measurement '
-                                                                                                        'height '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'height.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -16787,8 +16306,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'solar-radiation '
-                                                                                                      'basis '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'basis.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16862,8 +16380,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'solar-radiation '
-                                                                                                      'basis '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'basis.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -16882,8 +16399,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                         'so '
                                                                                                         'no '
                                                                                                         'solar-radiation '
-                                                                                                        'basis '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'basis.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -17103,8 +16619,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'no '
                                                                                                       'reference '
                                                                                                       'geographic '
-                                                                                                      'scope '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'scope.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17195,8 +16710,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'no '
                                                                                                       'reference '
                                                                                                       'geographic '
-                                                                                                      'scope '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'scope.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17216,8 +16730,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                         'no '
                                                                                                         'reference '
                                                                                                         'geographic '
-                                                                                                        'scope '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'scope.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -17271,8 +16784,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'no '
                                                                                                       'seasonal '
                                                                                                       'reference '
-                                                                                                      'window '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'window.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17348,8 +16860,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'no '
                                                                                                       'seasonal '
                                                                                                       'reference '
-                                                                                                      'window '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'window.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17370,8 +16881,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                         'no '
                                                                                                         'seasonal '
                                                                                                         'reference '
-                                                                                                        'window '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'window.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -17424,8 +16934,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'event-stamping '
-                                                                                                      'rule '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'rule.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17503,8 +17012,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                       'so '
                                                                                                       'no '
                                                                                                       'event-stamping '
-                                                                                                      'rule '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'rule.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17526,8 +17034,7 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                                         'no '
                                                                                                         'multi-day '
                                                                                                         'event-stamping '
-                                                                                                        'rule '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'rule.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -17638,8 +17145,7 @@ class EquationInput(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'per-input '
                                                                                                       'source '
-                                                                                                      'code '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'code.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17720,8 +17226,7 @@ class EquationInput(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'per-input '
                                                                                                       'source '
-                                                                                                      'code '
-                                                                                                      '(COMPARISON.md).'},
+                                                                                                      'code.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17743,8 +17248,7 @@ class EquationInput(ConfiguredBaseModel):
                                                                                                         'per-input '
                                                                                                         'source '
                                                                                                         'short '
-                                                                                                        'code '
-                                                                                                        '(COMPARISON.md).'},
+                                                                                                        'code.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -17792,10 +17296,7 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'downstream '
                                                                                                       'health-layer '
-                                                                                                      'target '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'target.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17897,10 +17398,7 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'downstream '
                                                                                                       'health-layer '
-                                                                                                      'target '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'target.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -17999,10 +17497,7 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'health-layer '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -18101,10 +17596,7 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'health-layer '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -18135,9 +17627,7 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'sidecar '
                                                                                                         'provenance '
-                                                                                                        'id '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'id. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -18624,11 +18114,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'a '
                                                                                                       'real '
                                                                                                       'CF '
-                                                                                                      'term '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F '
-                                                                                                      '— '
-                                                                                                      '➖). '
+                                                                                                      'term. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -18757,11 +18243,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'methods, '
                                                                                                       'or '
                                                                                                       'unit '
-                                                                                                      'annotation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E/§F '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'annotation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -18786,12 +18268,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'cell_methods '
                                                                                                         'has '
                                                                                                         'no '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -18860,12 +18337,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'resolution '
                                                                                                       'is '
                                                                                                       'only '
-                                                                                                      'derivable '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      'mixed '
-                                                                                                      '✅/➖/❌). '
+                                                                                                      'derivable. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -18996,11 +18468,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'resolution, '
                                                                                                       'or '
                                                                                                       'extraction '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      '➖/❌).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19032,12 +18500,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'native-resolution '
                                                                                                         'or '
                                                                                                         'extraction-method '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§C/§G '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -19110,11 +18573,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'day-boundary '
                                                                                                       'is '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'ambiguity. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -19229,11 +18688,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'day '
                                                                                                       'boundary '
                                                                                                       'are '
-                                                                                                      'absent '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'absent.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19257,13 +18712,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'aggregation-method, '
                                                                                                         'or '
                                                                                                         'day-boundary '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '— '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'those). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -19319,11 +18768,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19438,11 +18883,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19465,11 +18906,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'type '
                                                                                                         'or '
                                                                                                         'model-inputs '
-                                                                                                        'list '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖/❌). '
+                                                                                                        'list. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -19528,10 +18965,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19631,10 +19065,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'uncertainty '
-                                                                                                      'block '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'block.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -19658,9 +19089,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         '❌ '
                                                                                                         'across '
                                                                                                         'all '
-                                                                                                        'pipelines '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md).'},
+                                                                                                        'pipelines).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -19954,11 +19383,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'publisher) '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'natively.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20075,11 +19500,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'or '
-                                                                                                      'publisher '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'publisher.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20178,11 +19599,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'args, '
                                                                                                       'or '
                                                                                                       'hashes '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'natively. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -20302,9 +19719,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'args, '
                                                                                                       'timestamp, '
                                                                                                       'or '
-                                                                                                      'hashes '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K). '
+                                                                                                      'hashes. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -20344,12 +19759,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'run '
                                                                                                         'args, '
                                                                                                         'or '
-                                                                                                        'hashes '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'mostly '
-                                                                                                        '❌). '
+                                                                                                        'hashes. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -20398,9 +19808,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20495,9 +19903,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20523,9 +19929,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -20584,11 +19988,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'linkage/geocoding '
-                                                                                                      'quality '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B/§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'quality.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20742,11 +20142,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'linkage-strategy '
-                                                                                                        'column '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'column. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -20808,10 +20204,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20926,10 +20319,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -20960,11 +20350,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'sidecar '
                                                                                                         'provenance-id '
                                                                                                         'join '
-                                                                                                        'field '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§D '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'field. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -21163,13 +20549,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'is '
                                                                                                         'an '
                                                                                                         'EnVar-sidecar-level '
-                                                                                                        'construct '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'tracks '
-                                                                                                        'the '
-                                                                                                        'sidecar '
-                                                                                                        'layer '
-                                                                                                        'separately).'},
+                                                                                                        'construct.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -21361,9 +20741,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'record '
                                                                                                         'id '
                                                                                                         'into '
-                                                                                                        'it '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'it. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -21558,9 +20936,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                         'flag '
                                                                                                         'on '
                                                                                                         'its '
-                                                                                                        'metadata '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A).'},
+                                                                                                        'metadata.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -21763,11 +21139,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'a '
                                                                                                       'real '
                                                                                                       'CF '
-                                                                                                      'term '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F '
-                                                                                                      '— '
-                                                                                                      '➖). '
+                                                                                                      'term. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -21896,11 +21268,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'methods, '
                                                                                                       'or '
                                                                                                       'unit '
-                                                                                                      'annotation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E/§F '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'annotation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -21925,12 +21293,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'cell_methods '
                                                                                                         'has '
                                                                                                         'no '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -21999,12 +21362,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution '
                                                                                                       'is '
                                                                                                       'only '
-                                                                                                      'derivable '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      'mixed '
-                                                                                                      '✅/➖/❌). '
+                                                                                                      'derivable. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -22135,11 +21493,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution, '
                                                                                                       'or '
                                                                                                       'extraction '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      '➖/❌).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22171,12 +21525,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'native-resolution '
                                                                                                         'or '
                                                                                                         'extraction-method '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§C/§G '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -22249,11 +21598,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'day-boundary '
                                                                                                       'is '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'ambiguity. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -22368,11 +21713,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'day '
                                                                                                       'boundary '
                                                                                                       'are '
-                                                                                                      'absent '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'absent.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22396,13 +21737,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'aggregation-method, '
                                                                                                         'or '
                                                                                                         'day-boundary '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '— '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'those). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -22458,11 +21793,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22577,11 +21908,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22604,11 +21931,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'type '
                                                                                                         'or '
                                                                                                         'model-inputs '
-                                                                                                        'list '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖/❌). '
+                                                                                                        'list. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -22667,10 +21990,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22770,10 +22090,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'uncertainty '
-                                                                                                      'block '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'block.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -22797,9 +22114,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         '❌ '
                                                                                                         'across '
                                                                                                         'all '
-                                                                                                        'pipelines '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md).'},
+                                                                                                        'pipelines).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -23093,11 +22408,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'publisher) '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'natively.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -23214,11 +22525,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'or '
-                                                                                                      'publisher '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'publisher.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -23317,11 +22624,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'or '
                                                                                                       'hashes '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'natively. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -23441,9 +22744,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'timestamp, '
                                                                                                       'or '
-                                                                                                      'hashes '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K). '
+                                                                                                      'hashes. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -23483,12 +22784,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'run '
                                                                                                         'args, '
                                                                                                         'or '
-                                                                                                        'hashes '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'mostly '
-                                                                                                        '❌). '
+                                                                                                        'hashes. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -23537,9 +22833,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -23634,9 +22928,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -23662,9 +22954,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -23723,11 +23013,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'linkage/geocoding '
-                                                                                                      'quality '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B/§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'quality.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -23881,11 +23167,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'linkage-strategy '
-                                                                                                        'column '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'column. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -23947,10 +23229,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -24065,10 +23344,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -24099,11 +23375,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'sidecar '
                                                                                                         'provenance-id '
                                                                                                         'join '
-                                                                                                        'field '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§D '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'field. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -24302,13 +23574,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'is '
                                                                                                         'an '
                                                                                                         'EnVar-sidecar-level '
-                                                                                                        'construct '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'tracks '
-                                                                                                        'the '
-                                                                                                        'sidecar '
-                                                                                                        'layer '
-                                                                                                        'separately).'},
+                                                                                                        'construct.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -24500,9 +23766,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'record '
                                                                                                         'id '
                                                                                                         'into '
-                                                                                                        'it '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'it. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -24697,9 +23961,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'flag '
                                                                                                         'on '
                                                                                                         'its '
-                                                                                                        'metadata '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A).'},
+                                                                                                        'metadata.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -24800,11 +24062,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'a '
                                                                                                       'real '
                                                                                                       'CF '
-                                                                                                      'term '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F '
-                                                                                                      '— '
-                                                                                                      '➖). '
+                                                                                                      'term. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -24933,11 +24191,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'methods, '
                                                                                                       'or '
                                                                                                       'unit '
-                                                                                                      'annotation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E/§F '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'annotation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -24962,12 +24216,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'cell_methods '
                                                                                                         'has '
                                                                                                         'no '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -25036,12 +24285,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution '
                                                                                                       'is '
                                                                                                       'only '
-                                                                                                      'derivable '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      'mixed '
-                                                                                                      '✅/➖/❌). '
+                                                                                                      'derivable. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -25172,11 +24416,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution, '
                                                                                                       'or '
                                                                                                       'extraction '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      '➖/❌).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25208,12 +24448,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'native-resolution '
                                                                                                         'or '
                                                                                                         'extraction-method '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§C/§G '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -25286,11 +24521,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'day-boundary '
                                                                                                       'is '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'ambiguity. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -25405,11 +24636,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'day '
                                                                                                       'boundary '
                                                                                                       'are '
-                                                                                                      'absent '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'absent.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25433,13 +24660,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'aggregation-method, '
                                                                                                         'or '
                                                                                                         'day-boundary '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '— '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'those). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -25495,11 +24716,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25614,11 +24831,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25641,11 +24854,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'type '
                                                                                                         'or '
                                                                                                         'model-inputs '
-                                                                                                        'list '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖/❌). '
+                                                                                                        'list. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -25704,10 +24913,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25807,10 +25013,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'uncertainty '
-                                                                                                      'block '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'block.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -25834,9 +25037,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         '❌ '
                                                                                                         'across '
                                                                                                         'all '
-                                                                                                        'pipelines '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md).'},
+                                                                                                        'pipelines).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -26130,11 +25331,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'publisher) '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'natively.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -26251,11 +25448,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'or '
-                                                                                                      'publisher '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'publisher.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -26354,11 +25547,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'or '
                                                                                                       'hashes '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'natively. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -26478,9 +25667,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'timestamp, '
                                                                                                       'or '
-                                                                                                      'hashes '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K). '
+                                                                                                      'hashes. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -26520,12 +25707,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'run '
                                                                                                         'args, '
                                                                                                         'or '
-                                                                                                        'hashes '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'mostly '
-                                                                                                        '❌). '
+                                                                                                        'hashes. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -26574,9 +25756,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -26671,9 +25851,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -26699,9 +25877,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -26760,11 +25936,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'linkage/geocoding '
-                                                                                                      'quality '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B/§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'quality.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -26918,11 +26090,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'linkage-strategy '
-                                                                                                        'column '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'column. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -26984,10 +26152,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -27102,10 +26267,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -27136,11 +26298,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'sidecar '
                                                                                                         'provenance-id '
                                                                                                         'join '
-                                                                                                        'field '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§D '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'field. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -27339,13 +26497,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'is '
                                                                                                         'an '
                                                                                                         'EnVar-sidecar-level '
-                                                                                                        'construct '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'tracks '
-                                                                                                        'the '
-                                                                                                        'sidecar '
-                                                                                                        'layer '
-                                                                                                        'separately).'},
+                                                                                                        'construct.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -27537,9 +26689,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'record '
                                                                                                         'id '
                                                                                                         'into '
-                                                                                                        'it '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'it. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -27734,9 +26884,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                         'flag '
                                                                                                         'on '
                                                                                                         'its '
-                                                                                                        'metadata '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A).'},
+                                                                                                        'metadata.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -27847,11 +26995,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'a '
                                                                                                       'real '
                                                                                                       'CF '
-                                                                                                      'term '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F '
-                                                                                                      '— '
-                                                                                                      '➖). '
+                                                                                                      'term. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -27980,11 +27124,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'methods, '
                                                                                                       'or '
                                                                                                       'unit '
-                                                                                                      'annotation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E/§F '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'annotation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28009,12 +27149,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'cell_methods '
                                                                                                         'has '
                                                                                                         'no '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -28083,12 +27218,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution '
                                                                                                       'is '
                                                                                                       'only '
-                                                                                                      'derivable '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      'mixed '
-                                                                                                      '✅/➖/❌). '
+                                                                                                      'derivable. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -28219,11 +27349,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution, '
                                                                                                       'or '
                                                                                                       'extraction '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      '➖/❌).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28255,12 +27381,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'native-resolution '
                                                                                                         'or '
                                                                                                         'extraction-method '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§C/§G '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -28333,11 +27454,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'day-boundary '
                                                                                                       'is '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'ambiguity. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -28452,11 +27569,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'day '
                                                                                                       'boundary '
                                                                                                       'are '
-                                                                                                      'absent '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'absent.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28480,13 +27593,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'aggregation-method, '
                                                                                                         'or '
                                                                                                         'day-boundary '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '— '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'those). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -28542,11 +27649,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28661,11 +27764,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28688,11 +27787,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'type '
                                                                                                         'or '
                                                                                                         'model-inputs '
-                                                                                                        'list '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖/❌). '
+                                                                                                        'list. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -28751,10 +27846,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28854,10 +27946,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'uncertainty '
-                                                                                                      'block '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'block.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -28881,9 +27970,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         '❌ '
                                                                                                         'across '
                                                                                                         'all '
-                                                                                                        'pipelines '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md).'},
+                                                                                                        'pipelines).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -29177,11 +28264,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'publisher) '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'natively.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -29298,11 +28381,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'or '
-                                                                                                      'publisher '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'publisher.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -29401,11 +28480,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'or '
                                                                                                       'hashes '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'natively. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -29525,9 +28600,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'timestamp, '
                                                                                                       'or '
-                                                                                                      'hashes '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K). '
+                                                                                                      'hashes. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -29567,12 +28640,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'run '
                                                                                                         'args, '
                                                                                                         'or '
-                                                                                                        'hashes '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'mostly '
-                                                                                                        '❌). '
+                                                                                                        'hashes. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -29621,9 +28689,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -29718,9 +28784,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -29746,9 +28810,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -29807,11 +28869,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'linkage/geocoding '
-                                                                                                      'quality '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B/§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'quality.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -29965,11 +29023,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'linkage-strategy '
-                                                                                                        'column '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'column. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -30031,10 +29085,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -30149,10 +29200,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -30183,11 +29231,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'sidecar '
                                                                                                         'provenance-id '
                                                                                                         'join '
-                                                                                                        'field '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§D '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'field. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -30386,13 +29430,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'is '
                                                                                                         'an '
                                                                                                         'EnVar-sidecar-level '
-                                                                                                        'construct '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'tracks '
-                                                                                                        'the '
-                                                                                                        'sidecar '
-                                                                                                        'layer '
-                                                                                                        'separately).'},
+                                                                                                        'construct.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -30584,9 +29622,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'record '
                                                                                                         'id '
                                                                                                         'into '
-                                                                                                        'it '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'it. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -30781,9 +29817,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                         'flag '
                                                                                                         'on '
                                                                                                         'its '
-                                                                                                        'metadata '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A).'},
+                                                                                                        'metadata.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -30893,11 +29927,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'a '
                                                                                                       'real '
                                                                                                       'CF '
-                                                                                                      'term '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§F '
-                                                                                                      '— '
-                                                                                                      '➖). '
+                                                                                                      'term. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -31026,11 +30056,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'methods, '
                                                                                                       'or '
                                                                                                       'unit '
-                                                                                                      'annotation '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§E/§F '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'annotation.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31055,12 +30081,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'cell_methods '
                                                                                                         'has '
                                                                                                         'no '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§F '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -31129,12 +30150,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution '
                                                                                                       'is '
                                                                                                       'only '
-                                                                                                      'derivable '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      'mixed '
-                                                                                                      '✅/➖/❌). '
+                                                                                                      'derivable. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -31265,11 +30281,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'resolution, '
                                                                                                       'or '
                                                                                                       'extraction '
-                                                                                                      'method '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§C/§G '
-                                                                                                      '— '
-                                                                                                      '➖/❌).'},
+                                                                                                      'method.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31301,12 +30313,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'native-resolution '
                                                                                                         'or '
                                                                                                         'extraction-method '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§C/§G '
-                                                                                                        '— '
-                                                                                                        'mixed '
-                                                                                                        '✅/❌). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -31379,11 +30386,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'day-boundary '
                                                                                                       'is '
                                                                                                       'pure '
-                                                                                                      'ambiguity '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'ambiguity. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -31498,11 +30501,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'day '
                                                                                                       'boundary '
                                                                                                       'are '
-                                                                                                      'absent '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§H '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'absent.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31526,13 +30525,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'aggregation-method, '
                                                                                                         'or '
                                                                                                         'day-boundary '
-                                                                                                        'slot '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§H '
-                                                                                                        '— '
-                                                                                                        '❌ '
-                                                                                                        'for '
-                                                                                                        'those). '
+                                                                                                        'slot. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -31588,11 +30581,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31707,11 +30696,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'type '
                                                                                                       'or '
                                                                                                       'model '
-                                                                                                      'description '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'description.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31734,11 +30719,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'type '
                                                                                                         'or '
                                                                                                         'model-inputs '
-                                                                                                        'list '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖/❌). '
+                                                                                                        'list. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -31797,10 +30778,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'only '
                                                                                                       'a '
                                                                                                       '_FillValue '
-                                                                                                      'sentinel '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'sentinel.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31900,10 +30878,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'carries '
                                                                                                       'no '
                                                                                                       'uncertainty '
-                                                                                                      'block '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'block.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -31927,9 +30902,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         '❌ '
                                                                                                         'across '
                                                                                                         'all '
-                                                                                                        'pipelines '
-                                                                                                        'in '
-                                                                                                        'COMPARISON.md).'},
+                                                                                                        'pipelines).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -32223,11 +31196,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'publisher) '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'natively.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -32344,11 +31313,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'DOI, '
                                                                                                       'license, '
                                                                                                       'or '
-                                                                                                      'publisher '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§I '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'publisher.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -32447,11 +31412,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'or '
                                                                                                       'hashes '
-                                                                                                      'natively '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K '
-                                                                                                      '— '
-                                                                                                      '➖/❌). '
+                                                                                                      'natively. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -32571,9 +31532,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'args, '
                                                                                                       'timestamp, '
                                                                                                       'or '
-                                                                                                      'hashes '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K). '
+                                                                                                      'hashes. '
                                                                                                       'Conservative: '
                                                                                                       'partial.'},
                                                                                     'status': {'tag': 'status',
@@ -32613,12 +31572,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'run '
                                                                                                         'args, '
                                                                                                         'or '
-                                                                                                        'hashes '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K '
-                                                                                                        '— '
-                                                                                                        'mostly '
-                                                                                                        '❌). '
+                                                                                                        'hashes. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -32667,9 +31621,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -32764,9 +31716,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'no '
                                                                                                       'ordered '
                                                                                                       'upstream-run '
-                                                                                                      'chain '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§K).'},
+                                                                                                      'chain.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -32792,9 +31742,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'ordered '
                                                                                                         'per-run '
                                                                                                         'W3C-PROV '
-                                                                                                        'chain '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§K). '
+                                                                                                        'chain. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -32853,11 +31801,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'records '
                                                                                                       'no '
                                                                                                       'linkage/geocoding '
-                                                                                                      'quality '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '§B/§J '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'quality.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -33011,11 +31955,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'a '
                                                                                                         'documented '
                                                                                                         'linkage-strategy '
-                                                                                                        'column '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§J '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'column. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -33077,10 +32017,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -33195,10 +32132,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                       'target '
                                                                                                       'or '
                                                                                                       'join '
-                                                                                                      'field '
-                                                                                                      '(COMPARISON.md '
-                                                                                                      '— '
-                                                                                                      '❌).'},
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -33229,11 +32163,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'sidecar '
                                                                                                         'provenance-id '
                                                                                                         'join '
-                                                                                                        'field '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A/§D '
-                                                                                                        '— '
-                                                                                                        '➖). '
+                                                                                                        'field. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -33432,13 +32362,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'is '
                                                                                                         'an '
                                                                                                         'EnVar-sidecar-level '
-                                                                                                        'construct '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        'tracks '
-                                                                                                        'the '
-                                                                                                        'sidecar '
-                                                                                                        'layer '
-                                                                                                        'separately).'},
+                                                                                                        'construct.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
@@ -33630,9 +32554,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'record '
                                                                                                         'id '
                                                                                                         'into '
-                                                                                                        'it '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§D). '
+                                                                                                        'it. '
                                                                                                         'Conservative: '
                                                                                                         'partial.'},
                                                                                       'status': {'tag': 'status',
@@ -33827,9 +32749,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                         'flag '
                                                                                                         'on '
                                                                                                         'its '
-                                                                                                        'metadata '
-                                                                                                        '(COMPARISON.md '
-                                                                                                        '§A).'},
+                                                                                                        'metadata.'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',

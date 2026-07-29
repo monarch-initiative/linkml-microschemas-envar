@@ -170,8 +170,7 @@ slots:
               where: "working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt"
               note: >-
                 GAIA's linkage strategy is only implicit in the st_within SQL
-                join semantics, not exposed as a documented structured slot
-                (COMPARISON.md §J: ➖). Conservative: partial.
+                join semantics, not exposed as a documented structured slot. Conservative: partial.
           degauss:
             annotations:
               extent: absent
@@ -179,7 +178,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS carries no structured linkage-strategy slot; the
-                point-extraction rule is implicit (COMPARISON.md §J: ❌).
+                point-extraction rule is implicit.
           amadeus:
             annotations:
               extent: absent
@@ -187,8 +186,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no linkage-strategy slot; the value is extracted
-                at request coordinates with no recorded strategy (COMPARISON.md
-                §J: ❌).
+                at request coordinates with no recorded strategy.
           cher:
             annotations:
               extent: partial
@@ -393,7 +391,7 @@ slots:
               where: "no column"
               note: >-
                 No geocoding-precision column on location.csv or
-                external_exposure.csv (COMPARISON.md §B: ❌).
+                external_exposure.csv.
           degauss:
             annotations:
               extent: full
@@ -410,7 +408,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus collapses the address to lat/lon at the THREDDS request
-                and carries no geocoding precision (COMPARISON.md §B: ❌).
+                and carries no geocoding precision.
           cher:
             annotations:
               extent: absent
@@ -466,7 +464,7 @@ slots:
               where: "no column"
               note: >-
                 No geocoder match-score column on location.csv or
-                external_exposure.csv (COMPARISON.md §B: ❌).
+                external_exposure.csv.
           degauss:
             annotations:
               extent: full
@@ -482,7 +480,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no geocoder match score (COMPARISON.md §B: ❌).
+                Amadeus carries no geocoder match score.
           cher:
             annotations:
               extent: absent
@@ -551,8 +549,7 @@ slots:
               where: "no column"
               note: >-
                 GAIA/OMOP models a single static location per person and no
-                address-history / location-over-time alignment (COMPARISON.md
-                §A/§B: ❌).
+                address-history / location-over-time alignment.
           degauss:
             annotations:
               extent: absent
@@ -560,15 +557,14 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS geocodes one address per row and models no location-over-
-                time period (COMPARISON.md §B: ❌).
+                time period.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus takes fixed lat/lon and models no address period
-                (COMPARISON.md §B: ❌).
+                Amadeus takes fixed lat/lon and models no address period.
           cher:
             annotations:
               extent: absent
@@ -754,7 +750,7 @@ slots:
               where: "no column"
               note: >-
                 GAIA/OMOP emits values at native dates with no lag-alignment
-                record (COMPARISON.md §J: no lag slot).
+                record.
           degauss:
             annotations:
               extent: absent

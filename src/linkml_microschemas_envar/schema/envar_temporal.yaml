@@ -104,7 +104,7 @@ slots:
               where: "no column"
               note: >-
                 No first-class temporal_resolution slot in gaiaCatalog or
-                gaia-db (COMPARISON.md §H ❌).
+                gaia-db.
           degauss:
             annotations:
               extent: absent
@@ -112,15 +112,14 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS's daily grain is implicit in one-row-per-day, with no
-                resolution field (COMPARISON.md §H ❌).
+                resolution field.
           amadeus:
             annotations:
               extent: partial
               status: asserted
               where: "thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)"
               note: >-
-                Only derivable from the THREDDS time-axis increment
-                (COMPARISON.md §H ➖); not written as a discrete resolution
+                Only derivable from the THREDDS time-axis increment; not written as a discrete resolution
                 field.
           cher:
             annotations:
@@ -180,15 +179,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No aggregation-method slot in gaiaCatalog or gaia-db
-                (COMPARISON.md §H ❌).
+                No aggregation-method slot in gaiaCatalog or gaia-db.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no temporal-aggregation field (COMPARISON.md §H ❌).
+                DeGAUSS emits no temporal-aggregation field.
           amadeus:
             annotations:
               extent: partial
@@ -196,7 +194,7 @@ slots:
               where: "thredds_dataset.xml long_name / grid name (daily_maximum_temperature)"
               note: >-
                 The aggregation (daily maximum) is recoverable only from the
-                variable long_name, not a structured field (COMPARISON.md §H ➖).
+                variable long_name, not a structured field.
           cher:
             annotations:
               extent: absent
@@ -253,15 +251,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No aggregation-window field; the temporal grain itself is absent
-                (COMPARISON.md §H ❌).
+                No aggregation-window field; the temporal grain itself is absent.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no explicit window-length field (COMPARISON.md §H).
+                DeGAUSS emits no explicit window-length field.
           amadeus:
             annotations:
               extent: partial
@@ -269,7 +266,7 @@ slots:
               where: "thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)"
               note: >-
                 The 1-day window is derivable in the THREDDS time axis but not
-                emitted as an explicit seconds value (COMPARISON.md §H ➖).
+                emitted as an explicit seconds value.
           cher:
             annotations:
               extent: absent
@@ -335,15 +332,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No day-boundary slot anywhere in gaiaCatalog or gaia-db
-                (COMPARISON.md §H ❌).
+                No day-boundary slot anywhere in gaiaCatalog or gaia-db.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS records no day-boundary convention (COMPARISON.md §H ❌).
+                DeGAUSS records no day-boundary convention.
           amadeus:
             annotations:
               extent: absent
@@ -351,7 +347,7 @@ slots:
               where: "no column"
               note: >-
                 The NetCDF time axis (days since 1900-01-01) has no calendar
-                day-edge clarification — pure ambiguity (COMPARISON.md §H ❌).
+                day-edge clarification — pure ambiguity.
           cher:
             annotations:
               extent: absent
@@ -411,7 +407,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no product coverage-start (COMPARISON.md §H ❌).
+                DeGAUSS emits no product coverage-start.
           amadeus:
             annotations:
               extent: full
@@ -483,7 +479,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no product coverage-end (COMPARISON.md §H ❌).
+                DeGAUSS emits no product coverage-end.
           amadeus:
             annotations:
               extent: full
@@ -546,7 +542,7 @@ slots:
               note: >-
                 gaia-native output collapses per-day to the variable's
                 window-wide validity range; the run's actual extraction window
-                start is not recorded (COMPARISON.md §D).
+                start is not recorded.
           degauss:
             annotations:
               extent: absent
@@ -615,7 +611,7 @@ slots:
               where: "no column"
               note: >-
                 gaia collapses to the variable's window; no per-run
-                extraction-window-end is recorded (COMPARISON.md §D).
+                extraction-window-end is recorded.
           degauss:
             annotations:
               extent: absent
@@ -696,14 +692,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No calendar/time-origin slot in gaia (COMPARISON.md §H ❌).
+                No calendar/time-origin slot in gaia.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no calendar field (COMPARISON.md §H ❌).
+                DeGAUSS emits no calendar field.
           amadeus:
             annotations:
               extent: full

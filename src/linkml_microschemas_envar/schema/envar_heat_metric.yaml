@@ -187,23 +187,21 @@ slots:
               note: >-
                 The scenario is a plain Tmax extraction, not a heat index; the
                 variable family is implicit in variable_name tmax, with no derived
-                heat-metric family slot (COMPARISON.md).
+                heat-metric family slot.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits plain tmax with no heat-metric family field
-                (COMPARISON.md).
+                DeGAUSS emits plain tmax with no heat-metric family field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus emits plain tmmx with no heat-metric family field
-                (COMPARISON.md).
+                Amadeus emits plain tmmx with no heat-metric family field.
           cher:
             annotations:
               extent: absent
@@ -408,23 +406,21 @@ slots:
               where: "no column"
               note: >-
                 Single-input Tmax scenario; no heat-equation input decomposition,
-                so no per-input source short code (COMPARISON.md).
+                so no per-input source short code.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No derived-metric equation inputs, so no per-input source code
-                (COMPARISON.md).
+                No derived-metric equation inputs, so no per-input source code.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No derived-metric equation inputs, so no per-input source code
-                (COMPARISON.md).
+                No derived-metric equation inputs, so no per-input source code.
           cher:
             annotations:
               extent: absent
@@ -545,23 +541,21 @@ slots:
               where: "no column"
               note: >-
                 Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement
-                height (COMPARISON.md).
+                height.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No WBGT/UTCI methodology, so no wind-measurement height
-                (COMPARISON.md).
+                No WBGT/UTCI methodology, so no wind-measurement height.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No WBGT/UTCI methodology, so no wind-measurement height
-                (COMPARISON.md).
+                No WBGT/UTCI methodology, so no wind-measurement height.
           cher:
             annotations:
               extent: absent
@@ -630,23 +624,21 @@ slots:
               where: "no column"
               note: >-
                 Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation
-                basis (COMPARISON.md).
+                basis.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No WBGT/UTCI methodology, so no solar-radiation basis
-                (COMPARISON.md).
+                No WBGT/UTCI methodology, so no solar-radiation basis.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No WBGT/UTCI methodology, so no solar-radiation basis
-                (COMPARISON.md).
+                No WBGT/UTCI methodology, so no solar-radiation basis.
           cher:
             annotations:
               extent: absent
@@ -893,23 +885,21 @@ slots:
               where: "no column"
               note: >-
                 Tmax scenario computes no percentile-based threshold, so no
-                reference geographic scope (COMPARISON.md).
+                reference geographic scope.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No percentile-based metric, so no reference geographic scope
-                (COMPARISON.md).
+                No percentile-based metric, so no reference geographic scope.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No percentile-based metric, so no reference geographic scope
-                (COMPARISON.md).
+                No percentile-based metric, so no reference geographic scope.
           cher:
             annotations:
               extent: absent
@@ -980,23 +970,21 @@ slots:
               where: "no column"
               note: >-
                 No percentile-based metric in the Tmax scenario, so no seasonal
-                reference window (COMPARISON.md).
+                reference window.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No percentile-based metric, so no seasonal reference window
-                (COMPARISON.md).
+                No percentile-based metric, so no seasonal reference window.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No percentile-based metric, so no seasonal reference window
-                (COMPARISON.md).
+                No percentile-based metric, so no seasonal reference window.
           cher:
             annotations:
               extent: absent
@@ -1066,23 +1054,21 @@ slots:
               where: "no column"
               note: >-
                 Tmax scenario is per-day values, not a heat-wave flag; no multi-day
-                event-stamping rule (COMPARISON.md).
+                event-stamping rule.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No multi-day heat-event flag, so no event-stamping rule
-                (COMPARISON.md).
+                No multi-day heat-event flag, so no event-stamping rule.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No multi-day heat-event flag, so no event-stamping rule
-                (COMPARISON.md).
+                No multi-day heat-event flag, so no event-stamping rule.
           cher:
             annotations:
               extent: absent

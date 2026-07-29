@@ -124,7 +124,7 @@ slots:
               where: "no column"
               note: >-
                 No gaia table records a tool-name field; the gaia-db image name
-                is not carried on any native output (COMPARISON.md §K).
+                is not carried on any native output.
           degauss:
             annotations:
               extent: partial
@@ -132,15 +132,14 @@ slots:
               where: "output filename stem (e.g. ...daymet_1.0.0.csv / ...geocoder_3.3.0...csv)"
               note: >-
                 Tool name is embedded in the output CSV filename, recoverable but
-                not a first-class field (COMPARISON.md §K).
+                not a first-class field.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No native Amadeus output file records the tool name
-                (COMPARISON.md §K).
+                No native Amadeus output file records the tool name.
           cher:
             annotations:
               extent: absent
@@ -193,7 +192,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia table records the gaia-db image version (COMPARISON.md §K).
+                No gaia table records the gaia-db image version.
           degauss:
             annotations:
               extent: full
@@ -210,7 +209,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus's R package version lives in the object attributes but no
-                native file records it (COMPARISON.md §K).
+                native file records it.
           cher:
             annotations:
               extent: partial
@@ -285,7 +284,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia table records a container image repository (COMPARISON.md §K).
+                No gaia table records a container image repository.
           degauss:
             annotations:
               extent: partial
@@ -293,7 +292,7 @@ slots:
               where: "ghcr.io/degauss-org/... reference implicit in the container invocation"
               note: >-
                 The repository is implied by the DeGAUSS container reference but
-                not written to any native output column (COMPARISON.md §K).
+                not written to any native output column.
           amadeus:
             annotations:
               extent: absent
@@ -373,8 +372,7 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                Container image digest is not carried by any native gaia output
-                (COMPARISON.md §K — ❌).
+                Container image digest is not carried by any native gaia output.
           degauss:
             annotations:
               extent: absent
@@ -382,14 +380,14 @@ slots:
               where: "no column"
               note: >-
                 Only the mutable image tag is in the filename; no SHA256 digest is
-                emitted (COMPARISON.md §K — ❌).
+                emitted.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No container image digest is emitted (COMPARISON.md §K — ❌).
+                No container image digest is emitted.
           cher:
             annotations:
               extent: absent
@@ -457,22 +455,21 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia output records the invocation argument map (COMPARISON.md §K).
+                No gaia output records the invocation argument map.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no per-run argument map on its native outputs
-                (COMPARISON.md §K).
+                DeGAUSS emits no per-run argument map on its native outputs.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No native Amadeus file records the run argument map (COMPARISON.md §K).
+                No native Amadeus file records the run argument map.
           cher:
             annotations:
               extent: absent
@@ -523,15 +520,14 @@ slots:
               where: "gaia_db data_source.created_at/updated_at and location.created_at (load time, not run timestamp)"
               note: >-
                 Gaia records per-row load times, which approximate but are not the
-                tool-run start timestamp (COMPARISON.md §K — ➖ semantics).
+                tool-run start timestamp.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Only OS file mtime is available; no run timestamp is emitted
-                (COMPARISON.md §K — ❌).
+                Only OS file mtime is available; no run timestamp is emitted.
           amadeus:
             annotations:
               extent: partial
@@ -539,7 +535,7 @@ slots:
               where: "thredds_response_headers.json HTTP Date header"
               note: >-
                 The HTTP Date header is the only timestamp captured, recoverable
-                but not a first-class run-timestamp field (COMPARISON.md §K — ➖).
+                but not a first-class run-timestamp field.
           cher:
             annotations:
               extent: partial
@@ -631,14 +627,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia output records an input-file SHA256 (COMPARISON.md §K — ❌).
+                No gaia output records an input-file SHA256.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no input-file checksum (COMPARISON.md §K — ❌).
+                DeGAUSS emits no input-file checksum.
           amadeus:
             annotations:
               extent: absent
@@ -646,7 +642,7 @@ slots:
               where: "no column"
               note: >-
                 No native Amadeus file records an input-file SHA256 in this
-                scenario (COMPARISON.md §K — ❌).
+                scenario.
           cher:
             annotations:
               extent: absent
@@ -694,22 +690,21 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No native gaia output records an input row count; you would wc -l
-                (COMPARISON.md §K — ❌).
+                No native gaia output records an input row count; you would wc -l.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no input row count (COMPARISON.md §K — ❌).
+                DeGAUSS emits no input row count.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No native Amadeus file records an input row count (COMPARISON.md §K — ❌).
+                No native Amadeus file records an input row count.
           cher:
             annotations:
               extent: absent
@@ -758,14 +753,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No gaia output records an output-file SHA256 (COMPARISON.md §K — ❌).
+                No gaia output records an output-file SHA256.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no output-file checksum (COMPARISON.md §K — ❌).
+                DeGAUSS emits no output-file checksum.
           amadeus:
             annotations:
               extent: absent
@@ -773,7 +768,7 @@ slots:
               where: "no column"
               note: >-
                 No native Amadeus file records an output-file SHA256 in this
-                scenario (COMPARISON.md §K — ❌).
+                scenario.
           cher:
             annotations:
               extent: absent
@@ -821,22 +816,21 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                No native gaia output records an output row count; you would wc -l
-                (COMPARISON.md §K — ❌).
+                No native gaia output records an output row count; you would wc -l.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no output row count (COMPARISON.md §K — ❌).
+                DeGAUSS emits no output row count.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No native Amadeus file records an output row count (COMPARISON.md §K — ❌).
+                No native Amadeus file records an output row count.
           cher:
             annotations:
               extent: absent
@@ -938,24 +932,21 @@ slots:
               where: "gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt (SQL NOTICE lines)"
               note: >-
                 Gaia's ETL descriptor plus the spatial-join log capture upstream
-                steps, but not as an ordered per-run W3C-PROV chain (COMPARISON.md
-                §K — SQL functions ➖). Conservative: partial.
+                steps, but not as an ordered per-run W3C-PROV chain. Conservative: partial.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no ordered upstream-run chain on its native outputs
-                (COMPARISON.md §K).
+                DeGAUSS emits no ordered upstream-run chain on its native outputs.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                No native Amadeus file records an ordered upstream-run chain
-                (COMPARISON.md §K).
+                No native Amadeus file records an ordered upstream-run chain.
           cher:
             annotations:
               extent: partial

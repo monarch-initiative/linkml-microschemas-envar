@@ -294,8 +294,7 @@ slots:
               where: "gaia_db variable_source.variable_name/variable_description + JSON-LD variableMeasured.propertyID (NERC air_temperature); unit_concept_id 8653"
               note: >-
                 Gaia carries variable name, description, unit, and a CF-mirror
-                propertyID, but CF cell_methods has no slot (COMPARISON.md §F —
-                mixed ✅/❌). Conservative: partial.
+                propertyID, but CF cell_methods has no slot. Conservative: partial.
           degauss:
             annotations:
               extent: absent
@@ -303,8 +302,7 @@ slots:
               where: "no column"
               note: >-
                 Variable identity is implicit in the column header tmax with no
-                CF standard name, cell methods, or unit annotation (COMPARISON.md
-                §E/§F — ❌).
+                CF standard name, cell methods, or unit annotation.
           amadeus:
             annotations:
               extent: partial
@@ -313,7 +311,7 @@ slots:
               note: >-
                 Amadeus carries a CF-style blob (long_name, units K), but
                 standard_name is overloaded with the gridMET shortcode, not a real
-                CF term (COMPARISON.md §F — ➖). Conservative: partial.
+                CF term. Conservative: partial.
           cher:
             annotations:
               extent: partial
@@ -387,8 +385,7 @@ slots:
               where: "gaia_db location.geom EPSG:4326 / data_source.srid; meta_etl_*.json epsg / extent; data_source.spatial_coverage"
               note: >-
                 Gaia carries CRS/SRID and dataset spatial coverage, but has no
-                first-class native-resolution or extraction-method slot
-                (COMPARISON.md §C/§G — mixed ✅/❌). Conservative: partial.
+                first-class native-resolution or extraction-method slot. Conservative: partial.
           degauss:
             annotations:
               extent: partial
@@ -396,7 +393,7 @@ slots:
               where: "lat / lon columns on the geocoded CSV (implicit WGS84)"
               note: >-
                 DeGAUSS carries coordinates but no explicit CRS, native
-                resolution, or extraction method (COMPARISON.md §C/§G — ➖/❌).
+                resolution, or extraction method.
           amadeus:
             annotations:
               extent: partial
@@ -404,8 +401,7 @@ slots:
               where: "thredds_dataset.xml coordinate_system=WGS84,EPSG:4326 + axis lat/lon increment + projectionBox/LatLonBox"
               note: >-
                 Amadeus declares source-raster CRS and bbox and grid increment,
-                but no extraction-method slot and resolution is only derivable
-                (COMPARISON.md §C/§G — mixed ✅/➖/❌). Conservative: partial.
+                but no extraction-method slot and resolution is only derivable. Conservative: partial.
           cher:
             annotations:
               extent: partial
@@ -479,8 +475,7 @@ slots:
               where: "gaia_db variable_source.start_date/end_date; meta_dcat_*.json dct:temporal"
               note: >-
                 Gaia carries the dataset time span but has no first-class
-                temporal-resolution, aggregation-method, or day-boundary slot
-                (COMPARISON.md §H — ❌ for those). Conservative: partial.
+                temporal-resolution, aggregation-method, or day-boundary slot. Conservative: partial.
           degauss:
             annotations:
               extent: absent
@@ -488,7 +483,7 @@ slots:
               where: "no column"
               note: >-
                 Temporal resolution is implicit (one row per day); aggregation
-                method and day boundary are absent (COMPARISON.md §H — ❌).
+                method and day boundary are absent.
           amadeus:
             annotations:
               extent: partial
@@ -497,7 +492,7 @@ slots:
               note: >-
                 Amadeus carries time-origin, calendar, and dataset span, and
                 aggregation is encoded only in the long_name; day-boundary is pure
-                ambiguity (COMPARISON.md §H — ➖/❌). Conservative: partial.
+                ambiguity. Conservative: partial.
           cher:
             annotations:
               extent: partial
@@ -575,24 +570,21 @@ slots:
               where: "gaia_db data_source.measurement_technique + meta_dcat_*.json measurementTechnique (free-text)"
               note: >-
                 Gaia carries a free-text method description but no structured
-                exposure-model type or model-inputs list (COMPARISON.md §J —
-                ➖/❌). Conservative: partial.
+                exposure-model type or model-inputs list. Conservative: partial.
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS records no exposure-model type or model description
-                (COMPARISON.md §J — ❌).
+                DeGAUSS records no exposure-model type or model description.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus records no exposure-model type or model description
-                (COMPARISON.md §J — ❌).
+                Amadeus records no exposure-model type or model description.
           cher:
             annotations:
               extent: partial
@@ -748,7 +740,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS carries no dataset name, version, DOI, license, or
-                publisher (COMPARISON.md §I — ❌).
+                publisher.
           amadeus:
             annotations:
               extent: absent
@@ -756,7 +748,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus carries no dataset-identity metadata (no name, DOI,
-                license, publisher) natively (COMPARISON.md §I — ❌).
+                license, publisher) natively.
           cher:
             annotations:
               extent: full
@@ -818,22 +810,21 @@ slots:
               where: "no column"
               note: >-
                 No gaia output carries per-value or model-aggregate uncertainty
-                (per-value uncertainty is ❌ across all pipelines in COMPARISON.md).
+                (per-value uncertainty is ❌ across all pipelines).
           degauss:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS carries no uncertainty block (COMPARISON.md — ❌).
+                DeGAUSS carries no uncertainty block.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus carries no uncertainty block; only a _FillValue sentinel
-                (COMPARISON.md — ❌).
+                Amadeus carries no uncertainty block; only a _FillValue sentinel.
           cher:
             annotations:
               extent: partial
@@ -896,8 +887,7 @@ slots:
               where: "working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt"
               note: >-
                 Gaia's linkage lives in the SQL-join semantics and its NOTICE log,
-                not as a documented linkage-strategy column (COMPARISON.md §J —
-                ➖). Conservative: partial.
+                not as a documented linkage-strategy column. Conservative: partial.
           degauss:
             annotations:
               extent: full
@@ -914,7 +904,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus collapses the address to lat/lon at the THREDDS request and
-                records no linkage/geocoding quality (COMPARISON.md §B/§J — ❌).
+                records no linkage/geocoding quality.
           cher:
             annotations:
               extent: partial
@@ -976,8 +966,7 @@ slots:
               where: "gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)"
               note: >-
                 Gaia carries per-row load times and a join log, but no tool
-                name/version, container digest, run args, or hashes (COMPARISON.md
-                §K — mostly ❌). Conservative: partial.
+                name/version, container digest, run args, or hashes. Conservative: partial.
           degauss:
             annotations:
               extent: partial
@@ -985,7 +974,7 @@ slots:
               where: "output filename tool name + container image tag (e.g. daymet_1.0.0); ghcr.io/degauss-org/... reference"
               note: >-
                 DeGAUSS pins tool name and version via the filename/container tag,
-                but no digest, run args, timestamp, or hashes (COMPARISON.md §K).
+                but no digest, run args, timestamp, or hashes.
                 Conservative: partial.
           amadeus:
             annotations:
@@ -994,7 +983,7 @@ slots:
               where: "thredds_response_headers.json HTTP Date header (run timestamp only)"
               note: >-
                 Amadeus records only the HTTP Date header; no tool name/version,
-                container, run args, or hashes natively (COMPARISON.md §K — ➖/❌).
+                container, run args, or hashes natively.
                 Conservative: partial.
           cher:
             annotations:
@@ -1061,7 +1050,7 @@ slots:
               where: "gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt"
               note: >-
                 Gaia's ETL descriptor plus join log capture upstream steps but not
-                as an ordered per-run W3C-PROV chain (COMPARISON.md §K).
+                as an ordered per-run W3C-PROV chain.
                 Conservative: partial.
           degauss:
             annotations:
@@ -1069,14 +1058,14 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                DeGAUSS emits no ordered upstream-run chain (COMPARISON.md §K).
+                DeGAUSS emits no ordered upstream-run chain.
           amadeus:
             annotations:
               extent: absent
               status: asserted
               where: "no column"
               note: >-
-                Amadeus emits no ordered upstream-run chain (COMPARISON.md §K).
+                Amadeus emits no ordered upstream-run chain.
           cher:
             annotations:
               extent: partial
@@ -1175,7 +1164,7 @@ slots:
               note: >-
                 Gaia lands values in OMOP external_exposure with a person link and
                 a source-value hook, but names no explicit sidecar provenance-id
-                join field (COMPARISON.md §A/§D — ➖). Conservative: partial.
+                join field. Conservative: partial.
           degauss:
             annotations:
               extent: absent
@@ -1183,7 +1172,7 @@ slots:
               where: "no column"
               note: >-
                 DeGAUSS appends geomarker columns to the cohort CSV but names no
-                downstream health-layer target or join field (COMPARISON.md — ❌).
+                downstream health-layer target or join field.
           amadeus:
             annotations:
               extent: absent
@@ -1191,7 +1180,7 @@ slots:
               where: "no column"
               note: >-
                 Amadeus emits a data CSV with no downstream health-layer target or
-                join field (COMPARISON.md — ❌).
+                join field.
           cher:
             annotations:
               extent: partial
