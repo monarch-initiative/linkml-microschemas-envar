@@ -276,6 +276,61 @@ slots:
         on a nickname like "tmax", it uses shared vocabularies to say
         "daily maximum air temperature, in degrees Celsius", so any tool or
         researcher reads it the same way.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus (indicator names; no substance vocabulary)"
+              note: >-
+                CHEL carries indicator names but no environmental-substance
+                vocabulary; the exposure concept is unfilled (EnVar-Tracker #38).
+                Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db variable_source.variable_name/variable_description + JSON-LD variableMeasured.propertyID (NERC air_temperature); unit_concept_id 8653"
+              note: >-
+                Gaia carries variable name, description, unit, and a CF-mirror
+                propertyID, but CF cell_methods has no slot (COMPARISON.md §F —
+                mixed ✅/❌). Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Variable identity is implicit in the column header tmax with no
+                CF standard name, cell methods, or unit annotation (COMPARISON.md
+                §E/§F — ❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml long_name/standard_name/description + gridmet_tmmx.cf_metadata.json units"
+              note: >-
+                Amadeus carries a CF-style blob (long_name, units K), but
+                standard_name is overloaded with the gridMET shortcode, not a real
+                CF term (COMPARISON.md §F — ➖). Conservative: partial.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary.column_tag=Value + column_unit_id (+ planned ontology tag)"
+              note: >-
+                C-HER tags a Value column with a unit and (planned) ontology tag,
+                but carries no CF standard name / cell-methods identity.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Variable identity is exactly the conceptual/represented layer
+                CODATA EVs occupy, but as a conceptual framework it is excluded
+                from instance-layer scoring.
   spatial_reference:
     title: Spatial Reference
     slot_group: exposure_description
@@ -314,6 +369,60 @@ slots:
         of a map. Environmental data usually comes as a grid of cells
         covering a region; this records how big those cells are and how the
         value for a specific place was picked from them.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Omnibus §1.3/§4.2/Part 3 (hex resolution, CRS, aggregation)"
+              note: >-
+                The spatial block is where CHEL is strongest: fixed hex
+                resolution, equal-area CRS, and explicit aggregation operators are
+                all first-class.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db location.geom EPSG:4326 / data_source.srid; meta_etl_*.json epsg / extent; data_source.spatial_coverage"
+              note: >-
+                Gaia carries CRS/SRID and dataset spatial coverage, but has no
+                first-class native-resolution or extraction-method slot
+                (COMPARISON.md §C/§G — mixed ✅/❌). Conservative: partial.
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "lat / lon columns on the geocoded CSV (implicit WGS84)"
+              note: >-
+                DeGAUSS carries coordinates but no explicit CRS, native
+                resolution, or extraction method (COMPARISON.md §C/§G — ➖/❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml coordinate_system=WGS84,EPSG:4326 + axis lat/lon increment + projectionBox/LatLonBox"
+              note: >-
+                Amadeus declares source-raster CRS and bbox and grid increment,
+                but no extraction-method slot and resolution is only derivable
+                (COMPARISON.md §C/§G — mixed ✅/➖/❌). Conservative: partial.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_name spatial extent + spatial resolution codes (e.g. h08 / k05 / m30); column_tag Spatial-Primary"
+              note: >-
+                C-HER encodes spatial extent and organisation resolution in the
+                table_name and tags spatial columns, but carries no per-value
+                extraction method or CRS field. Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Extraction geometry is instance-layer; out of scope for CODATA's
+                conceptual framework.
   temporal_reference:
     title: Temporal Reference
     slot_group: exposure_description
@@ -353,6 +462,59 @@ slots:
         period each number summarises (a day, a month), how it was
         summarised (maximum, mean), and — surprisingly important — when a
         "day" is considered to start and end.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db variable_source.start_date/end_date; meta_dcat_*.json dct:temporal"
+              note: >-
+                Gaia carries the dataset time span but has no first-class
+                temporal-resolution, aggregation-method, or day-boundary slot
+                (COMPARISON.md §H — ❌ for those). Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Temporal resolution is implicit (one row per day); aggregation
+                method and day boundary are absent (COMPARISON.md §H — ❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml day axis (days since 1900-01-01, calendar=gregorian) + TimeSpan; long_name daily_maximum_temperature"
+              note: >-
+                Amadeus carries time-origin, calendar, and dataset span, and
+                aggregation is encoded only in the long_name; day-boundary is pure
+                ambiguity (COMPARISON.md §H — ➖/❌). Conservative: partial.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_name temporal extent (YYYYMMDDYYYYMMDD) + temporal resolution code; column_tag Temporal-Primary"
+              note: >-
+                C-HER encodes temporal extent and resolution in the table_name and
+                tags temporal columns, but carries no aggregation-method or
+                day-boundary-convention field. Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Temporal-aggregation semantics are instance-layer; out of scope
+                for CODATA.
   exposure_model:
     title: Exposure Model
     slot_group: exposure_description
@@ -395,6 +557,59 @@ slots:
         method produced the numbers and what went into it.
 
   # ── Envar-extension slots (no profile equivalent) ─────────────
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus Part 3 / Part 5 (aggregation explicit; source model inherited)"
+              note: >-
+                CHEL makes the aggregation operator explicit but inherits the
+                source exposure model from EJI and validates only its own
+                geometry. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db data_source.measurement_technique + meta_dcat_*.json measurementTechnique (free-text)"
+              note: >-
+                Gaia carries a free-text method description but no structured
+                exposure-model type or model-inputs list (COMPARISON.md §J —
+                ➖/❌). Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS records no exposure-model type or model description
+                (COMPARISON.md §J — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus records no exposure-model type or model description
+                (COMPARISON.md §J — ❌).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes"
+              note: >-
+                C-HER's data_level codes signal that a resource is calculated or
+                modeled, but do not carry a structured exposure-model type or
+                inputs. Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Exposure-model identity is instance-layer; out of scope for
+                CODATA.
 
   data_layout:
     title: Data Layout
@@ -426,6 +641,57 @@ slots:
         this record. This block is the map between the two: it names which
         column holds the values, which holds the person identifier, which
         holds the date, and so on.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus (hex-indexed tables; no portable sidecar)"
+              note: >-
+                CHEL emits hex-indexed tables with a value/subject/time structure
+                but no portable sidecar column layout. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "external_exposure.person_id/value_as_number + gaia_db location.csv columns (implicit layout)"
+              note: >-
+                Gaia's OMOP/gaia-db tables have value/subject/time columns but no
+                portable sidecar column-binding document. Conservative: partial.
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "geocoded CSV columns id / lat / lon / tmax / date (implicit layout)"
+              note: >-
+                DeGAUSS's CSV has value/subject/date columns but no portable
+                sidecar layout describing them. Conservative: partial.
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gridmet_tmmx.csv columns person_loc_id / lat / lon / value_kelvin / value_celsius (implicit layout)"
+              note: >-
+                Amadeus's CSV has value/subject columns but no portable sidecar
+                column-binding document. Conservative: partial.
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_column_dictionary (column_name, description, column_tag Index/Value/Temporal/Spatial, column_unit)"
+              note: >-
+                C-HER's column dictionary is a first-class, portable per-column
+                layout with a role tag and unit for every column — the closest
+                analogue to the sidecar's data-layout block.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Companion-file column binding is instance/packaging-layer; out of
+                scope for CODATA.
   source_dataset:
     title: Source Dataset
     slot_group: dataset_and_provenance
@@ -456,6 +722,58 @@ slots:
         example Daymet, a daily weather dataset). This block names that
         product precisely — including its version, citation, and license —
         so anyone can find it and check its documentation.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Omnibus §2.7 lineage table / Part 6 (dataset name + RID + release)"
+              note: >-
+                CHEL identifies each source dataset first-class in the §2.7
+                lineage table with Foundry RID and release version.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: verified
+              where: "gaia_db data_source.dataset_name/dataset_version/license/creator/date_published + meta_dcat_*.json dct:title/dct:identifier(DOI)/dct:license"
+              evidence: "COMPARISON.md §I — dataset name ✅, version ✅, DOI ✅, license ✅, publisher ✅, date published/modified ✅"
+              note: >-
+                Gaia natively carries full dataset-level discovery metadata (name,
+                version, DOI, license, publisher).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS carries no dataset name, version, DOI, license, or
+                publisher (COMPARISON.md §I — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus carries no dataset-identity metadata (no name, DOI,
+                license, publisher) natively (COMPARISON.md §I — ❌).
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_dictionary (dataset, doi, rights, resource_type/format, contributors) + version + source_update_frequency"
+              note: >-
+                C-HER's table_dictionary and its foreign-key vocabularies identify
+                the source dataset first-class (dataset, rights, DOI, contributors,
+                version).
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Dataset identity/discovery is catalogue-layer; CODATA operates at
+                the conceptual variable layer and is out of scope for scoring.
   uncertainty:
     title: Uncertainty
     slot_group: exposure_description
@@ -482,6 +800,56 @@ slots:
         No estimate is perfect. This block says how far off the numbers
         might be and what was done about gaps in the data, so users know
         how much confidence to place in each value.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §5.3 (conservation/range diagnostics); §5.6.4 (source uncertainty acknowledged)"
+              note: >-
+                CHEL has conservation and range/domain validation and a null
+                taxonomy, but carries no per-value uncertainty. Conservative:
+                partial.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia output carries per-value or model-aggregate uncertainty
+                (per-value uncertainty is ❌ across all pipelines in COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS carries no uncertainty block (COMPARISON.md — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus carries no uncertainty block; only a _FillValue sentinel
+                (COMPARISON.md — ❌).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)"
+              note: >-
+                C-HER classifies null cells and encodes QA level, but carries no
+                per-value uncertainty or completeness percentage. Conservative:
+                partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Per-value uncertainty is instance-layer; out of scope for CODATA.
   linkage_method:
     title: Linkage Method
     slot_group: health_data_integration
@@ -511,6 +879,59 @@ slots:
         to a particular person — for example, by looking up the map cell
         containing their home address — since that step involves real
         choices that affect the result.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Omnibus §4.4/§4.5 (nearest-hex join + deterministic privacy jitter)"
+              note: >-
+                CHEL's linkage is first-class: nearest-hex spatial join plus a
+                deterministic privacy jitter at the linkage stage.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt"
+              note: >-
+                Gaia's linkage lives in the SQL-join semantics and its NOTICE log,
+                not as a documented linkage-strategy column (COMPARISON.md §J —
+                ➖). Conservative: partial.
+          degauss:
+            annotations:
+              extent: full
+              status: verified
+              where: "geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state"
+              evidence: "COMPARISON.md §B — geocoder match score ✅, precision ✅, geocode-result flag ✅ on every row"
+              note: >-
+                DeGAUSS's linkage event (geocoding precision, match score, result
+                flag, matched address) is first-class per row.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus collapses the address to lat/lon at the THREDDS request and
+                records no linkage/geocoding quality (COMPARISON.md §B/§J — ❌).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)"
+              note: >-
+                C-HER models cross-table join references and spatial-column tags,
+                but no patient-to-place linkage-strategy field. Conservative:
+                partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Patient-to-place linkage is instance-layer; out of scope for
+                CODATA.
   tool_run:
     title: Tool Run
     slot_group: dataset_and_provenance
@@ -537,6 +958,60 @@ slots:
         values: which program ran, which exact version, with what settings,
         and when. With it, someone else can re-run the same step and get
         the same numbers.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §6.5 (Foundry RID + CHEL release)"
+              note: >-
+                CHEL identifies its pipeline via Foundry RID + CHEL release, but
+                carries no container digest, run args, timestamps, or hashes.
+                Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)"
+              note: >-
+                Gaia carries per-row load times and a join log, but no tool
+                name/version, container digest, run args, or hashes (COMPARISON.md
+                §K — mostly ❌). Conservative: partial.
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "output filename tool name + container image tag (e.g. daymet_1.0.0); ghcr.io/degauss-org/... reference"
+              note: >-
+                DeGAUSS pins tool name and version via the filename/container tag,
+                but no digest, run args, timestamp, or hashes (COMPARISON.md §K).
+                Conservative: partial.
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_response_headers.json HTTP Date header (run timestamp only)"
+              note: >-
+                Amadeus records only the HTTP Date header; no tool name/version,
+                container, run args, or hashes natively (COMPARISON.md §K — ➖/❌).
+                Conservative: partial.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_dictionary.metadata_created_at/updated_at + uploaded_by + version"
+              note: >-
+                C-HER records registration time, uploader, and version, but no
+                per-run producing-tool name/version, container digest, args, or
+                hashes. Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Tool-run provenance is instance-layer; out of scope for CODATA.
   provenance_chain:
     title: Provenance Chain
     slot_group: dataset_and_provenance
@@ -569,6 +1044,56 @@ slots:
         appears — download, geocode, extract. This block lists those
         earlier steps in order, like a chain of custody reaching back to
         the original raw source.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §2.1 (Source to Module Assignment pathway)"
+              note: >-
+                CHEL documents a lineage pathway but not an ordered per-run
+                W3C-PROV chain. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt"
+              note: >-
+                Gaia's ETL descriptor plus join log capture upstream steps but not
+                as an ordered per-run W3C-PROV chain (COMPARISON.md §K).
+                Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no ordered upstream-run chain (COMPARISON.md §K).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus emits no ordered upstream-run chain (COMPARISON.md §K).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "dataset_lineage (parent-child links) + lineage_notes"
+              note: >-
+                C-HER's dataset_lineage links parent and child resources, but is a
+                dataset-lineage graph, not an ordered per-run W3C-PROV chain.
+                Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Ordered tool-run provenance is instance-layer; out of scope for
+                CODATA.
   derived_heat_metric:
     title: Derived Heat Metric
     slot_group: variable_specific_extensions
@@ -631,6 +1156,59 @@ slots:
         block notes which of those systems the exposure values were wired
         into and through which field, so someone browsing the health data
         can find their way back to this record.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no unified external_exposure assembly)"
+              note: >-
+                CHEL produces hex tables + a participant-linkage table but no
+                unified (person, start/end, location, concept, value) assembly to
+                link into a health layer (EnVar-Tracker #38).
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "external_exposure.exposure_source_value / exposure_concept_id + external_exposure.person_id"
+              note: >-
+                Gaia lands values in OMOP external_exposure with a person link and
+                a source-value hook, but names no explicit sidecar provenance-id
+                join field (COMPARISON.md §A/§D — ➖). Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS appends geomarker columns to the cohort CSV but names no
+                downstream health-layer target or join field (COMPARISON.md — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus emits a data CSV with no downstream health-layer target or
+                join field (COMPARISON.md — ❌).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table join to health resources)"
+              note: >-
+                C-HER has a health schema and cross-table reference columns, but no
+                sidecar-to-health-layer link-field declaration. Conservative:
+                partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Health-layer linkage hooks are instance/integration-layer; out of
+                scope for CODATA.
   deposit_metadata:
     title: FAIR Deposit Metadata
     slot_group: health_data_integration

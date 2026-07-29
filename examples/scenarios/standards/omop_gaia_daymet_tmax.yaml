@@ -59,7 +59,7 @@ temporal_reference:
   temporal_resolution: daily
   temporal_aggregation_method: maximum
   day_boundary_convention: local_midnight
-  calendar: gregorian
+  calendar: daymet_365    # Daymet keeps Feb 29 but drops Dec 31 in leap years — not gregorian
   # registered coverage of the catalog entry (gaia_catalog etl attribute
   # string), narrower than Daymet's full 1980– archive
   temporal_coverage_start: "2018-01-01"

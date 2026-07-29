@@ -39,7 +39,7 @@ temporal_reference:
   temporal_resolution: daily
   temporal_aggregation_method: maximum
   day_boundary_convention: local_midnight
-  calendar: gregorian
+  calendar: daymet_365    # Daymet keeps Feb 29 but drops Dec 31 in leap years — not gregorian
   extraction_window_start: "2022-07-15"
   extraction_window_end: "2022-07-22"
 

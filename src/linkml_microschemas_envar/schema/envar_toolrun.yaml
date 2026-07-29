@@ -107,6 +107,56 @@ slots:
         This simply records which program was used — like noting the make and
         model of an appliance before describing its settings. Everything else
         about the run only makes sense once you know what tool ran.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §6.5 (Foundry RID + CHEL release version)"
+              note: >-
+                CHEL identifies its pipeline via Foundry RID + CHEL release, but
+                not as a discrete tool-name field.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia table records a tool-name field; the gaia-db image name
+                is not carried on any native output (COMPARISON.md §K).
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "output filename stem (e.g. ...daymet_1.0.0.csv / ...geocoder_3.3.0...csv)"
+              note: >-
+                Tool name is embedded in the output CSV filename, recoverable but
+                not a first-class field (COMPARISON.md §K).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus output file records the tool name
+                (COMPARISON.md §K).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's table_dictionary carries dataset/resource metadata, not a
+                per-run producing-tool name.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Tool-run provenance is instance-layer; CODATA EVs/CDIF operate at
+                the conceptual/represented layer and are excluded from scoring.
   tool_version:
     title: Tool Version
     range: string
@@ -127,6 +177,56 @@ slots:
         Software changes over time, and a version number labels one specific
         edition of it — like the edition of a book. Recording it says exactly
         which edition of the tool did the work.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus Part 6 / §6.5 (CHEL release version)"
+              note: >-
+                CHEL release version (2022 / 2024) is documented, but not as a
+                per-tool semver in a run record. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia table records the gaia-db image version (COMPARISON.md §K).
+          degauss:
+            annotations:
+              extent: full
+              status: verified
+              where: "output filename container image tag (e.g. daymet_1.0.0) and ghcr.io/degauss-org/... reference"
+              evidence: "COMPARISON.md §K — tool version ✅ carried as the container image tag in the filename"
+              note: >-
+                Container image tag baked into the filename pins the exact tool
+                version.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus's R package version lives in the object attributes but no
+                native file records it (COMPARISON.md §K).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_dictionary.version (resource version 001/002...) via §2.6"
+              note: >-
+                C-HER carries a resource version code, but it versions the dataset
+                resource, not a per-run producing tool.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Per-run tool version is instance-layer; out of scope for CODATA
+                EV/CDIF conceptual layer.
   tool_description:
     title: Tool Description
     range: string
@@ -169,6 +269,53 @@ slots:
         Containers are self-contained software bundles, and the repository is
         the public shelf address where a bundle is published — effectively the
         download location of the exact software package used.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (Foundry pipeline; no container repo)"
+              note: >-
+                CHEL runs on Palantir Foundry, not a container image, so it
+                carries no container image repository.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia table records a container image repository (COMPARISON.md §K).
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "ghcr.io/degauss-org/... reference implicit in the container invocation"
+              note: >-
+                The repository is implied by the DeGAUSS container reference but
+                not written to any native output column (COMPARISON.md §K).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus is an R package, not a container; no image repository
+                applies.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no producing-tool container image repository.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Container provenance is instance-layer; out of scope for CODATA.
   container_image_repository_missing_reason:
     title: Reason Image Repository Is Missing
     range: MissingReasonEnum
@@ -210,6 +357,53 @@ slots:
         used — stronger than a version label, which can be reused for
         different contents. If the bundle changes at all, the serial number
         changes.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (Foundry pipeline; no container digest)"
+              note: >-
+                CHEL runs on Palantir Foundry; it carries no container image
+                digest.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Container image digest is not carried by any native gaia output
+                (COMPARISON.md §K — ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Only the mutable image tag is in the filename; no SHA256 digest is
+                emitted (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No container image digest is emitted (COMPARISON.md §K — ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no producing-tool container image digest.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Container digest is instance-layer; out of scope for CODATA.
   container_image_digest_missing_reason:
     title: Reason Image Digest Is Missing
     range: MissingReasonEnum
@@ -248,6 +442,51 @@ slots:
         These are the settings the program was started with — like the knob
         positions on a machine. Writing them down means someone else can set
         the knobs identically before pressing start.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run argument map)"
+              note: >-
+                CHEL carries no per-run argument map.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia output records the invocation argument map (COMPARISON.md §K).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no per-run argument map on its native outputs
+                (COMPARISON.md §K).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records the run argument map (COMPARISON.md §K).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no per-run argument map.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Run arguments are instance-layer; out of scope for CODATA.
   run_timestamp_utc:
     title: Run Timestamp (UTC)
     range: datetime
@@ -268,6 +507,54 @@ slots:
         Simply when the program started, expressed on a single worldwide clock
         (UTC) so that times recorded on different machines in different time
         zones line up.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run timestamp)"
+              note: >-
+                CHEL carries no per-run timestamp on emitted records.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_db data_source.created_at/updated_at and location.created_at (load time, not run timestamp)"
+              note: >-
+                Gaia records per-row load times, which approximate but are not the
+                tool-run start timestamp (COMPARISON.md §K — ➖ semantics).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Only OS file mtime is available; no run timestamp is emitted
+                (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_response_headers.json HTTP Date header"
+              note: >-
+                The HTTP Date header is the only timestamp captured, recoverable
+                but not a first-class run-timestamp field (COMPARISON.md §K — ➖).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_dictionary.metadata_created_at/metadata_updated_at (metadata time, not producing-run time)"
+              note: >-
+                C-HER stamps metadata create/update times, which are registration
+                times, not the producing tool-run timestamp.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Run timestamp is instance-layer; out of scope for CODATA.
   run_duration_seconds:
     title: Run Duration (Seconds)
     range: float
@@ -329,6 +616,51 @@ slots:
         A SHA-256 hash is a fingerprint of a file — if even one byte changes,
         the fingerprint changes completely. Comparing fingerprints proves two
         files are exactly the same without inspecting their contents.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output file hashes.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia output records an input-file SHA256 (COMPARISON.md §K — ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no input-file checksum (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records an input-file SHA256 in this
+                scenario (COMPARISON.md §K — ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no per-run input-file hash.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                File checksums are instance-layer; out of scope for CODATA.
   input_row_count:
     title: Input Row Count
     range: integer
@@ -347,6 +679,51 @@ slots:
         Just the number of lines of data that went in. If you expected 3
         addresses and the count says 2, something was lost before the tool
         ever ran.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output row counts or hashes.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native gaia output records an input row count; you would wc -l
+                (COMPARISON.md §K — ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no input row count (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records an input row count (COMPARISON.md §K — ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no per-run input row count.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Row counts are instance-layer; out of scope for CODATA.
   output_file_sha256:
     title: Output File SHA-256 Hash
     range: string
@@ -366,6 +743,51 @@ slots:
         A fingerprint of the result file — change one byte and the fingerprint
         changes. It ties this metadata record to exactly one version of the
         data it describes.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output file hashes.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No gaia output records an output-file SHA256 (COMPARISON.md §K — ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no output-file checksum (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records an output-file SHA256 in this
+                scenario (COMPARISON.md §K — ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no per-run output-file hash.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                File checksums are instance-layer; out of scope for CODATA.
   output_row_count:
     title: Output Row Count
     range: integer
@@ -384,6 +806,51 @@ slots:
         The number of lines of data produced. Outputs often have a predictable
         size, so a wrong count is an early warning that rows went missing
         along the way.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output row counts or hashes.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native gaia output records an output row count; you would wc -l
+                (COMPARISON.md §K — ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no output row count (COMPARISON.md §K — ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records an output row count (COMPARISON.md §K — ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER records no per-run output row count.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Row counts are instance-layer; out of scope for CODATA.
   run_log_excerpt:
     title: Run Log Excerpt
     range: string
@@ -452,6 +919,59 @@ slots:
         A step-by-step history of every program run that led to this data,
         oldest first — like a parcel's tracking history showing each station
         it passed through on the way to you.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §2.1 (Source to Module Assignment pathway)"
+              note: >-
+                CHEL documents a lineage pathway (Source to Cleaning to
+                Harmonization to Hex Aggregation to Normalization to Module
+                Assignment), but not as an ordered per-run W3C-PROV chain.
+                Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt (SQL NOTICE lines)"
+              note: >-
+                Gaia's ETL descriptor plus the spatial-join log capture upstream
+                steps, but not as an ordered per-run W3C-PROV chain (COMPARISON.md
+                §K — SQL functions ➖). Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no ordered upstream-run chain on its native outputs
+                (COMPARISON.md §K).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No native Amadeus file records an ordered upstream-run chain
+                (COMPARISON.md §K).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "dataset_lineage table (parent-child links) + lineage_notes"
+              note: >-
+                C-HER's dataset_lineage links parent and child resources but is a
+                dataset-lineage graph, not an ordered per-run W3C-PROV tool chain.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Ordered tool-run provenance is instance-layer; out of scope for
+                CODATA.
   provenance_chain_terminus_type:
     title: Provenance Chain Terminus Type
     range: ProvenanceChainTerminusEnum
@@ -470,6 +990,53 @@ slots:
         This says what the very first link of the history is — freshly
         downloaded raw data, simulated data, or an existing curated dataset.
         Different starting points deserve different levels of scrutiny.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §2.7 (raw source inputs)"
+              note: >-
+                CHEL's lineage terminates at raw source downloads (EJI, ACS, GPW
+                v4, etc.), but the terminus type is not a first-class typed field.
+                Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Gaia's meta_etl points at raw source downloads but has no typed
+                chain-terminus field.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS carries no typed provenance-chain terminus.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus carries no typed provenance-chain terminus.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's lineage graph has no typed terminus field on the chain.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Chain-terminus typing is instance-layer; out of scope for CODATA.
   chain_compatibility_assertions:
     title: Chain Compatibility Assertions
     range: string

@@ -48,6 +48,8 @@ classes:
     - value_uncertainty_column_missing_reason
     - quality_flag_column
     - quality_flag_column_missing_reason
+    - null_semantics_column
+    - null_semantics_column_missing_reason
     slot_usage:
       table_orientation:
         required: true
@@ -105,6 +107,58 @@ slots:
         column, and so on); long means one row per measurement, with a shared
         `value` column and a label column saying which measurement each row
         is. Long is also known as "tidy" format.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus (hex-indexed tables; no portable sidecar)"
+              note: >-
+                CHEL emits hex-indexed tables with a value/subject/time column
+                structure, but not as a portable sidecar layout declaration.
+                Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                The OMOP external_exposure table is implicitly long, but no
+                orientation flag is declared as a field — it is a structural
+                property a consumer must infer.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS's daymet CSV is wide (a `tmax` column) but declares no
+                orientation field.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus's gridmet_tmmx.csv is wide but declares no orientation
+                field.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary.column_tag (Index / Value distinguishes table structure)"
+              note: >-
+                C-HER's per-column tags (Index vs Value) expose table structure,
+                though not a wide/long orientation flag. Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                File orientation is an instance-layer layout detail; CODATA's
+                conceptual layer does not describe physical table shape.
   value_column:
     title: Value Column
     range: string
@@ -130,6 +184,58 @@ slots:
         numbers live — for example a column headed `tmax` holding daily
         maximum temperatures, or a generic column headed `value` in a long
         table.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus (hex-indexed per-dataset tables)"
+              note: >-
+                CHEL emits hex-indexed value tables, but the column binding is not
+                a portable sidecar declaration. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: verified
+              where: "external_exposure.value_as_number (Cel)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for GAIA)"
+              note: >-
+                The OMOP CDM binds the value to the stable
+                external_exposure.value_as_number column.
+          degauss:
+            annotations:
+              extent: full
+              status: verified
+              where: "cohort_addresses_geocoded_daymet CSV `tmax` column"
+              evidence: "EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for DeGAUSS)"
+              note: >-
+                DeGAUSS writes the value to a stable `tmax` column on every row.
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "gridmet_tmmx.csv `value_celsius` column"
+              evidence: "EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for Amadeus)"
+              note: >-
+                Amadeus writes the converted value to a stable `value_celsius`
+                column.
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_column_dictionary column tagged Value (column_tag = Value)"
+              note: >-
+                C-HER identifies the value-carrying column first-class via the
+                Value column tag.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Binding a value to a physical column is instance-layer; CODATA's
+                conceptual layer does not name file columns.
   native_value_column:
     title: Native Value Column
     range: string
@@ -236,6 +342,59 @@ slots:
         This names the ID column that says who (or where) each row belongs
         to — a patient identifier like `subject_id`, or a place identifier
         like a census-tract code.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §4.4 (participant-linkage table)"
+              note: >-
+                The participant-linkage table has a subject column, but not as a
+                portable sidecar binding. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: verified
+              where: "external_exposure.person_id; person.person_id; location.location_id"
+              evidence: "EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for OMOP/GAIA)"
+              note: >-
+                OMOP carries the subject identifier first-class on
+                external_exposure.person_id (and person/location).
+          degauss:
+            annotations:
+              extent: full
+              status: verified
+              where: "`id` column on every CSV row"
+              evidence: "EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for DeGAUSS)"
+              note: >-
+                DeGAUSS carries the person identifier in the `id` column on every
+                row.
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "`person_loc_id` / `person_id` column on every row"
+              evidence: "EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for Amadeus)"
+              note: >-
+                Amadeus carries the person identifier on every row.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary column tagged Index / Foreign Reference (participant linkage)"
+              note: >-
+                C-HER can tag a subject/participant column via Index or Foreign
+                Reference, but not as a dedicated sidecar subject binding.
+                Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The subject/cohort column binding is instance-layer layout,
+                outside CODATA's conceptual scope.
   time_column:
     title: Time Column
     range: string
@@ -260,6 +419,59 @@ slots:
         This names the column that gives each measurement its "when" — a
         `date` column for daily data, or a `year` column for annual
         summaries.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus (participant start_date)"
+              note: >-
+                CHEL carries a participant start_date column, but not as a
+                portable sidecar time-column binding. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "external_exposure attr_start_date / attr_end_date (window-wide, not per-day)"
+              note: >-
+                GAIA carries date columns but collapses every row to the
+                variable's window-wide attr_start_date/attr_end_date — per-day
+                external_exposure does not come out (COMPARISON.md §D: ➖/❌).
+                Conservative: partial.
+          degauss:
+            annotations:
+              extent: full
+              status: verified
+              where: "one row per (person × day) in cohort_addresses_geocoded_daymet CSV (per-day date)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for DeGAUSS)"
+              note: >-
+                DeGAUSS emits a per-day date on every row (24 rows, per-day).
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "one row per (person × day) in gridmet_tmmx.csv (per-day date)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for Amadeus)"
+              note: >-
+                Amadeus emits a per-day date on every row (24 rows, per-day).
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary column tagged Temporal – Primary"
+              note: >-
+                C-HER tags time columns first-class via the Temporal – Primary
+                tag, but not as a portable sidecar time binding. Conservative:
+                partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The time-column binding is instance-layer layout, outside
+                CODATA's conceptual scope.
   value_uncertainty_column:
     title: Per-Value Uncertainty Column
     range: string
@@ -284,6 +496,57 @@ slots:
         — an estimate of how far off each number might be. This slot names
         that column so the uncertainty travels with the data instead of
         being lost.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus §5.6.4 (no per-value uncertainty carried)"
+              note: >-
+                CHEL carries no per-value uncertainty, so no uncertainty column is
+                bound.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No per-value uncertainty column on external_exposure; the OMOP
+                stack carries no measurement-error column for the value.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS's daymet CSV carries the value only, no per-value
+                standard-error column.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus's gridmet_tmmx.csv carries no per-value uncertainty
+                column.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_column_dictionary column tagged Meta value (info about a Value column)"
+              note: >-
+                C-HER's Meta value tag could carry a per-value uncertainty column
+                referencing its Value column, but none is asserted here.
+                Conservative: partial.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                A per-value uncertainty column binding is instance-layer layout,
+                outside CODATA's conceptual scope.
   value_uncertainty_column_missing_reason:
     title: Reason Uncertainty Column Is Missing
     range: MissingReasonEnum
@@ -344,6 +607,122 @@ slots:
         When there is no quality-flag column, this slot says why it is
         absent — for example because the source dataset simply does not
         publish quality flags.
+  null_semantics_column:
+    title: Null-Semantics Column
+    range: string
+    description: >-
+      Name of a per-value column carrying a null-semantics indicator drawn from
+      `NullSemanticsEnum` (`present` / `structural_null` / `derived_null` /
+      `true_zero`; see envar_common). Bound here in `DataLayout` — mirroring the
+      existing per-value `value_uncertainty_column` / `quality_flag_column`
+      pattern — because the distinction is per-value: whether a given blank or
+      `0` means "no source data", "aggregation impossible", or "measured zero"
+      varies row by row and so must be carried alongside the values, not
+      declared once for the dataset. Null with reason when the producer does not
+      distinguish null kinds. The vocabulary itself lives in the Uncertainty /
+      shared layer (`NullSemanticsEnum`).
+    examples:
+    - value: null_kind
+      description: >-
+        per-value column tagging each cell present / structural_null /
+        derived_null / true_zero, next to the value column
+    see_also:
+    - https://github.com/cladteam/CHEL
+
+    annotations:
+      tier: recommended
+      # CLAD-tiering-signal: CLAD would argue core. §5.3.3 treats the null kind as
+      # load-bearing — nulls are excluded from percentile denominators so
+      # missingness is not read as zero exposure; structural_null / derived_null /
+      # true_zero carry opposite correct handling (drop / drop-from-denominator /
+      # keep-as-zero).
+      justification: >-
+        A blank or a `0` is ambiguous, and the three kinds of "missing/zero"
+        have OPPOSITE correct handling — structural_null and derived_null must
+        be dropped (the latter also excluded from denominators) while true_zero
+        must be kept as a real zero; conflating them biases the health-effect
+        estimate. CHEL §5.3.3 excludes nulls from percentile denominators for
+        exactly this reason, so binding a per-value null-kind column is what
+        lets a consumer handle each cell correctly instead of reading
+        missingness as low or zero exposure.
+      explanation: >-
+        A blank cell or a `0` can mean three very different things: there was
+        never any data here, we could not compute a value here, or the value is
+        genuinely zero. Each needs different treatment. This names the column
+        that tags every value with which kind it is, so nobody mistakes "no
+        data" for "zero exposure".
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Omnibus §5.3.3 Null Handling"
+              note: >-
+                CHEL §5.3.3 defines exactly this three-way null taxonomy
+                (structural / derived / true-zero) and excludes nulls from
+                percentile-ranking denominators on its basis.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "gaia_catalog meta_etl_*.json nodata = [\"float4\", \"-9999\"] (dataset-level sentinel, not per-value null-kind)"
+              note: >-
+                GAIA declares a dataset-level nodata sentinel for daymet but no
+                per-value column tagging present / structural_null / derived_null
+                / true_zero. Conservative: partial.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no null-kind indicator column and no missing-value
+                sentinel in its CSV output.
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level sentinel, not per-value null-kind)"
+              note: >-
+                Amadeus declares a fill/missing-value sentinel that marks
+                structural nulls, but no per-value column distinguishing the
+                three null kinds. Conservative: partial.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER handles null semantics in its validation rules (§5.3.3
+                concepts live in CHEL), but binds no per-value null-kind column
+                in table_column_dictionary.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                A per-value null-semantics column binding is instance-layer
+                layout, outside CODATA's conceptual scope.
+  null_semantics_column_missing_reason:
+    title: Reason Null-Semantics Column Is Missing
+    range: MissingReasonEnum
+    description: Reason `null_semantics_column` is null.
+    examples:
+    - value: not_provided_by_source
+      description: the producer does not distinguish kinds of missing / zero
+    annotations:
+      tier: optional
+      justification: >-
+        A bare null is ambiguous: the producer may not distinguish null kinds
+        at all, or the pipeline may have dropped the indicator. Stating the
+        reason makes the absence deliberate and auditable rather than a silent
+        gap.
+      explanation: >-
+        When there is no null-kind column, this slot says why — for example
+        because the source never separates "no data" from "real zero" in the
+        first place.
 
 #────────────────────────────────────────────────────────────────
 # ENUMS

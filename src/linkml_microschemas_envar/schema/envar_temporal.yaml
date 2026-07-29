@@ -87,6 +87,57 @@ slots:
         day, one per year? A daily temperature and a yearly average
         temperature are very different things, so you need to know which kind
         of value you are looking at before comparing anything.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No first-class temporal_resolution slot in gaiaCatalog or
+                gaia-db (COMPARISON.md §H ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS's daily grain is implicit in one-row-per-day, with no
+                resolution field (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)"
+              note: >-
+                Only derivable from the THREDDS time-axis increment
+                (COMPARISON.md §H ➖); not written as a discrete resolution
+                field.
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_name temporal-resolution code (§2.4); inheritable temporal_resolution"
+              note: >-
+                C-HER carries temporal resolution first-class as a code in the
+                table_name pattern and as an inheritable lineage field.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The native temporal grain of a specific run is instance-layer
+                detail outside the conceptual EV/DDI-CDI layer.
   temporal_aggregation_method:
     title: Temporal Aggregation Method
     range: TemporalAggregationMethodEnum
@@ -113,6 +164,55 @@ slots:
         which single number was kept — the highest, the average, the total.
         The hottest moment of a day and the average across the whole day can
         differ by many degrees, so it matters which one the value represents.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No aggregation-method slot in gaiaCatalog or gaia-db
+                (COMPARISON.md §H ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no temporal-aggregation field (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml long_name / grid name (daily_maximum_temperature)"
+              note: >-
+                The aggregation (daily maximum) is recoverable only from the
+                variable long_name, not a structured field (COMPARISON.md §H ➖).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's data-level codes track processing stage, not which
+                statistic summarises a sub-period; no aggregation-method field.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                How sub-period values were aggregated in one run is
+                instance-layer detail outside the conceptual EV/DDI-CDI layer.
   temporal_aggregation_window_seconds:
     title: Aggregation Window (seconds)
     range: integer
@@ -137,6 +237,55 @@ slots:
         number of seconds — a day is 86,400 seconds. Computers can check and
         compare numbers much more reliably than words like "daily", so the
         redundancy is deliberate.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No aggregation-window field; the temporal grain itself is absent
+                (COMPARISON.md §H ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no explicit window-length field (COMPARISON.md §H).
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)"
+              note: >-
+                The 1-day window is derivable in the THREDDS time axis but not
+                emitted as an explicit seconds value (COMPARISON.md §H ➖).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER encodes a temporal-resolution code but not a machine
+                seconds-per-step window.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The numeric aggregation window of one run is instance-layer
+                detail outside the conceptual EV/DDI-CDI layer.
   day_boundary_convention:
     title: Day-Boundary Convention
     range: DayBoundaryConventionEnum
@@ -170,6 +319,54 @@ slots:
         time, midnight in London, or noon-to-noon? Different products
         genuinely disagree, which changes which hot afternoon lands on which
         day.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No day-boundary slot anywhere in gaiaCatalog or gaia-db
+                (COMPARISON.md §H ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS records no day-boundary convention (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                The NetCDF time axis (days since 1900-01-01) has no calendar
+                day-edge clarification — pure ambiguity (COMPARISON.md §H ❌).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER has no field for where the 24-hour day window starts.
+          codata:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Day-boundary convention is an EnVar-novel commensurability slot
+                no standard carries; not merely out-of-layer — genuinely absent.
   temporal_coverage_start:
     title: Temporal Coverage Start
     range: date
@@ -189,6 +386,57 @@ slots:
         The earliest date the source dataset has any data for at all. If you
         ask for a date before this, the answer is not "missing" — the dataset
         simply never covered that time.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: verified
+              where: "gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date"
+              evidence: "EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)"
+              note: >-
+                GAIA records the product time-span via DCAT dct:temporal and
+                variable_source.start_date/end_date.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no product coverage-start (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "thredds_dataset.xml TimeSpan (1979 -> present)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)"
+              note: >-
+                The THREDDS dataset.xml TimeSpan gives the product's full
+                temporal coverage.
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent"
+              note: >-
+                C-HER encodes the coverage start in the concatenated
+                temporal-extent code (§2.4) and as an inheritable lineage field.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                A product's coverage start is instance/discovery-layer detail
+                outside the conceptual EV/DDI-CDI layer.
   temporal_coverage_end:
     title: Temporal Coverage End
     range: date
@@ -210,6 +458,57 @@ slots:
         The latest date the source dataset covers; some products are still
         being extended. Asking for a date after this returns nothing — not
         because data is missing, but because it does not exist yet.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: verified
+              where: "gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.end_date"
+              evidence: "EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)"
+              note: >-
+                GAIA records the product coverage-end via DCAT dct:temporal and
+                variable_source.end_date.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no product coverage-end (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "thredds_dataset.xml TimeSpan (-> present)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)"
+              note: >-
+                The THREDDS TimeSpan closes the product's coverage window (open
+                to present for live products).
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent"
+              note: >-
+                C-HER encodes the coverage end in the concatenated
+                temporal-extent code (§2.4) and as an inheritable lineage field.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                A product's coverage end is instance/discovery-layer detail
+                outside the conceptual EV/DDI-CDI layer.
   extraction_window_start:
     title: Extraction Window Start
     range: date
@@ -229,6 +528,57 @@ slots:
         Of everything the dataset covers, this is the first date this
         particular job actually downloaded — like noting which pages of a
         big book you photocopied.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                gaia-native output collapses per-day to the variable's
+                window-wide validity range; the run's actual extraction window
+                start is not recorded (COMPARISON.md §D).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS writes per-day rows but records no explicit run
+                extraction-window-start field.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus records the product TimeSpan but not the start date this
+                particular run pulled.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's temporal_extent is the dataset's coverage span, not the
+                window an individual extraction job pulled.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The window a specific run pulled is instance-layer provenance
+                outside the conceptual EV/DDI-CDI layer.
   extraction_window_end:
     title: Extraction Window End
     range: date
@@ -248,15 +598,70 @@ slots:
         Of everything the dataset covers, this is the last date this
         particular job actually downloaded — the end of the photocopied page
         range.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                gaia collapses to the variable's window; no per-run
+                extraction-window-end is recorded (COMPARISON.md §D).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS records no explicit run extraction-window-end field.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus records the product TimeSpan but not the end date this
+                particular run pulled.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's temporal_extent is the dataset span, not the window a
+                specific extraction job pulled.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The window a specific run pulled is instance-layer provenance
+                outside the conceptual EV/DDI-CDI layer.
   calendar:
     title: Calendar (CF)
     range: CalendarEnum
     description: >-
-      CF calendar. `gregorian` is the default; only matters when a source uses
-      a non-standard calendar (some climate model output does).
+      Calendar of the time axis. `gregorian` is the default; only matters when
+      a source uses a non-standard calendar. Covers both the CF `calendar`
+      values and product-specific conventions that CF has no term for — e.g.
+      Daymet's fixed 365-day year (`daymet_365`), which keeps Feb 29 but drops
+      Dec 31 in leap years and is therefore neither `gregorian` nor `noleap`.
     examples:
     - value: gregorian
-      description: The default; used by Daymet and ACAG PM2.5 alike.
+      description: The default; used by ACAG PM2.5.
+    - value: daymet_365
+      description: >-
+        Daymet — fixed 365-day year; keeps Feb 29, drops Dec 31 in leap years.
     see_also:
     - https://cfconventions.org/cf-conventions/cf-conventions.html#calendar
 
@@ -275,6 +680,54 @@ slots:
 #────────────────────────────────────────────────────────────────
 # ENUMS
 #────────────────────────────────────────────────────────────────
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; start_date only)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                temporal-aggregation semantics.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No calendar/time-origin slot in gaia (COMPARISON.md §H ❌).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no calendar field (COMPARISON.md §H ❌).
+          amadeus:
+            annotations:
+              extent: full
+              status: verified
+              where: "thredds_dataset.xml day axis (days since 1900-01-01, calendar = gregorian)"
+              evidence: "EnVar/examples/heat/COMPARISON.md §H (time-origin / calendar ✅)"
+              note: >-
+                The THREDDS day axis declares the calendar (gregorian) and time
+                origin explicitly.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER has no calendar-of-time-axis field.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The calendar of a specific product's time axis is instance-layer
+                representation detail outside the conceptual EV/DDI-CDI layer.
 
 enums:
 
@@ -349,15 +802,24 @@ enums:
           the sub-daily window is not a meaningful concept (SPEC §5).
 
   CalendarEnum:
-    title: CF Calendar
-    description: CF `calendar` values.
+    title: Calendar
+    description: >-
+      Calendar of the time axis. Comprises the CF `calendar` values plus
+      product-specific conventions with no CF equivalent (e.g. `daymet_365`).
     see_also:
     - https://cfconventions.org/cf-conventions/cf-conventions.html#calendar
     permissible_values:
       gregorian:
         description: Standard mixed Julian / Gregorian calendar (default).
       noleap:
-        description: 365-day calendar with no leap days. Common in climate-model output.
+        description: 365-day calendar with no leap days (Feb 29 dropped). Common in climate-model output.
+      daymet_365:
+        title: Daymet 365-day
+        description: >-
+          Fixed 365-day year that keeps Feb 29 but drops Dec 31 in leap years —
+          the Daymet convention. Not a CF calendar: distinct from `noleap`
+          (which drops Feb 29) and from `gregorian` (which keeps Dec 31), so
+          neither substitute preserves Daymet's day-of-year alignment.
       all_leap:
         description: 366-day calendar with all years leap.
       day_360:

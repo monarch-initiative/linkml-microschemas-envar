@@ -169,6 +169,55 @@ slots:
         composite scores that also fold in humidity, wind and sunshine, or a
         simple yes/no heat-wave flag. This field says which kind of heat
         number the record is about.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no heat-metric methodology; EJI vulnerability indices)"
+              note: >-
+                CHEL carries EJI-derived vulnerability indicators, not derived
+                heat-metric methodology, so no heat-metric family is recorded.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                The scenario is a plain Tmax extraction, not a heat index; the
+                variable family is implicit in variable_name tmax, with no derived
+                heat-metric family slot (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits plain tmax with no heat-metric family field
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Amadeus emits plain tmmx with no heat-metric family field
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER models no derived heat-metric family.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Heat-metric methodology is instance-layer; out of scope for CODATA.
   equation_variant:
     title: Equation Variant
     range: EquationVariantEnum
@@ -342,6 +391,55 @@ slots:
         A friendly nickname for the dataset an ingredient came from (like
         "daymet_v4"), written next to the tracking number so people do not
         have to look everything up just to get oriented.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no derived-heat-metric equation inputs)"
+              note: >-
+                CHEL models no derived heat metrics, so per-input source codes for
+                a heat equation are not carried.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Single-input Tmax scenario; no heat-equation input decomposition,
+                so no per-input source short code (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No derived-metric equation inputs, so no per-input source code
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No derived-metric equation inputs, so no per-input source code
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER models no heat-equation inputs.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Heat-equation input decomposition is instance-layer; out of scope
+                for CODATA.
   equation_validity_range:
     title: Equation Validity Range
     range: string
@@ -430,6 +528,55 @@ slots:
         Wind blows faster the higher above the ground you measure it, so a
         "wind speed" is only meaningful together with the height it was
         taken at — this field records that height.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no derived-heat-metric methodology)"
+              note: >-
+                CHEL models no WBGT/UTCI heat metrics, so wind-measurement height
+                is not carried.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement
+                height (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No WBGT/UTCI methodology, so no wind-measurement height
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No WBGT/UTCI methodology, so no wind-measurement height
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER models no WBGT/UTCI heat metrics.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                WBGT wind-height metadata is instance-layer; out of scope for
+                CODATA.
   wind_speed_measurement_height_m_missing_reason:
     title: Reason Measurement Height Is Missing
     range: MissingReasonEnum
@@ -466,6 +613,54 @@ slots:
         How much sunshine hits a person is part of how hot they feel, and
         datasets represent "sunshine" in different ways — or not at all.
         This says which representation fed the calculation.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (no derived-heat-metric methodology)"
+              note: >-
+                CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis
+                is not carried.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation
+                basis (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No WBGT/UTCI methodology, so no solar-radiation basis
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No WBGT/UTCI methodology, so no solar-radiation basis
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER models no WBGT/UTCI heat metrics.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Solar-radiation basis is instance-layer; out of scope for CODATA.
   solar_radiation_basis_missing_reason:
     title: Reason Radiation Basis Is Missing
     range: MissingReasonEnum
@@ -680,6 +875,57 @@ slots:
         "Unusually hot" can mean hot compared to what is normal HERE, or
         compared to the whole country. This field says which area's history
         the comparison was made against.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Omnibus §3.10 (EJI percentile normalization 0-100)"
+              note: >-
+                CHEL applies EJI percentile-normalization (0-100) and computes it
+                over defined scopes, but not as a first-class heat-metric
+                percentile-baseline slot. Conservative: partial.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Tmax scenario computes no percentile-based threshold, so no
+                reference geographic scope (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No percentile-based metric, so no reference geographic scope
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No percentile-based metric, so no reference geographic scope
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER's percentile normalization is EJI vulnerability, not a
+                heat-metric percentile baseline scope.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Percentile-baseline scope is instance-layer; out of scope for
+                CODATA.
   percentile_reference_geographic_scope_missing_reason:
     title: Reason Geographic Scope Is Missing
     range: MissingReasonEnum
@@ -717,6 +963,55 @@ slots:
         Whether "normal" includes the whole year or only the summer months
         changes what counts as unusually hot — a day that is extreme against
         summer-only history may be unremarkable against the full year.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; no seasonal window)"
+              note: >-
+                CHEL's percentile normalization is spatial (EJI), with no
+                temporal/seasonal reference window.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No percentile-based metric in the Tmax scenario, so no seasonal
+                reference window (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No percentile-based metric, so no seasonal reference window
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No percentile-based metric, so no seasonal reference window
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER carries no heat-metric seasonal reference window.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Seasonal reference window is instance-layer; out of scope for
+                CODATA.
   percentile_reference_seasonal_window_missing_reason:
     title: Reason Seasonal Window Is Missing
     range: MissingReasonEnum
@@ -754,6 +1049,55 @@ slots:
         A heat wave spans several days but health records are kept day by
         day; this says which calendar days actually get the "heat wave"
         label — just the first day, every day, or the last.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Omnibus (spatial-only; no multi-day event stamping)"
+              note: >-
+                CHEL is spatial-only and stamps no multi-day heat events onto
+                days.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                Tmax scenario is per-day values, not a heat-wave flag; no multi-day
+                event-stamping rule (COMPARISON.md).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No multi-day heat-event flag, so no event-stamping rule
+                (COMPARISON.md).
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                No multi-day heat-event flag, so no event-stamping rule
+                (COMPARISON.md).
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                C-HER stamps no multi-day heat events onto days.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Multi-day event stamping is instance-layer; out of scope for
+                CODATA.
   metric_temporal_aggregation_rule_missing_reason:
     title: Reason Aggregation Rule Is Missing
     range: MissingReasonEnum

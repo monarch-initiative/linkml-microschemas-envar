@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-21T15:45:26
+# Generation date: 2026-07-29T14:18:42
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar
@@ -227,6 +227,8 @@ class DataLayout(YAMLRoot):
     value_uncertainty_column_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
     quality_flag_column: Optional[str] = None
     quality_flag_column_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
+    null_semantics_column: Optional[str] = None
+    null_semantics_column_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.table_orientation):
@@ -266,6 +268,12 @@ class DataLayout(YAMLRoot):
         if self.quality_flag_column_missing_reason is not None and not isinstance(self.quality_flag_column_missing_reason, MissingReasonEnum):
             self.quality_flag_column_missing_reason = MissingReasonEnum(self.quality_flag_column_missing_reason)
 
+        if self.null_semantics_column is not None and not isinstance(self.null_semantics_column, str):
+            self.null_semantics_column = str(self.null_semantics_column)
+
+        if self.null_semantics_column_missing_reason is not None and not isinstance(self.null_semantics_column_missing_reason, MissingReasonEnum):
+            self.null_semantics_column_missing_reason = MissingReasonEnum(self.null_semantics_column_missing_reason)
+
         super().__post_init__(**kwargs)
 
 
@@ -294,6 +302,7 @@ class SpatialReference(YAMLRoot):
     extraction_buffer_m_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
     population_weighting_source: Optional[str] = None
     population_weighting_source_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
+    spatial_aggregation_preserves: Optional[Union[str, "SpatialAggregationPreservationEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.native_spatial_resolution_m):
@@ -337,6 +346,9 @@ class SpatialReference(YAMLRoot):
 
         if self.population_weighting_source_missing_reason is not None and not isinstance(self.population_weighting_source_missing_reason, MissingReasonEnum):
             self.population_weighting_source_missing_reason = MissingReasonEnum(self.population_weighting_source_missing_reason)
+
+        if self.spatial_aggregation_preserves is not None and not isinstance(self.spatial_aggregation_preserves, SpatialAggregationPreservationEnum):
+            self.spatial_aggregation_preserves = SpatialAggregationPreservationEnum(self.spatial_aggregation_preserves)
 
         super().__post_init__(**kwargs)
 
@@ -696,6 +708,8 @@ class LinkageMethod(YAMLRoot):
     lag_alignment_applied: Optional[Union[str, "LagAlignmentEnum"]] = None
     lag_alignment_specifier: Optional[str] = None
     lag_alignment_applied_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
+    privacy_transformation: Optional[Union[str, "PrivacyTransformationEnum"]] = None
+    privacy_transformation_note: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.linkage_strategy):
@@ -756,6 +770,12 @@ class LinkageMethod(YAMLRoot):
 
         if self.lag_alignment_applied_missing_reason is not None and not isinstance(self.lag_alignment_applied_missing_reason, MissingReasonEnum):
             self.lag_alignment_applied_missing_reason = MissingReasonEnum(self.lag_alignment_applied_missing_reason)
+
+        if self.privacy_transformation is not None and not isinstance(self.privacy_transformation, PrivacyTransformationEnum):
+            self.privacy_transformation = PrivacyTransformationEnum(self.privacy_transformation)
+
+        if self.privacy_transformation_note is not None and not isinstance(self.privacy_transformation_note, str):
+            self.privacy_transformation_note = str(self.privacy_transformation_note)
 
         super().__post_init__(**kwargs)
 
@@ -1610,6 +1630,31 @@ class MissingReasonEnum(EnumDefinitionImpl):
         description="""Controlled reasons that a slot value is missing. Distinguishes a slot the source genuinely does not produce (terminal) from one we could extract but did not (roadmap) from a bug in the chain.""",
     )
 
+class NullSemanticsEnum(EnumDefinitionImpl):
+    """
+    The kind of "missing or zero" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 ("Null Handling"). A
+    blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling
+    (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL
+    excludes nulls from percentile-ranking denominators for exactly this reason.
+    """
+    present = PermissibleValue(
+        text="present",
+        description="A real, non-missing value.")
+    structural_null = PermissibleValue(
+        text="structural_null",
+        description="""No source data for this cell — the cell lies outside the source product's coverage. Drop; do not impute from neighbours.""")
+    derived_null = PermissibleValue(
+        text="derived_null",
+        description="""Aggregation was impossible — geometry mismatch, no overlap between source and target support. Drop from denominators; flag the geometry mismatch.""")
+    true_zero = PermissibleValue(
+        text="true_zero",
+        description="A real, measured absence of the exposure or event. Keep as zero.")
+
+    _defn = EnumDefinition(
+        name="NullSemanticsEnum",
+        description="""The kind of \"missing or zero\" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 (\"Null Handling\"). A blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.""",
+    )
+
 class DataTypeEnum(EnumDefinitionImpl):
     """
     The data type of an exposure value.
@@ -1713,10 +1758,44 @@ class ExtractionMethodEnum(EnumDefinitionImpl):
     point_station_lookup = PermissibleValue(
         text="point_station_lookup",
         description="Direct lookup at a point station observation.")
+    intersection_area_proportion = PermissibleValue(
+        text="intersection_area_proportion",
+        description="""Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters).""")
+    raster_zonal_sum = PermissibleValue(
+        text="raster_zonal_sum",
+        description="""Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex).""")
+    feature_density = PermissibleValue(
+        text="feature_density",
+        description="""Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads).""")
 
     _defn = EnumDefinition(
         name="ExtractionMethodEnum",
         description="How a gridded value was extracted at a target location.",
+    )
+
+class SpatialAggregationPreservationEnum(EnumDefinitionImpl):
+    """
+    The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial
+    support onto a target support. Adopted from CHEL Omnibus §3.10 ("aggregation as a geometry-weighted operator;
+    aggregation must match meaning"), which keys the operator on *what is preserved* rather than on the mechanics of
+    the operator.
+    """
+    mean_intensity = PermissibleValue(
+        text="mean_intensity",
+        description="""Preserves the area-mean intensity of the quantity (area-weighted interpolation). For intensive quantities that do not sum over area — e.g. modeled concentration, prevalence.""")
+    total_mass_conservation = PermissibleValue(
+        text="total_mass_conservation",
+        description="""Preserves the total amount (area-proportional or population-weighted allocation), so the sum over the target matches the sum over the source. For extensive quantities — e.g. population counts.""")
+    occurrence_intensity = PermissibleValue(
+        text="occurrence_intensity",
+        description="""Preserves occurrence density — count or line-length per unit area. For discrete features — e.g. facilities, roads.""")
+    areal_coverage = PermissibleValue(
+        text="areal_coverage",
+        description="""Preserves fractional areal coverage — the proportion of the target cell intersected by the source feature. For coverage quantities — e.g. impaired waters.""")
+
+    _defn = EnumDefinition(
+        name="SpatialAggregationPreservationEnum",
+        description="""The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. Adopted from CHEL Omnibus §3.10 (\"aggregation as a geometry-weighted operator; aggregation must match meaning\"), which keys the operator on *what is preserved* rather than on the mechanics of the operator.""",
     )
 
 class TargetGeographyTypeEnum(EnumDefinitionImpl):
@@ -1841,14 +1920,19 @@ class DayBoundaryConventionEnum(EnumDefinitionImpl):
 
 class CalendarEnum(EnumDefinitionImpl):
     """
-    CF `calendar` values.
+    Calendar of the time axis. Comprises the CF `calendar` values plus product-specific conventions with no CF
+    equivalent (e.g. `daymet_365`).
     """
     gregorian = PermissibleValue(
         text="gregorian",
         description="Standard mixed Julian / Gregorian calendar (default).")
     noleap = PermissibleValue(
         text="noleap",
-        description="365-day calendar with no leap days. Common in climate-model output.")
+        description="365-day calendar with no leap days (Feb 29 dropped). Common in climate-model output.")
+    daymet_365 = PermissibleValue(
+        text="daymet_365",
+        title="Daymet 365-day",
+        description="""Fixed 365-day year that keeps Feb 29 but drops Dec 31 in leap years — the Daymet convention. Not a CF calendar: distinct from `noleap` (which drops Feb 29) and from `gregorian` (which keeps Dec 31), so neither substitute preserves Daymet's day-of-year alignment.""")
     all_leap = PermissibleValue(
         text="all_leap",
         description="366-day calendar with all years leap.")
@@ -1865,7 +1949,7 @@ class CalendarEnum(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="CalendarEnum",
-        description="CF `calendar` values.",
+        description="""Calendar of the time axis. Comprises the CF `calendar` values plus product-specific conventions with no CF equivalent (e.g. `daymet_365`).""",
     )
 
 class HomogenisationStatusEnum(EnumDefinitionImpl):
@@ -2210,6 +2294,32 @@ class LagAlignmentEnum(EnumDefinitionImpl):
         description="""Whether the values have been pre-aligned to a clinical event window in this ETL. Companion slot `lag_alignment_specifier` captures the concrete lag pattern (e.g. `lag_3_days`, `distributed_lag_0_21`). Relocated here from envar_temporal.""",
     )
 
+class PrivacyTransformationEnum(EnumDefinitionImpl):
+    """
+    A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded
+    location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.
+    """
+    none = PermissibleValue(
+        text="none",
+        description="No privacy transformation applied; the linked location is the true one.")
+    deterministic_geographic_jitter = PermissibleValue(
+        text="deterministic_geographic_jitter",
+        description="""The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL reassigns to the largest hex in the same ZIP3 below a population threshold).""")
+    suppression = PermissibleValue(
+        text="suppression",
+        description="""The value or location is suppressed (dropped / withheld) when a disclosure risk threshold is exceeded.""")
+    aggregation_to_coarser_unit = PermissibleValue(
+        text="aggregation_to_coarser_unit",
+        description="""The location is coarsened to a larger geographic unit (e.g. hex → ZIP3 or county) to protect privacy.""")
+    stochastic_perturbation = PermissibleValue(
+        text="stochastic_perturbation",
+        description="""The location is perturbed by a random (non-deterministic) offset — contrast the deterministic jitter above.""")
+
+    _defn = EnumDefinition(
+        name="PrivacyTransformationEnum",
+        description="""A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.""",
+    )
+
 class ProvenanceChainTerminusEnum(EnumDefinitionImpl):
     """
     The kind of root of a provenance chain.
@@ -2539,6 +2649,12 @@ slots.quality_flag_column = Slot(uri=ENVAR.quality_flag_column, name="quality_fl
 slots.quality_flag_column_missing_reason = Slot(uri=ENVAR.quality_flag_column_missing_reason, name="quality_flag_column_missing_reason", curie=ENVAR.curie('quality_flag_column_missing_reason'),
                    model_uri=ENVAR.quality_flag_column_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
 
+slots.null_semantics_column = Slot(uri=ENVAR.null_semantics_column, name="null_semantics_column", curie=ENVAR.curie('null_semantics_column'),
+                   model_uri=ENVAR.null_semantics_column, domain=None, range=Optional[str])
+
+slots.null_semantics_column_missing_reason = Slot(uri=ENVAR.null_semantics_column_missing_reason, name="null_semantics_column_missing_reason", curie=ENVAR.curie('null_semantics_column_missing_reason'),
+                   model_uri=ENVAR.null_semantics_column_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
+
 slots.native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
                    model_uri=ENVAR.native_spatial_resolution_m, domain=None, range=Optional[float])
 
@@ -2571,6 +2687,9 @@ slots.population_weighting_source_missing_reason = Slot(uri=ENVAR.population_wei
 
 slots.target_geography_type = Slot(uri=ENVAR.target_geography_type, name="target_geography_type", curie=ENVAR.curie('target_geography_type'),
                    model_uri=ENVAR.target_geography_type, domain=None, range=Optional[Union[str, "TargetGeographyTypeEnum"]])
+
+slots.spatial_aggregation_preserves = Slot(uri=ENVAR.spatial_aggregation_preserves, name="spatial_aggregation_preserves", curie=ENVAR.curie('spatial_aggregation_preserves'),
+                   model_uri=ENVAR.spatial_aggregation_preserves, domain=None, range=Optional[Union[str, "SpatialAggregationPreservationEnum"]])
 
 slots.temporal_resolution = Slot(uri=ENVAR.temporal_resolution, name="temporal_resolution", curie=ENVAR.curie('temporal_resolution'),
                    model_uri=ENVAR.temporal_resolution, domain=None, range=Optional[Union[str, "TemporalResolutionEnum"]])
@@ -2781,6 +2900,12 @@ slots.lag_alignment_specifier = Slot(uri=ENVAR.lag_alignment_specifier, name="la
 
 slots.lag_alignment_applied_missing_reason = Slot(uri=ENVAR.lag_alignment_applied_missing_reason, name="lag_alignment_applied_missing_reason", curie=ENVAR.curie('lag_alignment_applied_missing_reason'),
                    model_uri=ENVAR.lag_alignment_applied_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
+
+slots.privacy_transformation = Slot(uri=ENVAR.privacy_transformation, name="privacy_transformation", curie=ENVAR.curie('privacy_transformation'),
+                   model_uri=ENVAR.privacy_transformation, domain=None, range=Optional[Union[str, "PrivacyTransformationEnum"]])
+
+slots.privacy_transformation_note = Slot(uri=ENVAR.privacy_transformation_note, name="privacy_transformation_note", curie=ENVAR.curie('privacy_transformation_note'),
+                   model_uri=ENVAR.privacy_transformation_note, domain=None, range=Optional[str])
 
 slots.tool_name = Slot(uri=ENVAR.tool_name, name="tool_name", curie=ENVAR.curie('tool_name'),
                    model_uri=ENVAR.tool_name, domain=None, range=Optional[str])
