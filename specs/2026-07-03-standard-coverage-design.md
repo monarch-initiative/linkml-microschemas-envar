@@ -202,3 +202,48 @@ instance layer.
 - No Optional-tier annotations in this pass.
 - No runnable crosswalks or foreign-format validation in this pass.
 - No reconciliation of the EnVar-repo example schema drift in this pass.
+
+## 10. Addendum (2026-07-29) — named-key annotation vs a `Coverage` class
+
+The keyed-annotation encoding from §3 was reconsidered while wiring the per-slot
+"Covered by" block into the class-atlas docs. The question raised: *why is the standard
+id an annotation **key** (`omop_gaia:`, `degauss:`) rather than a `Coverage` **class**
+with `id: omop_gaia | degauss | …` serialised as a list?* The instinct is sound — a
+class-with-identifier is the natural data-modelling shape — but the annotation form
+holds for this pass. The arguments, recorded so the question does not get re-litigated
+from memory:
+
+- **The key *is* the id; these are not schema "slots".** `omop_gaia:` is a data key in
+  a map, not a declared slot. Adding a standard (`cher`, `codata`, a future `omop_x`) is
+  a data-only edit — **zero schema change**. The form is more extensible than it looks.
+- **LinkML annotations are a `Dict[str, Annotation]` keyed map at the metamodel level.**
+  A keyed map is therefore the only shape available *inside annotations*. The §3 spike
+  already proved the neighbouring forms break: a plain nested dict fails at SchemaView
+  load, and a list-of-objects fares no better through the generator pipeline.
+- **The elegant list⇄dict duality does not apply here.** LinkML's ability to serialise a
+  collection *either* as a list *or* as an id-keyed dict (with enum validation) exists
+  only for real **data** slots ranged on a class whose `id` is an `identifier` — not for
+  annotations. Getting that duality means moving coverage out of the annotation layer.
+- **The real cost the critique correctly identifies: no schema validation.** Because it
+  lives in annotations, `extent`/`status` are free text — a typo (`status: verifed`) is
+  caught only by `tests/test_coverage.py` and the generator, never by an enum. A
+  `Coverage` class would enforce the controlled vocabularies from §3.
+
+Trade-off, if coverage were promoted to a validated `Coverage` class (which would live
+in the **standards-index** model — `docs/standards-index/standards_index.schema.yaml`,
+alongside the existing id-keyed `StandardEntry` — not the umbrella schema):
+
+| | Annotation on slot (current) | `Coverage` class in standards-index |
+|---|---|---|
+| Enum validation of `extent`/`status` | tests only | schema-enforced |
+| Extensible (add a standard) | add a key | add a record |
+| Lives *on* the slot; in sync as the schema evolves | yes | no — needs a join |
+| Reuses `checker.py` slot-walk | yes | reworked |
+| Conceptual standards (C-HER/CODATA, no instances) | works | works |
+
+**Decision (2026-07-29): keep the annotation form.** It is small, doc-oriented, local
+to the slot, and in sync — the §3 "Settled decisions" locality rationale still holds.
+Promoting to a `Coverage` class reverses that decision and adds a docs join, buying
+enum validation and a first-class queryable shape. Revisit when the 5-standard ×
+all-tier matrix grows enough that it needs to be **queried and validated as first-class
+data**. Tracked as `issues/issue_coverage_class_model.md`.
