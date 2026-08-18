@@ -104,14 +104,6 @@ slots:
         plug into.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no unified external_exposure assembly)"
-              note: >-
-                CHEL emits no unified exposure-assignment table and names no
-                downstream health-layer target first-class (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: partial
@@ -181,14 +173,6 @@ slots:
         anyone can connect the two tables without guessing.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no unified external_exposure assembly)"
-              note: >-
-                With no unified assembly table, CHEL declares no health-layer join
-                field (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: partial

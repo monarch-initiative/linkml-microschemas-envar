@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-29T15:10:21
+# Generation date: 2026-08-18T17:49:09
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar
@@ -1632,10 +1632,10 @@ class MissingReasonEnum(EnumDefinitionImpl):
 
 class NullSemanticsEnum(EnumDefinitionImpl):
     """
-    The kind of "missing or zero" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 ("Null Handling"). A
-    blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling
-    (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL
-    excludes nulls from percentile-ranking denominators for exactly this reason.
+    The kind of "missing or zero" a per-value cell carries. A blank or a `0` is ambiguous: `structural_null`,
+    `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and
+    conflating them biases the health-effect estimate — nulls should be excluded from percentile-ranking denominators
+    for exactly this reason.
     """
     present = PermissibleValue(
         text="present",
@@ -1652,7 +1652,7 @@ class NullSemanticsEnum(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="NullSemanticsEnum",
-        description="""The kind of \"missing or zero\" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 (\"Null Handling\"). A blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.""",
+        description="""The kind of \"missing or zero\" a per-value cell carries. A blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — nulls should be excluded from percentile-ranking denominators for exactly this reason.""",
     )
 
 class DataTypeEnum(EnumDefinitionImpl):
@@ -1760,13 +1760,13 @@ class ExtractionMethodEnum(EnumDefinitionImpl):
         description="Direct lookup at a point station observation.")
     intersection_area_proportion = PermissibleValue(
         text="intersection_area_proportion",
-        description="""Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters).""")
+        description="""Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). Areal-coverage operator (e.g. impaired waters).""")
     raster_zonal_sum = PermissibleValue(
         text="raster_zonal_sum",
-        description="""Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex).""")
+        description="""Sum of source raster cell values falling within each target zone. Raster zonal-sum operator (e.g. population raster over a hex).""")
     feature_density = PermissibleValue(
         text="feature_density",
-        description="""Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads).""")
+        description="""Count (or line-length) of source features per unit target area. Occurrence-intensity operator (e.g. facilities, roads).""")
 
     _defn = EnumDefinition(
         name="ExtractionMethodEnum",
@@ -1776,9 +1776,8 @@ class ExtractionMethodEnum(EnumDefinitionImpl):
 class SpatialAggregationPreservationEnum(EnumDefinitionImpl):
     """
     The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial
-    support onto a target support. Adopted from CHEL Omnibus §3.10 ("aggregation as a geometry-weighted operator;
-    aggregation must match meaning"), which keys the operator on *what is preserved* rather than on the mechanics of
-    the operator.
+    support onto a target support. It keys the operator on *what is preserved* rather than on the mechanics of the
+    operator.
     """
     mean_intensity = PermissibleValue(
         text="mean_intensity",
@@ -1795,7 +1794,7 @@ class SpatialAggregationPreservationEnum(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="SpatialAggregationPreservationEnum",
-        description="""The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. Adopted from CHEL Omnibus §3.10 (\"aggregation as a geometry-weighted operator; aggregation must match meaning\"), which keys the operator on *what is preserved* rather than on the mechanics of the operator.""",
+        description="""The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. It keys the operator on *what is preserved* rather than on the mechanics of the operator.""",
     )
 
 class TargetGeographyTypeEnum(EnumDefinitionImpl):
@@ -2297,14 +2296,14 @@ class LagAlignmentEnum(EnumDefinitionImpl):
 class PrivacyTransformationEnum(EnumDefinitionImpl):
     """
     A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded
-    location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.
+    location of the exposure. A deterministic hex-reassignment jitter is the motivating case.
     """
     none = PermissibleValue(
         text="none",
         description="No privacy transformation applied; the linked location is the true one.")
     deterministic_geographic_jitter = PermissibleValue(
         text="deterministic_geographic_jitter",
-        description="""The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL reassigns to the largest hex in the same ZIP3 below a population threshold).""")
+        description="""The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. reassignment to the largest hex in the same ZIP3 below a population threshold).""")
     suppression = PermissibleValue(
         text="suppression",
         description="""The value or location is suppressed (dropped / withheld) when a disclosure risk threshold is exceeded.""")
@@ -2317,7 +2316,7 @@ class PrivacyTransformationEnum(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="PrivacyTransformationEnum",
-        description="""A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.""",
+        description="""A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. A deterministic hex-reassignment jitter is the motivating case.""",
     )
 
 class ProvenanceChainTerminusEnum(EnumDefinitionImpl):

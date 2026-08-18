@@ -155,14 +155,6 @@ slots:
         or averaging the values in a circle around it.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus §4.4.2 (nearest-hex spatial join)"
-              note: >-
-                CHEL's linkage strategy is first-class: participant lat/lon to
-                point to nearest-hex spatial join.
           omop_gaia:
             annotations:
               extent: partial
@@ -376,14 +368,6 @@ slots:
         landing was.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §4.4 (participant lat/lon to point to nearest-hex)"
-              note: >-
-                CHEL geocodes participants to points and joins to nearest hex, but
-                the precision of the geocode itself is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -449,14 +433,6 @@ slots:
         the exposure record.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §4.4"
-              note: >-
-                The geocode-to-hex join is defined, but no geocoder confidence
-                score is propagated. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -534,14 +510,6 @@ slots:
         full address history, or accounted for known trips away from home.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus §4.4 (point join; no location-over-time model)"
-              note: >-
-                CHEL joins a participant point to a hex; it carries no
-                address-period / location-over-time alignment.
           omop_gaia:
             annotations:
               extent: absent
@@ -646,14 +614,6 @@ slots:
         left, the place they arrived, both, or neither.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; no clinical-date / trajectory model)"
-              note: >-
-                CHEL is spatial-only and models no clinical-date or trajectory
-                transitions, so partial-day attribution is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -735,14 +695,6 @@ slots:
         such a shift was already built into the data.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; no clinical-date / lag alignment)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                clinical-date / lag alignment.
           omop_gaia:
             annotations:
               extent: absent
@@ -830,24 +782,18 @@ slots:
       aggregation to a coarser unit / stochastic perturbation). A linkage-stage
       concern: the transform is applied when the ambient value is attached to a
       person, so the value ultimately carried may be the value at a perturbed
-      rather than the true location. CHEL's deterministic hex-reassignment jitter
-      (§4.5) is the motivating case.
+      rather than the true location. A deterministic hex-reassignment jitter is the
+      motivating case.
     examples:
     - value: deterministic_geographic_jitter
       description: >-
-        CHEL reassigns the participant to the largest hex in the same ZIP3 when
-        the true hex's ZIP3 population is small (§4.5)
+        the participant is reassigned to the largest hex in the same ZIP3
+        when the true hex's ZIP3 population is small
     - value: none
       description: no privacy transform applied; the linked location is the true one
-    see_also:
-    - https://github.com/cladteam/CHEL
 
     annotations:
       tier: recommended
-      # CLAD-tiering-signal: CLAD would argue core (at the linkage stage). §4.5
-      # makes the privacy transform a mandatory structural step that changes the
-      # recorded location, so an undeclared perturbation is silently carried into
-      # the linked value.
       justification: >-
         A privacy transform applied AFTER the spatial join changes the recorded
         location of the exposure, so a downstream analyst cannot tell a
@@ -864,15 +810,6 @@ slots:
         so the perturbation is visible instead of hidden.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus §4.5 deterministic privacy jitter"
-              note: >-
-                CHEL §4.5 applies a deterministic hex-reassignment jitter at
-                linkage time (reassign to the largest hex in the same ZIP3 when
-                the hex's ZIP3 population is below threshold).
           omop_gaia:
             annotations:
               extent: absent
@@ -904,7 +841,7 @@ slots:
               status: asserted
               where: "C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)"
               note: >-
-                C-HER (the CHEL platform, §4.5) applies the deterministic
+                C-HER applies the deterministic
                 hex-reassignment privacy jitter this slot models — it is the
                 motivating case.
           codata:
@@ -927,7 +864,7 @@ slots:
     - value: >-
         reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000;
         HIPAA expert determination; deterministic
-      description: CHEL §4.5 deterministic privacy jitter, spelled out
+      description: deterministic privacy jitter, spelled out
 
     annotations:
       tier: recommended
@@ -943,15 +880,6 @@ slots:
         always does the same thing, and the legal rule it follows.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus §4.5 deterministic privacy jitter"
-              note: >-
-                CHEL §4.5 states the concrete trigger (hex∩ZIP3 population
-                threshold), the deterministic rule, and the HIPAA
-                expert-determination basis this note captures.
           omop_gaia:
             annotations:
               extent: absent
@@ -1179,10 +1107,9 @@ enums:
     title: Privacy Transformation
     description: >-
       A privacy-protecting transformation applied to a linked location after the
-      spatial join, which alters the recorded location of the exposure. CHEL's
-      deterministic hex-reassignment jitter (§4.5) is the motivating case.
+      spatial join, which alters the recorded location of the exposure. A
+      deterministic hex-reassignment jitter is the motivating case.
     see_also:
-    - https://github.com/cladteam/CHEL
     - https://www.hhs.gov/hipaa/for-professionals/privacy/index.html
     permissible_values:
       none:
@@ -1190,7 +1117,7 @@ enums:
       deterministic_geographic_jitter:
         description: >-
           The location is deterministically reassigned to a nearby unit under a
-          reproducible rule (e.g. CHEL reassigns to the largest hex in the same
+          reproducible rule (e.g. reassignment to the largest hex in the same
           ZIP3 below a population threshold).
       suppression:
         description: >-

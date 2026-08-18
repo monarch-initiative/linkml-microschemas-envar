@@ -171,14 +171,6 @@ slots:
         number the record is about.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no heat-metric methodology; EJI vulnerability indices)"
-              note: >-
-                CHEL carries EJI-derived vulnerability indicators, not derived
-                heat-metric methodology, so no heat-metric family is recorded.
           omop_gaia:
             annotations:
               extent: absent
@@ -391,14 +383,6 @@ slots:
         have to look everything up just to get oriented.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no derived-heat-metric equation inputs)"
-              note: >-
-                CHEL models no derived heat metrics, so per-input source codes for
-                a heat equation are not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -526,14 +510,6 @@ slots:
         taken at — this field records that height.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no derived-heat-metric methodology)"
-              note: >-
-                CHEL models no WBGT/UTCI heat metrics, so wind-measurement height
-                is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -609,14 +585,6 @@ slots:
         This says which representation fed the calculation.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no derived-heat-metric methodology)"
-              note: >-
-                CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis
-                is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -869,15 +837,6 @@ slots:
         the comparison was made against.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §3.10 (EJI percentile normalization 0-100)"
-              note: >-
-                CHEL applies EJI percentile-normalization (0-100) and computes it
-                over defined scopes, but not as a first-class heat-metric
-                percentile-baseline slot. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -955,14 +914,6 @@ slots:
         summer-only history may be unremarkable against the full year.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; no seasonal window)"
-              note: >-
-                CHEL's percentile normalization is spatial (EJI), with no
-                temporal/seasonal reference window.
           omop_gaia:
             annotations:
               extent: absent
@@ -1039,14 +990,6 @@ slots:
         label — just the first day, every day, or the last.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; no multi-day event stamping)"
-              note: >-
-                CHEL is spatial-only and stamps no multi-day heat events onto
-                days.
           omop_gaia:
             annotations:
               extent: absent

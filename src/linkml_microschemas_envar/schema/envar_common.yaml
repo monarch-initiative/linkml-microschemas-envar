@@ -80,14 +80,6 @@ slots:
         the fields accordingly.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no schema-version construct)"
-              note: >-
-                CHEL is a pipeline, not a metadata sidecar standard; it carries no
-                schema-version field on emitted records.
           omop_gaia:
             annotations:
               extent: absent
@@ -158,15 +150,6 @@ slots:
         lets you look up exactly where it came from and how it was made.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (Foundry RID)"
-              note: >-
-                CHEL identifies datasets by Foundry RID in the lineage table, but
-                has no per-sidecar stable record id that a health layer's
-                source-value field carries.
           omop_gaia:
             annotations:
               extent: partial
@@ -234,14 +217,6 @@ slots:
         be passed around and published safely.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §4.5 privacy architecture"
-              note: >-
-                Privacy architecture is central to CHEL (ZIP3/hex separation,
-                jitter) but there is no per-record PHI-status assertion flag.
           omop_gaia:
             annotations:
               extent: absent
@@ -340,14 +315,11 @@ enums:
   NullSemanticsEnum:
     title: Null Semantics
     description: >-
-      The kind of "missing or zero" a per-value cell carries, adopted from
-      CHEL Omnibus §5.3.3 ("Null Handling"). A blank or a `0` is ambiguous:
-      `structural_null`, `derived_null` and `true_zero` have opposite correct
-      handling (drop / drop-from-denominator / keep-as-zero), and conflating
-      them biases the health-effect estimate — CHEL excludes nulls from
-      percentile-ranking denominators for exactly this reason.
-    see_also:
-    - https://github.com/cladteam/CHEL
+      The kind of "missing or zero" a per-value cell carries. A blank or a `0`
+      is ambiguous: `structural_null`, `derived_null` and `true_zero` have
+      opposite correct handling (drop / drop-from-denominator / keep-as-zero),
+      and conflating them biases the health-effect estimate — nulls should be
+      excluded from percentile-ranking denominators for exactly this reason.
     permissible_values:
       present:
         description: A real, non-missing value.

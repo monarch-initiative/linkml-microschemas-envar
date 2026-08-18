@@ -136,14 +136,6 @@ slots:
         same measurement again.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus (EJI indicator names)"
-              note: >-
-                CHEL carries indicator names (from EJI etc.), but not as a
-                portable variable short-name. Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -210,14 +202,6 @@ slots:
         reading the record knows what it is without decoding jargon.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus (EJI indicator labels)"
-              note: >-
-                Indicator labels exist in CHEL's EJI-derived indicators but not as
-                a first-class variable label. Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -298,14 +282,6 @@ slots:
         thing, no matter what each dataset called it.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no environmental-substance vocabulary; EnVar-Tracker #38)"
-              note: >-
-                CHEL carries no environmental-substance vocabulary; the concept
-                associated with the exposure is unfilled (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: full
@@ -430,14 +406,6 @@ slots:
         what a human-written unit string means.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §3.10 (percentile-normalized 0-100 or native)"
-              note: >-
-                CHEL values are percentile-normalized 0-100 or native, not
-                first-class UCUM units. Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -540,14 +508,6 @@ slots:
         numbers mean.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §3.10 (native vs percentile-normalized)"
-              note: >-
-                CHEL distinguishes native from percentile-normalized values but
-                carries no first-class UCUM native unit. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -712,15 +672,6 @@ slots:
         catalogue used by many hospital research databases.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no substance/target vocabulary; EnVar-Tracker #38)"
-              note: >-
-                CHEL carries no environmental-substance or target-concept
-                vocabulary (ENVO/ECTO/CHEBI); the exposure concept is unfilled
-                (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: full
@@ -794,14 +745,6 @@ slots:
         under an identifier the database already knows.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (exposure concept unfilled; EnVar-Tracker #38)"
-              note: >-
-                CHEL leaves the exposure concept unfilled and binds no
-                target-vocabulary concept id (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: full
@@ -885,14 +828,6 @@ slots:
         yet. It turns a silent gap into an explicit, reportable fact.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no target-vocabulary binding; EnVar-Tracker #38)"
-              note: >-
-                With no target-concept binding, CHEL records no
-                existing/proposed/gap concept status (EnVar-Tracker #38).
           omop_gaia:
             annotations:
               extent: absent
@@ -1009,14 +944,6 @@ slots:
                 GAIA registers the attribute's numeric qudt:dataType at
                 dataset-registration time; the EnVar translation carries it
                 first-class as value_data_type.
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus §3.10 (numeric / percentile / binary-flag)"
-              note: >-
-                CHEL carries the value data type first-class: numeric,
-                percentile-normalized, or binary vulnerability flag.
           degauss:
             annotations:
               extent: absent
@@ -1073,14 +1000,6 @@ slots:
         error; this is a warning signal, not a hard rule.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)"
-              note: >-
-                CHEL has range/domain validation but carries no per-variable
-                plausible min/max as metadata.
           omop_gaia:
             annotations:
               extent: full
@@ -1141,14 +1060,6 @@ slots:
         unit mix-up or a data error worth investigating.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus §5.3 (range/domain checks, not per-value plausible bounds)"
-              note: >-
-                CHEL has range/domain validation but carries no per-variable
-                plausible min/max as metadata.
           omop_gaia:
             annotations:
               extent: full

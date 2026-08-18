@@ -89,14 +89,6 @@ slots:
         of value you are looking at before comparing anything.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -165,14 +157,6 @@ slots:
         differ by many degrees, so it matters which one the value represents.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -237,14 +221,6 @@ slots:
         redundancy is deliberate.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -318,14 +294,6 @@ slots:
         day.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -384,14 +352,6 @@ slots:
         simply never covered that time.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: full
@@ -456,14 +416,6 @@ slots:
         because data is missing, but because it does not exist yet.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: full
@@ -526,14 +478,6 @@ slots:
         big book you photocopied.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -596,14 +540,6 @@ slots:
         range.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent
@@ -678,14 +614,6 @@ slots:
 #────────────────────────────────────────────────────────────────
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (spatial-only; start_date only)"
-              note: >-
-                CHEL is spatial-only; it carries participant start_date but no
-                temporal-aggregation semantics.
           omop_gaia:
             annotations:
               extent: absent

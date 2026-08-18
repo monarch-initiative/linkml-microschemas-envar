@@ -95,14 +95,6 @@ slots:
         values were taken from.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (Foundry dataset name + RID)"
-              note: >-
-                CHEL names each source dataset first-class in the §2.7
-                input-lineage table (Foundry dataset name + RID).
           omop_gaia:
             annotations:
               extent: full
@@ -166,14 +158,6 @@ slots:
         `daymet_v4`.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table"
-              note: >-
-                Source datasets are named in the lineage table but there is no
-                stable short registry code per product.
           omop_gaia:
             annotations:
               extent: partial
@@ -238,13 +222,6 @@ slots:
         current home of the data.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (source links)"
-              note: >-
-                The lineage table gives source links, not always DOIs.
           omop_gaia:
             annotations:
               extent: partial
@@ -326,14 +303,6 @@ slots:
         the values came from.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Omnibus Part 6 (CHEL 2022 / 2024 releases)"
-              note: >-
-                CHEL versions its releases first-class (CHEL 2022 vs 2024) with a
-                documented version checklist.
           omop_gaia:
             annotations:
               extent: full
@@ -397,15 +366,6 @@ slots:
         different from data that should exist but is missing.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (source vintages)"
-              note: >-
-                Source vintages are recorded per input, but product temporal
-                coverage is not a first-class per-value field. Conservative:
-                partial.
           omop_gaia:
             annotations:
               extent: full
@@ -469,14 +429,6 @@ slots:
         Places outside this area simply have no data.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table"
-              note: >-
-                Source spatial extent is implicit in the national-US inputs but
-                not a first-class per-source field. Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -539,14 +491,6 @@ slots:
         tells you where to go with questions.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (source links)"
-              note: >-
-                Provider/publisher is recoverable from the source links but not a
-                first-class per-source field.
           omop_gaia:
             annotations:
               extent: full
@@ -607,14 +551,6 @@ slots:
         exactly how to cite it.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (source links)"
-              note: >-
-                Source links are given; a formatted citation is not carried.
-                Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -715,14 +651,6 @@ slots:
         you are allowed to do with the data.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Omnibus (no per-source license field)"
-              note: >-
-                CHEL operates at the source-dataset layer but carries no
-                per-source license field.
           omop_gaia:
             annotations:
               extent: partial
@@ -782,14 +710,6 @@ slots:
         direct file link that stops working when files move.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (source links)"
-              note: >-
-                The lineage table carries source links, which serve as access
-                URLs, though not as a first-class landing-page slot.
           omop_gaia:
             annotations:
               extent: full
@@ -849,14 +769,6 @@ slots:
         This records which package the producer ships.
       covered_by:
         annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Omnibus §2.7 lineage table (native geometry per input)"
-              note: >-
-                The lineage table records native geometry/role per input, from
-                which native format is partly recoverable. Conservative: partial.
           omop_gaia:
             annotations:
               extent: partial

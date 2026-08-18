@@ -792,8 +792,8 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>Null-Semantics Column</strong><br><small><code>null_semantics_column</code> · text</small></td>
-<td>Name of a per-value column carrying a null-semantics indicator drawn from <code>NullSemanticsEnum</code> (<code>present</code> / <code>structural_null</code> / <code>derived_null</code> / <code>true_zero</code>; see envar_common). Bound here in <code>DataLayout</code> — mirroring the existing per-value <code>value_uncertainty_column</code> / <code>quality_flag_column</code> pattern — because the distinction is per-value: whether a given blank or <code>0</code> means "no source data", "aggregation impossible", or "measured zero" varies row by row and so must be carried alongside the values, not declared once for the dataset. Null with reason when the producer does not distinguish null kinds. The vocabulary itself lives in the Uncertainty / shared layer (<code>NullSemanticsEnum</code>).<br>💡 <em>A blank cell or a <code>0</code> can mean three very different things: there was never any data here, we could not compute a value here, or the value is genuinely zero. Each needs different treatment. This names the column that tags every value with which kind it is, so nobody mistakes "no data" for "zero exposure".</em><br>↗ <a href="https://github.com/cladteam/CHEL">github.com</a></td>
-<td>A blank or a <code>0</code> is ambiguous, and the three kinds of "missing/zero" have OPPOSITE correct handling — structural_null and derived_null must be dropped (the latter also excluded from denominators) while true_zero must be kept as a real zero; conflating them biases the health-effect estimate. CHEL §5.3.3 excludes nulls from percentile denominators for exactly this reason, so binding a per-value null-kind column is what lets a consumer handle each cell correctly instead of reading missingness as low or zero exposure.</td>
+<td>Name of a per-value column carrying a null-semantics indicator drawn from <code>NullSemanticsEnum</code> (<code>present</code> / <code>structural_null</code> / <code>derived_null</code> / <code>true_zero</code>; see envar_common). Bound here in <code>DataLayout</code> — mirroring the existing per-value <code>value_uncertainty_column</code> / <code>quality_flag_column</code> pattern — because the distinction is per-value: whether a given blank or <code>0</code> means "no source data", "aggregation impossible", or "measured zero" varies row by row and so must be carried alongside the values, not declared once for the dataset. Null with reason when the producer does not distinguish null kinds. The vocabulary itself lives in the Uncertainty / shared layer (<code>NullSemanticsEnum</code>).<br>💡 <em>A blank cell or a <code>0</code> can mean three very different things: there was never any data here, we could not compute a value here, or the value is genuinely zero. Each needs different treatment. This names the column that tags every value with which kind it is, so nobody mistakes "no data" for "zero exposure".</em></td>
+<td>A blank or a <code>0</code> is ambiguous, and the three kinds of "missing/zero" have OPPOSITE correct handling — structural_null and derived_null must be dropped (the latter also excluded from denominators) while true_zero must be kept as a real zero; conflating them biases the health-effect estimate. Nulls should be excluded from percentile denominators for exactly this reason, so binding a per-value null-kind column is what lets a consumer handle each cell correctly instead of reading missingness as low or zero exposure.</td>
 <td><code>null_kind</code> — per-value column tagging each cell present / structural_null / derived_null / true_zero, next to the value column</td>
 <td>🟨 Recommended</td>
 </tr>
@@ -921,9 +921,9 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>Spatial Aggregation Preserved Quantity</strong><br><small><code>spatial_aggregation_preserves</code> · <a href="#spatial-aggregation-preserved-quantity">Spatial Aggregation Preserved Quantity</a> value</small></td>
-<td>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.<br>💡 <em>Turning map data measured on one set of shapes into values on another set of shapes can aim to keep different things unchanged — the average level of something, the total amount of it, how densely it occurs, or how much of an area it covers. This records which of those the conversion was designed to keep true, because the same input handled two different ways produces two different numbers.</em></td>
+<td>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).<br>💡 <em>Turning map data measured on one set of shapes into values on another set of shapes can aim to keep different things unchanged — the average level of something, the total amount of it, how densely it occurs, or how much of an area it covers. This records which of those the conversion was designed to keep true, because the same input handled two different ways produces two different numbers.</em></td>
 <td>Recording <em>what quantity the operator preserves</em> — not just the operator name — is what makes two datasets' spatial values comparable and poolable: an area-weighted mean and a mass-conserving allocation applied to the same input give different numbers, and only the preserved-quantity tag tells a downstream analyst which one a value is, so two supports can be reconciled rather than silently mixed.</td>
-<td><code>mean_intensity</code> — area-weighted interpolation of a modeled concentration preserves the area-mean intensity (CHEL tract-to-hex concentration case)<br><code>total_mass_conservation</code> — population-weighted / area-proportional allocation of a count preserves the total (CHEL population-count case)</td>
+<td><code>mean_intensity</code> — area-weighted interpolation of a modeled concentration preserves the area-mean intensity (tract-to-hex concentration case)<br><code>total_mass_conservation</code> — population-weighted / area-proportional allocation of a count preserves the total (population-count case)</td>
 <td>🟨 Recommended</td>
 </tr>
 </tbody>
@@ -964,21 +964,20 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>intersection area proportion</strong></td>
-<td>Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters).</td>
+<td>Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). Areal-coverage operator (e.g. impaired waters).</td>
 </tr>
 <tr>
 <td><strong>raster zonal sum</strong></td>
-<td>Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex).</td>
+<td>Sum of source raster cell values falling within each target zone. Raster zonal-sum operator (e.g. population raster over a hex).</td>
 </tr>
 <tr>
 <td><strong>feature density</strong></td>
-<td>Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads).</td>
+<td>Count (or line-length) of source features per unit target area. Occurrence-intensity operator (e.g. facilities, roads).</td>
 </tr>
 </tbody>
 </table>
 <h3 id="spatial-aggregation-preserved-quantity">Spatial Aggregation Preserved Quantity<a class="headerlink" href="#spatial-aggregation-preserved-quantity" title="Permanent link">¶</a></h3>
-<p>The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. Adopted from CHEL Omnibus §3.10 ("aggregation as a geometry-weighted operator; aggregation must match meaning"), which keys the operator on <em>what is preserved</em> rather than on the mechanics of the operator.</p>
-<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a></p>
+<p>The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. It keys the operator on <em>what is preserved</em> rather than on the mechanics of the operator.</p>
 <table>
 <thead>
 <tr>
@@ -2022,16 +2021,16 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>Privacy Transformation</strong><br><small><code>privacy_transformation</code> · <a href="#privacy-transformation">Privacy Transformation</a> value</small></td>
-<td>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.<br>💡 <em>To protect privacy, a pipeline may deliberately move, blur, or drop a person's location after matching them to environmental data — so the value they end up with may be the value at a nearby place, not their real one. This records whether such a change was made and of what kind, so the perturbation is visible instead of hidden.</em><br>↗ <a href="https://github.com/cladteam/CHEL">github.com</a></td>
+<td>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. A deterministic hex-reassignment jitter is the motivating case.<br>💡 <em>To protect privacy, a pipeline may deliberately move, blur, or drop a person's location after matching them to environmental data — so the value they end up with may be the value at a nearby place, not their real one. This records whether such a change was made and of what kind, so the perturbation is visible instead of hidden.</em></td>
 <td>A privacy transform applied AFTER the spatial join changes the recorded location of the exposure, so a downstream analyst cannot tell a faithfully-linked value from a privacy-perturbed one; the ambient value attached to a person may be the value at a reassigned location, not the true one. Recording the transform is what keeps that perturbation declared rather than silent — and it is a linkage-stage concern, squarely in the layer EnVar defers to whoever performs the person-join.</td>
-<td><code>deterministic_geographic_jitter</code> — CHEL reassigns the participant to the largest hex in the same ZIP3 when the true hex's ZIP3 population is small (§4.5)<br><code>none</code> — no privacy transform applied; the linked location is the true one</td>
+<td><code>deterministic_geographic_jitter</code> — the participant is reassigned to the largest hex in the same ZIP3 when the true hex's ZIP3 population is small<br><code>none</code> — no privacy transform applied; the linked location is the true one</td>
 <td>🟨 Recommended</td>
 </tr>
 <tr>
 <td><strong>Privacy Transformation Note</strong><br><small><code>privacy_transformation_note</code> · text</small></td>
 <td>Free-text detail of the privacy transformation named in <code>privacy_transformation</code>: the trigger / threshold, determinism, and governance basis. E.g. "reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic".<br>💡 <em>The spelled-out details of the privacy change: what set it off (for example a small local population), the exact cutoff used, whether it always does the same thing, and the legal rule it follows.</em></td>
 <td>The transform name alone does not say what triggered it, at what threshold, or under what governance — two deterministic-jitter records with different thresholds perturb locations differently. Recording the trigger, determinism, and legal basis is what makes the perturbation reproducible and auditable rather than merely acknowledged.</td>
-<td><code>reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic</code> — CHEL §4.5 deterministic privacy jitter, spelled out</td>
+<td><code>reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic</code> — deterministic privacy jitter, spelled out</td>
 <td>🟨 Recommended</td>
 </tr>
 </tbody>
@@ -2250,8 +2249,8 @@ name and value type in small print), then four columns:</p>
 </tbody>
 </table>
 <h3 id="privacy-transformation">Privacy Transformation<a class="headerlink" href="#privacy-transformation" title="Permanent link">¶</a></h3>
-<p>A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.</p>
-<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a> · <a href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">hhs.gov</a></p>
+<p>A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. A deterministic hex-reassignment jitter is the motivating case.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">hhs.gov</a></p>
 <table>
 <thead>
 <tr>
@@ -2266,7 +2265,7 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>deterministic geographic jitter</strong></td>
-<td>The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL reassigns to the largest hex in the same ZIP3 below a population threshold).</td>
+<td>The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. reassignment to the largest hex in the same ZIP3 below a population threshold).</td>
 </tr>
 <tr>
 <td><strong>suppression</strong></td>
@@ -3180,8 +3179,7 @@ name and value type in small print), then four columns:</p>
 </tbody>
 </table>
 <h3 id="null-semantics">Null Semantics<a class="headerlink" href="#null-semantics" title="Permanent link">¶</a></h3>
-<p>The kind of "missing or zero" a per-value cell carries, adopted from CHEL Omnibus §5.3.3 ("Null Handling"). A blank or a <code>0</code> is ambiguous: <code>structural_null</code>, <code>derived_null</code> and <code>true_zero</code> have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.</p>
-<p><strong>Standards &amp; references:</strong> <a href="https://github.com/cladteam/CHEL">github.com</a></p>
+<p>The kind of "missing or zero" a per-value cell carries. A blank or a <code>0</code> is ambiguous: <code>structural_null</code>, <code>derived_null</code> and <code>true_zero</code> have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — nulls should be excluded from percentile-ranking denominators for exactly this reason.</p>
 <table>
 <thead>
 <tr>
