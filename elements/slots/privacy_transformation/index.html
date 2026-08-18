@@ -612,17 +612,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -705,7 +694,7 @@
 
 
 <h1 id="slot-privacy-transformation-privacy_transformation">Slot: Privacy Transformation (privacy_transformation)</h1>
-<p><em>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. CHEL's deterministic hex-reassignment jitter (§4.5) is the motivating case.</em></p>
+<p><em>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. A deterministic hex-reassignment jitter is the motivating case.</em></p>
 <p><strong>Tier:</strong> <code>recommended</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>A privacy transform applied AFTER the spatial join changes the recorded location of the exposure, so a downstream analyst cannot tell a faithfully-linked value from a privacy-perturbed one; the ambient value attached to a person may be the value at a reassigned location, not the true one. Recording the transform is what keeps that perturbation declared rather than silent — and it is a linkage-stage concern, squarely in the layer EnVar defers to whoever performs the person-join.</p>
@@ -782,10 +771,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><a href="https://github.com/cladteam/CHEL">https://github.com/cladteam/CHEL</a></li>
-</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="annotations">Annotations</h3>
 <table>
@@ -862,23 +847,6 @@
 <span class="w">  </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus §4.5 deterministic privacy jitter</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §4.5 applies a deterministic hex-reassignment jitter at linkage</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">time (reassign to the largest hex in the same ZIP3 when the hex&#39;s ZIP3</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">population is below threshold).</span>
 <span class="w">      </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
@@ -942,8 +910,8 @@
 <span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">hex in same ZIP3)</span>
 <span class="w">          </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER (the CHEL platform, §4.5) applies the deterministic hex-reassignment</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">privacy jitter this slot models — it is the motivating case.</span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER applies the deterministic hex-reassignment privacy jitter</span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">this slot models — it is the motivating case.</span>
 <span class="w">      </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
@@ -965,18 +933,16 @@
 <span class="w">  </span><span class="s">/</span><span class="nv"> </span><span class="s">deterministic</span><span class="nv"> </span><span class="s">geographic</span><span class="nv"> </span><span class="s">jitter</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">suppression</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">aggregation</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">coarser</span><span class="nv"> </span><span class="s">unit</span>
 <span class="w">  </span><span class="s">/</span><span class="nv"> </span><span class="s">stochastic</span><span class="nv"> </span><span class="s">perturbation).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">linkage-stage</span><span class="nv"> </span><span class="s">concern:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">transform</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">applied</span><span class="nv"> </span><span class="s">when</span>
 <span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">ambient</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">attached</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">person,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">ultimately</span><span class="nv"> </span><span class="s">carried</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">be</span>
-<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">perturbed</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">true</span><span class="nv"> </span><span class="s">location.</span><span class="nv"> </span><span class="s">CHEL</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">deterministic</span><span class="nv"> </span><span class="s">hex-reassignment</span>
-<span class="w">  </span><span class="s">jitter</span><span class="nv"> </span><span class="s">(§4.5)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">motivating</span><span class="nv"> </span><span class="s">case.&#39;</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">perturbed</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">true</span><span class="nv"> </span><span class="s">location.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">deterministic</span><span class="nv"> </span><span class="s">hex-reassignment</span>
+<span class="w">  </span><span class="s">jitter</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">motivating</span><span class="nv"> </span><span class="s">case.&#39;</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Privacy Transformation</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deterministic_geographic_jitter</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL reassigns the participant to the largest hex in the same ZIP3</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">when the true hex&#39;s ZIP3 population is small (§4.5)</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the participant is reassigned to the largest hex in the same ZIP3 when</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">the true hex&#39;s ZIP3 population is small</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no privacy transform applied; the linked location is the true one</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
-<span class="nt">see_also</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/cladteam/CHEL</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>

@@ -694,7 +694,7 @@
 
 
 <h1 id="slot-spatial-aggregation-preserved-quantity-spatial_aggregation_preserves">Slot: Spatial Aggregation Preserved Quantity (spatial_aggregation_preserves)</h1>
-<p><em>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.</em></p>
+<p><em>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).</em></p>
 <p><strong>Tier:</strong> <code>recommended</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>Recording <em>what quantity the operator preserves</em> — not just the operator name — is what makes two datasets' spatial values comparable and poolable: an area-weighted mean and a mass-conserving allocation applied to the same input give different numbers, and only the preserved-quantity tag tells a downstream analyst which one a value is, so two supports can be reconciled rather than silently mixed.</p>
@@ -848,24 +848,6 @@
 <span class="w">  </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Omnibus §3.10 (geometry-weighted operator; preserved-quantity</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">table)</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">(mean intensity / mass conservation / occurrence intensity / areal coverage)</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">and selects the operator from it.</span>
 <span class="w">      </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
@@ -949,15 +931,14 @@
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">when a value on a source spatial support is re-expressed on the target support —</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">not the mechanics of the operator (that is `extraction_method`), but the invariant</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Adopted from CHEL&#39;s §3.10 &quot;aggregation must match meaning&quot; preservation table.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spatial Aggregation Preserved Quantity</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mean_intensity</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">area-weighted interpolation of a modeled concentration preserves the</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">area-mean intensity (CHEL tract-to-hex concentration case)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">area-mean intensity (tract-to-hex concentration case)</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_mass_conservation</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">population-weighted / area-proportional allocation of a count preserves</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">the total (CHEL population-count case)</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">the total (population-count case)</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
