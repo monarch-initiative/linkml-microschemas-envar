@@ -102,6 +102,15 @@ slots:
         number, so you know how much to trust it and what could go wrong.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md Part 3 (aggregation operator explicit; source model inherited from EJI)"
+              note: >-
+                CHEL makes the aggregation operator explicit, but the source
+                exposure-model type (reanalysis vs station-interp) is inherited
+                from EJI, not modelled by CLAD.
           omop_gaia:
             annotations:
               extent: absent
@@ -169,6 +178,14 @@ slots:
         that went into cooking up the final numbers.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §2.7 lineage / Part 3 inputs"
+              note: >-
+                Inputs enter mostly via EJI and are listed in the lineage table,
+                but not as a per-value model-input list. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -233,6 +250,14 @@ slots:
         years later.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)"
+              note: >-
+                CHEL validates its own geometry/conservation, not the source
+                model; it carries no source methods-paper DOI.
           omop_gaia:
             annotations:
               extent: absent
@@ -313,6 +338,14 @@ slots:
         low score means treat the numbers with caution.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)"
+              note: >-
+                CHEL validates its own geometry/conservation, not source-model
+                skill (R2), so it carries no source-model cross-validation R2.
           omop_gaia:
             annotations:
               extent: absent
@@ -399,6 +432,14 @@ slots:
         not rediscover them the hard way.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md Part 4"
+              note: >-
+                CHEL validates geometry/conservation, not source-model skill, so
+                it records no source-model biases.
           omop_gaia:
             annotations:
               extent: absent
@@ -503,6 +544,14 @@ slots:
         technique was used.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md Part 4"
+              note: >-
+                CHEL carries no source-model bias-correction flag; it validates
+                its own geometry/conservation, not source-model skill.
           omop_gaia:
             annotations:
               extent: absent

@@ -152,6 +152,15 @@ slots:
         true value should fall inside, say 95 times out of 100).
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §4.6.4 (source uncertainty acknowledged, none carried)"
+              note: >-
+                CHEL §4.6.4 acknowledges source uncertainty but carries no
+                per-value uncertainty on its indicators (only the EJI population
+                margin of error `M_TOTPOP` passes through).
           omop_gaia:
             annotations:
               extent: absent
@@ -235,6 +244,13 @@ slots:
         the units of the value itself.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §4.6.4"
+              note: >-
+                No per-value uncertainty is carried, so its units are absent too.
           omop_gaia:
             annotations:
               extent: absent
@@ -322,6 +338,15 @@ slots:
         also records where those scores were published.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §4.6.4"
+              note: >-
+                CHEL carries no per-value SE / prediction interval /
+                model-aggregate uncertainty; §4.6.4 only acknowledges source
+                uncertainty.
           omop_gaia:
             annotations:
               extent: absent
@@ -450,6 +475,15 @@ slots:
         matters to know which is which.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §4.3.1, §4.3.3 (conservation diagnostics; null taxonomy)"
+              note: >-
+                CHEL §4.3 has conservation diagnostics and a null taxonomy
+                (validation), but no per-value missing-data-handling method slot.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -569,6 +603,15 @@ slots:
         the dataset really is.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §4.3.1, §4.3.2 (conservation/range checks)"
+              note: >-
+                Completeness is checkable via CHEL's §4.3 conservation/range
+                diagnostics but not carried as a per-value completeness
+                percentage. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent

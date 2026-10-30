@@ -109,6 +109,14 @@ slots:
         about the run only makes sense once you know what tool ran.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §5.5 (Foundry RID + CHEL release version)"
+              note: >-
+                CHEL identifies its pipeline via Foundry RID + CHEL release, but
+                not as a discrete tool-name field.
           omop_gaia:
             annotations:
               extent: absent
@@ -170,6 +178,14 @@ slots:
         which edition of the tool did the work.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md Part 5 / §5.5 (CHEL release version)"
+              note: >-
+                CHEL release version (2022 / 2024) is documented, but not as a
+                per-tool semver in a run record. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -254,6 +270,14 @@ slots:
         download location of the exact software package used.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §5.5 (Foundry datasets; no container repo)"
+              note: >-
+                CHEL is built as Foundry datasets (§5.5 RIDs), not a container
+                image, so it carries no container image repository.
           omop_gaia:
             annotations:
               extent: absent
@@ -334,6 +358,14 @@ slots:
         changes.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §5.5 (Foundry datasets; no container digest)"
+              note: >-
+                CHEL is built as Foundry datasets (§5.5 RIDs); it carries no
+                container image digest.
           omop_gaia:
             annotations:
               extent: absent
@@ -410,6 +442,13 @@ slots:
         the knobs identically before pressing start.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run argument map)"
+              note: >-
+                CHEL carries no per-run argument map.
           omop_gaia:
             annotations:
               extent: absent
@@ -467,6 +506,13 @@ slots:
         zones line up.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run timestamp)"
+              note: >-
+                CHEL carries no per-run timestamp on emitted records.
           omop_gaia:
             annotations:
               extent: partial
@@ -568,6 +614,13 @@ slots:
         files are exactly the same without inspecting their contents.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output file hashes.
           omop_gaia:
             annotations:
               extent: absent
@@ -624,6 +677,13 @@ slots:
         ever ran.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output row counts or hashes.
           omop_gaia:
             annotations:
               extent: absent
@@ -680,6 +740,13 @@ slots:
         data it describes.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output file hashes.
           omop_gaia:
             annotations:
               extent: absent
@@ -736,6 +803,13 @@ slots:
         along the way.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no per-run row counts / hashes)"
+              note: >-
+                CHEL carries no per-run input/output row counts or hashes.
           omop_gaia:
             annotations:
               extent: absent
@@ -841,6 +915,16 @@ slots:
         it passed through on the way to you.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §2.1 (Source to Module Assignment pathway)"
+              note: >-
+                CHEL documents a lineage pathway (Source to Cleaning to
+                Harmonization to Hex Aggregation to Normalization to Module
+                Assignment), but not as an ordered per-run W3C-PROV chain.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: partial
@@ -899,6 +983,15 @@ slots:
         Different starting points deserve different levels of scrutiny.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §2.7 (raw source inputs)"
+              note: >-
+                CHEL's lineage terminates at raw source downloads (EJI, ACS, GPW
+                v4, etc.), but the terminus type is not a first-class typed field.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent

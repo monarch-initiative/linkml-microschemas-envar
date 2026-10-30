@@ -155,7 +155,7 @@ class MissingReasonEnum(str, Enum):
 
 class NullSemanticsEnum(str, Enum):
     """
-    The kind of "missing or zero" a per-value cell carries. A blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — nulls should be excluded from percentile-ranking denominators for exactly this reason.
+    The kind of "missing or zero" a per-value cell carries, adopted from CHEL Documentation.md §4.3.3 ("Null Handling"). A blank or a `0` is ambiguous: `structural_null`, `derived_null` and `true_zero` have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.
     """
     present = "present"
     """
@@ -281,21 +281,21 @@ class ExtractionMethodEnum(str, Enum):
     """
     intersection_area_proportion = "intersection_area_proportion"
     """
-    Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). Areal-coverage operator (e.g. impaired waters).
+    Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters).
     """
     raster_zonal_sum = "raster_zonal_sum"
     """
-    Sum of source raster cell values falling within each target zone. Raster zonal-sum operator (e.g. population raster over a hex).
+    Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex).
     """
     feature_density = "feature_density"
     """
-    Count (or line-length) of source features per unit target area. Occurrence-intensity operator (e.g. facilities, roads).
+    Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads).
     """
 
 
 class SpatialAggregationPreservationEnum(str, Enum):
     """
-    The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. It keys the operator on *what is preserved* rather than on the mechanics of the operator.
+    The quantity a spatial-aggregation operator holds invariant when a value is re-expressed from a source spatial support onto a target support. Adopted from CHEL Documentation.md §3.10 ("aggregation as a geometry-weighted operator; aggregation must match meaning"), which keys the operator on *what is preserved* rather than on the mechanics of the operator.
     """
     mean_intensity = "mean_intensity"
     """
@@ -817,7 +817,7 @@ class LagAlignmentEnum(str, Enum):
 
 class PrivacyTransformationEnum(str, Enum):
     """
-    A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. A deterministic hex-reassignment jitter is the motivating case.
+    A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (Documentation.md §2.2.2) is the motivating case.
     """
     none = "none"
     """
@@ -825,7 +825,7 @@ class PrivacyTransformationEnum(str, Enum):
     """
     deterministic_geographic_jitter = "deterministic_geographic_jitter"
     """
-    The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. reassignment to the largest hex in the same ZIP3 below a population threshold).
+    The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL's ZIP3-based hex reassignment below a population threshold).
     """
     suppression = "suppression"
     """
@@ -1183,6 +1183,40 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                     'column '
                                                                                                     'name)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   '(from '
+                                                                                                   'EJI '
+                                                                                                   'etc.), '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'portable '
+                                                                                                   'variable '
+                                                                                                   'short-name. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    'column '
+                                                                                                    'codes '
+                                                                                                    '(EJI '
+                                                                                                    'E_ '
+                                                                                                    '/ '
+                                                                                                    'EPL_ '
+                                                                                                    '/ '
+                                                                                                    'F_ '
+                                                                                                    'names)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -1383,6 +1417,34 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                     '/ '
                                                                                                     'description'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Indicator '
+                                                                                                   'labels '
+                                                                                                   'exist '
+                                                                                                   'in '
+                                                                                                   "CHEL's "
+                                                                                                   'EJI-derived '
+                                                                                                   'indicators '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'variable '
+                                                                                                   'label. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.3-2.6 '
+                                                                                                    '(indicator '
+                                                                                                    'descriptions)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -1567,6 +1629,35 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                     'planned '
                                                                                                     '§8)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'concept '
+                                                                                                   'associated '
+                                                                                                   'with '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'environmental-substance '
+                                                                                                    'vocabulary; '
+                                                                                                    'EnVar-Tracker '
+                                                                                                    '#38)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'partial'},
                                                                                    'note': {'tag': 'note',
@@ -1845,6 +1936,36 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                     'Value-tagged '
                                                                                                     'columns)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'values '
+                                                                                                   'are '
+                                                                                                   'percentile-normalized '
+                                                                                                   '0-100 '
+                                                                                                   'or '
+                                                                                                   'native, '
+                                                                                                   'not '
+                                                                                                   'first-class '
+                                                                                                   'UCUM '
+                                                                                                   'units. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§3.6; '
+                                                                                                    'CSV '
+                                                                                                    'E_* '
+                                                                                                    '(native) '
+                                                                                                    'vs '
+                                                                                                    'EPL_* '
+                                                                                                    '(percentile '
+                                                                                                    '0-100)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'partial'},
                                                                                    'note': {'tag': 'note',
@@ -2063,6 +2184,37 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'distinguishes '
+                                                                                                   'native '
+                                                                                                   'from '
+                                                                                                   'percentile-normalized '
+                                                                                                   'values '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'first-class '
+                                                                                                   'UCUM '
+                                                                                                   'native '
+                                                                                                   'unit. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§3.6; '
+                                                                                                    'CSV '
+                                                                                                    'E_* '
+                                                                                                    '(native) '
+                                                                                                    'vs '
+                                                                                                    'EPL_* '
+                                                                                                    '(percentile)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -2322,6 +2474,35 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'or '
+                                                                                                   'target-concept '
+                                                                                                   'vocabulary '
+                                                                                                   '(ENVO/ECTO/CHEBI); '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'substance/target '
+                                                                                                    'vocabulary; '
+                                                                                                    'EnVar-Tracker '
+                                                                                                    '#38)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -2487,6 +2668,34 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'leaves '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'unfilled '
+                                                                                                   'and '
+                                                                                                   'binds '
+                                                                                                   'no '
+                                                                                                   'target-vocabulary '
+                                                                                                   'concept '
+                                                                                                   'id '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(exposure '
+                                                                                                    'concept '
+                                                                                                    'unfilled; '
+                                                                                                    'EnVar-Tracker '
+                                                                                                    '#38)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -2659,6 +2868,32 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'With '
+                                                                                                   'no '
+                                                                                                   'target-concept '
+                                                                                                   'binding, '
+                                                                                                   'CHEL '
+                                                                                                   'records '
+                                                                                                   'no '
+                                                                                                   'existing/proposed/gap '
+                                                                                                   'concept '
+                                                                                                   'status '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'target-vocabulary '
+                                                                                                    'binding; '
+                                                                                                    'EnVar-Tracker '
+                                                                                                    '#38)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -2842,6 +3077,45 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                                     '⇒ '
                                                                                                     'numeric)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'the '
+                                                                                                   'value '
+                                                                                                   'data '
+                                                                                                   'type '
+                                                                                                   'first-class '
+                                                                                                   'via '
+                                                                                                   'column '
+                                                                                                   'prefix: '
+                                                                                                   'native '
+                                                                                                   'estimate '
+                                                                                                   '(`E_`), '
+                                                                                                   'percentile '
+                                                                                                   '0-100 '
+                                                                                                   '(`EPL_`), '
+                                                                                                   'or '
+                                                                                                   'binary '
+                                                                                                   'vulnerability '
+                                                                                                   'flag '
+                                                                                                   '(`F_`).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§3.6-3.7; '
+                                                                                                    'CSV '
+                                                                                                    'E_* '
+                                                                                                    '/ '
+                                                                                                    'EPL_* '
+                                                                                                    '/ '
+                                                                                                    'F_* '
+                                                                                                    'column '
+                                                                                                    'prefixes'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'partial'},
                                                                                    'note': {'tag': 'note',
@@ -2993,6 +3267,34 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-variable '
+                                                                                                   'plausible '
+                                                                                                   'min/max '
+                                                                                                   'as '
+                                                                                                   'metadata.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3.2 '
+                                                                                                    '(range/domain '
+                                                                                                    'checks, '
+                                                                                                    'not '
+                                                                                                    'per-value '
+                                                                                                    'plausible '
+                                                                                                    'bounds)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'partial'},
                                                                                    'note': {'tag': 'note',
@@ -3128,6 +3430,34 @@ class VariableIdentity(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-variable '
+                                                                                                   'plausible '
+                                                                                                   'min/max '
+                                                                                                   'as '
+                                                                                                   'metadata.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3.2 '
+                                                                                                    '(range/domain '
+                                                                                                    'checks, '
+                                                                                                    'not '
+                                                                                                    'per-value '
+                                                                                                    'plausible '
+                                                                                                    'bounds)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'partial'},
                                                                                    'note': {'tag': 'note',
@@ -3305,6 +3635,44 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                     'table '
                                                                                                     'structure)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   '(one '
+                                                                                                   'row '
+                                                                                                   'per '
+                                                                                                   '`hex_id`, '
+                                                                                                   'one '
+                                                                                                   'column '
+                                                                                                   'per '
+                                                                                                   'indicator), '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'layout '
+                                                                                                   'declaration. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_2022.csv, '
+                                                                                                    'CHEL_hex3_2024.csv '
+                                                                                                    '(wide, '
+                                                                                                    'one '
+                                                                                                    'row '
+                                                                                                    'per '
+                                                                                                    'hex_id)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -3475,6 +3843,45 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                     '= '
                                                                                                     'Value)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Each '
+                                                                                                   'indicator '
+                                                                                                   'is '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'value '
+                                                                                                   'column '
+                                                                                                   'in '
+                                                                                                   "CHEL's "
+                                                                                                   'hex '
+                                                                                                   'tables, '
+                                                                                                   'but '
+                                                                                                   'the '
+                                                                                                   'column '
+                                                                                                   'binding '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'declaration. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(E_* '
+                                                                                                    '/ '
+                                                                                                    'EPL_* '
+                                                                                                    '/ '
+                                                                                                    'F_* '
+                                                                                                    'indicator '
+                                                                                                    'columns)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -3707,6 +4114,36 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                     '(participant '
                                                                                                     'linkage)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example '
+                                                                                                   'carries '
+                                                                                                   'a '
+                                                                                                   '`participant_id` '
+                                                                                                   'subject '
+                                                                                                   'column, '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'binding. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'README.md '
+                                                                                                    'linkage '
+                                                                                                    'example '
+                                                                                                    '(participant_id)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -3887,6 +4324,50 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                     '– '
                                                                                                     'Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example '
+                                                                                                   'carries '
+                                                                                                   'a '
+                                                                                                   'participant '
+                                                                                                   '`start_date` '
+                                                                                                   'column '
+                                                                                                   '(used '
+                                                                                                   'to '
+                                                                                                   'pick '
+                                                                                                   'the '
+                                                                                                   'CHEL '
+                                                                                                   'release); '
+                                                                                                   'the '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   'themselves '
+                                                                                                   'have '
+                                                                                                   'no '
+                                                                                                   'time '
+                                                                                                   'column, '
+                                                                                                   'and '
+                                                                                                   'neither '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'binding. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'README.md '
+                                                                                                    'linkage '
+                                                                                                    'example '
+                                                                                                    '(start_date)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -4088,6 +4569,44 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                     'Value '
                                                                                                     'column)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty '
+                                                                                                   'for '
+                                                                                                   'its '
+                                                                                                   'indicators '
+                                                                                                   '(only '
+                                                                                                   'the '
+                                                                                                   'EJI '
+                                                                                                   'population '
+                                                                                                   'margin '
+                                                                                                   'of '
+                                                                                                   'error '
+                                                                                                   '`M_TOTPOP` '
+                                                                                                   'passes '
+                                                                                                   'through), '
+                                                                                                   'so '
+                                                                                                   'no '
+                                                                                                   'uncertainty '
+                                                                                                   'column '
+                                                                                                   'is '
+                                                                                                   'bound.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.6.4 '
+                                                                                                    '(no '
+                                                                                                    'per-value '
+                                                                                                    'uncertainty '
+                                                                                                    'carried)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -4286,7 +4805,12 @@ class DataLayout(ConfiguredBaseModel):
                                                                                                    'in '
                                                                                                    'its '
                                                                                                    'validation '
-                                                                                                   'rules, '
+                                                                                                   'rules '
+                                                                                                   '(§4.3.3 '
+                                                                                                   'concepts '
+                                                                                                   'live '
+                                                                                                   'in '
+                                                                                                   'CHEL), '
                                                                                                    'but '
                                                                                                    'binds '
                                                                                                    'no '
@@ -4301,6 +4825,40 @@ class DataLayout(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   '§4.3.3 '
+                                                                                                   'defines '
+                                                                                                   'exactly '
+                                                                                                   'this '
+                                                                                                   'three-way '
+                                                                                                   'null '
+                                                                                                   'taxonomy '
+                                                                                                   '(structural '
+                                                                                                   '/ '
+                                                                                                   'derived '
+                                                                                                   '/ '
+                                                                                                   'true-zero) '
+                                                                                                   'and '
+                                                                                                   'excludes '
+                                                                                                   'nulls '
+                                                                                                   'from '
+                                                                                                   'percentile-ranking '
+                                                                                                   'denominators '
+                                                                                                   'on '
+                                                                                                   'its '
+                                                                                                   'basis.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3.3 '
+                                                                                                    'Null '
+                                                                                                    'Handling'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -4407,8 +4965,8 @@ class DataLayout(ConfiguredBaseModel):
                                                     'excluded from denominators) while '
                                                     'true_zero must be kept as a real '
                                                     'zero; conflating them biases the '
-                                                    'health-effect estimate. Nulls '
-                                                    'should be excluded from '
+                                                    'health-effect estimate. CHEL '
+                                                    '§4.3.3 excludes nulls from '
                                                     'percentile denominators for '
                                                     'exactly this reason, so binding a '
                                                     'per-value null-kind column is '
@@ -4421,7 +4979,8 @@ class DataLayout(ConfiguredBaseModel):
          'examples': [{'description': 'per-value column tagging each cell present / '
                                       'structural_null / derived_null / true_zero, '
                                       'next to the value column',
-                       'value': 'null_kind'}]} })
+                       'value': 'null_kind'}],
+         'see_also': ['https://github.com/cladteam/CHEL/blob/main/Documentation.md']} })
     null_semantics_column_missing_reason: Optional[MissingReasonEnum] = Field(default=None, title="Reason Null-Semantics Column Is Missing", description="""Reason `null_semantics_column` is null.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'When there is no null-kind column, '
                                                   'this slot says why — for example '
@@ -4523,6 +5082,32 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                     'k05, '
                                                                                                     'h08)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'fixes '
+                                                                                                   'native '
+                                                                                                   'resolution '
+                                                                                                   'first-class '
+                                                                                                   'as '
+                                                                                                   'Uber '
+                                                                                                   'H3 '
+                                                                                                   'Resolution-3 '
+                                                                                                   'hexagons '
+                                                                                                   '(~12,000 '
+                                                                                                   'km2).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§2.2.1 '
+                                                                                                    '(H3 '
+                                                                                                    'Hex3 '
+                                                                                                    '~12,000 '
+                                                                                                    'km2)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -4686,6 +5271,28 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                     'prefix '
                                                                                                     '(m/k/h/c/t/b/s/z)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'hex-grid '
+                                                                                                   'resolution '
+                                                                                                   'descriptor '
+                                                                                                   '(H3 '
+                                                                                                   'Hex3) '
+                                                                                                   'is '
+                                                                                                   'stated '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.2.1 '
+                                                                                                    '(H3 '
+                                                                                                    'Hex3 '
+                                                                                                    'descriptor)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -4833,6 +5440,41 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'fixes '
+                                                                                                   'CRS '
+                                                                                                   'first-class: '
+                                                                                                   'every '
+                                                                                                   'area-based '
+                                                                                                   'overlay '
+                                                                                                   'runs '
+                                                                                                   'in '
+                                                                                                   'equal-area '
+                                                                                                   'EPSG:5070 '
+                                                                                                   '(§4.2.1); '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example '
+                                                                                                   'builds '
+                                                                                                   'participant '
+                                                                                                   'points '
+                                                                                                   'in '
+                                                                                                   'EPSG:4326.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.2.1 '
+                                                                                                    '(EPSG:5070); '
+                                                                                                    'README.md '
+                                                                                                    '(EPSG:4326 '
+                                                                                                    'points)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5000,6 +5642,41 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                     'code '
                                                                                                     '(Gxx/Txx/Cxx/sxx/bxx/cdX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'extent '
+                                                                                                   'is '
+                                                                                                   'national '
+                                                                                                   'US '
+                                                                                                   '(national-scale '
+                                                                                                   'design, '
+                                                                                                   '§1.3; '
+                                                                                                   'US '
+                                                                                                   'Census '
+                                                                                                   'TIGER '
+                                                                                                   'inputs, '
+                                                                                                   '§2.7), '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'bounding '
+                                                                                                   'box '
+                                                                                                   'is '
+                                                                                                   'given. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§2.7 '
+                                                                                                    '(national '
+                                                                                                    'US '
+                                                                                                    'extent)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5150,6 +5827,29 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                     'Cxx=CONUS, '
                                                                                                     'sxx=state)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'national-US '
+                                                                                                   'spatial '
+                                                                                                   'extent '
+                                                                                                   'is '
+                                                                                                   'stated '
+                                                                                                   'for '
+                                                                                                   'CHEL '
+                                                                                                   'products.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§2.7 '
+                                                                                                    '(national '
+                                                                                                    'US '
+                                                                                                    'extent)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5277,6 +5977,40 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'the '
+                                                                                                   'extraction/aggregation '
+                                                                                                   'operator '
+                                                                                                   'first-class: '
+                                                                                                   'area-weighted '
+                                                                                                   'interpolation '
+                                                                                                   '(§3.2), '
+                                                                                                   'population-weighted '
+                                                                                                   'allocation '
+                                                                                                   '(§3.3), '
+                                                                                                   'density '
+                                                                                                   'and '
+                                                                                                   'intersection-proportion '
+                                                                                                   '(§3.4), '
+                                                                                                   'raster '
+                                                                                                   'zonal '
+                                                                                                   'sum '
+                                                                                                   '(§3.5).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '(§3.2-3.5 '
+                                                                                                    'aggregation '
+                                                                                                    'operators)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5550,6 +6284,33 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                     '– '
                                                                                                     'Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'target '
+                                                                                                   'geography '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'every '
+                                                                                                   'value '
+                                                                                                   'is '
+                                                                                                   'attached '
+                                                                                                   'to '
+                                                                                                   'an '
+                                                                                                   'H3 '
+                                                                                                   'Hex3 '
+                                                                                                   'cell.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.2.1 '
+                                                                                                    '(H3 '
+                                                                                                    'hex '
+                                                                                                    'target)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5660,7 +6421,7 @@ class SpatialReference(ConfiguredBaseModel):
                       {'description': 'tract-level aggregate (ACAG PM2.5 scenario)',
                        'value': 'census_tract'}],
          'see_also': ['https://www.census.gov/programs-surveys/geography/guidance/geo-areas.html']} })
-    spatial_aggregation_preserves: Optional[SpatialAggregationPreservationEnum] = Field(default=None, title="Spatial Aggregation Preserved Quantity", description="""What quantity the spatial-aggregation operator is meant to *preserve* when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is `extraction_method`), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    spatial_aggregation_preserves: Optional[SpatialAggregationPreservationEnum] = Field(default=None, title="Spatial Aggregation Preserved Quantity", description="""What quantity the spatial-aggregation operator is meant to *preserve* when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is `extraction_method`), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 \"aggregation must match meaning\" preservation table.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -5699,6 +6460,44 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   '§3.10 '
+                                                                                                   'enumerates '
+                                                                                                   'exactly '
+                                                                                                   'this '
+                                                                                                   'preserved-quantity '
+                                                                                                   'vocabulary '
+                                                                                                   '(mean '
+                                                                                                   'intensity '
+                                                                                                   '/ '
+                                                                                                   'mass '
+                                                                                                   'conservation '
+                                                                                                   '/ '
+                                                                                                   'occurrence '
+                                                                                                   'intensity '
+                                                                                                   '/ '
+                                                                                                   'areal '
+                                                                                                   'coverage) '
+                                                                                                   'and '
+                                                                                                   'selects '
+                                                                                                   'the '
+                                                                                                   'operator '
+                                                                                                   'from '
+                                                                                                   'it.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§3.10 '
+                                                                                                    '(geometry-weighted '
+                                                                                                    'operator; '
+                                                                                                    'preserved-quantity '
+                                                                                                    'table)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -5800,11 +6599,11 @@ class SpatialReference(ConfiguredBaseModel):
          'domain_of': ['SpatialReference'],
          'examples': [{'description': 'area-weighted interpolation of a modeled '
                                       'concentration preserves the area-mean intensity '
-                                      '(tract-to-hex concentration case)',
+                                      '(CHEL tract-to-hex concentration case)',
                        'value': 'mean_intensity'},
                       {'description': 'population-weighted / area-proportional '
-                                      'allocation of a count preserves the total '
-                                      '(population-count case)',
+                                      'allocation of a count preserves the total (CHEL '
+                                      'population-count case)',
                        'value': 'total_mass_conservation'}]} })
 
 
@@ -5886,6 +6685,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                     'inheritable '
                                                                                                     'temporal_resolution'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6029,6 +6851,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6167,6 +7012,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6292,6 +7160,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'absent'},
                                                                                    'note': {'tag': 'note',
@@ -6443,6 +7334,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                     'inheritable '
                                                                                                     'temporal_extent'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6589,6 +7503,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                                     'inheritable '
                                                                                                     'temporal_extent'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6720,6 +7657,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6859,6 +7819,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -6988,6 +7971,29 @@ class TemporalReference(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7144,6 +8150,38 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     '{dataset} '
                                                                                                     'slot)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'names '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'input-lineage '
+                                                                                                   'table '
+                                                                                                   '(e.g. '
+                                                                                                   'EJI '
+                                                                                                   '2022, '
+                                                                                                   'EJI '
+                                                                                                   '2024, '
+                                                                                                   'ACS, '
+                                                                                                   'GPW '
+                                                                                                   'v4).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'input '
+                                                                                                    'lineage '
+                                                                                                    'table'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7294,6 +8332,36 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'of '
                                                                                                     'table_name)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Source '
+                                                                                                   'datasets '
+                                                                                                   'are '
+                                                                                                   'named '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'stable '
+                                                                                                   'short '
+                                                                                                   'registry '
+                                                                                                   'code '
+                                                                                                   'per '
+                                                                                                   'product.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7424,6 +8492,29 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'doi_id '
                                                                                                     'FK)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'gives '
+                                                                                                   'source '
+                                                                                                   'links, '
+                                                                                                   'not '
+                                                                                                   'always '
+                                                                                                   'DOIs.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(source '
+                                                                                                    'links)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7573,6 +8664,36 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'of '
                                                                                                     'table_name)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'versions '
+                                                                                                   'its '
+                                                                                                   'releases '
+                                                                                                   'first-class '
+                                                                                                   '(CHEL '
+                                                                                                   '2022 '
+                                                                                                   'vs '
+                                                                                                   '2024) '
+                                                                                                   'with '
+                                                                                                   'a '
+                                                                                                   'documented '
+                                                                                                   'version '
+                                                                                                   'checklist.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.1, '
+                                                                                                    '§5.5 '
+                                                                                                    '(CHEL '
+                                                                                                    '2022 '
+                                                                                                    '/ '
+                                                                                                    '2024 '
+                                                                                                    'releases)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7726,6 +8847,38 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'in '
                                                                                                     'table_name)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Source '
+                                                                                                   'vintages '
+                                                                                                   'are '
+                                                                                                   'recorded '
+                                                                                                   'per '
+                                                                                                   'input, '
+                                                                                                   'but '
+                                                                                                   'product '
+                                                                                                   'temporal '
+                                                                                                   'coverage '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'per-value '
+                                                                                                   'field. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(source '
+                                                                                                    'vintages)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -7876,6 +9029,35 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'in '
                                                                                                     'table_name)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Source '
+                                                                                                   'spatial '
+                                                                                                   'extent '
+                                                                                                   'is '
+                                                                                                   'implicit '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'national-US '
+                                                                                                   'inputs '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'per-source '
+                                                                                                   'field. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8023,6 +9205,33 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'publishing '
                                                                                                     'organization)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Provider/publisher '
+                                                                                                   'is '
+                                                                                                   'recoverable '
+                                                                                                   'from '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'links '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'per-source '
+                                                                                                   'field.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(source '
+                                                                                                    'links)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8157,6 +9366,32 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Source '
+                                                                                                   'links '
+                                                                                                   'are '
+                                                                                                   'given; '
+                                                                                                   'a '
+                                                                                                   'formatted '
+                                                                                                   'citation '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'carried. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(source '
+                                                                                                    'links)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8318,6 +9553,31 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'rights '
                                                                                                     'FK)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'operates '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'source-dataset '
+                                                                                                   'layer '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-source '
+                                                                                                   'license '
+                                                                                                   'field.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-source '
+                                                                                                    'license '
+                                                                                                    'field)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8456,6 +9716,38 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'carries '
+                                                                                                   'source '
+                                                                                                   'links, '
+                                                                                                   'which '
+                                                                                                   'serve '
+                                                                                                   'as '
+                                                                                                   'access '
+                                                                                                   'URLs, '
+                                                                                                   'though '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'landing-page '
+                                                                                                   'slot.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(source '
+                                                                                                    'links)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8604,6 +9896,39 @@ class SourceDataset(ConfiguredBaseModel):
                                                                                                     'controlled '
                                                                                                     'vocab)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'records '
+                                                                                                   'native '
+                                                                                                   'geometry/role '
+                                                                                                   'per '
+                                                                                                   'input, '
+                                                                                                   'from '
+                                                                                                   'which '
+                                                                                                   'native '
+                                                                                                   'format '
+                                                                                                   'is '
+                                                                                                   'partly '
+                                                                                                   'recoverable. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table '
+                                                                                                    '(native '
+                                                                                                    'geometry '
+                                                                                                    'per '
+                                                                                                    'input)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -8855,6 +10180,47 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                     'modeled '
                                                                                                     'data)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit, '
+                                                                                                   'but '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure-model '
+                                                                                                   'type '
+                                                                                                   '(reanalysis '
+                                                                                                   'vs '
+                                                                                                   'station-interp) '
+                                                                                                   'is '
+                                                                                                   'inherited '
+                                                                                                   'from '
+                                                                                                   'EJI, '
+                                                                                                   'not '
+                                                                                                   'modelled '
+                                                                                                   'by '
+                                                                                                   'CLAD.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '(aggregation '
+                                                                                                    'operator '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited '
+                                                                                                    'from '
+                                                                                                    'EJI)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9006,6 +10372,42 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                                     'computed/modeled '
                                                                                                     'resource)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Inputs '
+                                                                                                   'enter '
+                                                                                                   'mostly '
+                                                                                                   'via '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'are '
+                                                                                                   'listed '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'lineage '
+                                                                                                   'table, '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'per-value '
+                                                                                                   'model-input '
+                                                                                                   'list. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    'inputs'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9132,6 +10534,38 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'validates '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry/conservation, '
+                                                                                                   'not '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'model; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'source '
+                                                                                                   'methods-paper '
+                                                                                                   'DOI.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(validates '
+                                                                                                    'own '
+                                                                                                    'geometry, '
+                                                                                                    'not '
+                                                                                                    'source-model '
+                                                                                                    'skill)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9274,6 +10708,39 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'validates '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry/conservation, '
+                                                                                                   'not '
+                                                                                                   'source-model '
+                                                                                                   'skill '
+                                                                                                   '(R2), '
+                                                                                                   'so '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'source-model '
+                                                                                                   'cross-validation '
+                                                                                                   'R2.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(validates '
+                                                                                                    'own '
+                                                                                                    'geometry, '
+                                                                                                    'not '
+                                                                                                    'source-model '
+                                                                                                    'skill)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9417,6 +10884,29 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'validates '
+                                                                                                   'geometry/conservation, '
+                                                                                                   'not '
+                                                                                                   'source-model '
+                                                                                                   'skill, '
+                                                                                                   'so '
+                                                                                                   'it '
+                                                                                                   'records '
+                                                                                                   'no '
+                                                                                                   'source-model '
+                                                                                                   'biases.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '4'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9585,6 +11075,31 @@ class ExposureModel(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'source-model '
+                                                                                                   'bias-correction '
+                                                                                                   'flag; '
+                                                                                                   'it '
+                                                                                                   'validates '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry/conservation, '
+                                                                                                   'not '
+                                                                                                   'source-model '
+                                                                                                   'skill.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '4'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9737,6 +11252,44 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   '§4.6.4 '
+                                                                                                   'acknowledges '
+                                                                                                   'source '
+                                                                                                   'uncertainty '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty '
+                                                                                                   'on '
+                                                                                                   'its '
+                                                                                                   'indicators '
+                                                                                                   '(only '
+                                                                                                   'the '
+                                                                                                   'EJI '
+                                                                                                   'population '
+                                                                                                   'margin '
+                                                                                                   'of '
+                                                                                                   'error '
+                                                                                                   '`M_TOTPOP` '
+                                                                                                   'passes '
+                                                                                                   'through).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.6.4 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged, '
+                                                                                                    'none '
+                                                                                                    'carried)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -9884,6 +11437,27 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'No '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty '
+                                                                                                   'is '
+                                                                                                   'carried, '
+                                                                                                   'so '
+                                                                                                   'its '
+                                                                                                   'units '
+                                                                                                   'are '
+                                                                                                   'absent '
+                                                                                                   'too.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.6.4'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -10018,6 +11592,32 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'SE '
+                                                                                                   '/ '
+                                                                                                   'prediction '
+                                                                                                   'interval '
+                                                                                                   '/ '
+                                                                                                   'model-aggregate '
+                                                                                                   'uncertainty; '
+                                                                                                   '§4.6.4 '
+                                                                                                   'only '
+                                                                                                   'acknowledges '
+                                                                                                   'source '
+                                                                                                   'uncertainty.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.6.4'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -10216,6 +11816,39 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   '§4.3 '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'diagnostics '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy '
+                                                                                                   '(validation), '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'missing-data-handling '
+                                                                                                   'method '
+                                                                                                   'slot. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3.1, '
+                                                                                                    '§4.3.3 '
+                                                                                                    '(conservation '
+                                                                                                    'diagnostics; '
+                                                                                                    'null '
+                                                                                                    'taxonomy)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -10387,6 +12020,37 @@ class Uncertainty(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Completeness '
+                                                                                                   'is '
+                                                                                                   'checkable '
+                                                                                                   'via '
+                                                                                                   "CHEL's "
+                                                                                                   '§4.3 '
+                                                                                                   'conservation/range '
+                                                                                                   'diagnostics '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'carried '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'per-value '
+                                                                                                   'completeness '
+                                                                                                   'percentage. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3.1, '
+                                                                                                    '§4.3.2 '
+                                                                                                    '(conservation/range '
+                                                                                                    'checks)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -10665,6 +12329,44 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                     'boundaries '
                                                                                                     'schema'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'strategy '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'geocoded '
+                                                                                                   'participant '
+                                                                                                   'points '
+                                                                                                   '(§2.7) '
+                                                                                                   'get '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'Hex3 '
+                                                                                                   'assignment '
+                                                                                                   '(§4.5.2); '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'shows '
+                                                                                                   'the '
+                                                                                                   'point-in-hex '
+                                                                                                   'spatial '
+                                                                                                   'join.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2; '
+                                                                                                    'README.md '
+                                                                                                    '(participant '
+                                                                                                    'point '
+                                                                                                    'to '
+                                                                                                    'Hex3 '
+                                                                                                    'join)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -10959,6 +12661,42 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'takes '
+                                                                                                   'geocoded '
+                                                                                                   'participant '
+                                                                                                   'points '
+                                                                                                   'as '
+                                                                                                   'input '
+                                                                                                   'and '
+                                                                                                   'joins '
+                                                                                                   'them '
+                                                                                                   'to '
+                                                                                                   'a '
+                                                                                                   'hex, '
+                                                                                                   'but '
+                                                                                                   'the '
+                                                                                                   'precision '
+                                                                                                   'of '
+                                                                                                   'the '
+                                                                                                   'geocode '
+                                                                                                   'itself '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'carried.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    '(Geocodes '
+                                                                                                    'input), '
+                                                                                                    '§4.5.2'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11094,6 +12832,30 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'geocode-to-hex '
+                                                                                                   'join '
+                                                                                                   'is '
+                                                                                                   'defined, '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'geocoder '
+                                                                                                   'confidence '
+                                                                                                   'score '
+                                                                                                   'is '
+                                                                                                   'propagated. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11242,6 +13004,47 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'joins '
+                                                                                                   'one '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'a '
+                                                                                                   'hex '
+                                                                                                   'and '
+                                                                                                   'picks '
+                                                                                                   'the '
+                                                                                                   'release '
+                                                                                                   '(2022 '
+                                                                                                   'vs '
+                                                                                                   '2024) '
+                                                                                                   'by '
+                                                                                                   'enrollment '
+                                                                                                   'start_date '
+                                                                                                   'year; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'address-period '
+                                                                                                   '/ '
+                                                                                                   'location-over-time '
+                                                                                                   'alignment.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'README.md '
+                                                                                                    '(point '
+                                                                                                    'join; '
+                                                                                                    'release '
+                                                                                                    'chosen '
+                                                                                                    'by '
+                                                                                                    'start_date)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11409,6 +13212,37 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only '
+                                                                                                   'and '
+                                                                                                   'models '
+                                                                                                   'no '
+                                                                                                   'clinical-date '
+                                                                                                   'or '
+                                                                                                   'trajectory '
+                                                                                                   'transitions, '
+                                                                                                   'so '
+                                                                                                   'partial-day '
+                                                                                                   'attribution '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'carried.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'no '
+                                                                                                    'clinical-date '
+                                                                                                    '/ '
+                                                                                                    'trajectory '
+                                                                                                    'model)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11543,6 +13377,34 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'clinical-date '
+                                                                                                   '/ '
+                                                                                                   'lag '
+                                                                                                   'alignment.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'no '
+                                                                                                    'clinical-date '
+                                                                                                    '/ '
+                                                                                                    'lag '
+                                                                                                    'alignment)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11668,7 +13530,7 @@ class LinkageMethod(ConfiguredBaseModel):
          'examples': [{'description': 'lag-alignment documentation for this ETL is '
                                       'still being populated',
                        'value': 'under_investigation'}]} })
-    privacy_transformation: Optional[PrivacyTransformationEnum] = Field(default=None, title="Privacy Transformation", description="""Any privacy-protecting transformation applied to the linked location *after* the spatial join, which changes the recorded location of the exposure (`none` / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. A deterministic hex-reassignment jitter is the motivating case.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    privacy_transformation: Optional[PrivacyTransformationEnum] = Field(default=None, title="Privacy Transformation", description="""Any privacy-protecting transformation applied to the linked location *after* the spatial join, which changes the recorded location of the exposure (`none` / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. CHEL's deterministic hex-reassignment jitter (Documentation.md §2.2.2) is the motivating case.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -11692,6 +13554,10 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                             'value': 'full'},
                                                                                  'note': {'tag': 'note',
                                                                                           'value': 'C-HER '
+                                                                                                   '(the '
+                                                                                                   'CHEL '
+                                                                                                   'platform, '
+                                                                                                   '§2.2.2) '
                                                                                                    'applies '
                                                                                                    'the '
                                                                                                    'deterministic '
@@ -11723,6 +13589,50 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                     'same '
                                                                                                     'ZIP3)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'applies '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'linkage '
+                                                                                                   'time, '
+                                                                                                   'driven '
+                                                                                                   'by '
+                                                                                                   'ZIP3 '
+                                                                                                   'x '
+                                                                                                   'Hex3 '
+                                                                                                   'sliver '
+                                                                                                   'populations '
+                                                                                                   '(§2.2.2, '
+                                                                                                   '§2.2.4, '
+                                                                                                   '§4.1); '
+                                                                                                   '§4.8 '
+                                                                                                   'advises '
+                                                                                                   'fitting '
+                                                                                                   'models '
+                                                                                                   'with '
+                                                                                                   'and '
+                                                                                                   'without '
+                                                                                                   'jitter-reassigned '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.2.2, '
+                                                                                                    '§4.1, '
+                                                                                                    '§4.8 '
+                                                                                                    '(deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -11830,13 +13740,14 @@ class LinkageMethod(ConfiguredBaseModel):
                                                     'person-join.'},
                          'tier': {'tag': 'tier', 'value': 'recommended'}},
          'domain_of': ['LinkageMethod'],
-         'examples': [{'description': 'the participant is reassigned to the largest '
-                                      "hex in the same ZIP3 when the true hex's ZIP3 "
-                                      'population is small',
+         'examples': [{'description': 'CHEL deterministically reassigns participants '
+                                      'using ZIP3 x Hex3 sliver populations '
+                                      '(Documentation.md §2.2.2)',
                        'value': 'deterministic_geographic_jitter'},
                       {'description': 'no privacy transform applied; the linked '
                                       'location is the true one',
-                       'value': 'none'}]} })
+                       'value': 'none'}],
+         'see_also': ['https://github.com/cladteam/CHEL/blob/main/Documentation.md']} })
     privacy_transformation_note: Optional[str] = Field(default=None, title="Privacy Transformation Note", description="""Free-text detail of the privacy transformation named in `privacy_transformation`: the trigger / threshold, determinism, and governance basis. E.g. \"reassign to largest hex in same ZIP3 when hex∩ZIP3 population ≤ 20,000; HIPAA expert determination; deterministic\".""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
@@ -11900,6 +13811,67 @@ class LinkageMethod(ConfiguredBaseModel):
                                                                                                     'expert-determination '
                                                                                                     'basis'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'public '
+                                                                                                   'documentation '
+                                                                                                   'names '
+                                                                                                   'the '
+                                                                                                   'mechanism '
+                                                                                                   '(deterministic '
+                                                                                                   'reassignment '
+                                                                                                   'over '
+                                                                                                   'ZIP3 '
+                                                                                                   'x '
+                                                                                                   'Hex3 '
+                                                                                                   'slivers, '
+                                                                                                   '§2.2.2) '
+                                                                                                   'and '
+                                                                                                   'its '
+                                                                                                   'governance '
+                                                                                                   'basis '
+                                                                                                   '(HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination, '
+                                                                                                   '§1.3), '
+                                                                                                   'and '
+                                                                                                   'lists '
+                                                                                                   'the '
+                                                                                                   'privacy '
+                                                                                                   'threshold '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'item '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'does '
+                                                                                                   'not '
+                                                                                                   'publish '
+                                                                                                   'the '
+                                                                                                   'trigger '
+                                                                                                   'value '
+                                                                                                   'or '
+                                                                                                   'the '
+                                                                                                   'reassignment '
+                                                                                                   'rule. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§2.2.2, '
+                                                                                                    '§5.5 '
+                                                                                                    '(threshold '
+                                                                                                    'not '
+                                                                                                    'published)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12054,6 +14026,39 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'discrete '
+                                                                                                   'tool-name '
+                                                                                                   'field.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release '
+                                                                                                    'version)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12212,6 +14217,42 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                     'via '
                                                                                                     '§2.6'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'release '
+                                                                                                   'version '
+                                                                                                   '(2022 '
+                                                                                                   '/ '
+                                                                                                   '2024) '
+                                                                                                   'is '
+                                                                                                   'documented, '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'per-tool '
+                                                                                                   'semver '
+                                                                                                   'in '
+                                                                                                   'a '
+                                                                                                   'run '
+                                                                                                   'record. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '5 '
+                                                                                                    '/ '
+                                                                                                    '§5.5 '
+                                                                                                    '(CHEL '
+                                                                                                    'release '
+                                                                                                    'version)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12372,6 +14413,40 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'built '
+                                                                                                   'as '
+                                                                                                   'Foundry '
+                                                                                                   'datasets '
+                                                                                                   '(§5.5 '
+                                                                                                   'RIDs), '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'container '
+                                                                                                   'image, '
+                                                                                                   'so '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'image '
+                                                                                                   'repository.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'datasets; '
+                                                                                                    'no '
+                                                                                                    'container '
+                                                                                                    'repo)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12512,6 +14587,35 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'built '
+                                                                                                   'as '
+                                                                                                   'Foundry '
+                                                                                                   'datasets '
+                                                                                                   '(§5.5 '
+                                                                                                   'RIDs); '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'image '
+                                                                                                   'digest.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'datasets; '
+                                                                                                    'no '
+                                                                                                    'container '
+                                                                                                    'digest)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12647,6 +14751,25 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'argument '
+                                                                                                   'map.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'argument '
+                                                                                                    'map)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12775,6 +14898,26 @@ class ToolRun(ConfiguredBaseModel):
                                                                                                     'producing-run '
                                                                                                     'time)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'timestamp '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'timestamp)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -12938,6 +15081,28 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'input/output '
+                                                                                                   'file '
+                                                                                                   'hashes.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'row '
+                                                                                                    'counts '
+                                                                                                    '/ '
+                                                                                                    'hashes)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13040,6 +15205,30 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'input/output '
+                                                                                                   'row '
+                                                                                                   'counts '
+                                                                                                   'or '
+                                                                                                   'hashes.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'row '
+                                                                                                    'counts '
+                                                                                                    '/ '
+                                                                                                    'hashes)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13148,6 +15337,28 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'input/output '
+                                                                                                   'file '
+                                                                                                   'hashes.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'row '
+                                                                                                    'counts '
+                                                                                                    '/ '
+                                                                                                    'hashes)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13248,6 +15459,30 @@ class ToolRun(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-run '
+                                                                                                   'input/output '
+                                                                                                   'row '
+                                                                                                   'counts '
+                                                                                                   'or '
+                                                                                                   'hashes.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'per-run '
+                                                                                                    'row '
+                                                                                                    'counts '
+                                                                                                    '/ '
+                                                                                                    'hashes)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13424,6 +15659,49 @@ class ProvenanceChain(ConfiguredBaseModel):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   '(Source '
+                                                                                                   'to '
+                                                                                                   'Cleaning '
+                                                                                                   'to '
+                                                                                                   'Harmonization '
+                                                                                                   'to '
+                                                                                                   'Hex '
+                                                                                                   'Aggregation '
+                                                                                                   'to '
+                                                                                                   'Normalization '
+                                                                                                   'to '
+                                                                                                   'Module '
+                                                                                                   'Assignment), '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13559,6 +15837,43 @@ class ProvenanceChain(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'lineage '
+                                                                                                   'terminates '
+                                                                                                   'at '
+                                                                                                   'raw '
+                                                                                                   'source '
+                                                                                                   'downloads '
+                                                                                                   '(EJI, '
+                                                                                                   'ACS, '
+                                                                                                   'GPW '
+                                                                                                   'v4, '
+                                                                                                   'etc.), '
+                                                                                                   'but '
+                                                                                                   'the '
+                                                                                                   'terminus '
+                                                                                                   'type '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'typed '
+                                                                                                   'field. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    '(raw '
+                                                                                                    'source '
+                                                                                                    'inputs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -13737,6 +16052,45 @@ class DerivedHeatMetric(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'the '
+                                                                                                   'EJI-derived '
+                                                                                                   'extreme-heat-days '
+                                                                                                   'indicator '
+                                                                                                   '(§2.6; '
+                                                                                                   '`E_NEHD` '
+                                                                                                   '/ '
+                                                                                                   '`EPL_NEHD` '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '2024 '
+                                                                                                   'hex '
+                                                                                                   'table), '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'heat-metric '
+                                                                                                   'methodology, '
+                                                                                                   'so '
+                                                                                                   'no '
+                                                                                                   'heat-metric '
+                                                                                                   'family '
+                                                                                                   'is '
+                                                                                                   'recorded.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.6 '
+                                                                                                    '(EJI '
+                                                                                                    'extreme-heat-days '
+                                                                                                    'indicator '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14007,6 +16361,30 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'models '
+                                                                                                   'no '
+                                                                                                   'WBGT/UTCI '
+                                                                                                   'heat '
+                                                                                                   'metrics, '
+                                                                                                   'so '
+                                                                                                   'wind-measurement '
+                                                                                                   'height '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'carried.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'derived-heat-metric '
+                                                                                                    'methodology)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14130,6 +16508,31 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'models '
+                                                                                                   'no '
+                                                                                                   'WBGT/UTCI '
+                                                                                                   'heat '
+                                                                                                   'metrics, '
+                                                                                                   'so '
+                                                                                                   'a '
+                                                                                                   'solar-radiation '
+                                                                                                   'basis '
+                                                                                                   'is '
+                                                                                                   'not '
+                                                                                                   'carried.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'derived-heat-metric '
+                                                                                                    'methodology)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14424,6 +16827,47 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'applies '
+                                                                                                   'national '
+                                                                                                   'percentile '
+                                                                                                   'ranking '
+                                                                                                   '(0-100) '
+                                                                                                   'inherited '
+                                                                                                   'from '
+                                                                                                   'EJI, '
+                                                                                                   'so '
+                                                                                                   'the '
+                                                                                                   'reference '
+                                                                                                   'scope '
+                                                                                                   'is '
+                                                                                                   'stated '
+                                                                                                   '(national), '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'as '
+                                                                                                   'a '
+                                                                                                   'first-class '
+                                                                                                   'heat-metric '
+                                                                                                   'percentile-baseline '
+                                                                                                   'slot. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§3.6 '
+                                                                                                    '(national '
+                                                                                                    'percentile '
+                                                                                                    'ranking, '
+                                                                                                    'from '
+                                                                                                    'EJI)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14549,6 +16993,30 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'percentile '
+                                                                                                   'normalization '
+                                                                                                   'is '
+                                                                                                   'spatial '
+                                                                                                   '(EJI), '
+                                                                                                   'with '
+                                                                                                   'no '
+                                                                                                   'temporal/seasonal '
+                                                                                                   'reference '
+                                                                                                   'window.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'no '
+                                                                                                    'seasonal '
+                                                                                                    'window)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14676,6 +17144,40 @@ Conditionally-Core: optional for a single-input metric, mandatory the moment a m
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only: '
+                                                                                                   'its '
+                                                                                                   'extreme-heat-days '
+                                                                                                   'count '
+                                                                                                   'arrives '
+                                                                                                   'pre-aggregated '
+                                                                                                   'from '
+                                                                                                   'EJI, '
+                                                                                                   'and '
+                                                                                                   'no '
+                                                                                                   'multi-day '
+                                                                                                   'heat '
+                                                                                                   'events '
+                                                                                                   'are '
+                                                                                                   'stamped '
+                                                                                                   'onto '
+                                                                                                   'days.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.6 '
+                                                                                                    '(spatial-only; '
+                                                                                                    'no '
+                                                                                                    'multi-day '
+                                                                                                    'event '
+                                                                                                    'stamping)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14859,6 +17361,36 @@ class EquationInput(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'models '
+                                                                                                   'no '
+                                                                                                   'derived '
+                                                                                                   'heat '
+                                                                                                   'metrics, '
+                                                                                                   'so '
+                                                                                                   'per-input '
+                                                                                                   'source '
+                                                                                                   'codes '
+                                                                                                   'for '
+                                                                                                   'a '
+                                                                                                   'heat '
+                                                                                                   'equation '
+                                                                                                   'are '
+                                                                                                   'not '
+                                                                                                   'carried.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'derived-heat-metric '
+                                                                                                    'equation '
+                                                                                                    'inputs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -14999,6 +17531,34 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                     '(health-resource '
                                                                                                     'bucket)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'emits '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   'exposure-assignment '
+                                                                                                   'table '
+                                                                                                   'and '
+                                                                                                   'names '
+                                                                                                   'no '
+                                                                                                   'downstream '
+                                                                                                   'health-layer '
+                                                                                                   'target '
+                                                                                                   'first-class '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -15178,6 +17738,32 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                                                                                     'health '
                                                                                                     'schema)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'With '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   'assembly '
+                                                                                                   'table, '
+                                                                                                   'CHEL '
+                                                                                                   'declares '
+                                                                                                   'no '
+                                                                                                   'health-layer '
+                                                                                                   'join '
+                                                                                                   'field '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -15770,6 +18356,37 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'ontology '
                                                                                                     'tag)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38). '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(indicator '
+                                                                                                    'names; '
+                                                                                                    'no '
+                                                                                                    'substance '
+                                                                                                    'vocabulary)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -15977,6 +18594,41 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'column_tag '
                                                                                                     'Spatial-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'spatial '
+                                                                                                   'block '
+                                                                                                   'is '
+                                                                                                   'where '
+                                                                                                   'CHEL '
+                                                                                                   'is '
+                                                                                                   'strongest: '
+                                                                                                   'fixed '
+                                                                                                   'hex '
+                                                                                                   'resolution, '
+                                                                                                   'equal-area '
+                                                                                                   'CRS, '
+                                                                                                   'and '
+                                                                                                   'explicit '
+                                                                                                   'aggregation '
+                                                                                                   'operators '
+                                                                                                   'are '
+                                                                                                   'all '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§4.2.1/Part '
+                                                                                                    '3 '
+                                                                                                    '(hex '
+                                                                                                    'resolution, '
+                                                                                                    'CRS, '
+                                                                                                    'aggregation)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -16173,6 +18825,29 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'column_tag '
                                                                                                     'Temporal-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -16334,6 +19009,47 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     '+ '
                                                                                                     'description/notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit '
+                                                                                                   'but '
+                                                                                                   'inherits '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure '
+                                                                                                   'model '
+                                                                                                   'from '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'validates '
+                                                                                                   'only '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(aggregation '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -16486,6 +19202,40 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'codes '
                                                                                                     '(aXX/bXX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'and '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3 '
+                                                                                                    '(conservation/range '
+                                                                                                    'diagnostics); '
+                                                                                                    '§4.6.4, '
+                                                                                                    '§4.7 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -16675,6 +19425,48 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'Index/Value/Temporal/Spatial, '
                                                                                                     'column_unit)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   'keyed '
+                                                                                                   'on '
+                                                                                                   '`hex_id`; '
+                                                                                                   'subject '
+                                                                                                   'and '
+                                                                                                   'time '
+                                                                                                   'live '
+                                                                                                   'only '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example, '
+                                                                                                   'and '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'column '
+                                                                                                   'layout. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(wide, '
+                                                                                                    'keyed '
+                                                                                                    'on '
+                                                                                                    'hex_id); '
+                                                                                                    'README.md'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -16839,6 +19631,51 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     '+ '
                                                                                                     'source_update_frequency'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'with '
+                                                                                                   'its '
+                                                                                                   'release '
+                                                                                                   'vintage '
+                                                                                                   '(EJI '
+                                                                                                   '2022 '
+                                                                                                   '/ '
+                                                                                                   '2024); '
+                                                                                                   '§5.5 '
+                                                                                                   'adds '
+                                                                                                   'Foundry '
+                                                                                                   'RIDs '
+                                                                                                   'to '
+                                                                                                   'the '
+                                                                                                   'per-release '
+                                                                                                   'documentation.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table; '
+                                                                                                    '§5.5 '
+                                                                                                    '(name '
+                                                                                                    '+ '
+                                                                                                    'release '
+                                                                                                    '+ '
+                                                                                                    'RID)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17022,6 +19859,43 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     '+ '
                                                                                                     'version'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'digest, '
+                                                                                                   'run '
+                                                                                                   'args, '
+                                                                                                   'timestamps, '
+                                                                                                   'or '
+                                                                                                   'hashes. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17188,6 +20062,35 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17340,6 +20243,43 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'join '
                                                                                                     'descriptors)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'deterministic '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'Hex3 '
+                                                                                                   'join '
+                                                                                                   'plus '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'linkage '
+                                                                                                   'stage.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(point-to-hex '
+                                                                                                    'join '
+                                                                                                    '+ '
+                                                                                                    'deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17523,6 +20463,44 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'health '
                                                                                                     'resources)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'produces '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   '+ '
+                                                                                                   'a '
+                                                                                                   'participant-linkage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   '(person, '
+                                                                                                   'start/end, '
+                                                                                                   'location, '
+                                                                                                   'concept, '
+                                                                                                   'value) '
+                                                                                                   'assembly '
+                                                                                                   'to '
+                                                                                                   'link '
+                                                                                                   'into '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   'layer '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17706,6 +20684,35 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'pipeline, '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'metadata '
+                                                                                                   'sidecar '
+                                                                                                   'standard; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'schema-version '
+                                                                                                   'field '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'schema-version '
+                                                                                                    'construct)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -17856,6 +20863,45 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     '/ '
                                                                                                     'ornl_res_pub_id'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'lists '
+                                                                                                   'Foundry '
+                                                                                                   'dataset '
+                                                                                                   'references '
+                                                                                                   '(RID) '
+                                                                                                   'among '
+                                                                                                   'its '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'items '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'per-sidecar '
+                                                                                                   'stable '
+                                                                                                   'record '
+                                                                                                   'id '
+                                                                                                   'that '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   "layer's "
+                                                                                                   'source-value '
+                                                                                                   'field '
+                                                                                                   'carries.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'dataset '
+                                                                                                    'RIDs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -18021,6 +21067,51 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                                     'rights '
                                                                                                     'FK'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Privacy '
+                                                                                                   'protection '
+                                                                                                   'is '
+                                                                                                   'embedded '
+                                                                                                   'structurally '
+                                                                                                   'in '
+                                                                                                   'CHEL '
+                                                                                                   '(Hex3 '
+                                                                                                   'chosen '
+                                                                                                   'partly '
+                                                                                                   'for '
+                                                                                                   'HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination; '
+                                                                                                   'a '
+                                                                                                   'separate '
+                                                                                                   'ZIP3 '
+                                                                                                   'geography '
+                                                                                                   'for '
+                                                                                                   'jitter '
+                                                                                                   'and '
+                                                                                                   'small-cell '
+                                                                                                   'suppression), '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'per-record '
+                                                                                                   'PHI-status '
+                                                                                                   'assertion '
+                                                                                                   'flag.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§1.9, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(privacy '
+                                                                                                    'architecture)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -18332,6 +21423,37 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'ontology '
                                                                                                     'tag)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38). '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(indicator '
+                                                                                                    'names; '
+                                                                                                    'no '
+                                                                                                    'substance '
+                                                                                                    'vocabulary)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -18539,6 +21661,41 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Spatial-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'spatial '
+                                                                                                   'block '
+                                                                                                   'is '
+                                                                                                   'where '
+                                                                                                   'CHEL '
+                                                                                                   'is '
+                                                                                                   'strongest: '
+                                                                                                   'fixed '
+                                                                                                   'hex '
+                                                                                                   'resolution, '
+                                                                                                   'equal-area '
+                                                                                                   'CRS, '
+                                                                                                   'and '
+                                                                                                   'explicit '
+                                                                                                   'aggregation '
+                                                                                                   'operators '
+                                                                                                   'are '
+                                                                                                   'all '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§4.2.1/Part '
+                                                                                                    '3 '
+                                                                                                    '(hex '
+                                                                                                    'resolution, '
+                                                                                                    'CRS, '
+                                                                                                    'aggregation)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -18735,6 +21892,29 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Temporal-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -18896,6 +22076,47 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'description/notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit '
+                                                                                                   'but '
+                                                                                                   'inherits '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure '
+                                                                                                   'model '
+                                                                                                   'from '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'validates '
+                                                                                                   'only '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(aggregation '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19048,6 +22269,40 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'codes '
                                                                                                     '(aXX/bXX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'and '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3 '
+                                                                                                    '(conservation/range '
+                                                                                                    'diagnostics); '
+                                                                                                    '§4.6.4, '
+                                                                                                    '§4.7 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19237,6 +22492,48 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'Index/Value/Temporal/Spatial, '
                                                                                                     'column_unit)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   'keyed '
+                                                                                                   'on '
+                                                                                                   '`hex_id`; '
+                                                                                                   'subject '
+                                                                                                   'and '
+                                                                                                   'time '
+                                                                                                   'live '
+                                                                                                   'only '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example, '
+                                                                                                   'and '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'column '
+                                                                                                   'layout. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(wide, '
+                                                                                                    'keyed '
+                                                                                                    'on '
+                                                                                                    'hex_id); '
+                                                                                                    'README.md'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19401,6 +22698,51 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'source_update_frequency'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'with '
+                                                                                                   'its '
+                                                                                                   'release '
+                                                                                                   'vintage '
+                                                                                                   '(EJI '
+                                                                                                   '2022 '
+                                                                                                   '/ '
+                                                                                                   '2024); '
+                                                                                                   '§5.5 '
+                                                                                                   'adds '
+                                                                                                   'Foundry '
+                                                                                                   'RIDs '
+                                                                                                   'to '
+                                                                                                   'the '
+                                                                                                   'per-release '
+                                                                                                   'documentation.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table; '
+                                                                                                    '§5.5 '
+                                                                                                    '(name '
+                                                                                                    '+ '
+                                                                                                    'release '
+                                                                                                    '+ '
+                                                                                                    'RID)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19584,6 +22926,43 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'version'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'digest, '
+                                                                                                   'run '
+                                                                                                   'args, '
+                                                                                                   'timestamps, '
+                                                                                                   'or '
+                                                                                                   'hashes. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19750,6 +23129,35 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -19902,6 +23310,43 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'join '
                                                                                                     'descriptors)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'deterministic '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'Hex3 '
+                                                                                                   'join '
+                                                                                                   'plus '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'linkage '
+                                                                                                   'stage.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(point-to-hex '
+                                                                                                    'join '
+                                                                                                    '+ '
+                                                                                                    'deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20085,6 +23530,44 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'health '
                                                                                                     'resources)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'produces '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   '+ '
+                                                                                                   'a '
+                                                                                                   'participant-linkage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   '(person, '
+                                                                                                   'start/end, '
+                                                                                                   'location, '
+                                                                                                   'concept, '
+                                                                                                   'value) '
+                                                                                                   'assembly '
+                                                                                                   'to '
+                                                                                                   'link '
+                                                                                                   'into '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   'layer '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20268,6 +23751,35 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'pipeline, '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'metadata '
+                                                                                                   'sidecar '
+                                                                                                   'standard; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'schema-version '
+                                                                                                   'field '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'schema-version '
+                                                                                                    'construct)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20418,6 +23930,45 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '/ '
                                                                                                     'ornl_res_pub_id'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'lists '
+                                                                                                   'Foundry '
+                                                                                                   'dataset '
+                                                                                                   'references '
+                                                                                                   '(RID) '
+                                                                                                   'among '
+                                                                                                   'its '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'items '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'per-sidecar '
+                                                                                                   'stable '
+                                                                                                   'record '
+                                                                                                   'id '
+                                                                                                   'that '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   "layer's "
+                                                                                                   'source-value '
+                                                                                                   'field '
+                                                                                                   'carries.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'dataset '
+                                                                                                    'RIDs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20583,6 +24134,51 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'rights '
                                                                                                     'FK'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Privacy '
+                                                                                                   'protection '
+                                                                                                   'is '
+                                                                                                   'embedded '
+                                                                                                   'structurally '
+                                                                                                   'in '
+                                                                                                   'CHEL '
+                                                                                                   '(Hex3 '
+                                                                                                   'chosen '
+                                                                                                   'partly '
+                                                                                                   'for '
+                                                                                                   'HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination; '
+                                                                                                   'a '
+                                                                                                   'separate '
+                                                                                                   'ZIP3 '
+                                                                                                   'geography '
+                                                                                                   'for '
+                                                                                                   'jitter '
+                                                                                                   'and '
+                                                                                                   'small-cell '
+                                                                                                   'suppression), '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'per-record '
+                                                                                                   'PHI-status '
+                                                                                                   'assertion '
+                                                                                                   'flag.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§1.9, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(privacy '
+                                                                                                    'architecture)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20792,6 +24388,37 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'ontology '
                                                                                                     'tag)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38). '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(indicator '
+                                                                                                    'names; '
+                                                                                                    'no '
+                                                                                                    'substance '
+                                                                                                    'vocabulary)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -20999,6 +24626,41 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Spatial-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'spatial '
+                                                                                                   'block '
+                                                                                                   'is '
+                                                                                                   'where '
+                                                                                                   'CHEL '
+                                                                                                   'is '
+                                                                                                   'strongest: '
+                                                                                                   'fixed '
+                                                                                                   'hex '
+                                                                                                   'resolution, '
+                                                                                                   'equal-area '
+                                                                                                   'CRS, '
+                                                                                                   'and '
+                                                                                                   'explicit '
+                                                                                                   'aggregation '
+                                                                                                   'operators '
+                                                                                                   'are '
+                                                                                                   'all '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§4.2.1/Part '
+                                                                                                    '3 '
+                                                                                                    '(hex '
+                                                                                                    'resolution, '
+                                                                                                    'CRS, '
+                                                                                                    'aggregation)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -21195,6 +24857,29 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Temporal-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -21356,6 +25041,47 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'description/notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit '
+                                                                                                   'but '
+                                                                                                   'inherits '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure '
+                                                                                                   'model '
+                                                                                                   'from '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'validates '
+                                                                                                   'only '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(aggregation '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -21508,6 +25234,40 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'codes '
                                                                                                     '(aXX/bXX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'and '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3 '
+                                                                                                    '(conservation/range '
+                                                                                                    'diagnostics); '
+                                                                                                    '§4.6.4, '
+                                                                                                    '§4.7 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -21697,6 +25457,48 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'Index/Value/Temporal/Spatial, '
                                                                                                     'column_unit)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   'keyed '
+                                                                                                   'on '
+                                                                                                   '`hex_id`; '
+                                                                                                   'subject '
+                                                                                                   'and '
+                                                                                                   'time '
+                                                                                                   'live '
+                                                                                                   'only '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example, '
+                                                                                                   'and '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'column '
+                                                                                                   'layout. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(wide, '
+                                                                                                    'keyed '
+                                                                                                    'on '
+                                                                                                    'hex_id); '
+                                                                                                    'README.md'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -21861,6 +25663,51 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'source_update_frequency'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'with '
+                                                                                                   'its '
+                                                                                                   'release '
+                                                                                                   'vintage '
+                                                                                                   '(EJI '
+                                                                                                   '2022 '
+                                                                                                   '/ '
+                                                                                                   '2024); '
+                                                                                                   '§5.5 '
+                                                                                                   'adds '
+                                                                                                   'Foundry '
+                                                                                                   'RIDs '
+                                                                                                   'to '
+                                                                                                   'the '
+                                                                                                   'per-release '
+                                                                                                   'documentation.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table; '
+                                                                                                    '§5.5 '
+                                                                                                    '(name '
+                                                                                                    '+ '
+                                                                                                    'release '
+                                                                                                    '+ '
+                                                                                                    'RID)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22044,6 +25891,43 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'version'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'digest, '
+                                                                                                   'run '
+                                                                                                   'args, '
+                                                                                                   'timestamps, '
+                                                                                                   'or '
+                                                                                                   'hashes. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22210,6 +26094,35 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22362,6 +26275,43 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'join '
                                                                                                     'descriptors)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'deterministic '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'Hex3 '
+                                                                                                   'join '
+                                                                                                   'plus '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'linkage '
+                                                                                                   'stage.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(point-to-hex '
+                                                                                                    'join '
+                                                                                                    '+ '
+                                                                                                    'deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22545,6 +26495,44 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'health '
                                                                                                     'resources)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'produces '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   '+ '
+                                                                                                   'a '
+                                                                                                   'participant-linkage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   '(person, '
+                                                                                                   'start/end, '
+                                                                                                   'location, '
+                                                                                                   'concept, '
+                                                                                                   'value) '
+                                                                                                   'assembly '
+                                                                                                   'to '
+                                                                                                   'link '
+                                                                                                   'into '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   'layer '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22728,6 +26716,35 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'pipeline, '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'metadata '
+                                                                                                   'sidecar '
+                                                                                                   'standard; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'schema-version '
+                                                                                                   'field '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'schema-version '
+                                                                                                    'construct)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -22878,6 +26895,45 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     '/ '
                                                                                                     'ornl_res_pub_id'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'lists '
+                                                                                                   'Foundry '
+                                                                                                   'dataset '
+                                                                                                   'references '
+                                                                                                   '(RID) '
+                                                                                                   'among '
+                                                                                                   'its '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'items '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'per-sidecar '
+                                                                                                   'stable '
+                                                                                                   'record '
+                                                                                                   'id '
+                                                                                                   'that '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   "layer's "
+                                                                                                   'source-value '
+                                                                                                   'field '
+                                                                                                   'carries.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'dataset '
+                                                                                                    'RIDs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23043,6 +27099,51 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                                                                     'rights '
                                                                                                     'FK'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Privacy '
+                                                                                                   'protection '
+                                                                                                   'is '
+                                                                                                   'embedded '
+                                                                                                   'structurally '
+                                                                                                   'in '
+                                                                                                   'CHEL '
+                                                                                                   '(Hex3 '
+                                                                                                   'chosen '
+                                                                                                   'partly '
+                                                                                                   'for '
+                                                                                                   'HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination; '
+                                                                                                   'a '
+                                                                                                   'separate '
+                                                                                                   'ZIP3 '
+                                                                                                   'geography '
+                                                                                                   'for '
+                                                                                                   'jitter '
+                                                                                                   'and '
+                                                                                                   'small-cell '
+                                                                                                   'suppression), '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'per-record '
+                                                                                                   'PHI-status '
+                                                                                                   'assertion '
+                                                                                                   'flag.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§1.9, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(privacy '
+                                                                                                    'architecture)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23262,6 +27363,37 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'ontology '
                                                                                                     'tag)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38). '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(indicator '
+                                                                                                    'names; '
+                                                                                                    'no '
+                                                                                                    'substance '
+                                                                                                    'vocabulary)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23469,6 +27601,41 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Spatial-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'spatial '
+                                                                                                   'block '
+                                                                                                   'is '
+                                                                                                   'where '
+                                                                                                   'CHEL '
+                                                                                                   'is '
+                                                                                                   'strongest: '
+                                                                                                   'fixed '
+                                                                                                   'hex '
+                                                                                                   'resolution, '
+                                                                                                   'equal-area '
+                                                                                                   'CRS, '
+                                                                                                   'and '
+                                                                                                   'explicit '
+                                                                                                   'aggregation '
+                                                                                                   'operators '
+                                                                                                   'are '
+                                                                                                   'all '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§4.2.1/Part '
+                                                                                                    '3 '
+                                                                                                    '(hex '
+                                                                                                    'resolution, '
+                                                                                                    'CRS, '
+                                                                                                    'aggregation)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23665,6 +27832,29 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Temporal-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23826,6 +28016,47 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'description/notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit '
+                                                                                                   'but '
+                                                                                                   'inherits '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure '
+                                                                                                   'model '
+                                                                                                   'from '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'validates '
+                                                                                                   'only '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(aggregation '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -23978,6 +28209,40 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'codes '
                                                                                                     '(aXX/bXX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'and '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3 '
+                                                                                                    '(conservation/range '
+                                                                                                    'diagnostics); '
+                                                                                                    '§4.6.4, '
+                                                                                                    '§4.7 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -24167,6 +28432,48 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'Index/Value/Temporal/Spatial, '
                                                                                                     'column_unit)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   'keyed '
+                                                                                                   'on '
+                                                                                                   '`hex_id`; '
+                                                                                                   'subject '
+                                                                                                   'and '
+                                                                                                   'time '
+                                                                                                   'live '
+                                                                                                   'only '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example, '
+                                                                                                   'and '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'column '
+                                                                                                   'layout. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(wide, '
+                                                                                                    'keyed '
+                                                                                                    'on '
+                                                                                                    'hex_id); '
+                                                                                                    'README.md'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -24331,6 +28638,51 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'source_update_frequency'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'with '
+                                                                                                   'its '
+                                                                                                   'release '
+                                                                                                   'vintage '
+                                                                                                   '(EJI '
+                                                                                                   '2022 '
+                                                                                                   '/ '
+                                                                                                   '2024); '
+                                                                                                   '§5.5 '
+                                                                                                   'adds '
+                                                                                                   'Foundry '
+                                                                                                   'RIDs '
+                                                                                                   'to '
+                                                                                                   'the '
+                                                                                                   'per-release '
+                                                                                                   'documentation.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table; '
+                                                                                                    '§5.5 '
+                                                                                                    '(name '
+                                                                                                    '+ '
+                                                                                                    'release '
+                                                                                                    '+ '
+                                                                                                    'RID)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -24514,6 +28866,43 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'version'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'digest, '
+                                                                                                   'run '
+                                                                                                   'args, '
+                                                                                                   'timestamps, '
+                                                                                                   'or '
+                                                                                                   'hashes. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -24680,6 +29069,35 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -24832,6 +29250,43 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'join '
                                                                                                     'descriptors)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'deterministic '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'Hex3 '
+                                                                                                   'join '
+                                                                                                   'plus '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'linkage '
+                                                                                                   'stage.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(point-to-hex '
+                                                                                                    'join '
+                                                                                                    '+ '
+                                                                                                    'deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25015,6 +29470,44 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'health '
                                                                                                     'resources)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'produces '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   '+ '
+                                                                                                   'a '
+                                                                                                   'participant-linkage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   '(person, '
+                                                                                                   'start/end, '
+                                                                                                   'location, '
+                                                                                                   'concept, '
+                                                                                                   'value) '
+                                                                                                   'assembly '
+                                                                                                   'to '
+                                                                                                   'link '
+                                                                                                   'into '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   'layer '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25198,6 +29691,35 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'pipeline, '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'metadata '
+                                                                                                   'sidecar '
+                                                                                                   'standard; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'schema-version '
+                                                                                                   'field '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'schema-version '
+                                                                                                    'construct)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25348,6 +29870,45 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     '/ '
                                                                                                     'ornl_res_pub_id'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'lists '
+                                                                                                   'Foundry '
+                                                                                                   'dataset '
+                                                                                                   'references '
+                                                                                                   '(RID) '
+                                                                                                   'among '
+                                                                                                   'its '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'items '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'per-sidecar '
+                                                                                                   'stable '
+                                                                                                   'record '
+                                                                                                   'id '
+                                                                                                   'that '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   "layer's "
+                                                                                                   'source-value '
+                                                                                                   'field '
+                                                                                                   'carries.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'dataset '
+                                                                                                    'RIDs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25513,6 +30074,51 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                                                                     'rights '
                                                                                                     'FK'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Privacy '
+                                                                                                   'protection '
+                                                                                                   'is '
+                                                                                                   'embedded '
+                                                                                                   'structurally '
+                                                                                                   'in '
+                                                                                                   'CHEL '
+                                                                                                   '(Hex3 '
+                                                                                                   'chosen '
+                                                                                                   'partly '
+                                                                                                   'for '
+                                                                                                   'HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination; '
+                                                                                                   'a '
+                                                                                                   'separate '
+                                                                                                   'ZIP3 '
+                                                                                                   'geography '
+                                                                                                   'for '
+                                                                                                   'jitter '
+                                                                                                   'and '
+                                                                                                   'small-cell '
+                                                                                                   'suppression), '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'per-record '
+                                                                                                   'PHI-status '
+                                                                                                   'assertion '
+                                                                                                   'flag.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§1.9, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(privacy '
+                                                                                                    'architecture)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25731,6 +30337,37 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'ontology '
                                                                                                     'tag)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'carries '
+                                                                                                   'indicator '
+                                                                                                   'names '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'environmental-substance '
+                                                                                                   'vocabulary; '
+                                                                                                   'the '
+                                                                                                   'exposure '
+                                                                                                   'concept '
+                                                                                                   'is '
+                                                                                                   'unfilled '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38). '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(indicator '
+                                                                                                    'names; '
+                                                                                                    'no '
+                                                                                                    'substance '
+                                                                                                    'vocabulary)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -25938,6 +30575,41 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Spatial-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'The '
+                                                                                                   'spatial '
+                                                                                                   'block '
+                                                                                                   'is '
+                                                                                                   'where '
+                                                                                                   'CHEL '
+                                                                                                   'is '
+                                                                                                   'strongest: '
+                                                                                                   'fixed '
+                                                                                                   'hex '
+                                                                                                   'resolution, '
+                                                                                                   'equal-area '
+                                                                                                   'CRS, '
+                                                                                                   'and '
+                                                                                                   'explicit '
+                                                                                                   'aggregation '
+                                                                                                   'operators '
+                                                                                                   'are '
+                                                                                                   'all '
+                                                                                                   'first-class.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§4.2.1/Part '
+                                                                                                    '3 '
+                                                                                                    '(hex '
+                                                                                                    'resolution, '
+                                                                                                    'CRS, '
+                                                                                                    'aggregation)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26134,6 +30806,29 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'column_tag '
                                                                                                     'Temporal-Primary'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'spatial-only; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'participant '
+                                                                                                   'start_date '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'temporal-aggregation '
+                                                                                                   'semantics.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(spatial-only; '
+                                                                                                    'start_date '
+                                                                                                    'only)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26295,6 +30990,47 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'description/notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'makes '
+                                                                                                   'the '
+                                                                                                   'aggregation '
+                                                                                                   'operator '
+                                                                                                   'explicit '
+                                                                                                   'but '
+                                                                                                   'inherits '
+                                                                                                   'the '
+                                                                                                   'source '
+                                                                                                   'exposure '
+                                                                                                   'model '
+                                                                                                   'from '
+                                                                                                   'EJI '
+                                                                                                   'and '
+                                                                                                   'validates '
+                                                                                                   'only '
+                                                                                                   'its '
+                                                                                                   'own '
+                                                                                                   'geometry. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    'Part '
+                                                                                                    '3 '
+                                                                                                    '/ '
+                                                                                                    'Part '
+                                                                                                    '4 '
+                                                                                                    '(aggregation '
+                                                                                                    'explicit; '
+                                                                                                    'source '
+                                                                                                    'model '
+                                                                                                    'inherited)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26447,6 +31183,40 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'codes '
                                                                                                     '(aXX/bXX)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'has '
+                                                                                                   'conservation '
+                                                                                                   'and '
+                                                                                                   'range/domain '
+                                                                                                   'validation '
+                                                                                                   'and '
+                                                                                                   'a '
+                                                                                                   'null '
+                                                                                                   'taxonomy, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'per-value '
+                                                                                                   'uncertainty. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.3 '
+                                                                                                    '(conservation/range '
+                                                                                                    'diagnostics); '
+                                                                                                    '§4.6.4, '
+                                                                                                    '§4.7 '
+                                                                                                    '(source '
+                                                                                                    'uncertainty '
+                                                                                                    'acknowledged)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26636,6 +31406,48 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'Index/Value/Temporal/Spatial, '
                                                                                                     'column_unit)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'publishes '
+                                                                                                   'wide '
+                                                                                                   'hex-indexed '
+                                                                                                   'tables '
+                                                                                                   'keyed '
+                                                                                                   'on '
+                                                                                                   '`hex_id`; '
+                                                                                                   'subject '
+                                                                                                   'and '
+                                                                                                   'time '
+                                                                                                   'live '
+                                                                                                   'only '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'README '
+                                                                                                   'linkage '
+                                                                                                   'example, '
+                                                                                                   'and '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'portable '
+                                                                                                   'sidecar '
+                                                                                                   'column '
+                                                                                                   'layout. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'data/CHEL_hex3_*.csv '
+                                                                                                    '(wide, '
+                                                                                                    'keyed '
+                                                                                                    'on '
+                                                                                                    'hex_id); '
+                                                                                                    'README.md'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26800,6 +31612,51 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'source_update_frequency'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'each '
+                                                                                                   'source '
+                                                                                                   'dataset '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   '§2.7 '
+                                                                                                   'lineage '
+                                                                                                   'table '
+                                                                                                   'with '
+                                                                                                   'its '
+                                                                                                   'release '
+                                                                                                   'vintage '
+                                                                                                   '(EJI '
+                                                                                                   '2022 '
+                                                                                                   '/ '
+                                                                                                   '2024); '
+                                                                                                   '§5.5 '
+                                                                                                   'adds '
+                                                                                                   'Foundry '
+                                                                                                   'RIDs '
+                                                                                                   'to '
+                                                                                                   'the '
+                                                                                                   'per-release '
+                                                                                                   'documentation.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.7 '
+                                                                                                    'lineage '
+                                                                                                    'table; '
+                                                                                                    '§5.5 '
+                                                                                                    '(name '
+                                                                                                    '+ '
+                                                                                                    'release '
+                                                                                                    '+ '
+                                                                                                    'RID)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -26983,6 +31840,43 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'version'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'identifies '
+                                                                                                   'its '
+                                                                                                   'pipeline '
+                                                                                                   'via '
+                                                                                                   'Foundry '
+                                                                                                   'RID '
+                                                                                                   '+ '
+                                                                                                   'CHEL '
+                                                                                                   'release, '
+                                                                                                   'but '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'container '
+                                                                                                   'digest, '
+                                                                                                   'run '
+                                                                                                   'args, '
+                                                                                                   'timestamps, '
+                                                                                                   'or '
+                                                                                                   'hashes. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'RID '
+                                                                                                    '+ '
+                                                                                                    'CHEL '
+                                                                                                    'release)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27149,6 +32043,35 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     '+ '
                                                                                                     'lineage_notes'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'documents '
+                                                                                                   'a '
+                                                                                                   'lineage '
+                                                                                                   'pathway '
+                                                                                                   'but '
+                                                                                                   'not '
+                                                                                                   'an '
+                                                                                                   'ordered '
+                                                                                                   'per-run '
+                                                                                                   'W3C-PROV '
+                                                                                                   'chain. '
+                                                                                                   'Conservative: '
+                                                                                                   'partial.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.1 '
+                                                                                                    '(Source '
+                                                                                                    'to '
+                                                                                                    'Module '
+                                                                                                    'Assignment '
+                                                                                                    'pathway)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27301,6 +32224,43 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'join '
                                                                                                     'descriptors)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': "CHEL's "
+                                                                                                   'linkage '
+                                                                                                   'is '
+                                                                                                   'first-class: '
+                                                                                                   'deterministic '
+                                                                                                   'participant '
+                                                                                                   'point '
+                                                                                                   'to '
+                                                                                                   'Hex3 '
+                                                                                                   'join '
+                                                                                                   'plus '
+                                                                                                   'a '
+                                                                                                   'deterministic '
+                                                                                                   'privacy '
+                                                                                                   'reassignment '
+                                                                                                   '(jitter) '
+                                                                                                   'at '
+                                                                                                   'the '
+                                                                                                   'linkage '
+                                                                                                   'stage.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§4.5.2, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(point-to-hex '
+                                                                                                    'join '
+                                                                                                    '+ '
+                                                                                                    'deterministic '
+                                                                                                    'privacy '
+                                                                                                    'jitter)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27484,6 +32444,44 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'health '
                                                                                                     'resources)'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'produces '
+                                                                                                   'hex '
+                                                                                                   'tables '
+                                                                                                   '+ '
+                                                                                                   'a '
+                                                                                                   'participant-linkage '
+                                                                                                   'table '
+                                                                                                   'but '
+                                                                                                   'no '
+                                                                                                   'unified '
+                                                                                                   '(person, '
+                                                                                                   'start/end, '
+                                                                                                   'location, '
+                                                                                                   'concept, '
+                                                                                                   'value) '
+                                                                                                   'assembly '
+                                                                                                   'to '
+                                                                                                   'link '
+                                                                                                   'into '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   'layer '
+                                                                                                   '(EnVar-Tracker '
+                                                                                                   '#38).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'unified '
+                                                                                                    'external_exposure '
+                                                                                                    'assembly)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27667,6 +32665,35 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                            'value': 'no '
                                                                                                     'column'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'absent'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'is '
+                                                                                                   'a '
+                                                                                                   'pipeline, '
+                                                                                                   'not '
+                                                                                                   'a '
+                                                                                                   'metadata '
+                                                                                                   'sidecar '
+                                                                                                   'standard; '
+                                                                                                   'it '
+                                                                                                   'carries '
+                                                                                                   'no '
+                                                                                                   'schema-version '
+                                                                                                   'field '
+                                                                                                   'on '
+                                                                                                   'emitted '
+                                                                                                   'records.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '(no '
+                                                                                                    'schema-version '
+                                                                                                    'construct)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27817,6 +32844,45 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     '/ '
                                                                                                     'ornl_res_pub_id'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'lists '
+                                                                                                   'Foundry '
+                                                                                                   'dataset '
+                                                                                                   'references '
+                                                                                                   '(RID) '
+                                                                                                   'among '
+                                                                                                   'its '
+                                                                                                   'per-release '
+                                                                                                   'documentation '
+                                                                                                   'items '
+                                                                                                   '(§5.5), '
+                                                                                                   'but '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'per-sidecar '
+                                                                                                   'stable '
+                                                                                                   'record '
+                                                                                                   'id '
+                                                                                                   'that '
+                                                                                                   'a '
+                                                                                                   'health '
+                                                                                                   "layer's "
+                                                                                                   'source-value '
+                                                                                                   'field '
+                                                                                                   'carries.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§5.5 '
+                                                                                                    '(Foundry '
+                                                                                                    'dataset '
+                                                                                                    'RIDs)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
@@ -27982,6 +33048,51 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                                                                     'rights '
                                                                                                     'FK'}},
                                                                  'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'Privacy '
+                                                                                                   'protection '
+                                                                                                   'is '
+                                                                                                   'embedded '
+                                                                                                   'structurally '
+                                                                                                   'in '
+                                                                                                   'CHEL '
+                                                                                                   '(Hex3 '
+                                                                                                   'chosen '
+                                                                                                   'partly '
+                                                                                                   'for '
+                                                                                                   'HIPAA '
+                                                                                                   'expert '
+                                                                                                   'determination; '
+                                                                                                   'a '
+                                                                                                   'separate '
+                                                                                                   'ZIP3 '
+                                                                                                   'geography '
+                                                                                                   'for '
+                                                                                                   'jitter '
+                                                                                                   'and '
+                                                                                                   'small-cell '
+                                                                                                   'suppression), '
+                                                                                                   'but '
+                                                                                                   'there '
+                                                                                                   'is '
+                                                                                                   'no '
+                                                                                                   'per-record '
+                                                                                                   'PHI-status '
+                                                                                                   'assertion '
+                                                                                                   'flag.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3, '
+                                                                                                    '§1.9, '
+                                                                                                    '§2.2.2 '
+                                                                                                    '(privacy '
+                                                                                                    'architecture)'}},
+                                                                 'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',

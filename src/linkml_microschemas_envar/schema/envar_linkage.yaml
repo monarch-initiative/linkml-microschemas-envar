@@ -155,6 +155,15 @@ slots:
         or averaging the values in a circle around it.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §4.5.2; README.md (participant point to Hex3 join)"
+              note: >-
+                CHEL's linkage strategy is first-class: geocoded participant
+                points (§2.7) get a deterministic Hex3 assignment (§4.5.2); the
+                README shows the point-in-hex spatial join.
           omop_gaia:
             annotations:
               extent: partial
@@ -368,6 +377,14 @@ slots:
         landing was.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §2.7 (Geocodes input), §4.5.2"
+              note: >-
+                CHEL takes geocoded participant points as input and joins them to
+                a hex, but the precision of the geocode itself is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -433,6 +450,14 @@ slots:
         the exposure record.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §4.5.2"
+              note: >-
+                The geocode-to-hex join is defined, but no geocoder confidence
+                score is propagated. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -510,6 +535,15 @@ slots:
         full address history, or accounted for known trips away from home.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL README.md (point join; release chosen by start_date)"
+              note: >-
+                CHEL joins one participant point to a hex and picks the release
+                (2022 vs 2024) by enrollment start_date year; it carries no
+                address-period / location-over-time alignment.
           omop_gaia:
             annotations:
               extent: absent
@@ -614,6 +648,14 @@ slots:
         left, the place they arrived, both, or neither.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (spatial-only; no clinical-date / trajectory model)"
+              note: >-
+                CHEL is spatial-only and models no clinical-date or trajectory
+                transitions, so partial-day attribution is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -695,6 +737,14 @@ slots:
         such a shift was already built into the data.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (spatial-only; no clinical-date / lag alignment)"
+              note: >-
+                CHEL is spatial-only; it carries participant start_date but no
+                clinical-date / lag alignment.
           omop_gaia:
             annotations:
               extent: absent
@@ -782,18 +832,24 @@ slots:
       aggregation to a coarser unit / stochastic perturbation). A linkage-stage
       concern: the transform is applied when the ambient value is attached to a
       person, so the value ultimately carried may be the value at a perturbed
-      rather than the true location. A deterministic hex-reassignment jitter is the
-      motivating case.
+      rather than the true location. CHEL's deterministic hex-reassignment jitter
+      (Documentation.md §2.2.2) is the motivating case.
     examples:
     - value: deterministic_geographic_jitter
       description: >-
-        the participant is reassigned to the largest hex in the same ZIP3
-        when the true hex's ZIP3 population is small
+        CHEL deterministically reassigns participants using ZIP3 x Hex3
+        sliver populations (Documentation.md §2.2.2)
     - value: none
       description: no privacy transform applied; the linked location is the true one
+    see_also:
+    - https://github.com/cladteam/CHEL/blob/main/Documentation.md
 
     annotations:
       tier: recommended
+      # CLAD-tiering-signal: CLAD would argue core (at the linkage stage). §1.9/§2.2.2
+      # make the privacy transform a mandatory structural step that changes the
+      # recorded location, so an undeclared perturbation is silently carried into
+      # the linked value.
       justification: >-
         A privacy transform applied AFTER the spatial join changes the recorded
         location of the exposure, so a downstream analyst cannot tell a
@@ -810,6 +866,16 @@ slots:
         so the perturbation is visible instead of hidden.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §2.2.2, §4.1, §4.8 (deterministic privacy jitter)"
+              note: >-
+                CHEL applies a deterministic privacy reassignment (jitter) at
+                linkage time, driven by ZIP3 x Hex3 sliver populations (§2.2.2,
+                §2.2.4, §4.1); §4.8 advises fitting models with and without
+                jitter-reassigned records.
           omop_gaia:
             annotations:
               extent: absent
@@ -841,7 +907,7 @@ slots:
               status: asserted
               where: "C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)"
               note: >-
-                C-HER applies the deterministic
+                C-HER (the CHEL platform, §2.2.2) applies the deterministic
                 hex-reassignment privacy jitter this slot models — it is the
                 motivating case.
           codata:
@@ -880,6 +946,18 @@ slots:
         always does the same thing, and the legal rule it follows.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §1.3, §2.2.2, §5.5 (threshold not published)"
+              note: >-
+                The public documentation names the mechanism (deterministic
+                reassignment over ZIP3 x Hex3 slivers, §2.2.2) and its governance
+                basis (HIPAA expert determination, §1.3), and lists the privacy
+                threshold as a per-release documentation item (§5.5), but does not
+                publish the trigger value or the reassignment rule. Conservative:
+                partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -1107,9 +1185,11 @@ enums:
     title: Privacy Transformation
     description: >-
       A privacy-protecting transformation applied to a linked location after the
-      spatial join, which alters the recorded location of the exposure. A
-      deterministic hex-reassignment jitter is the motivating case.
+      spatial join, which alters the recorded location of the exposure. CHEL's
+      deterministic hex-reassignment jitter (Documentation.md §2.2.2) is the
+      motivating case.
     see_also:
+    - https://github.com/cladteam/CHEL/blob/main/Documentation.md
     - https://www.hhs.gov/hipaa/for-professionals/privacy/index.html
     permissible_values:
       none:
@@ -1117,8 +1197,8 @@ enums:
       deterministic_geographic_jitter:
         description: >-
           The location is deterministically reassigned to a nearby unit under a
-          reproducible rule (e.g. reassignment to the largest hex in the same
-          ZIP3 below a population threshold).
+          reproducible rule (e.g. CHEL's ZIP3-based hex reassignment below a
+          population threshold).
       suppression:
         description: >-
           The value or location is suppressed (dropped / withheld) when a

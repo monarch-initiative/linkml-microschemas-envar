@@ -95,6 +95,14 @@ slots:
         conditions, big tiles give a blurry average over a large area.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)"
+              note: >-
+                CHEL fixes native resolution first-class as Uber H3 Resolution-3
+                hexagons (~12,000 km2).
           omop_gaia:
             annotations:
               extent: absent
@@ -161,6 +169,14 @@ slots:
         neighbourhood outlines, or individual measuring stations dotted around.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)"
+              note: >-
+                The hex-grid resolution descriptor (H3 Hex3) is stated
+                first-class.
           omop_gaia:
             annotations:
               extent: partial
@@ -230,6 +246,15 @@ slots:
         EPSG code) tells software exactly which convention the numbers follow.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)"
+              note: >-
+                CHEL fixes CRS first-class: every area-based overlay runs in
+                equal-area EPSG:5070 (§4.2.1); the README linkage example builds
+                participant points in EPSG:4326.
           omop_gaia:
             annotations:
               extent: full
@@ -302,6 +327,15 @@ slots:
         covered by the dataset in the first place.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §1.3, §2.7 (national US extent)"
+              note: >-
+                CHEL's extent is national US (national-scale design, §1.3; US
+                Census TIGER inputs, §2.7), but no bounding box is given.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -365,6 +399,13 @@ slots:
         Rico" — so you can tell at a glance whether your study area is covered.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §1.3, §2.7 (national US extent)"
+              note: >-
+                The national-US spatial extent is stated for CHEL products.
           omop_gaia:
             annotations:
               extent: partial
@@ -433,6 +474,16 @@ slots:
         ones, and so on. This field records which rule was used.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)"
+              note: >-
+                CHEL carries the extraction/aggregation operator first-class:
+                area-weighted interpolation (§3.2), population-weighted allocation
+                (§3.3), density and intersection-proportion (§3.4), raster zonal
+                sum (§3.5).
           omop_gaia:
             annotations:
               extent: absent
@@ -599,6 +650,14 @@ slots:
         average rather than a personal measurement.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §2.2.1 (H3 hex target)"
+              note: >-
+                CHEL's target geography is first-class: every value is attached to
+                an H3 Hex3 cell.
           omop_gaia:
             annotations:
               extent: partial
@@ -649,19 +708,24 @@ slots:
       a value on a source spatial support is re-expressed on the target support
       — not the mechanics of the operator (that is `extraction_method`), but the
       invariant it holds fixed (mean intensity, total mass, occurrence density,
-      or areal coverage).
+      or areal coverage). Adopted from CHEL's §3.10 "aggregation must match
+      meaning" preservation table.
     examples:
     - value: mean_intensity
       description: >-
         area-weighted interpolation of a modeled concentration preserves the
-        area-mean intensity (tract-to-hex concentration case)
+        area-mean intensity (CHEL tract-to-hex concentration case)
     - value: total_mass_conservation
       description: >-
         population-weighted / area-proportional allocation of a count preserves
-        the total (population-count case)
+        the total (CHEL population-count case)
 
     annotations:
       tier: recommended
+      # CLAD-tiering-signal: CLAD would argue core. Its §3.10 principle
+      # "aggregation must match meaning" makes the preserved quantity the central
+      # design invariant; without it, an area-weighted mean and a mass-conserving
+      # allocation of the same input are indistinguishable and non-comparable.
       justification: >-
         Recording *what quantity the operator preserves* — not just the
         operator name — is what makes two datasets' spatial values comparable
@@ -678,6 +742,15 @@ slots:
         two different ways produces two different numbers.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)"
+              note: >-
+                CHEL §3.10 enumerates exactly this preserved-quantity
+                vocabulary (mean intensity / mass conservation / occurrence
+                intensity / areal coverage) and selects the operator from it.
           omop_gaia:
             annotations:
               extent: absent
@@ -748,24 +821,27 @@ enums:
       intersection_area_proportion:
         description: >-
           Value = fraction of the target cell covered by the source feature
-          (source∩target area ÷ target area). Areal-coverage operator
+          (source∩target area ÷ target area). CHEL areal-coverage operator
           (e.g. impaired waters).
       raster_zonal_sum:
         description: >-
           Sum of source raster cell values falling within each target zone.
-          Raster zonal-sum operator (e.g. population raster over a hex).
+          CHEL raster zonal-sum operator (e.g. population raster over a hex).
       feature_density:
         description: >-
-          Count (or line-length) of source features per unit target area.
-          Occurrence-intensity operator (e.g. facilities, roads).
+          Count (or line-length) of source features per unit target area. CHEL
+          occurrence-intensity operator (e.g. facilities, roads).
 
   SpatialAggregationPreservationEnum:
     title: Spatial Aggregation Preserved Quantity
     description: >-
       The quantity a spatial-aggregation operator holds invariant when a value
-      is re-expressed from a source spatial support onto a target support. It
-      keys the operator on *what is preserved* rather than on the mechanics of
-      the operator.
+      is re-expressed from a source spatial support onto a target support.
+      Adopted from CHEL Documentation.md §3.10 ("aggregation as a geometry-weighted
+      operator; aggregation must match meaning"), which keys the operator on
+      *what is preserved* rather than on the mechanics of the operator.
+    see_also:
+    - https://github.com/cladteam/CHEL/blob/main/Documentation.md
     permissible_values:
       mean_intensity:
         description: >-

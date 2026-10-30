@@ -109,6 +109,15 @@ slots:
         is. Long is also known as "tidy" format.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL data/CHEL_hex3_2022.csv, CHEL_hex3_2024.csv (wide, one row per hex_id)"
+              note: >-
+                CHEL publishes wide hex-indexed tables (one row per `hex_id`, one
+                column per indicator), but not as a portable sidecar layout
+                declaration. Conservative: partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -177,6 +186,15 @@ slots:
         table.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL data/CHEL_hex3_*.csv (E_* / EPL_* / F_* indicator columns)"
+              note: >-
+                Each indicator is its own value column in CHEL's hex tables, but
+                the column binding is not a portable sidecar declaration.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: full
@@ -327,6 +345,15 @@ slots:
         like a census-tract code.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL README.md linkage example (participant_id)"
+              note: >-
+                The README linkage example carries a `participant_id` subject
+                column, but not as a portable sidecar binding. Conservative:
+                partial.
           omop_gaia:
             annotations:
               extent: full
@@ -396,6 +423,16 @@ slots:
         summaries.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL README.md linkage example (start_date)"
+              note: >-
+                The README linkage example carries a participant `start_date`
+                column (used to pick the CHEL release); the hex tables themselves
+                have no time column, and neither is a portable sidecar binding.
+                Conservative: partial.
           omop_gaia:
             annotations:
               extent: partial
@@ -465,6 +502,15 @@ slots:
         being lost.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §4.6.4 (no per-value uncertainty carried)"
+              note: >-
+                CHEL carries no per-value uncertainty for its indicators (only the
+                EJI population margin of error `M_TOTPOP` passes through), so no
+                uncertainty column is bound.
           omop_gaia:
             annotations:
               extent: absent
@@ -585,15 +631,22 @@ slots:
       description: >-
         per-value column tagging each cell present / structural_null /
         derived_null / true_zero, next to the value column
+    see_also:
+    - https://github.com/cladteam/CHEL/blob/main/Documentation.md
 
     annotations:
       tier: recommended
+      # CLAD-tiering-signal: CLAD would argue core. §4.3.3 treats the null kind as
+      # load-bearing — nulls are excluded from percentile denominators so
+      # missingness is not read as zero exposure; structural_null / derived_null /
+      # true_zero carry opposite correct handling (drop / drop-from-denominator /
+      # keep-as-zero).
       justification: >-
         A blank or a `0` is ambiguous, and the three kinds of "missing/zero"
         have OPPOSITE correct handling — structural_null and derived_null must
         be dropped (the latter also excluded from denominators) while true_zero
         must be kept as a real zero; conflating them biases the health-effect
-        estimate. Nulls should be excluded from percentile denominators for
+        estimate. CHEL §4.3.3 excludes nulls from percentile denominators for
         exactly this reason, so binding a per-value null-kind column is what
         lets a consumer handle each cell correctly instead of reading
         missingness as low or zero exposure.
@@ -605,6 +658,15 @@ slots:
         data" for "zero exposure".
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §4.3.3 Null Handling"
+              note: >-
+                CHEL §4.3.3 defines exactly this three-way null taxonomy
+                (structural / derived / true-zero) and excludes nulls from
+                percentile-ranking denominators on its basis.
           omop_gaia:
             annotations:
               extent: partial
@@ -637,8 +699,9 @@ slots:
               status: asserted
               where: "no column"
               note: >-
-                C-HER handles null semantics in its validation rules, but binds
-                no per-value null-kind column in table_column_dictionary.
+                C-HER handles null semantics in its validation rules (§4.3.3
+                concepts live in CHEL), but binds no per-value null-kind column
+                in table_column_dictionary.
           codata:
             annotations:
               extent: out_of_layer

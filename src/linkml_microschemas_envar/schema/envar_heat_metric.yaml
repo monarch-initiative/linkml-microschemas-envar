@@ -171,6 +171,15 @@ slots:
         number the record is about.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §2.6 (EJI extreme-heat-days indicator only)"
+              note: >-
+                CHEL carries the EJI-derived extreme-heat-days indicator (§2.6;
+                `E_NEHD` / `EPL_NEHD` in the 2024 hex table), but no
+                heat-metric methodology, so no heat-metric family is recorded.
           omop_gaia:
             annotations:
               extent: absent
@@ -383,6 +392,14 @@ slots:
         have to look everything up just to get oriented.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no derived-heat-metric equation inputs)"
+              note: >-
+                CHEL models no derived heat metrics, so per-input source codes for
+                a heat equation are not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -510,6 +527,14 @@ slots:
         taken at — this field records that height.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no derived-heat-metric methodology)"
+              note: >-
+                CHEL models no WBGT/UTCI heat metrics, so wind-measurement height
+                is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -585,6 +610,14 @@ slots:
         This says which representation fed the calculation.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (no derived-heat-metric methodology)"
+              note: >-
+                CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis
+                is not carried.
           omop_gaia:
             annotations:
               extent: absent
@@ -837,6 +870,16 @@ slots:
         the comparison was made against.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL Documentation.md §3.6 (national percentile ranking, from EJI)"
+              note: >-
+                CHEL applies national percentile ranking (0-100) inherited from
+                EJI, so the reference scope is stated (national), but not as a
+                first-class heat-metric percentile-baseline slot. Conservative:
+                partial.
           omop_gaia:
             annotations:
               extent: absent
@@ -914,6 +957,14 @@ slots:
         summer-only history may be unremarkable against the full year.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md (spatial-only; no seasonal window)"
+              note: >-
+                CHEL's percentile normalization is spatial (EJI), with no
+                temporal/seasonal reference window.
           omop_gaia:
             annotations:
               extent: absent
@@ -990,6 +1041,15 @@ slots:
         label — just the first day, every day, or the last.
       covered_by:
         annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §2.6 (spatial-only; no multi-day event stamping)"
+              note: >-
+                CHEL is spatial-only: its extreme-heat-days count arrives
+                pre-aggregated from EJI, and no multi-day heat events are stamped
+                onto days.
           omop_gaia:
             annotations:
               extent: absent
