@@ -622,7 +622,7 @@
 
 
 <h1 id="enum-privacy-transformation-privacytransformationenum">Enum: Privacy Transformation (PrivacyTransformationEnum)</h1>
-<p><em>A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. A deterministic hex-reassignment jitter is the motivating case.</em></p>
+<p><em>A privacy-protecting transformation applied to a linked location after the spatial join, which alters the recorded location of the exposure. CHEL's deterministic hex-reassignment jitter (Documentation.md §2.2.2) is the motivating case.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/enum/PrivacyTransformationEnum">envar:enum/PrivacyTransformationEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -679,6 +679,7 @@
 </table>
 <h2 id="see-also">See Also</h2>
 <ul>
+<li><a href="https://github.com/cladteam/CHEL/blob/main/Documentation.md">https://github.com/cladteam/CHEL/blob/main/Documentation.md</a></li>
 <li><a href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">https://www.hhs.gov/hipaa/for-professionals/privacy/index.html</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -690,11 +691,12 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrivacyTransformationEnum</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A privacy-protecting transformation applied to a linked location after</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the spatial join, which alters the recorded location of the exposure. A deterministic</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">hex-reassignment jitter is the motivating case.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the spatial join, which alters the recorded location of the exposure. CHEL&#39;s deterministic</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">hex-reassignment jitter (Documentation.md §2.2.2) is the motivating case.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Privacy Transformation</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="nt">see_also</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/cladteam/CHEL/blob/main/Documentation.md</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.hhs.gov/hipaa/for-professionals/privacy/index.html</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
@@ -705,8 +707,8 @@
 <span class="w">  </span><span class="nt">deterministic_geographic_jitter</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deterministic_geographic_jitter</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The location is deterministically reassigned to a nearby unit under</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a reproducible rule (e.g. reassignment to the largest hex in the same ZIP3 below</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a population threshold).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a reproducible rule (e.g. CHEL&#39;s ZIP3-based hex reassignment below a population</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">threshold).</span>
 <span class="w">  </span><span class="nt">suppression</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suppression</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The value or location is suppressed (dropped / withheld) when a disclosure</span>

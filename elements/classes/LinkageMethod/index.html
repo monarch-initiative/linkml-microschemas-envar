@@ -381,7 +381,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.5.2; README.md (participant point to Hex3 join)</div>
+<div class="envar-cov-note">CHEL's linkage strategy is first-class: geocoded participant points (§2.7) get a deterministic Hex3 assignment (§4.5.2); the README shows the point-in-hex spatial join.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt</div>
@@ -577,7 +582,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.7 (Geocodes input), §4.5.2</div>
+<div class="envar-cov-note">CHEL takes geocoded participant points as input and joins them to a hex, but the precision of the geocode itself is not carried.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">No geocoding-precision column on location.csv or external_exposure.csv.</div>
@@ -628,7 +638,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.5.2</div>
+<div class="envar-cov-note">The geocode-to-hex join is defined, but no geocoder confidence score is propagated. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">No geocoder match-score column on location.csv or external_exposure.csv.</div>
@@ -688,7 +703,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL README.md (point join; release chosen by start_date)</div>
+<div class="envar-cov-note">CHEL joins one participant point to a hex and picks the release (2022 vs 2024) by enrollment start_date year; it carries no address-period / location-over-time alignment.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">GAIA/OMOP models a single static location per person and no address-history / location-over-time alignment.</div>
@@ -745,7 +765,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (spatial-only; no clinical-date / trajectory model)</div>
+<div class="envar-cov-note">CHEL is spatial-only and models no clinical-date or trajectory transitions, so partial-day attribution is not carried.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">GAIA/OMOP models no trajectory transitions, so no partial-day attribution rule is carried.</div>
@@ -800,7 +825,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (spatial-only; no clinical-date / lag alignment)</div>
+<div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no clinical-date / lag alignment.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">GAIA/OMOP emits values at native dates with no lag-alignment record.</div>
@@ -841,12 +871,12 @@
 <p>To protect privacy, a pipeline may deliberately move, blur, or drop a person's location after matching them to environmental data — so the value they end up with may be the value at a nearby place, not their real one. This records whether such a change was made and of what kind, so the perturbation is visible instead of hidden.</p>
 </div>
 <div class="envar-desc">
-<p>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. A deterministic hex-reassignment jitter is the motivating case.</p>
+<p>Any privacy-protecting transformation applied to the linked location <em>after</em> the spatial join, which changes the recorded location of the exposure (<code>none</code> / deterministic geographic jitter / suppression / aggregation to a coarser unit / stochastic perturbation). A linkage-stage concern: the transform is applied when the ambient value is attached to a person, so the value ultimately carried may be the value at a perturbed rather than the true location. CHEL's deterministic hex-reassignment jitter (Documentation.md §2.2.2) is the motivating case.</p>
 </div>
 <div class="envar-block">
 <p class="envar-blocklabel">Examples</p>
 <div class="envar-eg">
-<p><code>deterministic_geographic_jitter</code> — <span class="egdesc">the participant is reassigned to the largest hex in the same ZIP3 when the true hex's ZIP3 population is small</span></p>
+<p><code>deterministic_geographic_jitter</code> — <span class="egdesc">CHEL deterministically reassigns participants using ZIP3 x Hex3 sliver populations (Documentation.md §2.2.2)</span></p>
 </div>
 <div class="envar-eg">
 <p><code>none</code> — <span class="egdesc">no privacy transform applied; the linked location is the true one</span></p>
@@ -856,14 +886,19 @@
 <p class="envar-blocklabel">Allowed values</p>
 <div class="envar-values">
 <span class="envar-value" title="No privacy transformation applied; the linked location is the true one."><code>none</code> <span class="vdesc">No privacy transformation applied; the linked location is the true one</span></span>
-<span class="envar-value" title="The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. reassignment to the largest hex in the same ZIP3 below a population threshold)."><code>deterministic_geographic_jitter</code> <span class="vdesc">The location is deterministically reassigned to a nearby unit under a reprodu...</span></span>
+<span class="envar-value" title="The location is deterministically reassigned to a nearby unit under a reproducible rule (e.g. CHEL's ZIP3-based hex reassignment below a population threshold)."><code>deterministic_geographic_jitter</code> <span class="vdesc">The location is deterministically reassigned to a nearby unit under a reprodu...</span></span>
 <span class="envar-value" title="The value or location is suppressed (dropped / withheld) when a disclosure risk threshold is exceeded."><code>suppression</code> <span class="vdesc">The value or location is suppressed (dropped / withheld) when a disclosure ri...</span></span>
 <span class="envar-value" title="The location is coarsened to a larger geographic unit (e.g. hex → ZIP3 or county) to protect privacy."><code>aggregation_to_coarser_unit</code> <span class="vdesc">The location is coarsened to a larger geographic unit (e</span></span>
 <span class="envar-value" title="The location is perturbed by a random (non-deterministic) offset — contrast the deterministic jitter above."><code>stochastic_perturbation</code> <span class="vdesc">The location is perturbed by a random (non-deterministic) offset — contrast t...</span></span>
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.2, §4.1, §4.8 (deterministic privacy jitter)</div>
+<div class="envar-cov-note">CHEL applies a deterministic privacy reassignment (jitter) at linkage time, driven by ZIP3 x Hex3 sliver populations (§2.2.2, §2.2.4, §4.1); §4.8 advises fitting models with and without jitter-reassigned records.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">The heat-scenario GAIA/OMOP join carries the true geocoded location with no privacy-transformation record on location.csv or external_exposure.csv.</div>
@@ -879,7 +914,7 @@
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)</div>
-<div class="envar-cov-note">C-HER applies the deterministic hex-reassignment privacy jitter this slot models — it is the motivating case.</div>
+<div class="envar-cov-note">C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy jitter this slot models — it is the motivating case.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
@@ -890,6 +925,9 @@
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
 <p>A privacy transform applied AFTER the spatial join changes the recorded location of the exposure, so a downstream analyst cannot tell a faithfully-linked value from a privacy-perturbed one; the ambient value attached to a person may be the value at a reassigned location, not the true one. Recording the transform is what keeps that perturbation declared rather than silent — and it is a linkage-stage concern, squarely in the layer EnVar defers to whoever performs the person-join.</p>
+</div>
+<div class="envar-whyblock">
+<p><strong>See also:</strong> <a href="https://github.com/cladteam/CHEL/blob/main/Documentation.md">https://github.com/cladteam/CHEL/blob/main/Documentation.md</a></p>
 </div>
 </details>
 </div>
@@ -911,7 +949,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.2.2, §5.5 (threshold not published)</div>
+<div class="envar-cov-note">The public documentation names the mechanism (deterministic reassignment over ZIP3 x Hex3 slivers, §2.2.2) and its governance basis (HIPAA expert determination, §1.3), and lists the privacy threshold as a per-release documentation item (§5.5), but does not publish the trigger value or the reassignment rule. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">No privacy transform is applied in the GAIA/OMOP heat scenario, so there is no trigger/threshold/governance detail to record.</div>
@@ -1702,6 +1745,24 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.5.2; README.md (participant point</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">to Hex3 join)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">linkage</span><span class="nv"> </span><span class="s">strategy</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">geocoded</span><span class="nv"> </span><span class="s">participant</span>
+<span class="w">                  </span><span class="s">points</span><span class="nv"> </span><span class="s">(§2.7)</span><span class="nv"> </span><span class="s">get</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">deterministic</span><span class="nv"> </span><span class="s">Hex3</span><span class="nv"> </span><span class="s">assignment</span><span class="nv"> </span><span class="s">(§4.5.2);</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">                  </span><span class="s">README</span><span class="nv"> </span><span class="s">shows</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">point-in-hex</span><span class="nv"> </span><span class="s">spatial</span><span class="nv"> </span><span class="s">join.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2015,6 +2076,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.7 (Geocodes input), §4.5.2</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL takes geocoded participant points as input and joins them</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">to a hex, but the precision of the geocode itself is not carried.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2130,6 +2207,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.5.2</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">geocode-to-hex</span><span class="nv"> </span><span class="s">join</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">defined,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">geocoder</span><span class="nv"> </span><span class="s">confidence</span>
+<span class="w">                  </span><span class="s">score</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">propagated.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2266,6 +2359,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL README.md (point join; release chosen by start_date)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL joins one participant point to a hex and picks the release</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(2022 vs 2024) by enrollment start_date year; it carries no address-period</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">/ location-over-time alignment.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2437,6 +2547,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (spatial-only; no clinical-date / trajectory</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">model)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL is spatial-only and models no clinical-date or trajectory</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">transitions, so partial-day attribution is not carried.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2572,6 +2699,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (spatial-only; no clinical-date / lag</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">alignment)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL is spatial-only; it carries participant start_date but</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no clinical-date / lag alignment.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2745,6 +2889,25 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.2, §4.1, §4.8 (deterministic privacy</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">jitter)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL applies a deterministic privacy reassignment (jitter)</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">at linkage time, driven by ZIP3 x Hex3 sliver populations (§2.2.2,</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§2.2.4, §4.1); §4.8 advises fitting models with and without jitter-reassigned</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">records.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2809,8 +2972,9 @@
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">→ largest hex in same ZIP3)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER applies the deterministic hex-reassignment privacy jitter</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">this slot models — it is the motivating case.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER (the CHEL platform, §2.2.2) applies the deterministic</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">hex-reassignment privacy jitter this slot models — it is the motivating</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">case.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2832,16 +2996,18 @@
 <span class="w">      </span><span class="s">(`none`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">deterministic</span><span class="nv"> </span><span class="s">geographic</span><span class="nv"> </span><span class="s">jitter</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">suppression</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">aggregation</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">coarser</span>
 <span class="w">      </span><span class="s">unit</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">stochastic</span><span class="nv"> </span><span class="s">perturbation).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">linkage-stage</span><span class="nv"> </span><span class="s">concern:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">transform</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">applied</span>
 <span class="w">      </span><span class="s">when</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">ambient</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">attached</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">person,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">ultimately</span><span class="nv"> </span><span class="s">carried</span>
-<span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">perturbed</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">true</span><span class="nv"> </span><span class="s">location.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">deterministic</span>
-<span class="w">      </span><span class="s">hex-reassignment</span><span class="nv"> </span><span class="s">jitter</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">motivating</span><span class="nv"> </span><span class="s">case.'</span>
+<span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">perturbed</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">true</span><span class="nv"> </span><span class="s">location.</span><span class="nv"> </span><span class="s">CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">deterministic</span>
+<span class="w">      </span><span class="s">hex-reassignment</span><span class="nv"> </span><span class="s">jitter</span><span class="nv"> </span><span class="s">(Documentation.md</span><span class="nv"> </span><span class="s">§2.2.2)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">motivating</span><span class="nv"> </span><span class="s">case.'</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Privacy Transformation</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deterministic_geographic_jitter</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the participant is reassigned to the largest hex in the same ZIP3</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">when the true hex's ZIP3 population is small</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL deterministically reassigns participants using ZIP3 x Hex3</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">sliver populations (Documentation.md §2.2.2)</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
 <span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no privacy transform applied; the linked location is the true one</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">see_also</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/cladteam/CHEL/blob/main/Documentation.md</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
@@ -2867,6 +3033,26 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3, §2.2.2, §5.5 (threshold not published)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">documentation</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">(deterministic</span>
+<span class="w">                  </span><span class="s">reassignment</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">ZIP3</span><span class="nv"> </span><span class="s">x</span><span class="nv"> </span><span class="s">Hex3</span><span class="nv"> </span><span class="s">slivers,</span><span class="nv"> </span><span class="s">§2.2.2)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">governance</span>
+<span class="w">                  </span><span class="s">basis</span><span class="nv"> </span><span class="s">(HIPAA</span><span class="nv"> </span><span class="s">expert</span><span class="nv"> </span><span class="s">determination,</span><span class="nv"> </span><span class="s">§1.3),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">privacy</span>
+<span class="w">                  </span><span class="s">threshold</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-release</span><span class="nv"> </span><span class="s">documentation</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">(§5.5),</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span>
+<span class="w">                  </span><span class="s">publish</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">trigger</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reassignment</span><span class="nv"> </span><span class="s">rule.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

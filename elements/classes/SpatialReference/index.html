@@ -368,7 +368,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
+<div class="envar-cov-note">CHEL fixes native resolution first-class as Uber H3 Resolution-3 hexagons (~12,000 km2).</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
@@ -420,7 +425,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)</div>
+<div class="envar-cov-note">CHEL fixes CRS first-class: every area-based overlay runs in equal-area EPSG:5070 (§4.2.1); the README linkage example builds participant points in EPSG:4326.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom EPSG:4326</div>
@@ -483,13 +493,18 @@
 <span class="envar-value" title="Area-weighted mean of cells overlapping a polygon."><code>area_weighted_polygon_mean</code> <span class="vdesc">Area-weighted mean of cells overlapping a polygon</span></span>
 <span class="envar-value" title="Population-weighted mean over a target geography (e.g. tract)."><code>population_weighted_mean</code> <span class="vdesc">Population-weighted mean over a target geography (e</span></span>
 <span class="envar-value" title="Direct lookup at a point station observation."><code>point_station_lookup</code> <span class="vdesc">Direct lookup at a point station observation</span></span>
-<span class="envar-value" title="Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). Areal-coverage operator (e.g. impaired waters)."><code>intersection_area_proportion</code> <span class="vdesc">Value = fraction of the target cell covered by the source feature (source∩tar...</span></span>
-<span class="envar-value" title="Sum of source raster cell values falling within each target zone. Raster zonal-sum operator (e.g. population raster over a hex)."><code>raster_zonal_sum</code> <span class="vdesc">Sum of source raster cell values falling within each target zone</span></span>
-<span class="envar-value" title="Count (or line-length) of source features per unit target area. Occurrence-intensity operator (e.g. facilities, roads)."><code>feature_density</code> <span class="vdesc">Count (or line-length) of source features per unit target area</span></span>
+<span class="envar-value" title="Value = fraction of the target cell covered by the source feature (source∩target area ÷ target area). CHEL areal-coverage operator (e.g. impaired waters)."><code>intersection_area_proportion</code> <span class="vdesc">Value = fraction of the target cell covered by the source feature (source∩tar...</span></span>
+<span class="envar-value" title="Sum of source raster cell values falling within each target zone. CHEL raster zonal-sum operator (e.g. population raster over a hex)."><code>raster_zonal_sum</code> <span class="vdesc">Sum of source raster cell values falling within each target zone</span></span>
+<span class="envar-value" title="Count (or line-length) of source features per unit target area. CHEL occurrence-intensity operator (e.g. facilities, roads)."><code>feature_density</code> <span class="vdesc">Count (or line-length) of source features per unit target area</span></span>
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)</div>
+<div class="envar-cov-note">CHEL carries the extraction/aggregation operator first-class: area-weighted interpolation (§3.2), population-weighted allocation (§3.3), density and intersection-proportion (§3.4), raster zonal sum (§3.5).</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join semantics of working.spatial_join_exposure exist, undocumented.</div>
@@ -554,7 +569,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 hex target)</div>
+<div class="envar-cov-note">CHEL's target geography is first-class: every value is attached to an H3 Hex3 cell.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type (point); location.geom</div>
@@ -675,7 +695,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)</div>
+<div class="envar-cov-note">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
@@ -724,7 +749,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
+<div class="envar-cov-note">CHEL's extent is national US (national-scale design, §1.3; US Census TIGER inputs, §2.7), but no bounding box is given. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)</div>
@@ -777,7 +807,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
+<div class="envar-cov-note">The national-US spatial extent is stated for CHEL products.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage</div>
@@ -817,15 +852,15 @@
 <p>Turning map data measured on one set of shapes into values on another set of shapes can aim to keep different things unchanged — the average level of something, the total amount of it, how densely it occurs, or how much of an area it covers. This records which of those the conversion was designed to keep true, because the same input handled two different ways produces two different numbers.</p>
 </div>
 <div class="envar-desc">
-<p>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).</p>
+<p>What quantity the spatial-aggregation operator is meant to <em>preserve</em> when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is <code>extraction_method</code>), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.</p>
 </div>
 <div class="envar-block">
 <p class="envar-blocklabel">Examples</p>
 <div class="envar-eg">
-<p><code>mean_intensity</code> — <span class="egdesc">area-weighted interpolation of a modeled concentration preserves the area-mean intensity (tract-to-hex concentration case)</span></p>
+<p><code>mean_intensity</code> — <span class="egdesc">area-weighted interpolation of a modeled concentration preserves the area-mean intensity (CHEL tract-to-hex concentration case)</span></p>
 </div>
 <div class="envar-eg">
-<p><code>total_mass_conservation</code> — <span class="egdesc">population-weighted / area-proportional allocation of a count preserves the total (population-count case)</span></p>
+<p><code>total_mass_conservation</code> — <span class="egdesc">population-weighted / area-proportional allocation of a count preserves the total (CHEL population-count case)</span></p>
 </div>
 </div>
 <div class="envar-block">
@@ -838,7 +873,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)</div>
+<div class="envar-cov-note">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary (mean intensity / mass conservation / occurrence intensity / areal coverage) and selects the operator from it.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant an aggregation holds fixed is not recorded.</div>
@@ -1172,6 +1212,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL fixes native resolution first-class as Uber H3 Resolution-3</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">hexagons (~12,000 km2).</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1291,6 +1347,21 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1404,6 +1475,24 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">points)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">fixes</span><span class="nv"> </span><span class="s">CRS</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">area-based</span><span class="nv"> </span><span class="s">overlay</span><span class="nv"> </span><span class="s">runs</span>
+<span class="w">                  </span><span class="s">in</span><span class="nv"> </span><span class="s">equal-area</span><span class="nv"> </span><span class="s">EPSG:5070</span><span class="nv"> </span><span class="s">(§4.2.1);</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">README</span><span class="nv"> </span><span class="s">linkage</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">builds</span>
+<span class="w">                  </span><span class="s">participant</span><span class="nv"> </span><span class="s">points</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">EPSG:4326.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1530,6 +1619,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3, §2.7 (national US extent)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">extent</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">national</span><span class="nv"> </span><span class="s">US</span><span class="nv"> </span><span class="s">(national-scale</span><span class="nv"> </span><span class="s">design,</span><span class="nv"> </span><span class="s">§1.3;</span>
+<span class="w">                  </span><span class="s">US</span><span class="nv"> </span><span class="s">Census</span><span class="nv"> </span><span class="s">TIGER</span><span class="nv"> </span><span class="s">inputs,</span><span class="nv"> </span><span class="s">§2.7),</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">bounding</span><span class="nv"> </span><span class="s">box</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">given.</span><span class="nv"> </span><span class="s">Conservative:</span>
+<span class="w">                  </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1652,6 +1758,21 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3, §2.7 (national US extent)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The national-US spatial extent is stated for CHEL products.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1764,6 +1885,24 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">extraction/aggregation</span><span class="nv"> </span><span class="s">operator</span><span class="nv"> </span><span class="s">first-class:</span>
+<span class="w">                  </span><span class="s">area-weighted</span><span class="nv"> </span><span class="s">interpolation</span><span class="nv"> </span><span class="s">(§3.2),</span><span class="nv"> </span><span class="s">population-weighted</span><span class="nv"> </span><span class="s">allocation</span>
+<span class="w">                  </span><span class="s">(§3.3),</span><span class="nv"> </span><span class="s">density</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">intersection-proportion</span><span class="nv"> </span><span class="s">(§3.4),</span><span class="nv"> </span><span class="s">raster</span><span class="nv"> </span><span class="s">zonal</span>
+<span class="w">                  </span><span class="s">sum</span><span class="nv"> </span><span class="s">(§3.5).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2010,6 +2149,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 hex target)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">geography</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">attached</span>
+<span class="w">                  </span><span class="s">to</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">H3</span><span class="nv"> </span><span class="s">Hex3</span><span class="nv"> </span><span class="s">cell.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2132,6 +2287,24 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">table)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(mean intensity / mass conservation / occurrence intensity / areal</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">coverage) and selects the operator from it.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2215,14 +2388,15 @@
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">when a value on a source spatial support is re-expressed on the target support</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">— not the mechanics of the operator (that is `extraction_method`), but the invariant</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">it holds fixed (mean intensity, total mass, occurrence density, or areal coverage).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spatial Aggregation Preserved Quantity</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mean_intensity</span>
 <span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">area-weighted interpolation of a modeled concentration preserves</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">the area-mean intensity (tract-to-hex concentration case)</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">the area-mean intensity (CHEL tract-to-hex concentration case)</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_mass_conservation</span>
 <span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">population-weighted / area-proportional allocation of a count preserves</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">the total (population-count case)</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">the total (CHEL population-count case)</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialReference</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>

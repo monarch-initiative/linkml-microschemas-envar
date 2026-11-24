@@ -368,7 +368,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL data/CHEL_hex3_*.csv column codes (EJI E_ / EPL_ / F_ names)</div>
+<div class="envar-cov-note">CHEL carries indicator names (from EJI etc.), but not as a portable variable short-name. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as a bare column header (tmax / tmmx)</div>
@@ -422,7 +427,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no environmental-substance vocabulary; EnVar-Tracker #38)</div>
+<div class="envar-cov-note">CHEL carries no environmental-substance vocabulary; the concept associated with the exposure is unfilled (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature (NERC/CF mirror)</div>
@@ -479,7 +489,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile 0-100)</div>
+<div class="envar-cov-note">CHEL values are percentile-normalized 0-100 or native, not first-class UCUM units. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode; external_exposure.unit_concept_id 8653</div>
@@ -541,7 +556,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no target-vocabulary binding; EnVar-Tracker #38)</div>
+<div class="envar-cov-note">With no target-concept binding, CHEL records no existing/proposed/gap concept status (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap status flag saying whether a real OMOP concept exists — an EnVar-novel slot.</div>
@@ -598,12 +618,17 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)</div>
 <div class="envar-cov-row"><span class="k">evidence</span> <code>examples/scenarios/standards/omop_gaia_daymet_tmax.yaml (value_data_type)</code></div>
 <div class="envar-cov-note">GAIA registers the attribute's numeric qudt:dataType at dataset-registration time; the EnVar translation carries it first-class as value_data_type.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6-3.7; CSV E_* / EPL_* / F_* column prefixes</div>
+<div class="envar-cov-note">CHEL carries the value data type first-class via column prefix: native estimate (`E_`), percentile 0-100 (`EPL_`), or binary vulnerability flag (`F_`).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
@@ -721,7 +746,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.3-2.6 (indicator descriptions)</div>
+<div class="envar-cov-note">Indicator labels exist in CHEL's EJI-derived indicators but not as a first-class variable label. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description</div>
@@ -771,7 +801,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile)</div>
+<div class="envar-cov-note">CHEL distinguishes native from percentile-normalized values but carries no first-class UCUM native unit. Conservative: partial.</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
 <div class="envar-cov-note">GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number and the upstream native unit is not on the row.</div>
@@ -822,7 +857,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no substance/target vocabulary; EnVar-Tracker #38)</div>
+<div class="envar-cov-note">CHEL carries no environmental-substance or target-concept vocabulary (ENVO/ECTO/CHEBI); the exposure concept is unfilled (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id (8653) — OMOP vocabulary is the implicit target</div>
@@ -873,7 +913,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (exposure concept unfilled; EnVar-Tracker #38)</div>
+<div class="envar-cov-note">CHEL leaves the exposure concept unfilled and binds no target-vocabulary concept id (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id 32885</div>
@@ -924,7 +969,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)</div>
+<div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured</div>
@@ -973,7 +1023,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)</div>
+<div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured</div>
@@ -1457,6 +1512,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL data/CHEL_hex3_*.csv column codes (EJI E_ / EPL_ / F_</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">names)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">indicator</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="s">(from</span><span class="nv"> </span><span class="s">EJI</span><span class="nv"> </span><span class="s">etc.),</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">                  </span><span class="s">portable</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">short-name.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1580,6 +1652,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.3-2.6 (indicator descriptions)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Indicator</span><span class="nv"> </span><span class="s">labels</span><span class="nv"> </span><span class="s">exist</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">EJI-derived</span><span class="nv"> </span><span class="s">indicators</span><span class="nv"> </span><span class="s">but</span>
+<span class="w">                  </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">label.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1702,6 +1790,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">Documentation.md</span><span class="nv"> </span><span class="s">(no</span><span class="nv"> </span><span class="s">environmental-substance</span><span class="nv"> </span><span class="s">vocabulary;</span>
+<span class="w">                  </span><span class="s">EnVar-Tracker</span><span class="nv"> </span><span class="s">#38)'</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">environmental-substance</span><span class="nv"> </span><span class="s">vocabulary;</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">concept</span>
+<span class="w">                  </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">unfilled</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1889,6 +1994,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">0-100)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">percentile-normalized</span><span class="nv"> </span><span class="s">0-100</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">native,</span><span class="nv"> </span><span class="s">not</span>
+<span class="w">                  </span><span class="s">first-class</span><span class="nv"> </span><span class="s">UCUM</span><span class="nv"> </span><span class="s">units.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2046,6 +2168,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">distinguishes</span><span class="nv"> </span><span class="s">native</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">percentile-normalized</span><span class="nv"> </span><span class="s">values</span>
+<span class="w">                  </span><span class="s">but</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">UCUM</span><span class="nv"> </span><span class="s">native</span><span class="nv"> </span><span class="s">unit.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2281,6 +2419,24 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">Documentation.md</span><span class="nv"> </span><span class="s">(no</span><span class="nv"> </span><span class="s">substance/target</span><span class="nv"> </span><span class="s">vocabulary;</span><span class="nv"> </span><span class="s">EnVar-Tracker</span>
+<span class="w">                  </span><span class="s">#38)'</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">environmental-substance</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">target-concept</span>
+<span class="w">                  </span><span class="s">vocabulary</span><span class="nv"> </span><span class="s">(ENVO/ECTO/CHEBI);</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">concept</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">unfilled</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span>
+<span class="w">                  </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2406,6 +2562,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">Documentation.md</span><span class="nv"> </span><span class="s">(exposure</span><span class="nv"> </span><span class="s">concept</span><span class="nv"> </span><span class="s">unfilled;</span><span class="nv"> </span><span class="s">EnVar-Tracker</span>
+<span class="w">                  </span><span class="s">#38)'</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">leaves</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">concept</span><span class="nv"> </span><span class="s">unfilled</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">binds</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">target-vocabulary</span>
+<span class="w">                  </span><span class="s">concept</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2551,6 +2724,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">Documentation.md</span><span class="nv"> </span><span class="s">(no</span><span class="nv"> </span><span class="s">target-vocabulary</span><span class="nv"> </span><span class="s">binding;</span><span class="nv"> </span><span class="s">EnVar-Tracker</span>
+<span class="w">                  </span><span class="s">#38)'</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'With</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">target-concept</span><span class="nv"> </span><span class="s">binding,</span><span class="nv"> </span><span class="s">CHEL</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">existing/proposed/gap</span>
+<span class="w">                  </span><span class="s">concept</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2727,6 +2917,24 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA registers the attribute's numeric qudt:dataType at dataset-registration</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">time; the EnVar translation carries it first-class as value_data_type.</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.6-3.7; CSV E_* / EPL_* / F_* column</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">prefixes</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">prefix:</span>
+<span class="w">                  </span><span class="s">native</span><span class="nv"> </span><span class="s">estimate</span><span class="nv"> </span><span class="s">(`E_`),</span><span class="nv"> </span><span class="s">percentile</span><span class="nv"> </span><span class="s">0-100</span><span class="nv"> </span><span class="s">(`EPL_`),</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">binary</span><span class="nv"> </span><span class="s">vulnerability</span>
+<span class="w">                  </span><span class="s">flag</span><span class="nv"> </span><span class="s">(`F_`).'</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2824,6 +3032,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.3.2 (range/domain checks, not per-value</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">plausible bounds)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL has range/domain validation but carries no per-variable</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">plausible min/max as metadata.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -2936,6 +3161,23 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.3.2 (range/domain checks, not per-value</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">plausible bounds)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL has range/domain validation but carries no per-variable</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">plausible min/max as metadata.</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

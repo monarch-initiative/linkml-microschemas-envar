@@ -376,7 +376,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
+<div class="envar-cov-note">CHEL emits no unified exposure-assignment table and names no downstream health-layer target first-class (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure table (OMOP CDM GIS extension) — the target is OMOP but is implicit, not a named slot</div>
@@ -428,7 +433,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 5 standards</summary>
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
+<div class="envar-cov-note">With no unified assembly table, CHEL declares no health-layer join field (EnVar-Tracker #38).</div>
+</div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value (the OMOP field that would carry a provenance id)</div>
@@ -646,6 +656,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no unified external_exposure assembly)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">unified</span><span class="nv"> </span><span class="s">exposure-assignment</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">names</span>
+<span class="w">                  </span><span class="s">no</span><span class="nv"> </span><span class="s">downstream</span><span class="nv"> </span><span class="s">health-layer</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -762,6 +788,22 @@
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no unified external_exposure assembly)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'With</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">unified</span><span class="nv"> </span><span class="s">assembly</span><span class="nv"> </span><span class="s">table,</span><span class="nv"> </span><span class="s">CHEL</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">health-layer</span>
+<span class="w">                  </span><span class="s">join</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>

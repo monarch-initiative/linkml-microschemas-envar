@@ -540,6 +540,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -600,7 +611,7 @@
 
 
 <h1 id="enum-null-semantics-nullsemanticsenum">Enum: Null Semantics (NullSemanticsEnum)</h1>
-<p><em>The kind of "missing or zero" a per-value cell carries. A blank or a <code>0</code> is ambiguous: <code>structural_null</code>, <code>derived_null</code> and <code>true_zero</code> have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — nulls should be excluded from percentile-ranking denominators for exactly this reason.</em></p>
+<p><em>The kind of "missing or zero" a per-value cell carries, adopted from CHEL Documentation.md §4.3.3 ("Null Handling"). A blank or a <code>0</code> is ambiguous: <code>structural_null</code>, <code>derived_null</code> and <code>true_zero</code> have opposite correct handling (drop / drop-from-denominator / keep-as-zero), and conflating them biases the health-effect estimate — CHEL excludes nulls from percentile-ranking denominators for exactly this reason.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/enum/NullSemanticsEnum">envar:enum/NullSemanticsEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -635,6 +646,10 @@
 </tr>
 </tbody>
 </table>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://github.com/cladteam/CHEL/blob/main/Documentation.md">https://github.com/cladteam/CHEL/blob/main/Documentation.md</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -643,13 +658,15 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NullSemanticsEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">&quot;missing</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">zero&quot;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">carries.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">blank</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span>
-<span class="w">  </span><span class="s">`0`</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">ambiguous:</span><span class="nv"> </span><span class="s">`structural_null`,</span><span class="nv"> </span><span class="s">`derived_null`</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">`true_zero`</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">opposite</span>
-<span class="w">  </span><span class="s">correct</span><span class="nv"> </span><span class="s">handling</span><span class="nv"> </span><span class="s">(drop</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">drop-from-denominator</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">keep-as-zero),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">conflating</span><span class="nv"> </span><span class="s">them</span>
-<span class="w">  </span><span class="s">biases</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">health-effect</span><span class="nv"> </span><span class="s">estimate</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">nulls</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">excluded</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">percentile-ranking</span>
-<span class="w">  </span><span class="s">denominators</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">exactly</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">reason.&#39;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">&quot;missing</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">zero&quot;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">carries,</span><span class="nv"> </span><span class="s">adopted</span><span class="nv"> </span><span class="s">from</span>
+<span class="w">  </span><span class="s">CHEL</span><span class="nv"> </span><span class="s">Documentation.md</span><span class="nv"> </span><span class="s">§4.3.3</span><span class="nv"> </span><span class="s">(&quot;Null</span><span class="nv"> </span><span class="s">Handling&quot;).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">blank</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">`0`</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">ambiguous:</span><span class="nv"> </span><span class="s">`structural_null`,</span>
+<span class="w">  </span><span class="s">`derived_null`</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">`true_zero`</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">opposite</span><span class="nv"> </span><span class="s">correct</span><span class="nv"> </span><span class="s">handling</span><span class="nv"> </span><span class="s">(drop</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">drop-from-denominator</span>
+<span class="w">  </span><span class="s">/</span><span class="nv"> </span><span class="s">keep-as-zero),</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">conflating</span><span class="nv"> </span><span class="s">them</span><span class="nv"> </span><span class="s">biases</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">health-effect</span><span class="nv"> </span><span class="s">estimate</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">CHEL</span><span class="nv"> </span><span class="s">excludes</span>
+<span class="w">  </span><span class="s">nulls</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">percentile-ranking</span><span class="nv"> </span><span class="s">denominators</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">exactly</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">reason.&#39;</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Null Semantics</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="nt">see_also</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/cladteam/CHEL/blob/main/Documentation.md</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">present</span><span class="p">:</span>
