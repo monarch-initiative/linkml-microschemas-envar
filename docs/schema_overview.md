@@ -218,8 +218,7 @@ Spatial provenance of an environmental exposure value: the native grid / footpri
 
 | Field | What it captures | Why it matters | Examples | Priority |
 |---|---|---|---|---|
-| **Native Geometry Type**<br><small>`native_geometry_type` · [Native Geometry Type](#native-geometry-type) value</small> | Kind of geometry the source product is delivered on. Decides whether a cell size in metres applies: `native_spatial_resolution_m` is mandatory for `regular_grid` only. Describes the source, not the place the value is attached to (that is `target_geography_type`).<br>💡 *Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This field says which one the source uses, because a tile width only makes sense for some of them.*<br>↗ [H3](https://h3geo.org/) | Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry type a missing cell size is ambiguous: it could be an omission, or the source could have no cell size at all. | `regular_grid` — Daymet V4 1 km grid<br>`vector_polygon` — annual mean PM2.5 per urban-area polygon | 🟥 Core<br>*(required)* |
-| **Native Spatial Resolution (m)**<br><small>`native_spatial_resolution_m` · number</small> | Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Mandatory when `native_geometry_type` is `regular_grid`; leave empty when the source has no cell size in metres.<br>💡 *Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.*<br>↗ [Daymet](https://daymet.ornl.gov/) · [gridMET](https://www.climatologylab.org/gridmet.html) · [NARR](https://psl.noaa.gov/data/gridded/data.narr.html) | Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable. | `1000` — Daymet V4 1 km grid | 🟧 Core (conditional) |
+| **Native Geometry**<br><small>`native_geometry` · [Source Geometry](#source-geometry) block</small> | Geometry the source product is delivered on, with the resolution slots that apply to it. Describes the source, not the place the value is attached to (that is `target_geography_type`).<br>💡 *Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This block says which shape the source uses and, where it makes sense, how big the pieces are.* | Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry a missing resolution is ambiguous: it could be an omission, or the source could have no resolution at all. | Daymet V4 1 km grid<br>CHEL H3 resolution-3 hexagons<br>annual mean PM2.5 per urban-area polygon | 🟥 Core<br>*(required)* |
 | **Native Resolution Descriptor**<br><small>`native_spatial_resolution_descriptor` · text</small> | Human-readable label for the native resolution, e.g. "1 km regular grid", "H3 hex zoom 8", "census tract polygon", "point station".<br>💡 *A short plain-English phrase saying what the map data actually looks like — evenly spaced square tiles, honeycomb-shaped cells, irregular neighbourhood outlines, or individual measuring stations dotted around.* | The numeric resolution alone cannot distinguish a regular grid from hex cells, polygons, or point stations, and these layouts imply different extraction and error behaviour. Omitting the label leaves the geometry of the source data ambiguous even when the cell size is known. | `1 km regular grid` — Daymet V4 native grid | 🟨 Recommended |
 | **Coordinate Reference System (CRS)**<br><small>`crs` · text</small> | Coordinate reference system as an EPSG identifier or PROJ string. Mandatory. E.g. `EPSG:4326` for Daymet, `EPSG:5072` for NARR Lambert Conformal Conic.<br>💡 *A coordinate reference system is the agreed way of turning numbers into places on the Earth — the same pair of coordinates means different spots under different systems. Naming the system (usually as a short EPSG code) tells software exactly which convention the numbers follow.*<br>↗ [EPSG Registry](https://epsg.io/) · [PROJ](https://proj.org/) | Without the CRS the grid cannot be placed on the Earth correctly: the same coordinate pair points to different physical locations under different reference systems, so a mismatched or missing CRS silently shifts every location and attaches exposure values to the wrong places. | `EPSG:4326` — WGS 84, used by the Daymet and ACAG PM2.5 scenarios | 🟥 Core<br>*(required)* |
 | **Product Bounding Box**<br><small>`spatial_extent_bbox` · list of number</small> | Bounding box of the source *product* (not the extracted subset), as `[min_lon, min_lat, max_lon, max_lat]`.<br>💡 *A bounding box is a rectangle drawn on the map that just barely contains all the data — four numbers giving its western, southern, eastern, and northern edges. Anything outside that rectangle was never covered by the dataset in the first place.*<br>↗ [datatracker.ietf.org](https://datatracker.ietf.org/doc/html/rfc7946#section-5) | The product footprint distinguishes "no value here" (the location lies outside the product's coverage) from "missing value" (the product covers it but the value is absent). Without it, out-of-extent patients look like data gaps and can be silently misinterpreted. | `[-131.104, 14.075, -52.95, 53.038]` — Daymet V4 product bounding box (CONUS + Hawaii + Puerto Rico); one float per list element, ordered min_lon, min_lat, max_lon, max_lat | 🟨 Recommended |
@@ -232,20 +231,59 @@ Spatial provenance of an environmental exposure value: the native grid / footpri
 | **Target Geography Type**<br><small>`target_geography_type` · [Target Geography Type](#target-geography-type) value</small> | Geographic unit the exposure value is attached to.<br>💡 *This says what kind of place the value belongs to: one specific home address, a neighbourhood-sized census area, a ZIP-code area, a whole county, and so on. The bigger the unit, the more the number is a shared average rather than a personal measurement.*<br>↗ [US Census Geographies](https://www.census.gov/programs-surveys/geography/guidance/geo-areas.html) | An exposure pinned to an exact residence and one averaged over a whole county are fundamentally different quantities with different privacy and misclassification profiles. Without the target geography, users cannot tell how localised the value is or link it correctly to health records held at a given geographic level. | `point_residence` — patient's exact residence coordinates (Daymet Tmax scenario)<br>`census_tract` — tract-level aggregate (ACAG PM2.5 scenario) | 🟥 Core<br>*(required)* |
 | **Spatial Aggregation Preserved Quantity**<br><small>`spatial_aggregation_preserves` · [Spatial Aggregation Preserved Quantity](#spatial-aggregation-preserved-quantity) value</small> | What quantity the spatial-aggregation operator is meant to *preserve* when a value on a source spatial support is re-expressed on the target support — not the mechanics of the operator (that is `extraction_method`), but the invariant it holds fixed (mean intensity, total mass, occurrence density, or areal coverage). Adopted from CHEL's §3.10 "aggregation must match meaning" preservation table.<br>💡 *Turning map data measured on one set of shapes into values on another set of shapes can aim to keep different things unchanged — the average level of something, the total amount of it, how densely it occurs, or how much of an area it covers. This records which of those the conversion was designed to keep true, because the same input handled two different ways produces two different numbers.* | Recording *what quantity the operator preserves* — not just the operator name — is what makes two datasets' spatial values comparable and poolable: an area-weighted mean and a mass-conserving allocation applied to the same input give different numbers, and only the preserved-quantity tag tells a downstream analyst which one a value is, so two supports can be reconciled rather than silently mixed. | `mean_intensity` — area-weighted interpolation of a modeled concentration preserves the area-mean intensity (CHEL tract-to-hex concentration case)<br>`total_mass_conservation` — population-weighted / area-proportional allocation of a count preserves the total (CHEL population-count case) | 🟨 Recommended |
 
-### Native Geometry Type
+### Source Geometry
 
-Kind of geometry a source product is delivered on.
+Geometry a source product is delivered on. `geometry_kind` names one of the subclasses, and the subclass decides which further slots exist: a regular grid has a cell size in metres, an H3 grid has a resolution, and the other geometries have neither.
+
+| Field | What it captures | Why it matters | Examples | Priority |
+|---|---|---|---|---|
+| **Geometry Kind**<br><small>`geometry_kind` · text</small> | Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.<br>💡 *The label that says which kind of shape this is, so you know which other fields to expect.* | The kind decides which resolution slots apply, so a consumer cannot read or check the rest of the geometry without it. | `RegularGrid` — Daymet V4 1 km grid | 🟥 Core<br>*(required)* |
+
+### Regular Grid
+
+Evenly spaced grid, projected or lat/lon, with one nominal cell size.
+
+*A specialisation of [Source Geometry](#source-geometry).*
+
+| Field | What it captures | Why it matters | Examples | Priority |
+|---|---|---|---|---|
+| **Native Spatial Resolution (m)**<br><small>`native_spatial_resolution_m` · number</small> | Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it is mandatory; other geometries have no single cell size in metres.<br>💡 *Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.*<br>↗ [Daymet](https://daymet.ornl.gov/) · [gridMET](https://www.climatologylab.org/gridmet.html) · [NARR](https://psl.noaa.gov/data/gridded/data.narr.html) | Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable. | `1000` — Daymet V4 1 km grid | 🟧 Core (conditional)<br>*(required)* |
+
+### Irregular Grid
+
+Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).
+
+*A specialisation of [Source Geometry](#source-geometry).*
+
+### H3 Grid
+
+H3 hexagon grid at one resolution.
 
 **Standards & references:** [H3](https://h3geo.org/)
 
-| Value | Meaning |
-|---|---|
-| **regular grid** | Evenly spaced grid, projected or lat/lon, with one nominal cell size. |
-| **irregular grid** | Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh). |
-| **h3 grid** | H3 hexagon grid. |
-| **vector polygon** | Polygons of varying size (census units, urban areas, service areas). |
-| **vector line** | Line features (roads, rivers). |
-| **vector point** | Monitoring stations or other point features (facilities). |
+*A specialisation of [Source Geometry](#source-geometry).*
+
+| Field | What it captures | Why it matters | Examples | Priority |
+|---|---|---|---|---|
+| **H3 Resolution**<br><small>`h3_resolution` · whole number</small> | H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell area and edge length follow from it through H3's own tables.<br>💡 *Honeycomb maps come in 16 standard sizes. This number says which one: 0 is continent-sized cells, 15 is about a square metre.*<br>↗ [H3](https://h3geo.org/docs/core-library/restable/) | H3 resolutions in use differ by orders of magnitude in cell area, so "H3" alone does not say how coarse a value is. | `3` — CHEL 2024 | 🟧 Core (conditional)<br>*(required)* |
+
+### Vector Polygon
+
+Polygons of varying size (census units, urban areas, service areas).
+
+*A specialisation of [Source Geometry](#source-geometry).*
+
+### Vector Line
+
+Line features (roads, rivers).
+
+*A specialisation of [Source Geometry](#source-geometry).*
+
+### Vector Point
+
+Monitoring stations or other point features (facilities).
+
+*A specialisation of [Source Geometry](#source-geometry).*
 
 ### Extraction Method
 

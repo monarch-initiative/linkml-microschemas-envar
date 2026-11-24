@@ -93,17 +93,44 @@ def test_linkage_strategy_switches_its_parameters(checker):
     assert "extraction_buffer_m" in report.blocking
 
 
-def test_native_geometry_type_switches_metre_resolution(checker):
-    """Only a regular grid has a cell size in metres to report (issue #42)."""
-    grid = {"spatial_reference": {"native_geometry_type": "regular_grid"}}
-    assert "native_spatial_resolution_m" in checker.check(grid).blocking
-    polygons = {"spatial_reference": {"native_geometry_type": "vector_polygon"}}
-    assert "native_spatial_resolution_m" not in checker.check(polygons).blocking
+def _with_geometry(**geometry) -> dict:
+    return {"spatial_reference": {"native_geometry": geometry}}
 
 
-def test_native_geometry_type_is_core(checker):
-    """Leaving the geometry out must not be a way around the metres rule."""
-    assert "native_geometry_type" in checker.check({"spatial_reference": {}}).blocking
+def test_geometry_kind_selects_the_scored_slots(checker):
+    """Only the slots of the declared geometry count (issue #42)."""
+    grid = checker.check(_with_geometry(geometry_kind="RegularGrid"))
+    assert "native_spatial_resolution_m" in grid.blocking
+    assert "h3_resolution" not in [s.name for s in grid.slots]
+    hexagons = checker.check(_with_geometry(geometry_kind="H3Grid"))
+    assert "h3_resolution" in hexagons.blocking
+    assert "native_spatial_resolution_m" not in [s.name for s in hexagons.slots]
+    polygons = checker.check(_with_geometry(geometry_kind="VectorPolygon"))
+    assert not {"native_spatial_resolution_m", "h3_resolution"} & {s.name for s in polygons.slots}
+
+
+@pytest.mark.parametrize("geometry_kind", ["Banana", "Geometry", "SourceDataset", ["RegularGrid"]])
+def test_unusable_geometry_kind_scores_the_shared_slots_only(checker, geometry_kind):
+    """Validation reports the bad value; scoring must not crash or guess."""
+    report = checker.check(_with_geometry(geometry_kind=geometry_kind))
+    assert report.valid is False
+    names = {s.name for s in report.slots}
+    assert "geometry_kind" in names
+    assert not {"native_spatial_resolution_m", "h3_resolution"} & names
+
+
+def test_native_geometry_is_core(checker):
+    """Leaving the geometry out must not be a way around its Core slots."""
+    blocking = checker.check({"spatial_reference": {}}).blocking
+    assert "native_geometry" in blocking
+    assert "geometry_kind" in blocking
+
+
+def test_slot_universe_without_instance_covers_every_geometry(checker):
+    """The tier invariants in test_schema.py iterate this: subclasses included."""
+    owners = {name: owner for name, _tier, _module, owner in checker.slot_universe()}
+    assert owners["native_spatial_resolution_m"] == "RegularGrid"
+    assert owners["h3_resolution"] == "H3Grid"
 
 
 def test_population_weighting_context_is_cross_module(checker):

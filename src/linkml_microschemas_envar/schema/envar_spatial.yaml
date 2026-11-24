@@ -38,8 +38,7 @@ classes:
     annotations:
       domain_of_use: environmental_exposure
     slots:
-    - native_geometry_type
-    - native_spatial_resolution_m
+    - native_geometry
     - native_spatial_resolution_descriptor
     - crs
     - spatial_extent_bbox
@@ -56,23 +55,69 @@ classes:
         required: true
       extraction_method:
         required: true
-      native_geometry_type:
+      native_geometry:
         required: true
       target_geography_type:
         required: true
-    rules:
-    - description: >-
-        A regular grid must state its cell size in metres. Other source
-        geometries have no single cell size, so requiring one would force an
-        invented number (tier conditionally_core context "regular grids").
-      preconditions:
-        slot_conditions:
-          native_geometry_type:
-            equals_string: regular_grid
-      postconditions:
-        slot_conditions:
-          native_spatial_resolution_m:
-            required: true
+
+  Geometry:
+    title: Source Geometry
+    abstract: true
+    description: >-
+      Geometry a source product is delivered on. `geometry_kind` names one of
+      the subclasses, and the subclass decides which further slots exist: a
+      regular grid has a cell size in metres, an H3 grid has a resolution, and
+      the other geometries have neither.
+    annotations:
+      domain_of_use: environmental_exposure
+    slots:
+    - geometry_kind
+
+  RegularGrid:
+    is_a: Geometry
+    title: Regular Grid
+    description: >-
+      Evenly spaced grid, projected or lat/lon, with one nominal cell size.
+    slots:
+    - native_spatial_resolution_m
+    slot_usage:
+      native_spatial_resolution_m:
+        required: true
+
+  IrregularGrid:
+    is_a: Geometry
+    title: Irregular Grid
+    description: >-
+      Grid or mesh with no single cell size (satellite swath, curvilinear or
+      unstructured model mesh).
+
+  H3Grid:
+    is_a: Geometry
+    title: H3 Grid
+    description: H3 hexagon grid at one resolution.
+    see_also:
+    - https://h3geo.org/
+    slots:
+    - h3_resolution
+    slot_usage:
+      h3_resolution:
+        required: true
+
+  VectorPolygon:
+    is_a: Geometry
+    title: Vector Polygon
+    description: >-
+      Polygons of varying size (census units, urban areas, service areas).
+
+  VectorLine:
+    is_a: Geometry
+    title: Vector Line
+    description: Line features (roads, rivers).
+
+  VectorPoint:
+    is_a: Geometry
+    title: Vector Point
+    description: Monitoring stations or other point features (facilities).
 
 #────────────────────────────────────────────────────────────────
 # SLOTS
@@ -80,34 +125,39 @@ classes:
 
 slots:
 
-  native_geometry_type:
-    title: Native Geometry Type
-    range: NativeGeometryTypeEnum
+  native_geometry:
+    title: Native Geometry
+    range: Geometry
+    inlined: true
     description: >-
-      Kind of geometry the source product is delivered on. Decides whether a
-      cell size in metres applies: `native_spatial_resolution_m` is mandatory
-      for `regular_grid` only. Describes the source, not the place the value is
+      Geometry the source product is delivered on, with the resolution slots
+      that apply to it. Describes the source, not the place the value is
       attached to (that is `target_geography_type`).
     examples:
-    - value: regular_grid
+    - object:
+        geometry_kind: RegularGrid
+        native_spatial_resolution_m: 1000
       description: Daymet V4 1 km grid
-    - value: vector_polygon
+    - object:
+        geometry_kind: H3Grid
+        h3_resolution: 3
+      description: CHEL H3 resolution-3 hexagons
+    - object:
+        geometry_kind: VectorPolygon
       description: annual mean PM2.5 per urban-area polygon
-    see_also:
-    - https://h3geo.org/
 
     annotations:
       tier: core
       justification: >-
         Grids, hexagons, polygons and stations have different error behaviour
-        and different notions of resolution. Without the geometry type a missing
-        cell size is ambiguous: it could be an omission, or the source could
-        have no cell size at all.
+        and different notions of resolution. Without the geometry a missing
+        resolution is ambiguous: it could be an omission, or the source could
+        have no resolution at all.
       explanation: >-
         Environmental data comes in different shapes: square tiles, honeycomb
         cells, outlines such as city boundaries, lines such as roads, or single
-        points such as monitoring stations. This field says which one the source
-        uses, because a tile width only makes sense for some of them.
+        points such as monitoring stations. This block says which shape the
+        source uses and, where it makes sense, how big the pieces are.
       covered_by:
         annotations:
           clad:
@@ -158,13 +208,121 @@ slots:
               note: >-
                 Source geometry of a specific product is instance-layer detail
                 outside the conceptual EV/DDI-CDI layer.
+  geometry_kind:
+    title: Geometry Kind
+    range: string
+    designates_type: true
+    required: true
+    description: >-
+      Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`,
+      `VectorPolygon`, `VectorLine` or `VectorPoint`.
+    examples:
+    - value: RegularGrid
+      description: Daymet V4 1 km grid
+
+    annotations:
+      tier: core
+      justification: >-
+        The kind decides which resolution slots apply, so a consumer cannot read
+        or check the rest of the geometry without it.
+      explanation: >-
+        The label that says which kind of shape this is, so you know which other
+        fields to expect.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 grid)"
+              note: >-
+                CHEL states the delivered geometry first-class: H3 Resolution-3
+                hexagons.
+          omop_gaia:
+            annotations:
+              extent: full
+              status: asserted
+              where: "gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)"
+              note: >-
+                GAIA records the source geometry first-class (geom_type, and
+                structure/geometry in the etl metadata).
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "no column"
+              note: >-
+                DeGAUSS emits no source-geometry field.
+          amadeus:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "thredds_dataset.xml gridDataset/gridSet"
+              note: >-
+                Only implied by the THREDDS gridDataset/gridSet structure; never
+                written as a geometry type in the output.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "table_name spatial-res code prefix (m/k/h/c/t/b/s/z)"
+              note: >-
+                The resolution code prefix separates grid (m/k), H3 (h) and
+                polygon (tract/block/ZIP) layouts (§2.3); it has no line or
+                point code.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                Source geometry of a specific product is instance-layer detail
+                outside the conceptual EV/DDI-CDI layer.
+  h3_resolution:
+    title: H3 Resolution
+    range: integer
+    minimum_value: 0
+    maximum_value: 15
+    description: >-
+      H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell area and
+      edge length follow from it through H3's own tables.
+    examples:
+    - value: "3"
+      description: CHEL 2024
+    see_also:
+    - https://h3geo.org/docs/core-library/restable/
+
+    annotations:
+      tier: conditionally_core
+      justification: >-
+        H3 resolutions in use differ by orders of magnitude in cell area, so
+        "H3" alone does not say how coarse a value is.
+      explanation: >-
+        Honeycomb maps come in 16 standard sizes. This number says which one:
+        0 is continent-sized cells, 15 is about a square metre.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: full
+              status: asserted
+              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 grid)"
+              note: >-
+                CHEL states the H3 resolution first-class (Resolution 3).
+          cher:
+            annotations:
+              extent: full
+              status: asserted
+              where: "table_name spatial-res code (e.g. h08)"
+              note: >-
+                C-HER encodes the H3 resolution in the table_name code (§2.3).
   native_spatial_resolution_m:
     title: Native Spatial Resolution (m)
     range: float
     description: >-
       Native spatial resolution of the source product in metres. Daymet = 1000,
-      GridMET ≈ 4000, NARR ≈ 32000. Mandatory when `native_geometry_type` is
-      `regular_grid`; leave empty when the source has no cell size in metres.
+      GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it is
+      mandatory; other geometries have no single cell size in metres.
     examples:
     - value: "1000"
       description: Daymet V4 1 km grid
@@ -891,30 +1049,6 @@ slots:
 #────────────────────────────────────────────────────────────────
 
 enums:
-
-  NativeGeometryTypeEnum:
-    title: Native Geometry Type
-    description: >-
-      Kind of geometry a source product is delivered on.
-    see_also:
-    - https://h3geo.org/
-    permissible_values:
-      regular_grid:
-        description: >-
-          Evenly spaced grid, projected or lat/lon, with one nominal cell size.
-      irregular_grid:
-        description: >-
-          Grid or mesh with no single cell size (satellite swath, curvilinear or
-          unstructured model mesh).
-      h3_grid:
-        description: H3 hexagon grid.
-      vector_polygon:
-        description: >-
-          Polygons of varying size (census units, urban areas, service areas).
-      vector_line:
-        description: Line features (roads, rivers).
-      vector_point:
-        description: Monitoring stations or other point features (facilities).
 
   ExtractionMethodEnum:
     title: Extraction Method

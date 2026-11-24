@@ -34,8 +34,9 @@ data_layout:
   quality_flag_column_missing_reason: not_provided_by_source
 
 spatial_reference:
-  native_geometry_type: regular_grid
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "~0.01° (~1 km) geophysical+GWR grid"
   crs: "EPSG:4326"
   spatial_extent_bbox: [-180.0, -55.0, 180.0, 70.0]

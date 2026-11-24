@@ -843,18 +843,11 @@ name and value type in small print), then four columns:</p>
 </thead>
 <tbody>
 <tr>
-<td><strong>Native Geometry Type</strong><br><small><code>native_geometry_type</code> · <a href="#native-geometry-type">Native Geometry Type</a> value</small></td>
-<td>Kind of geometry the source product is delivered on. Decides whether a cell size in metres applies: <code>native_spatial_resolution_m</code> is mandatory for <code>regular_grid</code> only. Describes the source, not the place the value is attached to (that is <code>target_geography_type</code>).<br>💡 <em>Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This field says which one the source uses, because a tile width only makes sense for some of them.</em><br>↗ <a href="https://h3geo.org/">H3</a></td>
-<td>Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry type a missing cell size is ambiguous: it could be an omission, or the source could have no cell size at all.</td>
-<td><code>regular_grid</code> — Daymet V4 1 km grid<br><code>vector_polygon</code> — annual mean PM2.5 per urban-area polygon</td>
+<td><strong>Native Geometry</strong><br><small><code>native_geometry</code> · <a href="#source-geometry">Source Geometry</a> block</small></td>
+<td>Geometry the source product is delivered on, with the resolution slots that apply to it. Describes the source, not the place the value is attached to (that is <code>target_geography_type</code>).<br>💡 <em>Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This block says which shape the source uses and, where it makes sense, how big the pieces are.</em></td>
+<td>Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry a missing resolution is ambiguous: it could be an omission, or the source could have no resolution at all.</td>
+<td>Daymet V4 1 km grid<br>CHEL H3 resolution-3 hexagons<br>annual mean PM2.5 per urban-area polygon</td>
 <td>🟥 Core<br><em>(required)</em></td>
-</tr>
-<tr>
-<td><strong>Native Spatial Resolution (m)</strong><br><small><code>native_spatial_resolution_m</code> · number</small></td>
-<td>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Mandatory when <code>native_geometry_type</code> is <code>regular_grid</code>; leave empty when the source has no cell size in metres.<br>💡 <em>Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.</em><br>↗ <a href="https://daymet.ornl.gov/">Daymet</a> · <a href="https://www.climatologylab.org/gridmet.html">gridMET</a> · <a href="https://psl.noaa.gov/data/gridded/data.narr.html">NARR</a></td>
-<td>Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable.</td>
-<td><code>1000</code> — Daymet V4 1 km grid</td>
-<td>🟧 Core (conditional)</td>
 </tr>
 <tr>
 <td><strong>Native Resolution Descriptor</strong><br><small><code>native_spatial_resolution_descriptor</code> · text</small></td>
@@ -935,43 +928,87 @@ name and value type in small print), then four columns:</p>
 </tr>
 </tbody>
 </table>
-<h3 id="native-geometry-type">Native Geometry Type<a class="headerlink" href="#native-geometry-type" title="Permanent link">¶</a></h3>
-<p>Kind of geometry a source product is delivered on.</p>
-<p><strong>Standards &amp; references:</strong> <a href="https://h3geo.org/">H3</a></p>
+<h3 id="source-geometry">Source Geometry<a class="headerlink" href="#source-geometry" title="Permanent link">¶</a></h3>
+<p>Geometry a source product is delivered on. <code>geometry_kind</code> names one of the subclasses, and the subclass decides which further slots exist: a regular grid has a cell size in metres, an H3 grid has a resolution, and the other geometries have neither.</p>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Meaning</th>
+<th>Field</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+<th>Examples</th>
+<th>Priority</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>regular grid</strong></td>
-<td>Evenly spaced grid, projected or lat/lon, with one nominal cell size.</td>
-</tr>
-<tr>
-<td><strong>irregular grid</strong></td>
-<td>Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).</td>
-</tr>
-<tr>
-<td><strong>h3 grid</strong></td>
-<td>H3 hexagon grid.</td>
-</tr>
-<tr>
-<td><strong>vector polygon</strong></td>
-<td>Polygons of varying size (census units, urban areas, service areas).</td>
-</tr>
-<tr>
-<td><strong>vector line</strong></td>
-<td>Line features (roads, rivers).</td>
-</tr>
-<tr>
-<td><strong>vector point</strong></td>
-<td>Monitoring stations or other point features (facilities).</td>
+<td><strong>Geometry Kind</strong><br><small><code>geometry_kind</code> · text</small></td>
+<td>Name of the <code>Geometry</code> subclass: <code>RegularGrid</code>, <code>IrregularGrid</code>, <code>H3Grid</code>, <code>VectorPolygon</code>, <code>VectorLine</code> or <code>VectorPoint</code>.<br>💡 <em>The label that says which kind of shape this is, so you know which other fields to expect.</em></td>
+<td>The kind decides which resolution slots apply, so a consumer cannot read or check the rest of the geometry without it.</td>
+<td><code>RegularGrid</code> — Daymet V4 1 km grid</td>
+<td>🟥 Core<br><em>(required)</em></td>
 </tr>
 </tbody>
 </table>
+<h3 id="regular-grid">Regular Grid<a class="headerlink" href="#regular-grid" title="Permanent link">¶</a></h3>
+<p>Evenly spaced grid, projected or lat/lon, with one nominal cell size.</p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+<th>Examples</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Native Spatial Resolution (m)</strong><br><small><code>native_spatial_resolution_m</code> · number</small></td>
+<td>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on <code>RegularGrid</code> only, where it is mandatory; other geometries have no single cell size in metres.<br>💡 <em>Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.</em><br>↗ <a href="https://daymet.ornl.gov/">Daymet</a> · <a href="https://www.climatologylab.org/gridmet.html">gridMET</a> · <a href="https://psl.noaa.gov/data/gridded/data.narr.html">NARR</a></td>
+<td>Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable.</td>
+<td><code>1000</code> — Daymet V4 1 km grid</td>
+<td>🟧 Core (conditional)<br><em>(required)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="irregular-grid">Irregular Grid<a class="headerlink" href="#irregular-grid" title="Permanent link">¶</a></h3>
+<p>Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).</p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
+<h3 id="h3-grid">H3 Grid<a class="headerlink" href="#h3-grid" title="Permanent link">¶</a></h3>
+<p>H3 hexagon grid at one resolution.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://h3geo.org/">H3</a></p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+<th>Examples</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H3 Resolution</strong><br><small><code>h3_resolution</code> · whole number</small></td>
+<td>H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell area and edge length follow from it through H3's own tables.<br>💡 <em>Honeycomb maps come in 16 standard sizes. This number says which one: 0 is continent-sized cells, 15 is about a square metre.</em><br>↗ <a href="https://h3geo.org/docs/core-library/restable/">H3</a></td>
+<td>H3 resolutions in use differ by orders of magnitude in cell area, so "H3" alone does not say how coarse a value is.</td>
+<td><code>3</code> — CHEL 2024</td>
+<td>🟧 Core (conditional)<br><em>(required)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vector-polygon">Vector Polygon<a class="headerlink" href="#vector-polygon" title="Permanent link">¶</a></h3>
+<p>Polygons of varying size (census units, urban areas, service areas).</p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
+<h3 id="vector-line">Vector Line<a class="headerlink" href="#vector-line" title="Permanent link">¶</a></h3>
+<p>Line features (roads, rivers).</p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
+<h3 id="vector-point">Vector Point<a class="headerlink" href="#vector-point" title="Permanent link">¶</a></h3>
+<p>Monitoring stations or other point features (facilities).</p>
+<p><em>A specialisation of <a href="#source-geometry">Source Geometry</a>.</em></p>
 <h3 id="extraction-method">Extraction Method<a class="headerlink" href="#extraction-method" title="Permanent link">¶</a></h3>
 <p>How a gridded value was extracted at a target location.</p>
 <table>
