@@ -23,6 +23,7 @@ data_layout:
   value_column: tmax
 
 spatial_reference:
+  native_geometry_type: regular_grid
   native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "1 km regular grid"
   crs: "EPSG:4326"

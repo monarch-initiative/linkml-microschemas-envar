@@ -93,6 +93,19 @@ def test_linkage_strategy_switches_its_parameters(checker):
     assert "extraction_buffer_m" in report.blocking
 
 
+def test_native_geometry_type_switches_metre_resolution(checker):
+    """Only a regular grid has a cell size in metres to report (issue #42)."""
+    grid = {"spatial_reference": {"native_geometry_type": "regular_grid"}}
+    assert "native_spatial_resolution_m" in checker.check(grid).blocking
+    polygons = {"spatial_reference": {"native_geometry_type": "vector_polygon"}}
+    assert "native_spatial_resolution_m" not in checker.check(polygons).blocking
+
+
+def test_native_geometry_type_is_core(checker):
+    """Leaving the geometry out must not be a way around the metres rule."""
+    assert "native_geometry_type" in checker.check({"spatial_reference": {}}).blocking
+
+
 def test_population_weighting_context_is_cross_module(checker):
     """Either half of the two-class disjunction puts the slot in context."""
     spatial_half = {"spatial_reference": {"extraction_method": "population_weighted_mean"}}

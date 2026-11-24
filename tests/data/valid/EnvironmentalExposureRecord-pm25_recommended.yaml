@@ -25,6 +25,7 @@ data_layout:
   value_uncertainty_column: pm25_monthly_se
 
 spatial_reference:
+  native_geometry_type: regular_grid
   native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "1 km modeled grid"
   crs: "EPSG:4326"

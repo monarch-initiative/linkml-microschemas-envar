@@ -14,7 +14,8 @@ datamodel first via `gen-python`). They cover three things:
 from pathlib import Path
 
 import pytest
-from linkml.validator import validate_file
+import yaml
+from linkml.validator import validate, validate_file
 from linkml_runtime import SchemaView
 
 from linkml_microschemas_envar.checker import (
@@ -182,6 +183,45 @@ def test_counter_examples_fail_validation(
 ) -> None:
     report = validate_file(counter_example, schema_view.schema, TARGET_CLASS)
     assert report.results, f"{counter_example.name} must FAIL validation but passed"
+
+
+def _record_with_spatial(**changes) -> dict:
+    """The pm25 core example with spatial_reference slots set (or dropped, if None)."""
+    record = yaml.safe_load((VALID_DIR / f"{TARGET_CLASS}-pm25_core.yaml").read_text())
+    for name, value in changes.items():
+        if value is None:
+            record["spatial_reference"].pop(name, None)
+        else:
+            record["spatial_reference"][name] = value
+    return record
+
+
+def _messages(schema_view: SchemaView, record: dict) -> list[str]:
+    return [r.message for r in validate(record, schema_view.schema, TARGET_CLASS).results]
+
+
+@pytest.mark.parametrize(
+    "geometry", ["irregular_grid", "h3_grid", "vector_polygon", "vector_line", "vector_point"]
+)
+def test_source_without_a_cell_size_validates_without_metres(
+    schema_view: SchemaView, geometry: str
+) -> None:
+    # Issue #42: these sources used to need an invented number to validate.
+    record = _record_with_spatial(native_geometry_type=geometry, native_spatial_resolution_m=None)
+    assert _messages(schema_view, record) == []
+
+
+def test_regular_grid_without_metres_fails(schema_view: SchemaView) -> None:
+    record = _record_with_spatial(
+        native_geometry_type="regular_grid", native_spatial_resolution_m=None
+    )
+    messages = _messages(schema_view, record)
+    assert len(messages) == 1 and "native_spatial_resolution_m" in messages[0], messages
+
+
+def test_spatial_reference_without_geometry_type_fails(schema_view: SchemaView) -> None:
+    messages = _messages(schema_view, _record_with_spatial(native_geometry_type=None))
+    assert len(messages) == 1 and "native_geometry_type" in messages[0], messages
 
 
 @pytest.mark.parametrize(

@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-10-30T14:58:28
+# Generation date: 2026-11-24T22:49:37
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar
@@ -291,10 +291,11 @@ class SpatialReference(YAMLRoot):
     class_name: ClassVar[str] = "SpatialReference"
     class_model_uri: ClassVar[URIRef] = ENVAR.SpatialReference
 
-    native_spatial_resolution_m: float = None
+    native_geometry_type: Union[str, "NativeGeometryTypeEnum"] = None
     crs: str = None
     extraction_method: Union[str, "ExtractionMethodEnum"] = None
     target_geography_type: Union[str, "TargetGeographyTypeEnum"] = None
+    native_spatial_resolution_m: Optional[float] = None
     native_spatial_resolution_descriptor: Optional[str] = None
     spatial_extent_bbox: Optional[Union[float, list[float]]] = empty_list()
     spatial_extent_descriptor: Optional[str] = None
@@ -305,10 +306,10 @@ class SpatialReference(YAMLRoot):
     spatial_aggregation_preserves: Optional[Union[str, "SpatialAggregationPreservationEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.native_spatial_resolution_m):
-            self.MissingRequiredField("native_spatial_resolution_m")
-        if not isinstance(self.native_spatial_resolution_m, float):
-            self.native_spatial_resolution_m = float(self.native_spatial_resolution_m)
+        if self._is_empty(self.native_geometry_type):
+            self.MissingRequiredField("native_geometry_type")
+        if not isinstance(self.native_geometry_type, NativeGeometryTypeEnum):
+            self.native_geometry_type = NativeGeometryTypeEnum(self.native_geometry_type)
 
         if self._is_empty(self.crs):
             self.MissingRequiredField("crs")
@@ -324,6 +325,9 @@ class SpatialReference(YAMLRoot):
             self.MissingRequiredField("target_geography_type")
         if not isinstance(self.target_geography_type, TargetGeographyTypeEnum):
             self.target_geography_type = TargetGeographyTypeEnum(self.target_geography_type)
+
+        if self.native_spatial_resolution_m is not None and not isinstance(self.native_spatial_resolution_m, float):
+            self.native_spatial_resolution_m = float(self.native_spatial_resolution_m)
 
         if self.native_spatial_resolution_descriptor is not None and not isinstance(self.native_spatial_resolution_descriptor, str):
             self.native_spatial_resolution_descriptor = str(self.native_spatial_resolution_descriptor)
@@ -1736,6 +1740,34 @@ class TableOrientationEnum(EnumDefinitionImpl):
         description="How variables map onto columns in the companion data file.",
     )
 
+class NativeGeometryTypeEnum(EnumDefinitionImpl):
+    """
+    Kind of geometry a source product is delivered on.
+    """
+    regular_grid = PermissibleValue(
+        text="regular_grid",
+        description="Evenly spaced grid, projected or lat/lon, with one nominal cell size.")
+    irregular_grid = PermissibleValue(
+        text="irregular_grid",
+        description="""Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).""")
+    h3_grid = PermissibleValue(
+        text="h3_grid",
+        description="H3 hexagon grid.")
+    vector_polygon = PermissibleValue(
+        text="vector_polygon",
+        description="Polygons of varying size (census units, urban areas, service areas).")
+    vector_line = PermissibleValue(
+        text="vector_line",
+        description="Line features (roads, rivers).")
+    vector_point = PermissibleValue(
+        text="vector_point",
+        description="Monitoring stations or other point features (facilities).")
+
+    _defn = EnumDefinition(
+        name="NativeGeometryTypeEnum",
+        description="Kind of geometry a source product is delivered on.",
+    )
+
 class ExtractionMethodEnum(EnumDefinitionImpl):
     """
     How a gridded value was extracted at a target location.
@@ -2656,6 +2688,9 @@ slots.null_semantics_column = Slot(uri=ENVAR.null_semantics_column, name="null_s
 slots.null_semantics_column_missing_reason = Slot(uri=ENVAR.null_semantics_column_missing_reason, name="null_semantics_column_missing_reason", curie=ENVAR.curie('null_semantics_column_missing_reason'),
                    model_uri=ENVAR.null_semantics_column_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
 
+slots.native_geometry_type = Slot(uri=ENVAR.native_geometry_type, name="native_geometry_type", curie=ENVAR.curie('native_geometry_type'),
+                   model_uri=ENVAR.native_geometry_type, domain=None, range=Optional[Union[str, "NativeGeometryTypeEnum"]])
+
 slots.native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
                    model_uri=ENVAR.native_spatial_resolution_m, domain=None, range=Optional[float])
 
@@ -3247,8 +3282,8 @@ slots.SpatialReference_crs = Slot(uri=ENVAR.crs, name="SpatialReference_crs", cu
 slots.SpatialReference_extraction_method = Slot(uri=ENVAR.extraction_method, name="SpatialReference_extraction_method", curie=ENVAR.curie('extraction_method'),
                    model_uri=ENVAR.SpatialReference_extraction_method, domain=SpatialReference, range=Union[str, "ExtractionMethodEnum"])
 
-slots.SpatialReference_native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="SpatialReference_native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
-                   model_uri=ENVAR.SpatialReference_native_spatial_resolution_m, domain=SpatialReference, range=float)
+slots.SpatialReference_native_geometry_type = Slot(uri=ENVAR.native_geometry_type, name="SpatialReference_native_geometry_type", curie=ENVAR.curie('native_geometry_type'),
+                   model_uri=ENVAR.SpatialReference_native_geometry_type, domain=SpatialReference, range=Union[str, "NativeGeometryTypeEnum"])
 
 slots.SpatialReference_target_geography_type = Slot(uri=ENVAR.target_geography_type, name="SpatialReference_target_geography_type", curie=ENVAR.curie('target_geography_type'),
                    model_uri=ENVAR.SpatialReference_target_geography_type, domain=SpatialReference, range=Union[str, "TargetGeographyTypeEnum"])

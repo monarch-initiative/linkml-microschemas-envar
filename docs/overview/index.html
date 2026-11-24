@@ -843,11 +843,18 @@ name and value type in small print), then four columns:</p>
 </thead>
 <tbody>
 <tr>
+<td><strong>Native Geometry Type</strong><br><small><code>native_geometry_type</code> · <a href="#native-geometry-type">Native Geometry Type</a> value</small></td>
+<td>Kind of geometry the source product is delivered on. Decides whether a cell size in metres applies: <code>native_spatial_resolution_m</code> is mandatory for <code>regular_grid</code> only. Describes the source, not the place the value is attached to (that is <code>target_geography_type</code>).<br>💡 <em>Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This field says which one the source uses, because a tile width only makes sense for some of them.</em><br>↗ <a href="https://h3geo.org/">H3</a></td>
+<td>Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry type a missing cell size is ambiguous: it could be an omission, or the source could have no cell size at all.</td>
+<td><code>regular_grid</code> — Daymet V4 1 km grid<br><code>vector_polygon</code> — annual mean PM2.5 per urban-area polygon</td>
+<td>🟥 Core<br><em>(required)</em></td>
+</tr>
+<tr>
 <td><strong>Native Spatial Resolution (m)</strong><br><small><code>native_spatial_resolution_m</code> · number</small></td>
-<td>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000.<br>💡 <em>Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.</em><br>↗ <a href="https://daymet.ornl.gov/">Daymet</a> · <a href="https://www.climatologylab.org/gridmet.html">gridMET</a> · <a href="https://psl.noaa.gov/data/gridded/data.narr.html">NARR</a></td>
+<td>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Mandatory when <code>native_geometry_type</code> is <code>regular_grid</code>; leave empty when the source has no cell size in metres.<br>💡 <em>Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.</em><br>↗ <a href="https://daymet.ornl.gov/">Daymet</a> · <a href="https://www.climatologylab.org/gridmet.html">gridMET</a> · <a href="https://psl.noaa.gov/data/gridded/data.narr.html">NARR</a></td>
 <td>Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable.</td>
 <td><code>1000</code> — Daymet V4 1 km grid</td>
-<td>🟥 Core<br><em>(required)</em></td>
+<td>🟧 Core (conditional)</td>
 </tr>
 <tr>
 <td><strong>Native Resolution Descriptor</strong><br><small><code>native_spatial_resolution_descriptor</code> · text</small></td>
@@ -925,6 +932,43 @@ name and value type in small print), then four columns:</p>
 <td>Recording <em>what quantity the operator preserves</em> — not just the operator name — is what makes two datasets' spatial values comparable and poolable: an area-weighted mean and a mass-conserving allocation applied to the same input give different numbers, and only the preserved-quantity tag tells a downstream analyst which one a value is, so two supports can be reconciled rather than silently mixed.</td>
 <td><code>mean_intensity</code> — area-weighted interpolation of a modeled concentration preserves the area-mean intensity (CHEL tract-to-hex concentration case)<br><code>total_mass_conservation</code> — population-weighted / area-proportional allocation of a count preserves the total (CHEL population-count case)</td>
 <td>🟨 Recommended</td>
+</tr>
+</tbody>
+</table>
+<h3 id="native-geometry-type">Native Geometry Type<a class="headerlink" href="#native-geometry-type" title="Permanent link">¶</a></h3>
+<p>Kind of geometry a source product is delivered on.</p>
+<p><strong>Standards &amp; references:</strong> <a href="https://h3geo.org/">H3</a></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>regular grid</strong></td>
+<td>Evenly spaced grid, projected or lat/lon, with one nominal cell size.</td>
+</tr>
+<tr>
+<td><strong>irregular grid</strong></td>
+<td>Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).</td>
+</tr>
+<tr>
+<td><strong>h3 grid</strong></td>
+<td>H3 hexagon grid.</td>
+</tr>
+<tr>
+<td><strong>vector polygon</strong></td>
+<td>Polygons of varying size (census units, urban areas, service areas).</td>
+</tr>
+<tr>
+<td><strong>vector line</strong></td>
+<td>Line features (roads, rivers).</td>
+</tr>
+<tr>
+<td><strong>vector point</strong></td>
+<td>Monitoring stations or other point features (facilities).</td>
 </tr>
 </tbody>
 </table>

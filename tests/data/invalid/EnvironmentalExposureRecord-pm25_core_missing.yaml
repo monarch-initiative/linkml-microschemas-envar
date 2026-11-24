@@ -18,6 +18,7 @@ data_layout:
   value_column: pm25
 
 spatial_reference:
+  native_geometry_type: vector_point
   native_spatial_resolution_descriptor: "point station (FRM/FEM monitor)"
   crs: "EPSG:4326"
   extraction_method: point_station_lookup

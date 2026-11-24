@@ -18,6 +18,7 @@ data_layout:
   value_column: tmmx
 
 spatial_reference:
+  native_geometry_type: regular_grid
   native_spatial_resolution_m: 4000
   native_spatial_resolution_descriptor: "~4 km regular grid"
   crs: "EPSG:4326"
