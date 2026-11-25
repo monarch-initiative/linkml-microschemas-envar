@@ -325,7 +325,7 @@
 <p><span class="envar-classname">LinkageMethod</span></p>
 <p class="envar-lead">How a gridded environmental value gets attached to a patient: the resolution of the patient's spatiotemporal trajectory down to the resolution the exposure data supports. Covers the linkage strategy and buffer parameters, the propagated geocoder precision and score, how patient location-over-time is modelled (the spatial axis), and the clinical-date-assignment convention, partial-day attribution, and lag alignment (the temporal axis). One per record.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">21 fields</span>
+<p><span class="envar-metachip">22 fields</span>
 <span class="envar-metachip">1 core</span></p>
 <p><span class="envar-metachip">URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/class/LinkageMethod">envar:class/LinkageMethod</a></span></p>
 </div>
@@ -990,7 +990,7 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Optional</span>
 <span class="envar-groupnote">Include when available</span>
-<span class="envar-groupcount">9 fields</span>
+<span class="envar-groupcount">10 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card optional">
@@ -1153,6 +1153,65 @@
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
 <p>Records whether the score was never produced or was produced but dropped by the pipeline — the difference between an upstream limitation and a fixable ETL gap.</p>
+</div>
+</details>
+</div>
+<div class="envar-card optional">
+<div class="envar-cardhead"><span class="envar-cardtitle">Geocoding Database Version</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
+<div class="envar-cardmeta">
+<p><code>geocoding_database_version</code> · range <a href="../../types/String/">String</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>Software that turns an address into map coordinates looks it up in a reference list of streets and addresses. This names that list and its edition.</p>
+</div>
+<div class="envar-desc">
+<p>Name and version or release of the reference address database the geocoder matched against. The geocoder tool itself is the geocoding <code>ToolRun</code> step in <code>provenance_chain</code>; this names the database that run used.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>TIGER/Line Street Range Address files 2021</code> — <span class="egdesc">the database documented for the DeGAUSS geocoder 3.3.0 container</span></p>
+</div>
+</div>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.7 (Geocodes input row, Source Link N/A)</div>
+<div class="envar-cov-note">CHEL takes participant geocodes as an input; its lineage row gives no source, and no geocoder or address database is named in its documentation.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaiaDB sql/01_init_schema.sql working.location; gaiaDocker docker/gaia-degauss/Dockerfile</div>
+<div class="envar-cov-note">working.location has coordinates but no geocoder or address-database column, and the gaia-degauss image uses an untagged DeGAUSS geocoder.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> degauss-org/geocoder README.md, Geomarker Data (3.3.0, v3.4.2); geocoder output filename tag</div>
+<div class="envar-cov-note">No output column names the database; the filename gives the container version, whose README names the 2021 TIGER/Line Street Range Address files.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> amadeus R/utils-calculate.R (calc_prepare_locs input, calc_return_locs output), version 2.1.2</div>
+<div class="envar-cov-note">Amadeus takes locations that already have coordinates, and its output names no reference address database.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column fields</div>
+<div class="envar-cov-note">The published C-HER metadata fields include no geocoding database. The ORNL ADDRESS report (doi:10.2172/3827145, Table 2) names OSM/Nominatim without a version, outside that metadata.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-note">The reference database of a geocoding run is instance-layer linkage provenance, outside CODATA's conceptual scope.</div>
+</div>
+</details>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>The same address matched against different database versions can get different coordinates, and so a different exposure value. The tool version alone does not name the database.</p>
+</div>
+<div class="envar-whyblock">
+<p><strong>See also:</strong> <a href="https://github.com/degauss-org/geocoder">https://github.com/degauss-org/geocoder</a></p>
 </div>
 </details>
 </div>
@@ -1375,6 +1434,13 @@
 <td>Reason <code>geocoding_score_propagated</code> is null</td>
 </tr>
 <tr>
+<td><strong>Geocoding Database Version</strong></td>
+<td><code>geocoding_database_version</code></td>
+<td>optional</td>
+<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>Name and version or release of the reference address database the geocoder ma...</td>
+</tr>
+<tr>
 <td><strong>Address Period Alignment</strong></td>
 <td><code>address_period_alignment</code></td>
 <td>recommended</td>
@@ -1555,6 +1621,8 @@
         click MissingReasonEnum href "../../enums/MissingReasonEnum/"
 
 
+
+      LinkageMethod : geocoding_database_version
 
       LinkageMethod : geocoding_precision_propagated
 
@@ -2340,6 +2408,143 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MissingReasonEnum</span>
+<span class="w">  </span><span class="nt">geocoding_database_version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geocoding_database_version</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optional</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The same address matched against different database versions can get</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">different coordinates, and so a different exposure value. The tool version</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">alone does not name the database.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Software that turns an address into map coordinates looks it up in</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">a reference list of streets and addresses. This names that list and its</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">edition.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.7 (Geocodes input row, Source Link</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">N/A)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL takes participant geocodes as an input; its lineage row</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">gives no source, and no geocoder or address database is named in</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">its documentation.</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaiaDB sql/01_init_schema.sql working.location; gaiaDocker</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">docker/gaia-degauss/Dockerfile</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">working.location has coordinates but no geocoder or address-database</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">column, and the gaia-degauss image uses an untagged DeGAUSS geocoder.</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss-org/geocoder README.md, Geomarker Data (3.3.0, v3.4.2);</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">geocoder output filename tag</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No output column names the database; the filename gives the</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">container version, whose README names the 2021 TIGER/Line Street</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">Range Address files.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus R/utils-calculate.R (calc_prepare_locs input, calc_return_locs</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">output), version 2.1.2</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus takes locations that already have coordinates, and</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">its output names no reference address database.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">fields</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The published C-HER metadata fields include no geocoding database.</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">The ORNL ADDRESS report (doi:10.2172/3827145, Table 2) names OSM/Nominatim</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">without a version, outside that metadata.</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reference database of a geocoding run is instance-layer</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">linkage provenance, outside CODATA's conceptual scope.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name and version or release of the reference address database the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">geocoder matched against. The geocoder tool itself is the geocoding `ToolRun`</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">step in `provenance_chain`; this names the database that run used.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geocoding Database Version</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TIGER/Line Street Range Address files 2021</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the database documented for the DeGAUSS geocoder 3.3.0 container</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">see_also</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/degauss-org/geocoder</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">address_period_alignment</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">address_period_alignment</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>

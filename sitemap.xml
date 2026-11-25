@@ -557,6 +557,10 @@
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/geocoding_database_version/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/geocoding_precision_propagated/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
