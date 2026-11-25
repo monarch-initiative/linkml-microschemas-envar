@@ -22,7 +22,7 @@ hooks (OMOP, BDC, …), and FAIR-deposit metadata. The schema implements §1.1 o
 | `envar_model.yaml` | `ExposureModel` | Model type, inputs, paper DOI, known biases, uncertainty field, bias correction. Covers req §6. |
 | `envar_uncertainty.yaml` | `Uncertainty` | Per-value and aggregate uncertainty, quality flags, missing-data handling. Covers req §8. |
 | `envar_linkage.yaml` | `LinkageMethod` | Gridded-to-patient linkage strategy, buffer parameters, propagated geocoder quality. Covers req §9. |
-| `envar_toolrun.yaml` | `ToolRun`, `ProvenanceChain` | Exact tool invocation and the ordered W3C-PROV chain of upstream runs. Covers req §10 and §11. |
+| `envar_toolrun.yaml` | `ToolRun`, `InputFile`, `ProvenanceChain` | Exact tool invocation and the ordered W3C-PROV chain of upstream runs. Covers req §10 and §11. |
 | `envar_heat_metric.yaml` | `DerivedHeatMetric` | Heat-metric methodology: family, equation variant, indoor / outdoor, percentile reference period. Covers req §7. |
 | `envar_health_layer.yaml` | `HealthLayerLinkage`, `DepositMetadata` | Health-data-layer linkage hooks (OMOP, BDC, …; target named in a slot) and FAIR-deposit slots. Covers req §12 and §13. |
 | `envar_record.yaml` | `EnvironmentalExposureRecord` | Top composite class — binds the microschema-profile slots to envar-specific ranges and lists the top-level slots. |

@@ -51,6 +51,7 @@ classes:
     - run_duration_seconds
     - run_environment
     - input_file_sha256
+    - input_files
     - input_row_count
     - output_file_sha256
     - output_row_count
@@ -61,6 +62,25 @@ classes:
         required: true
       tool_version:
         required: true
+
+  InputFile:
+    title: Input File
+    description: One file a tool run read, with where to find it and its hash.
+    annotations:
+      domain_of_use: environmental_exposure
+    class_uri: prov:Entity
+    slots:
+    - input_file_locator
+    attributes:
+      # Local so the run-level slot's covered_by is not repeated; same name so
+      # the checker counts a hash given here.
+      input_file_sha256:
+        title: Input File SHA-256 Hash
+        description: SHA256 of this input file.
+        annotations:
+          tier: recommended
+          justification: Verifies that a located file is the one the run read.
+          explanation: A fingerprint of this file.
 
   ProvenanceChain:
     title: Provenance Chain
@@ -592,6 +612,41 @@ slots:
         A snapshot of the computer setup around the tool — operating system,
         language versions, key libraries. Like noting the oven and altitude
         alongside a recipe, because the surroundings can change the outcome.
+  input_files:
+    title: Input Files
+    slot_uri: prov:used
+    range: InputFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    description: >-
+      The files the run read, one entry per file. Use it instead of the
+      run-level `input_file_sha256` when there are several inputs or a locator
+      is known.
+    examples:
+    - object:
+        input_file_locator: inputs/addresses.csv
+        input_file_sha256: "9f8e7d6c5b4a..."
+    annotations:
+      tier: recommended
+      justification: >-
+        Many runs fuse several sources; a single hash leaves the other inputs
+        unrecorded.
+      explanation: The list of ingredients the program was given.
+  input_file_locator:
+    title: Input File Locator
+    range: string
+    description: >-
+      URI, DOI or path where the input file can be found. Omit it when the
+      locator itself would disclose PHI.
+    examples:
+    - value: https://doi.org/10.3334/ORNLDAAC/2129
+    annotations:
+      tier: recommended
+      justification: >-
+        A hash verifies a file you already have; only a locator lets you find
+        it.
+      explanation: The address of the input file.
   input_file_sha256:
     title: Input File SHA-256 Hash
     range: string
@@ -849,7 +904,8 @@ slots:
     title: Run Log Excerpt
     range: string
     description: >-
-      Last ~50 lines of the run log, where useful for debugging or audit.
+      Last ~50 lines of the run log, where useful for debugging or audit. The
+      full log is not expected to ship with the data; provide it on request.
     examples:
     - value: "[2026-05-23 14:19:19] daymet 1.0.0 finished: wrote 459 rows to /output/tmax.csv (0 errors, 0 warnings)"
 

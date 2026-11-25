@@ -205,6 +205,8 @@ Present only when the variable is a derived heat metric. For plain Tmax the modu
 | `run_timestamp_utc` | Recommended | ISO 8601 | When the run started. | runtime |
 | `run_environment` | Optional | object | OS, runtime, language/library versions. | runtime |
 | `input_file_sha256` / `output_file_sha256` | Recommended | string | Hashes for verification that inputs/outputs are what the record claims. | runtime |
+| `input_files` | Recommended | list of `InputFile` | One entry per file the run read, each with a locator and its own `input_file_sha256`. Many runs fuse several inputs. | runtime |
+| `input_file_locator` | Recommended | string | URI, DOI or path of one input file (in `InputFile`). A hash verifies a file but does not find it. Must not disclose PHI. | runtime |
 | `input_row_count` / `output_row_count` | Recommended | integer | Row counts; a cheap integrity check. | runtime |
 | `provenance_chain` (steps) | Recommended | ordered list | The ordered upstream runs (geocoder → daymet). Lets a consumer walk the full derivation. Patterned on W3C PROV. | [PROV] |
 | `provenance_chain_terminus_type` | Recommended | enum | `raw_source_download` \| `synthetic_data` \| `pre_existing_curated_dataset`. The root of the chain. | EnVar |

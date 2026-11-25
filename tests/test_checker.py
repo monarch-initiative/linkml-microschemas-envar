@@ -9,6 +9,7 @@ with exactly their deliberately-dropped Core fields.
 from pathlib import Path
 
 import pytest
+import yaml
 from linkml_microschemas_envar.checker import (
     CompletenessChecker,
     format_report,
@@ -173,6 +174,21 @@ def test_missing_reason_explains_recommended_but_not_core(checker):
     assert "target_concept_id" in report.explained_null
     assert "target_concept_id" not in report.missing["recommended"]
     assert "day_boundary_convention" in report.blocking
+
+
+def test_tool_run_accepts_several_located_inputs(checker):
+    """input_files pairs locator and hash per input; a hash given there counts
+    as input_file_sha256, so moving it off the run costs no completeness."""
+    path = VALID_DIR / "EnvironmentalExposureRecord-tmax_core.yaml"
+    record = yaml.safe_load(path.read_text())
+    record["tool_run"]["input_files"] = [
+        {"input_file_locator": "inputs/addresses.csv", "input_file_sha256": "9f8e7d..."},
+        {"input_file_locator": "https://example.org/grid.nc"},
+    ]
+    report = checker.check(record)
+    assert report.valid, report.validation_messages
+    present = {s.name for s in report.slots if s.present}
+    assert {"input_files", "input_file_locator", "input_file_sha256"} <= present
 
 
 def test_heat_metric_module_only_counts_when_present(checker):

@@ -15569,9 +15569,21 @@ class ToolRun(ConfiguredBaseModel):
                                                     'disagreements can no longer be '
                                                     'traced to inputs versus code.'},
                          'tier': {'tag': 'tier', 'value': 'recommended'}},
-         'domain_of': ['ToolRun'],
+         'domain_of': ['ToolRun', 'InputFile'],
          'examples': [{'value': '9f8e7d6c5b4a...'}],
          'see_also': ['https://doi.org/10.6028/NIST.FIPS.180-4']} })
+    input_files: Optional[list[InputFile]] = Field(default=None, title="Input Files", description="""The files the run read, one entry per file. Use it instead of the run-level `input_file_sha256` when there are several inputs or a locator is known.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The list of ingredients the program '
+                                                  'was given.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Many runs fuse several sources; a '
+                                                    'single hash leaves the other '
+                                                    'inputs unrecorded.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['ToolRun'],
+         'examples': [{'object': {'input_file_locator': 'inputs/addresses.csv',
+                                  'input_file_sha256': '9f8e7d6c5b4a...'}}],
+         'slot_uri': 'prov:used'} })
     input_row_count: Optional[int] = Field(default=None, title="Input Row Count", description="""Number of rows in the input.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
@@ -15956,7 +15968,7 @@ class ToolRun(ConfiguredBaseModel):
                          'tier': {'tag': 'tier', 'value': 'recommended'}},
          'domain_of': ['ToolRun'],
          'examples': [{'description': '3 subjects × 153 days', 'value': '459'}]} })
-    run_log_excerpt: Optional[str] = Field(default=None, title="Run Log Excerpt", description="""Last ~50 lines of the run log, where useful for debugging or audit.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    run_log_excerpt: Optional[str] = Field(default=None, title="Run Log Excerpt", description="""Last ~50 lines of the run log, where useful for debugging or audit. The full log is not expected to ship with the data; provide it on request.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'The last few lines the program '
                                                   'printed while running — its own '
                                                   'account of what it did and whether '
@@ -15996,6 +16008,34 @@ class ToolRun(ConfiguredBaseModel):
          'examples': [{'description': 'e.g. logs exist on the runner but are not '
                                       'captured by the pipeline',
                        'value': 'available_but_not_extracted'}]} })
+
+
+class InputFile(ConfiguredBaseModel):
+    """
+    One file a tool run read, with where to find it and its hash.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'domain_of_use': {'tag': 'domain_of_use',
+                                           'value': 'environmental_exposure'}},
+         'class_uri': 'prov:Entity',
+         'from_schema': 'https://w3id.org/linkml/microschemas/envar/toolrun',
+         'title': 'Input File'})
+
+    input_file_locator: Optional[str] = Field(default=None, title="Input File Locator", description="""URI, DOI or path where the input file can be found. Omit it when the locator itself would disclose PHI.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The address of the input file.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'A hash verifies a file you '
+                                                    'already have; only a locator lets '
+                                                    'you find it.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['InputFile'],
+         'examples': [{'value': 'https://doi.org/10.3334/ORNLDAAC/2129'}]} })
+    input_file_sha256: Optional[str] = Field(default=None, title="Input File SHA-256 Hash", description="""SHA256 of this input file.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'A fingerprint of this file.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Verifies that a located file is '
+                                                    'the one the run read.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['ToolRun', 'InputFile']} })
 
 
 class ProvenanceChain(ConfiguredBaseModel):
@@ -33614,6 +33654,7 @@ Uncertainty.model_rebuild()
 ModelAggregateUncertainty.model_rebuild()
 LinkageMethod.model_rebuild()
 ToolRun.model_rebuild()
+InputFile.model_rebuild()
 ProvenanceChain.model_rebuild()
 DerivedHeatMetric.model_rebuild()
 EquationInput.model_rebuild()
