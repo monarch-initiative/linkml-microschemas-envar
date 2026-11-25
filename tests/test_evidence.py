@@ -236,3 +236,50 @@ def test_unreviewed_list_is_the_frozen_list_or_smaller():
     unreviewed = set(se.load_yaml(se.EVIDENCE_DIR / "unreviewed.yaml"))
     assert len(se.FROZEN_UNREVIEWED) == 51
     assert unreviewed <= se.FROZEN_UNREVIEWED
+
+
+# ── Docs fragments ───────────────────────────────────────────────────
+
+
+def _fragments():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("gen_evidence_fragments", REPO_ROOT / "scripts" / "gen_evidence_fragments.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_fragment_shows_support_non_support_and_legacy():
+    registry = {
+        "alpha": {"name": "Alpha <tool>", "documents": {"alpha-docs": {"title": "Alpha docs", "url": "https://example.org/a?x=1&y=2"}}},
+        "beta": {"name": "Beta", "documents": {}},
+    }
+    confirmation = {"by": ORCID, "date": "2026-11-25", "basis": "internal"}
+    entry = {
+        "supported_by": [
+            {"source": "alpha", "support": [{**ITEM, "locator": "§2", "snippet": "writes <unit> & more", "match": "partial"}]},
+            {"source": "beta", "legacy": {"extent": "full", "status": "asserted", "where": "table x", "note": "old <note>"}},
+        ],
+        "not_supported_by": [
+            {"source": "beta", "reason": "different_concept", "explanation": "Closest is the DOI.", "status": "confirmed", "confirmation": confirmation},
+            {"source": "alpha", "legacy": {"extent": "absent", "status": "asserted", "where": "no column", "note": "nothing"}},
+        ],
+    }
+    html = _fragments().render_fragment(entry, registry)
+    assert "Evidence: 2 supporting, 2 not supporting" in html
+    assert "Alpha &lt;tool&gt;" in html and "writes &lt;unit&gt; &amp; more" in html
+    assert 'href="https://example.org/a?x=1&amp;y=2"' in html and "Alpha docs</a>, §2" in html
+    assert "documentation, partial match" in html and ">unverified<" in html
+    assert "unverified, to be reviewed" in html and "full coverage (old verdict)" in html and "old &lt;note&gt;" in html
+    assert "should record it, does not: different concept" in html and "confirmed by 0000-0002-1825-0097" in html
+    assert "no column" not in html
+    assert "\n\n" not in html  # a blank line would end the HTML block in Markdown
+
+
+def test_fragment_for_none_found_and_unreviewed_slots():
+    module = _fragments()
+    none_found = {"no_support_found": {"by": ORCID, "date": "2026-11-25", "searched": ["alpha"], "note": "Nothing states it."}}
+    html = module.render_fragment(none_found, {"alpha": {"name": "Alpha", "documents": {}}})
+    assert "no support found (2026-11-25; searched Alpha). Nothing states it." in html
+    assert "not yet reviewed against any source" in module.render_fragment(None, {})
