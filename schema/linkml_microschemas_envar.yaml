@@ -4437,12 +4437,238 @@ slots:
     domain_of:
     - DataLayout
     range: MissingReasonEnum
+  native_geometry:
+    name: native_geometry
+    annotations:
+      tier:
+        tag: tier
+        value: core
+      justification:
+        tag: justification
+        value: 'Grids, hexagons, polygons and stations have different error behaviour
+          and different notions of resolution. Without the geometry a missing resolution
+          is ambiguous: it could be an omission, or the source could have no resolution
+          at all.'
+      explanation:
+        tag: explanation
+        value: 'Environmental data comes in different shapes: square tiles, honeycomb
+          cells, outlines such as city boundaries, lines such as roads, or single
+          points such as monitoring stations. This block says which shape the source
+          uses and, where it makes sense, how big the pieces are.'
+      covered_by:
+        tag: covered_by
+        annotations:
+          clad:
+            tag: clad
+            annotations:
+              extent:
+                tag: extent
+                value: full
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
+              note:
+                tag: note
+                value: 'CHEL states the delivered geometry first-class: H3 Resolution-3
+                  hexagons.'
+          omop_gaia:
+            tag: omop_gaia
+            annotations:
+              extent:
+                tag: extent
+                value: full
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: gaia_db data_source.geom_type; meta_etl_*.json structure/geometry
+                  (raster)
+              note:
+                tag: note
+                value: GAIA records the source geometry first-class (geom_type, and
+                  structure/geometry in the etl metadata).
+          degauss:
+            tag: degauss
+            annotations:
+              extent:
+                tag: extent
+                value: absent
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: no column
+              note:
+                tag: note
+                value: DeGAUSS emits no source-geometry field.
+          amadeus:
+            tag: amadeus
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: thredds_dataset.xml gridDataset/gridSet
+              note:
+                tag: note
+                value: Only implied by the THREDDS gridDataset/gridSet structure;
+                  never written as a geometry type in the output.
+          cher:
+            tag: cher
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: table_name spatial-res code prefix (m/k/h/c/t/b/s/z)
+              note:
+                tag: note
+                value: The resolution code prefix separates grid (m/k), H3 (h) and
+                  polygon (tract/block/ZIP) layouts (§2.3); it has no line or point
+                  code.
+          codata:
+            tag: codata
+            annotations:
+              extent:
+                tag: extent
+                value: out_of_layer
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: no column
+              note:
+                tag: note
+                value: Source geometry of a specific product is instance-layer detail
+                  outside the conceptual EV/DDI-CDI layer.
+    description: Geometry the source product is delivered on, with the resolution
+      slots that apply to it. Describes the source, not the place the value is attached
+      to (that is `target_geography_type`).
+    title: Native Geometry
+    examples:
+    - description: Daymet V4 1 km grid
+      object:
+        geometry_kind: RegularGrid
+        native_spatial_resolution_m: 1000
+    - description: CHEL H3 resolution-3 hexagons
+      object:
+        geometry_kind: H3Grid
+        h3_resolution: 3
+    - description: annual mean PM2.5 per urban-area polygon
+      object:
+        geometry_kind: VectorPolygon
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - SpatialReference
+    range: Geometry
+    inlined: true
+  geometry_kind:
+    name: geometry_kind
+    annotations:
+      tier:
+        tag: tier
+        value: core
+      justification:
+        tag: justification
+        value: The kind decides which resolution slots apply, so a consumer cannot
+          read or check the rest of the geometry without it.
+      explanation:
+        tag: explanation
+        value: The label that says which kind of shape this is, so you know which
+          other fields to expect.
+    description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+      `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+    title: Geometry Kind
+    examples:
+    - value: RegularGrid
+      description: Daymet V4 1 km grid
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    designates_type: true
+    domain_of:
+    - Geometry
+    range: string
+    required: true
+  h3_resolution:
+    name: h3_resolution
+    annotations:
+      tier:
+        tag: tier
+        value: conditionally_core
+      justification:
+        tag: justification
+        value: H3 resolutions in use differ by orders of magnitude in cell area, so
+          "H3" alone does not say how coarse a value is.
+      explanation:
+        tag: explanation
+        value: 'Honeycomb maps come in 16 standard sizes. This number says which one:
+          0 is continent-sized cells, 15 is about a square metre.'
+      covered_by:
+        tag: covered_by
+        annotations:
+          clad:
+            tag: clad
+            annotations:
+              extent:
+                tag: extent
+                value: full
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
+              note:
+                tag: note
+                value: CHEL states the H3 resolution first-class (Resolution 3).
+          cher:
+            tag: cher
+            annotations:
+              extent:
+                tag: extent
+                value: full
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: table_name spatial-res code (e.g. h08)
+              note:
+                tag: note
+                value: C-HER encodes the H3 resolution in the table_name code (§2.3).
+    description: H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell
+      area and edge length follow from it through H3's own tables.
+    title: H3 Resolution
+    examples:
+    - value: '3'
+      description: CHEL 2024
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    see_also:
+    - https://h3geo.org/docs/core-library/restable/
+    domain_of:
+    - H3Grid
+    range: integer
+    minimum_value: 0
+    maximum_value: 15
   native_spatial_resolution_m:
     name: native_spatial_resolution_m
     annotations:
       tier:
         tag: tier
-        value: core
+        value: conditionally_core
       justification:
         tag: justification
         value: 'Exposure misclassification scales directly with cell size: a value
@@ -4464,7 +4690,7 @@ slots:
             annotations:
               extent:
                 tag: extent
-                value: full
+                value: partial
               status:
                 tag: status
                 value: asserted
@@ -4473,8 +4699,9 @@ slots:
                 value: CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)
               note:
                 tag: note
-                value: CHEL fixes native resolution first-class as Uber H3 Resolution-3
-                  hexagons (~12,000 km2).
+                value: CHEL fixes native resolution as an H3 level (Resolution 3)
+                  with an approximate cell area (~12,000 km2); it gives no resolution
+                  in metres.
           omop_gaia:
             tag: omop_gaia
             annotations:
@@ -4559,7 +4786,8 @@ slots:
                   layer; native grid resolution of one run is instance-layer detail
                   deliberately outside their scope.
     description: Native spatial resolution of the source product in metres. Daymet
-      = 1000, GridMET ≈ 4000, NARR ≈ 32000.
+      = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it
+      is mandatory; other geometries have no single cell size in metres.
     title: Native Spatial Resolution (m)
     examples:
     - value: '1000'
@@ -4570,7 +4798,7 @@ slots:
     - https://www.climatologylab.org/gridmet.html
     - https://psl.noaa.gov/data/gridded/data.narr.html
     domain_of:
-    - SpatialReference
+    - RegularGrid
     range: float
   native_spatial_resolution_descriptor:
     name: native_spatial_resolution_descriptor
@@ -15669,7 +15897,9 @@ slots:
     - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
         for a full instance
       object:
-        native_spatial_resolution_m: 1000
+        native_geometry:
+          geometry_kind: RegularGrid
+          native_spatial_resolution_m: 1000
         crs: EPSG:4326
         extraction_method: inverse_distance_weighted_4_nearest_cells
         target_geography_type: point_residence
@@ -20230,7 +20460,7 @@ classes:
     - https://epsg.io/
     - https://en.wikipedia.org/wiki/Coordinate_reference_system
     slots:
-    - native_spatial_resolution_m
+    - native_geometry
     - native_spatial_resolution_descriptor
     - crs
     - spatial_extent_bbox
@@ -20249,32 +20479,31 @@ classes:
       extraction_method:
         name: extraction_method
         required: true
-      native_spatial_resolution_m:
-        name: native_spatial_resolution_m
+      native_geometry:
+        name: native_geometry
         required: true
       target_geography_type:
         name: target_geography_type
         required: true
     attributes:
-      native_spatial_resolution_m:
-        name: native_spatial_resolution_m
+      native_geometry:
+        name: native_geometry
         annotations:
           tier:
             tag: tier
             value: core
           justification:
             tag: justification
-            value: 'Exposure misclassification scales directly with cell size: a value
-              from a 32 km NARR cell averages over an entire metro area while a 1
-              km Daymet cell resolves a neighbourhood. Without the resolution, downstream
-              users cannot judge how precise a per-patient exposure really is or whether
-              two studies'' values are comparable.'
+            value: 'Grids, hexagons, polygons and stations have different error behaviour
+              and different notions of resolution. Without the geometry a missing
+              resolution is ambiguous: it could be an omission, or the source could
+              have no resolution at all.'
           explanation:
             tag: explanation
-            value: Gridded environmental data divides the world into square tiles,
-              like pixels in a photo, and reports one value per tile. This field says
-              how wide each tile is in metres — small tiles give a sharp picture of
-              local conditions, big tiles give a blurry average over a large area.
+            value: 'Environmental data comes in different shapes: square tiles, honeycomb
+              cells, outlines such as city boundaries, lines such as roads, or single
+              points such as monitoring stations. This block says which shape the
+              source uses and, where it makes sense, how big the pieces are.'
           covered_by:
             tag: covered_by
             annotations:
@@ -20289,28 +20518,28 @@ classes:
                     value: asserted
                   where:
                     tag: where
-                    value: CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)
+                    value: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
                   note:
                     tag: note
-                    value: CHEL fixes native resolution first-class as Uber H3 Resolution-3
-                      hexagons (~12,000 km2).
+                    value: 'CHEL states the delivered geometry first-class: H3 Resolution-3
+                      hexagons.'
               omop_gaia:
                 tag: omop_gaia
                 annotations:
                   extent:
                     tag: extent
-                    value: absent
+                    value: full
                   status:
                     tag: status
                     value: asserted
                   where:
                     tag: where
-                    value: no column
+                    value: gaia_db data_source.geom_type; meta_etl_*.json structure/geometry
+                      (raster)
                   note:
                     tag: note
-                    value: gaiaCatalog has no first-class native-resolution slot;
-                      it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,
-                      not natively.
+                    value: GAIA records the source geometry first-class (geom_type,
+                      and structure/geometry in the etl metadata).
               degauss:
                 tag: degauss
                 annotations:
@@ -20325,8 +20554,7 @@ classes:
                     value: no column
                   note:
                     tag: note
-                    value: DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band
-                      knowledge, not written to any output.
+                    value: DeGAUSS emits no source-geometry field.
               amadeus:
                 tag: amadeus
                 annotations:
@@ -20338,28 +20566,28 @@ classes:
                     value: asserted
                   where:
                     tag: where
-                    value: thredds_dataset.xml axis lat/lon increment (0.041666 deg)
+                    value: thredds_dataset.xml gridDataset/gridSet
                   note:
                     tag: note
-                    value: Only derivable from the grid-axis increment in thredds_dataset.xml;
-                      never written as a resolution number in metres.
+                    value: Only implied by the THREDDS gridDataset/gridSet structure;
+                      never written as a geometry type in the output.
               cher:
                 tag: cher
                 annotations:
                   extent:
                     tag: extent
-                    value: full
+                    value: partial
                   status:
                     tag: status
                     value: asserted
                   where:
                     tag: where
-                    value: table_name spatial-res code (e.g. m30, k05, h08)
+                    value: table_name spatial-res code prefix (m/k/h/c/t/b/s/z)
                   note:
                     tag: note
-                    value: C-HER encodes native spatial resolution first-class in
-                      the table_name pattern (§2.3 metric/H3 codes) and as the inheritable
-                      spatial_resolution field.
+                    value: The resolution code prefix separates grid (m/k), H3 (h)
+                      and polygon (tract/block/ZIP) layouts (§2.3); it has no line
+                      or point code.
               codata:
                 tag: codata
                 annotations:
@@ -20374,25 +20602,31 @@ classes:
                     value: no column
                   note:
                     tag: note
-                    value: CODATA EVs / DDI-CDI operate at the conceptual/represented
-                      layer; native grid resolution of one run is instance-layer detail
-                      deliberately outside their scope.
-        description: Native spatial resolution of the source product in metres. Daymet
-          = 1000, GridMET ≈ 4000, NARR ≈ 32000.
-        title: Native Spatial Resolution (m)
+                    value: Source geometry of a specific product is instance-layer
+                      detail outside the conceptual EV/DDI-CDI layer.
+        description: Geometry the source product is delivered on, with the resolution
+          slots that apply to it. Describes the source, not the place the value is
+          attached to (that is `target_geography_type`).
+        title: Native Geometry
         examples:
-        - value: '1000'
-          description: Daymet V4 1 km grid
+        - description: Daymet V4 1 km grid
+          object:
+            geometry_kind: RegularGrid
+            native_spatial_resolution_m: 1000
+        - description: CHEL H3 resolution-3 hexagons
+          object:
+            geometry_kind: H3Grid
+            h3_resolution: 3
+        - description: annual mean PM2.5 per urban-area polygon
+          object:
+            geometry_kind: VectorPolygon
         from_schema: https://w3id.org/linkml/microschemas/envar
-        see_also:
-        - https://daymet.ornl.gov/
-        - https://www.climatologylab.org/gridmet.html
-        - https://psl.noaa.gov/data/gridded/data.narr.html
         owner: SpatialReference
         domain_of:
         - SpatialReference
-        range: float
+        range: Geometry
         required: true
+        inlined: true
       native_spatial_resolution_descriptor:
         name: native_spatial_resolution_descriptor
         annotations:
@@ -21478,6 +21712,471 @@ classes:
         domain_of:
         - SpatialReference
         range: SpatialAggregationPreservationEnum
+  Geometry:
+    name: Geometry
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: environmental_exposure
+    description: 'Geometry a source product is delivered on. `geometry_kind` names
+      one of the subclasses, and the subclass decides which further slots exist: a
+      regular grid has a cell size in metres, an H3 grid has a resolution, and the
+      other geometries have neither.'
+    title: Source Geometry
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    abstract: true
+    slots:
+    - geometry_kind
+    attributes:
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: Geometry
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  RegularGrid:
+    name: RegularGrid
+    description: Evenly spaced grid, projected or lat/lon, with one nominal cell size.
+    title: Regular Grid
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    is_a: Geometry
+    slots:
+    - native_spatial_resolution_m
+    slot_usage:
+      native_spatial_resolution_m:
+        name: native_spatial_resolution_m
+        required: true
+    attributes:
+      native_spatial_resolution_m:
+        name: native_spatial_resolution_m
+        annotations:
+          tier:
+            tag: tier
+            value: conditionally_core
+          justification:
+            tag: justification
+            value: 'Exposure misclassification scales directly with cell size: a value
+              from a 32 km NARR cell averages over an entire metro area while a 1
+              km Daymet cell resolves a neighbourhood. Without the resolution, downstream
+              users cannot judge how precise a per-patient exposure really is or whether
+              two studies'' values are comparable.'
+          explanation:
+            tag: explanation
+            value: Gridded environmental data divides the world into square tiles,
+              like pixels in a photo, and reports one value per tile. This field says
+              how wide each tile is in metres — small tiles give a sharp picture of
+              local conditions, big tiles give a blurry average over a large area.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)
+                  note:
+                    tag: note
+                    value: CHEL fixes native resolution as an H3 level (Resolution
+                      3) with an approximate cell area (~12,000 km2); it gives no
+                      resolution in metres.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: no column
+                  note:
+                    tag: note
+                    value: gaiaCatalog has no first-class native-resolution slot;
+                      it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,
+                      not natively.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: no column
+                  note:
+                    tag: note
+                    value: DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band
+                      knowledge, not written to any output.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: thredds_dataset.xml axis lat/lon increment (0.041666 deg)
+                  note:
+                    tag: note
+                    value: Only derivable from the grid-axis increment in thredds_dataset.xml;
+                      never written as a resolution number in metres.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: full
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: table_name spatial-res code (e.g. m30, k05, h08)
+                  note:
+                    tag: note
+                    value: C-HER encodes native spatial resolution first-class in
+                      the table_name pattern (§2.3 metric/H3 codes) and as the inheritable
+                      spatial_resolution field.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: out_of_layer
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: no column
+                  note:
+                    tag: note
+                    value: CODATA EVs / DDI-CDI operate at the conceptual/represented
+                      layer; native grid resolution of one run is instance-layer detail
+                      deliberately outside their scope.
+        description: Native spatial resolution of the source product in metres. Daymet
+          = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where
+          it is mandatory; other geometries have no single cell size in metres.
+        title: Native Spatial Resolution (m)
+        examples:
+        - value: '1000'
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        see_also:
+        - https://daymet.ornl.gov/
+        - https://www.climatologylab.org/gridmet.html
+        - https://psl.noaa.gov/data/gridded/data.narr.html
+        owner: RegularGrid
+        domain_of:
+        - RegularGrid
+        range: float
+        required: true
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: RegularGrid
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  IrregularGrid:
+    name: IrregularGrid
+    description: Grid or mesh with no single cell size (satellite swath, curvilinear
+      or unstructured model mesh).
+    title: Irregular Grid
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    is_a: Geometry
+    attributes:
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: IrregularGrid
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  H3Grid:
+    name: H3Grid
+    description: H3 hexagon grid at one resolution.
+    title: H3 Grid
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    see_also:
+    - https://h3geo.org/
+    is_a: Geometry
+    slots:
+    - h3_resolution
+    slot_usage:
+      h3_resolution:
+        name: h3_resolution
+        required: true
+    attributes:
+      h3_resolution:
+        name: h3_resolution
+        annotations:
+          tier:
+            tag: tier
+            value: conditionally_core
+          justification:
+            tag: justification
+            value: H3 resolutions in use differ by orders of magnitude in cell area,
+              so "H3" alone does not say how coarse a value is.
+          explanation:
+            tag: explanation
+            value: 'Honeycomb maps come in 16 standard sizes. This number says which
+              one: 0 is continent-sized cells, 15 is about a square metre.'
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: full
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
+                  note:
+                    tag: note
+                    value: CHEL states the H3 resolution first-class (Resolution 3).
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: full
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: table_name spatial-res code (e.g. h08)
+                  note:
+                    tag: note
+                    value: C-HER encodes the H3 resolution in the table_name code
+                      (§2.3).
+        description: H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell
+          area and edge length follow from it through H3's own tables.
+        title: H3 Resolution
+        examples:
+        - value: '3'
+          description: CHEL 2024
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        see_also:
+        - https://h3geo.org/docs/core-library/restable/
+        owner: H3Grid
+        domain_of:
+        - H3Grid
+        range: integer
+        required: true
+        minimum_value: 0
+        maximum_value: 15
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: H3Grid
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  VectorPolygon:
+    name: VectorPolygon
+    description: Polygons of varying size (census units, urban areas, service areas).
+    title: Vector Polygon
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    is_a: Geometry
+    attributes:
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: VectorPolygon
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  VectorLine:
+    name: VectorLine
+    description: Line features (roads, rivers).
+    title: Vector Line
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    is_a: Geometry
+    attributes:
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: VectorLine
+        domain_of:
+        - Geometry
+        range: string
+        required: true
+  VectorPoint:
+    name: VectorPoint
+    description: Monitoring stations or other point features (facilities).
+    title: Vector Point
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    is_a: Geometry
+    attributes:
+      geometry_kind:
+        name: geometry_kind
+        annotations:
+          tier:
+            tag: tier
+            value: core
+          justification:
+            tag: justification
+            value: The kind decides which resolution slots apply, so a consumer cannot
+              read or check the rest of the geometry without it.
+          explanation:
+            tag: explanation
+            value: The label that says which kind of shape this is, so you know which
+              other fields to expect.
+        description: 'Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`,
+          `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.'
+        title: Geometry Kind
+        examples:
+        - value: RegularGrid
+          description: Daymet V4 1 km grid
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        designates_type: true
+        owner: VectorPoint
+        domain_of:
+        - Geometry
+        range: string
+        required: true
   TemporalReference:
     name: TemporalReference
     annotations:
@@ -32364,7 +33063,9 @@ classes:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
             for a full instance
           object:
-            native_spatial_resolution_m: 1000
+            native_geometry:
+              geometry_kind: RegularGrid
+              native_spatial_resolution_m: 1000
             crs: EPSG:4326
             extraction_method: inverse_distance_weighted_4_nearest_cells
             target_geography_type: point_residence
@@ -34788,7 +35489,9 @@ classes:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
             for a full instance
           object:
-            native_spatial_resolution_m: 1000
+            native_geometry:
+              geometry_kind: RegularGrid
+              native_spatial_resolution_m: 1000
             crs: EPSG:4326
             extraction_method: inverse_distance_weighted_4_nearest_cells
             target_geography_type: point_residence
@@ -36944,7 +37647,9 @@ classes:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
             for a full instance
           object:
-            native_spatial_resolution_m: 1000
+            native_geometry:
+              geometry_kind: RegularGrid
+              native_spatial_resolution_m: 1000
             crs: EPSG:4326
             extraction_method: inverse_distance_weighted_4_nearest_cells
             target_geography_type: point_residence
@@ -39087,7 +39792,9 @@ classes:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
             for a full instance
           object:
-            native_spatial_resolution_m: 1000
+            native_geometry:
+              geometry_kind: RegularGrid
+              native_spatial_resolution_m: 1000
             crs: EPSG:4326
             extraction_method: inverse_distance_weighted_4_nearest_cells
             target_geography_type: point_residence
@@ -41243,7 +41950,9 @@ classes:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
             for a full instance
           object:
-            native_spatial_resolution_m: 1000
+            native_geometry:
+              geometry_kind: RegularGrid
+              native_spatial_resolution_m: 1000
             crs: EPSG:4326
             extraction_method: inverse_distance_weighted_4_nearest_cells
             target_geography_type: point_residence

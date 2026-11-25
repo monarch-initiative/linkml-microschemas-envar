@@ -776,6 +776,34 @@
 <td>The model class that produced the values (interpolation, reanalysis, ML, stat...</td>
 </tr>
 <tr>
+<td><a href="classes/Geometry/">Geometry</a></td>
+<td>Geometry a source product is delivered on</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/H3Grid/">H3Grid</a></td>
+<td>H3 hexagon grid at one resolution</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/IrregularGrid/">IrregularGrid</a></td>
+<td>Grid or mesh with no single cell size (satellite swath, curvilinear or unstru...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/RegularGrid/">RegularGrid</a></td>
+<td>Evenly spaced grid, projected or lat/lon, with one nominal cell size</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/VectorLine/">VectorLine</a></td>
+<td>Line features (roads, rivers)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/VectorPoint/">VectorPoint</a></td>
+<td>Monitoring stations or other point features (facilities)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="classes/VectorPolygon/">VectorPolygon</a></td>
+<td>Polygons of varying size (census units, urban areas, service areas)</td>
+</tr>
+<tr>
 <td><a href="classes/HealthLayerLinkage/">HealthLayerLinkage</a></td>
 <td>Hooks the sidecar uses to be findable from a downstream health-data layer (OM...</td>
 </tr>
@@ -1349,6 +1377,14 @@
 <td>Reason <code>geocoding_score_propagated</code> is null</td>
 </tr>
 <tr>
+<td><a href="slots/geometry_kind/">geometry_kind</a></td>
+<td>Name of the <code>Geometry</code> subclass: <code>RegularGrid</code>, <code>IrregularGrid</code>, <code>H3Grid</code>, `V...</td>
+</tr>
+<tr>
+<td><a href="slots/h3_resolution/">h3_resolution</a></td>
+<td>H3 resolution of the hexagons, 0 (coarsest) to 15 (finest)</td>
+</tr>
+<tr>
 <td><a href="slots/health_data_integration/">health_data_integration</a></td>
 <td>How the record meets patient data and travels onward — the gridded-to-patient...</td>
 </tr>
@@ -1507,6 +1543,10 @@
 <tr>
 <td><a href="slots/model_aggregate_uncertainty_missing_reason/">model_aggregate_uncertainty_missing_reason</a></td>
 <td>Reason <code>model_aggregate_uncertainty</code> is null</td>
+</tr>
+<tr>
+<td><a href="slots/native_geometry/">native_geometry</a></td>
+<td>Geometry the source product is delivered on, with the resolution slots that a...</td>
 </tr>
 <tr>
 <td><a href="slots/native_spatial_resolution_descriptor/">native_spatial_resolution_descriptor</a></td>

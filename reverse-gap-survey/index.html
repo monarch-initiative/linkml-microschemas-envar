@@ -995,7 +995,7 @@ emitting a health-layer concept binding (<code>exposure_concept_id</code>,
 <tr>
 <td><code>structure</code> / <code>geometry</code> (<code>raster</code>), JSON-LD <code>measurementTechnique.termCode</code></td>
 <td><strong>ABSORB</strong></td>
-<td>Gridded-vs-vector nature of the source: <code>native_spatial_resolution_descriptor</code> already encodes it ("1 km regular grid" vs "point station"); <code>target_geography_type</code> covers the anchor side.</td>
+<td>Gridded-vs-vector nature of the source: <code>native_geometry.geometry_kind</code> (added 2026-11 for #42; previously only the free-text <code>native_spatial_resolution_descriptor</code>); <code>target_geography_type</code> covers the anchor side.</td>
 </tr>
 <tr>
 <td>Dataset discovery block: <code>description</code>/<code>dct:description</code>, <code>keywords</code>/<code>dcat:keyword</code>, <code>datePublished</code>/<code>dct:issued</code>, <code>dateModified</code>, publisher <code>@id</code>, <code>update_frequency</code></td>

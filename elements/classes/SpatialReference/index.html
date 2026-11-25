@@ -335,6 +335,9 @@
 <div class="envar-sitsrow">
 <p><span class="envar-sitskey">Composed into</span><span class="envar-chip"><a href="../EnvironmentalExposureRecord/">EnvironmentalExposureRecord</a></span></p>
 </div>
+<div class="envar-sitsrow">
+<p><span class="envar-sitskey">References</span><span class="envar-chip"><a href="../Geometry/">Geometry</a></span></p>
+</div>
 </div>
 <p class="envar-sectionlabel">Fields</p>
 <div class="envar-legend">
@@ -351,59 +354,63 @@
 </div>
 <div class="envar-cards">
 <div class="envar-card core">
-<div class="envar-cardhead"><span class="envar-cardtitle">Native Spatial Resolution (m)</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
+<div class="envar-cardhead"><span class="envar-cardtitle">Native Geometry</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
 <div class="envar-cardmeta">
-<p><code>native_spatial_resolution_m</code> · range <a href="../../types/Float/">Float</a> · cardinality 1</p>
+<p><code>native_geometry</code> · range <a href="../Geometry/">Geometry</a> · cardinality 1</p>
 </div>
 <div class="envar-explain">
-<p>Gridded environmental data divides the world into square tiles, like pixels in a photo, and reports one value per tile. This field says how wide each tile is in metres — small tiles give a sharp picture of local conditions, big tiles give a blurry average over a large area.</p>
+<p>Environmental data comes in different shapes: square tiles, honeycomb cells, outlines such as city boundaries, lines such as roads, or single points such as monitoring stations. This block says which shape the source uses and, where it makes sense, how big the pieces are.</p>
 </div>
 <div class="envar-desc">
-<p>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000.</p>
+<p>Geometry the source product is delivered on, with the resolution slots that apply to it. Describes the source, not the place the value is attached to (that is <code>target_geography_type</code>).</p>
 </div>
 <div class="envar-block">
-<p class="envar-blocklabel">Example</p>
+<p class="envar-blocklabel">Examples</p>
 <div class="envar-eg">
-<p><code>1000</code> — <span class="egdesc">Daymet V4 1 km grid</span></p>
+<p><code>None</code> — <span class="egdesc">Daymet V4 1 km grid</span></p>
+</div>
+<div class="envar-eg">
+<p><code>None</code> — <span class="egdesc">CHEL H3 resolution-3 hexagons</span></p>
+</div>
+<div class="envar-eg">
+<p><code>None</code> — <span class="egdesc">annual mean PM2.5 per urban-area polygon</span></p>
 </div>
 </div>
 <details class="envar-cov-details">
 <summary>Covered by — 6 standards</summary>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
-<div class="envar-cov-note">CHEL fixes native resolution first-class as Uber H3 Resolution-3 hexagons (~12,000 km2).</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 grid)</div>
+<div class="envar-cov-note">CHEL states the delivered geometry first-class: H3 Resolution-3 hexagons.</div>
 </div>
 <div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
+<div class="envar-cov-note">GAIA records the source geometry first-class (geom_type, and structure/geometry in the etl metadata).</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band knowledge, not written to any output.</div>
+<div class="envar-cov-note">DeGAUSS emits no source-geometry field.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml axis lat/lon increment (0.041666 deg)</div>
-<div class="envar-cov-note">Only derivable from the grid-axis increment in thredds_dataset.xml; never written as a resolution number in metres.</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml gridDataset/gridSet</div>
+<div class="envar-cov-note">Only implied by the THREDDS gridDataset/gridSet structure; never written as a geometry type in the output.</div>
 </div>
 <div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code (e.g. m30, k05, h08)</div>
-<div class="envar-cov-note">C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3 metric/H3 codes) and as the inheritable spatial_resolution field.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
+<div class="envar-cov-note">The resolution code prefix separates grid (m/k), H3 (h) and polygon (tract/block/ZIP) layouts (§2.3); it has no line or point code.</div>
 </div>
 <div class="envar-cov st-asserted">
 <div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-note">CODATA EVs / DDI-CDI operate at the conceptual/represented layer; native grid resolution of one run is instance-layer detail deliberately outside their scope.</div>
+<div class="envar-cov-note">Source geometry of a specific product is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
-<p>Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable.</p>
-</div>
-<div class="envar-whyblock">
-<p><strong>See also:</strong> <a href="https://daymet.ornl.gov/">https://daymet.ornl.gov/</a>, <a href="https://www.climatologylab.org/gridmet.html">https://www.climatologylab.org/gridmet.html</a>, <a href="https://psl.noaa.gov/data/gridded/data.narr.html">https://psl.noaa.gov/data/gridded/data.narr.html</a></p>
+<p>Grids, hexagons, polygons and stations have different error behaviour and different notions of resolution. Without the geometry a missing resolution is ambiguous: it could be an omission, or the source could have no resolution at all.</p>
 </div>
 </details>
 </div>
@@ -1000,11 +1007,11 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Native Spatial Resolution (m)</strong></td>
-<td><code>native_spatial_resolution_m</code></td>
+<td><strong>Native Geometry</strong></td>
+<td><code>native_geometry</code></td>
 <td>core</td>
-<td>1 <br/> <a href="../../types/Float/">Float</a></td>
-<td>Native spatial resolution of the source product in metres</td>
+<td>1 <br/> <a href="../Geometry/">Geometry</a></td>
+<td>Geometry the source product is delivered on, with the resolution slots that a...</td>
 </tr>
 <tr>
 <td><strong>Native Resolution Descriptor</strong></td>
@@ -1117,9 +1124,18 @@
 
 
 
-      SpatialReference : native_spatial_resolution_descriptor
+      SpatialReference : native_geometry
 
-      SpatialReference : native_spatial_resolution_m
+
+
+
+
+        SpatialReference --&gt; "1" Geometry : native_geometry
+        click Geometry href "../../classes/Geometry/"
+
+
+
+      SpatialReference : native_spatial_resolution_descriptor
 
       SpatialReference : population_weighting_source
 
@@ -1183,32 +1199,31 @@
 <span class="w">  </span><span class="nt">extraction_method</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extraction_method</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">native_spatial_resolution_m</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">native_spatial_resolution_m</span>
+<span class="w">  </span><span class="nt">native_geometry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">native_geometry</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">target_geography_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_geography_type</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">native_spatial_resolution_m</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">native_spatial_resolution_m</span>
+<span class="w">  </span><span class="nt">native_geometry</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">native_geometry</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
 <span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Exposure</span><span class="nv"> </span><span class="s">misclassification</span><span class="nv"> </span><span class="s">scales</span><span class="nv"> </span><span class="s">directly</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">size:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span>
-<span class="w">          </span><span class="s">from</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">32</span><span class="nv"> </span><span class="s">km</span><span class="nv"> </span><span class="s">NARR</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">averages</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">entire</span><span class="nv"> </span><span class="s">metro</span><span class="nv"> </span><span class="s">area</span><span class="nv"> </span><span class="s">while</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">km</span><span class="nv"> </span><span class="s">Daymet</span>
-<span class="w">          </span><span class="s">cell</span><span class="nv"> </span><span class="s">resolves</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">neighbourhood.</span><span class="nv"> </span><span class="s">Without</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">resolution,</span><span class="nv"> </span><span class="s">downstream</span><span class="nv"> </span><span class="s">users</span>
-<span class="w">          </span><span class="s">cannot</span><span class="nv"> </span><span class="s">judge</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">precise</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-patient</span><span class="nv"> </span><span class="s">exposure</span><span class="nv"> </span><span class="s">really</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">two</span>
-<span class="w">          </span><span class="s">studies</span><span class="se">''</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">comparable.'</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Grids,</span><span class="nv"> </span><span class="s">hexagons,</span><span class="nv"> </span><span class="s">polygons</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">stations</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">error</span><span class="nv"> </span><span class="s">behaviour</span>
+<span class="w">          </span><span class="s">and</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">notions</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">resolution.</span><span class="nv"> </span><span class="s">Without</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">missing</span><span class="nv"> </span><span class="s">resolution</span>
+<span class="w">          </span><span class="s">is</span><span class="nv"> </span><span class="s">ambiguous:</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">omission,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">resolution</span>
+<span class="w">          </span><span class="s">at</span><span class="nv"> </span><span class="s">all.'</span>
 <span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gridded environmental data divides the world into square tiles, like</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">pixels in a photo, and reports one value per tile. This field says how wide</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">each tile is in metres — small tiles give a sharp picture of local conditions,</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">big tiles give a blurry average over a large area.</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Environmental</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">comes</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">shapes:</span><span class="nv"> </span><span class="s">square</span><span class="nv"> </span><span class="s">tiles,</span><span class="nv"> </span><span class="s">honeycomb</span>
+<span class="w">          </span><span class="s">cells,</span><span class="nv"> </span><span class="s">outlines</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">boundaries,</span><span class="nv"> </span><span class="s">lines</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">roads,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">single</span>
+<span class="w">          </span><span class="s">points</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">block</span><span class="nv"> </span><span class="s">says</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">shape</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span>
+<span class="w">          </span><span class="s">uses</span><span class="nv"> </span><span class="s">and,</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">makes</span><span class="nv"> </span><span class="s">sense,</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">big</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">pieces</span><span class="nv"> </span><span class="s">are.'</span>
 <span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1223,28 +1238,28 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
 <span class="w">              </span><span class="nt">where</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 Hex3 grid)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL fixes native resolution first-class as Uber H3 Resolution-3</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">hexagons (~12,000 km2).</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">states</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">delivered</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">H3</span><span class="nv"> </span><span class="s">Resolution-3</span>
+<span class="w">                  </span><span class="s">hexagons.'</span>
 <span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
 <span class="w">              </span><span class="nt">status</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
 <span class="w">              </span><span class="nt">where</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.geom_type; meta_etl_*.json structure/geometry</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(raster)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaiaCatalog has no first-class native-resolution slot; it appears</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not natively.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records the source geometry first-class (geom_type, and</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">structure/geometry in the etl metadata).</span>
 <span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1259,8 +1274,7 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">knowledge, not written to any output.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no source-geometry field.</span>
 <span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1272,28 +1286,28 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
 <span class="w">              </span><span class="nt">where</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml axis lat/lon increment (0.041666 deg)</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml gridDataset/gridSet</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the grid-axis increment in thredds_dataset.xml;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">never written as a resolution number in metres.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only implied by the THREDDS gridDataset/gridSet structure;</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">never written as a geometry type in the output.</span>
 <span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
 <span class="w">              </span><span class="nt">status</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
 <span class="w">              </span><span class="nt">where</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-res code (e.g. m30, k05, h08)</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER encodes native spatial resolution first-class in the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">table_name pattern (§2.3 metric/H3 codes) and as the inheritable</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">spatial_resolution field.</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resolution code prefix separates grid (m/k), H3 (h) and</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">polygon (tract/block/ZIP) layouts (§2.3); it has no line or point</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">code.</span>
 <span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
 <span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1308,25 +1322,31 @@
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
 <span class="w">              </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CODATA EVs / DDI-CDI operate at the conceptual/represented</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">layer; native grid resolution of one run is instance-layer detail</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">deliberately outside their scope.</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native spatial resolution of the source product in metres. Daymet</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">= 1000, GridMET ≈ 4000, NARR ≈ 32000.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native Spatial Resolution (m)</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source geometry of a specific product is instance-layer detail</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">outside the conceptual EV/DDI-CDI layer.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geometry the source product is delivered on, with the resolution</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">slots that apply to it. Describes the source, not the place the value is attached</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to (that is `target_geography_type`).</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native Geometry</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'1000'</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Daymet V4 1 km grid</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Daymet V4 1 km grid</span>
+<span class="w">      </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">geometry_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RegularGrid</span>
+<span class="w">        </span><span class="nt">native_spatial_resolution_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL H3 resolution-3 hexagons</span>
+<span class="w">      </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">geometry_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">H3Grid</span>
+<span class="w">        </span><span class="nt">h3_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">annual mean PM2.5 per urban-area polygon</span>
+<span class="w">      </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">geometry_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VectorPolygon</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
-<span class="w">    </span><span class="nt">see_also</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://daymet.ornl.gov/</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.climatologylab.org/gridmet.html</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://psl.noaa.gov/data/gridded/data.narr.html</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialReference</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialReference</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geometry</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">native_spatial_resolution_descriptor</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">native_spatial_resolution_descriptor</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>

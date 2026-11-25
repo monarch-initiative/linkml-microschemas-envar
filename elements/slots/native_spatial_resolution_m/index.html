@@ -705,8 +705,8 @@
 
 
 <h1 id="slot-native-spatial-resolution-m-native_spatial_resolution_m">Slot: Native Spatial Resolution (m) (native_spatial_resolution_m)</h1>
-<p><em>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000.</em></p>
-<p><strong>Tier:</strong> <code>core</code></p>
+<p><em>Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on <code>RegularGrid</code> only, where it is mandatory; other geometries have no single cell size in metres.</em></p>
+<p><strong>Tier:</strong> <code>conditionally_core</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>Exposure misclassification scales directly with cell size: a value from a 32 km NARR cell averages over an entire metro area while a 1 km Daymet cell resolves a neighbourhood. Without the resolution, downstream users cannot judge how precise a per-patient exposure really is or whether two studies' values are comparable.</p>
 <h2 id="in-plain-terms">In plain terms</h2>
@@ -725,8 +725,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/SpatialReference/">SpatialReference</a></td>
-<td>Spatial provenance of an environmental exposure value: the native grid / foot...</td>
+<td><a href="../../classes/RegularGrid/">RegularGrid</a></td>
+<td>Evenly spaced grid, projected or lat/lon, with one nominal cell size</td>
 <td>yes</td>
 </tr>
 </tbody>
@@ -747,7 +747,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/SpatialReference/">SpatialReference</a></td>
+<td><a href="../../classes/RegularGrid/">RegularGrid</a></td>
 </tr>
 </tbody>
 </table>
@@ -797,7 +797,7 @@
 <tbody>
 <tr>
 <td>tier</td>
-<td>core</td>
+<td>conditionally_core</td>
 </tr>
 <tr>
 <td>justification</td>
@@ -842,7 +842,7 @@
 <span class="nt">annotations</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">tier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
-<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conditionally_core</span>
 <span class="w">  </span><span class="nt">justification</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Exposure</span><span class="nv"> </span><span class="s">misclassification</span><span class="nv"> </span><span class="s">scales</span><span class="nv"> </span><span class="s">directly</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">cell</span><span class="nv"> </span><span class="s">size:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">from</span>
@@ -864,7 +864,7 @@
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
 <span class="w">          </span><span class="nt">status</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
 <span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
@@ -873,8 +873,8 @@
 <span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</span>
 <span class="w">          </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL fixes native resolution first-class as Uber H3 Resolution-3</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">hexagons (~12,000 km2).</span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL fixes native resolution as an H3 level (Resolution 3) with</span>
+<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">an approximate cell area (~12,000 km2); it gives no resolution in metres.</span>
 <span class="w">      </span><span class="nt">omop_gaia</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
 <span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
@@ -959,7 +959,8 @@
 <span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">native grid resolution of one run is instance-layer detail deliberately</span>
 <span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">outside their scope.</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native spatial resolution of the source product in metres. Daymet = 1000,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">GridMET ≈ 4000, NARR ≈ 32000.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it is mandatory;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">other geometries have no single cell size in metres.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native Spatial Resolution (m)</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1000&#39;</span>
@@ -971,7 +972,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://psl.noaa.gov/data/gridded/data.narr.html</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialReference</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RegularGrid</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
 </code></pre></div>
 </details>
