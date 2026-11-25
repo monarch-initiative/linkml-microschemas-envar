@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-11-25T09:06:39
+# Generation date: 2026-11-25T09:27:00
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar
@@ -1271,6 +1271,8 @@ class HealthLayerLinkage(YAMLRoot):
 
     health_layer_target: Optional[Union[str, "HealthLayerTargetEnum"]] = None
     health_layer_link_field: Optional[str] = None
+    participant_coverage_pct: Optional[float] = None
+    participant_coverage_pct_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
     cohort_size_anchored: Optional[int] = None
     cohort_size_anchored_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
 
@@ -1280,6 +1282,12 @@ class HealthLayerLinkage(YAMLRoot):
 
         if self.health_layer_link_field is not None and not isinstance(self.health_layer_link_field, str):
             self.health_layer_link_field = str(self.health_layer_link_field)
+
+        if self.participant_coverage_pct is not None and not isinstance(self.participant_coverage_pct, float):
+            self.participant_coverage_pct = float(self.participant_coverage_pct)
+
+        if self.participant_coverage_pct_missing_reason is not None and not isinstance(self.participant_coverage_pct_missing_reason, MissingReasonEnum):
+            self.participant_coverage_pct_missing_reason = MissingReasonEnum(self.participant_coverage_pct_missing_reason)
 
         if self.cohort_size_anchored is not None and not isinstance(self.cohort_size_anchored, int):
             self.cohort_size_anchored = int(self.cohort_size_anchored)
@@ -3252,6 +3260,12 @@ slots.health_layer_target = Slot(uri=ENVAR.health_layer_target, name="health_lay
 
 slots.health_layer_link_field = Slot(uri=ENVAR.health_layer_link_field, name="health_layer_link_field", curie=ENVAR.curie('health_layer_link_field'),
                    model_uri=ENVAR.health_layer_link_field, domain=None, range=Optional[str])
+
+slots.participant_coverage_pct = Slot(uri=ENVAR.participant_coverage_pct, name="participant_coverage_pct", curie=ENVAR.curie('participant_coverage_pct'),
+                   model_uri=ENVAR.participant_coverage_pct, domain=None, range=Optional[float])
+
+slots.participant_coverage_pct_missing_reason = Slot(uri=ENVAR.participant_coverage_pct_missing_reason, name="participant_coverage_pct_missing_reason", curie=ENVAR.curie('participant_coverage_pct_missing_reason'),
+                   model_uri=ENVAR.participant_coverage_pct_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
 
 slots.cohort_size_anchored = Slot(uri=ENVAR.cohort_size_anchored, name="cohort_size_anchored", curie=ENVAR.curie('cohort_size_anchored'),
                    model_uri=ENVAR.cohort_size_anchored, domain=None, range=Optional[int])

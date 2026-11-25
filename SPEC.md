@@ -221,6 +221,7 @@ record-root assertion (it applies to the whole sidecar, not just linkage).
 | `health_layer_target` | Recommended | enum | The downstream health-data layer (`omop_external_exposure` \| `bdc` \| `other`). Names the target so `health_layer_link_field` is read against the right model. | EnVar |
 | `health_layer_link_field` | Recommended | string | Which field in the target layer carries `provenance_id` (for OMOP, `exposure_source_value`). | EnVar |
 | `cohort_size_anchored` | Optional | integer (null) | Distinct persons this record was extracted for. | run |
+| `participant_coverage_pct` | Optional | number (null+reason) | Percent of those persons assigned at least one non-null value. Not `data_completeness_pct` (§4.7), which counts (location, date) cells. | run |
 | `phi_status` | Core (record root) | enum | `no_phi` \| `aggregated_no_phi` \| `phi_present`. A safety assertion; sidecars must be PHI-free. | EnVar |
 | `deposit_*` (DOI, repository, license, citation, DCAT url) | Optional | mixed | The required-for-deposit subset for the published-FAIR-object case. Optional because most records never get deposited. | [SPDX]/[DOI] |
 | `schema_version` | Core | string | The schema version this document targets; downstream branches on it for evolution. | EnVar |

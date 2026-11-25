@@ -137,6 +137,7 @@ health_layer_linkage:
   health_layer_target: omop_external_exposure
   health_layer_link_field: exposure_source_value
   cohort_size_anchored: 3
+  participant_coverage_pct: 100
 deposit_metadata:
   deposit_doi: "10.5281/zenodo.9999999"
   deposit_repository: zenodo

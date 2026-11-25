@@ -175,6 +175,12 @@ def test_valid_examples_validate(schema_view: SchemaView, example: Path) -> None
     assert not messages, f"{example.name} should validate but got: {messages}"
 
 
+@pytest.mark.parametrize("pct, valid", [(0, True), (66.7, True), (-1, False), (101, False)])
+def test_participant_coverage_is_a_percentage(schema_view: SchemaView, pct: float, valid: bool) -> None:
+    report = validate({"participant_coverage_pct": pct}, schema_view.schema, "HealthLayerLinkage")
+    assert (not report.results) == valid
+
+
 @pytest.mark.parametrize(
     "counter_example", _example_files(INVALID_DIR), ids=lambda p: p.stem
 )

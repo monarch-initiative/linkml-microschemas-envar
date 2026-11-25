@@ -18266,6 +18266,33 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                                       '`provenance_id`',
                        'value': 'exposure_source_value'}],
          'see_also': ['https://ohdsi.github.io/CommonDataModel/']} })
+    participant_coverage_pct: Optional[float] = Field(default=None, title="Participant Coverage Percentage", description="""Percent of the persons counted in `cohort_size_anchored` who were assigned at least one non-null exposure value. 0-100. Persons without a value (failed geocode, out-of-extent address, gap in residential history) stay in the denominator. Not `data_completeness_pct`, which counts (location, date) cells.""", ge=0, le=100, json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Of all the people this record was '
+                                                  'made for, the percentage who ended '
+                                                  'up with a value.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'A grid can be complete over the '
+                                                    'window while part of the cohort '
+                                                    'has no value, so '
+                                                    '`data_completeness_pct` cannot '
+                                                    'reveal selective loss of '
+                                                    'participants.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['HealthLayerLinkage'],
+         'examples': [{'description': 'all three cohort members in the worked Phoenix '
+                                      'example got a value',
+                       'value': '100'}]} })
+    participant_coverage_pct_missing_reason: Optional[MissingReasonEnum] = Field(default=None, title="Reason Participant Coverage Is Missing", description="""Reason `participant_coverage_pct` is null.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'When the coverage percentage is '
+                                                  'missing, this says why.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Separates coverage that does not '
+                                                    'apply from coverage that was not '
+                                                    'counted.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['HealthLayerLinkage'],
+         'examples': [{'description': 'the values are not linked to persons',
+                       'value': 'not_applicable'}]} })
     cohort_size_anchored: Optional[int] = Field(default=None, title="Anchored Cohort Size", description="""Number of distinct persons this exposure record was extracted for. Helps downstream estimate the volume of health-layer rows the sidecar describes.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'This is simply a head count: how '
                                                   'many different people this exposure '
