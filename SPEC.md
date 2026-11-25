@@ -224,7 +224,7 @@ record-root assertion (it applies to the whole sidecar, not just linkage).
 | `health_layer_link_field` | Recommended | string | Which field in the target layer carries `provenance_id` (for OMOP, `exposure_source_value`). | EnVar |
 | `cohort_size_anchored` | Optional | integer (null) | Distinct persons this record was extracted for. | run |
 | `phi_status` | Core (record root) | enum | `no_phi` \| `aggregated_no_phi` \| `phi_present`. A safety assertion; sidecars must be PHI-free. | EnVar |
-| `subject_type` | Recommended (record root) | enum | `patient` \| `cohort` \| `population_geographic_unit`. What `subject` identifies. For a public aggregate linked to no person, `subject` is the unit's code, `target_geography_type` is its kind, and `linkage_method` may be omitted. Absent means person-linked. | EnVar |
+| `subject_type` | Recommended (record root) | enum | `patient` \| `cohort` \| `population_geographic_unit`. What `subject` identifies. For a public aggregate linked to no person, `subject` is the unit's code (for several units: the set, with the codes in the column named in `subject_column`), `target_geography_type` is its kind, and `linkage_method` may be omitted. Absent means person-linked. | EnVar |
 | `deposit_*` (DOI, repository, license, citation, DCAT url) | Optional | mixed | The required-for-deposit subset for the published-FAIR-object case. Optional because most records never get deposited. | [SPDX]/[DOI] |
 | `schema_version` | Core | string | The schema version this document targets; downstream branches on it for evolution. | EnVar |
 

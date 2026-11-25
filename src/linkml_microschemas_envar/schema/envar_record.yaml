@@ -87,7 +87,9 @@ classes:
         description: >-
           The patient, cohort or geographic unit the exposure value is
           attached to. Carried as an opaque identifier (or the unit's code);
-          PHI must not appear here.
+          PHI must not appear here. When the file covers several units,
+          `subject` names the set and the column named in
+          `data_layout.subject_column` holds each unit's code.
         range: string
         examples:
         - value: "cohort:phoenix_aki_2022"
