@@ -53,7 +53,7 @@ slot-level `implements` and `exact_mappings` (prefix
 
 | Readable slot (validated key) | Profile slot | Bound range | Envar concept |
 |---|---|---|---|
-| `subject` | `subject` (used verbatim) | `string` | Opaque patient / cohort handle (PHI-free) |
+| `subject` | `subject` (used verbatim) | `string` | Opaque patient / cohort handle or geographic-unit code (PHI-free); its kind is in `subject_type` |
 | `variable_identity` | `msprofile:observation_type` | `VariableIdentity` | What variable is being captured |
 | `spatial_reference` | `msprofile:location` | `SpatialReference` | Where — native grid + extraction |
 | `temporal_reference` | `msprofile:temporality` | `TemporalReference` | When — resolution + day boundary |

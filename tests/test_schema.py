@@ -257,6 +257,27 @@ def test_datamodel_loads_the_geometry_subclass() -> None:
     assert isinstance(record.spatial_reference.native_geometry, dm.H3Grid)
 
 
+@pytest.mark.parametrize("target_class", [TARGET_CLASS, "DailyMinTemperatureRecord"])
+@pytest.mark.parametrize(
+    ("subject_type", "needs_linkage"),
+    [(None, True), ("patient", True), ("cohort", True), ("population_geographic_unit", False)],
+)
+def test_only_geographic_unit_subjects_may_omit_linkage(
+    schema_view: SchemaView, subject_type: str | None, needs_linkage: bool, target_class: str
+) -> None:
+    record = yaml.safe_load((VALID_DIR / f"{TARGET_CLASS}-tmax_core.yaml").read_text())
+    del record["linkage_method"]
+    if subject_type:
+        record["subject_type"] = subject_type
+    # The checker's verdict must agree with validation.
+    report = CompletenessChecker(SCHEMA_PATH, target_class).check(record)
+    missing = "'linkage_method' is a required property in /"
+    assert report.validation_messages == ([missing] if needs_linkage else [])
+    assert report.blocking == (["linkage_method", "linkage_strategy"] if needs_linkage else [])
+    record["linkage_method"] = None  # an explicit null must not pass for a value
+    assert needs_linkage == bool(validate(record, schema_view.schema, target_class).results)
+
+
 @pytest.mark.parametrize(
     "scenario", _yaml_files(SCENARIOS_DIR / "heat_index"), ids=lambda p: p.stem
 )
