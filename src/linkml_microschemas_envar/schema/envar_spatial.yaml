@@ -228,56 +228,6 @@ slots:
       explanation: >-
         The label that says which kind of shape this is, so you know which other
         fields to expect.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 grid)"
-              note: >-
-                CHEL states the delivered geometry first-class: H3 Resolution-3
-                hexagons.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: asserted
-              where: "gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)"
-              note: >-
-                GAIA records the source geometry first-class (geom_type, and
-                structure/geometry in the etl metadata).
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no source-geometry field.
-          amadeus:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "thredds_dataset.xml gridDataset/gridSet"
-              note: >-
-                Only implied by the THREDDS gridDataset/gridSet structure; never
-                written as a geometry type in the output.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_name spatial-res code prefix (m/k/h/c/t/b/s/z)"
-              note: >-
-                The resolution code prefix separates grid (m/k), H3 (h) and
-                polygon (tract/block/ZIP) layouts (§2.3); it has no line or
-                point code.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Source geometry of a specific product is instance-layer detail
-                outside the conceptual EV/DDI-CDI layer.
   h3_resolution:
     title: H3 Resolution
     range: integer
