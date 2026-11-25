@@ -1053,6 +1053,24 @@ class DepositRepositoryEnum(str, Enum):
     """
 
 
+class SubjectTypeEnum(str, Enum):
+    """
+    The kind of thing a record's `subject` identifies.
+    """
+    patient = "patient"
+    """
+    An individual patient.
+    """
+    cohort = "cohort"
+    """
+    A group of people, such as a study cohort.
+    """
+    population_geographic_unit = "population_geographic_unit"
+    """
+    A geographic unit (a county, a ZCTA), as in a public aggregate that is not linked to any person.
+    """
+
+
 class ComparatorEnum(str, Enum):
     """
     Comparator for quantity values
@@ -18523,6 +18541,22 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                            'value': 'environmental_exposure'}},
          'from_schema': 'https://w3id.org/linkml/microschemas/envar/record',
          'instantiates': ['MicroschemaDefinition'],
+         'rules': [{'description': 'A person-linked record must say how the value was '
+                                   'linked; a record without a subject_type is treated '
+                                   'as person-linked.',
+                    'postconditions': {'slot_conditions': {'linkage_method': {'any_of': [{'range': 'LinkageMethod'}],
+                                                                              'name': 'linkage_method',
+                                                                              'required': True}}},
+                    'preconditions': {'slot_conditions': {'subject_type': {'name': 'subject_type',
+                                                                           'value_presence': 'ABSENT'}}}},
+                   {'description': 'The same when the subject is declared a patient or '
+                                   'cohort.',
+                    'postconditions': {'slot_conditions': {'linkage_method': {'any_of': [{'range': 'LinkageMethod'}],
+                                                                              'name': 'linkage_method',
+                                                                              'required': True}}},
+                    'preconditions': {'slot_conditions': {'subject_type': {'equals_string_in': ['patient',
+                                                                                                'cohort'],
+                                                                           'name': 'subject_type'}}}}],
          'see_also': ['https://github.com/linkml/linkml-microschema-profile'],
          'slot_usage': {'phi_status': {'name': 'phi_status',
                                        'slot_group': 'record_bookkeeping'},
@@ -18639,21 +18673,27 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                                                'welcome.'},
                                                     'tier': {'tag': 'tier',
                                                              'value': 'core'}},
-                                    'description': 'The patient or cohort the exposure '
-                                                   'value is attached to. Carried as '
-                                                   'an opaque identifier; PHI must not '
-                                                   'appear here.',
+                                    'description': 'The patient, cohort or geographic '
+                                                   'unit the exposure value is '
+                                                   'attached to. Carried as an opaque '
+                                                   "identifier (or the unit's code); "
+                                                   'PHI must not appear here.',
                                     'examples': [{'description': 'an opaque cohort '
                                                                  'handle — no PHI',
-                                                  'value': 'cohort:phoenix_aki_2022'}],
+                                                  'value': 'cohort:phoenix_aki_2022'},
+                                                 {'description': 'a county '
+                                                                 '(`subject_type` '
+                                                                 'population_geographic_unit)',
+                                                  'value': 'FIPS:37183'}],
                                     'name': 'subject',
                                     'range': 'string',
                                     'slot_group': 'exposure_description',
-                                    'title': 'Subject (Patient or Cohort)'}},
+                                    'title': 'Subject (Patient, Cohort or Geographic '
+                                             'Unit)'}},
          'title': 'Environmental Exposure Record',
          'tree_root': True})
 
-    subject: str = Field(default=..., title="Subject (Patient or Cohort)", description="""The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    subject: str = Field(default=..., title="Subject (Patient, Cohort or Geographic Unit)", description="""The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'Who (or what group) the values '
                                                   'belong to — a study cohort or an '
                                                   'individual patient, named by an '
@@ -18684,7 +18724,22 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['EnvironmentalExposureRecord', 'MicroschemaDefinition'],
          'examples': [{'description': 'an opaque cohort handle — no PHI',
-                       'value': 'cohort:phoenix_aki_2022'}],
+                       'value': 'cohort:phoenix_aki_2022'},
+                      {'description': 'a county (`subject_type` '
+                                      'population_geographic_unit)',
+                       'value': 'FIPS:37183'}],
+         'slot_group': 'exposure_description'} })
+    subject_type: Optional[SubjectTypeEnum] = Field(default=None, title="Subject Type", description="""What kind of thing `subject` identifies. For a population_geographic_unit, `target_geography_type` is the kind of unit and `linkage_method` may be left out.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Whether the values belong to a '
+                                                  'patient, a study cohort, or a place '
+                                                  'such as a county.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Tells a person-linked record '
+                                                    'apart from a public aggregate '
+                                                    'that was never linked to anyone.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'examples': [{'value': 'cohort'}],
          'slot_group': 'exposure_description'} })
     variable_identity: VariableIdentity = Field(default=..., title="Variable Identity", description="""The variable identity object — what physical quantity is being captured. Bound to VariableIdentity (see envar_variable). Readable rename of the profile's `observation_type` anatomy slot.""", json_schema_extra = { "linkml_meta": {'aliases': ['observation_type'],
          'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
@@ -20588,7 +20643,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                   'provenance_chain_terminus_type': 'raw_source_download'}}],
          'see_also': ['https://www.w3.org/TR/prov-o/'],
          'slot_group': 'dataset_and_provenance'} })
-    linkage_method: LinkageMethod = Field(default=..., title="Linkage Method", description="""Linkage-method object — see envar_linkage.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    linkage_method: Optional[LinkageMethod] = Field(default=None, title="Linkage Method", description="""Linkage-method object (see envar_linkage). Required unless `subject_type` is population_geographic_unit.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -20801,7 +20856,7 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                                     'using the same data product can '
                                                     'differ solely through '
                                                     'undocumented joins.'},
-                         'tier': {'tag': 'tier', 'value': 'core'}},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
          'domain_of': ['EnvironmentalExposureRecord'],
          'examples': [{'description': 'abridged — see '
                                       'tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml '
@@ -21721,7 +21776,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                       'https://ucum.org/'],
          'title': 'Daily Maximum Temperature Record'})
 
-    subject: str = Field(default=..., title="Subject (Patient or Cohort)", description="""The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    subject: str = Field(default=..., title="Subject (Patient, Cohort or Geographic Unit)", description="""The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'Who (or what group) the values '
                                                   'belong to — a study cohort or an '
                                                   'individual patient, named by an '
@@ -21752,7 +21807,22 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['EnvironmentalExposureRecord', 'MicroschemaDefinition'],
          'examples': [{'description': 'an opaque cohort handle — no PHI',
-                       'value': 'cohort:phoenix_aki_2022'}],
+                       'value': 'cohort:phoenix_aki_2022'},
+                      {'description': 'a county (`subject_type` '
+                                      'population_geographic_unit)',
+                       'value': 'FIPS:37183'}],
+         'slot_group': 'exposure_description'} })
+    subject_type: Optional[SubjectTypeEnum] = Field(default=None, title="Subject Type", description="""What kind of thing `subject` identifies. For a population_geographic_unit, `target_geography_type` is the kind of unit and `linkage_method` may be left out.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Whether the values belong to a '
+                                                  'patient, a study cohort, or a place '
+                                                  'such as a county.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Tells a person-linked record '
+                                                    'apart from a public aggregate '
+                                                    'that was never linked to anyone.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'examples': [{'value': 'cohort'}],
          'slot_group': 'exposure_description'} })
     variable_identity: VariableIdentity = Field(default=..., title="Variable Identity", description="""The variable identity object — what physical quantity is being captured. Bound to VariableIdentity (see envar_variable). Readable rename of the profile's `observation_type` anatomy slot.""", json_schema_extra = { "linkml_meta": {'aliases': ['observation_type'],
          'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
@@ -23656,7 +23726,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                   'provenance_chain_terminus_type': 'raw_source_download'}}],
          'see_also': ['https://www.w3.org/TR/prov-o/'],
          'slot_group': 'dataset_and_provenance'} })
-    linkage_method: LinkageMethod = Field(default=..., title="Linkage Method", description="""Linkage-method object — see envar_linkage.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    linkage_method: Optional[LinkageMethod] = Field(default=None, title="Linkage Method", description="""Linkage-method object (see envar_linkage). Required unless `subject_type` is population_geographic_unit.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -23869,7 +23939,7 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                                     'using the same data product can '
                                                     'differ solely through '
                                                     'undocumented joins.'},
-                         'tier': {'tag': 'tier', 'value': 'core'}},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
          'domain_of': ['EnvironmentalExposureRecord'],
          'examples': [{'description': 'abridged — see '
                                       'tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml '
@@ -24687,7 +24757,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                       'https://ucum.org/'],
          'title': 'Daily Minimum Temperature Record'})
 
-    subject: str = Field(default=..., title="Subject (Patient or Cohort)", description="""The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    subject: str = Field(default=..., title="Subject (Patient, Cohort or Geographic Unit)", description="""The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'Who (or what group) the values '
                                                   'belong to — a study cohort or an '
                                                   'individual patient, named by an '
@@ -24718,7 +24788,22 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['EnvironmentalExposureRecord', 'MicroschemaDefinition'],
          'examples': [{'description': 'an opaque cohort handle — no PHI',
-                       'value': 'cohort:phoenix_aki_2022'}],
+                       'value': 'cohort:phoenix_aki_2022'},
+                      {'description': 'a county (`subject_type` '
+                                      'population_geographic_unit)',
+                       'value': 'FIPS:37183'}],
+         'slot_group': 'exposure_description'} })
+    subject_type: Optional[SubjectTypeEnum] = Field(default=None, title="Subject Type", description="""What kind of thing `subject` identifies. For a population_geographic_unit, `target_geography_type` is the kind of unit and `linkage_method` may be left out.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Whether the values belong to a '
+                                                  'patient, a study cohort, or a place '
+                                                  'such as a county.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Tells a person-linked record '
+                                                    'apart from a public aggregate '
+                                                    'that was never linked to anyone.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'examples': [{'value': 'cohort'}],
          'slot_group': 'exposure_description'} })
     variable_identity: VariableIdentity = Field(default=..., title="Variable Identity", description="""The variable identity object — what physical quantity is being captured. Bound to VariableIdentity (see envar_variable). Readable rename of the profile's `observation_type` anatomy slot.""", json_schema_extra = { "linkml_meta": {'aliases': ['observation_type'],
          'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
@@ -26622,7 +26707,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                   'provenance_chain_terminus_type': 'raw_source_download'}}],
          'see_also': ['https://www.w3.org/TR/prov-o/'],
          'slot_group': 'dataset_and_provenance'} })
-    linkage_method: LinkageMethod = Field(default=..., title="Linkage Method", description="""Linkage-method object — see envar_linkage.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    linkage_method: Optional[LinkageMethod] = Field(default=None, title="Linkage Method", description="""Linkage-method object (see envar_linkage). Required unless `subject_type` is population_geographic_unit.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -26835,7 +26920,7 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                                     'using the same data product can '
                                                     'differ solely through '
                                                     'undocumented joins.'},
-                         'tier': {'tag': 'tier', 'value': 'core'}},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
          'domain_of': ['EnvironmentalExposureRecord'],
          'examples': [{'description': 'abridged — see '
                                       'tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml '
@@ -27663,7 +27748,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                 'required': True}},
          'title': 'Outdoor WBGT Record'})
 
-    subject: str = Field(default=..., title="Subject (Patient or Cohort)", description="""The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    subject: str = Field(default=..., title="Subject (Patient, Cohort or Geographic Unit)", description="""The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'Who (or what group) the values '
                                                   'belong to — a study cohort or an '
                                                   'individual patient, named by an '
@@ -27694,7 +27779,22 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['EnvironmentalExposureRecord', 'MicroschemaDefinition'],
          'examples': [{'description': 'an opaque cohort handle — no PHI',
-                       'value': 'cohort:phoenix_aki_2022'}],
+                       'value': 'cohort:phoenix_aki_2022'},
+                      {'description': 'a county (`subject_type` '
+                                      'population_geographic_unit)',
+                       'value': 'FIPS:37183'}],
+         'slot_group': 'exposure_description'} })
+    subject_type: Optional[SubjectTypeEnum] = Field(default=None, title="Subject Type", description="""What kind of thing `subject` identifies. For a population_geographic_unit, `target_geography_type` is the kind of unit and `linkage_method` may be left out.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Whether the values belong to a '
+                                                  'patient, a study cohort, or a place '
+                                                  'such as a county.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Tells a person-linked record '
+                                                    'apart from a public aggregate '
+                                                    'that was never linked to anyone.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'examples': [{'value': 'cohort'}],
          'slot_group': 'exposure_description'} })
     variable_identity: VariableIdentity = Field(default=..., title="Variable Identity", description="""The variable identity object — what physical quantity is being captured. Bound to VariableIdentity (see envar_variable). Readable rename of the profile's `observation_type` anatomy slot.""", json_schema_extra = { "linkml_meta": {'aliases': ['observation_type'],
          'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
@@ -29598,7 +29698,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                   'provenance_chain_terminus_type': 'raw_source_download'}}],
          'see_also': ['https://www.w3.org/TR/prov-o/'],
          'slot_group': 'dataset_and_provenance'} })
-    linkage_method: LinkageMethod = Field(default=..., title="Linkage Method", description="""Linkage-method object — see envar_linkage.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    linkage_method: Optional[LinkageMethod] = Field(default=None, title="Linkage Method", description="""Linkage-method object (see envar_linkage). Required unless `subject_type` is population_geographic_unit.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -29811,7 +29911,7 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                                     'using the same data product can '
                                                     'differ solely through '
                                                     'undocumented joins.'},
-                         'tier': {'tag': 'tier', 'value': 'core'}},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
          'domain_of': ['EnvironmentalExposureRecord'],
          'examples': [{'description': 'abridged — see '
                                       'tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml '
@@ -30638,7 +30738,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                 'required': True}},
          'title': 'Extreme-Heat-Day Flag Record'})
 
-    subject: str = Field(default=..., title="Subject (Patient or Cohort)", description="""The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+    subject: str = Field(default=..., title="Subject (Patient, Cohort or Geographic Unit)", description="""The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
                                          'value': 'Who (or what group) the values '
                                                   'belong to — a study cohort or an '
                                                   'individual patient, named by an '
@@ -30669,7 +30769,22 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['EnvironmentalExposureRecord', 'MicroschemaDefinition'],
          'examples': [{'description': 'an opaque cohort handle — no PHI',
-                       'value': 'cohort:phoenix_aki_2022'}],
+                       'value': 'cohort:phoenix_aki_2022'},
+                      {'description': 'a county (`subject_type` '
+                                      'population_geographic_unit)',
+                       'value': 'FIPS:37183'}],
+         'slot_group': 'exposure_description'} })
+    subject_type: Optional[SubjectTypeEnum] = Field(default=None, title="Subject Type", description="""What kind of thing `subject` identifies. For a population_geographic_unit, `target_geography_type` is the kind of unit and `linkage_method` may be left out.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Whether the values belong to a '
+                                                  'patient, a study cohort, or a place '
+                                                  'such as a county.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Tells a person-linked record '
+                                                    'apart from a public aggregate '
+                                                    'that was never linked to anyone.'},
+                         'tier': {'tag': 'tier', 'value': 'recommended'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'examples': [{'value': 'cohort'}],
          'slot_group': 'exposure_description'} })
     variable_identity: VariableIdentity = Field(default=..., title="Variable Identity", description="""The variable identity object — what physical quantity is being captured. Bound to VariableIdentity (see envar_variable). Readable rename of the profile's `observation_type` anatomy slot.""", json_schema_extra = { "linkml_meta": {'aliases': ['observation_type'],
          'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
@@ -32573,7 +32688,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                   'provenance_chain_terminus_type': 'raw_source_download'}}],
          'see_also': ['https://www.w3.org/TR/prov-o/'],
          'slot_group': 'dataset_and_provenance'} })
-    linkage_method: LinkageMethod = Field(default=..., title="Linkage Method", description="""Linkage-method object — see envar_linkage.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    linkage_method: Optional[LinkageMethod] = Field(default=None, title="Linkage Method", description="""Linkage-method object (see envar_linkage). Required unless `subject_type` is population_geographic_unit.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -32786,7 +32901,7 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                                     'using the same data product can '
                                                     'differ solely through '
                                                     'undocumented joins.'},
-                         'tier': {'tag': 'tier', 'value': 'core'}},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
          'domain_of': ['EnvironmentalExposureRecord'],
          'examples': [{'description': 'abridged — see '
                                       'tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml '

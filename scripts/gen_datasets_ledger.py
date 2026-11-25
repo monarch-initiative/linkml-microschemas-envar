@@ -52,6 +52,11 @@ DATASET_GROUPS = [
         "The generalisation check: a different variable, the same gradient.",
     ),
     (
+        "Public aggregate, not linked to any person",
+        ["tests/data/valid/EnvironmentalExposureRecord-pm25_county_unlinked.yaml"],
+        "The subject is a county, so the linkage module does not apply.",
+    ),
+    (
         "Heat Index scenario (derived metric with two upstream inputs)",
         [
             "examples/scenarios/heat_index/heat_index_input_a_tmax_daymet.yaml",

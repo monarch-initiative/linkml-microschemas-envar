@@ -148,6 +148,7 @@ deposit_metadata:
   dcat_distribution_url: "https://zenodo.org/record/9999999/files/tmax_phoenix.parquet"
 
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 # Companion data row (in the accompanying CSV/parquet, not the sidecar):
 #   date: "2022-07-19"  value: 46.7  unit: Cel  tmax_stderr: 0.8
 phi_status: no_phi

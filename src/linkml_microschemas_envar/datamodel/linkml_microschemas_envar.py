@@ -1369,13 +1369,14 @@ class EnvironmentalExposureRecord(YAMLRoot):
     data_layout: Union[dict, DataLayout] = None
     source_dataset: Union[dict, SourceDataset] = None
     tool_run: Union[dict, ToolRun] = None
-    linkage_method: Union[dict, LinkageMethod] = None
     schema_version: str = None
     provenance_id: str = None
     phi_status: Union[str, "PhiStatusEnum"] = None
+    subject_type: Optional[Union[str, "SubjectTypeEnum"]] = None
     uncertainty: Optional[Union[dict, Uncertainty]] = None
     derived_heat_metric: Optional[Union[dict, DerivedHeatMetric]] = None
     provenance_chain: Optional[Union[dict, ProvenanceChain]] = None
+    linkage_method: Optional[Union[dict, LinkageMethod]] = None
     health_layer_linkage: Optional[Union[dict, HealthLayerLinkage]] = None
     deposit_metadata: Optional[Union[dict, DepositMetadata]] = None
 
@@ -1420,11 +1421,6 @@ class EnvironmentalExposureRecord(YAMLRoot):
         if not isinstance(self.tool_run, ToolRun):
             self.tool_run = ToolRun(**as_dict(self.tool_run))
 
-        if self._is_empty(self.linkage_method):
-            self.MissingRequiredField("linkage_method")
-        if not isinstance(self.linkage_method, LinkageMethod):
-            self.linkage_method = LinkageMethod(**as_dict(self.linkage_method))
-
         if self._is_empty(self.schema_version):
             self.MissingRequiredField("schema_version")
         if not isinstance(self.schema_version, str):
@@ -1440,6 +1436,9 @@ class EnvironmentalExposureRecord(YAMLRoot):
         if not isinstance(self.phi_status, PhiStatusEnum):
             self.phi_status = PhiStatusEnum(self.phi_status)
 
+        if self.subject_type is not None and not isinstance(self.subject_type, SubjectTypeEnum):
+            self.subject_type = SubjectTypeEnum(self.subject_type)
+
         if self.uncertainty is not None and not isinstance(self.uncertainty, Uncertainty):
             self.uncertainty = Uncertainty(**as_dict(self.uncertainty))
 
@@ -1448,6 +1447,9 @@ class EnvironmentalExposureRecord(YAMLRoot):
 
         if self.provenance_chain is not None and not isinstance(self.provenance_chain, ProvenanceChain):
             self.provenance_chain = ProvenanceChain(**as_dict(self.provenance_chain))
+
+        if self.linkage_method is not None and not isinstance(self.linkage_method, LinkageMethod):
+            self.linkage_method = LinkageMethod(**as_dict(self.linkage_method))
 
         if self.health_layer_linkage is not None and not isinstance(self.health_layer_linkage, HealthLayerLinkage):
             self.health_layer_linkage = HealthLayerLinkage(**as_dict(self.health_layer_linkage))
@@ -1479,7 +1481,6 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
     data_layout: Union[dict, DataLayout] = None
     source_dataset: Union[dict, SourceDataset] = None
     tool_run: Union[dict, ToolRun] = None
-    linkage_method: Union[dict, LinkageMethod] = None
     schema_version: str = None
     provenance_id: str = None
     phi_status: Union[str, "PhiStatusEnum"] = None
@@ -1505,7 +1506,6 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
     data_layout: Union[dict, DataLayout] = None
     source_dataset: Union[dict, SourceDataset] = None
     tool_run: Union[dict, ToolRun] = None
-    linkage_method: Union[dict, LinkageMethod] = None
     schema_version: str = None
     provenance_id: str = None
     phi_status: Union[str, "PhiStatusEnum"] = None
@@ -1532,7 +1532,6 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
     data_layout: Union[dict, DataLayout] = None
     source_dataset: Union[dict, SourceDataset] = None
     tool_run: Union[dict, ToolRun] = None
-    linkage_method: Union[dict, LinkageMethod] = None
     schema_version: str = None
     provenance_id: str = None
     phi_status: Union[str, "PhiStatusEnum"] = None
@@ -1569,7 +1568,6 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
     data_layout: Union[dict, DataLayout] = None
     source_dataset: Union[dict, SourceDataset] = None
     tool_run: Union[dict, ToolRun] = None
-    linkage_method: Union[dict, LinkageMethod] = None
     schema_version: str = None
     provenance_id: str = None
     phi_status: Union[str, "PhiStatusEnum"] = None
@@ -2708,6 +2706,25 @@ class DepositRepositoryEnum(EnumDefinitionImpl):
         description="Repository hosting a FAIR deposit.",
     )
 
+class SubjectTypeEnum(EnumDefinitionImpl):
+    """
+    The kind of thing a record's `subject` identifies.
+    """
+    patient = PermissibleValue(
+        text="patient",
+        description="An individual patient.")
+    cohort = PermissibleValue(
+        text="cohort",
+        description="A group of people, such as a study cohort.")
+    population_geographic_unit = PermissibleValue(
+        text="population_geographic_unit",
+        description="""A geographic unit (a county, a ZCTA), as in a public aggregate that is not linked to any person.""")
+
+    _defn = EnumDefinition(
+        name="SubjectTypeEnum",
+        description="The kind of thing a record's `subject` identifies.",
+    )
+
 class ComparatorEnum(EnumDefinitionImpl):
     """
     Comparator for quantity values
@@ -3301,6 +3318,9 @@ slots.health_data_integration = Slot(uri=ENVAR.health_data_integration, name="he
 slots.record_bookkeeping = Slot(uri=ENVAR.record_bookkeeping, name="record_bookkeeping", curie=ENVAR.curie('record_bookkeeping'),
                    model_uri=ENVAR.record_bookkeeping, domain=None, range=Optional[str])
 
+slots.subject_type = Slot(uri=ENVAR.subject_type, name="subject_type", curie=ENVAR.curie('subject_type'),
+                   model_uri=ENVAR.subject_type, domain=None, range=Optional[Union[str, "SubjectTypeEnum"]])
+
 slots.variable_identity = Slot(uri=ENVAR.variable_identity, name="variable_identity", curie=ENVAR.curie('variable_identity'),
                    model_uri=ENVAR.variable_identity, domain=None, range=Union[dict, VariableIdentity])
 
@@ -3323,7 +3343,7 @@ slots.uncertainty = Slot(uri=ENVAR.uncertainty, name="uncertainty", curie=ENVAR.
                    model_uri=ENVAR.uncertainty, domain=None, range=Optional[Union[dict, Uncertainty]])
 
 slots.linkage_method = Slot(uri=ENVAR.linkage_method, name="linkage_method", curie=ENVAR.curie('linkage_method'),
-                   model_uri=ENVAR.linkage_method, domain=None, range=Union[dict, LinkageMethod])
+                   model_uri=ENVAR.linkage_method, domain=None, range=Optional[Union[dict, LinkageMethod]])
 
 slots.tool_run = Slot(uri=ENVAR.tool_run, name="tool_run", curie=ENVAR.curie('tool_run'),
                    model_uri=ENVAR.tool_run, domain=None, range=Union[dict, ToolRun])
