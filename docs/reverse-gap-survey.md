@@ -2,7 +2,7 @@
 
 All other coverage work in this repository runs in one direction: *for each
 EnVar slot, does GAIA / DeGAUSS / Amadeus / C-HER / CODATA carry it?*
-([Related approaches](related-approaches.md), the `covered_by` matrix design,
+([Related approaches](related-approaches.md), the slot evidence files,
 the emitted-only translations in `examples/scenarios/standards/`). By
 construction that matrix cannot show the opposite: **fields these systems
 record that EnVar has no slot for at all.** This survey is that opposite
