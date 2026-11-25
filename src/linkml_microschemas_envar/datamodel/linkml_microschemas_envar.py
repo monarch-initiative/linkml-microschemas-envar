@@ -883,7 +883,6 @@ class LinkageMethod(YAMLRoot):
     geocoding_precision_propagated: Optional[Union[str, "GeocodingPrecisionEnum"]] = None
     geocoding_score_propagated: Optional[float] = None
     geocoding_score_propagated_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
-    geocoding_database_version: Optional[str] = None
     address_period_alignment: Optional[Union[str, "AddressPeriodAlignmentEnum"]] = None
     clinical_date_assignment_convention: Optional[Union[str, "ClinicalDateAssignmentEnum"]] = None
     clinical_date_assignment_convention_missing_reason: Optional[Union[str, "MissingReasonEnum"]] = None
@@ -930,9 +929,6 @@ class LinkageMethod(YAMLRoot):
 
         if self.geocoding_score_propagated_missing_reason is not None and not isinstance(self.geocoding_score_propagated_missing_reason, MissingReasonEnum):
             self.geocoding_score_propagated_missing_reason = MissingReasonEnum(self.geocoding_score_propagated_missing_reason)
-
-        if self.geocoding_database_version is not None and not isinstance(self.geocoding_database_version, str):
-            self.geocoding_database_version = str(self.geocoding_database_version)
 
         if self.address_period_alignment is not None and not isinstance(self.address_period_alignment, AddressPeriodAlignmentEnum):
             self.address_period_alignment = AddressPeriodAlignmentEnum(self.address_period_alignment)
@@ -3073,9 +3069,6 @@ slots.geocoding_score_propagated = Slot(uri=ENVAR.geocoding_score_propagated, na
 
 slots.geocoding_score_propagated_missing_reason = Slot(uri=ENVAR.geocoding_score_propagated_missing_reason, name="geocoding_score_propagated_missing_reason", curie=ENVAR.curie('geocoding_score_propagated_missing_reason'),
                    model_uri=ENVAR.geocoding_score_propagated_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
-
-slots.geocoding_database_version = Slot(uri=ENVAR.geocoding_database_version, name="geocoding_database_version", curie=ENVAR.curie('geocoding_database_version'),
-                   model_uri=ENVAR.geocoding_database_version, domain=None, range=Optional[str])
 
 slots.address_period_alignment = Slot(uri=ENVAR.address_period_alignment, name="address_period_alignment", curie=ENVAR.curie('address_period_alignment'),
                    model_uri=ENVAR.address_period_alignment, domain=None, range=Optional[Union[str, "AddressPeriodAlignmentEnum"]])
