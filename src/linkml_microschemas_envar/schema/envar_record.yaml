@@ -63,6 +63,7 @@ classes:
     # top of the SLOTS section below.
     slots:
     - subject
+    - subject_type
     - variable_identity
     - spatial_reference
     - temporal_reference
@@ -81,15 +82,20 @@ classes:
     - phi_status
     slot_usage:
       subject:
-        title: Subject (Patient or Cohort)
+        title: Subject (Patient, Cohort or Geographic Unit)
         slot_group: exposure_description
         description: >-
-          The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
+          The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code);
+          PHI must not appear here. When the file covers several units,
+          `subject` names the set and the column named in
+          `data_layout.subject_column` holds each unit's code.
         range: string
         examples:
         - value: "cohort:phoenix_aki_2022"
           description: an opaque cohort handle — no PHI
+        - value: "FIPS:37183"
+          description: a county (`subject_type` population_geographic_unit)
         annotations:
           tier: core
           justification: >-
@@ -127,6 +133,34 @@ classes:
       # per-batch sidecar carries values in the accompanying CSV / parquet
       # file, never inline. The profile's required observation_result is
       # dropped from this record's slot list rather than forced empty.
+
+    rules:
+    - description: >-
+        A person-linked record must say how the value was linked; a record
+        without a subject_type is treated as person-linked.
+      preconditions:
+        slot_conditions:
+          subject_type:
+            value_presence: ABSENT
+      postconditions:
+        slot_conditions:
+          linkage_method:
+            required: true
+            any_of:  # rejects an explicit null
+            - range: LinkageMethod
+    - description: The same when the subject is declared a patient or cohort.
+      preconditions:
+        slot_conditions:
+          subject_type:
+            equals_string_in:
+            - patient
+            - cohort
+      postconditions:
+        slot_conditions:
+          linkage_method:
+            required: true
+            any_of:  # rejects an explicit null
+            - range: LinkageMethod
 
 #────────────────────────────────────────────────────────────────
 # SLOTS
@@ -231,6 +265,79 @@ slots:
         Housekeeping about the record itself rather than the measurement:
         which version of the schema it follows, its permanent identifier,
         and a statement that it contains no private patient information.
+
+  subject_type:
+    title: Subject Type
+    slot_group: exposure_description
+    range: SubjectTypeEnum
+    description: >-
+      What kind of thing `subject` identifies. For a
+      population_geographic_unit, `target_geography_type` is the kind of unit
+      and `linkage_method` may be left out.
+    examples:
+    - value: cohort
+    annotations:
+      tier: recommended
+      justification: >-
+        Tells a person-linked record apart from a public aggregate that was
+        never linked to anyone.
+      explanation: >-
+        Whether the values belong to a patient, a study cohort, or a place
+        such as a county.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id"
+              note: >-
+                The key column implies the subject (hex_id in the released
+                tables, participant_id in the linkage example), but no field
+                states it.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "external_exposure.person_id; location_history.domain_id/entity_id"
+              note: >-
+                person_id makes every exposure row person-level and
+                location_history.domain_id types the entity, but no
+                subject-type field exists.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "output CSV id column (daymet 1.0.0 README.md)"
+              note: >-
+                DeGAUSS keeps the user's own id column and has no field saying
+                what the id identifies.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "amadeus R/utils-calculate.R locs_id, version 2.1.2"
+              note: >-
+                Amadeus output keeps a location identifier (locs_id) and does
+                not declare whether it stands for a patient, a cohort or a
+                geographic unit.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution code; Spatial Primary column tag (§2.3.2)"
+              note: >-
+                The spatial resolution code gives the geographic unit (c00 is
+                county-level data), but no field declares the subject kind.
+          codata:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "DDI-CDI 1.0 UnitType (Conceptual package)"
+              note: >-
+                UnitType states the class of unit, for example Person or
+                State, at the conceptual layer; it does not declare one
+                delivered record's subject.
 
   # ── Readable renames of the profile anatomy slots ─────────────
   # Each implements (and exactly maps to) its LinkML Microschema Profile
@@ -850,8 +957,9 @@ slots:
     slot_group: health_data_integration
     range: LinkageMethod
     inlined: true
-    required: true
-    description: Linkage-method object — see envar_linkage.
+    description: >-
+      Linkage-method object (see envar_linkage). Required unless `subject_type`
+      is population_geographic_unit.
     examples:
     - object:
         linkage_strategy: point_extraction_at_residence
@@ -861,7 +969,7 @@ slots:
       description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance
 
     annotations:
-      tier: core
+      tier: conditionally_core
       justification: >-
         Attaching a place-based value to a person is a lossy, choice-laden
         step (geocoding, point vs buffer extraction, date alignment) — the
@@ -1232,3 +1340,22 @@ slots:
         as Zenodo), this block holds the publication details: the permanent
         DOI link, where it lives, and the license saying how others may use
         it.
+
+#────────────────────────────────────────────────────────────────
+# ENUMS
+#────────────────────────────────────────────────────────────────
+
+enums:
+
+  SubjectTypeEnum:
+    title: Subject Type
+    description: The kind of thing a record's `subject` identifies.
+    permissible_values:
+      patient:
+        description: An individual patient.
+      cohort:
+        description: A group of people, such as a study cohort.
+      population_geographic_unit:
+        description: >-
+          A geographic unit (a county, a ZCTA), as in a public aggregate that
+          is not linked to any person.

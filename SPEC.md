@@ -34,7 +34,7 @@ One exposure record composes a graph of typed objects, one module per concern. A
 | `SourceDataset` | The upstream product the values originate from | one per record |
 | `ExposureModel` | Model class, equation, inputs, known biases | one per record (null for direct measurement) |
 | `Uncertainty` | Per-value and aggregate uncertainty, quality flags, missing-data handling | one per record |
-| `LinkageMethod` | How a gridded value is attached to a patient's location *and* clinical date (spatiotemporal trajectory resolution) | one per record |
+| `LinkageMethod` | How a gridded value is attached to a patient's location *and* clinical date (spatiotemporal trajectory resolution) | one per record; may be omitted when `subject_type` is `population_geographic_unit` |
 | `ToolRun` + `ProvenanceChain` | Exact invocation + the ordered chain of upstream runs | one per record |
 | `DerivedHeatMetric` | Equation variant, indoor/outdoor, percentile baseline (heat indices only) | where applicable |
 | `HealthLayerLinkage` + `DepositMetadata` | Health-data-layer findability hooks (OMOP, BDC, …; no single model privileged) + the subset needed to publish as a FAIR (findable, accessible, interoperable, reusable) data deposit | one per record |
@@ -177,6 +177,8 @@ Present only when the variable is a derived heat metric. For plain Tmax the modu
 
 ### 4.8 `LinkageMethod`
 
+The block is Conditionally-Core: required unless the record declares `subject_type: population_geographic_unit` (§4.10).
+
 **Spatial and temporal linkage are two projections of one step.** Attaching a gridded value to a person is the resolution of the patient's spatiotemporal trajectory — *where the body was, over time* — down to the resolution the exposure data supports. Each axis carries two lossy reductions: **locating** the messy reality (address → point; clinical timestamp → date, residence/travel interval → which days) and **attaching** it to the exposure value (point → grid cell; date → exposure window). The schema has long documented the spatial axis (`geocoding_*`, `linkage_strategy`, `address_period_alignment`); the temporal twins (`clinical_date_assignment_convention`, `partial_day_attribution_rule`, `lag_alignment_applied`) are below. Critically, the Core `day_boundary_convention` (§4.3) describes only the *exposure-side* ruler; a boundary mismatch needs **both** rulers to detect, and `clinical_date_assignment_convention` supplies the clinical-side one (validation rule §7.8).
 
 | Element | Tier | Type / vocab | Definition & why it matters | Ref |
@@ -223,6 +225,7 @@ record-root assertion (it applies to the whole sidecar, not just linkage).
 | `health_layer_link_field` | Recommended | string | Which field in the target layer carries `provenance_id` (for OMOP, `exposure_source_value`). | EnVar |
 | `cohort_size_anchored` | Optional | integer (null) | Distinct persons this record was extracted for. | run |
 | `phi_status` | Core (record root) | enum | `no_phi` \| `aggregated_no_phi` \| `phi_present`. A safety assertion; sidecars must be PHI-free. | EnVar |
+| `subject_type` | Recommended (record root) | enum | `patient` \| `cohort` \| `population_geographic_unit`. What `subject` identifies. For a public aggregate linked to no person, `subject` is the unit's code (for several units: the set, with the codes in the column named in `subject_column`), `target_geography_type` is its kind, and `linkage_method` may be omitted. Absent means person-linked. | EnVar |
 | `deposit_*` (DOI, repository, license, citation, DCAT url) | Optional | mixed | The required-for-deposit subset for the published-FAIR-object case. Optional because most records never get deposited. | [SPDX]/[DOI] |
 | `schema_version` | Core | string | The schema version this document targets; downstream branches on it for evolution. | EnVar |
 
@@ -289,7 +292,7 @@ The PM2.5 records (`tests/data/valid/EnvironmentalExposureRecord-pm25_{core,reco
 | W3C PROV | `provenance_chain` modelling | external — [PROV] |
 | ETCCDI indices | `heat_wave_threshold_definition` (ETCCDI variants) | external — [Zhang2011] |
 | ISO 7243 | WBGT `equation_variant` | external (paywalled; cite by id) |
-| EnVar-authored enums | `exposure_model_type`, `extraction_method`, `day_boundary_convention`, `linkage_strategy`, `equation_variant`, `heat_metric_family`, `heat_wave_threshold_definition`, `indoor_outdoor`, `target_geography_type`, `bias_correction_applied`, `concept_status`, `health_layer_target`, `clinical_date_assignment_convention`, `partial_day_attribution_rule`, `address_period_alignment`, missing-reason | EnVar — value lists in §4 |
+| EnVar-authored enums | `exposure_model_type`, `extraction_method`, `day_boundary_convention`, `linkage_strategy`, `equation_variant`, `heat_metric_family`, `heat_wave_threshold_definition`, `indoor_outdoor`, `target_geography_type`, `subject_type`, `bias_correction_applied`, `concept_status`, `health_layer_target`, `clinical_date_assignment_convention`, `partial_day_attribution_rule`, `address_period_alignment`, missing-reason | EnVar — value lists in §4 |
 
 ---
 
