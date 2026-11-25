@@ -19,7 +19,9 @@ data_layout:
   value_column: pm25
 
 spatial_reference:
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
   crs: "EPSG:4326"
   extraction_method: nearest_cell
   target_geography_type: point_residence

@@ -1,5 +1,5 @@
 # Auto generated from linkml_microschemas_envar.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-11-25T09:11:38
+# Generation date: 2026-11-25T09:06:39
 # Schema: linkml-microschemas-envar
 #
 # id: https://w3id.org/linkml/microschemas/envar
@@ -291,7 +291,7 @@ class SpatialReference(YAMLRoot):
     class_name: ClassVar[str] = "SpatialReference"
     class_model_uri: ClassVar[URIRef] = ENVAR.SpatialReference
 
-    native_spatial_resolution_m: float = None
+    native_geometry: Union[dict, "Geometry"] = None
     crs: str = None
     extraction_method: Union[str, "ExtractionMethodEnum"] = None
     target_geography_type: Union[str, "TargetGeographyTypeEnum"] = None
@@ -305,10 +305,10 @@ class SpatialReference(YAMLRoot):
     spatial_aggregation_preserves: Optional[Union[str, "SpatialAggregationPreservationEnum"]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.native_spatial_resolution_m):
-            self.MissingRequiredField("native_spatial_resolution_m")
-        if not isinstance(self.native_spatial_resolution_m, float):
-            self.native_spatial_resolution_m = float(self.native_spatial_resolution_m)
+        if self._is_empty(self.native_geometry):
+            self.MissingRequiredField("native_geometry")
+        if not isinstance(self.native_geometry, Geometry):
+            self.native_geometry = Geometry(**as_dict(self.native_geometry))
 
         if self._is_empty(self.crs):
             self.MissingRequiredField("crs")
@@ -351,6 +351,189 @@ class SpatialReference(YAMLRoot):
             self.spatial_aggregation_preserves = SpatialAggregationPreservationEnum(self.spatial_aggregation_preserves)
 
         super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Geometry(YAMLRoot):
+    """
+    Geometry a source product is delivered on. `geometry_kind` names one of the subclasses, and the subclass decides
+    which further slots exist: a regular grid has a cell size in metres, an H3 grid has a resolution, and the other
+    geometries have neither.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["Geometry"]
+    class_class_curie: ClassVar[str] = "envar:Geometry"
+    class_name: ClassVar[str] = "Geometry"
+    class_model_uri: ClassVar[URIRef] = ENVAR.Geometry
+
+    geometry_kind: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+        super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "geometry_kind"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_name", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_name']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
+
+@dataclass(repr=False)
+class RegularGrid(Geometry):
+    """
+    Evenly spaced grid, projected or lat/lon, with one nominal cell size.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["RegularGrid"]
+    class_class_curie: ClassVar[str] = "envar:RegularGrid"
+    class_name: ClassVar[str] = "RegularGrid"
+    class_model_uri: ClassVar[URIRef] = ENVAR.RegularGrid
+
+    geometry_kind: str = None
+    native_spatial_resolution_m: float = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.native_spatial_resolution_m):
+            self.MissingRequiredField("native_spatial_resolution_m")
+        if not isinstance(self.native_spatial_resolution_m, float):
+            self.native_spatial_resolution_m = float(self.native_spatial_resolution_m)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class IrregularGrid(Geometry):
+    """
+    Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["IrregularGrid"]
+    class_class_curie: ClassVar[str] = "envar:IrregularGrid"
+    class_name: ClassVar[str] = "IrregularGrid"
+    class_model_uri: ClassVar[URIRef] = ENVAR.IrregularGrid
+
+    geometry_kind: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class H3Grid(Geometry):
+    """
+    H3 hexagon grid at one resolution.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["H3Grid"]
+    class_class_curie: ClassVar[str] = "envar:H3Grid"
+    class_name: ClassVar[str] = "H3Grid"
+    class_model_uri: ClassVar[URIRef] = ENVAR.H3Grid
+
+    geometry_kind: str = None
+    h3_resolution: int = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.h3_resolution):
+            self.MissingRequiredField("h3_resolution")
+        if not isinstance(self.h3_resolution, int):
+            self.h3_resolution = int(self.h3_resolution)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class VectorPolygon(Geometry):
+    """
+    Polygons of varying size (census units, urban areas, service areas).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["VectorPolygon"]
+    class_class_curie: ClassVar[str] = "envar:VectorPolygon"
+    class_name: ClassVar[str] = "VectorPolygon"
+    class_model_uri: ClassVar[URIRef] = ENVAR.VectorPolygon
+
+    geometry_kind: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class VectorLine(Geometry):
+    """
+    Line features (roads, rivers).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["VectorLine"]
+    class_class_curie: ClassVar[str] = "envar:VectorLine"
+    class_name: ClassVar[str] = "VectorLine"
+    class_model_uri: ClassVar[URIRef] = ENVAR.VectorLine
+
+    geometry_kind: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
+
+
+@dataclass(repr=False)
+class VectorPoint(Geometry):
+    """
+    Monitoring stations or other point features (facilities).
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ENVAR["VectorPoint"]
+    class_class_curie: ClassVar[str] = "envar:VectorPoint"
+    class_name: ClassVar[str] = "VectorPoint"
+    class_model_uri: ClassVar[URIRef] = ENVAR.VectorPoint
+
+    geometry_kind: str = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.geometry_kind):
+            self.MissingRequiredField("geometry_kind")
+        self.geometry_kind = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -2660,6 +2843,15 @@ slots.null_semantics_column = Slot(uri=ENVAR.null_semantics_column, name="null_s
 slots.null_semantics_column_missing_reason = Slot(uri=ENVAR.null_semantics_column_missing_reason, name="null_semantics_column_missing_reason", curie=ENVAR.curie('null_semantics_column_missing_reason'),
                    model_uri=ENVAR.null_semantics_column_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
 
+slots.native_geometry = Slot(uri=ENVAR.native_geometry, name="native_geometry", curie=ENVAR.curie('native_geometry'),
+                   model_uri=ENVAR.native_geometry, domain=None, range=Optional[Union[dict, Geometry]])
+
+slots.geometry_kind = Slot(uri=ENVAR.geometry_kind, name="geometry_kind", curie=ENVAR.curie('geometry_kind'),
+                   model_uri=ENVAR.geometry_kind, domain=None, range=str)
+
+slots.h3_resolution = Slot(uri=ENVAR.h3_resolution, name="h3_resolution", curie=ENVAR.curie('h3_resolution'),
+                   model_uri=ENVAR.h3_resolution, domain=None, range=Optional[int])
+
 slots.native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
                    model_uri=ENVAR.native_spatial_resolution_m, domain=None, range=Optional[float])
 
@@ -3254,11 +3446,17 @@ slots.SpatialReference_crs = Slot(uri=ENVAR.crs, name="SpatialReference_crs", cu
 slots.SpatialReference_extraction_method = Slot(uri=ENVAR.extraction_method, name="SpatialReference_extraction_method", curie=ENVAR.curie('extraction_method'),
                    model_uri=ENVAR.SpatialReference_extraction_method, domain=SpatialReference, range=Union[str, "ExtractionMethodEnum"])
 
-slots.SpatialReference_native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="SpatialReference_native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
-                   model_uri=ENVAR.SpatialReference_native_spatial_resolution_m, domain=SpatialReference, range=float)
+slots.SpatialReference_native_geometry = Slot(uri=ENVAR.native_geometry, name="SpatialReference_native_geometry", curie=ENVAR.curie('native_geometry'),
+                   model_uri=ENVAR.SpatialReference_native_geometry, domain=SpatialReference, range=Union[dict, "Geometry"])
 
 slots.SpatialReference_target_geography_type = Slot(uri=ENVAR.target_geography_type, name="SpatialReference_target_geography_type", curie=ENVAR.curie('target_geography_type'),
                    model_uri=ENVAR.SpatialReference_target_geography_type, domain=SpatialReference, range=Union[str, "TargetGeographyTypeEnum"])
+
+slots.RegularGrid_native_spatial_resolution_m = Slot(uri=ENVAR.native_spatial_resolution_m, name="RegularGrid_native_spatial_resolution_m", curie=ENVAR.curie('native_spatial_resolution_m'),
+                   model_uri=ENVAR.RegularGrid_native_spatial_resolution_m, domain=RegularGrid, range=float)
+
+slots.H3Grid_h3_resolution = Slot(uri=ENVAR.h3_resolution, name="H3Grid_h3_resolution", curie=ENVAR.curie('h3_resolution'),
+                   model_uri=ENVAR.H3Grid_h3_resolution, domain=H3Grid, range=int)
 
 slots.TemporalReference_temporal_resolution = Slot(uri=ENVAR.temporal_resolution, name="TemporalReference_temporal_resolution", curie=ENVAR.curie('temporal_resolution'),
                    model_uri=ENVAR.TemporalReference_temporal_resolution, domain=TemporalReference, range=Union[str, "TemporalResolutionEnum"])

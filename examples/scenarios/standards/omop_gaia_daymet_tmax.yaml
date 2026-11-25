@@ -49,7 +49,9 @@ data_layout:
   time_column: exposure_start_date
 
 spatial_reference:
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid   # gaia_catalog etl structure: raster
+    native_spatial_resolution_m: 1000
   crs: "EPSG:4326"
   spatial_extent_descriptor: "North America"   # gaia_catalog json-ld spatialCoverage
   extraction_method: nearest_cell

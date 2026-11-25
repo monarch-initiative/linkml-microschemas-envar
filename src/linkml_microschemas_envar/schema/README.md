@@ -16,7 +16,7 @@ hooks (OMOP, BDC, …), and FAIR-deposit metadata. The schema implements §1.1 o
 |---|---|---|
 | `envar_common.yaml` | (enums, shared slots) | Shared `MissingReasonEnum`, `DataTypeEnum`, `ConceptStatusEnum`, `PhiStatusEnum`; `schema_version`, `provenance_id`, `phi_status`. Imports the LinkML Microschema Profile. |
 | `envar_variable.yaml` | `VariableIdentity` | CF standard name, UCUM units, target-vocabulary concept id + status, ECTO / ENVO bindings, plausible value range. Covers req §2. |
-| `envar_spatial.yaml` | `SpatialReference` | Native grid, CRS, extent, extraction method, target geography. Covers req §3. |
+| `envar_spatial.yaml` | `SpatialReference`, `Geometry` and its subclasses | Native geometry, CRS, extent, extraction method, target geography. Covers req §3. |
 | `envar_temporal.yaml` | `TemporalReference` | Resolution, aggregation, day-boundary convention, coverage, calendar, lag alignment. Covers req §4. |
 | `envar_source.yaml` | `SourceDataset` | Upstream product identity, DOI, version, license, native format, homogenisation status. Covers req §5. |
 | `envar_model.yaml` | `ExposureModel` | Model type, inputs, paper DOI, known biases, uncertainty field, bias correction. Covers req §6. |

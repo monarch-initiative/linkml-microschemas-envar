@@ -8,7 +8,10 @@ with SPEC.md — the tiers are read from the schema, not re-declared here.
 Scoring policy (mirrors SPEC.md §3 and specs/SPEC_DASHBOARD.md §4):
 
 - The slot universe is every tier-annotated slot reachable from the target
-  class by walking inlined class ranges, counted once per slot name.
+  class by walking inlined class ranges, counted once per slot name. Where a
+  range class has a type designator (``Geometry.geometry_kind``), only the
+  subclass the instance names is walked, so slots of the other subclasses do
+  not count as missing.
 - ``*_missing_reason`` slots are meta-slots: they never count toward the
   meters. Instead, a missing slot whose sibling ``<name>_missing_reason``
   is populated counts as an *explained null* — information, not absence
@@ -229,17 +232,39 @@ class CompletenessChecker:
                 annotation = top.annotations["tier"]
         return getattr(annotation, "value", None)
 
-    def slot_universe(self) -> list[tuple[str, str, str, str]]:
+    def _subclasses_to_walk(self, class_name: str, block: Any, every: bool) -> list[str]:
+        """The class(es) whose slots apply to a block with range ``class_name``.
+
+        Usually the range class itself. If it has a type designator: the
+        subclass the block names, or the range class alone when the block is
+        missing or names no concrete subclass (validation reports that), or
+        all of them when ``every`` is set.
+        """
+        sv = self.schemaview
+        designator = sv.get_type_designator_slot(class_name)
+        if designator is None:
+            return [class_name]
+        descendants = sv.class_descendants(class_name)
+        if every:
+            return descendants
+        named = block.get(designator.name) if isinstance(block, dict) else None
+        if isinstance(named, str) and named in descendants and not sv.get_class(named).abstract:
+            return [named]
+        return [class_name]
+
+    def slot_universe(self, instance: dict | None = None) -> list[tuple[str, str, str, str]]:
         """All tier-annotated slots reachable from the target class.
 
         Returns (slot_name, tier, module, owner_class) tuples, one per unique
         slot name (first path wins). ``module`` is the top-level record slot
-        the slot is nested under ("" for record-root slots).
+        the slot is nested under ("" for record-root slots). With an
+        ``instance``, type designators in it select the subclass to walk;
+        without one, every subclass is walked.
         """
         sv = self.schemaview
         seen: dict[str, tuple[str, str, str, str]] = {}
 
-        def walk(class_name: str, module: str, stack: tuple[str, ...]) -> None:
+        def walk(class_name: str, module: str, stack: tuple[str, ...], block: Any) -> None:
             if class_name in stack:  # cycle guard
                 return
             for slot in sv.class_induced_slots(class_name):
@@ -249,9 +274,11 @@ class CompletenessChecker:
                 slot_range = slot.range
                 if slot_range in sv.all_classes():
                     next_module = module if module else slot.name
-                    walk(slot_range, next_module, stack + (class_name,))
+                    value = block.get(slot.name) if isinstance(block, dict) else None
+                    for cls in self._subclasses_to_walk(slot_range, value, every=instance is None):
+                        walk(cls, next_module, stack + (class_name,), value)
 
-        walk(self.target_class, "", ())
+        walk(self.target_class, "", (), instance)
         return list(seen.values())
 
     # -- instance side -------------------------------------------------------
@@ -306,7 +333,7 @@ class CompletenessChecker:
         }
 
         statuses: list[SlotStatus] = []
-        for name, tier, module, owner in self.slot_universe():
+        for name, tier, module, owner in self.slot_universe(instance):
             if name.endswith(MISSING_REASON_SUFFIX):
                 continue  # meta-slot: consumed via `explained` below
             if module in absent_conditional_modules or name in absent_conditional_modules:
