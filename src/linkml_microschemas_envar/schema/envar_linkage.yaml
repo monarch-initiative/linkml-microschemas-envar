@@ -54,6 +54,7 @@ classes:
     - geocoding_precision_propagated
     - geocoding_score_propagated
     - geocoding_score_propagated_missing_reason
+    - geocoding_database_version
     - address_period_alignment
     - clinical_date_assignment_convention
     - clinical_date_assignment_convention_missing_reason
@@ -513,6 +514,30 @@ slots:
         limitation and a fixable ETL gap.
       explanation: >-
         When the geocoder-confidence field is empty, this says why.
+  geocoding_database_version:
+    title: Geocoding Database Version
+    range: string
+    description: >-
+      Name and version or release of the reference address database the
+      geocoder matched against. The geocoder tool itself is the geocoding
+      `ToolRun` step in `provenance_chain`; this names the database that run
+      used.
+    examples:
+    - value: "TIGER/Line Street Range Address files 2021"
+      description: the database documented for the DeGAUSS geocoder 3.3.0 container
+    see_also:
+    - https://github.com/degauss-org/geocoder
+
+    annotations:
+      tier: optional
+      justification: >-
+        The same address matched against different database versions can get
+        different coordinates, and so a different exposure value. The tool
+        version alone does not name the database.
+      explanation: >-
+        Software that turns an address into map coordinates looks it up in a
+        reference list of streets and addresses. This names that list and
+        its edition.
   address_period_alignment:
     title: Address Period Alignment
     range: AddressPeriodAlignmentEnum

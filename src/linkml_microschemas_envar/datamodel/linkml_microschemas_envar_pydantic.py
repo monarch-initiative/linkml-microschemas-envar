@@ -12964,6 +12964,25 @@ class LinkageMethod(ConfiguredBaseModel):
          'examples': [{'description': 'the geocoder emitted a score but the pipeline '
                                       'dropped it',
                        'value': 'upstream_data_not_propagated'}]} })
+    geocoding_database_version: Optional[str] = Field(default=None, title="Geocoding Database Version", description="""Name and version or release of the reference address database the geocoder matched against. The geocoder tool itself is the geocoding `ToolRun` step in `provenance_chain`; this names the database that run used.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Software that turns an address into '
+                                                  'map coordinates looks it up in a '
+                                                  'reference list of streets and '
+                                                  'addresses. This names that list and '
+                                                  'its edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The same address matched against '
+                                                    'different database versions can '
+                                                    'get different coordinates, and so '
+                                                    'a different exposure value. The '
+                                                    'tool version alone does not name '
+                                                    'the database.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['LinkageMethod'],
+         'examples': [{'description': 'the database documented for the DeGAUSS '
+                                      'geocoder 3.3.0 container',
+                       'value': 'TIGER/Line Street Range Address files 2021'}],
+         'see_also': ['https://github.com/degauss-org/geocoder']} })
     address_period_alignment: Optional[AddressPeriodAlignmentEnum] = Field(default=None, title="Address Period Alignment", description="""How the patient's location-over-time (the spatial axis of trajectory resolution) was modelled.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
