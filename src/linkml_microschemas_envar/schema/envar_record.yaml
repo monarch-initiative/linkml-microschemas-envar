@@ -282,6 +282,60 @@ slots:
       explanation: >-
         Whether the values belong to a patient, a study cohort, or a place
         such as a county.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id"
+              note: >-
+                The key column implies the subject (hex_id in the released
+                tables, participant_id in the linkage example), but no field
+                states it.
+          omop_gaia:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "external_exposure.person_id; location_history.domain_id/entity_id"
+              note: >-
+                person_id makes every exposure row person-level and
+                location_history.domain_id types the entity, but no
+                subject-type field exists.
+          degauss:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "output CSV id column (daymet 1.0.0 README.md)"
+              note: >-
+                DeGAUSS keeps the user's own id column and has no field saying
+                what the id identifies.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "amadeus R/utils-calculate.R locs_id, version 2.1.2"
+              note: >-
+                Amadeus output keeps a location identifier (locs_id) and does
+                not declare whether it stands for a patient, a cohort or a
+                geographic unit.
+          cher:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution code; Spatial Primary column tag (§2.3.2)"
+              note: >-
+                The spatial resolution code gives the geographic unit (c00 is
+                county-level data), but no field declares the subject kind.
+          codata:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "DDI-CDI 1.0 UnitType (Conceptual package)"
+              note: >-
+                UnitType states the class of unit, for example Person or
+                State, at the conceptual layer; it does not declare one
+                delivered record's subject.
 
   # ── Readable renames of the profile anatomy slots ─────────────
   # Each implements (and exactly maps to) its LinkML Microschema Profile
