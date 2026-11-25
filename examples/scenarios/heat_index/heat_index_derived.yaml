@@ -33,8 +33,10 @@ data_layout:
   value_column: heat_index
 
 spatial_reference:
-  # Resolution INHERITED from the coarser input (era5, ~31 km), not the 1 km TMAX.
-  native_spatial_resolution_m: 31000
+  native_geometry:
+    geometry_kind: RegularGrid
+    # Resolution INHERITED from the coarser input (era5, ~31 km), not the 1 km TMAX.
+    native_spatial_resolution_m: 31000
   native_spatial_resolution_descriptor: >-
     effective ~31 km — limited by the coarser relative-humidity input (era5);
     see equation_inputs and the per-input sidecars

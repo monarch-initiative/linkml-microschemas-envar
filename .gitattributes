@@ -1,0 +1,4 @@
+# Generated, tracked so that installs from git include them. Collapsed in GitHub diffs.
+src/linkml_microschemas_envar/datamodel/linkml_microschemas_envar.py linguist-generated
+src/linkml_microschemas_envar/datamodel/linkml_microschemas_envar_pydantic.py linguist-generated
+docs/standards-index/index.md linguist-generated

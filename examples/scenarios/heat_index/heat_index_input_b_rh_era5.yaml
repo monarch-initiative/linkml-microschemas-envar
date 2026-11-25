@@ -24,7 +24,9 @@ data_layout:
   value_column: rh
 
 spatial_reference:
-  native_spatial_resolution_m: 31000               # <-- diverges from input A (1000 m)
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 31000               # <-- diverges from input A (1000 m)
   native_spatial_resolution_descriptor: "~31 km (0.25°) reanalysis grid"
   crs: "EPSG:4326"
   spatial_extent_descriptor: "global"

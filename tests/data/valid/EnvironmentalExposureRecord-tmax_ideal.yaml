@@ -30,7 +30,9 @@ data_layout:
   quality_flag_column_missing_reason: not_provided_by_source
 
 spatial_reference:
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "1 km regular grid"
   crs: "EPSG:4326"
   spatial_extent_bbox: [-131.104, 14.075, -52.95, 53.038]

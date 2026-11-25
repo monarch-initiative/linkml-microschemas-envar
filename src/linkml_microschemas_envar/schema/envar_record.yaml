@@ -348,7 +348,9 @@ slots:
       the profile's `location` anatomy slot.
     examples:
     - object:
-        native_spatial_resolution_m: 1000
+        native_geometry:
+          geometry_kind: RegularGrid
+          native_spatial_resolution_m: 1000
         crs: "EPSG:4326"
         extraction_method: inverse_distance_weighted_4_nearest_cells
         target_geography_type: point_residence

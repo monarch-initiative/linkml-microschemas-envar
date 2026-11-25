@@ -336,6 +336,7 @@ class Overview:
             ptitle = el_title(self.sv.get_class(parent))
             lines += [f"*A specialisation of [{ptitle}]({self.class_anchor[parent]}).*", ""]
             rows, extra_required = [], []
+            parent_slots = {s.name for s in self.sv.class_induced_slots(parent)}
             for sname, usage in (cls.slot_usage or {}).items():
                 pins = []
                 if usage.equals_string:
@@ -347,12 +348,17 @@ class Overview:
                 stitle = el_title(self.sv.induced_slot(sname, cname))
                 if pins:
                     rows.append(f"| **{clean(stitle)}** <small>`{sname}`</small> | {' · '.join(pins)} |")
-                elif usage.required:
+                elif usage.required and sname in parent_slots:
                     extra_required.append(f"**{clean(stitle)}**")
             if rows:
                 lines += ["| Field | Fixed to |", "|---|---|", *rows, ""]
             if extra_required:
                 lines += [f"*Additionally requires {', '.join(extra_required)} to be present.*", ""]
+            # Slots the subclass adds (e.g. the cell size of a RegularGrid) have
+            # no other home on the page.
+            own = [s for s in self.sv.class_induced_slots(cname) if s.name not in parent_slots]
+            if own:
+                lines += self.slot_table(own) + [""]
             return lines
 
         slots = self.sv.class_induced_slots(cname)

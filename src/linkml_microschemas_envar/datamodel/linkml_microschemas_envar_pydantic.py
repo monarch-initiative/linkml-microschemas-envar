@@ -5014,125 +5014,109 @@ class SpatialReference(ConfiguredBaseModel):
          'slot_usage': {'crs': {'name': 'crs', 'required': True},
                         'extraction_method': {'name': 'extraction_method',
                                               'required': True},
-                        'native_spatial_resolution_m': {'name': 'native_spatial_resolution_m',
-                                                        'required': True},
+                        'native_geometry': {'name': 'native_geometry',
+                                            'required': True},
                         'target_geography_type': {'name': 'target_geography_type',
                                                   'required': True}},
          'title': 'Spatial Reference'})
 
-    native_spatial_resolution_m: float = Field(default=..., title="Native Spatial Resolution (m)", description="""Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    native_geometry: Union[Geometry,RegularGrid,IrregularGrid,H3Grid,VectorPolygon,VectorLine,VectorPoint] = Field(default=..., title="Native Geometry", description="""Geometry the source product is delivered on, with the resolution slots that apply to it. Describes the source, not the place the value is attached to (that is `target_geography_type`).""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Only '
-                                                                                                      'derivable '
-                                                                                                      'from '
+                                                                                                      'implied '
+                                                                                                      'by '
                                                                                                       'the '
-                                                                                                      'grid-axis '
-                                                                                                      'increment '
-                                                                                                      'in '
-                                                                                                      'thredds_dataset.xml; '
+                                                                                                      'THREDDS '
+                                                                                                      'gridDataset/gridSet '
+                                                                                                      'structure; '
                                                                                                       'never '
                                                                                                       'written '
                                                                                                       'as '
                                                                                                       'a '
-                                                                                                      'resolution '
-                                                                                                      'number '
+                                                                                                      'geometry '
+                                                                                                      'type '
                                                                                                       'in '
-                                                                                                      'metres.'},
+                                                                                                      'the '
+                                                                                                      'output.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
                                                                                               'value': 'thredds_dataset.xml '
-                                                                                                       'axis '
-                                                                                                       'lat/lon '
-                                                                                                       'increment '
-                                                                                                       '(0.041666 '
-                                                                                                       'deg)'}},
+                                                                                                       'gridDataset/gridSet'}},
                                                                     'tag': 'amadeus'},
                                                         'cher': {'annotations': {'extent': {'tag': 'extent',
-                                                                                            'value': 'full'},
+                                                                                            'value': 'partial'},
                                                                                  'note': {'tag': 'note',
-                                                                                          'value': 'C-HER '
-                                                                                                   'encodes '
-                                                                                                   'native '
-                                                                                                   'spatial '
+                                                                                          'value': 'The '
                                                                                                    'resolution '
-                                                                                                   'first-class '
-                                                                                                   'in '
-                                                                                                   'the '
-                                                                                                   'table_name '
-                                                                                                   'pattern '
-                                                                                                   '(§2.3 '
-                                                                                                   'metric/H3 '
-                                                                                                   'codes) '
+                                                                                                   'code '
+                                                                                                   'prefix '
+                                                                                                   'separates '
+                                                                                                   'grid '
+                                                                                                   '(m/k), '
+                                                                                                   'H3 '
+                                                                                                   '(h) '
                                                                                                    'and '
-                                                                                                   'as '
-                                                                                                   'the '
-                                                                                                   'inheritable '
-                                                                                                   'spatial_resolution '
-                                                                                                   'field.'},
+                                                                                                   'polygon '
+                                                                                                   '(tract/block/ZIP) '
+                                                                                                   'layouts '
+                                                                                                   '(§2.3); '
+                                                                                                   'it '
+                                                                                                   'has '
+                                                                                                   'no '
+                                                                                                   'line '
+                                                                                                   'or '
+                                                                                                   'point '
+                                                                                                   'code.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
                                                                                            'value': 'table_name '
                                                                                                     'spatial-res '
                                                                                                     'code '
-                                                                                                    '(e.g. '
-                                                                                                    'm30, '
-                                                                                                    'k05, '
-                                                                                                    'h08)'}},
+                                                                                                    'prefix '
+                                                                                                    '(m/k/h/c/t/b/s/z)'}},
                                                                  'tag': 'cher'},
                                                         'clad': {'annotations': {'extent': {'tag': 'extent',
                                                                                             'value': 'full'},
                                                                                  'note': {'tag': 'note',
                                                                                           'value': 'CHEL '
-                                                                                                   'fixes '
-                                                                                                   'native '
-                                                                                                   'resolution '
-                                                                                                   'first-class '
-                                                                                                   'as '
-                                                                                                   'Uber '
+                                                                                                   'states '
+                                                                                                   'the '
+                                                                                                   'delivered '
+                                                                                                   'geometry '
+                                                                                                   'first-class: '
                                                                                                    'H3 '
                                                                                                    'Resolution-3 '
-                                                                                                   'hexagons '
-                                                                                                   '(~12,000 '
-                                                                                                   'km2).'},
+                                                                                                   'hexagons.'},
                                                                                  'status': {'tag': 'status',
                                                                                             'value': 'asserted'},
                                                                                  'where': {'tag': 'where',
                                                                                            'value': 'CHEL '
                                                                                                     'Documentation.md '
-                                                                                                    '§1.3/§2.2.1 '
+                                                                                                    '§2.2.1 '
                                                                                                     '(H3 '
                                                                                                     'Hex3 '
-                                                                                                    '~12,000 '
-                                                                                                    'km2)'}},
+                                                                                                    'grid)'}},
                                                                  'tag': 'clad'},
                                                         'codata': {'annotations': {'extent': {'tag': 'extent',
                                                                                               'value': 'out_of_layer'},
                                                                                    'note': {'tag': 'note',
-                                                                                            'value': 'CODATA '
-                                                                                                     'EVs '
-                                                                                                     '/ '
-                                                                                                     'DDI-CDI '
-                                                                                                     'operate '
-                                                                                                     'at '
-                                                                                                     'the '
-                                                                                                     'conceptual/represented '
-                                                                                                     'layer; '
-                                                                                                     'native '
-                                                                                                     'grid '
-                                                                                                     'resolution '
+                                                                                            'value': 'Source '
+                                                                                                     'geometry '
                                                                                                      'of '
-                                                                                                     'one '
-                                                                                                     'run '
+                                                                                                     'a '
+                                                                                                     'specific '
+                                                                                                     'product '
                                                                                                      'is '
                                                                                                      'instance-layer '
                                                                                                      'detail '
-                                                                                                     'deliberately '
                                                                                                      'outside '
-                                                                                                     'their '
-                                                                                                     'scope.'},
+                                                                                                     'the '
+                                                                                                     'conceptual '
+                                                                                                     'EV/DDI-CDI '
+                                                                                                     'layer.'},
                                                                                    'status': {'tag': 'status',
                                                                                               'value': 'asserted'},
                                                                                    'where': {'tag': 'where',
@@ -5145,20 +5129,8 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                              'value': 'DeGAUSS '
                                                                                                       'emits '
                                                                                                       'no '
-                                                                                                      'resolution '
-                                                                                                      'field; '
-                                                                                                      '"Daymet '
-                                                                                                      '= '
-                                                                                                      '1 '
-                                                                                                      'km" '
-                                                                                                      'is '
-                                                                                                      'out-of-band '
-                                                                                                      'knowledge, '
-                                                                                                      'not '
-                                                                                                      'written '
-                                                                                                      'to '
-                                                                                                      'any '
-                                                                                                      'output.'},
+                                                                                                      'source-geometry '
+                                                                                                      'field.'},
                                                                                     'status': {'tag': 'status',
                                                                                                'value': 'asserted'},
                                                                                     'where': {'tag': 'where',
@@ -5166,59 +5138,59 @@ class SpatialReference(ConfiguredBaseModel):
                                                                                                        'column'}},
                                                                     'tag': 'degauss'},
                                                         'omop_gaia': {'annotations': {'extent': {'tag': 'extent',
-                                                                                                 'value': 'absent'},
+                                                                                                 'value': 'full'},
                                                                                       'note': {'tag': 'note',
-                                                                                               'value': 'gaiaCatalog '
-                                                                                                        'has '
-                                                                                                        'no '
-                                                                                                        'first-class '
-                                                                                                        'native-resolution '
-                                                                                                        'slot; '
-                                                                                                        'it '
-                                                                                                        'appears '
-                                                                                                        'only '
-                                                                                                        'via '
+                                                                                               'value': 'GAIA '
+                                                                                                        'records '
                                                                                                         'the '
-                                                                                                        'EnVar '
-                                                                                                        'extension '
-                                                                                                        'PropertyValue '
-                                                                                                        'envar:native_spatial_resolution_m, '
-                                                                                                        'not '
-                                                                                                        'natively.'},
+                                                                                                        'source '
+                                                                                                        'geometry '
+                                                                                                        'first-class '
+                                                                                                        '(geom_type, '
+                                                                                                        'and '
+                                                                                                        'structure/geometry '
+                                                                                                        'in '
+                                                                                                        'the '
+                                                                                                        'etl '
+                                                                                                        'metadata).'},
                                                                                       'status': {'tag': 'status',
                                                                                                  'value': 'asserted'},
                                                                                       'where': {'tag': 'where',
-                                                                                                'value': 'no '
-                                                                                                         'column'}},
+                                                                                                'value': 'gaia_db '
+                                                                                                         'data_source.geom_type; '
+                                                                                                         'meta_etl_*.json '
+                                                                                                         'structure/geometry '
+                                                                                                         '(raster)'}},
                                                                       'tag': 'omop_gaia'}},
                                         'tag': 'covered_by'},
                          'explanation': {'tag': 'explanation',
-                                         'value': 'Gridded environmental data divides '
-                                                  'the world into square tiles, like '
-                                                  'pixels in a photo, and reports one '
-                                                  'value per tile. This field says how '
-                                                  'wide each tile is in metres — small '
-                                                  'tiles give a sharp picture of local '
-                                                  'conditions, big tiles give a blurry '
-                                                  'average over a large area.'},
+                                         'value': 'Environmental data comes in '
+                                                  'different shapes: square tiles, '
+                                                  'honeycomb cells, outlines such as '
+                                                  'city boundaries, lines such as '
+                                                  'roads, or single points such as '
+                                                  'monitoring stations. This block '
+                                                  'says which shape the source uses '
+                                                  'and, where it makes sense, how big '
+                                                  'the pieces are.'},
                          'justification': {'tag': 'justification',
-                                           'value': 'Exposure misclassification scales '
-                                                    'directly with cell size: a value '
-                                                    'from a 32 km NARR cell averages '
-                                                    'over an entire metro area while a '
-                                                    '1 km Daymet cell resolves a '
-                                                    'neighbourhood. Without the '
-                                                    'resolution, downstream users '
-                                                    'cannot judge how precise a '
-                                                    'per-patient exposure really is or '
-                                                    "whether two studies' values are "
-                                                    'comparable.'},
+                                           'value': 'Grids, hexagons, polygons and '
+                                                    'stations have different error '
+                                                    'behaviour and different notions '
+                                                    'of resolution. Without the '
+                                                    'geometry a missing resolution is '
+                                                    'ambiguous: it could be an '
+                                                    'omission, or the source could '
+                                                    'have no resolution at all.'},
                          'tier': {'tag': 'tier', 'value': 'core'}},
          'domain_of': ['SpatialReference'],
-         'examples': [{'description': 'Daymet V4 1 km grid', 'value': '1000'}],
-         'see_also': ['https://daymet.ornl.gov/',
-                      'https://www.climatologylab.org/gridmet.html',
-                      'https://psl.noaa.gov/data/gridded/data.narr.html']} })
+         'examples': [{'description': 'Daymet V4 1 km grid',
+                       'object': {'geometry_kind': 'RegularGrid',
+                                  'native_spatial_resolution_m': 1000}},
+                      {'description': 'CHEL H3 resolution-3 hexagons',
+                       'object': {'geometry_kind': 'H3Grid', 'h3_resolution': 3}},
+                      {'description': 'annual mean PM2.5 per urban-area polygon',
+                       'object': {'geometry_kind': 'VectorPolygon'}}]} })
     native_spatial_resolution_descriptor: Optional[str] = Field(default=None, title="Native Resolution Descriptor", description="""Human-readable label for the native resolution, e.g. \"1 km regular grid\", \"H3 hex zoom 8\", \"census tract polygon\", \"point station\".""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
@@ -6605,6 +6577,435 @@ class SpatialReference(ConfiguredBaseModel):
                                       'allocation of a count preserves the total (CHEL '
                                       'population-count case)',
                        'value': 'total_mass_conservation'}]} })
+
+
+class Geometry(ConfiguredBaseModel):
+    """
+    Geometry a source product is delivered on. `geometry_kind` names one of the subclasses, and the subclass decides which further slots exist: a regular grid has a cell size in metres, an H3 grid has a resolution, and the other geometries have neither.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'annotations': {'domain_of_use': {'tag': 'domain_of_use',
+                                           'value': 'environmental_exposure'}},
+         'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'title': 'Source Geometry'})
+
+    geometry_kind: Literal["Geometry"] = Field(default="Geometry", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class RegularGrid(Geometry):
+    """
+    Evenly spaced grid, projected or lat/lon, with one nominal cell size.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'slot_usage': {'native_spatial_resolution_m': {'name': 'native_spatial_resolution_m',
+                                                        'required': True}},
+         'title': 'Regular Grid'})
+
+    native_spatial_resolution_m: float = Field(default=..., title="Native Spatial Resolution (m)", description="""Native spatial resolution of the source product in metres. Daymet = 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it is mandatory; other geometries have no single cell size in metres.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+                                                                                               'value': 'partial'},
+                                                                                    'note': {'tag': 'note',
+                                                                                             'value': 'Only '
+                                                                                                      'derivable '
+                                                                                                      'from '
+                                                                                                      'the '
+                                                                                                      'grid-axis '
+                                                                                                      'increment '
+                                                                                                      'in '
+                                                                                                      'thredds_dataset.xml; '
+                                                                                                      'never '
+                                                                                                      'written '
+                                                                                                      'as '
+                                                                                                      'a '
+                                                                                                      'resolution '
+                                                                                                      'number '
+                                                                                                      'in '
+                                                                                                      'metres.'},
+                                                                                    'status': {'tag': 'status',
+                                                                                               'value': 'asserted'},
+                                                                                    'where': {'tag': 'where',
+                                                                                              'value': 'thredds_dataset.xml '
+                                                                                                       'axis '
+                                                                                                       'lat/lon '
+                                                                                                       'increment '
+                                                                                                       '(0.041666 '
+                                                                                                       'deg)'}},
+                                                                    'tag': 'amadeus'},
+                                                        'cher': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'C-HER '
+                                                                                                   'encodes '
+                                                                                                   'native '
+                                                                                                   'spatial '
+                                                                                                   'resolution '
+                                                                                                   'first-class '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'table_name '
+                                                                                                   'pattern '
+                                                                                                   '(§2.3 '
+                                                                                                   'metric/H3 '
+                                                                                                   'codes) '
+                                                                                                   'and '
+                                                                                                   'as '
+                                                                                                   'the '
+                                                                                                   'inheritable '
+                                                                                                   'spatial_resolution '
+                                                                                                   'field.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'table_name '
+                                                                                                    'spatial-res '
+                                                                                                    'code '
+                                                                                                    '(e.g. '
+                                                                                                    'm30, '
+                                                                                                    'k05, '
+                                                                                                    'h08)'}},
+                                                                 'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'partial'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'fixes '
+                                                                                                   'native '
+                                                                                                   'resolution '
+                                                                                                   'as '
+                                                                                                   'an '
+                                                                                                   'H3 '
+                                                                                                   'level '
+                                                                                                   '(Resolution '
+                                                                                                   '3) '
+                                                                                                   'with '
+                                                                                                   'an '
+                                                                                                   'approximate '
+                                                                                                   'cell '
+                                                                                                   'area '
+                                                                                                   '(~12,000 '
+                                                                                                   'km2); '
+                                                                                                   'it '
+                                                                                                   'gives '
+                                                                                                   'no '
+                                                                                                   'resolution '
+                                                                                                   'in '
+                                                                                                   'metres.'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§1.3/§2.2.1 '
+                                                                                                    '(H3 '
+                                                                                                    'Hex3 '
+                                                                                                    '~12,000 '
+                                                                                                    'km2)'}},
+                                                                 'tag': 'clad'},
+                                                        'codata': {'annotations': {'extent': {'tag': 'extent',
+                                                                                              'value': 'out_of_layer'},
+                                                                                   'note': {'tag': 'note',
+                                                                                            'value': 'CODATA '
+                                                                                                     'EVs '
+                                                                                                     '/ '
+                                                                                                     'DDI-CDI '
+                                                                                                     'operate '
+                                                                                                     'at '
+                                                                                                     'the '
+                                                                                                     'conceptual/represented '
+                                                                                                     'layer; '
+                                                                                                     'native '
+                                                                                                     'grid '
+                                                                                                     'resolution '
+                                                                                                     'of '
+                                                                                                     'one '
+                                                                                                     'run '
+                                                                                                     'is '
+                                                                                                     'instance-layer '
+                                                                                                     'detail '
+                                                                                                     'deliberately '
+                                                                                                     'outside '
+                                                                                                     'their '
+                                                                                                     'scope.'},
+                                                                                   'status': {'tag': 'status',
+                                                                                              'value': 'asserted'},
+                                                                                   'where': {'tag': 'where',
+                                                                                             'value': 'no '
+                                                                                                      'column'}},
+                                                                   'tag': 'codata'},
+                                                        'degauss': {'annotations': {'extent': {'tag': 'extent',
+                                                                                               'value': 'absent'},
+                                                                                    'note': {'tag': 'note',
+                                                                                             'value': 'DeGAUSS '
+                                                                                                      'emits '
+                                                                                                      'no '
+                                                                                                      'resolution '
+                                                                                                      'field; '
+                                                                                                      '"Daymet '
+                                                                                                      '= '
+                                                                                                      '1 '
+                                                                                                      'km" '
+                                                                                                      'is '
+                                                                                                      'out-of-band '
+                                                                                                      'knowledge, '
+                                                                                                      'not '
+                                                                                                      'written '
+                                                                                                      'to '
+                                                                                                      'any '
+                                                                                                      'output.'},
+                                                                                    'status': {'tag': 'status',
+                                                                                               'value': 'asserted'},
+                                                                                    'where': {'tag': 'where',
+                                                                                              'value': 'no '
+                                                                                                       'column'}},
+                                                                    'tag': 'degauss'},
+                                                        'omop_gaia': {'annotations': {'extent': {'tag': 'extent',
+                                                                                                 'value': 'absent'},
+                                                                                      'note': {'tag': 'note',
+                                                                                               'value': 'gaiaCatalog '
+                                                                                                        'has '
+                                                                                                        'no '
+                                                                                                        'first-class '
+                                                                                                        'native-resolution '
+                                                                                                        'slot; '
+                                                                                                        'it '
+                                                                                                        'appears '
+                                                                                                        'only '
+                                                                                                        'via '
+                                                                                                        'the '
+                                                                                                        'EnVar '
+                                                                                                        'extension '
+                                                                                                        'PropertyValue '
+                                                                                                        'envar:native_spatial_resolution_m, '
+                                                                                                        'not '
+                                                                                                        'natively.'},
+                                                                                      'status': {'tag': 'status',
+                                                                                                 'value': 'asserted'},
+                                                                                      'where': {'tag': 'where',
+                                                                                                'value': 'no '
+                                                                                                         'column'}},
+                                                                      'tag': 'omop_gaia'}},
+                                        'tag': 'covered_by'},
+                         'explanation': {'tag': 'explanation',
+                                         'value': 'Gridded environmental data divides '
+                                                  'the world into square tiles, like '
+                                                  'pixels in a photo, and reports one '
+                                                  'value per tile. This field says how '
+                                                  'wide each tile is in metres — small '
+                                                  'tiles give a sharp picture of local '
+                                                  'conditions, big tiles give a blurry '
+                                                  'average over a large area.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'Exposure misclassification scales '
+                                                    'directly with cell size: a value '
+                                                    'from a 32 km NARR cell averages '
+                                                    'over an entire metro area while a '
+                                                    '1 km Daymet cell resolves a '
+                                                    'neighbourhood. Without the '
+                                                    'resolution, downstream users '
+                                                    'cannot judge how precise a '
+                                                    'per-patient exposure really is or '
+                                                    "whether two studies' values are "
+                                                    'comparable.'},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
+         'domain_of': ['RegularGrid'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': '1000'}],
+         'see_also': ['https://daymet.ornl.gov/',
+                      'https://www.climatologylab.org/gridmet.html',
+                      'https://psl.noaa.gov/data/gridded/data.narr.html']} })
+    geometry_kind: Literal["RegularGrid"] = Field(default="RegularGrid", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class IrregularGrid(Geometry):
+    """
+    Grid or mesh with no single cell size (satellite swath, curvilinear or unstructured model mesh).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'title': 'Irregular Grid'})
+
+    geometry_kind: Literal["IrregularGrid"] = Field(default="IrregularGrid", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class H3Grid(Geometry):
+    """
+    H3 hexagon grid at one resolution.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'see_also': ['https://h3geo.org/'],
+         'slot_usage': {'h3_resolution': {'name': 'h3_resolution', 'required': True}},
+         'title': 'H3 Grid'})
+
+    h3_resolution: int = Field(default=..., title="H3 Resolution", description="""H3 resolution of the hexagons, 0 (coarsest) to 15 (finest). Cell area and edge length follow from it through H3's own tables.""", ge=0, le=15, json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'cher': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'C-HER '
+                                                                                                   'encodes '
+                                                                                                   'the '
+                                                                                                   'H3 '
+                                                                                                   'resolution '
+                                                                                                   'in '
+                                                                                                   'the '
+                                                                                                   'table_name '
+                                                                                                   'code '
+                                                                                                   '(§2.3).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'table_name '
+                                                                                                    'spatial-res '
+                                                                                                    'code '
+                                                                                                    '(e.g. '
+                                                                                                    'h08)'}},
+                                                                 'tag': 'cher'},
+                                                        'clad': {'annotations': {'extent': {'tag': 'extent',
+                                                                                            'value': 'full'},
+                                                                                 'note': {'tag': 'note',
+                                                                                          'value': 'CHEL '
+                                                                                                   'states '
+                                                                                                   'the '
+                                                                                                   'H3 '
+                                                                                                   'resolution '
+                                                                                                   'first-class '
+                                                                                                   '(Resolution '
+                                                                                                   '3).'},
+                                                                                 'status': {'tag': 'status',
+                                                                                            'value': 'asserted'},
+                                                                                 'where': {'tag': 'where',
+                                                                                           'value': 'CHEL '
+                                                                                                    'Documentation.md '
+                                                                                                    '§2.2.1 '
+                                                                                                    '(H3 '
+                                                                                                    'Hex3 '
+                                                                                                    'grid)'}},
+                                                                 'tag': 'clad'}},
+                                        'tag': 'covered_by'},
+                         'explanation': {'tag': 'explanation',
+                                         'value': 'Honeycomb maps come in 16 standard '
+                                                  'sizes. This number says which one: '
+                                                  '0 is continent-sized cells, 15 is '
+                                                  'about a square metre.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'H3 resolutions in use differ by '
+                                                    'orders of magnitude in cell area, '
+                                                    'so "H3" alone does not say how '
+                                                    'coarse a value is.'},
+                         'tier': {'tag': 'tier', 'value': 'conditionally_core'}},
+         'domain_of': ['H3Grid'],
+         'examples': [{'description': 'CHEL 2024', 'value': '3'}],
+         'see_also': ['https://h3geo.org/docs/core-library/restable/']} })
+    geometry_kind: Literal["H3Grid"] = Field(default="H3Grid", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class VectorPolygon(Geometry):
+    """
+    Polygons of varying size (census units, urban areas, service areas).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'title': 'Vector Polygon'})
+
+    geometry_kind: Literal["VectorPolygon"] = Field(default="VectorPolygon", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class VectorLine(Geometry):
+    """
+    Line features (roads, rivers).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'title': 'Vector Line'})
+
+    geometry_kind: Literal["VectorLine"] = Field(default="VectorLine", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
+
+
+class VectorPoint(Geometry):
+    """
+    Monitoring stations or other point features (facilities).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/linkml/microschemas/envar/spatial',
+         'title': 'Vector Point'})
+
+    geometry_kind: Literal["VectorPoint"] = Field(default="VectorPoint", title="Geometry Kind", description="""Name of the `Geometry` subclass: `RegularGrid`, `IrregularGrid`, `H3Grid`, `VectorPolygon`, `VectorLine` or `VectorPoint`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The label that says which kind of '
+                                                  'shape this is, so you know which '
+                                                  'other fields to expect.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'The kind decides which resolution '
+                                                    'slots apply, so a consumer cannot '
+                                                    'read or check the rest of the '
+                                                    'geometry without it.'},
+                         'tier': {'tag': 'tier', 'value': 'core'}},
+         'designates_type': True,
+         'domain_of': ['Geometry'],
+         'examples': [{'description': 'Daymet V4 1 km grid', 'value': 'RegularGrid'}]} })
 
 
 class TemporalReference(ConfiguredBaseModel):
@@ -18808,7 +19209,8 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                       'for a full instance',
                        'object': {'crs': 'EPSG:4326',
                                   'extraction_method': 'inverse_distance_weighted_4_nearest_cells',
-                                  'native_spatial_resolution_m': 1000,
+                                  'native_geometry': {'geometry_kind': 'RegularGrid',
+                                                      'native_spatial_resolution_m': 1000},
                                   'target_geography_type': 'point_residence'}}],
          'implements': ['msprofile:location'],
          'see_also': ['https://epsg.io/'],
@@ -21885,7 +22287,8 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                       'for a full instance',
                        'object': {'crs': 'EPSG:4326',
                                   'extraction_method': 'inverse_distance_weighted_4_nearest_cells',
-                                  'native_spatial_resolution_m': 1000,
+                                  'native_geometry': {'geometry_kind': 'RegularGrid',
+                                                      'native_spatial_resolution_m': 1000},
                                   'target_geography_type': 'point_residence'}}],
          'implements': ['msprofile:location'],
          'see_also': ['https://epsg.io/'],
@@ -24860,7 +25263,8 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                       'for a full instance',
                        'object': {'crs': 'EPSG:4326',
                                   'extraction_method': 'inverse_distance_weighted_4_nearest_cells',
-                                  'native_spatial_resolution_m': 1000,
+                                  'native_geometry': {'geometry_kind': 'RegularGrid',
+                                                      'native_spatial_resolution_m': 1000},
                                   'target_geography_type': 'point_residence'}}],
          'implements': ['msprofile:location'],
          'see_also': ['https://epsg.io/'],
@@ -27845,7 +28249,8 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                       'for a full instance',
                        'object': {'crs': 'EPSG:4326',
                                   'extraction_method': 'inverse_distance_weighted_4_nearest_cells',
-                                  'native_spatial_resolution_m': 1000,
+                                  'native_geometry': {'geometry_kind': 'RegularGrid',
+                                                      'native_spatial_resolution_m': 1000},
                                   'target_geography_type': 'point_residence'}}],
          'implements': ['msprofile:location'],
          'see_also': ['https://epsg.io/'],
@@ -30829,7 +31234,8 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                       'for a full instance',
                        'object': {'crs': 'EPSG:4326',
                                   'extraction_method': 'inverse_distance_weighted_4_nearest_cells',
-                                  'native_spatial_resolution_m': 1000,
+                                  'native_geometry': {'geometry_kind': 'RegularGrid',
+                                                      'native_spatial_resolution_m': 1000},
                                   'target_geography_type': 'point_residence'}}],
          'implements': ['msprofile:location'],
          'see_also': ['https://epsg.io/'],
@@ -33311,6 +33717,13 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
 VariableIdentity.model_rebuild()
 DataLayout.model_rebuild()
 SpatialReference.model_rebuild()
+Geometry.model_rebuild()
+RegularGrid.model_rebuild()
+IrregularGrid.model_rebuild()
+H3Grid.model_rebuild()
+VectorPolygon.model_rebuild()
+VectorLine.model_rebuild()
+VectorPoint.model_rebuild()
 TemporalReference.model_rebuild()
 SourceDataset.model_rebuild()
 ExposureModel.model_rebuild()

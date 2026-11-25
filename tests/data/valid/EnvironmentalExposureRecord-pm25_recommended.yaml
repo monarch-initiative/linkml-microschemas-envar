@@ -25,7 +25,9 @@ data_layout:
   value_uncertainty_column: pm25_monthly_se
 
 spatial_reference:
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "1 km modeled grid"
   crs: "EPSG:4326"
   spatial_extent_descriptor: "contiguous United States"
