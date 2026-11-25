@@ -17,7 +17,8 @@ Everything here is exploratory and will change. Do not treat schemas, examples, 
 - `just install` — install dev dependencies.
 - `just gen-project` — regenerate all artifacts under `project/`. This is what surfaces schema errors.
 - `just gen-doc` — regenerate Markdown docs into `docs/elements/`.
-- `just site` — `gen-project` + `gen-doc`.
+- `just site` — `gen-project` + `gen-doc` + `render-schema-overview` + `gen-datasets-ledger` + `standards-index` (all generated pages).
+- `just check FILE...` — run the completeness checker (`linkml_microschemas_envar.checker`) over sidecar YAML(s).
 - `just lint` — `linkml-lint` over the schema sources.
 - `just test` — full suite: schema gen, pytest, and `linkml-run-examples` over `tests/data/valid` (the passing `core`/`recommended`/`ideal` gradient) and `tests/data/invalid` (`core_missing` counter-examples that MUST fail validation).
 - `just testdoc` — generate docs and serve locally via `mkdocs serve`.
@@ -52,9 +53,18 @@ The substantive content is the LinkML schema set under `src/linkml_microschemas_
 ### Edit-vs-generated boundary
 
 - **Edit:** `src/linkml_microschemas_envar/schema/*.yaml` only.
-- **Never edit:** `project/` (from `just gen-project`), `src/linkml_microschemas_envar/datamodel/` except `__init__.py`, and `docs/elements/` (from `just gen-doc`).
-- Generated but **git-tracked** (regenerate after schema/tier changes, never hand-edit): `docs/schema_overview.md` + `docs/overview/index.html` (`just render-schema-overview`) and `docs/datasets/index.html` (`just gen-datasets-ledger`).
+- **Never edit or track:** `project/` (from `just gen-project`), `docs/elements/` and `docs/schema/` (from `just gen-doc`), `docs/schema_overview.md` + `docs/overview/` (`just render-schema-overview`) and `docs/datasets/` (`just gen-datasets-ledger`). The docs deploy regenerates the site pages.
+- Generated but **git-tracked** (regenerate after schema/tier changes, never hand-edit): `src/linkml_microschemas_envar/datamodel/` except `__init__.py` (installs from git need it) and `docs/standards-index/index.md` (`just standards-index`).
 - The canonical worked example is `examples/daymet_tmax_phoenix_2022_07_19.yaml`.
+
+### Keep PR diffs small, without compromising function
+
+- Optimise for few **added/changed** lines; deleted lines do not count. Never drop functionality, tests, validation or required annotations to get there.
+- Before committing, run `git diff --stat <base>...` including generated files, find the cause of every large entry, and remove what is avoidable.
+- Every new slot except `*_missing_reason` gets a populated `covered_by` (all six standards, public evidence only). This outranks diff size.
+- Generators repeat every inherited slot, with all its annotations, for each class and subclass. Do not copy a `covered_by` block that already sits on the enclosing slot (doing so on `geometry_kind` added about 1800 lines to #52).
+- When choosing between designs, measure the generated diff of each and state it with the recommendation.
+- Do not track new generated files unless something consumes them from git. Keep unrelated cleanups out of the PR.
 
 ## Other context
 
