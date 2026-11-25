@@ -54,6 +54,7 @@ classes:
     - geocoding_precision_propagated
     - geocoding_score_propagated
     - geocoding_score_propagated_missing_reason
+    - geocoding_database_version
     - address_period_alignment
     - clinical_date_assignment_convention
     - clinical_date_assignment_convention_missing_reason
@@ -513,6 +514,85 @@ slots:
         limitation and a fixable ETL gap.
       explanation: >-
         When the geocoder-confidence field is empty, this says why.
+  geocoding_database_version:
+    title: Geocoding Database Version
+    range: string
+    description: >-
+      Name and version or release of the reference address database the
+      geocoder matched against. The geocoder tool itself is the geocoding
+      `ToolRun` step in `provenance_chain`; this names the database that run
+      used.
+    examples:
+    - value: "TIGER/Line Street Range Address files 2021"
+      description: the database documented for the DeGAUSS geocoder 3.3.0 container
+    see_also:
+    - https://github.com/degauss-org/geocoder
+
+    annotations:
+      tier: optional
+      justification: >-
+        The same address matched against different database versions can get
+        different coordinates, and so a different exposure value. The tool
+        version alone does not name the database.
+      explanation: >-
+        Software that turns an address into map coordinates looks it up in a
+        reference list of streets and addresses. This names that list and
+        its edition.
+      covered_by:
+        annotations:
+          clad:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "CHEL Documentation.md §2.7 (Geocodes input row, Source Link N/A)"
+              note: >-
+                CHEL takes participant geocodes as an input; its lineage row
+                gives no source, and no geocoder or address database is named
+                in its documentation.
+          omop_gaia:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "gaiaDB sql/01_init_schema.sql working.location; gaiaDocker docker/gaia-degauss/Dockerfile"
+              note: >-
+                working.location has coordinates but no geocoder or
+                address-database column, and the gaia-degauss image uses an
+                untagged DeGAUSS geocoder.
+          degauss:
+            annotations:
+              extent: partial
+              status: asserted
+              where: "degauss-org/geocoder README.md, Geomarker Data (3.3.0, v3.4.2); geocoder output filename tag"
+              note: >-
+                No output column names the database; the filename gives the
+                container version, whose README names the 2021 TIGER/Line
+                Street Range Address files.
+          amadeus:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "amadeus R/utils-calculate.R (calc_prepare_locs input, calc_return_locs output), version 2.1.2"
+              note: >-
+                Amadeus takes locations that already have coordinates, and its
+                output names no reference address database.
+          cher:
+            annotations:
+              extent: absent
+              status: asserted
+              where: "ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column fields"
+              note: >-
+                The published C-HER metadata fields include no geocoding
+                database. The ORNL ADDRESS report (doi:10.2172/3827145, Table
+                2) names OSM/Nominatim without a version, outside that
+                metadata.
+          codata:
+            annotations:
+              extent: out_of_layer
+              status: asserted
+              where: "no column"
+              note: >-
+                The reference database of a geocoding run is instance-layer
+                linkage provenance, outside CODATA's conceptual scope.
   address_period_alignment:
     title: Address Period Alignment
     range: AddressPeriodAlignmentEnum
