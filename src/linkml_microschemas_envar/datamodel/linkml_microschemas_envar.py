@@ -1291,41 +1291,6 @@ class HealthLayerLinkage(YAMLRoot):
 
 
 @dataclass(repr=False)
-class DeliveredResource(YAMLRoot):
-    """
-    Identity of the table or file a producer delivered and this record describes, as opposed to the upstream product
-    (`source_dataset`) and the sidecar itself (`provenance_id`). Copy the values from the producer's metadata, not
-    from parts of the identifier.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ENVAR["DeliveredResource"]
-    class_class_curie: ClassVar[str] = "envar:DeliveredResource"
-    class_name: ClassVar[str] = "DeliveredResource"
-    class_model_uri: ClassVar[URIRef] = ENVAR.DeliveredResource
-
-    resource_identifier: Optional[str] = None
-    resource_identifier_scheme: Optional[Union[str, URI]] = None
-    resource_version: Optional[str] = None
-    resource_publisher: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.resource_identifier is not None and not isinstance(self.resource_identifier, str):
-            self.resource_identifier = str(self.resource_identifier)
-
-        if self.resource_identifier_scheme is not None and not isinstance(self.resource_identifier_scheme, URI):
-            self.resource_identifier_scheme = URI(self.resource_identifier_scheme)
-
-        if self.resource_version is not None and not isinstance(self.resource_version, str):
-            self.resource_version = str(self.resource_version)
-
-        if self.resource_publisher is not None and not isinstance(self.resource_publisher, str):
-            self.resource_publisher = str(self.resource_publisher)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
 class DepositMetadata(YAMLRoot):
     """
     Deposit-time slots required when the sidecar travels alongside a published FAIR object (Zenodo / Dryad / C-HER /
@@ -1410,7 +1375,6 @@ class EnvironmentalExposureRecord(YAMLRoot):
     phi_status: Union[str, "PhiStatusEnum"] = None
     uncertainty: Optional[Union[dict, Uncertainty]] = None
     derived_heat_metric: Optional[Union[dict, DerivedHeatMetric]] = None
-    delivered_resource: Optional[Union[dict, DeliveredResource]] = None
     provenance_chain: Optional[Union[dict, ProvenanceChain]] = None
     health_layer_linkage: Optional[Union[dict, HealthLayerLinkage]] = None
     deposit_metadata: Optional[Union[dict, DepositMetadata]] = None
@@ -1481,9 +1445,6 @@ class EnvironmentalExposureRecord(YAMLRoot):
 
         if self.derived_heat_metric is not None and not isinstance(self.derived_heat_metric, DerivedHeatMetric):
             self.derived_heat_metric = DerivedHeatMetric(**as_dict(self.derived_heat_metric))
-
-        if self.delivered_resource is not None and not isinstance(self.delivered_resource, DeliveredResource):
-            self.delivered_resource = DeliveredResource(**as_dict(self.delivered_resource))
 
         if self.provenance_chain is not None and not isinstance(self.provenance_chain, ProvenanceChain):
             self.provenance_chain = ProvenanceChain(**as_dict(self.provenance_chain))
@@ -3298,18 +3259,6 @@ slots.cohort_size_anchored = Slot(uri=ENVAR.cohort_size_anchored, name="cohort_s
 slots.cohort_size_anchored_missing_reason = Slot(uri=ENVAR.cohort_size_anchored_missing_reason, name="cohort_size_anchored_missing_reason", curie=ENVAR.curie('cohort_size_anchored_missing_reason'),
                    model_uri=ENVAR.cohort_size_anchored_missing_reason, domain=None, range=Optional[Union[str, "MissingReasonEnum"]])
 
-slots.resource_identifier = Slot(uri=ENVAR.resource_identifier, name="resource_identifier", curie=ENVAR.curie('resource_identifier'),
-                   model_uri=ENVAR.resource_identifier, domain=None, range=Optional[str])
-
-slots.resource_identifier_scheme = Slot(uri=ENVAR.resource_identifier_scheme, name="resource_identifier_scheme", curie=ENVAR.curie('resource_identifier_scheme'),
-                   model_uri=ENVAR.resource_identifier_scheme, domain=None, range=Optional[Union[str, URI]])
-
-slots.resource_version = Slot(uri=ENVAR.resource_version, name="resource_version", curie=ENVAR.curie('resource_version'),
-                   model_uri=ENVAR.resource_version, domain=None, range=Optional[str])
-
-slots.resource_publisher = Slot(uri=ENVAR.resource_publisher, name="resource_publisher", curie=ENVAR.curie('resource_publisher'),
-                   model_uri=ENVAR.resource_publisher, domain=None, range=Optional[str])
-
 slots.deposit_doi = Slot(uri=ENVAR.deposit_doi, name="deposit_doi", curie=ENVAR.curie('deposit_doi'),
                    model_uri=ENVAR.deposit_doi, domain=None, range=Optional[str])
 
@@ -3387,9 +3336,6 @@ slots.derived_heat_metric = Slot(uri=ENVAR.derived_heat_metric, name="derived_he
 
 slots.health_layer_linkage = Slot(uri=ENVAR.health_layer_linkage, name="health_layer_linkage", curie=ENVAR.curie('health_layer_linkage'),
                    model_uri=ENVAR.health_layer_linkage, domain=None, range=Optional[Union[dict, HealthLayerLinkage]])
-
-slots.delivered_resource = Slot(uri=ENVAR.delivered_resource, name="delivered_resource", curie=ENVAR.curie('delivered_resource'),
-                   model_uri=ENVAR.delivered_resource, domain=None, range=Optional[Union[dict, DeliveredResource]])
 
 slots.deposit_metadata = Slot(uri=ENVAR.deposit_metadata, name="deposit_metadata", curie=ENVAR.curie('deposit_metadata'),
                    model_uri=ENVAR.deposit_metadata, domain=None, range=Optional[Union[dict, DepositMetadata]])
