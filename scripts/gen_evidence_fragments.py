@@ -9,7 +9,7 @@ evidence without the schema containing it. Run by ``just gen-doc``.
 from __future__ import annotations
 
 import shutil
-from html import escape
+from html import escape as _html_escape
 from pathlib import Path
 
 from linkml_microschemas_envar import slot_evidence as se
@@ -17,6 +17,11 @@ from linkml_microschemas_envar import slot_evidence as se
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "docs" / "templates-linkml" / "_evidence"
 EXTENT_LABEL = {"full": "full coverage", "partial": "partial coverage", "absent": "absent", "out_of_layer": "out of layer"}
+
+
+def escape(text: object, quote: bool = True) -> str:
+    """HTML-escape, and neutralise braces: the class template includes the fragments as Jinja."""
+    return _html_escape(str(text), quote=quote).replace("{", "&#123;").replace("}", "&#125;")
 
 
 def _row(key: str, html: str, css: str = "") -> str:

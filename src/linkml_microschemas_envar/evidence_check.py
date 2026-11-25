@@ -35,6 +35,7 @@ class CheckResult:
     passed: list[se.Item] = field(default_factory=list)
     failed: list[tuple[se.Item, str]] = field(default_factory=list)
     skipped: list[se.Item] = field(default_factory=list)
+    lock_written: bool = False
 
 
 def fetch(url: str, timeout: int = 60) -> bytes:
@@ -57,23 +58,31 @@ def document_text(url: str, data: bytes) -> str:
     return text
 
 
-def _json_keys(value) -> set[str]:
+def _json_values(value, found: dict[str, set[str]]) -> None:
     if isinstance(value, dict):
-        return set(value) | {key for item in value.values() for key in _json_keys(item)}
-    if isinstance(value, list):
-        return {key for item in value for key in _json_keys(item)}
-    return set()
+        for key, item in value.items():
+            values = found.setdefault(key, set())
+            if not isinstance(item, (dict, list)):
+                values.add(item if isinstance(item, str) else json.dumps(item))
+            _json_values(item, found)
+    elif isinstance(value, list):
+        for item in value:
+            _json_values(item, found)
 
 
-def output_fields(url: str, text: str) -> set[str] | None:
-    """Column names of a CSV/TSV or keys of a JSON output; None for other files."""
+def output_values(url: str, text: str) -> dict[str, set[str]] | None:
+    """Field -> values, for the columns of a CSV/TSV or the keys of a JSON output; None for other files."""
     path = url.lower().split("?")[0]
     if path.endswith((".csv", ".tsv")):
-        delimiter = "\t" if path.endswith(".tsv") else ","
-        return {name.strip() for name in next(csv.reader(io.StringIO(text.lstrip("﻿")), delimiter=delimiter), [])}
+        delimiter = chr(9) if path.endswith(".tsv") else ","
+        rows = list(csv.reader(io.StringIO(text.lstrip(chr(0xFEFF))), delimiter=delimiter))
+        header = [name.strip() for name in rows[0]] if rows else []
+        return {name: {row[i].strip() for row in rows[1:] if i < len(row)} for i, name in enumerate(header)}
     if path.endswith(".json"):
         try:
-            return _json_keys(json.loads(text))
+            found: dict[str, set[str]] = {}
+            _json_values(json.loads(text), found)
+            return found
         except json.JSONDecodeError:
             return None
     return None
@@ -97,19 +106,25 @@ def item_problem(item: se.Item, url: str, text: str) -> str | None:
     if kind in ("documentation", "argument"):
         from linkml_reference_validator.models import ReferenceContent
 
+        matcher, snippet = _quote_matcher(), data.get("snippet") or ""
+        # The library accepts a part that is empty after normalisation, which matches any document.
+        parts = [matcher.normalize_text(part).split() for part in matcher._split_query(snippet)]
+        if not parts or any(len(words) < 2 for words in parts) or sum(len(w) for ws in parts for w in ws) < 12:
+            return "quote too short: every part needs at least two words"
         reference = ReferenceContent(reference_id=str(data.get("document")), content=text)
-        match = _quote_matcher().find_text_in_reference(data.get("snippet") or "", reference)
+        match = matcher.find_text_in_reference(snippet, reference)
         return None if match.found else f"quote not found: {match.error_message or 'no match in the document'}"
     if kind == "schema":
         name = str(data.get("source_slot") or "").split(".")[-1]
         return None if name and _occurs(name, text) else f"'{name}' does not occur in the document"
     if kind == "output":
-        name, fields = str(data.get("field") or ""), output_fields(url, text)
-        if not name or (name not in fields if fields is not None else not _occurs(name, text)):
+        name, values = str(data.get("field") or ""), output_values(url, text)
+        if not name or (name not in values if values is not None else not _occurs(name, text)):
             return f"'{name}' is not a field of the output"
-        value = data.get("value")
-        if value is not None and str(value) not in text:
-            return f"value '{value}' does not occur in the output"
+        if data.get("value") is not None:
+            value = str(data["value"])
+            if not value or (value not in values[name] if values is not None else not _occurs(value, text)):
+                return f"value '{value}' does not occur in the output" + (f" under '{name}'" if values is not None else "")
         return None
     return f"unknown type '{kind}'"
 
@@ -159,6 +174,9 @@ def check_documents(
             result.passed.append(item)
             lock_items.add(se.item_hash(item, sha256))
 
-    lock = {"documents": dict(sorted(lock_documents.items())), "items": sorted(lock_items)}
-    lock_path.write_text(LOCK_HEADER + yaml.safe_dump(lock, sort_keys=False), encoding="utf-8")
+    # After a failed fetch the lock would lose the entries of that document, so keep the old file.
+    if not any(isinstance(fetched, str) for fetched in documents.values()):
+        lock = {"documents": dict(sorted(lock_documents.items())), "items": sorted(lock_items)}
+        lock_path.write_text(LOCK_HEADER + yaml.safe_dump(lock, sort_keys=False), encoding="utf-8")
+        result.lock_written = True
     return result

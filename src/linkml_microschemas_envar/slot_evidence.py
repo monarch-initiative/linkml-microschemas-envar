@@ -30,7 +30,8 @@ EVIDENCE_DIR = PACKAGE_DIR / "evidence"
 SCHEMA_DIR = PACKAGE_DIR / "schema"
 EVIDENCE_SCHEMA = EVIDENCE_DIR / "evidence.schema.yaml"
 
-# Slots that had no covered_by verdict when the evidence files were created.
+# Slots that had no covered_by verdict when the evidence files were created, plus
+# `subject` (the profile's slot, tiered through slot_usage on the record).
 # unreviewed.yaml may only name slots from this list, so it can only shrink.
 FROZEN_UNREVIEWED: frozenset[str] = frozenset({
     "cf_cell_methods", "chain_compatibility_assertions", "clinical_date_assignment_convention",
@@ -45,11 +46,19 @@ FROZEN_UNREVIEWED: frozenset[str] = frozenset({
     "native_value_offset", "native_value_scale_factor", "percentile_reference_period_end",
     "percentile_reference_period_start", "population_weighting_source", "quality_flag_column",
     "quality_flag_vocabulary", "recommended_citation", "run_duration_seconds", "run_environment",
-    "run_log_excerpt", "source_acdd_attributes", "source_citation_bibtex", "source_homogenisation_status",
+    "run_log_excerpt", "source_acdd_attributes", "source_citation_bibtex", "source_homogenisation_status", "subject",
     "tool_description", "unit_conversion_formula", "units_display", "variable_column", "variable_key",
 })
 
 REQUIRED_BY_TYPE = {"schema": "source_slot", "documentation": "snippet", "argument": "snippet", "output": "field"}
+# Fields that only make sense for one evidence type; on any other type nothing would check them.
+FIELDS_BY_TYPE = {
+    "schema": {"source_slot", "source_label"},
+    "documentation": {"snippet"},
+    "argument": {"snippet"},
+    "output": {"field", "value"},
+}
+TYPE_FIELDS = set().union(*FIELDS_BY_TYPE.values())
 HASHED_FIELDS = ("type", "document", "snippet", "source_slot", "field", "value")
 
 
@@ -78,8 +87,33 @@ def _plain(value: Any) -> Any:
     return value
 
 
+class _UniqueKeyLoader(yaml.SafeLoader):
+    """PyYAML keeps the last of two equal keys; here that would drop a slot's evidence unnoticed."""
+
+    def construct_mapping(self, node, deep=False):
+        seen = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            if key in seen:
+                raise yaml.constructor.ConstructorError(None, None, f"duplicate key '{key}'", key_node.start_mark)
+            seen.add(key)
+        return super().construct_mapping(node, deep=deep)
+
+
 def load_yaml(path: Path) -> Any:
-    return _plain(yaml.safe_load(Path(path).read_text(encoding="utf-8")))
+    return _plain(yaml.load(Path(path).read_text(encoding="utf-8"), Loader=_UniqueKeyLoader))  # noqa: S506 (safe loader)
+
+
+def valid_orcid(url: str) -> bool:
+    """ORCID URL with a correct check digit (ISO 7064 mod 11-2)."""
+    digits = str(url).removeprefix("https://orcid.org/").replace("-", "")
+    if len(digits) != 16 or not digits[:15].isdigit():
+        return False
+    total = 0
+    for digit in digits[:15]:
+        total = (total + int(digit)) * 2
+    check = (12 - total % 11) % 11
+    return digits[15] == ("X" if check == 10 else str(check))
 
 
 def evidence_files(directory: Path = EVIDENCE_DIR) -> list[Path]:
@@ -112,8 +146,13 @@ def load_lock(path: Path = EVIDENCE_DIR / "evidence.lock.yaml") -> dict:
 
 
 def schema_slots(schema_dir: Path = SCHEMA_DIR) -> dict[str, str | None]:
-    """Slot key -> tier, for every slot and class-local attribute in the schema modules."""
+    """Slot key -> tier, for every slot and class-local attribute in the schema modules.
+
+    A slot defined elsewhere (the profile's ``subject``) that gets its tier
+    through a class's ``slot_usage`` counts under its own name.
+    """
     slots: dict[str, str | None] = {}
+    usages: dict[str, str] = {}
     for path in sorted(Path(schema_dir).glob("*.yaml")):
         module = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
         for name, slot in (module.get("slots") or {}).items():
@@ -121,7 +160,11 @@ def schema_slots(schema_dir: Path = SCHEMA_DIR) -> dict[str, str | None]:
         for class_name, cls in (module.get("classes") or {}).items():
             for name, slot in ((cls or {}).get("attributes") or {}).items():
                 slots[f"{class_name}.{name}"] = ((slot or {}).get("annotations") or {}).get("tier")
-    return slots
+            for name, slot in ((cls or {}).get("slot_usage") or {}).items():
+                tier = ((slot or {}).get("annotations") or {}).get("tier")
+                if tier:
+                    usages[name] = tier
+    return {**{name: tier for name, tier in usages.items() if name not in slots}, **slots}
 
 
 def iter_items(evidence: dict[str, dict]) -> Iterator[Item]:
@@ -164,6 +207,9 @@ def _item_problems(item: Item, registry: dict[str, dict], lock: dict) -> list[st
     required = REQUIRED_BY_TYPE.get(kind)
     if required and not data.get(required):
         found.append(f"{required} is required for type {kind}")
+    for name in sorted(TYPE_FIELDS - FIELDS_BY_TYPE.get(kind, TYPE_FIELDS)):
+        if data.get(name) is not None:
+            found.append(f"{name} is not allowed on type {kind}")
     if item.role == "closest" or kind == "argument":
         if data.get("match"):
             found.append(f"match is not allowed on {'a closest item' if item.role == 'closest' else 'type argument'}")
@@ -179,16 +225,28 @@ def _item_problems(item: Item, registry: dict[str, dict], lock: dict) -> list[st
         found.append(f"document '{document}' belongs to source '{owner}'" if owner else f"unknown document '{document}'")
 
     status = data.get("status")
-    if status == "confirmed" and not data.get("confirmation"):
-        found.append("confirmation is required for status confirmed")
+    found += _confirmation_problems(data)
     if status == "verified":
         if not document:
             found.append("verified needs a document")
         else:
-            sha = (lock["documents"].get(document) or {}).get("sha256", "")
-            if item_hash(item, sha) not in lock["items"]:
+            sha = (lock["documents"].get(document) or {}).get("sha256")
+            if not sha or item_hash(item, sha) not in lock["items"]:
                 found.append("no lock entry, run `just check-evidence`")
     return [f"{item.label}: {problem}" for problem in found]
+
+
+def _confirmation_problems(data: dict) -> list[str]:
+    """Rules for the confirmation of an item or non-support entry."""
+    confirmation = data.get("confirmation")
+    if not confirmation:
+        return ["confirmation is required for status confirmed"] if data.get("status") == "confirmed" else []
+    found = []
+    if not valid_orcid(confirmation.get("by", "")):
+        found.append(f"confirmation: '{confirmation.get('by')}' is not a valid ORCID")
+    if not str(confirmation.get("basis") or "").strip():
+        found.append("confirmation: basis is required")
+    return found
 
 
 def _entry_problems(slot: str, entry: dict, registry: dict[str, dict]) -> list[str]:
@@ -206,15 +264,14 @@ def _entry_problems(slot: str, entry: dict, registry: dict[str, dict]) -> list[s
         seen[source] += 1
         if source not in registry:
             found.append(f"{slot}: unknown source '{source}'")
+        if unsupported.get("status") == "verified":
+            found.append(f"{slot}: {source}: a non-support entry cannot be verified, only confirmed or unverified")
+        found += [f"{slot}: {source} non-support entry: {problem}" for problem in _confirmation_problems(unsupported)]
         if unsupported.get("legacy"):
             continue
         for name in ("reason", "explanation", "status"):
             if not unsupported.get(name):
                 found.append(f"{slot}: {source} non-support entry: {name} is required")
-        if unsupported.get("status") == "verified":
-            found.append(f"{slot}: {source}: a non-support entry cannot be verified, only confirmed or unverified")
-        if unsupported.get("status") == "confirmed" and not unsupported.get("confirmation"):
-            found.append(f"{slot}: {source} non-support entry: confirmation is required for status confirmed")
     found += [f"{slot}: source '{source}' appears more than once" for source, count in seen.items() if count > 1]
 
     none_found = entry.get("no_support_found")
@@ -222,6 +279,10 @@ def _entry_problems(slot: str, entry: dict, registry: dict[str, dict]) -> list[s
         if entry.get("supported_by"):
             found.append(f"{slot}: no_support_found is only allowed without supported_by")
         found += [f"{slot}: no_support_found: unknown source '{s}'" for s in none_found.get("searched") or [] if s not in registry]
+        if not none_found.get("searched"):
+            found.append(f"{slot}: no_support_found: searched must name at least one source")
+        if not valid_orcid(none_found.get("by", "")):
+            found.append(f"{slot}: no_support_found: '{none_found.get('by')}' is not a valid ORCID")
     return found
 
 
@@ -244,9 +305,20 @@ def offline_problems(
     """Everything that is wrong with the evidence files, checked without network."""
     directory = Path(directory)
     frozen = FROZEN_UNREVIEWED if frozen_unreviewed is None else frozen_unreviewed
-    found = _shape_problems(load_yaml(directory / "sources.yaml") or {}, "SourceRegistry", "sources.yaml")
-    for path in evidence_files(directory):
-        found += _shape_problems({"entries": load_yaml(path) or {}}, "EvidenceFile", path.name)
+    found = []
+    try:
+        sources = load_yaml(directory / "sources.yaml") or {}
+        found += _shape_problems(sources, "SourceRegistry", "sources.yaml")
+        for path in evidence_files(directory):
+            found += _shape_problems({"entries": load_yaml(path) or {}}, "EvidenceFile", path.name)
+    except yaml.YAMLError as error:
+        return [" ".join(str(error).split())]
+    if found:
+        return found
+    source_ids = Counter(source["id"] for source in sources.get("sources") or [])
+    document_ids = Counter(doc["id"] for source in sources.get("sources") or [] for doc in source.get("documents") or [])
+    found += [f"sources.yaml: source id '{name}' is used more than once" for name, count in source_ids.items() if count > 1]
+    found += [f"sources.yaml: document id '{name}' is used more than once" for name, count in document_ids.items() if count > 1]
     if found:
         return found
 
@@ -271,6 +343,7 @@ def offline_problems(
             found.append(f"{slot}: not in the frozen unreviewed list, new slots need evidence")
         if slot in evidence:
             found.append(f"{slot}: listed in unreviewed.yaml but has evidence, remove it from the list")
+    found += [f"{slot}: reviewed, remove it from FROZEN_UNREVIEWED too" for slot in sorted(frozen - set(unreviewed))]
     for slot, tier in slots.items():
         if _needs_evidence(slot, tier) and slot not in unreviewed and not _has_evidence(evidence.get(slot)):
             found.append(f"{slot}: no evidence (needs a supported_by entry or no_support_found)")
@@ -311,6 +384,8 @@ def main(argv: list[str] | None = None) -> int:
         for item, problem in result.failed:
             print(f"FAILED {item.label}: {problem}")
         failed = bool(result.failed)
+        if not result.lock_written:
+            print("evidence.lock.yaml left unchanged: a document could not be fetched")
 
     found = offline_problems()
     for problem in found:

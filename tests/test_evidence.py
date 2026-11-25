@@ -126,6 +126,29 @@ def test_valid_evidence_has_no_problems(tmp_path):
             "a non-support entry cannot be verified",
         ),
         ({k: v for k, v in GOOD.items() if k != "b"}, "b: no evidence"),
+        ({**GOOD, "a": support(type="schema", source_slot="t.srid")}, "snippet is not allowed on type schema"),
+        ({**GOOD, "a": support(field="score")}, "field is not allowed on type documentation"),
+        ({**GOOD, "a": support(value="1")}, "value is not allowed on type documentation"),
+        (
+            {**GOOD, "a": {"no_support_found": {"by": ORCID, "date": "2026-11-25", "searched": []}}},
+            "searched must name at least one source",
+        ),
+        (
+            {**GOOD, "a": {"no_support_found": {"by": ORCID[:-1] + "8", "date": "2026-11-25", "searched": ["alpha"]}}},
+            "not a valid ORCID",
+        ),
+        (
+            {**GOOD, "a": support(status="confirmed", confirmation={"by": "https://orcid.org/0000-0000-0000-0000", "date": "2026-11-25", "basis": "x"})},
+            "not a valid ORCID",
+        ),
+        (
+            {**GOOD, "a": support(status="confirmed", confirmation={"by": ORCID, "date": "2026-11-25", "basis": " "})},
+            "basis is required",
+        ),
+        (
+            {**GOOD, "a": {"not_supported_by": [{"source": "alpha", "legacy": {"extent": "absent", "status": "asserted"}, "status": "verified"}]}},
+            "a non-support entry cannot be verified",
+        ),
     ],
 )
 def test_offline_rules(tmp_path, evidence, expected):
@@ -168,6 +191,7 @@ def test_unreviewed_list_can_only_shrink(tmp_path):
     assert problems(tmp_path, without_b, unreviewed=["b"], frozen=frozenset({"b"})) == []
     assert any("b: listed in unreviewed.yaml but has evidence" in p for p in problems(tmp_path, GOOD, ["b"], frozen=frozenset({"b"})))
     assert any("b: not in the frozen unreviewed list" in p for p in problems(tmp_path, without_b, ["b"]))
+    assert any("b: reviewed, remove it from FROZEN_UNREVIEWED" in p for p in problems(tmp_path, GOOD, frozen=frozenset({"b"})))
     assert any("gone: unknown slot" in p for p in problems(tmp_path, GOOD, ["gone"], frozen=frozenset({"gone"})))
 
 
@@ -178,6 +202,42 @@ def test_verified_item_passes_with_its_lock_entry(tmp_path):
     assert problems(tmp_path, evidence, lock=lock) == []
     edited = {**GOOD, "a": support(status="verified", snippet="another quote")}
     assert any("no lock entry" in p for p in problems(tmp_path, edited, lock=lock))
+
+
+def test_verified_needs_the_document_hash_in_the_lock(tmp_path):
+    evidence = {**GOOD, "a": support(status="verified")}
+    item = next(se.iter_items({"a": evidence["a"]}))
+    lock = {"documents": {}, "items": [se.item_hash(item, "")]}
+    assert any("no lock entry" in p for p in problems(tmp_path, evidence, lock=lock))
+
+
+def _recheck(tmp_path):
+    return se.offline_problems(schema_dir=tmp_path / "schema", directory=tmp_path / "evidence", frozen_unreviewed=frozenset())
+
+
+def test_duplicate_ids_in_the_registry_are_problems(tmp_path):
+    problems(tmp_path, GOOD)
+    path = tmp_path / "evidence" / "sources.yaml"
+    gamma = {"id": "gamma", "name": "G", "kind": "tool", "documents": SOURCES["sources"][0]["documents"]}
+    path.write_text(yaml.safe_dump({"sources": [*SOURCES["sources"], gamma]}))
+    assert any("document id 'alpha-docs' is used more than once" in p for p in _recheck(tmp_path))
+    path.write_text(yaml.safe_dump({"sources": SOURCES["sources"] * 2}))
+    assert any("source id 'alpha' is used more than once" in p for p in _recheck(tmp_path))
+
+
+def test_a_slot_key_used_twice_in_one_file_is_a_problem(tmp_path):
+    problems(tmp_path, GOOD)
+    path = tmp_path / "evidence" / "mini.evidence.yaml"
+    path.write_text(path.read_text() + "a:\n  supported_by: []\n")
+    assert any("duplicate key 'a'" in p for p in _recheck(tmp_path))
+
+
+def test_slot_usage_tiers_count_as_slots(tmp_path):
+    (tmp_path / "schema").mkdir()
+    usage = {"subject": {"annotations": {"tier": "core"}}, "a": {"required": True}}
+    (tmp_path / "schema" / "mini.yaml").write_text(yaml.safe_dump({**SCHEMA, "classes": {"C": {"slot_usage": usage}}}))
+    expected = {"a": "core", "b": "recommended", "a_missing_reason": "optional", "untiered": None, "subject": "core"}
+    assert se.schema_slots(tmp_path / "schema") == expected
 
 
 def test_report_counts(tmp_path):
@@ -234,8 +294,8 @@ def test_no_converted_verdict_was_dropped():
 
 def test_unreviewed_list_is_the_frozen_list_or_smaller():
     unreviewed = set(se.load_yaml(se.EVIDENCE_DIR / "unreviewed.yaml"))
-    assert len(se.FROZEN_UNREVIEWED) == 51
-    assert unreviewed <= se.FROZEN_UNREVIEWED
+    assert len(se.FROZEN_UNREVIEWED) <= 52  # 51 without a verdict, plus `subject` (tier set through slot_usage)
+    assert unreviewed == se.FROZEN_UNREVIEWED
 
 
 # ── Docs fragments ───────────────────────────────────────────────────
@@ -283,3 +343,14 @@ def test_fragment_for_none_found_and_unreviewed_slots():
     html = module.render_fragment(none_found, {"alpha": {"name": "Alpha", "documents": {}}})
     assert "no support found (2026-11-25; searched Alpha). Nothing states it." in html
     assert "not yet reviewed against any source" in module.render_fragment(None, {})
+
+
+def test_fragment_text_cannot_be_read_as_jinja():
+    import jinja2
+
+    item = {**ITEM, "snippet": "set {{ year }} in the {# URL #} {% template %}"}
+    registry = {"alpha": {"name": "A", "documents": {}}}
+    html = _fragments().render_fragment({"supported_by": [{"source": "alpha", "support": [item]}]}, registry)
+    environment = jinja2.Environment(autoescape=False, keep_trailing_newline=True)  # noqa: S701
+    assert environment.from_string(html).render() == html
+    assert "{" not in html

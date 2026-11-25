@@ -189,13 +189,13 @@ crs:
           status: verified
       status: confirmed
       confirmation:
-        by: https://orcid.org/0000-0000-0000-0000
+        by: https://orcid.org/0000-0002-1825-0097
         date: 2026-11-25
         basis: "C-HER internal metadata database, not public"
 
 day_boundary_convention:
   no_support_found:
-    by: https://orcid.org/0000-0000-0000-0000
+    by: https://orcid.org/0000-0002-1825-0097
     date: 2026-11-25
     searched: [chel, omop_gaia, degauss, amadeus, cher, codata]
     note: "No source states where its day starts. Argument from literature still to add."
@@ -259,8 +259,11 @@ replace `legacy` blocks; the goal is zero.
 - Every key is a slot (or `Class.attribute`) in the schema. Every `source` and
   `document` id resolves, and the document belongs to that source.
 - Per-type required fields (table above). `match` absent on `argument`.
-- `confirmed` requires `by` (pattern `https://orcid.org/dddd-dddd-dddd-dddX`),
-  `date`, `basis`.
+- `confirmed` requires `by` (an ORCID URL with a correct check digit), `date`
+  and a non-empty `basis`. The examples here use ORCID's own sample id.
+- Fields of another evidence type are rejected (a `snippet` on a `schema`
+  item would be shown but never checked). Source ids and document ids are
+  unique across the registry. A slot key may appear once.
 - `verified` requires a `document` and a matching entry in
   `evidence.lock.yaml` (§6.2).
 - Completeness (§6.3).
@@ -278,16 +281,20 @@ have no licence, so their text may not be redistributed in this repo.
   the gitignored `.evidence_cache/` for inspection) and records its `sha256`
   in `evidence.lock.yaml`.
 - `documentation` and `argument`: the snippet must appear in the document
-  text, using linkml-reference-validator's matching (`...`, `[...]`).
+  text, using linkml-reference-validator's matching (`...`, `[...]`). Every
+  part between `...` needs at least two words. Known limit of the library:
+  the parts may match in any order, anywhere in the document, so a quote with
+  `...` proves less than a continuous one.
 - `schema`: `source_slot` (its last path segment) must appear in the document.
 - `output`: `field` must be a column or key of the file; `value`, if given,
-  must occur in it.
+  must occur in that column or under that key.
 - For each passing item the checker writes an entry to `evidence.lock.yaml`:
   a hash of the item's checkable fields plus the document `sha256`. The
   checker never rewrites the hand-edited files: the author writes
   `status: verified`, and the offline test accepts it only with a lock entry.
   Editing a verified snippet, or a changed document, breaks the lock entry
   and the offline test fails until the checker runs again.
+- When a document cannot be fetched, the lock file is left as it was.
 - CI runs the offline checks only. The network check is run locally and can
   later become a scheduled workflow.
 - PDFs (the ORNL reports): text is extracted for matching. Closed papers are
@@ -304,10 +311,13 @@ today and 51 have none.
   negative (my call). 27 of the 103 slots have only negative entries today;
   they pass through their legacy entries until their sources are reviewed,
   and then need support or `no_support_found`.
-- `unreviewed.yaml` starts with the 51 slots nobody has looked at. The test
+- `unreviewed.yaml` starts with the 51 slots nobody has looked at, plus
+  `subject` (the profile's slot, which gets its tier through `slot_usage` on
+  the record and was not counted in the 199). The test
   fails if a slot in it has any entry, and fails if the file names a slot
-  outside that frozen list of 51, so it can only shrink. It is not open to
-  new slots.
+  outside that frozen list, so it can only shrink. A reviewed slot is removed
+  from the file and from the frozen list together. It is not open to new
+  slots.
 - A report (part of `just check-evidence`, printed, not committed) gives:
   items by status, `legacy` blocks left, slots with `no_support_found`, slots
   in `unreviewed.yaml`.

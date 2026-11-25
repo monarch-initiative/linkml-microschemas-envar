@@ -20,9 +20,11 @@ DOCS = {
 }
 
 
-def run(tmp_path: Path, items: list[dict], role: str = "support"):
+def run(tmp_path: Path, items: list[dict], role: str = "support", missing: tuple[str, ...] = ()):
     for name, text in DOCS.items():
         (tmp_path / name).write_text(text)
+    for name in missing:
+        (tmp_path / name).unlink()
     documents = [{"id": name.replace(".", "-"), "title": name, "url": (tmp_path / name).as_uri()} for name in DOCS]
     documents.append({"id": "gone", "title": "gone", "url": (tmp_path / "missing.md").as_uri()})
     registry = {"alpha": {"id": "alpha", "name": "Alpha", "kind": "tool", "documents": {d["id"]: d for d in documents}}}
@@ -64,13 +66,21 @@ def test_items_that_the_documents_support_pass(tmp_path, item):
     ("item", "expected"),
     [
         (quote("The geocoder writes the match quality to the precision column"), "not found"),
-        (quote("..."), ""),
-        (quote(""), ""),
+        (quote("..."), "too short"),
+        (quote(""), "too short"),
+        (quote("\u2014"), "too short"),
+        (quote("***"), "too short"),
+        (quote("the"), "too short"),
+        (quote("The geocoder ... a ... on every row"), "too short"),
         (quote("anything at all here", document="gone"), "cannot fetch"),
         ({"type": "schema", "document": "schema-sql", "source_slot": "data_source.epsg"}, "'epsg' does not occur"),
         ({"type": "schema", "document": "schema-sql", "source_slot": "data_source.geom"}, "'geom' does not occur"),
         ({"type": "output", "document": "out-csv", "field": "range"}, "'range' is not a field"),
         ({"type": "output", "document": "out-csv", "field": "precision", "value": "street"}, "value 'street'"),
+        ({"type": "output", "document": "out-csv", "field": "score", "value": "range"}, "value 'range'"),
+        ({"type": "output", "document": "out-csv", "field": "score", "value": "8"}, "value '8'"),
+        ({"type": "output", "document": "out-csv", "field": "score", "value": ""}, "value ''"),
+        ({"type": "output", "document": "out-json", "field": "units", "value": "1.0"}, "value '1.0'"),
     ],
 )
 def test_items_that_the_documents_do_not_support_fail(tmp_path, item, expected):
@@ -78,6 +88,15 @@ def test_items_that_the_documents_do_not_support_fail(tmp_path, item, expected):
     assert len(result.failed) == 1 and not result.passed
     assert expected in result.failed[0][1]
     assert not lock["items"]
+
+
+def test_a_failed_fetch_leaves_the_lock_file_alone(tmp_path):
+    both = [quote("The geocoder writes the match type"), {"type": "schema", "document": "schema-sql", "source_slot": "t.srid"}]
+    _, lock, _ = run(tmp_path, both)
+    assert len(lock["items"]) == 2
+    result, after, _ = run(tmp_path, both, missing=("schema.sql",))
+    assert len(result.failed) == 1 and not result.lock_written
+    assert after == lock
 
 
 def test_items_without_a_document_are_skipped(tmp_path):
