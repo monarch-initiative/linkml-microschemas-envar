@@ -6,6 +6,9 @@
 /docs/schema_overview.md
 /docs/overview/
 /docs/datasets/
+# generated Python datamodel (just gen-python; built into the release packages)
+/src/linkml_microschemas_envar/datamodel/*
+!/src/linkml_microschemas_envar/datamodel/__init__.py
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 

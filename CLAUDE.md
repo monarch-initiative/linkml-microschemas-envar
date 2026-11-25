@@ -23,7 +23,7 @@ Everything here is exploratory and will change. Do not treat schemas, examples, 
 - `just test` — full suite: schema gen, pytest, and `linkml-run-examples` over `tests/data/valid` (the passing `core`/`recommended`/`ideal` gradient) and `tests/data/invalid` (`core_missing` counter-examples that MUST fail validation).
 - `just testdoc` — generate docs and serve locally via `mkdocs serve`.
 - `just clean` — remove generated artifacts.
-- Single Python test: `uv run pytest tests/path/to/test_file.py::test_name`.
+- Single Python test: `uv run pytest tests/path/to/test_file.py::test_name` (run `just gen-python` once first in a fresh checkout).
 
 **ALWAYS run `just test` after any change to the schema and/or datasets, and confirm it exits 0 before considering the work done.** It is exactly what CI runs; a single-test run or partial `gen-project` is not sufficient — the suite also cross-checks the datasets ledger, the tier/required invariants, and the standards index.
 
@@ -53,8 +53,8 @@ The substantive content is the LinkML schema set under `src/linkml_microschemas_
 ### Edit-vs-generated boundary
 
 - **Edit:** `src/linkml_microschemas_envar/schema/*.yaml` only.
-- **Never edit or track:** `project/` (from `just gen-project`), `docs/elements/` and `docs/schema/` (from `just gen-doc`), `docs/schema_overview.md` + `docs/overview/` (`just render-schema-overview`) and `docs/datasets/` (`just gen-datasets-ledger`). The docs deploy regenerates the site pages.
-- Generated but **git-tracked** (regenerate after schema/tier changes, never hand-edit): `src/linkml_microschemas_envar/datamodel/` except `__init__.py` (installs from git need it) and `docs/standards-index/index.md` (`just standards-index`).
+- **Never edit or track:** `project/` (from `just gen-project`), `docs/elements/` and `docs/schema/` (from `just gen-doc`), `docs/schema_overview.md` + `docs/overview/` (`just render-schema-overview`) `docs/datasets/` (`just gen-datasets-ledger`) and `src/linkml_microschemas_envar/datamodel/` except `__init__.py` (`just gen-python`). The docs deploy regenerates the site pages; `release.yaml` generates the datamodel and attaches the packages to the GitHub release.
+- Generated but **git-tracked** (regenerate after schema/tier changes, never hand-edit): `docs/standards-index/index.md` (`just standards-index`).
 - The canonical worked example is `examples/daymet_tmax_phoenix_2022_07_19.yaml`.
 
 ### Keep PR diffs small, without compromising function

@@ -23,7 +23,8 @@ LinkML microschemas for environmental exposure variables (EnVar). Initial scope:
     * [schema/](src/linkml_microschemas_envar/schema) -- LinkML schema
       (edit this)
     * [datamodel/](src/linkml_microschemas_envar/datamodel) -- generated
-      Python datamodel
+      Python datamodel (not in git: run `just gen-python`, or install a package
+      from the [releases](https://github.com/monarch-initiative/linkml-microschemas-envar/releases))
 * [tests/](tests/) - Python tests
   * [data/](tests/data) - Example data
 
