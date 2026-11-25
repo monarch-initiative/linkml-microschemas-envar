@@ -1,0 +1,107 @@
+# Evidence for the slots of envar_health_layer.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+health_layer_target:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        external_exposure table (OMOP CDM GIS extension) — the target is OMOP but is implicit,
+        not a named slot
+      note: >-
+        Gaia lands values into OMOP external_exposure, so the target layer is effectively
+        OMOP, but it is baked into the pipeline rather than declared in a target field. Conservative:
+        partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: PostgreSQL schema=health (health-resource bucket)
+      note: >-
+        C-HER has a health schema for health resources, but does not name a downstream health-data
+        model as an exposure-record target. Conservative: partial.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no unified external_exposure assembly)
+      note: >-
+        CHEL emits no unified exposure-assignment table and names no downstream health-layer
+        target first-class (EnVar-Tracker #38).
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS appends columns to the cohort CSV and names no downstream health-layer target.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus names no downstream health-layer target.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Health-layer target naming is instance/integration-layer; out of scope for CODATA.
+
+health_layer_link_field:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        external_exposure.exposure_source_value (the OMOP field that would carry a provenance
+        id)
+      note: >-
+        The OMOP external_exposure.exposure_source_value field exists and is the natural provenance-id
+        carrier, but gaia does not populate it with a sidecar provenance id. Conservative:
+        partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_column_dictionary.reference_column_id (FK to a column in another resource, e.g.
+        the health schema)
+      note: >-
+        C-HER models a cross-resource reference-column mechanism that could carry such a join,
+        but declares no exposure-record-to-health-layer link field. Conservative: partial.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no unified external_exposure assembly)
+      note: >-
+        With no unified assembly table, CHEL declares no health-layer join field (EnVar-Tracker
+        #38).
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS declares no health-layer join field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus declares no health-layer join field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Health-layer join-field declaration is instance/integration-layer; out of scope for
+        CODATA.

@@ -1,0 +1,30 @@
+# Registry of the sources cited in the *.evidence.yaml files.
+# Shape: evidence.schema.yaml (SourceRegistry). Design: specs/2026-11-25-slot-evidence-design.md
+sources:
+  - id: chel
+    name: CHEL
+    kind: dataset_repository
+    url: https://github.com/cladteam/CHEL
+  - id: omop_gaia
+    name: OMOP / GAIA
+    kind: standard
+    url: https://ohdsi.github.io/GIS/
+    standards_index_id: omop-cdm
+  - id: degauss
+    name: DeGAUSS
+    kind: tool
+    url: https://degauss.org/
+    standards_index_id: degauss
+  - id: amadeus
+    name: amadeus
+    kind: tool
+    url: https://github.com/NIEHS/amadeus
+  - id: cher
+    name: C-HER
+    kind: dataset_repository
+    url: https://doi.org/10.2172/3451859
+  - id: codata
+    name: CODATA Essential Variables / DDI-CDI
+    kind: standard
+    url: https://codata.org/
+    standards_index_id: codata-ev

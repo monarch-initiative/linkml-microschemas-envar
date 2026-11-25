@@ -1,0 +1,530 @@
+# Evidence for the slots of envar_toolrun.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+tool_name:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §5.5 (Foundry RID + CHEL release version)
+      note: >-
+        CHEL identifies its pipeline via Foundry RID + CHEL release, but not as a discrete
+        tool-name field.
+  - source: degauss
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        output filename stem (e.g. ...daymet_1.0.0.csv / ...geocoder_3.3.0...csv)
+      note: >-
+        Tool name is embedded in the output CSV filename, recoverable but not a first-class
+        field.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No gaia table records a tool-name field; the gaia-db image name is not carried on
+        any native output.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus output file records the tool name.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's table_dictionary carries dataset/resource metadata, not a per-run producing-tool
+        name.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Tool-run provenance is instance-layer; CODATA EVs/CDIF operate at the conceptual/represented
+        layer and are excluded from scoring.
+
+tool_version:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md Part 5 / §5.5 (CHEL release version)
+      note: >-
+        CHEL release version (2022 / 2024) is documented, but not as a per-tool semver in
+        a run record. Conservative: partial.
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        output filename container image tag (e.g. daymet_1.0.0) and ghcr.io/degauss-org/...
+        reference
+      evidence: >-
+        COMPARISON.md §K — tool version ✅ carried as the container image tag in the filename
+      note: >-
+        Container image tag baked into the filename pins the exact tool version.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: table_dictionary.version (resource version 001/002...) via §2.6
+      note: >-
+        C-HER carries a resource version code, but it versions the dataset resource, not a
+        per-run producing tool.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia table records the gaia-db image version.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus's R package version lives in the object attributes but no native file records
+        it.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Per-run tool version is instance-layer; out of scope for CODATA EV/CDIF conceptual
+        layer.
+
+container_image_repository:
+  supported_by:
+  - source: degauss
+    legacy:
+      extent: partial
+      status: asserted
+      where: ghcr.io/degauss-org/... reference implicit in the container invocation
+      note: >-
+        The repository is implied by the DeGAUSS container reference but not written to any
+        native output column.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §5.5 (Foundry datasets; no container repo)
+      note: >-
+        CHEL is built as Foundry datasets (§5.5 RIDs), not a container image, so it carries
+        no container image repository.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia table records a container image repository.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus is an R package, not a container; no image repository applies.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no producing-tool container image repository.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Container provenance is instance-layer; out of scope for CODATA.
+
+container_image_digest:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §5.5 (Foundry datasets; no container digest)
+      note: >-
+        CHEL is built as Foundry datasets (§5.5 RIDs); it carries no container image digest.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Container image digest is not carried by any native gaia output.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Only the mutable image tag is in the filename; no SHA256 digest is emitted.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No container image digest is emitted.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no producing-tool container image digest.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Container digest is instance-layer; out of scope for CODATA.
+
+run_arguments:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run argument map)
+      note: CHEL carries no per-run argument map.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia output records the invocation argument map.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no per-run argument map on its native outputs.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records the run argument map.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no per-run argument map.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Run arguments are instance-layer; out of scope for CODATA.
+
+run_timestamp_utc:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        gaia_db data_source.created_at/updated_at and location.created_at (load time, not
+        run timestamp)
+      note: >-
+        Gaia records per-row load times, which approximate but are not the tool-run start
+        timestamp.
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: thredds_response_headers.json HTTP Date header
+      note: >-
+        The HTTP Date header is the only timestamp captured, recoverable but not a first-class
+        run-timestamp field.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_dictionary.metadata_created_at/metadata_updated_at (metadata time, not producing-run
+        time)
+      note: >-
+        C-HER stamps metadata create/update times, which are registration times, not the producing
+        tool-run timestamp.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run timestamp)
+      note: CHEL carries no per-run timestamp on emitted records.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Only OS file mtime is available; no run timestamp is emitted.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Run timestamp is instance-layer; out of scope for CODATA.
+
+input_file_sha256:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run row counts / hashes)
+      note: CHEL carries no per-run input/output file hashes.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia output records an input-file SHA256.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no input-file checksum.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records an input-file SHA256 in this scenario.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no per-run input-file hash.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: File checksums are instance-layer; out of scope for CODATA.
+
+input_row_count:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run row counts / hashes)
+      note: CHEL carries no per-run input/output row counts or hashes.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native gaia output records an input row count; you would wc -l.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no input row count.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records an input row count.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no per-run input row count.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Row counts are instance-layer; out of scope for CODATA.
+
+output_file_sha256:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run row counts / hashes)
+      note: CHEL carries no per-run input/output file hashes.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia output records an output-file SHA256.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no output-file checksum.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records an output-file SHA256 in this scenario.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no per-run output-file hash.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: File checksums are instance-layer; out of scope for CODATA.
+
+output_row_count:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-run row counts / hashes)
+      note: CHEL carries no per-run input/output row counts or hashes.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native gaia output records an output row count; you would wc -l.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no output row count.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records an output row count.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER records no per-run output row count.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Row counts are instance-layer; out of scope for CODATA.
+
+provenance_chain_steps:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.1 (Source to Module Assignment pathway)
+      note: >-
+        CHEL documents a lineage pathway (Source to Cleaning to Harmonization to Hex Aggregation
+        to Normalization to Module Assignment), but not as an ordered per-run W3C-PROV chain.
+        Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt (SQL NOTICE
+        lines)
+      note: >-
+        Gaia's ETL descriptor plus the spatial-join log capture upstream steps, but not as
+        an ordered per-run W3C-PROV chain. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: dataset_lineage table (parent-child links) + lineage_notes
+      note: >-
+        C-HER's dataset_lineage links parent and child resources but is a dataset-lineage
+        graph, not an ordered per-run W3C-PROV tool chain.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no ordered upstream-run chain on its native outputs.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No native Amadeus file records an ordered upstream-run chain.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Ordered tool-run provenance is instance-layer; out of scope for CODATA.
+
+provenance_chain_terminus_type:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 (raw source inputs)
+      note: >-
+        CHEL's lineage terminates at raw source downloads (EJI, ACS, GPW v4, etc.), but the
+        terminus type is not a first-class typed field. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Gaia's meta_etl points at raw source downloads but has no typed chain-terminus field.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no typed provenance-chain terminus.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no typed provenance-chain terminus.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER's lineage graph has no typed terminus field on the chain.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Chain-terminus typing is instance-layer; out of scope for CODATA.

@@ -1,0 +1,321 @@
+# Evidence for the slots of envar_layout.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+table_orientation:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        CHEL data/CHEL_hex3_2022.csv, CHEL_hex3_2024.csv (wide, one row per hex_id)
+      note: >-
+        CHEL publishes wide hex-indexed tables (one row per `hex_id`, one column per indicator),
+        but not as a portable sidecar layout declaration. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_column_dictionary.column_tag (Index / Value distinguishes table structure)
+      note: >-
+        C-HER's per-column tags (Index vs Value) expose table structure, though not a wide/long
+        orientation flag. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        The OMOP external_exposure table is implicitly long, but no orientation flag is declared
+        as a field — it is a structural property a consumer must infer.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS's daymet CSV is wide (a `tmax` column) but declares no orientation field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus's gridmet_tmmx.csv is wide but declares no orientation field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        File orientation is an instance-layer layout detail; CODATA's conceptual layer does
+        not describe physical table shape.
+
+value_column:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL data/CHEL_hex3_*.csv (E_* / EPL_* / F_* indicator columns)
+      note: >-
+        Each indicator is its own value column in CHEL's hex tables, but the column binding
+        is not a portable sidecar declaration. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: external_exposure.value_as_number (Cel)
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for GAIA)
+      note: >-
+        The OMOP CDM binds the value to the stable external_exposure.value_as_number column.
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: cohort_addresses_geocoded_daymet CSV `tmax` column
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for DeGAUSS)
+      note: DeGAUSS writes the value to a stable `tmax` column on every row.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: gridmet_tmmx.csv `value_celsius` column
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for Amadeus)
+      note: Amadeus writes the converted value to a stable `value_celsius` column.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_column_dictionary column tagged Value (column_tag = Value)
+      note: >-
+        C-HER identifies the value-carrying column first-class via the Value column tag.
+  not_supported_by:
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Binding a value to a physical column is instance-layer; CODATA's conceptual layer
+        does not name file columns.
+
+subject_column:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL README.md linkage example (participant_id)
+      note: >-
+        The README linkage example carries a `participant_id` subject column, but not as a
+        portable sidecar binding. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: external_exposure.person_id; person.person_id; location.location_id
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for OMOP/GAIA)
+      note: >-
+        OMOP carries the subject identifier first-class on external_exposure.person_id (and
+        person/location).
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: '`id` column on every CSV row'
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for DeGAUSS)
+      note: DeGAUSS carries the person identifier in the `id` column on every row.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: '`person_loc_id` / `person_id` column on every row'
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for Amadeus)
+      note: Amadeus carries the person identifier on every row.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_column_dictionary column tagged Index / Foreign Reference (participant linkage)
+      note: >-
+        C-HER can tag a subject/participant column via Index or Foreign Reference, but not
+        as a dedicated sidecar subject binding. Conservative: partial.
+  not_supported_by:
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The subject/cohort column binding is instance-layer layout, outside CODATA's conceptual
+        scope.
+
+time_column:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL README.md linkage example (start_date)
+      note: >-
+        The README linkage example carries a participant `start_date` column (used to pick
+        the CHEL release); the hex tables themselves have no time column, and neither is a
+        portable sidecar binding. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        external_exposure attr_start_date / attr_end_date (window-wide, not per-day)
+      note: >-
+        GAIA carries date columns but collapses every row to the variable's window-wide attr_start_date/attr_end_date
+        — per-day external_exposure does not come out. Conservative: partial.
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        one row per (person × day) in cohort_addresses_geocoded_daymet CSV (per-day date)
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for DeGAUSS)
+      note: DeGAUSS emits a per-day date on every row (24 rows, per-day).
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: one row per (person × day) in gridmet_tmmx.csv (per-day date)
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for Amadeus)
+      note: Amadeus emits a per-day date on every row (24 rows, per-day).
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: table_column_dictionary column tagged Temporal – Primary
+      note: >-
+        C-HER tags time columns first-class via the Temporal – Primary tag, but not as a portable
+        sidecar time binding. Conservative: partial.
+  not_supported_by:
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The time-column binding is instance-layer layout, outside CODATA's conceptual scope.
+
+value_uncertainty_column:
+  supported_by:
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_column_dictionary column tagged Meta value (info about a Value column)
+      note: >-
+        C-HER's Meta value tag could carry a per-value uncertainty column referencing its
+        Value column, but none is asserted here. Conservative: partial.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §4.6.4 (no per-value uncertainty carried)
+      note: >-
+        CHEL carries no per-value uncertainty for its indicators (only the EJI population
+        margin of error `M_TOTPOP` passes through), so no uncertainty column is bound.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No per-value uncertainty column on external_exposure; the OMOP stack carries no measurement-error
+        column for the value.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS's daymet CSV carries the value only, no per-value standard-error column.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus's gridmet_tmmx.csv carries no per-value uncertainty column.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A per-value uncertainty column binding is instance-layer layout, outside CODATA's
+        conceptual scope.
+
+null_semantics_column:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: full
+      status: asserted
+      where: CHEL Documentation.md §4.3.3 Null Handling
+      note: >-
+        CHEL §4.3.3 defines exactly this three-way null taxonomy (structural / derived / true-zero)
+        and excludes nulls from percentile-ranking denominators on its basis.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        gaia_catalog meta_etl_*.json nodata = ["float4", "-9999"] (dataset-level sentinel,
+        not per-value null-kind)
+      note: >-
+        GAIA declares a dataset-level nodata sentinel for daymet but no per-value column tagging
+        present / structural_null / derived_null / true_zero. Conservative: partial.
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level sentinel, not
+        per-value null-kind)
+      note: >-
+        Amadeus declares a fill/missing-value sentinel that marks structural nulls, but no
+        per-value column distinguishing the three null kinds. Conservative: partial.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS emits no null-kind indicator column and no missing-value sentinel in its CSV
+        output.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER handles null semantics in its validation rules (§4.3.3 concepts live in CHEL),
+        but binds no per-value null-kind column in table_column_dictionary.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A per-value null-semantics column binding is instance-layer layout, outside CODATA's
+        conceptual scope.
