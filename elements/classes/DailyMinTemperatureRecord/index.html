@@ -316,8 +316,8 @@
 <p><span class="envar-classname">DailyMinTemperatureRecord</span></p>
 <p class="envar-lead">Canonical record for daily minimum 2 m air temperature (Tmin). Pins <code>standard_name = CF:air_temperature</code>, <code>cf_cell_methods = "time: minimum"</code>, <code>units_ucum = Cel</code>, <code>value_data_type = continuous_numeric</code>.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">17 fields</span>
-<span class="envar-metachip">12 core</span></p>
+<p><span class="envar-metachip">18 fields</span>
+<span class="envar-metachip">11 core</span></p>
 <p><span class="envar-metachip">URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/class/DailyMinTemperatureRecord">envar:class/DailyMinTemperatureRecord</a></span></p>
 </div>
 </div>
@@ -341,11 +341,11 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Core</span>
 <span class="envar-groupnote">Required for a valid record</span>
-<span class="envar-groupcount">12 fields</span>
+<span class="envar-groupcount">11 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card core">
-<div class="envar-cardhead"><span class="envar-cardtitle">Subject (Patient or Cohort)</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
+<div class="envar-cardhead"><span class="envar-cardtitle">Subject (Patient, Cohort or Geographic Unit)</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
 <div class="envar-cardmeta">
 <p><code>subject</code> · range <a href="../../types/String/">String</a> · cardinality 1</p>
 </div>
@@ -353,12 +353,15 @@
 <p>Who (or what group) the values belong to — a study cohort or an individual patient, named by an anonymous code rather than anything identifying.</p>
 </div>
 <div class="envar-desc">
-<p>The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.</p>
+<p>The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here. When the file covers several units, <code>subject</code> names the set and the column named in <code>data_layout.subject_column</code> holds each unit's code.</p>
 </div>
 <div class="envar-block">
-<p class="envar-blocklabel">Example</p>
+<p class="envar-blocklabel">Examples</p>
 <div class="envar-eg">
 <p><code>cohort:phoenix_aki_2022</code> — <span class="egdesc">an opaque cohort handle — no PHI</span></p>
+</div>
+<div class="envar-eg">
+<p><code>FIPS:37183</code> — <span class="egdesc">a county (<code>subject_type</code> population_geographic_unit)</span></p>
 </div>
 </div>
 <details class="envar-why">
@@ -779,61 +782,6 @@
 </details>
 </div>
 <div class="envar-card core">
-<div class="envar-cardhead"><span class="envar-cardtitle">Linkage Method</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
-<div class="envar-cardmeta">
-<p><code>linkage_method</code> · range <a href="../LinkageMethod/">LinkageMethod</a> · cardinality 1</p>
-</div>
-<div class="envar-explain">
-<p>Environmental data describes places, but health research is about people. This block records how the value for a place was attached to a particular person — for example, by looking up the map cell containing their home address — since that step involves real choices that affect the result.</p>
-</div>
-<div class="envar-desc">
-<p>Linkage-method object — see envar_linkage.</p>
-</div>
-<div class="envar-block">
-<p class="envar-blocklabel">Example</p>
-<div class="envar-eg">
-<p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
-</div>
-</div>
-<details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.5.2, §2.2.2 (point-to-hex join + deterministic privacy jitter)</div>
-<div class="envar-cov-note">CHEL's linkage is first-class: deterministic participant point to Hex3 join plus a deterministic privacy reassignment (jitter) at the linkage stage.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt</div>
-<div class="envar-cov-note">Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented linkage-strategy column. Conservative: partial.</div>
-</div>
-<div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state</div>
-<div class="envar-cov-note">DeGAUSS's linkage event (geocoding precision, match score, result flag, matched address) is first-class per row.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and records no linkage/geocoding quality.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)</div>
-<div class="envar-cov-note">C-HER models cross-table join references and spatial-column tags, but no patient-to-place linkage-strategy field. Conservative: partial.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
-<div class="envar-cov-note">Patient-to-place linkage is instance-layer; out of scope for CODATA.</div>
-</div>
-</details>
-<details class="envar-why">
-<summary>Why it matters &amp; mappings</summary>
-<div class="envar-whyblock">
-<p>Attaching a place-based value to a person is a lossy, choice-laden step (geocoding, point vs buffer extraction, date alignment) — the "linkage descriptor" gap the GECC/EIRENE forum names as central. Without it, two studies using the same data product can differ solely through undocumented joins.</p>
-</div>
-</details>
-</div>
-<div class="envar-card core">
 <div class="envar-cardhead"><span class="envar-cardtitle">Schema Version</span><span class="envar-cardbadges"><span class="envar-tierbadge core">core</span><span class="envar-req">required</span></span></div>
 <div class="envar-cardmeta">
 <p><code>schema_version</code> · range <a href="../../types/String/">String</a> · cardinality 1</p>
@@ -1015,7 +963,7 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Conditionally core</span>
 <span class="envar-groupnote">Required in specific contexts</span>
-<span class="envar-groupcount">1 field</span>
+<span class="envar-groupcount">2 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card conditionally_core">
@@ -1042,15 +990,135 @@
 </div>
 </details>
 </div>
+<div class="envar-card conditionally_core">
+<div class="envar-cardhead"><span class="envar-cardtitle">Linkage Method</span><span class="envar-cardbadges"><span class="envar-tierbadge conditionally_core">conditionally core</span></span></div>
+<div class="envar-cardmeta">
+<p><code>linkage_method</code> · range <a href="../LinkageMethod/">LinkageMethod</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>Environmental data describes places, but health research is about people. This block records how the value for a place was attached to a particular person — for example, by looking up the map cell containing their home address — since that step involves real choices that affect the result.</p>
+</div>
+<div class="envar-desc">
+<p>Linkage-method object (see envar_linkage). Required unless <code>subject_type</code> is population_geographic_unit.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>None</code> — <span class="egdesc">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</span></p>
+</div>
+</div>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.5.2, §2.2.2 (point-to-hex join + deterministic privacy jitter)</div>
+<div class="envar-cov-note">CHEL's linkage is first-class: deterministic participant point to Hex3 join plus a deterministic privacy reassignment (jitter) at the linkage stage.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt</div>
+<div class="envar-cov-note">Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented linkage-strategy column. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state</div>
+<div class="envar-cov-note">DeGAUSS's linkage event (geocoding precision, match score, result flag, matched address) is first-class per row.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-note">Amadeus collapses the address to lat/lon at the THREDDS request and records no linkage/geocoding quality.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)</div>
+<div class="envar-cov-note">C-HER models cross-table join references and spatial-column tags, but no patient-to-place linkage-strategy field. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov-note">Patient-to-place linkage is instance-layer; out of scope for CODATA.</div>
+</div>
+</details>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>Attaching a place-based value to a person is a lossy, choice-laden step (geocoding, point vs buffer extraction, date alignment) — the "linkage descriptor" gap the GECC/EIRENE forum names as central. Without it, two studies using the same data product can differ solely through undocumented joins.</p>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="envar-fieldgroup">
 <div class="envar-grouphead">
 <span class="envar-groupname">Recommended</span>
 <span class="envar-groupnote">Strongly encouraged</span>
-<span class="envar-groupcount">3 fields</span>
+<span class="envar-groupcount">4 fields</span>
 </div>
 <div class="envar-cards">
+<div class="envar-card recommended">
+<div class="envar-cardhead"><span class="envar-cardtitle">Subject Type</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
+<div class="envar-cardmeta">
+<p><code>subject_type</code> · range <a href="../../enums/SubjectTypeEnum/">SubjectTypeEnum</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>Whether the values belong to a patient, a study cohort, or a place such as a county.</p>
+</div>
+<div class="envar-desc">
+<p>What kind of thing <code>subject</code> identifies. For a population_geographic_unit, <code>target_geography_type</code> is the kind of unit and <code>linkage_method</code> may be left out.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>cohort</code></p>
+</div>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Allowed values</p>
+<div class="envar-values">
+<span class="envar-value" title="An individual patient."><code>patient</code> <span class="vdesc">An individual patient</span></span>
+<span class="envar-value" title="A group of people, such as a study cohort."><code>cohort</code> <span class="vdesc">A group of people, such as a study cohort</span></span>
+<span class="envar-value" title="A geographic unit (a county, a ZCTA), as in a public aggregate that is not linked to any person."><code>population_geographic_unit</code> <span class="vdesc">A geographic unit (a county, a ZCTA), as in a public aggregate that is not li...</span></span>
+</div>
+</div>
+<details class="envar-cov-details">
+<summary>Covered by — 6 standards</summary>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id</div>
+<div class="envar-cov-note">The key column implies the subject (hex_id in the released tables, participant_id in the linkage example), but no field states it.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.person_id; location_history.domain_id/entity_id</div>
+<div class="envar-cov-note">person_id makes every exposure row person-level and location_history.domain_id types the entity, but no subject-type field exists.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> output CSV id column (daymet 1.0.0 README.md)</div>
+<div class="envar-cov-note">DeGAUSS keeps the user's own id column and has no field saying what the id identifies.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> amadeus R/utils-calculate.R locs_id, version 2.1.2</div>
+<div class="envar-cov-note">Amadeus output keeps a location identifier (locs_id) and does not declare whether it stands for a patient, a cohort or a geographic unit.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution code; Spatial Primary column tag (§2.3.2)</div>
+<div class="envar-cov-note">The spatial resolution code gives the geographic unit (c00 is county-level data), but no field declares the subject kind.</div>
+</div>
+<div class="envar-cov st-asserted">
+<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> DDI-CDI 1.0 UnitType (Conceptual package)</div>
+<div class="envar-cov-note">UnitType states the class of unit, for example Person or State, at the conceptual layer; it does not declare one delivered record's subject.</div>
+</div>
+</details>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>Tells a person-linked record apart from a public aggregate that was never linked to anyone.</p>
+</div>
+</details>
+</div>
 <div class="envar-card recommended">
 <div class="envar-cardhead"><span class="envar-cardtitle">Uncertainty</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
 <div class="envar-cardmeta">
@@ -1270,11 +1338,18 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Subject (Patient or Cohort)</strong></td>
+<td><strong>Subject (Patient, Cohort or Geographic Unit)</strong></td>
 <td><code>subject</code></td>
 <td>core</td>
 <td>1 <br/> <a href="../../types/String/">String</a></td>
-<td>The patient or cohort the exposure value is attached to</td>
+<td>The patient, cohort or geographic unit the exposure value is attached to</td>
+</tr>
+<tr>
+<td><strong>Subject Type</strong></td>
+<td><code>subject_type</code></td>
+<td>recommended</td>
+<td>0..1 <br/> <a href="../../enums/SubjectTypeEnum/">SubjectTypeEnum</a></td>
+<td>What kind of thing <code>subject</code> identifies</td>
 </tr>
 <tr>
 <td><strong>Variable Identity</strong></td>
@@ -1349,9 +1424,9 @@
 <tr>
 <td><strong>Linkage Method</strong></td>
 <td><code>linkage_method</code></td>
-<td>core</td>
-<td>1 <br/> <a href="../LinkageMethod/">LinkageMethod</a></td>
-<td>Linkage-method object — see envar_linkage</td>
+<td>conditionally core</td>
+<td>0..1 <br/> <a href="../LinkageMethod/">LinkageMethod</a></td>
+<td>Linkage-method object (see envar_linkage)</td>
 </tr>
 <tr>
 <td><strong>Health-Layer Linkage</strong></td>
@@ -1460,7 +1535,7 @@
 
 
 
-        DailyMinTemperatureRecord --&gt; "1" LinkageMethod : linkage_method
+        DailyMinTemperatureRecord --&gt; "0..1" LinkageMethod : linkage_method
         click LinkageMethod href "../../classes/LinkageMethod/"
 
 
@@ -1514,6 +1589,17 @@
 
 
       DailyMinTemperatureRecord : subject
+
+      DailyMinTemperatureRecord : subject_type
+
+
+
+
+
+        DailyMinTemperatureRecord --&gt; "0..1" SubjectTypeEnum : subject_type
+        click SubjectTypeEnum href "../../enums/SubjectTypeEnum/"
+
+
 
       DailyMinTemperatureRecord : temporal_reference
 
@@ -1595,12 +1681,16 @@
 <span class="w">          </span><span class="s">rows</span><span class="nv"> </span><span class="s">(per-row</span><span class="nv"> </span><span class="s">subject</span><span class="nv"> </span><span class="s">identity</span><span class="nv"> </span><span class="s">lives</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">`subject_column`).</span><span class="nv"> </span><span class="s">Under</span><span class="nv"> </span><span class="s">review</span>
 <span class="w">          </span><span class="s">—</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">dropped,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">demoted</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset-level</span><span class="nv"> </span><span class="s">cohort</span><span class="nv"> </span><span class="s">handle?</span><span class="nv"> </span><span class="s">Feedback</span>
 <span class="w">          </span><span class="s">welcome.'</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The patient or cohort the exposure value is attached to. Carried</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as an opaque identifier; PHI must not appear here.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject (Patient or Cohort)</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The patient, cohort or geographic unit the exposure value is attached</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to. Carried as an opaque identifier (or the unit's code); PHI must not appear</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">here. When the file covers several units, `subject` names the set and the column</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">named in `data_layout.subject_column` holds each unit's code.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject (Patient, Cohort or Geographic Unit)</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cohort:phoenix_aki_2022</span>
 <span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">an opaque cohort handle — no PHI</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FIPS:37183</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a county (`subject_type` population_geographic_unit)</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DailyMinTemperatureRecord</span>
@@ -1610,6 +1700,136 @@
 <span class="w">    </span><span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exposure_description</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">subject_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_type</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recommended</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tells a person-linked record apart from a public aggregate that was</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">never linked to anyone.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether the values belong to a patient, a study cohort, or a place</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">such as a county.</span>
+<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
+<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The key column implies the subject (hex_id in the released</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">tables, participant_id in the linkage example), but no field states</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">it.</span>
+<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure.person_id; location_history.domain_id/entity_id</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">person_id makes every exposure row person-level and location_history.domain_id</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">types the entity, but no subject-type field exists.</span>
+<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output CSV id column (daymet 1.0.0 README.md)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS keeps the user's own id column and has no field saying</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">what the id identifies.</span>
+<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus R/utils-calculate.R locs_id, version 2.1.2</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus output keeps a location identifier (locs_id) and does</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not declare whether it stands for a patient, a cohort or a geographic</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">unit.</span>
+<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">code; Spatial Primary column tag (§2.3.2)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The spatial resolution code gives the geographic unit (c00</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is county-level data), but no field declares the subject kind.</span>
+<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
+<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
+<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
+<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DDI-CDI 1.0 UnitType (Conceptual package)</span>
+<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
+<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UnitType states the class of unit, for example Person or State,</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">at the conceptual layer; it does not declare one delivered record's</span>
+<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">subject.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What kind of thing `subject` identifies. For a population_geographic_unit,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">`target_geography_type` is the kind of unit and `linkage_method` may be left</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">out.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject Type</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cohort</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DailyMinTemperatureRecord</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalExposureRecord</span>
+<span class="w">    </span><span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exposure_description</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubjectTypeEnum</span>
 <span class="w">  </span><span class="nt">variable_identity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_identity</span>
 <span class="w">    </span><span class="nt">implements</span><span class="p">:</span>
@@ -2969,7 +3189,7 @@
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conditionally_core</span>
 <span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Attaching a place-based value to a person is a lossy, choice-laden</span>
@@ -3092,7 +3312,8 @@
 <span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Patient-to-place linkage is instance-layer; out of scope for</span>
 <span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage-method object — see envar_linkage.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage-method object (see envar_linkage). Required unless `subject_type`</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is population_geographic_unit.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage Method</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml</span>
@@ -3109,7 +3330,6 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalExposureRecord</span>
 <span class="w">    </span><span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health_data_integration</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">health_layer_linkage</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health_layer_linkage</span>

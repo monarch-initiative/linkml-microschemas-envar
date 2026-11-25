@@ -1206,6 +1206,22 @@ enums:
       osf:
         text: osf
         description: Open Science Framework.
+  SubjectTypeEnum:
+    name: SubjectTypeEnum
+    description: The kind of thing a record's `subject` identifies.
+    title: Subject Type
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    permissible_values:
+      patient:
+        text: patient
+        description: An individual patient.
+      cohort:
+        text: cohort
+        description: A group of people, such as a study cohort.
+      population_geographic_unit:
+        text: population_geographic_unit
+        description: A geographic unit (a county, a ZCTA), as in a public aggregate
+          that is not linked to any person.
   ComparatorEnum:
     name: ComparatorEnum
     description: Comparator for quantity values
@@ -15747,6 +15763,134 @@ slots:
     title: Record Identity & Safety
     from_schema: https://w3id.org/linkml/microschemas/envar
     is_grouping_slot: true
+  subject_type:
+    name: subject_type
+    annotations:
+      tier:
+        tag: tier
+        value: recommended
+      justification:
+        tag: justification
+        value: Tells a person-linked record apart from a public aggregate that was
+          never linked to anyone.
+      explanation:
+        tag: explanation
+        value: Whether the values belong to a patient, a study cohort, or a place
+          such as a county.
+      covered_by:
+        tag: covered_by
+        annotations:
+          clad:
+            tag: clad
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+              note:
+                tag: note
+                value: The key column implies the subject (hex_id in the released
+                  tables, participant_id in the linkage example), but no field states
+                  it.
+          omop_gaia:
+            tag: omop_gaia
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: external_exposure.person_id; location_history.domain_id/entity_id
+              note:
+                tag: note
+                value: person_id makes every exposure row person-level and location_history.domain_id
+                  types the entity, but no subject-type field exists.
+          degauss:
+            tag: degauss
+            annotations:
+              extent:
+                tag: extent
+                value: absent
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: output CSV id column (daymet 1.0.0 README.md)
+              note:
+                tag: note
+                value: DeGAUSS keeps the user's own id column and has no field saying
+                  what the id identifies.
+          amadeus:
+            tag: amadeus
+            annotations:
+              extent:
+                tag: extent
+                value: absent
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+              note:
+                tag: note
+                value: Amadeus output keeps a location identifier (locs_id) and does
+                  not declare whether it stands for a patient, a cohort or a geographic
+                  unit.
+          cher:
+            tag: cher
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                  code; Spatial Primary column tag (§2.3.2)
+              note:
+                tag: note
+                value: The spatial resolution code gives the geographic unit (c00
+                  is county-level data), but no field declares the subject kind.
+          codata:
+            tag: codata
+            annotations:
+              extent:
+                tag: extent
+                value: partial
+              status:
+                tag: status
+                value: asserted
+              where:
+                tag: where
+                value: DDI-CDI 1.0 UnitType (Conceptual package)
+              note:
+                tag: note
+                value: UnitType states the class of unit, for example Person or State,
+                  at the conceptual layer; it does not declare one delivered record's
+                  subject.
+    description: What kind of thing `subject` identifies. For a population_geographic_unit,
+      `target_geography_type` is the kind of unit and `linkage_method` may be left
+      out.
+    title: Subject Type
+    examples:
+    - value: cohort
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - EnvironmentalExposureRecord
+    slot_group: exposure_description
+    range: SubjectTypeEnum
   variable_identity:
     name: variable_identity
     implements:
@@ -16775,7 +16919,7 @@ slots:
     annotations:
       tier:
         tag: tier
-        value: core
+        value: conditionally_core
       justification:
         tag: justification
         value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -16898,7 +17042,8 @@ slots:
                 tag: note
                 value: Patient-to-place linkage is instance-layer; out of scope for
                   CODATA.
-    description: Linkage-method object — see envar_linkage.
+    description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+      is population_geographic_unit.
     title: Linkage Method
     examples:
     - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -16913,7 +17058,6 @@ slots:
     - EnvironmentalExposureRecord
     slot_group: health_data_integration
     range: LinkageMethod
-    required: true
     inlined: true
   tool_run:
     name: tool_run
@@ -32953,6 +33097,7 @@ classes:
     - https://github.com/linkml/linkml-microschema-profile
     slots:
     - subject
+    - subject_type
     - variable_identity
     - spatial_reference
     - temporal_reference
@@ -32994,12 +33139,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         slot_group: exposure_description
         range: string
       schema_version:
@@ -33036,12 +33186,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         from_schema: https://w3id.org/linkml/microschemas/envar
         owner: EnvironmentalExposureRecord
         domain_of:
@@ -33050,6 +33205,135 @@ classes:
         slot_group: exposure_description
         range: string
         required: true
+      subject_type:
+        name: subject_type
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: Tells a person-linked record apart from a public aggregate that
+              was never linked to anyone.
+          explanation:
+            tag: explanation
+            value: Whether the values belong to a patient, a study cohort, or a place
+              such as a county.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+                  note:
+                    tag: note
+                    value: The key column implies the subject (hex_id in the released
+                      tables, participant_id in the linkage example), but no field
+                      states it.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: external_exposure.person_id; location_history.domain_id/entity_id
+                  note:
+                    tag: note
+                    value: person_id makes every exposure row person-level and location_history.domain_id
+                      types the entity, but no subject-type field exists.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: output CSV id column (daymet 1.0.0 README.md)
+                  note:
+                    tag: note
+                    value: DeGAUSS keeps the user's own id column and has no field
+                      saying what the id identifies.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+                  note:
+                    tag: note
+                    value: Amadeus output keeps a location identifier (locs_id) and
+                      does not declare whether it stands for a patient, a cohort or
+                      a geographic unit.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                      code; Spatial Primary column tag (§2.3.2)
+                  note:
+                    tag: note
+                    value: The spatial resolution code gives the geographic unit (c00
+                      is county-level data), but no field declares the subject kind.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: DDI-CDI 1.0 UnitType (Conceptual package)
+                  note:
+                    tag: note
+                    value: UnitType states the class of unit, for example Person or
+                      State, at the conceptual layer; it does not declare one delivered
+                      record's subject.
+        description: What kind of thing `subject` identifies. For a population_geographic_unit,
+          `target_geography_type` is the kind of unit and `linkage_method` may be
+          left out.
+        title: Subject Type
+        examples:
+        - value: cohort
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: EnvironmentalExposureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: exposure_description
+        range: SubjectTypeEnum
       variable_identity:
         name: variable_identity
         implements:
@@ -34410,7 +34694,7 @@ classes:
         annotations:
           tier:
             tag: tier
-            value: core
+            value: conditionally_core
           justification:
             tag: justification
             value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -34535,7 +34819,8 @@ classes:
                     tag: note
                     value: Patient-to-place linkage is instance-layer; out of scope
                       for CODATA.
-        description: Linkage-method object — see envar_linkage.
+        description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+          is population_geographic_unit.
         title: Linkage Method
         examples:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -34551,7 +34836,6 @@ classes:
         - EnvironmentalExposureRecord
         slot_group: health_data_integration
         range: LinkageMethod
-        required: true
         inlined: true
       health_layer_linkage:
         name: health_layer_linkage
@@ -35142,6 +35426,36 @@ classes:
         range: PhiStatusEnum
         required: true
     tree_root: true
+    rules:
+    - preconditions:
+        slot_conditions:
+          subject_type:
+            name: subject_type
+            value_presence: ABSENT
+      postconditions:
+        slot_conditions:
+          linkage_method:
+            name: linkage_method
+            required: true
+            any_of:
+            - range: LinkageMethod
+      description: A person-linked record must say how the value was linked; a record
+        without a subject_type is treated as person-linked.
+    - preconditions:
+        slot_conditions:
+          subject_type:
+            name: subject_type
+            equals_string_in:
+            - patient
+            - cohort
+      postconditions:
+        slot_conditions:
+          linkage_method:
+            name: linkage_method
+            required: true
+            any_of:
+            - range: LinkageMethod
+      description: The same when the subject is declared a patient or cohort.
   MicroschemaDefinition:
     name: MicroschemaDefinition
     annotations:
@@ -35462,12 +35776,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         from_schema: https://w3id.org/linkml/microschemas/envar
         owner: DailyMaxTemperatureRecord
         domain_of:
@@ -35476,6 +35795,135 @@ classes:
         slot_group: exposure_description
         range: string
         required: true
+      subject_type:
+        name: subject_type
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: Tells a person-linked record apart from a public aggregate that
+              was never linked to anyone.
+          explanation:
+            tag: explanation
+            value: Whether the values belong to a patient, a study cohort, or a place
+              such as a county.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+                  note:
+                    tag: note
+                    value: The key column implies the subject (hex_id in the released
+                      tables, participant_id in the linkage example), but no field
+                      states it.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: external_exposure.person_id; location_history.domain_id/entity_id
+                  note:
+                    tag: note
+                    value: person_id makes every exposure row person-level and location_history.domain_id
+                      types the entity, but no subject-type field exists.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: output CSV id column (daymet 1.0.0 README.md)
+                  note:
+                    tag: note
+                    value: DeGAUSS keeps the user's own id column and has no field
+                      saying what the id identifies.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+                  note:
+                    tag: note
+                    value: Amadeus output keeps a location identifier (locs_id) and
+                      does not declare whether it stands for a patient, a cohort or
+                      a geographic unit.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                      code; Spatial Primary column tag (§2.3.2)
+                  note:
+                    tag: note
+                    value: The spatial resolution code gives the geographic unit (c00
+                      is county-level data), but no field declares the subject kind.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: DDI-CDI 1.0 UnitType (Conceptual package)
+                  note:
+                    tag: note
+                    value: UnitType states the class of unit, for example Person or
+                      State, at the conceptual layer; it does not declare one delivered
+                      record's subject.
+        description: What kind of thing `subject` identifies. For a population_geographic_unit,
+          `target_geography_type` is the kind of unit and `linkage_method` may be
+          left out.
+        title: Subject Type
+        examples:
+        - value: cohort
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DailyMaxTemperatureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: exposure_description
+        range: SubjectTypeEnum
       variable_identity:
         name: variable_identity
         implements:
@@ -36836,7 +37284,7 @@ classes:
         annotations:
           tier:
             tag: tier
-            value: core
+            value: conditionally_core
           justification:
             tag: justification
             value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -36961,7 +37409,8 @@ classes:
                     tag: note
                     value: Patient-to-place linkage is instance-layer; out of scope
                       for CODATA.
-        description: Linkage-method object — see envar_linkage.
+        description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+          is population_geographic_unit.
         title: Linkage Method
         examples:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -36977,7 +37426,6 @@ classes:
         - EnvironmentalExposureRecord
         slot_group: health_data_integration
         range: LinkageMethod
-        required: true
         inlined: true
       health_layer_linkage:
         name: health_layer_linkage
@@ -37620,12 +38068,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         from_schema: https://w3id.org/linkml/microschemas/envar
         owner: DailyMinTemperatureRecord
         domain_of:
@@ -37634,6 +38087,135 @@ classes:
         slot_group: exposure_description
         range: string
         required: true
+      subject_type:
+        name: subject_type
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: Tells a person-linked record apart from a public aggregate that
+              was never linked to anyone.
+          explanation:
+            tag: explanation
+            value: Whether the values belong to a patient, a study cohort, or a place
+              such as a county.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+                  note:
+                    tag: note
+                    value: The key column implies the subject (hex_id in the released
+                      tables, participant_id in the linkage example), but no field
+                      states it.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: external_exposure.person_id; location_history.domain_id/entity_id
+                  note:
+                    tag: note
+                    value: person_id makes every exposure row person-level and location_history.domain_id
+                      types the entity, but no subject-type field exists.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: output CSV id column (daymet 1.0.0 README.md)
+                  note:
+                    tag: note
+                    value: DeGAUSS keeps the user's own id column and has no field
+                      saying what the id identifies.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+                  note:
+                    tag: note
+                    value: Amadeus output keeps a location identifier (locs_id) and
+                      does not declare whether it stands for a patient, a cohort or
+                      a geographic unit.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                      code; Spatial Primary column tag (§2.3.2)
+                  note:
+                    tag: note
+                    value: The spatial resolution code gives the geographic unit (c00
+                      is county-level data), but no field declares the subject kind.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: DDI-CDI 1.0 UnitType (Conceptual package)
+                  note:
+                    tag: note
+                    value: UnitType states the class of unit, for example Person or
+                      State, at the conceptual layer; it does not declare one delivered
+                      record's subject.
+        description: What kind of thing `subject` identifies. For a population_geographic_unit,
+          `target_geography_type` is the kind of unit and `linkage_method` may be
+          left out.
+        title: Subject Type
+        examples:
+        - value: cohort
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DailyMinTemperatureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: exposure_description
+        range: SubjectTypeEnum
       variable_identity:
         name: variable_identity
         implements:
@@ -38994,7 +39576,7 @@ classes:
         annotations:
           tier:
             tag: tier
-            value: core
+            value: conditionally_core
           justification:
             tag: justification
             value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -39119,7 +39701,8 @@ classes:
                     tag: note
                     value: Patient-to-place linkage is instance-layer; out of scope
                       for CODATA.
-        description: Linkage-method object — see envar_linkage.
+        description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+          is population_geographic_unit.
         title: Linkage Method
         examples:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -39135,7 +39718,6 @@ classes:
         - EnvironmentalExposureRecord
         slot_group: health_data_integration
         range: LinkageMethod
-        required: true
         inlined: true
       health_layer_linkage:
         name: health_layer_linkage
@@ -39765,12 +40347,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         from_schema: https://w3id.org/linkml/microschemas/envar
         owner: WetBulbGlobeTemperatureOutdoorRecord
         domain_of:
@@ -39779,6 +40366,135 @@ classes:
         slot_group: exposure_description
         range: string
         required: true
+      subject_type:
+        name: subject_type
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: Tells a person-linked record apart from a public aggregate that
+              was never linked to anyone.
+          explanation:
+            tag: explanation
+            value: Whether the values belong to a patient, a study cohort, or a place
+              such as a county.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+                  note:
+                    tag: note
+                    value: The key column implies the subject (hex_id in the released
+                      tables, participant_id in the linkage example), but no field
+                      states it.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: external_exposure.person_id; location_history.domain_id/entity_id
+                  note:
+                    tag: note
+                    value: person_id makes every exposure row person-level and location_history.domain_id
+                      types the entity, but no subject-type field exists.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: output CSV id column (daymet 1.0.0 README.md)
+                  note:
+                    tag: note
+                    value: DeGAUSS keeps the user's own id column and has no field
+                      saying what the id identifies.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+                  note:
+                    tag: note
+                    value: Amadeus output keeps a location identifier (locs_id) and
+                      does not declare whether it stands for a patient, a cohort or
+                      a geographic unit.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                      code; Spatial Primary column tag (§2.3.2)
+                  note:
+                    tag: note
+                    value: The spatial resolution code gives the geographic unit (c00
+                      is county-level data), but no field declares the subject kind.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: DDI-CDI 1.0 UnitType (Conceptual package)
+                  note:
+                    tag: note
+                    value: UnitType states the class of unit, for example Person or
+                      State, at the conceptual layer; it does not declare one delivered
+                      record's subject.
+        description: What kind of thing `subject` identifies. For a population_geographic_unit,
+          `target_geography_type` is the kind of unit and `linkage_method` may be
+          left out.
+        title: Subject Type
+        examples:
+        - value: cohort
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: WetBulbGlobeTemperatureOutdoorRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: exposure_description
+        range: SubjectTypeEnum
       variable_identity:
         name: variable_identity
         implements:
@@ -41140,7 +41856,7 @@ classes:
         annotations:
           tier:
             tag: tier
-            value: core
+            value: conditionally_core
           justification:
             tag: justification
             value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -41265,7 +41981,8 @@ classes:
                     tag: note
                     value: Patient-to-place linkage is instance-layer; out of scope
                       for CODATA.
-        description: Linkage-method object — see envar_linkage.
+        description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+          is population_geographic_unit.
         title: Linkage Method
         examples:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -41281,7 +41998,6 @@ classes:
         - EnvironmentalExposureRecord
         slot_group: health_data_integration
         range: LinkageMethod
-        required: true
         inlined: true
       health_layer_linkage:
         name: health_layer_linkage
@@ -41923,12 +42639,17 @@ classes:
               rows (per-row subject identity lives in `subject_column`). Under review
               — should it be dropped, or demoted to a dataset-level cohort handle?
               Feedback welcome.'
-        description: The patient or cohort the exposure value is attached to. Carried
-          as an opaque identifier; PHI must not appear here.
-        title: Subject (Patient or Cohort)
+        description: The patient, cohort or geographic unit the exposure value is
+          attached to. Carried as an opaque identifier (or the unit's code); PHI must
+          not appear here. When the file covers several units, `subject` names the
+          set and the column named in `data_layout.subject_column` holds each unit's
+          code.
+        title: Subject (Patient, Cohort or Geographic Unit)
         examples:
         - value: cohort:phoenix_aki_2022
           description: an opaque cohort handle — no PHI
+        - value: FIPS:37183
+          description: a county (`subject_type` population_geographic_unit)
         from_schema: https://w3id.org/linkml/microschemas/envar
         owner: ExtremeHeatDayFlagRecord
         domain_of:
@@ -41937,6 +42658,135 @@ classes:
         slot_group: exposure_description
         range: string
         required: true
+      subject_type:
+        name: subject_type
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: Tells a person-linked record apart from a public aggregate that
+              was never linked to anyone.
+          explanation:
+            tag: explanation
+            value: Whether the values belong to a patient, a study cohort, or a place
+              such as a county.
+          covered_by:
+            tag: covered_by
+            annotations:
+              clad:
+                tag: clad
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
+                  note:
+                    tag: note
+                    value: The key column implies the subject (hex_id in the released
+                      tables, participant_id in the linkage example), but no field
+                      states it.
+              omop_gaia:
+                tag: omop_gaia
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: external_exposure.person_id; location_history.domain_id/entity_id
+                  note:
+                    tag: note
+                    value: person_id makes every exposure row person-level and location_history.domain_id
+                      types the entity, but no subject-type field exists.
+              degauss:
+                tag: degauss
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: output CSV id column (daymet 1.0.0 README.md)
+                  note:
+                    tag: note
+                    value: DeGAUSS keeps the user's own id column and has no field
+                      saying what the id identifies.
+              amadeus:
+                tag: amadeus
+                annotations:
+                  extent:
+                    tag: extent
+                    value: absent
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: amadeus R/utils-calculate.R locs_id, version 2.1.2
+                  note:
+                    tag: note
+                    value: Amadeus output keeps a location identifier (locs_id) and
+                      does not declare whether it stands for a patient, a cohort or
+                      a geographic unit.
+              cher:
+                tag: cher
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution
+                      code; Spatial Primary column tag (§2.3.2)
+                  note:
+                    tag: note
+                    value: The spatial resolution code gives the geographic unit (c00
+                      is county-level data), but no field declares the subject kind.
+              codata:
+                tag: codata
+                annotations:
+                  extent:
+                    tag: extent
+                    value: partial
+                  status:
+                    tag: status
+                    value: asserted
+                  where:
+                    tag: where
+                    value: DDI-CDI 1.0 UnitType (Conceptual package)
+                  note:
+                    tag: note
+                    value: UnitType states the class of unit, for example Person or
+                      State, at the conceptual layer; it does not declare one delivered
+                      record's subject.
+        description: What kind of thing `subject` identifies. For a population_geographic_unit,
+          `target_geography_type` is the kind of unit and `linkage_method` may be
+          left out.
+        title: Subject Type
+        examples:
+        - value: cohort
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: ExtremeHeatDayFlagRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: exposure_description
+        range: SubjectTypeEnum
       variable_identity:
         name: variable_identity
         implements:
@@ -43298,7 +44148,7 @@ classes:
         annotations:
           tier:
             tag: tier
-            value: core
+            value: conditionally_core
           justification:
             tag: justification
             value: Attaching a place-based value to a person is a lossy, choice-laden
@@ -43423,7 +44273,8 @@ classes:
                     tag: note
                     value: Patient-to-place linkage is instance-layer; out of scope
                       for CODATA.
-        description: Linkage-method object — see envar_linkage.
+        description: Linkage-method object (see envar_linkage). Required unless `subject_type`
+          is population_geographic_unit.
         title: Linkage Method
         examples:
         - description: abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml
@@ -43439,7 +44290,6 @@ classes:
         - EnvironmentalExposureRecord
         slot_group: health_data_integration
         range: LinkageMethod
-        required: true
         inlined: true
       health_layer_linkage:
         name: health_layer_linkage

@@ -694,8 +694,8 @@
 
 
 <h1 id="slot-linkage-method-linkage_method">Slot: Linkage Method (linkage_method)</h1>
-<p><em>Linkage-method object — see envar_linkage.</em></p>
-<p><strong>Tier:</strong> <code>core</code></p>
+<p><em>Linkage-method object (see envar_linkage). Required unless <code>subject_type</code> is population_geographic_unit.</em></p>
+<p><strong>Tier:</strong> <code>conditionally_core</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>Attaching a place-based value to a person is a lossy, choice-laden step (geocoding, point vs buffer extraction, date alignment) — the "linkage descriptor" gap the GECC/EIRENE forum names as central. Without it, two studies using the same data product can differ solely through undocumented joins.</p>
 <h2 id="in-plain-terms">In plain terms</h2>
@@ -774,8 +774,8 @@
 </thead>
 <tbody>
 <tr>
-<td>Required</td>
-<td>Yes</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -804,7 +804,7 @@
 <tbody>
 <tr>
 <td>tier</td>
-<td>core</td>
+<td>conditionally_core</td>
 </tr>
 <tr>
 <td>justification</td>
@@ -849,7 +849,7 @@
 <span class="nt">annotations</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">tier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
-<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conditionally_core</span>
 <span class="w">  </span><span class="nt">justification</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Attaching a place-based value to a person is a lossy, choice-laden step</span>
@@ -968,7 +968,8 @@
 <span class="w">          </span><span class="nt">note</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
 <span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Patient-to-place linkage is instance-layer; out of scope for CODATA.</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage-method object — see envar_linkage.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage-method object (see envar_linkage). Required unless `subject_type`</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">is population_geographic_unit.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linkage Method</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml</span>
@@ -984,7 +985,6 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalExposureRecord</span>
 <span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">health_data_integration</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkageMethod</span>
-<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

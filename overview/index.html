@@ -346,11 +346,18 @@ name and value type in small print), then four columns:</p>
 </thead>
 <tbody>
 <tr>
-<td><strong>Subject (Patient or Cohort)</strong><br><small><code>subject</code> · text</small></td>
-<td>The patient or cohort the exposure value is attached to. Carried as an opaque identifier; PHI must not appear here.<br>💡 <em>Who (or what group) the values belong to — a study cohort or an individual patient, named by an anonymous code rather than anything identifying.</em><br><br>❓ <strong>Open question (draft — feedback welcome):</strong> <code>subject</code> is the only field in this group that is not a per-value predicate: every other field explains an individual value, but a single scalar subject is dataset-scoped and cannot distribute over the sidecar's rows (per-row subject identity lives in <code>subject_column</code>). Under review — should it be dropped, or demoted to a dataset-level cohort handle? Feedback welcome.</td>
+<td><strong>Subject (Patient, Cohort or Geographic Unit)</strong><br><small><code>subject</code> · text</small></td>
+<td>The patient, cohort or geographic unit the exposure value is attached to. Carried as an opaque identifier (or the unit's code); PHI must not appear here. When the file covers several units, <code>subject</code> names the set and the column named in <code>data_layout.subject_column</code> holds each unit's code.<br>💡 <em>Who (or what group) the values belong to — a study cohort or an individual patient, named by an anonymous code rather than anything identifying.</em><br><br>❓ <strong>Open question (draft — feedback welcome):</strong> <code>subject</code> is the only field in this group that is not a per-value predicate: every other field explains an individual value, but a single scalar subject is dataset-scoped and cannot distribute over the sidecar's rows (per-row subject identity lives in <code>subject_column</code>). Under review — should it be dropped, or demoted to a dataset-level cohort handle? Feedback welcome.</td>
 <td>An exposure value is meaningless without knowing whose exposure it is. The opaque handle is what lets the sidecar be joined back to the right cohort or patient in the health-data layer while staying PHI-free.</td>
-<td><code>cohort:phoenix_aki_2022</code> — an opaque cohort handle — no PHI</td>
+<td><code>cohort:phoenix_aki_2022</code> — an opaque cohort handle — no PHI<br><code>FIPS:37183</code> — a county (<code>subject_type</code> population_geographic_unit)</td>
 <td>🟥 Core<br><em>(required)</em></td>
+</tr>
+<tr>
+<td><strong>Subject Type</strong><br><small><code>subject_type</code> · <a href="#subject-type">Subject Type</a> value</small></td>
+<td>What kind of thing <code>subject</code> identifies. For a population_geographic_unit, <code>target_geography_type</code> is the kind of unit and <code>linkage_method</code> may be left out.<br>💡 <em>Whether the values belong to a patient, a study cohort, or a place such as a county.</em></td>
+<td>Tells a person-linked record apart from a public aggregate that was never linked to anyone.</td>
+<td><code>cohort</code></td>
+<td>🟨 Recommended</td>
 </tr>
 <tr>
 <td><strong>Variable Identity</strong><br><small><code>variable_identity</code> · <a href="#variable-identity">Variable Identity</a> block</small></td>
@@ -469,10 +476,10 @@ name and value type in small print), then four columns:</p>
 <tbody>
 <tr>
 <td><strong>Linkage Method</strong><br><small><code>linkage_method</code> · <a href="#linkage-method-gridded-patient">Linkage Method</a> block</small></td>
-<td>Linkage-method object — see envar_linkage.<br>💡 <em>Environmental data describes places, but health research is about people. This block records how the value for a place was attached to a particular person — for example, by looking up the map cell containing their home address — since that step involves real choices that affect the result.</em></td>
+<td>Linkage-method object (see envar_linkage). Required unless <code>subject_type</code> is population_geographic_unit.<br>💡 <em>Environmental data describes places, but health research is about people. This block records how the value for a place was attached to a particular person — for example, by looking up the map cell containing their home address — since that step involves real choices that affect the result.</em></td>
 <td>Attaching a place-based value to a person is a lossy, choice-laden step (geocoding, point vs buffer extraction, date alignment) — the "linkage descriptor" gap the GECC/EIRENE forum names as central. Without it, two studies using the same data product can differ solely through undocumented joins.</td>
 <td>abridged — see tests/data/valid/EnvironmentalExposureRecord-tmax_ideal.yaml for a full instance</td>
-<td>🟥 Core<br><em>(required)</em></td>
+<td>🟧 Core (conditional)</td>
 </tr>
 <tr>
 <td><strong>Health-Layer Linkage</strong><br><small><code>health_layer_linkage</code> · <a href="#health-layer-linkage">Health-Layer Linkage</a> block</small></td>
@@ -554,6 +561,30 @@ name and value type in small print), then four columns:</p>
   end
   R --&gt; G3
 </code></pre>
+<h3 id="subject-type">Subject Type<a class="headerlink" href="#subject-type" title="Permanent link">¶</a></h3>
+<p>The kind of thing a record's <code>subject</code> identifies.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>patient</strong></td>
+<td>An individual patient.</td>
+</tr>
+<tr>
+<td><strong>cohort</strong></td>
+<td>A group of people, such as a study cohort.</td>
+</tr>
+<tr>
+<td><strong>population geographic unit</strong></td>
+<td>A geographic unit (a county, a ZCTA), as in a public aggregate that is not linked to any person.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="variable-identity">🏷️ Variable Identity<a class="headerlink" href="#variable-identity" title="Permanent link">¶</a></h2>
 <p><strong>What was measured — the physical quantity, its units, and how it binds to community vocabularies.</strong></p>
 <p>Variable identity slots: standard-name CURIE (CF where it exists, ENVAR or ontology terms otherwise), UCUM units, target-vocabulary concept id + status, generic concept cross-references, plausible value range, value data type. Identity only — the binding to columns in the companion data file lives in envar_layout. Covers §2 of envar-heat-scenario-requirements.md.</p>

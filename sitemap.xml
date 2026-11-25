@@ -285,6 +285,10 @@
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/enums/SubjectTypeEnum/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/enums/TableOrientationEnum/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
@@ -1074,6 +1078,10 @@
     </url>
     <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/subject_column/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/subject_type/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>
