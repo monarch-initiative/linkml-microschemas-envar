@@ -989,7 +989,6 @@ class ToolRun(YAMLRoot):
     run_duration_seconds: Optional[float] = None
     run_environment: Optional[Union[dict, AnyValue]] = None
     input_file_sha256: Optional[str] = None
-    input_files: Optional[Union[Union[dict, "InputFile"], list[Union[dict, "InputFile"]]]] = empty_list()
     input_row_count: Optional[int] = None
     output_file_sha256: Optional[str] = None
     output_row_count: Optional[int] = None
@@ -1034,10 +1033,6 @@ class ToolRun(YAMLRoot):
         if self.input_file_sha256 is not None and not isinstance(self.input_file_sha256, str):
             self.input_file_sha256 = str(self.input_file_sha256)
 
-        if not isinstance(self.input_files, list):
-            self.input_files = [self.input_files] if self.input_files is not None else []
-        self.input_files = [v if isinstance(v, InputFile) else InputFile(**as_dict(v)) for v in self.input_files]
-
         if self.input_row_count is not None and not isinstance(self.input_row_count, int):
             self.input_row_count = int(self.input_row_count)
 
@@ -1052,31 +1047,6 @@ class ToolRun(YAMLRoot):
 
         if self.run_log_excerpt_missing_reason is not None and not isinstance(self.run_log_excerpt_missing_reason, MissingReasonEnum):
             self.run_log_excerpt_missing_reason = MissingReasonEnum(self.run_log_excerpt_missing_reason)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class InputFile(YAMLRoot):
-    """
-    One file a tool run read, with where to find it and its hash.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = PROV["Entity"]
-    class_class_curie: ClassVar[str] = "prov:Entity"
-    class_name: ClassVar[str] = "InputFile"
-    class_model_uri: ClassVar[URIRef] = ENVAR.InputFile
-
-    input_file_locator: Optional[str] = None
-    input_file_sha256: Optional[str] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.input_file_locator is not None and not isinstance(self.input_file_locator, str):
-            self.input_file_locator = str(self.input_file_locator)
-
-        if self.input_file_sha256 is not None and not isinstance(self.input_file_sha256, str):
-            self.input_file_sha256 = str(self.input_file_sha256)
 
         super().__post_init__(**kwargs)
 
@@ -3163,12 +3133,6 @@ slots.run_duration_seconds = Slot(uri=ENVAR.run_duration_seconds, name="run_dura
 slots.run_environment = Slot(uri=ENVAR.run_environment, name="run_environment", curie=ENVAR.curie('run_environment'),
                    model_uri=ENVAR.run_environment, domain=None, range=Optional[Union[dict, AnyValue]])
 
-slots.input_files = Slot(uri=PROV.used, name="input_files", curie=PROV.curie('used'),
-                   model_uri=ENVAR.input_files, domain=None, range=Optional[Union[Union[dict, InputFile], list[Union[dict, InputFile]]]])
-
-slots.input_file_locator = Slot(uri=ENVAR.input_file_locator, name="input_file_locator", curie=ENVAR.curie('input_file_locator'),
-                   model_uri=ENVAR.input_file_locator, domain=None, range=Optional[str])
-
 slots.input_file_sha256 = Slot(uri=ENVAR.input_file_sha256, name="input_file_sha256", curie=ENVAR.curie('input_file_sha256'),
                    model_uri=ENVAR.input_file_sha256, domain=None, range=Optional[str])
 
@@ -3447,9 +3411,6 @@ slots.modelAggregateUncertainty__cv_rmse = Slot(uri=ENVAR.cv_rmse, name="modelAg
 
 slots.modelAggregateUncertainty__reported_in = Slot(uri=ENVAR.reported_in, name="modelAggregateUncertainty__reported_in", curie=ENVAR.curie('reported_in'),
                    model_uri=ENVAR.modelAggregateUncertainty__reported_in, domain=None, range=Optional[str])
-
-slots.inputFile__input_file_sha256 = Slot(uri=ENVAR.input_file_sha256, name="inputFile__input_file_sha256", curie=ENVAR.curie('input_file_sha256'),
-                   model_uri=ENVAR.inputFile__input_file_sha256, domain=None, range=Optional[str])
 
 slots.VariableIdentity_variable_name = Slot(uri=ENVAR.variable_name, name="VariableIdentity_variable_name", curie=ENVAR.curie('variable_name'),
                    model_uri=ENVAR.VariableIdentity_variable_name, domain=VariableIdentity, range=str)
