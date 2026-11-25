@@ -8621,7 +8621,7 @@ class SourceDataset(ConfiguredBaseModel):
                          'tier': {'tag': 'tier', 'value': 'optional'}},
          'domain_of': ['SourceDataset'],
          'examples': [{'value': 'not_provided_by_source'}]} })
-    source_dataset_version: str = Field(default=..., title="Source Dataset Version", description="""Source product version. E.g. \"V4 R1\" for Daymet; \"V5.GL.03\" vs \"V6.GL.02\" for ACAG PM products. Version differences materially change values.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
+    source_dataset_version: str = Field(default=..., title="Source Dataset Version", description="""Source product version. E.g. \"V4 R1\" for Daymet; \"V5.GL.03\" vs \"V6.GL.02\" for ACAG PM products. Version differences materially change values. A repository's own table version goes in `resource_version`.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'absent'},
                                                                                     'note': {'tag': 'note',
                                                                                              'value': 'Amadeus '
@@ -17910,6 +17910,73 @@ class HealthLayerLinkage(ConfiguredBaseModel):
                        'value': 'available_but_not_extracted'}]} })
 
 
+class DeliveredResource(ConfiguredBaseModel):
+    """
+    Identity of the table or file a producer delivered and this record describes, as opposed to the upstream product (`source_dataset`) and the sidecar itself (`provenance_id`). Copy the values from the producer's metadata, not from parts of the identifier.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'domain_of_use': {'tag': 'domain_of_use',
+                                           'value': 'environmental_exposure'}},
+         'from_schema': 'https://w3id.org/linkml/microschemas/envar/health_layer',
+         'title': 'Delivered Resource'})
+
+    resource_identifier: Optional[str] = Field(default=None, title="Resource Identifier", description="""The producer's identifier for the delivered table or file, verbatim.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'The name or number the data '
+                                                  'provider gave to the exact table '
+                                                  'you received.'},
+                         'justification': {'tag': 'justification',
+                                           'value': '`provenance_id` names the '
+                                                    'sidecar, so without this slot '
+                                                    'nothing names the delivered table '
+                                                    'it describes. Optional because '
+                                                    'values produced in-house have no '
+                                                    'producer-issued identifier.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['DeliveredResource'],
+         'examples': [{'description': 'illustrative table name built by a fixed naming '
+                                      'scheme',
+                       'value': 'exampleorg_daymet_tmax_phoenix_2022_001'}]} })
+    resource_identifier_scheme: Optional[str] = Field(default=None, title="Resource Identifier Scheme", description="""URI of the naming scheme that decodes `resource_identifier`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'A link to the rules for reading the '
+                                                  'identifier, like a key to the parts '
+                                                  'of a product code.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'A structured identifier can only '
+                                                    'be decoded with its scheme; a '
+                                                    'pointer avoids repeating each '
+                                                    'part in EnVar slots.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['DeliveredResource'],
+         'examples': [{'description': 'illustrative scheme URI',
+                       'value': 'https://example.org/table-naming-scheme'}]} })
+    resource_version: Optional[str] = Field(default=None, title="Resource Version", description="""The producer's own version of the delivered resource, independent of the upstream release in `source_dataset_version`.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Which edition of the table you '
+                                                  'received. The provider can correct '
+                                                  'its table while the original '
+                                                  'dataset stays the same.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'A table re-registered after an '
+                                                    'error fix has the same '
+                                                    '`source_dataset_version` as the '
+                                                    "broken one; only the producer's "
+                                                    'version tells them apart.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['DeliveredResource'],
+         'examples': [{'description': 'first registration of the table; quoted to keep '
+                                      'the zeros',
+                       'value': '001'}]} })
+    resource_publisher: Optional[str] = Field(default=None, title="Resource Publisher", description="""Organisation that issued the resource's identifier and version.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': 'Who prepared and numbered the table '
+                                                  'you received.'},
+                         'justification': {'tag': 'justification',
+                                           'value': 'An identifier or version is only '
+                                                    'unique within the organisation '
+                                                    'that issued it, which need not be '
+                                                    "the source's producer."},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['DeliveredResource'],
+         'examples': [{'value': 'C-HER (ORNL)'}]} })
+
+
 class DepositMetadata(ConfiguredBaseModel):
     """
     Deposit-time slots required when the sidecar travels alongside a published FAIR object (Zenodo / Dryad / C-HER / etc.). Most slots are pulled from other modules; this class names the required-for-deposit subset and adds a few deposit-specific slots.
@@ -19795,6 +19862,16 @@ class EnvironmentalExposureRecord(ConfiguredBaseModel):
                                   'source_dataset_short_code': 'daymet_v4',
                                   'source_license_spdx': 'public-domain-us-gov'}}],
          'see_also': ['https://spdx.org/licenses/', 'https://www.doi.org/'],
+         'slot_group': 'dataset_and_provenance'} })
+    delivered_resource: Optional[DeliveredResource] = Field(default=None, title="Delivered Resource", description="""Identity and version of the delivered table or file, see envar_health_layer.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': "Which provider's table this record "
+                                                  'describes, and which edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': "Keeps the producer's table "
+                                                    'identity and version apart from '
+                                                    'the upstream release.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
          'slot_group': 'dataset_and_provenance'} })
     tool_run: ToolRun = Field(default=..., title="Tool Run", description="""The current ToolRun — see envar_toolrun.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
@@ -22863,6 +22940,16 @@ class DailyMaxTemperatureRecord(EnvironmentalExposureRecord):
                                   'source_license_spdx': 'public-domain-us-gov'}}],
          'see_also': ['https://spdx.org/licenses/', 'https://www.doi.org/'],
          'slot_group': 'dataset_and_provenance'} })
+    delivered_resource: Optional[DeliveredResource] = Field(default=None, title="Delivered Resource", description="""Identity and version of the delivered table or file, see envar_health_layer.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': "Which provider's table this record "
+                                                  'describes, and which edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': "Keeps the producer's table "
+                                                    'identity and version apart from '
+                                                    'the upstream release.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'slot_group': 'dataset_and_provenance'} })
     tool_run: ToolRun = Field(default=..., title="Tool Run", description="""The current ToolRun — see envar_toolrun.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
                                                                                     'note': {'tag': 'note',
@@ -25827,6 +25914,16 @@ class DailyMinTemperatureRecord(EnvironmentalExposureRecord):
                                   'source_dataset_short_code': 'daymet_v4',
                                   'source_license_spdx': 'public-domain-us-gov'}}],
          'see_also': ['https://spdx.org/licenses/', 'https://www.doi.org/'],
+         'slot_group': 'dataset_and_provenance'} })
+    delivered_resource: Optional[DeliveredResource] = Field(default=None, title="Delivered Resource", description="""Identity and version of the delivered table or file, see envar_health_layer.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': "Which provider's table this record "
+                                                  'describes, and which edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': "Keeps the producer's table "
+                                                    'identity and version apart from '
+                                                    'the upstream release.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
          'slot_group': 'dataset_and_provenance'} })
     tool_run: ToolRun = Field(default=..., title="Tool Run", description="""The current ToolRun — see envar_toolrun.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
@@ -28803,6 +28900,16 @@ class WetBulbGlobeTemperatureOutdoorRecord(EnvironmentalExposureRecord):
                                   'source_license_spdx': 'public-domain-us-gov'}}],
          'see_also': ['https://spdx.org/licenses/', 'https://www.doi.org/'],
          'slot_group': 'dataset_and_provenance'} })
+    delivered_resource: Optional[DeliveredResource] = Field(default=None, title="Delivered Resource", description="""Identity and version of the delivered table or file, see envar_health_layer.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': "Which provider's table this record "
+                                                  'describes, and which edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': "Keeps the producer's table "
+                                                    'identity and version apart from '
+                                                    'the upstream release.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'slot_group': 'dataset_and_provenance'} })
     tool_run: ToolRun = Field(default=..., title="Tool Run", description="""The current ToolRun — see envar_toolrun.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
                                                                                     'note': {'tag': 'note',
@@ -31777,6 +31884,16 @@ class ExtremeHeatDayFlagRecord(EnvironmentalExposureRecord):
                                   'source_license_spdx': 'public-domain-us-gov'}}],
          'see_also': ['https://spdx.org/licenses/', 'https://www.doi.org/'],
          'slot_group': 'dataset_and_provenance'} })
+    delivered_resource: Optional[DeliveredResource] = Field(default=None, title="Delivered Resource", description="""Identity and version of the delivered table or file, see envar_health_layer.""", json_schema_extra = { "linkml_meta": {'annotations': {'explanation': {'tag': 'explanation',
+                                         'value': "Which provider's table this record "
+                                                  'describes, and which edition.'},
+                         'justification': {'tag': 'justification',
+                                           'value': "Keeps the producer's table "
+                                                    'identity and version apart from '
+                                                    'the upstream release.'},
+                         'tier': {'tag': 'tier', 'value': 'optional'}},
+         'domain_of': ['EnvironmentalExposureRecord'],
+         'slot_group': 'dataset_and_provenance'} })
     tool_run: ToolRun = Field(default=..., title="Tool Run", description="""The current ToolRun — see envar_toolrun.""", json_schema_extra = { "linkml_meta": {'annotations': {'covered_by': {'annotations': {'amadeus': {'annotations': {'extent': {'tag': 'extent',
                                                                                                'value': 'partial'},
                                                                                     'note': {'tag': 'note',
@@ -33205,6 +33322,7 @@ ProvenanceChain.model_rebuild()
 DerivedHeatMetric.model_rebuild()
 EquationInput.model_rebuild()
 HealthLayerLinkage.model_rebuild()
+DeliveredResource.model_rebuild()
 DepositMetadata.model_rebuild()
 EnvironmentalExposureRecord.model_rebuild()
 MicroschemaDefinition.model_rebuild()

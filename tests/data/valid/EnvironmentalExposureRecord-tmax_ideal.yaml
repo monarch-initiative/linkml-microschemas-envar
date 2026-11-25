@@ -131,6 +131,12 @@ provenance_chain:
     run_timestamp_utc: "2026-05-23T14:02:11Z"
     output_file_sha256: "5b6c7d8e9f0a..."
 
+delivered_resource:    # illustrative producer, identifier and scheme
+  resource_identifier: "exampleorg_daymet_tmax_phoenix_2022_001"
+  resource_identifier_scheme: "https://example.org/table-naming-scheme"
+  resource_version: "001"
+  resource_publisher: "Example Exposure Repository"
+
 health_layer_linkage:
   health_layer_target: omop_external_exposure
   health_layer_link_field: exposure_source_value

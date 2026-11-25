@@ -24,7 +24,7 @@ hooks (OMOP, BDC, …), and FAIR-deposit metadata. The schema implements §1.1 o
 | `envar_linkage.yaml` | `LinkageMethod` | Gridded-to-patient linkage strategy, buffer parameters, propagated geocoder quality. Covers req §9. |
 | `envar_toolrun.yaml` | `ToolRun`, `ProvenanceChain` | Exact tool invocation and the ordered W3C-PROV chain of upstream runs. Covers req §10 and §11. |
 | `envar_heat_metric.yaml` | `DerivedHeatMetric` | Heat-metric methodology: family, equation variant, indoor / outdoor, percentile reference period. Covers req §7. |
-| `envar_health_layer.yaml` | `HealthLayerLinkage`, `DepositMetadata` | Health-data-layer linkage hooks (OMOP, BDC, …; target named in a slot) and FAIR-deposit slots. Covers req §12 and §13. |
+| `envar_health_layer.yaml` | `HealthLayerLinkage`, `DeliveredResource`, `DepositMetadata` | Delivered table identity, health-data-layer linkage hooks (OMOP, BDC, …; target named in a slot) and FAIR-deposit slots. Covers req §12 and §13. |
 | `envar_record.yaml` | `EnvironmentalExposureRecord` | Top composite class — binds the microschema-profile slots to envar-specific ranges and lists the top-level slots. |
 | `envar_examples.yaml` | `DailyMaxTemperatureRecord`, `DailyMinTemperatureRecord`, `WetBulbGlobeTemperatureOutdoorRecord`, `ExtremeHeatDayFlagRecord` | Concrete record subclasses for the canonical heat-exposure variables. |
 | `linkml_microschemas_envar.yaml` | (umbrella) | Manifest schema importing the eleven modules above. |
@@ -61,7 +61,7 @@ slot-level `implements` and `exact_mappings` (prefix
 | — | `observation_result` | not bound | Values live in the companion data file |
 
 The remaining envar concerns that have no profile equivalent —
-`data_layout`, `source_dataset`, `linkage_method`, `tool_run`,
+`data_layout`, `source_dataset`, `delivered_resource`, `linkage_method`, `tool_run`,
 `provenance_chain`, `derived_heat_metric`, `health_layer_linkage`,
 `deposit_metadata`, `uncertainty`, and the record-root `phi_status` — are
 surfaced as additional top-level slots alongside the anatomy slots.
