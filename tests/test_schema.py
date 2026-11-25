@@ -14,7 +14,8 @@ datamodel first via `gen-python`). They cover three things:
 from pathlib import Path
 
 import pytest
-from linkml.validator import validate_file
+import yaml
+from linkml.validator import validate, validate_file
 from linkml_runtime import SchemaView
 
 from linkml_microschemas_envar.checker import (
@@ -182,6 +183,78 @@ def test_counter_examples_fail_validation(
 ) -> None:
     report = validate_file(counter_example, schema_view.schema, TARGET_CLASS)
     assert report.results, f"{counter_example.name} must FAIL validation but passed"
+
+
+def _record_with_geometry(geometry: dict | None) -> dict:
+    """The pm25 core example with native_geometry replaced (or dropped, if None)."""
+    record = yaml.safe_load((VALID_DIR / f"{TARGET_CLASS}-pm25_core.yaml").read_text())
+    record["spatial_reference"].pop("native_geometry", None)
+    if geometry is not None:
+        record["spatial_reference"]["native_geometry"] = geometry
+    return record
+
+
+def _messages(schema_view: SchemaView, record: dict) -> list[str]:
+    return [r.message for r in validate(record, schema_view.schema, TARGET_CLASS).results]
+
+
+@pytest.mark.parametrize(
+    "geometry",
+    [
+        {"geometry_kind": "RegularGrid", "native_spatial_resolution_m": 1000.0},
+        {"geometry_kind": "IrregularGrid"},
+        {"geometry_kind": "H3Grid", "h3_resolution": 3},
+        # Issue #42: polygons used to need an invented number to validate.
+        {"geometry_kind": "VectorPolygon"},
+        {"geometry_kind": "VectorLine"},
+        {"geometry_kind": "VectorPoint"},
+    ],
+    ids=lambda g: g["geometry_kind"],
+)
+def test_geometry_validates_with_its_own_slots(schema_view: SchemaView, geometry: dict) -> None:
+    assert _messages(schema_view, _record_with_geometry(geometry)) == []
+
+
+@pytest.mark.parametrize(
+    "geometry",
+    [
+        pytest.param({"geometry_kind": "RegularGrid"}, id="grid-without-metres"),
+        pytest.param({"geometry_kind": "H3Grid"}, id="h3-without-resolution"),
+        pytest.param({"geometry_kind": "H3Grid", "h3_resolution": 16}, id="h3-resolution-above-15"),
+        pytest.param(
+            {"geometry_kind": "VectorPolygon", "native_spatial_resolution_m": 1000.0},
+            id="polygon-with-metres",
+        ),
+        pytest.param(
+            {"geometry_kind": "H3Grid", "h3_resolution": 3, "native_spatial_resolution_m": 1000.0},
+            id="h3-with-metres",
+        ),
+        pytest.param(
+            {"geometry_kind": "RegularGrid", "native_spatial_resolution_m": 1000.0, "h3_resolution": 3},
+            id="grid-with-h3-resolution",
+        ),
+        pytest.param({"geometry_kind": "Banana"}, id="unknown-kind"),
+        pytest.param({"geometry_kind": "Geometry"}, id="abstract-parent"),
+        pytest.param({"native_spatial_resolution_m": 1000.0}, id="kind-missing"),
+    ],
+)
+def test_geometry_rejects_other_slots(schema_view: SchemaView, geometry: dict) -> None:
+    messages = _messages(schema_view, _record_with_geometry(geometry))
+    assert len(messages) == 1 and "/spatial_reference/native_geometry" in messages[0], messages
+
+
+def test_spatial_reference_without_geometry_fails(schema_view: SchemaView) -> None:
+    messages = _messages(schema_view, _record_with_geometry(None))
+    assert len(messages) == 1 and "'native_geometry' is a required property" in messages[0], messages
+
+
+def test_datamodel_loads_the_geometry_subclass() -> None:
+    from linkml_microschemas_envar.datamodel import linkml_microschemas_envar as dm
+
+    record = dm.EnvironmentalExposureRecord(
+        **_record_with_geometry({"geometry_kind": "H3Grid", "h3_resolution": 3})
+    )
+    assert isinstance(record.spatial_reference.native_geometry, dm.H3Grid)
 
 
 @pytest.mark.parametrize(

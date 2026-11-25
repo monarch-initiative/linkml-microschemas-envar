@@ -129,7 +129,7 @@ gen-doc: _gen-yaml && _add-artifacts
 
 # Build docs and run test server
 [group('model development')]
-testdoc: gen-doc render-schema-overview _serve
+testdoc: gen-doc render-schema-overview gen-datasets-ledger standards-index _serve
 
 # Generate the Python data models (dataclasses & pydantic)
 gen-python:

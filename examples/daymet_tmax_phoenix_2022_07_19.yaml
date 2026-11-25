@@ -37,7 +37,9 @@ data_layout:
   value_uncertainty_column_missing_reason: available_but_not_extracted
 
 spatial_reference:
-  native_spatial_resolution_m: 1000
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
   native_spatial_resolution_descriptor: "1 km regular grid"
   crs: "EPSG:4326"
   spatial_extent_descriptor: "CONUS + Hawaii + Puerto Rico"
