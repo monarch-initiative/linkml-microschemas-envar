@@ -3058,6 +3058,20 @@ name and value type in small print), then four columns:</p>
 <td>🟨 Recommended</td>
 </tr>
 <tr>
+<td><strong>Participant Coverage Percentage</strong><br><small><code>participant_coverage_pct</code> · number</small></td>
+<td>Percent of the persons counted in <code>cohort_size_anchored</code> who were assigned at least one non-null exposure value. 0-100. Persons without a value (failed geocode, out-of-extent address, gap in residential history) stay in the denominator. Not <code>data_completeness_pct</code>, which counts (location, date) cells.<br>💡 <em>Of all the people this record was made for, the percentage who ended up with a value.</em></td>
+<td>A grid can be complete over the window while part of the cohort has no value, so <code>data_completeness_pct</code> cannot reveal selective loss of participants.</td>
+<td><code>100</code> — all three cohort members in the worked Phoenix example got a value</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
+<td><strong>Reason Participant Coverage Is Missing</strong><br><small><code>participant_coverage_pct_missing_reason</code> · <a href="#missing-value-reason">Missing-Value Reason</a> value</small></td>
+<td>Reason <code>participant_coverage_pct</code> is null.<br>💡 <em>When the coverage percentage is missing, this says why.</em></td>
+<td>Separates coverage that does not apply from coverage that was not counted.</td>
+<td><code>not_applicable</code> — the values are not linked to persons</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
 <td><strong>Anchored Cohort Size</strong><br><small><code>cohort_size_anchored</code> · whole number</small></td>
 <td>Number of distinct persons this exposure record was extracted for. Helps downstream estimate the volume of health-layer rows the sidecar describes.<br>💡 <em>This is simply a head count: how many different people this exposure record covers. It lets whoever receives the data check that nothing went missing along the way.</em></td>
 <td>Gives downstream consumers a volume expectation: without it, a health-layer loader cannot sanity-check whether the number of exposure rows it receives matches the number of persons the record was extracted for, so silent truncation or duplication goes unnoticed.</td>

@@ -817,6 +817,14 @@
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/participant_coverage_pct/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/participant_coverage_pct_missing_reason/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/per_value_uncertainty_type/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>

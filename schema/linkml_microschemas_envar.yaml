@@ -6250,6 +6250,56 @@ slots:
     domain_of:
     - HealthLayerLinkage
     range: string
+  participant_coverage_pct:
+    name: participant_coverage_pct
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: A grid can be complete over the window while part of the cohort has
+          no value, so `data_completeness_pct` cannot reveal selective loss of participants.
+      explanation:
+        tag: explanation
+        value: Of all the people this record was made for, the percentage who ended
+          up with a value.
+    description: Percent of the persons counted in `cohort_size_anchored` who were
+      assigned at least one non-null exposure value. 0-100. Persons without a value
+      (failed geocode, out-of-extent address, gap in residential history) stay in
+      the denominator. Not `data_completeness_pct`, which counts (location, date)
+      cells.
+    title: Participant Coverage Percentage
+    examples:
+    - value: '100'
+      description: all three cohort members in the worked Phoenix example got a value
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - HealthLayerLinkage
+    range: float
+    minimum_value: 0
+    maximum_value: 100
+  participant_coverage_pct_missing_reason:
+    name: participant_coverage_pct_missing_reason
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: Separates coverage that does not apply from coverage that was not counted.
+      explanation:
+        tag: explanation
+        value: When the coverage percentage is missing, this says why.
+    description: Reason `participant_coverage_pct` is null.
+    title: Reason Participant Coverage Is Missing
+    examples:
+    - value: not_applicable
+      description: the values are not linked to persons
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - HealthLayerLinkage
+    range: MissingReasonEnum
   cohort_size_anchored:
     name: cohort_size_anchored
     annotations:
@@ -13521,6 +13571,8 @@ classes:
     slots:
     - health_layer_target
     - health_layer_link_field
+    - participant_coverage_pct
+    - participant_coverage_pct_missing_reason
     - cohort_size_anchored
     - cohort_size_anchored_missing_reason
     attributes:
@@ -13589,6 +13641,61 @@ classes:
         domain_of:
         - HealthLayerLinkage
         range: string
+      participant_coverage_pct:
+        name: participant_coverage_pct
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: A grid can be complete over the window while part of the cohort
+              has no value, so `data_completeness_pct` cannot reveal selective loss
+              of participants.
+          explanation:
+            tag: explanation
+            value: Of all the people this record was made for, the percentage who
+              ended up with a value.
+        description: Percent of the persons counted in `cohort_size_anchored` who
+          were assigned at least one non-null exposure value. 0-100. Persons without
+          a value (failed geocode, out-of-extent address, gap in residential history)
+          stay in the denominator. Not `data_completeness_pct`, which counts (location,
+          date) cells.
+        title: Participant Coverage Percentage
+        examples:
+        - value: '100'
+          description: all three cohort members in the worked Phoenix example got
+            a value
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: HealthLayerLinkage
+        domain_of:
+        - HealthLayerLinkage
+        range: float
+        minimum_value: 0
+        maximum_value: 100
+      participant_coverage_pct_missing_reason:
+        name: participant_coverage_pct_missing_reason
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Separates coverage that does not apply from coverage that was not
+              counted.
+          explanation:
+            tag: explanation
+            value: When the coverage percentage is missing, this says why.
+        description: Reason `participant_coverage_pct` is null.
+        title: Reason Participant Coverage Is Missing
+        examples:
+        - value: not_applicable
+          description: the values are not linked to persons
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: HealthLayerLinkage
+        domain_of:
+        - HealthLayerLinkage
+        range: MissingReasonEnum
       cohort_size_anchored:
         name: cohort_size_anchored
         annotations:

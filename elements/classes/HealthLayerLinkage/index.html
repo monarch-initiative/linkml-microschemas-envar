@@ -325,7 +325,7 @@
 <p><span class="envar-classname">HealthLayerLinkage</span></p>
 <p class="envar-lead">Hooks the sidecar uses to be findable from a downstream health-data layer (OMOP, BioData Catalyst, …). These are <em>not</em> clinical metadata — they are the hooks the exposure record needs so a health-side row can resolve back to its provenance. The target layer is named in <code>health_layer_target</code>, so no single model is privileged. One per record.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">4 fields</span>
+<p><span class="envar-metachip">6 fields</span>
 <span class="envar-metachip">0 core</span></p>
 <p><span class="envar-metachip">URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/class/HealthLayerLinkage">envar:class/HealthLayerLinkage</a></span></p>
 </div>
@@ -478,9 +478,99 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Optional</span>
 <span class="envar-groupnote">Include when available</span>
-<span class="envar-groupcount">2 fields</span>
+<span class="envar-groupcount">4 fields</span>
 </div>
 <div class="envar-cards">
+<div class="envar-card optional">
+<div class="envar-cardhead"><span class="envar-cardtitle">Participant Coverage Percentage</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
+<div class="envar-cardmeta">
+<p><code>participant_coverage_pct</code> · range <a href="../../types/Float/">Float</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>Of all the people this record was made for, the percentage who ended up with a value.</p>
+</div>
+<div class="envar-desc">
+<p>Percent of the persons counted in <code>cohort_size_anchored</code> who were assigned at least one non-null exposure value. 0-100. Persons without a value (failed geocode, out-of-extent address, gap in residential history) stay in the denominator. Not <code>data_completeness_pct</code>, which counts (location, date) cells.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>100</code> — <span class="egdesc">all three cohort members in the worked Phoenix example got a value</span></p>
+</div>
+</div>
+<details class="envar-cov-details">
+<summary>Evidence: 2 supporting, 1 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “addresses were successfully geocoded”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/entrypoint.R">DeGAUSS geocoder entrypoint.R</a>, lines 160-163</div>
+<div class="envar-cov-note">The geocoder prints how many of the input addresses were geocoded, as a count and a percentage. Missing: it counts addresses and not persons, it is about a coordinate and not an exposure value, and it goes to the console and not into the output file.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>geocode_result</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Using, added columns</div>
+<div class="envar-cov-note">Result of the geocode for each row. Rows that are not `geocoded` come back without coordinates, so later steps cannot give them a value. Missing: no percentage, and a row is an address, not a person.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Points falling outside any ZIP3 boundary are logged and reviewed.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.5.2</div>
+<div class="envar-cov-note">CHEL keeps track of the participant points that cannot be linked. Missing: no percentage of participants with a value is reported.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">gaiaDB has no coverage figure. Closest: `working.external_exposure` has one row per computed value with a `person_id`, so the persons with a value can be counted and compared with the entities in `working.location_history`.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.person_id</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
+</div>
+</details>
+<div class="envar-block envar-constraints">
+<p class="envar-blocklabel">Constraints</p>
+<p>· min <code>0</code> · max <code>100</code></p>
+</div>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>A grid can be complete over the window while part of the cohort has no value, so <code>data_completeness_pct</code> cannot reveal selective loss of participants.</p>
+</div>
+</details>
+</div>
+<div class="envar-card optional">
+<div class="envar-cardhead"><span class="envar-cardtitle">Reason Participant Coverage Is Missing</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
+<div class="envar-cardmeta">
+<p><code>participant_coverage_pct_missing_reason</code> · range <a href="../../enums/MissingReasonEnum/">MissingReasonEnum</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>When the coverage percentage is missing, this says why.</p>
+</div>
+<div class="envar-desc">
+<p>Reason <code>participant_coverage_pct</code> is null.</p>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Example</p>
+<div class="envar-eg">
+<p><code>not_applicable</code> — <span class="egdesc">the values are not linked to persons</span></p>
+</div>
+</div>
+<div class="envar-block">
+<p class="envar-blocklabel">Allowed values</p>
+<div class="envar-values">
+<span class="envar-value" title="Source product does not produce this information. Terminal."><code>not_provided_by_source</code> <span class="vdesc">Source product does not produce this information</span></span>
+<span class="envar-value" title="Source produces this information but the current pipeline does not surface it. Roadmap item."><code>available_but_not_extracted</code> <span class="vdesc">Source produces this information but the current pipeline does not surface it</span></span>
+<span class="envar-value" title="An upstream tool emitted this information but the current pipeline dropped it on the way through. Bug."><code>upstream_data_not_propagated</code> <span class="vdesc">An upstream tool emitted this information but the current pipeline dropped it...</span></span>
+<span class="envar-value" title="We are working on populating this slot."><code>under_investigation</code> <span class="vdesc">We are working on populating this slot</span></span>
+<span class="envar-value" title="This slot does not apply to this variable / record."><code>not_applicable</code> <span class="vdesc">This slot does not apply to this variable / record</span></span>
+</div>
+</div>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>Separates coverage that does not apply from coverage that was not counted.</p>
+</div>
+</details>
+</div>
 <div class="envar-card optional">
 <div class="envar-cardhead"><span class="envar-cardtitle">Anchored Cohort Size</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
 <div class="envar-cardmeta">
@@ -570,6 +660,20 @@
 <td>Name of the field in the target health-data layer that carries `provenance_id...</td>
 </tr>
 <tr>
+<td><strong>Participant Coverage Percentage</strong></td>
+<td><code>participant_coverage_pct</code></td>
+<td>optional</td>
+<td>0..1 <br/> <a href="../../types/Float/">Float</a></td>
+<td>Percent of the persons counted in <code>cohort_size_anchored</code> who were assigned at...</td>
+</tr>
+<tr>
+<td><strong>Reason Participant Coverage Is Missing</strong></td>
+<td><code>participant_coverage_pct_missing_reason</code></td>
+<td>optional</td>
+<td>0..1 <br/> <a href="../../enums/MissingReasonEnum/">MissingReasonEnum</a></td>
+<td>Reason <code>participant_coverage_pct</code> is null</td>
+</tr>
+<tr>
 <td><strong>Anchored Cohort Size</strong></td>
 <td><code>cohort_size_anchored</code></td>
 <td>optional</td>
@@ -614,6 +718,19 @@
 
         HealthLayerLinkage --&gt; "0..1" HealthLayerTargetEnum : health_layer_target
         click HealthLayerTargetEnum href "../../enums/HealthLayerTargetEnum/"
+
+
+
+      HealthLayerLinkage : participant_coverage_pct
+
+      HealthLayerLinkage : participant_coverage_pct_missing_reason
+
+
+
+
+
+        HealthLayerLinkage --&gt; "0..1" MissingReasonEnum : participant_coverage_pct_missing_reason
+        click MissingReasonEnum href "../../enums/MissingReasonEnum/"
 
 
 
@@ -699,6 +816,58 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HealthLayerLinkage</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">participant_coverage_pct</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">participant_coverage_pct</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optional</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A grid can be complete over the window while part of the cohort has</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">no value, so `data_completeness_pct` cannot reveal selective loss of participants.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Of all the people this record was made for, the percentage who ended</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">up with a value.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percent of the persons counted in `cohort_size_anchored` who were</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">assigned at least one non-null exposure value. 0-100. Persons without a value</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(failed geocode, out-of-extent address, gap in residential history) stay in</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the denominator. Not `data_completeness_pct`, which counts (location, date)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">cells.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Participant Coverage Percentage</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'100'</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all three cohort members in the worked Phoenix example got a value</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HealthLayerLinkage</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HealthLayerLinkage</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">minimum_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">maximum_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">  </span><span class="nt">participant_coverage_pct_missing_reason</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">participant_coverage_pct_missing_reason</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optional</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Separates coverage that does not apply from coverage that was not counted.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">When the coverage percentage is missing, this says why.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reason `participant_coverage_pct` is null.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reason Participant Coverage Is Missing</span>
+<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not_applicable</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the values are not linked to persons</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HealthLayerLinkage</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HealthLayerLinkage</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MissingReasonEnum</span>
 <span class="w">  </span><span class="nt">cohort_size_anchored</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cohort_size_anchored</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
