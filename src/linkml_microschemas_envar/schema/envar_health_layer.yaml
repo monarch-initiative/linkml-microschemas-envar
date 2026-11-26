@@ -42,6 +42,8 @@ classes:
     slots:
     - health_layer_target
     - health_layer_link_field
+    - participant_coverage_pct
+    - participant_coverage_pct_missing_reason
     - cohort_size_anchored
     - cohort_size_anchored_missing_reason
 
@@ -143,6 +145,45 @@ slots:
         spreadsheets that need to be matched up. This slot names the column
         in the patient-side spreadsheet that holds the matching ID, so
         anyone can connect the two tables without guessing.
+  participant_coverage_pct:
+    title: Participant Coverage Percentage
+    range: float
+    minimum_value: 0
+    maximum_value: 100
+    description: >-
+      Percent of the persons counted in `cohort_size_anchored` who were
+      assigned at least one non-null exposure value. 0-100. Persons without a
+      value (failed geocode, out-of-extent address, gap in residential
+      history) stay in the denominator. Not `data_completeness_pct`, which
+      counts (location, date) cells.
+    examples:
+    - value: "100"
+      description: all three cohort members in the worked Phoenix example got a value
+
+    annotations:
+      tier: optional
+      justification: >-
+        A grid can be complete over the window while part of the cohort has
+        no value, so `data_completeness_pct` cannot reveal selective loss of
+        participants.
+      explanation: >-
+        Of all the people this record was made for, the percentage who ended
+        up with a value.
+  participant_coverage_pct_missing_reason:
+    title: Reason Participant Coverage Is Missing
+    range: MissingReasonEnum
+    description: Reason `participant_coverage_pct` is null.
+    examples:
+    - value: not_applicable
+      description: the values are not linked to persons
+
+    annotations:
+      tier: optional
+      justification: >-
+        Separates coverage that does not apply from coverage that was not
+        counted.
+      explanation: >-
+        When the coverage percentage is missing, this says why.
   cohort_size_anchored:
     title: Anchored Cohort Size
     range: integer

@@ -185,6 +185,20 @@ def test_heat_metric_module_only_counts_when_present(checker):
     assert names["equation_variant"].effective_tier == "core"
 
 
+def test_participant_coverage_is_not_grid_completeness(checker):
+    """A complete grid says nothing about how many persons got a value."""
+    for block, slot, other in (
+        ("uncertainty", "data_completeness_pct", "participant_coverage_pct"),
+        ("health_layer_linkage", "participant_coverage_pct", "data_completeness_pct"),
+    ):
+        present = {s.name: s.present for s in checker.check({block: {slot: 100}}).slots}
+        assert present[slot] and not present[other]
+    report = checker.check(
+        {"health_layer_linkage": {"participant_coverage_pct_missing_reason": "under_investigation"}}
+    )
+    assert "participant_coverage_pct" in report.explained_null
+
+
 def test_delivered_resource_version_is_not_the_source_version(checker):
     """The producer's table version never stands in for the source release."""
     for block, slot, other in (
