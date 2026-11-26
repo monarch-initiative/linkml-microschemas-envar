@@ -2504,17 +2504,10 @@ name and value type in small print), then four columns:</p>
 <td>⬜ Optional</td>
 </tr>
 <tr>
-<td><strong>Input File SHA-256 Hash</strong><br><small><code>input_file_sha256</code> · text</small></td>
-<td>SHA256 of the input file (CSV / parquet).<br>💡 <em>A SHA-256 hash is a fingerprint of a file — if even one byte changes, the fingerprint changes completely. Comparing fingerprints proves two files are exactly the same without inspecting their contents.</em><br>↗ <a href="https://doi.org/10.6028/NIST.FIPS.180-4">DOI Foundation</a></td>
-<td>The input hash lets anyone verify they are re-running on byte-identical inputs; without it, a "reproduction" may quietly use different data, and disagreements can no longer be traced to inputs versus code.</td>
-<td><code>9f8e7d6c5b4a...</code></td>
-<td>🟨 Recommended</td>
-</tr>
-<tr>
-<td><strong>Input Row Count</strong><br><small><code>input_row_count</code> · whole number</small></td>
-<td>Number of rows in the input.<br>💡 <em>Just the number of lines of data that went in. If you expected 3 addresses and the count says 2, something was lost before the tool ever ran.</em></td>
-<td>The row count is a coarse but instant integrity check — a truncated or partially delivered input shows up immediately as the wrong count. It also anchors the input side of input/output cardinality checks.</td>
-<td><code>3</code> — one row per cohort address</td>
+<td><strong>Input Files</strong><br><small><code>input_files</code> · list of <a href="#input-file">Input File</a> block</small></td>
+<td>The files the run read, one entry per file.<br>💡 <em>The list of ingredients the program was given.</em></td>
+<td>Many runs fuse several sources; a single hash leaves the other inputs unrecorded.</td>
+<td>—</td>
 <td>🟨 Recommended</td>
 </tr>
 <tr>
@@ -2533,7 +2526,7 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>Run Log Excerpt</strong><br><small><code>run_log_excerpt</code> · text</small></td>
-<td>Last ~50 lines of the run log, where useful for debugging or audit.<br>💡 <em>The last few lines the program printed while running — its own account of what it did and whether anything looked wrong. Keeping a snippet is like stapling the receipt to the record.</em></td>
+<td>Last ~50 lines of the run log, where useful for debugging or audit. The full log is not expected to ship with the data; provide it on request.<br>💡 <em>The last few lines the program printed while running — its own account of what it did and whether anything looked wrong. Keeping a snippet is like stapling the receipt to the record.</em></td>
 <td>The log tail captures warnings and error summaries that no structured field carries; without it, diagnosing a suspect run means hunting for logs that may no longer exist. Omission costs auditability, not reproducibility.</td>
 <td><code>[2026-05-23 14:19:19] daymet 1.0.0 finished: wrote 459 rows to /output/tmax.csv (0 errors, 0 warnings)</code></td>
 <td>⬜ Optional</td>
@@ -2544,6 +2537,42 @@ name and value type in small print), then four columns:</p>
 <td>Stating why the log excerpt is absent (e.g. logs exist on the runner but are not captured) distinguishes a deliberate omission from data loss and tells auditors where to look. A blank is a bug; a null-with-reason is information.</td>
 <td><code>available_but_not_extracted</code> — e.g. logs exist on the runner but are not captured by the pipeline</td>
 <td>⬜ Optional</td>
+</tr>
+</tbody>
+</table>
+<h3 id="input-file">Input File<a class="headerlink" href="#input-file" title="Permanent link">¶</a></h3>
+<p>One file a tool run read, with where to find it, its hash and its row count.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+<th>Examples</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input File Locator</strong><br><small><code>input_file_locator</code> · text</small></td>
+<td>URI, DOI or path where the input file can be found. Omit it when the locator itself would disclose PHI.<br>💡 <em>The address of the input file.</em></td>
+<td>A hash verifies a file you already have; only a locator lets you find it.</td>
+<td><code>https://doi.org/10.3334/ORNLDAAC/2129</code></td>
+<td>🟨 Recommended</td>
+</tr>
+<tr>
+<td><strong>Input File SHA-256 Hash</strong><br><small><code>input_file_sha256</code> · text</small></td>
+<td>SHA256 of this input file (CSV / parquet).<br>💡 <em>A SHA-256 hash is a fingerprint of a file — if even one byte changes, the fingerprint changes completely. Comparing fingerprints proves two files are exactly the same without inspecting their contents.</em><br>↗ <a href="https://doi.org/10.6028/NIST.FIPS.180-4">DOI Foundation</a></td>
+<td>The input hash lets anyone verify they are re-running on byte-identical inputs; without it, a "reproduction" may quietly use different data, and disagreements can no longer be traced to inputs versus code.</td>
+<td><code>9f8e7d6c5b4a...</code></td>
+<td>🟨 Recommended</td>
+</tr>
+<tr>
+<td><strong>Input Row Count</strong><br><small><code>input_row_count</code> · whole number</small></td>
+<td>Number of rows in this input file.<br>💡 <em>Just the number of lines of data that went in. If you expected 3 addresses and the count says 2, something was lost before the tool ever ran.</em></td>
+<td>The row count is a coarse but instant integrity check — a truncated or partially delivered input shows up immediately as the wrong count. It also anchors the input side of input/output cardinality checks.</td>
+<td><code>3</code> — one row per cohort address</td>
+<td>🟨 Recommended</td>
 </tr>
 </tbody>
 </table>

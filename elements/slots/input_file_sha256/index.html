@@ -705,7 +705,7 @@
 
 
 <h1 id="slot-input-file-sha-256-hash-input_file_sha256">Slot: Input File SHA-256 Hash (input_file_sha256)</h1>
-<p><em>SHA256 of the input file (CSV / parquet).</em></p>
+<p><em>SHA256 of this input file (CSV / parquet).</em></p>
 <p><strong>Tier:</strong> <code>recommended</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>The input hash lets anyone verify they are re-running on byte-identical inputs; without it, a "reproduction" may quietly use different data, and disagreements can no longer be traced to inputs versus code.</p>
@@ -725,8 +725,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/ToolRun/">ToolRun</a></td>
-<td>A single tool invocation that produced an output from one or more inputs: too...</td>
+<td><a href="../../classes/InputFile/">InputFile</a></td>
+<td>One file a tool run read, with where to find it, its hash and its row count</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -747,7 +747,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/ToolRun/">ToolRun</a></td>
+<td><a href="../../classes/InputFile/">InputFile</a></td>
 </tr>
 </tbody>
 </table>
@@ -847,7 +847,7 @@
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A SHA-256 hash is a fingerprint of a file — if even one byte changes, the</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">fingerprint changes completely. Comparing fingerprints proves two files are</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">exactly the same without inspecting their contents.</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SHA256 of the input file (CSV / parquet).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SHA256 of this input file (CSV / parquet).</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Input File SHA-256 Hash</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9f8e7d6c5b4a...</span>
@@ -856,7 +856,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.6028/NIST.FIPS.180-4</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputFile</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

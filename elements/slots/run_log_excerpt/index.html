@@ -694,7 +694,7 @@
 
 
 <h1 id="slot-run-log-excerpt-run_log_excerpt">Slot: Run Log Excerpt (run_log_excerpt)</h1>
-<p><em>Last ~50 lines of the run log, where useful for debugging or audit.</em></p>
+<p><em>Last ~50 lines of the run log, where useful for debugging or audit. The full log is not expected to ship with the data; provide it on request.</em></p>
 <p><strong>Tier:</strong> <code>optional</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>The log tail captures warnings and error summaries that no structured field carries; without it, diagnosing a suspect run means hunting for logs that may no longer exist. Omission costs auditability, not reproducibility.</p>
@@ -832,7 +832,8 @@
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The last few lines the program printed while running — its own account</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">of what it did and whether anything looked wrong. Keeping a snippet is like</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">stapling the receipt to the record.</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Last ~50 lines of the run log, where useful for debugging or audit.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Last ~50 lines of the run log, where useful for debugging or audit. The</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">full log is not expected to ship with the data; provide it on request.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Log Excerpt</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[2026-05-23</span><span class="nv"> </span><span class="s">14:19:19]</span><span class="nv"> </span><span class="s">daymet</span><span class="nv"> </span><span class="s">1.0.0</span><span class="nv"> </span><span class="s">finished:</span><span class="nv"> </span><span class="s">wrote</span><span class="nv"> </span><span class="s">459</span><span class="nv"> </span><span class="s">rows</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">/output/tmax.csv</span>

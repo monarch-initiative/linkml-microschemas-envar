@@ -5162,6 +5162,55 @@ slots:
     - ToolRun
     range: AnyValue
     inlined: true
+  input_files:
+    name: input_files
+    annotations:
+      tier:
+        tag: tier
+        value: recommended
+      justification:
+        tag: justification
+        value: Many runs fuse several sources; a single hash leaves the other inputs
+          unrecorded.
+      explanation:
+        tag: explanation
+        value: The list of ingredients the program was given.
+    description: The files the run read, one entry per file.
+    title: Input Files
+    examples:
+    - object:
+        input_file_locator: inputs/addresses.csv
+        input_file_sha256: 9f8e7d6c5b4a...
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    slot_uri: prov:used
+    domain_of:
+    - ToolRun
+    range: InputFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  input_file_locator:
+    name: input_file_locator
+    annotations:
+      tier:
+        tag: tier
+        value: recommended
+      justification:
+        tag: justification
+        value: A hash verifies a file you already have; only a locator lets you find
+          it.
+      explanation:
+        tag: explanation
+        value: The address of the input file.
+    description: URI, DOI or path where the input file can be found. Omit it when
+      the locator itself would disclose PHI.
+    title: Input File Locator
+    examples:
+    - value: https://doi.org/10.3334/ORNLDAAC/2129
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - InputFile
+    range: string
   input_file_sha256:
     name: input_file_sha256
     annotations:
@@ -5178,7 +5227,7 @@ slots:
         value: A SHA-256 hash is a fingerprint of a file — if even one byte changes,
           the fingerprint changes completely. Comparing fingerprints proves two files
           are exactly the same without inspecting their contents.
-    description: SHA256 of the input file (CSV / parquet).
+    description: SHA256 of this input file (CSV / parquet).
     title: Input File SHA-256 Hash
     examples:
     - value: 9f8e7d6c5b4a...
@@ -5186,7 +5235,7 @@ slots:
     see_also:
     - https://doi.org/10.6028/NIST.FIPS.180-4
     domain_of:
-    - ToolRun
+    - InputFile
     range: string
   input_row_count:
     name: input_row_count
@@ -5203,14 +5252,14 @@ slots:
         tag: explanation
         value: Just the number of lines of data that went in. If you expected 3 addresses
           and the count says 2, something was lost before the tool ever ran.
-    description: Number of rows in the input.
+    description: Number of rows in this input file.
     title: Input Row Count
     examples:
     - value: '3'
       description: one row per cohort address
     from_schema: https://w3id.org/linkml/microschemas/envar
     domain_of:
-    - ToolRun
+    - InputFile
     range: integer
   output_file_sha256:
     name: output_file_sha256
@@ -5280,6 +5329,7 @@ slots:
           of what it did and whether anything looked wrong. Keeping a snippet is like
           stapling the receipt to the record.
     description: Last ~50 lines of the run log, where useful for debugging or audit.
+      The full log is not expected to ship with the data; provide it on request.
     title: Run Log Excerpt
     examples:
     - value: '[2026-05-23 14:19:19] daymet 1.0.0 finished: wrote 459 rows to /output/tmax.csv
@@ -11991,8 +12041,7 @@ classes:
     - run_timestamp_utc
     - run_duration_seconds
     - run_environment
-    - input_file_sha256
-    - input_row_count
+    - input_files
     - output_file_sha256
     - output_row_count
     - run_log_excerpt
@@ -12311,59 +12360,34 @@ classes:
         - ToolRun
         range: AnyValue
         inlined: true
-      input_file_sha256:
-        name: input_file_sha256
+      input_files:
+        name: input_files
         annotations:
           tier:
             tag: tier
             value: recommended
           justification:
             tag: justification
-            value: The input hash lets anyone verify they are re-running on byte-identical
-              inputs; without it, a "reproduction" may quietly use different data,
-              and disagreements can no longer be traced to inputs versus code.
+            value: Many runs fuse several sources; a single hash leaves the other
+              inputs unrecorded.
           explanation:
             tag: explanation
-            value: A SHA-256 hash is a fingerprint of a file — if even one byte changes,
-              the fingerprint changes completely. Comparing fingerprints proves two
-              files are exactly the same without inspecting their contents.
-        description: SHA256 of the input file (CSV / parquet).
-        title: Input File SHA-256 Hash
+            value: The list of ingredients the program was given.
+        description: The files the run read, one entry per file.
+        title: Input Files
         examples:
-        - value: 9f8e7d6c5b4a...
+        - object:
+            input_file_locator: inputs/addresses.csv
+            input_file_sha256: 9f8e7d6c5b4a...
         from_schema: https://w3id.org/linkml/microschemas/envar
-        see_also:
-        - https://doi.org/10.6028/NIST.FIPS.180-4
+        slot_uri: prov:used
         owner: ToolRun
         domain_of:
         - ToolRun
-        range: string
-      input_row_count:
-        name: input_row_count
-        annotations:
-          tier:
-            tag: tier
-            value: recommended
-          justification:
-            tag: justification
-            value: The row count is a coarse but instant integrity check — a truncated
-              or partially delivered input shows up immediately as the wrong count.
-              It also anchors the input side of input/output cardinality checks.
-          explanation:
-            tag: explanation
-            value: Just the number of lines of data that went in. If you expected
-              3 addresses and the count says 2, something was lost before the tool
-              ever ran.
-        description: Number of rows in the input.
-        title: Input Row Count
-        examples:
-        - value: '3'
-          description: one row per cohort address
-        from_schema: https://w3id.org/linkml/microschemas/envar
-        owner: ToolRun
-        domain_of:
-        - ToolRun
-        range: integer
+        range: InputFile
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
       output_file_sha256:
         name: output_file_sha256
         annotations:
@@ -12434,7 +12458,8 @@ classes:
               account of what it did and whether anything looked wrong. Keeping a
               snippet is like stapling the receipt to the record.
         description: Last ~50 lines of the run log, where useful for debugging or
-          audit.
+          audit. The full log is not expected to ship with the data; provide it on
+          request.
         title: Run Log Excerpt
         examples:
         - value: '[2026-05-23 14:19:19] daymet 1.0.0 finished: wrote 459 rows to /output/tmax.csv
@@ -12472,6 +12497,98 @@ classes:
         - ToolRun
         range: MissingReasonEnum
     class_uri: prov:Activity
+  InputFile:
+    name: InputFile
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: environmental_exposure
+    description: One file a tool run read, with where to find it, its hash and its
+      row count.
+    title: Input File
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    slots:
+    - input_file_locator
+    - input_file_sha256
+    - input_row_count
+    attributes:
+      input_file_locator:
+        name: input_file_locator
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: A hash verifies a file you already have; only a locator lets you
+              find it.
+          explanation:
+            tag: explanation
+            value: The address of the input file.
+        description: URI, DOI or path where the input file can be found. Omit it when
+          the locator itself would disclose PHI.
+        title: Input File Locator
+        examples:
+        - value: https://doi.org/10.3334/ORNLDAAC/2129
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: InputFile
+        domain_of:
+        - InputFile
+        range: string
+      input_file_sha256:
+        name: input_file_sha256
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: The input hash lets anyone verify they are re-running on byte-identical
+              inputs; without it, a "reproduction" may quietly use different data,
+              and disagreements can no longer be traced to inputs versus code.
+          explanation:
+            tag: explanation
+            value: A SHA-256 hash is a fingerprint of a file — if even one byte changes,
+              the fingerprint changes completely. Comparing fingerprints proves two
+              files are exactly the same without inspecting their contents.
+        description: SHA256 of this input file (CSV / parquet).
+        title: Input File SHA-256 Hash
+        examples:
+        - value: 9f8e7d6c5b4a...
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        see_also:
+        - https://doi.org/10.6028/NIST.FIPS.180-4
+        owner: InputFile
+        domain_of:
+        - InputFile
+        range: string
+      input_row_count:
+        name: input_row_count
+        annotations:
+          tier:
+            tag: tier
+            value: recommended
+          justification:
+            tag: justification
+            value: The row count is a coarse but instant integrity check — a truncated
+              or partially delivered input shows up immediately as the wrong count.
+              It also anchors the input side of input/output cardinality checks.
+          explanation:
+            tag: explanation
+            value: Just the number of lines of data that went in. If you expected
+              3 addresses and the count says 2, something was lost before the tool
+              ever ran.
+        description: Number of rows in this input file.
+        title: Input Row Count
+        examples:
+        - value: '3'
+          description: one row per cohort address
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: InputFile
+        domain_of:
+        - InputFile
+        range: integer
+    class_uri: prov:Entity
   ProvenanceChain:
     name: ProvenanceChain
     annotations:

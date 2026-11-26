@@ -694,7 +694,7 @@
 
 
 <h1 id="slot-input-row-count-input_row_count">Slot: Input Row Count (input_row_count)</h1>
-<p><em>Number of rows in the input.</em></p>
+<p><em>Number of rows in this input file.</em></p>
 <p><strong>Tier:</strong> <code>recommended</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>The row count is a coarse but instant integrity check — a truncated or partially delivered input shows up immediately as the wrong count. It also anchors the input side of input/output cardinality checks.</p>
@@ -714,8 +714,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/ToolRun/">ToolRun</a></td>
-<td>A single tool invocation that produced an output from one or more inputs: too...</td>
+<td><a href="../../classes/InputFile/">InputFile</a></td>
+<td>One file a tool run read, with where to find it, its hash and its row count</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -736,7 +736,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/ToolRun/">ToolRun</a></td>
+<td><a href="../../classes/InputFile/">InputFile</a></td>
 </tr>
 </tbody>
 </table>
@@ -831,7 +831,7 @@
 <span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Just the number of lines of data that went in. If you expected 3 addresses</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">and the count says 2, something was lost before the tool ever ran.</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of rows in the input.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of rows in this input file.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Input Row Count</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
@@ -839,7 +839,7 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputFile</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
 </code></pre></div>
 </details>

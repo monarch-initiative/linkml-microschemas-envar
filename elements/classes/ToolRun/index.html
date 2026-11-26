@@ -325,7 +325,7 @@
 <p><span class="envar-classname">ToolRun</span></p>
 <p class="envar-lead">A single tool invocation that produced an output from one or more inputs: tool name and version, container image (where applicable), arguments, environment, run timestamp and duration, input / output hashes and row counts, and an optional log excerpt.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">17 fields</span>
+<p><span class="envar-metachip">16 fields</span>
 <span class="envar-metachip">2 core</span></p>
 <p><span class="envar-metachip">URI: <a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span></p>
 </div>
@@ -336,7 +336,7 @@
 <p><span class="envar-sitskey">Composed into</span><span class="envar-chip"><a href="../ProvenanceChain/">ProvenanceChain</a></span><span class="envar-chip"><a href="../EnvironmentalExposureRecord/">EnvironmentalExposureRecord</a></span></p>
 </div>
 <div class="envar-sitsrow">
-<p><span class="envar-sitskey">References</span><span class="envar-chip"><a href="../AnyValue/">AnyValue</a></span></p>
+<p><span class="envar-sitskey">References</span><span class="envar-chip"><a href="../AnyValue/">AnyValue</a></span><span class="envar-chip"><a href="../InputFile/">InputFile</a></span></p>
 </div>
 </div>
 <p class="envar-sectionlabel">Fields</p>
@@ -472,7 +472,7 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Recommended</span>
 <span class="envar-groupnote">Strongly encouraged</span>
-<span class="envar-groupcount">8 fields</span>
+<span class="envar-groupcount">7 fields</span>
 </div>
 <div class="envar-cards">
 <div class="envar-card recommended">
@@ -697,109 +697,67 @@
 </details>
 </div>
 <div class="envar-card recommended">
-<div class="envar-cardhead"><span class="envar-cardtitle">Input File SHA-256 Hash</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
+<div class="envar-cardhead"><span class="envar-cardtitle">Input Files</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
 <div class="envar-cardmeta">
-<p><code>input_file_sha256</code> · range <a href="../../types/String/">String</a> · cardinality 0..1</p>
+<p><code>input_files</code> · range <a href="../InputFile/">InputFile</a> · cardinality * · multivalued</p>
 </div>
 <div class="envar-explain">
-<p>A SHA-256 hash is a fingerprint of a file — if even one byte changes, the fingerprint changes completely. Comparing fingerprints proves two files are exactly the same without inspecting their contents.</p>
+<p>The list of ingredients the program was given.</p>
 </div>
 <div class="envar-desc">
-<p>SHA256 of the input file (CSV / parquet).</p>
+<p>The files the run read, one entry per file.</p>
 </div>
 <div class="envar-block">
 <p class="envar-blocklabel">Example</p>
 <div class="envar-eg">
-<p><code>9f8e7d6c5b4a...</code></p>
+<p><code>None</code></p>
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run row counts / hashes)</div>
-<div class="envar-cov-note">CHEL carries no per-run input/output file hashes.</div>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Activity.entityUsed</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/Classes/Process/Activity.html">DDI-CDI 1.0, Activity</a>, Activity, attributes</div>
+<div class="envar-cov-note">"A thing employed in the activity", multiplicity 0..*. Each entry is a Reference, so an activity lists every input it used.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “A resource may have one parent resource or multiple parent resources.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.4.1, p. 13</div>
+<div class="envar-cov-note">C-HER records for every derived resource the resources it was made from, one or several. Missing: the parents are resources of the repository and not the files one run read, and the entry has no hash or row count.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “These datasets form the full upstream dependency graph for aggregation and spatial linkage.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.7</div>
+<div class="envar-cov-note">The Input Lineage Table lists every input of the pipeline. Missing: it is one table in the documentation and not a record of what a given run read, and it has no hashes.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “is a SQL database prepared following the instructions”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Geomarker Data</div>
+<div class="envar-cov-note">Besides the address file the geocoder reads a reference database (`geocoder.db`). Missing: the second input is only named in the README; the output does not list what was read.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia output records an input-file SHA256.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different granularity</span></div>
+<div class="envar-cov-note">gaiaDB records one source URL per catalogued dataset and not the files a run read. Closest: `data_source.url`.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.url</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">DeGAUSS emits no input-file checksum.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No native Amadeus file records an input-file SHA256 in this scenario.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER records no per-run input-file hash.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
-<div class="envar-cov-note">File checksums are instance-layer; out of scope for CODATA.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The result does not list the files that were read. Closest: the `path` argument of `process_covariates`, which may be a directory with several raw files.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>process_covariates.path</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_covariates.Rd">amadeus man/process_covariates.Rd</a>, arguments</div>
 </div>
 </details>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
-<p>The input hash lets anyone verify they are re-running on byte-identical inputs; without it, a "reproduction" may quietly use different data, and disagreements can no longer be traced to inputs versus code.</p>
-</div>
-<div class="envar-whyblock">
-<p><strong>See also:</strong> <a href="https://doi.org/10.6028/NIST.FIPS.180-4">https://doi.org/10.6028/NIST.FIPS.180-4</a></p>
-</div>
-</details>
-</div>
-<div class="envar-card recommended">
-<div class="envar-cardhead"><span class="envar-cardtitle">Input Row Count</span><span class="envar-cardbadges"><span class="envar-tierbadge recommended">recommended</span></span></div>
-<div class="envar-cardmeta">
-<p><code>input_row_count</code> · range <a href="../../types/Integer/">Integer</a> · cardinality 0..1</p>
-</div>
-<div class="envar-explain">
-<p>Just the number of lines of data that went in. If you expected 3 addresses and the count says 2, something was lost before the tool ever ran.</p>
-</div>
-<div class="envar-desc">
-<p>Number of rows in the input.</p>
-</div>
-<div class="envar-block">
-<p class="envar-blocklabel">Example</p>
-<div class="envar-eg">
-<p><code>3</code> — <span class="egdesc">one row per cohort address</span></p>
-</div>
-</div>
-<details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run row counts / hashes)</div>
-<div class="envar-cov-note">CHEL carries no per-run input/output row counts or hashes.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No native gaia output records an input row count; you would wc -l.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">DeGAUSS emits no input row count.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No native Amadeus file records an input row count.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER records no per-run input row count.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
-<div class="envar-cov-note">Row counts are instance-layer; out of scope for CODATA.</div>
-</div>
-</details>
-<details class="envar-why">
-<summary>Why it matters &amp; mappings</summary>
-<div class="envar-whyblock">
-<p>The row count is a coarse but instant integrity check — a truncated or partially delivered input shows up immediately as the wrong count. It also anchors the input side of input/output cardinality checks.</p>
+<p>Many runs fuse several sources; a single hash leaves the other inputs unrecorded.</p>
 </div>
 </details>
 </div>
@@ -1074,7 +1032,7 @@
 <p>The last few lines the program printed while running — its own account of what it did and whether anything looked wrong. Keeping a snippet is like stapling the receipt to the record.</p>
 </div>
 <div class="envar-desc">
-<p>Last ~50 lines of the run log, where useful for debugging or audit.</p>
+<p>Last ~50 lines of the run log, where useful for debugging or audit. The full log is not expected to ship with the data; provide it on request.</p>
 </div>
 <div class="envar-block">
 <p class="envar-blocklabel">Example</p>
@@ -1217,18 +1175,11 @@
 <td>Host OS, Docker / podman version, R / Python version, key library versions, a...</td>
 </tr>
 <tr>
-<td><strong>Input File SHA-256 Hash</strong></td>
-<td><code>input_file_sha256</code></td>
+<td><strong>Input Files</strong></td>
+<td><code>input_files</code></td>
 <td>recommended</td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
-<td>SHA256 of the input file (CSV / parquet)</td>
-</tr>
-<tr>
-<td><strong>Input Row Count</strong></td>
-<td><code>input_row_count</code></td>
-<td>recommended</td>
-<td>0..1 <br/> <a href="../../types/Integer/">Integer</a></td>
-<td>Number of rows in the input</td>
+<td>* <br/> <a href="../InputFile/">InputFile</a></td>
+<td>The files the run read, one entry per file</td>
 </tr>
 <tr>
 <td><strong>Output File SHA-256 Hash</strong></td>
@@ -1292,9 +1243,16 @@
 
 
 
-      ToolRun : input_file_sha256
+      ToolRun : input_files
 
-      ToolRun : input_row_count
+
+
+
+
+        ToolRun --&gt; "*" InputFile : input_files
+        click InputFile href "../../classes/InputFile/"
+
+
 
       ToolRun : output_file_sha256
 
@@ -1662,58 +1620,34 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnyValue</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">input_file_sha256</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_file_sha256</span>
+<span class="w">  </span><span class="nt">input_files</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_files</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recommended</span>
 <span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The input hash lets anyone verify they are re-running on byte-identical</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">inputs; without it, a "reproduction" may quietly use different data, and</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">disagreements can no longer be traced to inputs versus code.</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Many runs fuse several sources; a single hash leaves the other inputs</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">unrecorded.</span>
 <span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A SHA-256 hash is a fingerprint of a file — if even one byte changes,</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">the fingerprint changes completely. Comparing fingerprints proves two files</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">are exactly the same without inspecting their contents.</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SHA256 of the input file (CSV / parquet).</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Input File SHA-256 Hash</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The list of ingredients the program was given.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The files the run read, one entry per file.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Input Files</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9f8e7d6c5b4a...</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">object</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">input_file_locator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inputs/addresses.csv</span>
+<span class="w">        </span><span class="nt">input_file_sha256</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9f8e7d6c5b4a...</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
-<span class="w">    </span><span class="nt">see_also</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.6028/NIST.FIPS.180-4</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:used</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">input_row_count</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input_row_count</span>
-<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recommended</span>
-<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The row count is a coarse but instant integrity check — a truncated</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">or partially delivered input shows up immediately as the wrong count. It</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">also anchors the input side of input/output cardinality checks.</span>
-<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
-<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Just the number of lines of data that went in. If you expected 3 addresses</span>
-<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">and the count says 2, something was lost before the tool ever ran.</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of rows in the input.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Input Row Count</span>
-<span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'3'</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">one row per cohort address</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ToolRun</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InputFile</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">output_file_sha256</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output_file_sha256</span>
 <span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
@@ -1784,6 +1718,7 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">of what it did and whether anything looked wrong. Keeping a snippet is like</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">stapling the receipt to the record.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Last ~50 lines of the run log, where useful for debugging or audit.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">The full log is not expected to ship with the data; provide it on request.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Log Excerpt</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'[2026-05-23</span><span class="nv"> </span><span class="s">14:19:19]</span><span class="nv"> </span><span class="s">daymet</span><span class="nv"> </span><span class="s">1.0.0</span><span class="nv"> </span><span class="s">finished:</span><span class="nv"> </span><span class="s">wrote</span><span class="nv"> </span><span class="s">459</span><span class="nv"> </span><span class="s">rows</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">/output/tmax.csv</span>

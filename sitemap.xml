@@ -85,6 +85,10 @@
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/classes/InputFile/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/classes/IrregularGrid/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
@@ -637,7 +641,15 @@
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/input_file_locator/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/input_file_sha256/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/input_files/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
