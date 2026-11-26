@@ -47,6 +47,12 @@ sources:
     name: amadeus
     kind: tool
     url: https://github.com/NIEHS/amadeus
+    documents:
+      - id: amadeus-process-covariates
+        title: amadeus man/process_covariates.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_covariates.Rd
+        version: "a620aca (2026-11-23)"
+        retrieved: 2026-11-27
   - id: cher
     name: C-HER
     kind: dataset_repository
@@ -68,3 +74,13 @@ sources:
         url: https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/DataTypes/StructuredDataTypes/InternationalRegistrationDataIdentifier.html
         version: "v1.0 (3225434)"
         retrieved: 2026-11-26
+      - id: ddi-cdi-activity
+        title: DDI-CDI 1.0, Activity
+        url: https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/Classes/Process/Activity.html
+        version: "v1.0 (3225434)"
+        retrieved: 2026-11-27
+      - id: ddi-cdi-reference
+        title: DDI-CDI 1.0, Reference
+        url: https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/DataTypes/StructuredDataTypes/Reference.html
+        version: "v1.0 (3225434)"
+        retrieved: 2026-11-27
