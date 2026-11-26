@@ -50,9 +50,7 @@ classes:
     - run_timestamp_utc
     - run_duration_seconds
     - run_environment
-    - input_file_sha256
     - input_files
-    - input_row_count
     - output_file_sha256
     - output_row_count
     - run_log_excerpt
@@ -65,22 +63,16 @@ classes:
 
   InputFile:
     title: Input File
-    description: One file a tool run read, with where to find it and its hash.
+    description: >-
+      One file a tool run read, with where to find it, its hash and its row
+      count.
     annotations:
       domain_of_use: environmental_exposure
     class_uri: prov:Entity
     slots:
     - input_file_locator
-    attributes:
-      # Local so the run-level slot's covered_by is not repeated; same name so
-      # the checker counts a hash given here.
-      input_file_sha256:
-        title: Input File SHA-256 Hash
-        description: SHA256 of this input file.
-        annotations:
-          tier: recommended
-          justification: Verifies that a located file is the one the run read.
-          explanation: A fingerprint of this file.
+    - input_file_sha256
+    - input_row_count
 
   ProvenanceChain:
     title: Provenance Chain
@@ -337,9 +329,7 @@ slots:
     inlined: true
     inlined_as_list: true
     description: >-
-      The files the run read, one entry per file. Use it instead of the
-      run-level `input_file_sha256` when there are several inputs or a locator
-      is known.
+      The files the run read, one entry per file.
     examples:
     - object:
         input_file_locator: inputs/addresses.csv
@@ -367,7 +357,7 @@ slots:
   input_file_sha256:
     title: Input File SHA-256 Hash
     range: string
-    description: SHA256 of the input file (CSV / parquet).
+    description: SHA256 of this input file (CSV / parquet).
     examples:
     - value: "9f8e7d6c5b4a..."
     see_also:
@@ -387,7 +377,7 @@ slots:
   input_row_count:
     title: Input Row Count
     range: integer
-    description: Number of rows in the input.
+    description: Number of rows in this input file.
     examples:
     - value: "3"
       description: one row per cohort address

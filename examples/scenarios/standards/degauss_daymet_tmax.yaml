@@ -73,8 +73,9 @@ tool_run:
   container_image_repository: "ghcr.io/degauss-org/daymet"
   container_image_digest: "sha256:bfe282259823b7fa92ea9b41e77b51defe455d704a8b6a142c0fe5f58c78cc72"
   run_timestamp_utc: "2026-06-25T08:31:11Z"
-  input_file_sha256: "fa4b4684edaab06f452eb538108650744bd3b28aee28a37b1ac49fdad1488578"
-  input_row_count: 3
+  input_files:
+  - input_file_sha256: "fa4b4684edaab06f452eb538108650744bd3b28aee28a37b1ac49fdad1488578"
+    input_row_count: 3
   output_file_sha256: "8093b669a977013b00541f7f2564bed826e4746520c3ff20267435259a3afcc9"
   output_row_count: 24
 
@@ -86,7 +87,8 @@ provenance_chain:
     container_image_repository: "ghcr.io/degauss-org/geocoder"
     container_image_digest: "sha256:ec9b75eff7cd7432efcc84d3e7d55b593cc06e0cd2868b512dbc70ef99a1fdc6"
     run_timestamp_utc: "2026-06-25T08:31:11Z"
-    input_file_sha256: "b285ec7e176006b0d6f107378099ef8be707b249b56753faa35e92d82bdb6e99"
-    input_row_count: 3
+    input_files:
+    - input_file_sha256: "b285ec7e176006b0d6f107378099ef8be707b249b56753faa35e92d82bdb6e99"
+      input_row_count: 3
     output_file_sha256: "3a4ec454a15a88ec654a888ea7266f365768994bca2f06e562cbface2ceb5ba7"
     output_row_count: 3

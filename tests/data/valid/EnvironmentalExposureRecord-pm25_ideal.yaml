@@ -129,8 +129,9 @@ tool_run:
     os: "Ubuntu 22.04"
     container_runtime: "docker 24.0.7"
     python_version: "3.11.6"
-  input_file_sha256: "1122334455..."
-  input_row_count: 3
+  input_files:
+  - input_file_sha256: "1122334455..."
+    input_row_count: 3
   output_file_sha256: "6677889900..."
   output_row_count: 3
 

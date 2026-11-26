@@ -177,18 +177,20 @@ def test_missing_reason_explains_recommended_but_not_core(checker):
 
 
 def test_tool_run_accepts_several_located_inputs(checker):
-    """input_files pairs locator and hash per input; a hash given there counts
-    as input_file_sha256, so moving it off the run costs no completeness."""
+    """Locator, hash and row count are given per input file, not once per run."""
     path = VALID_DIR / "EnvironmentalExposureRecord-tmax_core.yaml"
     record = yaml.safe_load(path.read_text())
     record["tool_run"]["input_files"] = [
-        {"input_file_locator": "inputs/addresses.csv", "input_file_sha256": "9f8e7d..."},
+        {"input_file_locator": "inputs/addresses.csv", "input_file_sha256": "9f8e7d...", "input_row_count": 3},
         {"input_file_locator": "https://example.org/grid.nc"},
     ]
     report = checker.check(record)
     assert report.valid, report.validation_messages
     present = {s.name for s in report.slots if s.present}
-    assert {"input_files", "input_file_locator", "input_file_sha256"} <= present
+    assert {"input_files", "input_file_locator", "input_file_sha256", "input_row_count"} <= present
+    for slot, value in (("input_file_sha256", "9f8e7d..."), ("input_row_count", 3)):
+        record["tool_run"] = {"tool_name": "daymet", "tool_version": "1.0.0", slot: value}
+        assert not checker.check(record).valid, f"{slot} is no longer a slot of the run"
 
 
 def test_heat_metric_module_only_counts_when_present(checker):
