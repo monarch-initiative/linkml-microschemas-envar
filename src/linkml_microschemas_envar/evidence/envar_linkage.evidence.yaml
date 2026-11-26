@@ -1,0 +1,467 @@
+# Evidence for the slots of envar_linkage.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+linkage_strategy:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        CHEL Documentation.md §4.5.2; README.md (participant point to Hex3 join)
+      note: >-
+        CHEL's linkage strategy is first-class: geocoded participant points (§2.7) get a deterministic
+        Hex3 assignment (§4.5.2); the README shows the point-in-hex spatial join.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt
+      note: >-
+        GAIA's linkage strategy is only implicit in the st_within SQL join semantics, not
+        exposed as a documented structured slot. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_column_dictionary column tagged Spatial – Primary + reference to boundaries
+        schema
+      note: >-
+        C-HER's Spatial tags and boundaries-schema references encode a spatial join relationship,
+        though not EnVar's linkage-strategy enum. Conservative: partial.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS carries no structured linkage-strategy slot; the point-extraction rule is
+        implicit.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus carries no linkage-strategy slot; the value is extracted at request coordinates
+        with no recorded strategy.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The gridded-to-patient linkage strategy is an instance-layer derivation choice, outside
+        CODATA's conceptual variable layer.
+
+geocoding_precision_propagated:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 (Geocodes input), §4.5.2
+      note: >-
+        CHEL takes geocoded participant points as input and joins them to a hex, but the precision
+        of the geocode itself is not carried.
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: geocoder + daymet CSV `precision` column (range/street/zip/etc.)
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §B (Geocoding precision — ✅ for DeGAUSS)
+      note: >-
+        DeGAUSS carries the geocoding precision category first-class in the `precision` column
+        — the motivating source for this slot.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No geocoding-precision column on location.csv or external_exposure.csv.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus collapses the address to lat/lon at the THREDDS request and carries no geocoding
+        precision.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER geocodes participants to points but does not carry the precision of the geocode.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Propagated geocoder precision is an instance-layer linkage quality signal, outside
+        CODATA's conceptual scope.
+
+geocoding_score_propagated:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §4.5.2
+      note: >-
+        The geocode-to-hex join is defined, but no geocoder confidence score is propagated.
+        Conservative: partial.
+  - source: degauss
+    legacy:
+      extent: full
+      status: verified
+      where: geocoder + daymet CSV `score` column
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §B (Geocoder match score — ✅ for DeGAUSS)
+      note: >-
+        DeGAUSS carries the geocoder match score first-class in the `score` column.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No geocoder match-score column on location.csv or external_exposure.csv.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no geocoder match score.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER carries no geocoder confidence score.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A propagated geocoder score is an instance-layer linkage quality signal, outside CODATA's
+        conceptual scope.
+
+geocoding_database_version:
+  supported_by:
+  - source: degauss
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        degauss-org/geocoder README.md, Geomarker Data (3.3.0, v3.4.2); geocoder output filename
+        tag
+      note: >-
+        No output column names the database; the filename gives the container version, whose
+        README names the 2021 TIGER/Line Street Range Address files.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §2.7 (Geocodes input row, Source Link N/A)
+      note: >-
+        CHEL takes participant geocodes as an input; its lineage row gives no source, and
+        no geocoder or address database is named in its documentation.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        gaiaDB sql/01_init_schema.sql working.location; gaiaDocker docker/gaia-degauss/Dockerfile
+      note: >-
+        working.location has coordinates but no geocoder or address-database column, and the
+        gaia-degauss image uses an untagged DeGAUSS geocoder.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        amadeus R/utils-calculate.R (calc_prepare_locs input, calc_return_locs output), version
+        2.1.2
+      note: >-
+        Amadeus takes locations that already have coordinates, and its output names no reference
+        address database.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column fields
+      note: >-
+        The published C-HER metadata fields include no geocoding database. The ORNL ADDRESS
+        report (doi:10.2172/3827145, Table 2) names OSM/Nominatim without a version, outside
+        that metadata.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The reference database of a geocoding run is instance-layer linkage provenance, outside
+        CODATA's conceptual scope.
+
+address_period_alignment:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL README.md (point join; release chosen by start_date)
+      note: >-
+        CHEL joins one participant point to a hex and picks the release (2022 vs 2024) by
+        enrollment start_date year; it carries no address-period / location-over-time alignment.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA/OMOP models a single static location per person and no address-history / location-over-time
+        alignment.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS geocodes one address per row and models no location-over- time period.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus takes fixed lat/lon and models no address period.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER joins a participant point to a hex with no location-over- time alignment.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        How patient location-over-time is modelled is an instance-layer linkage concern, outside
+        CODATA's conceptual scope.
+
+partial_day_attribution_rule:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        CHEL Documentation.md (spatial-only; no clinical-date / trajectory model)
+      note: >-
+        CHEL is spatial-only and models no clinical-date or trajectory transitions, so partial-day
+        attribution is not carried.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA/OMOP models no trajectory transitions, so no partial-day attribution rule is
+        carried.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS models no travel/transition days, so no partial-day attribution is carried.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus models no trajectory transitions, so no partial-day attribution is carried.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER is spatial-only and models no transition-day attribution.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Transition-day attribution is an instance-layer trajectory concern, outside CODATA's
+        conceptual scope.
+
+lag_alignment_applied:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; no clinical-date / lag alignment)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no clinical-date / lag
+        alignment.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: GAIA/OMOP emits values at native dates with no lag-alignment record.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS emits per-day values at native dates with no lag-alignment record.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus emits per-day values at native dates with no lag-alignment record.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER is spatial-only and carries no lag-alignment record.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Lag alignment to a clinical event is an instance-layer linkage concern, outside CODATA's
+        conceptual scope.
+
+privacy_transformation:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        CHEL Documentation.md §2.2.2, §4.1, §4.8 (deterministic privacy jitter)
+      note: >-
+        CHEL applies a deterministic privacy reassignment (jitter) at linkage time, driven
+        by ZIP3 x Hex3 sliver populations (§2.2.2, §2.2.4, §4.1); §4.8 advises fitting models
+        with and without jitter-reassigned records.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same
+        ZIP3)
+      note: >-
+        C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy
+        jitter this slot models — it is the motivating case.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        The heat-scenario GAIA/OMOP join carries the true geocoded location with no privacy-transformation
+        record on location.csv or external_exposure.csv.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS runs inside the institution and emits the true geocoded location; no privacy
+        transform is recorded in its CSVs.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus extracts at the true request coordinates with no privacy-transformation record.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A post-join privacy transformation is an instance-layer linkage step, outside CODATA's
+        conceptual scope.
+
+privacy_transformation_note:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §1.3, §2.2.2, §5.5 (threshold not published)
+      note: >-
+        The public documentation names the mechanism (deterministic reassignment over ZIP3
+        x Hex3 slivers, §2.2.2) and its governance basis (HIPAA expert determination, §1.3),
+        and lists the privacy threshold as a per-release documentation item (§5.5), but does
+        not publish the trigger value or the reassignment rule. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        C-HER §4.5 trigger (hex∩ZIP3 population threshold), deterministic rule, HIPAA expert-determination
+        basis
+      note: >-
+        C-HER spells out the concrete trigger, determinism, and legal basis of its jitter
+        — exactly the detail this note slot captures.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No privacy transform is applied in the GAIA/OMOP heat scenario, so there is no trigger/threshold/governance
+        detail to record.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No privacy transform is applied by DeGAUSS here, so there is no transform detail to
+        record.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No privacy transform is applied by Amadeus, so there is no transform detail to record.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The detail of a post-join privacy transform is instance-layer, outside CODATA's conceptual
+        scope.

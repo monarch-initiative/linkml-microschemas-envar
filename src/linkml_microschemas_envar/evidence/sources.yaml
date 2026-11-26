@@ -1,0 +1,59 @@
+# Registry of the sources cited in the *.evidence.yaml files.
+# Shape: evidence.schema.yaml (SourceRegistry). Design: specs/2026-11-25-slot-evidence-design.md
+sources:
+  - id: chel
+    name: CHEL
+    kind: dataset_repository
+    url: https://github.com/cladteam/CHEL
+    documents:
+      - id: chel-documentation
+        title: CHEL Documentation.md
+        url: https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md
+        version: "4dd219e (2026-10-28)"
+        retrieved: 2026-11-26
+  - id: omop_gaia
+    name: OMOP / GAIA
+    kind: standard
+    url: https://ohdsi.github.io/GIS/
+    standards_index_id: omop-cdm
+    documents:
+      - id: gaiadb-init-schema
+        title: gaiaDB sql/01_init_schema.sql
+        url: https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql
+        version: "2f918c8"
+        retrieved: 2026-11-26
+      - id: gaiadb-example-jsonld
+        title: gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json
+        url: https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json
+        version: "2f918c8"
+        retrieved: 2026-11-26
+  - id: degauss
+    name: DeGAUSS
+    kind: tool
+    url: https://degauss.org/
+    standards_index_id: degauss
+  - id: amadeus
+    name: amadeus
+    kind: tool
+    url: https://github.com/NIEHS/amadeus
+  - id: cher
+    name: C-HER
+    kind: dataset_repository
+    url: https://doi.org/10.2172/3451859
+    documents:
+      - id: cher-metadata-overview
+        title: C-HER Metadata Overview (ORNL/TM-2026/4743)
+        url: https://www.osti.gov/servlets/purl/3451859
+        version: "doi:10.2172/3451859"
+        retrieved: 2026-11-26
+  - id: codata
+    name: CODATA Essential Variables / DDI-CDI
+    kind: standard
+    url: https://codata.org/
+    standards_index_id: codata-ev
+    documents:
+      - id: ddi-cdi-irdi
+        title: DDI-CDI 1.0, InternationalRegistrationDataIdentifier
+        url: https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/DataTypes/StructuredDataTypes/InternationalRegistrationDataIdentifier.html
+        version: "v1.0 (3225434)"
+        retrieved: 2026-11-26

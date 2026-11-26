@@ -2,3 +2,4 @@
 src/linkml_microschemas_envar/datamodel/linkml_microschemas_envar.py linguist-generated
 src/linkml_microschemas_envar/datamodel/linkml_microschemas_envar_pydantic.py linguist-generated
 docs/standards-index/index.md linguist-generated
+uv.lock linguist-generated

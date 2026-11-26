@@ -1,0 +1,269 @@
+id: https://w3id.org/linkml/microschemas/envar/evidence
+name: envar-evidence
+title: EnVar Slot Evidence
+description: |-
+  Standalone schema for the slot evidence files and the source registry in
+  this directory (specs/2026-11-25-slot-evidence-design.md). Deliberately NOT
+  imported into the linkml_microschemas_envar umbrella and NOT part of
+  `just gen-project`, so the evidence is never copied into generated code.
+license: Apache-2.0
+
+prefixes:
+  envar: https://w3id.org/linkml/microschemas/envar/
+  linkml: https://w3id.org/linkml/
+default_prefix: envar
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  SourceRegistry:
+    description: The sources cited as evidence (sources.yaml).
+    attributes:
+      sources:
+        range: Source
+        multivalued: true
+        inlined_as_list: true
+        required: true
+
+  Source:
+    description: A standard, tool, data repository or paper that evidence items cite.
+    attributes:
+      id:
+        identifier: true
+        pattern: "^[a-z][a-z0-9_]*$"
+      name:
+        required: true
+      kind:
+        range: SourceKindEnum
+        required: true
+      url:
+        description: Landing page of the source.
+      standards_index_id:
+        description: Id of the entry in docs/standards-index/standards.yaml, if any.
+      reviewed:
+        range: Reviewed
+        description: >-
+          Present once all slots were checked against this source. Informational,
+          no test reads it.
+      documents:
+        range: Document
+        multivalued: true
+        inlined_as_list: true
+
+  Reviewed:
+    attributes:
+      date:
+        range: date
+        required: true
+      unchecked_slots:
+        multivalued: true
+        description: Slots not yet checked against this source.
+      note: {}
+
+  Document:
+    description: One public document of a source, fixed to a version.
+    attributes:
+      id:
+        identifier: true
+        pattern: "^[a-z][a-z0-9-]*$"
+      title:
+        required: true
+      url:
+        required: true
+        description: >-
+          Public URL fixed to a version (commit, tag, versioned report). The
+          checker records the sha256 of the fetched bytes in evidence.lock.yaml.
+      version: {}
+      retrieved:
+        range: date
+
+  EvidenceFile:
+    description: One *.evidence.yaml file, a mapping from slot name to its evidence.
+    attributes:
+      entries:
+        range: SlotEvidence
+        multivalued: true
+        inlined: true
+
+  SlotEvidence:
+    attributes:
+      slot:
+        identifier: true
+        description: Slot name, or `ClassName.attribute_name` for a class-local attribute.
+      supported_by:
+        range: EvidenceEntry
+        multivalued: true
+        inlined_as_list: true
+      not_supported_by:
+        range: NonSupportEntry
+        multivalued: true
+        inlined_as_list: true
+      no_support_found:
+        range: NoSupportFound
+
+  EvidenceEntry:
+    description: Positive evidence from one source for one slot.
+    attributes:
+      source:
+        required: true
+      support:
+        range: SupportItem
+        multivalued: true
+        inlined_as_list: true
+      legacy:
+        range: LegacyVerdict
+
+  SupportItem:
+    description: One checkable piece of evidence.
+    attributes:
+      type:
+        range: SupportTypeEnum
+        required: true
+      document:
+        description: Id of a document of the source. Required for `verified`.
+      locator:
+        description: Section, page, table or line in the document.
+      source_slot:
+        description: The cited field in the source (type schema).
+      source_label:
+        description: Label of that field (type schema, optional).
+      snippet:
+        description: >-
+          Abbreviated but accurate quote (types documentation and argument).
+          `...` marks omitted text, `[...]` an editorial insertion.
+      field:
+        description: Column or key in the output file (type output).
+      value:
+        description: Example value of that field (type output, optional).
+      match:
+        range: MatchEnum
+      explanation: {}
+      status:
+        range: EvidenceStatusEnum
+        required: true
+      confirmation:
+        range: Confirmation
+
+  NonSupportEntry:
+    description: >-
+      The source should have the information the slot asks for, and does not.
+      Out of scope is never recorded.
+    attributes:
+      source:
+        required: true
+      reason:
+        range: NonSupportReasonEnum
+      explanation:
+        description: >-
+          Must name the closest thing the source has, or say that nothing close
+          was found and where we looked.
+      closest:
+        range: SupportItem
+        multivalued: true
+        inlined_as_list: true
+      status:
+        range: EvidenceStatusEnum
+      confirmation:
+        range: Confirmation
+      legacy:
+        range: LegacyVerdict
+
+  Confirmation:
+    description: >-
+      A named person asserts that the item is correct and that the details
+      shown may be public.
+    attributes:
+      by:
+        required: true
+        pattern: "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+      date:
+        range: date
+        required: true
+      basis:
+        required: true
+        description: Names the private source without quoting from it.
+
+  NoSupportFound:
+    description: Someone looked and found no support. Written by a reviewer, never by a script.
+    attributes:
+      by:
+        required: true
+        pattern: "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+      date:
+        range: date
+        required: true
+      searched:
+        multivalued: true
+        required: true
+        description: Ids of the sources that were checked.
+      note: {}
+
+  LegacyVerdict:
+    description: >-
+      Migration only. A `covered_by` verdict copied word for word, waiting for
+      review. An entry with a legacy block counts as unverified.
+    attributes:
+      extent:
+        range: LegacyExtentEnum
+        required: true
+      status:
+        range: LegacyStatusEnum
+        required: true
+      where: {}
+      evidence: {}
+      note: {}
+
+enums:
+  SourceKindEnum:
+    permissible_values:
+      standard: {}
+      tool: {}
+      dataset_repository: {}
+      paper: {}
+  SupportTypeEnum:
+    permissible_values:
+      schema:
+        description: The source has a field for it.
+      documentation:
+        description: The source's documentation states it.
+      output:
+        description: A real output of the source contains it.
+      argument:
+        description: A paper or document argues that the information is needed.
+  MatchEnum:
+    permissible_values:
+      full: {}
+      partial:
+        description: The explanation must say what is missing.
+  EvidenceStatusEnum:
+    permissible_values:
+      verified:
+        description: Passed the automatic check against a public document (see evidence.lock.yaml).
+      confirmed:
+        description: Confirmed by a named person from a source that is not public.
+      unverified: {}
+  NonSupportReasonEnum:
+    permissible_values:
+      not_recorded:
+        description: In scope, but nothing states it.
+      implicit:
+        description: True, but must be inferred.
+      different_granularity:
+        description: Stated at another level.
+      different_concept:
+        description: Looks similar, is something else.
+      not_sure:
+        description: Not checked well enough to say.
+  LegacyExtentEnum:
+    permissible_values:
+      full: {}
+      partial: {}
+      absent: {}
+      out_of_layer: {}
+  LegacyStatusEnum:
+    permissible_values:
+      asserted: {}
+      verified: {}

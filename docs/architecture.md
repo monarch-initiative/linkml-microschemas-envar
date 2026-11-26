@@ -74,6 +74,7 @@ temporal_reference: { ... }   # TemporalReference  (profile: temporality)
 exposure_model:     { ... }   # ExposureModel      (profile: methodology)
 data_layout:        { ... }   # DataLayout — column bindings into the CSV
 source_dataset:     { ... }   # SourceDataset
+delivered_resource: { ... }   # DeliveredResource
 uncertainty:        { ... }   # Uncertainty
 linkage_method:     { ... }   # LinkageMethod
 tool_run:           { ... }   # ToolRun
@@ -112,7 +113,7 @@ flowchart TB
     LM["LinkageMethod"]
     TRN["ToolRun + ProvenanceChain"]
     DHM["DerivedHeatMetric"]
-    HL["HealthLayerLinkage + DepositMetadata"]
+    HL["HealthLayerLinkage + DeliveredResource + DepositMetadata"]
   end
   REC["④ EnvironmentalExposureRecord (envar_record)<br/>instantiates MicroschemaDefinition"]
   EX["⑤ bound contracts (envar_examples)<br/>DailyMaxTemperatureRecord, WBGT…, EHD flag — is_a record"]
@@ -157,6 +158,7 @@ classDiagram
   EnvironmentalExposureRecord *-- ExposureModel : exposure_model
   EnvironmentalExposureRecord *-- DataLayout : data_layout
   EnvironmentalExposureRecord *-- SourceDataset : source_dataset
+  EnvironmentalExposureRecord *-- DeliveredResource : delivered_resource
   EnvironmentalExposureRecord *-- Uncertainty : uncertainty
   EnvironmentalExposureRecord *-- LinkageMethod : linkage_method
   EnvironmentalExposureRecord *-- ToolRun : tool_run
@@ -170,7 +172,7 @@ classDiagram
 `exposure_model`, `data_layout`, `source_dataset`, `linkage_method`, `tool_run`,
 `subject`, `schema_version`, `provenance_id`, `phi_status` are **core** (required);
 `uncertainty`, `provenance_chain`, `health_layer_linkage` are **recommended**;
-`derived_heat_metric` is **conditionally-core**; `deposit_metadata` is **optional**.)</small>
+`derived_heat_metric` is **conditionally-core**; `delivered_resource`, `deposit_metadata` are **optional**.)</small>
 
 **Anatomy-slot realisation.** The four complex anatomy slots are realised as
 **readable envar slots** — the validated key is the domain name; the profile name is
@@ -189,7 +191,7 @@ slot names, so this is profile-conformant (decision recorded in the schema
 | — | `observation_result` | **not bound** — values live in the companion file, located via `data_layout` | — |
 
 The remaining concerns have no profile equivalent, so they are added as **extension
-slots** directly on the record: `data_layout`, `source_dataset`, `uncertainty`,
+slots** directly on the record: `data_layout`, `source_dataset`, `delivered_resource`, `uncertainty`,
 `linkage_method`, `tool_run`, `provenance_chain`, `derived_heat_metric`,
 `health_layer_linkage`, `deposit_metadata` (plus the root scalars `schema_version`,
 `provenance_id`, `phi_status`).

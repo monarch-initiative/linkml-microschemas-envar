@@ -34,9 +34,10 @@ One exposure record composes a graph of typed objects, one module per concern. A
 | `SourceDataset` | The upstream product the values originate from | one per record |
 | `ExposureModel` | Model class, equation, inputs, known biases | one per record (null for direct measurement) |
 | `Uncertainty` | Per-value and aggregate uncertainty, quality flags, missing-data handling | one per record |
-| `LinkageMethod` | How a gridded value is attached to a patient's location *and* clinical date (spatiotemporal trajectory resolution) | one per record |
+| `LinkageMethod` | How a gridded value is attached to a patient's location *and* clinical date (spatiotemporal trajectory resolution) | one per record; may be omitted when `subject_type` is `population_geographic_unit` |
 | `ToolRun` + `ProvenanceChain` | Exact invocation + the ordered chain of upstream runs | one per record |
 | `DerivedHeatMetric` | Equation variant, indoor/outdoor, percentile baseline (heat indices only) | where applicable |
+| `DeliveredResource` | Identifier and version of the delivered table or file | one per record (optional) |
 | `HealthLayerLinkage` + `DepositMetadata` | Health-data-layer findability hooks (OMOP, BDC, …; no single model privileged) + the subset needed to publish as a FAIR (findable, accessible, interoperable, reusable) data deposit | one per record |
 
 Naming note: the top-level keys use **readable domain names** (`variable_identity`, `spatial_reference`, `temporal_reference`, `exposure_model`), and the schema now matches: each maps to its LinkML Microschema Profile anatomy slot (`observation_type`, `location`, `temporality`, `methodology`) via slot-level `implements`/`exact_mappings` — `instantiates` conformance does not constrain slot names. Decided 2026-07; rationale and mechanism in the schema README.
@@ -177,6 +178,8 @@ Present only when the variable is a derived heat metric. For plain Tmax the modu
 
 ### 4.8 `LinkageMethod`
 
+The block is Conditionally-Core: required unless the record declares `subject_type: population_geographic_unit` (§4.10).
+
 **Spatial and temporal linkage are two projections of one step.** Attaching a gridded value to a person is the resolution of the patient's spatiotemporal trajectory — *where the body was, over time* — down to the resolution the exposure data supports. Each axis carries two lossy reductions: **locating** the messy reality (address → point; clinical timestamp → date, residence/travel interval → which days) and **attaching** it to the exposure value (point → grid cell; date → exposure window). The schema has long documented the spatial axis (`geocoding_*`, `linkage_strategy`, `address_period_alignment`); the temporal twins (`clinical_date_assignment_convention`, `partial_day_attribution_rule`, `lag_alignment_applied`) are below. Critically, the Core `day_boundary_convention` (§4.3) describes only the *exposure-side* ruler; a boundary mismatch needs **both** rulers to detect, and `clinical_date_assignment_convention` supplies the clinical-side one (validation rule §7.8).
 
 | Element | Tier | Type / vocab | Definition & why it matters | Ref |
@@ -187,6 +190,7 @@ Present only when the variable is a derived heat metric. For plain Tmax the modu
 | `linkage_working_crs` | Optional | EPSG / PROJ | CRS the join actually executed in, when it differs from the native `crs` (GAIA reprojects to EPSG:5070 equal-area before its PostGIS join). Reprojection can move a point across a cell boundary, so it is a linkage hyperparameter. Added by the reverse gap survey. | [EPSG]; survey |
 | `geocoding_precision_propagated` | Recommended | enum | `range` \| `street` \| `intersection` \| `zip` \| `city` \| `unknown`. Rural addresses geocode coarser; ignoring this gives differential exposure misclassification. | [Brokamp2018] |
 | `geocoding_score_propagated` | Recommended | number (null) | The geocoder's 0–1 score, propagated so the exposure knows the precision of its anchor. | upstream |
+| `geocoding_database_version` | Optional | string | Name and version or release of the reference address database the geocoder matched against (e.g. TIGER/Line Street Range Address files 2021). The geocoder tool is the `ToolRun` step in `provenance_chain`; the same address matched against another database version can get other coordinates. | upstream |
 | `address_period_alignment` | Recommended | enum | `single_static_address` \| `address_history_from_emr` \| `known_travel_interval` \| `synthetic_residence_period`. How patient location-over-time was resolved — the *spatial* axis of trajectory resolution. `known_travel_interval` covers a documented trip away from the residence (the holiday case), where assuming a static address smears home-city exposure across days the patient was elsewhere. | EnVar |
 | `clinical_date_assignment_convention` | Conditionally-Core | enum (null+reason) | The clinical-side mirror of `day_boundary_convention`: which timezone/boundary collapsed the clinical timestamp to the join date — `local_midnight` \| `utc_midnight` \| `source_system_local_time` \| `date_only_no_time` \| `unknown`. **Mandatory when a lagged or event-matched analysis is declared** (`lag_alignment_applied != none`); without it the Core `day_boundary_convention` cannot be checked against anything. Metadata *about the join* — never the clinical timestamp itself (the PHI line holds). | EnVar; [Gasparrini2015] |
 | `partial_day_attribution_rule` | Recommended | enum (null+reason) | How boundary/transition days of a trajectory are attributed — `origin_location` \| `destination_location` \| `both_days_included` \| `excluded` \| `not_applicable`. Trip start/end and flight days otherwise attach exposure to the wrong place; the temporal partner to the spatial `known_travel_interval`. | EnVar |
@@ -223,6 +227,11 @@ record-root assertion (it applies to the whole sidecar, not just linkage).
 | `cohort_size_anchored` | Optional | integer (null) | Distinct persons this record was extracted for. | run |
 | `participant_coverage_pct` | Optional | number (null+reason) | Percent of those persons assigned at least one non-null value. Not `data_completeness_pct` (§4.7), which counts (location, date) cells. | run |
 | `phi_status` | Core (record root) | enum | `no_phi` \| `aggregated_no_phi` \| `phi_present`. A safety assertion; sidecars must be PHI-free. | EnVar |
+| `subject_type` | Recommended (record root) | enum | `patient` \| `cohort` \| `population_geographic_unit`. What `subject` identifies. For a public aggregate linked to no person, `subject` is the unit's code (for several units: the set, with the codes in the column named in `subject_column`), `target_geography_type` is its kind, and `linkage_method` may be omitted. Absent means person-linked. | EnVar |
+| `delivered_resource` (record root) | Optional | object | The table or file a producer delivered, as opposed to the source product and the sidecar. Optional because values produced in-house have none. | EnVar |
+| `resource_identifier` / `resource_identifier_scheme` | Optional | string / URI | The producer's identifier, verbatim, and the naming scheme that decodes it. Other fields are copied from the producer's metadata, not parsed from the identifier. | producer |
+| `resource_version` | Optional | string | The producer's own version, independent of `source_dataset_version`: a re-registered table keeps the source version but gets a new one. | producer |
+| `resource_publisher` | Optional | string | Who issued the identifier and version. | producer |
 | `deposit_*` (DOI, repository, license, citation, DCAT url) | Optional | mixed | The required-for-deposit subset for the published-FAIR-object case. Optional because most records never get deposited. | [SPDX]/[DOI] |
 | `schema_version` | Core | string | The schema version this document targets; downstream branches on it for evolution. | EnVar |
 
@@ -289,7 +298,7 @@ The PM2.5 records (`tests/data/valid/EnvironmentalExposureRecord-pm25_{core,reco
 | W3C PROV | `provenance_chain` modelling | external — [PROV] |
 | ETCCDI indices | `heat_wave_threshold_definition` (ETCCDI variants) | external — [Zhang2011] |
 | ISO 7243 | WBGT `equation_variant` | external (paywalled; cite by id) |
-| EnVar-authored enums | `exposure_model_type`, `extraction_method`, `day_boundary_convention`, `linkage_strategy`, `equation_variant`, `heat_metric_family`, `heat_wave_threshold_definition`, `indoor_outdoor`, `target_geography_type`, `bias_correction_applied`, `concept_status`, `health_layer_target`, `clinical_date_assignment_convention`, `partial_day_attribution_rule`, `address_period_alignment`, missing-reason | EnVar — value lists in §4 |
+| EnVar-authored enums | `exposure_model_type`, `extraction_method`, `day_boundary_convention`, `linkage_strategy`, `equation_variant`, `heat_metric_family`, `heat_wave_threshold_definition`, `indoor_outdoor`, `target_geography_type`, `subject_type`, `bias_correction_applied`, `concept_status`, `health_layer_target`, `clinical_date_assignment_convention`, `partial_day_attribution_rule`, `address_period_alignment`, missing-reason | EnVar — value lists in §4 |
 
 ---
 

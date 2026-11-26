@@ -158,56 +158,6 @@ slots:
         cells, outlines such as city boundaries, lines such as roads, or single
         points such as monitoring stations. This block says which shape the
         source uses and, where it makes sense, how big the pieces are.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 grid)"
-              note: >-
-                CHEL states the delivered geometry first-class: H3 Resolution-3
-                hexagons.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: asserted
-              where: "gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)"
-              note: >-
-                GAIA records the source geometry first-class (geom_type, and
-                structure/geometry in the etl metadata).
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no source-geometry field.
-          amadeus:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "thredds_dataset.xml gridDataset/gridSet"
-              note: >-
-                Only implied by the THREDDS gridDataset/gridSet structure; never
-                written as a geometry type in the output.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_name spatial-res code prefix (m/k/h/c/t/b/s/z)"
-              note: >-
-                The resolution code prefix separates grid (m/k), H3 (h) and
-                polygon (tract/block/ZIP) layouts (§2.3); it has no line or
-                point code.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Source geometry of a specific product is instance-layer detail
-                outside the conceptual EV/DDI-CDI layer.
   geometry_kind:
     title: Geometry Kind
     range: string
@@ -250,22 +200,6 @@ slots:
       explanation: >-
         Honeycomb maps come in 16 standard sizes. This number says which one:
         0 is continent-sized cells, 15 is about a square metre.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 grid)"
-              note: >-
-                CHEL states the H3 resolution first-class (Resolution 3).
-          cher:
-            annotations:
-              extent: full
-              status: asserted
-              where: "table_name spatial-res code (e.g. h08)"
-              note: >-
-                C-HER encodes the H3 resolution in the table_name code (§2.3).
   native_spatial_resolution_m:
     title: Native Spatial Resolution (m)
     range: float
@@ -294,60 +228,6 @@ slots:
         pixels in a photo, and reports one value per tile. This field says how
         wide each tile is in metres — small tiles give a sharp picture of local
         conditions, big tiles give a blurry average over a large area.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)"
-              note: >-
-                CHEL fixes native resolution as an H3 level (Resolution 3) with
-                an approximate cell area (~12,000 km2); it gives no resolution
-                in metres.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension
-                PropertyValue envar:native_spatial_resolution_m, not natively.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no resolution field; "Daymet =
-                1 km" is out-of-band knowledge, not written to any output.
-          amadeus:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "thredds_dataset.xml axis lat/lon increment (0.041666 deg)"
-              note: >-
-                Only derivable from the grid-axis increment in
-                thredds_dataset.xml; never written as a
-                resolution number in metres.
-          cher:
-            annotations:
-              extent: full
-              status: asserted
-              where: "table_name spatial-res code (e.g. m30, k05, h08)"
-              note: >-
-                C-HER encodes native spatial resolution first-class in the
-                table_name pattern (§2.3 metric/H3 codes) and as the inheritable
-                spatial_resolution field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                CODATA EVs / DDI-CDI operate at the conceptual/represented
-                layer; native grid resolution of one run is instance-layer
-                detail deliberately outside their scope.
   native_spatial_resolution_descriptor:
     title: Native Resolution Descriptor
     range: string
@@ -369,57 +249,6 @@ slots:
         A short plain-English phrase saying what the map data actually looks
         like — evenly spaced square tiles, honeycomb-shaped cells, irregular
         neighbourhood outlines, or individual measuring stations dotted around.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)"
-              note: >-
-                The hex-grid resolution descriptor (H3 Hex3) is stated
-                first-class.
-          omop_gaia:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)"
-              note: >-
-                GAIA records geometry type (point/raster) but no human-readable
-                resolution-layout descriptor; the resolution label itself is
-                absent.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS writes no resolution descriptor of any kind.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No resolution-layout label is emitted; only a derivable axis
-                increment exists.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_name spatial-res code prefix (m/k/h/c/t/b/s/z)"
-              note: >-
-                The spatial-resolution code prefix distinguishes grid (m/k),
-                H3 (h), and polygon (tract/block/ZIP) layouts (§2.3), a coded
-                rather than free-text descriptor.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Resolution-layout description of a specific product is
-                instance-layer detail outside the conceptual EV/DDI-CDI layer.
   crs:
     title: Coordinate Reference System (CRS)
     range: string
@@ -446,60 +275,6 @@ slots:
         places on the Earth — the same pair of coordinates means different
         spots under different systems. Naming the system (usually as a short
         EPSG code) tells software exactly which convention the numbers follow.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)"
-              note: >-
-                CHEL fixes CRS first-class: every area-based overlay runs in
-                equal-area EPSG:5070 (§4.2.1); the README linkage example builds
-                participant points in EPSG:4326.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom EPSG:4326"
-              evidence: "EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)"
-              note: >-
-                GAIA carries the source-raster CRS first-class via
-                data_source.srid, meta_etl epsg/local_epsg, and the enforced
-                PostGIS geom SRID.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS leaves CRS implicit WGS84 with no column.
-          amadeus:
-            annotations:
-              extent: full
-              status: verified
-              where: "thredds_dataset.xml coordinate_system = \"WGS84,EPSG:4326\""
-              evidence: "EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)"
-              note: >-
-                Amadeus's THREDDS grid declares the raster CRS explicitly as an
-                EPSG code.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's metadata model (table_dictionary / column dictionary)
-                documents spatial extent/resolution codes but no per-resource
-                CRS/EPSG field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                CRS of a specific extract is an instance-layer representation
-                detail; the conceptual EV/DDI-CDI layer does not carry it.
   spatial_extent_bbox:
     title: Product Bounding Box
     range: float
@@ -527,58 +302,6 @@ slots:
         contains all the data — four numbers giving its western, southern,
         eastern, and northern edges. Anything outside that rectangle was never
         covered by the dataset in the first place.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §1.3, §2.7 (national US extent)"
-              note: >-
-                CHEL's extent is national US (national-scale design, §1.3; US
-                Census TIGER inputs, §2.7), but no bounding box is given.
-                Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)"
-              evidence: "EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)"
-              note: >-
-                GAIA records the product footprint as a WKT polygon extent and a
-                DCAT spatialCoverage string.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no product bounding box.
-          amadeus:
-            annotations:
-              extent: full
-              status: verified
-              where: "thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)"
-              evidence: "EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)"
-              note: >-
-                The THREDDS dataset.xml gives the product footprint as
-                projectionBox and LatLonBox.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)"
-              note: >-
-                C-HER encodes spatial extent as a coded region (§2.2), not a
-                numeric min/max bounding box.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A product's spatial bounding box is instance/discovery-layer
-                detail outside the conceptual EV/DDI-CDI layer.
   spatial_extent_descriptor:
     title: Product Extent Description
     range: string
@@ -599,55 +322,6 @@ slots:
         A plain-English description of where in the world the dataset has data
         — for example "the continental United States plus Hawaii and Puerto
         Rico" — so you can tell at a glance whether your study area is covered.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §1.3, §2.7 (national US extent)"
-              note: >-
-                The national-US spatial extent is stated for CHEL products.
-          omop_gaia:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage"
-              note: >-
-                GAIA's spatialCoverage string can act as a human-readable extent
-                label, though it is not guaranteed to be a curated prose
-                descriptor.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no extent descriptor.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries a numeric bbox (projectionBox/LatLonBox) but no
-                human-readable extent description.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)"
-              note: >-
-                The coded spatial-extent prefix conveys a controlled-vocabulary
-                extent label (§2.2) rather than free-text prose.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Human-readable extent of a specific product is
-                instance/discovery-layer detail outside the conceptual layer.
   extraction_method:
     title: Extraction Method
     range: ExtractionMethodEnum
@@ -674,57 +348,6 @@ slots:
         tile, so a rule is needed to pick or blend nearby tile values into one
         number for that spot — take the closest tile, average the four nearest
         ones, and so on. This field records which rule was used.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)"
-              note: >-
-                CHEL carries the extraction/aggregation operator first-class:
-                area-weighted interpolation (§3.2), population-weighted allocation
-                (§3.3), density and intersection-proportion (§3.4), raster zonal
-                sum (§3.5).
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join semantics
-                of working.spatial_join_exposure exist, undocumented.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS applies IDW-4-nearest by default but records no
-                extraction-method field.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus emits no extraction-method field.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's data-level codes track processing stage, not the
-                point-to-cell extraction rule; no extraction-method field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                How a value was extracted from a grid is instance-layer
-                provenance the conceptual EV/DDI-CDI layer deliberately omits.
   extraction_buffer_m:
     title: Extraction Buffer Radius (m)
     range: float
@@ -850,58 +473,6 @@ slots:
         address, a neighbourhood-sized census area, a ZIP-code area, a whole
         county, and so on. The bigger the unit, the more the number is a shared
         average rather than a personal measurement.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §2.2.1 (H3 hex target)"
-              note: >-
-                CHEL's target geography is first-class: every value is attached to
-                an H3 Hex3 cell.
-          omop_gaia:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "gaia_db data_source.geom_type (point); location.geom"
-              note: >-
-                GAIA records the geometry type (point) but not the full
-                EnVar target-geography vocabulary (tract/ZCTA/county); values
-                land on the person's point location.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS attaches values to the geocoded point residence but has
-                no explicit target-geography-type field.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus collapses to lat/lon at the THREDDS request with no
-                geography-type field.
-          cher:
-            annotations:
-              extent: full
-              status: asserted
-              where: "spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary"
-              note: >-
-                C-HER's spatial-resolution code names the geographic unit
-                (county/tract/block group/ZCTA/H3) and column_tag flags the
-                spatial-primary column (§2.3, §6.1).
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                The target geographic unit of a specific value is instance-layer
-                detail outside the conceptual EV/DDI-CDI layer.
   spatial_aggregation_preserves:
     title: Spatial Aggregation Preserved Quantity
     range: SpatialAggregationPreservationEnum
@@ -942,57 +513,6 @@ slots:
         how much of an area it covers. This records which of those the
         conversion was designed to keep true, because the same input handled
         two different ways produces two different numbers.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)"
-              note: >-
-                CHEL §3.10 enumerates exactly this preserved-quantity
-                vocabulary (mean intensity / mass conservation / occurrence
-                intensity / areal coverage) and selects the operator from it.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No preserved-quantity slot in gaiaCatalog or gaia-db; the
-                invariant an aggregation holds fixed is not recorded.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS does point extraction only and records no
-                aggregation-preservation semantics.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus records no preserved-quantity of any spatial
-                aggregation.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER captures resolution and data-level but not which quantity
-                a re-gridding operator preserves.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                The preserved quantity of an aggregation is instance-layer
-                methodological detail outside the conceptual EV/DDI-CDI layer.
 
 #────────────────────────────────────────────────────────────────
 # ENUMS

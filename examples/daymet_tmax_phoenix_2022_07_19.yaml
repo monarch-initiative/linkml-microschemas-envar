@@ -10,6 +10,7 @@ provenance_id: "01HFA7K8R3M6XP-daymet"
 phi_status: no_phi
 
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 
 variable_identity:
   variable_name: tmax

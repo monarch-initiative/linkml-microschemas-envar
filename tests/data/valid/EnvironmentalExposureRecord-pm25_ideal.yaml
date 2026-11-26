@@ -157,6 +157,7 @@ deposit_metadata:
   dcat_distribution_url: "https://zenodo.org/record/8888888/files/pm25_annual_tract.parquet"
 
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 # Companion data row (in the accompanying CSV/parquet, not the sidecar; long
 # format — this record's rows are those with variable == pm25_annual):
 #   tract_id: "04013-1125"  year: 2019  variable: pm25_annual  value: 8.2  pm25_uncertainty: 1.1

@@ -85,9 +85,10 @@ RESIDUAL_CONTEXT_PREDICATES: dict[str, Callable[[dict], bool]] = {
 }
 
 # Modules that SPEC.md §2 marks as omissible when not applicable. When the
-# block is absent from an instance, the whole subtree (and the record slot
-# binding it) leaves the slot universe instead of counting as missing.
-CONDITIONAL_MODULES = {"derived_heat_metric"}
+# block is absent from an instance and no schema context requires it, the
+# whole subtree (and the record slot binding it) leaves the slot universe
+# instead of counting as missing.
+CONDITIONAL_MODULES = {"derived_heat_metric", "linkage_method"}
 
 
 @dataclass
@@ -213,7 +214,7 @@ class CompletenessChecker:
             return True
         block = instance if not module else _block(instance, module)
         for cls_name, conditions in self._rule_index.get(name, ()):
-            if cls_name != owner:
+            if cls_name not in self.schemaview.class_ancestors(owner):
                 continue
             if conditions and all(
                 self._slot_condition_holds(expr, block.get(cond_slot)) for cond_slot, expr in conditions
@@ -329,7 +330,10 @@ class CompletenessChecker:
         self._collect_present(instance, found)
 
         absent_conditional_modules = {
-            module for module in CONDITIONAL_MODULES if not self._has_value(instance.get(module))
+            module
+            for module in CONDITIONAL_MODULES
+            if not self._has_value(instance.get(module))
+            and not self._in_context(module, self.target_class, "", instance)
         }
 
         statuses: list[SlotStatus] = []
