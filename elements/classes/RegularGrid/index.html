@@ -349,6 +349,7 @@
 <p><code>RegularGrid</code> — <span class="egdesc">Daymet V4 1 km grid</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -383,32 +384,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
 <div class="envar-cov-note">CHEL fixes native resolution as an H3 level (Resolution 3) with an approximate cell area (~12,000 km2); it gives no resolution in metres.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band knowledge, not written to any output.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml axis lat/lon increment (0.041666 deg)</div>
 <div class="envar-cov-note">Only derivable from the grid-axis increment in thredds_dataset.xml; never written as a resolution number in metres.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code (e.g. m30, k05, h08)</div>
 <div class="envar-cov-note">C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3 metric/H3 codes) and as the inheritable spatial_resolution field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar extension PropertyValue envar:native_spatial_resolution_m, not natively.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band knowledge, not written to any output.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">CODATA EVs / DDI-CDI operate at the conceptual/represented layer; native grid resolution of one run is instance-layer detail deliberately outside their scope.</div>
 </div>
 </details>
@@ -497,109 +498,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">pixels in a photo, and reports one value per tile. This field says how wide</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">each tile is in metres — small tiles give a sharp picture of local conditions,</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">big tiles give a blurry average over a large area.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL fixes native resolution as an H3 level (Resolution 3)</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">with an approximate cell area (~12,000 km2); it gives no resolution</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">in metres.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaiaCatalog has no first-class native-resolution slot; it appears</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">only via the EnVar extension PropertyValue envar:native_spatial_resolution_m,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">not natively.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">knowledge, not written to any output.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml axis lat/lon increment (0.041666 deg)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only derivable from the grid-axis increment in thredds_dataset.xml;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">never written as a resolution number in metres.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-res code (e.g. m30, k05, h08)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER encodes native spatial resolution first-class in the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">table_name pattern (§2.3 metric/H3 codes) and as the inheritable</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">spatial_resolution field.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CODATA EVs / DDI-CDI operate at the conceptual/represented</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">layer; native grid resolution of one run is instance-layer detail</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">deliberately outside their scope.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native spatial resolution of the source product in metres. Daymet</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">= 1000, GridMET ≈ 4000, NARR ≈ 32000. Exists on `RegularGrid` only, where it</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">is mandatory; other geometries have no single cell size in metres.</span>

@@ -830,10 +830,6 @@
 <td>explanation</td>
 <td>Exposure values are derived from a published data product (for example Daymet, a daily weather dataset). This block names that product precisely — including its version, citation, and license — so anyone can find it and check its documentation.</td>
 </tr>
-<tr>
-<td>covered_by</td>
-<td>None</td>
-</tr>
 </tbody>
 </table>
 <h3 id="schema-source">Schema Source</h3>
@@ -878,113 +874,6 @@
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Daymet, a daily weather dataset). This block names that product precisely —</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">including its version, citation, and license — so anyone can find it and check</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">its documentation.</span>
-<span class="w">  </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.7 lineage table; §5.5 (name + release</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">+ RID)</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL identifies each source dataset first-class in the §2.7 lineage</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">table with its release vintage (EJI 2022 / 2024); §5.5 adds Foundry</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">RIDs to the per-release documentation.</span>
-<span class="w">      </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.dataset_name/dataset_version/license/creator/date_published</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">+ meta_dcat_*.json dct:title/dct:identifier(DOI)/dct:license</span>
-<span class="w">          </span><span class="nt">evidence</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COMPARISON.md §I — dataset name ✅, version ✅, DOI ✅, license ✅,</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">publisher ✅, date published/modified ✅</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gaia natively carries full dataset-level discovery metadata (name,</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">version, DOI, license, publisher).</span>
-<span class="w">      </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS carries no dataset name, version, DOI, license, or publisher.</span>
-<span class="w">      </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries no dataset-identity metadata (no name, DOI, license,</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">publisher) natively.</span>
-<span class="w">      </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_dictionary (dataset, doi, rights, resource_type/format, contributors)</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">+ version + source_update_frequency</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER&#39;s table_dictionary and its foreign-key vocabularies identify</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">the source dataset first-class (dataset, rights, DOI, contributors,</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">version).</span>
-<span class="w">      </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset identity/discovery is catalogue-layer; CODATA operates</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">at the conceptual variable layer and is out of scope for scoring.</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source dataset object — see envar_source.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source Dataset</span>
 <span class="nt">examples</span><span class="p">:</span>

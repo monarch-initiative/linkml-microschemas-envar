@@ -388,30 +388,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.6 (EJI extreme-heat-days indicator only)</div>
 <div class="envar-cov-note">CHEL carries the EJI-derived extreme-heat-days indicator (§2.6; `E_NEHD` / `EPL_NEHD` in the 2024 hex table), but no heat-metric methodology, so no heat-metric family is recorded.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">The scenario is a plain Tmax extraction, not a heat index; the variable family is implicit in variable_name tmax, with no derived heat-metric family slot.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">DeGAUSS emits plain tmax with no heat-metric family field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Amadeus emits plain tmmx with no heat-metric family field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER models no derived heat-metric family.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Heat-metric methodology is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -459,6 +459,7 @@
 <span class="envar-value" title="UTCI — Bröde et al. 2012 polynomial approximation."><code>brode_2012_polynomial</code> <span class="vdesc">UTCI — Bröde et al</span></span>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -489,6 +490,7 @@
 <p><code>None</code> — <span class="egdesc">a second list entry from a divergent product (~31 km ERA5 vs 1 km Daymet), pointing at its own full upstream sidecar</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -513,6 +515,7 @@
 <p><code>{"min_wind_speed_m_s": 0.13}</code> — <span class="egdesc">Liljegren 2008 clamps wind speed below 0.13 m/s</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -549,6 +552,7 @@
 <span class="envar-value" title="Mixed indoor / outdoor, regime unspecified."><code>mixed_unspecified</code> <span class="vdesc">Mixed indoor / outdoor, regime unspecified</span></span>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -586,6 +590,7 @@
 <span class="envar-value" title="ETCCDI Warm Spell Duration Index."><code>etccdi_warm_spell_duration_index</code> <span class="vdesc">ETCCDI Warm Spell Duration Index</span></span>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -613,6 +618,7 @@
 <p><code>3</code></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -637,6 +643,7 @@
 <p><code>1991-01-01</code> — <span class="egdesc">start of the 1991-2020 climate-normal baseline</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -664,6 +671,7 @@
 <p><code>2020-12-31</code></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -698,30 +706,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no derived-heat-metric methodology)</div>
 <div class="envar-cov-note">CHEL models no WBGT/UTCI heat metrics, so wind-measurement height is not carried.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No WBGT/UTCI methodology, so no wind-measurement height.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">WBGT wind-height metadata is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -761,30 +769,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no derived-heat-metric methodology)</div>
 <div class="envar-cov-note">CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis is not carried.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No WBGT/UTCI methodology, so no solar-radiation basis.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Solar-radiation basis is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -813,30 +821,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6 (national percentile ranking, from EJI)</div>
 <div class="envar-cov-note">CHEL applies national percentile ranking (0-100) inherited from EJI, so the reference scope is stated (national), but not as a first-class heat-metric percentile-baseline slot. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Tmax scenario computes no percentile-based threshold, so no reference geographic scope.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No percentile-based metric, so no reference geographic scope.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No percentile-based metric, so no reference geographic scope.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER's percentile normalization is EJI vulnerability, not a heat-metric percentile baseline scope.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Percentile-baseline scope is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -865,30 +873,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (spatial-only; no seasonal window)</div>
 <div class="envar-cov-note">CHEL's percentile normalization is spatial (EJI), with no temporal/seasonal reference window.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No percentile-based metric in the Tmax scenario, so no seasonal reference window.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No percentile-based metric, so no seasonal reference window.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No percentile-based metric, so no seasonal reference window.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER carries no heat-metric seasonal reference window.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Seasonal reference window is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -917,30 +925,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.6 (spatial-only; no multi-day event stamping)</div>
 <div class="envar-cov-note">CHEL is spatial-only: its extreme-heat-days count arrives pre-aggregated from EJI, and no multi-day heat events are stamped onto days.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping rule.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No multi-day heat-event flag, so no event-stamping rule.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER stamps no multi-day heat events onto days.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Multi-day event stamping is instance-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -1150,6 +1158,7 @@
 <p><code>35_Cel</code> — <span class="egdesc">absolute threshold, paired with heat_wave_threshold_definition = absolute</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -1862,105 +1871,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">scores that also fold in humidity, wind and sunshine, or a simple yes/no</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">heat-wave flag. This field says which kind of heat number the record is</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">about.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.6 (EJI extreme-heat-days indicator</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">only)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL carries the EJI-derived extreme-heat-days indicator (§2.6;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">`E_NEHD` / `EPL_NEHD` in the 2024 hex table), but no heat-metric</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">methodology, so no heat-metric family is recorded.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The scenario is a plain Tmax extraction, not a heat index;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the variable family is implicit in variable_name tmax, with no derived</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">heat-metric family slot.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits plain tmax with no heat-metric family field.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits plain tmmx with no heat-metric family field.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER models no derived heat-metric family.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Heat-metric methodology is instance-layer; out of scope for</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The family of heat metric this variable represents.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Heat Metric Family</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
@@ -2196,102 +2106,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Wind blows faster the higher above the ground you measure it, so a</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">"wind speed" is only meaningful together with the height it was taken at</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">— this field records that height.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no derived-heat-metric methodology)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL models no WBGT/UTCI heat metrics, so wind-measurement</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">height is not carried.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">height.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no wind-measurement height.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER models no WBGT/UTCI heat metrics.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WBGT wind-height metadata is instance-layer; out of scope for</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">For WBGT and UTCI inputs, the wind-speed measurement height in metres.</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">The ISO 7243 standard is 2 m, but reanalysis products often supply 10 m -- the</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">height affects the WBGT value.</span>
@@ -2347,101 +2161,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How much sunshine hits a person is part of how hot they feel, and datasets</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">represent "sunshine" in different ways — or not at all. This says which</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">representation fed the calculation.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no derived-heat-metric methodology)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL models no WBGT/UTCI heat metrics, so a solar-radiation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">basis is not carried.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">basis.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No WBGT/UTCI methodology, so no solar-radiation basis.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER models no WBGT/UTCI heat metrics.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Solar-radiation basis is instance-layer; out of scope for CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">For WBGT / UTCI inputs, the basis used for solar radiation.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Solar Radiation Basis</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
@@ -2729,106 +2448,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'"Unusually</span><span class="nv"> </span><span class="s">hot"</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">mean</span><span class="nv"> </span><span class="s">hot</span><span class="nv"> </span><span class="s">compared</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">normal</span><span class="nv"> </span><span class="s">HERE,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">compared</span>
 <span class="w">          </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">whole</span><span class="nv"> </span><span class="s">country.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">says</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">area</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">history</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">comparison</span>
 <span class="w">          </span><span class="s">was</span><span class="nv"> </span><span class="s">made</span><span class="nv"> </span><span class="s">against.'</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.6 (national percentile ranking, from</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">EJI)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">applies</span><span class="nv"> </span><span class="s">national</span><span class="nv"> </span><span class="s">percentile</span><span class="nv"> </span><span class="s">ranking</span><span class="nv"> </span><span class="s">(0-100)</span><span class="nv"> </span><span class="s">inherited</span>
-<span class="w">                  </span><span class="s">from</span><span class="nv"> </span><span class="s">EJI,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">scope</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stated</span><span class="nv"> </span><span class="s">(national),</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">as</span>
-<span class="w">                  </span><span class="s">a</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">heat-metric</span><span class="nv"> </span><span class="s">percentile-baseline</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">Conservative:</span>
-<span class="w">                  </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario computes no percentile-based threshold, so no</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference geographic scope.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no reference geographic scope.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's percentile normalization is EJI vulnerability, not</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a heat-metric percentile baseline scope.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percentile-baseline scope is instance-layer; out of scope for</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geographic scope over which the reference distribution was computed.</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">One of `local_tract`, `local_county`, `local_climate_region`, `national`.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percentile Reference Geographic Scope</span>
@@ -2881,102 +2500,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether "normal" includes the whole year or only the summer months</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">changes what counts as unusually hot — a day that is extreme against summer-only</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">history may be unremarkable against the full year.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (spatial-only; no seasonal window)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL's percentile normalization is spatial (EJI), with no temporal/seasonal</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference window.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric in the Tmax scenario, so no seasonal</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">reference window.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No percentile-based metric, so no seasonal reference window.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER carries no heat-metric seasonal reference window.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Seasonal reference window is instance-layer; out of scope for</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Seasonal window over which the reference was computed. One of `annual`,</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">`warm_season_may_sep`, `calendar_month`.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Percentile Reference Seasonal Window</span>
@@ -3027,104 +2550,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A heat wave spans several days but health records are kept day by day;</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">this says which calendar days actually get the "heat wave" label — just</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">the first day, every day, or the last.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.6 (spatial-only; no multi-day event</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">stamping)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">spatial-only:</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">extreme-heat-days</span><span class="nv"> </span><span class="s">count</span><span class="nv"> </span><span class="s">arrives</span>
-<span class="w">                  </span><span class="s">pre-aggregated</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">EJI,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">multi-day</span><span class="nv"> </span><span class="s">heat</span><span class="nv"> </span><span class="s">events</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">stamped</span>
-<span class="w">                  </span><span class="s">onto</span><span class="nv"> </span><span class="s">days.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tmax scenario is per-day values, not a heat-wave flag; no multi-day</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">event-stamping rule.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No multi-day heat-event flag, so no event-stamping rule.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER stamps no multi-day heat events onto days.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Multi-day event stamping is instance-layer; out of scope for</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">For heat-wave flags, how multi-day exposures are stamped on individual</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">days (e.g. `first_day_of_event` / `each_day_of_event` / `last_day_of_event`).</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Metric Temporal Aggregation Rule</span>

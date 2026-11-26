@@ -376,32 +376,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
-<div class="envar-cov-note">CHEL emits no unified exposure-assignment table and names no downstream health-layer target first-class (EnVar-Tracker #38).</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure table (OMOP CDM GIS extension) — the target is OMOP but is implicit, not a named slot</div>
 <div class="envar-cov-note">Gaia lands values into OMOP external_exposure, so the target layer is effectively OMOP, but it is baked into the pipeline rather than declared in a target field. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS appends columns to the cohort CSV and names no downstream health-layer target.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">Amadeus names no downstream health-layer target.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schema=health (health-resource bucket)</div>
 <div class="envar-cov-note">C-HER has a health schema for health resources, but does not name a downstream health-data model as an exposure-record target. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
+<div class="envar-cov-note">CHEL emits no unified exposure-assignment table and names no downstream health-layer target first-class (EnVar-Tracker #38).</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS appends columns to the cohort CSV and names no downstream health-layer target.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">Amadeus names no downstream health-layer target.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Health-layer target naming is instance/integration-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -433,32 +433,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
-<div class="envar-cov-note">With no unified assembly table, CHEL declares no health-layer join field (EnVar-Tracker #38).</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value (the OMOP field that would carry a provenance id)</div>
 <div class="envar-cov-note">The OMOP external_exposure.exposure_source_value field exists and is the natural provenance-id carrier, but gaia does not populate it with a sidecar provenance id. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS declares no health-layer join field.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">Amadeus declares no health-layer join field.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.reference_column_id (FK to a column in another resource, e.g. the health schema)</div>
 <div class="envar-cov-note">C-HER models a cross-resource reference-column mechanism that could carry such a join, but declares no exposure-record-to-health-layer link field. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
+<div class="envar-cov-note">With no unified assembly table, CHEL declares no health-layer join field (EnVar-Tracker #38).</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS declares no health-layer join field.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">Amadeus declares no health-layer join field.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Health-layer join-field declaration is instance/integration-layer; out of scope for CODATA.</div>
 </div>
 </details>
@@ -498,6 +498,7 @@
 <p><code>3</code> — <span class="egdesc">three cohort members in the worked Phoenix example</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -653,107 +654,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">OMOP, a widely used common format for health records, so tools written for</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">one hospital's data work on another's. This slot simply says which of those</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">formats this exposure record is meant to plug into.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no unified external_exposure assembly)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">emits</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">unified</span><span class="nv"> </span><span class="s">exposure-assignment</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">names</span>
-<span class="w">                  </span><span class="s">no</span><span class="nv"> </span><span class="s">downstream</span><span class="nv"> </span><span class="s">health-layer</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">first-class</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure table (OMOP CDM GIS extension) — the target</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">is OMOP but is implicit, not a named slot</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'Gaia</span><span class="nv"> </span><span class="s">lands</span><span class="nv"> </span><span class="s">values</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">OMOP</span><span class="nv"> </span><span class="s">external_exposure,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">target</span>
-<span class="w">                  </span><span class="s">layer</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">effectively</span><span class="nv"> </span><span class="s">OMOP,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">baked</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">pipeline</span><span class="nv"> </span><span class="s">rather</span>
-<span class="w">                  </span><span class="s">than</span><span class="nv"> </span><span class="s">declared</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">field.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS appends columns to the cohort CSV and names no downstream</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">health-layer target.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus names no downstream health-layer target.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PostgreSQL schema=health (health-resource bucket)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">health</span><span class="nv"> </span><span class="s">schema</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">health</span><span class="nv"> </span><span class="s">resources,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span>
-<span class="w">                  </span><span class="s">name</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">downstream</span><span class="nv"> </span><span class="s">health-data</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">exposure-record</span><span class="nv"> </span><span class="s">target.</span>
-<span class="w">                  </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Health-layer target naming is instance/integration-layer; out</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">of scope for CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The downstream health-data layer this sidecar links into. Names the</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">target so `health_layer_link_field` is interpreted against the right model.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Target Health-Data Layer</span>
@@ -785,107 +685,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">that need to be matched up. This slot names the column in the patient-side</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">spreadsheet that holds the matching ID, so anyone can connect the two tables</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">without guessing.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md (no unified external_exposure assembly)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'With</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">unified</span><span class="nv"> </span><span class="s">assembly</span><span class="nv"> </span><span class="s">table,</span><span class="nv"> </span><span class="s">CHEL</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">health-layer</span>
-<span class="w">                  </span><span class="s">join</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">(EnVar-Tracker</span><span class="nv"> </span><span class="s">#38).'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external_exposure.exposure_source_value (the OMOP field that</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">would carry a provenance id)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">OMOP</span><span class="nv"> </span><span class="s">external_exposure.exposure_source_value</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">exists</span>
-<span class="w">                  </span><span class="s">and</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">natural</span><span class="nv"> </span><span class="s">provenance-id</span><span class="nv"> </span><span class="s">carrier,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">gaia</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">populate</span>
-<span class="w">                  </span><span class="s">it</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">sidecar</span><span class="nv"> </span><span class="s">provenance</span><span class="nv"> </span><span class="s">id.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS declares no health-layer join field.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus declares no health-layer join field.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_column_dictionary.reference_column_id (FK to a column</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">in another resource, e.g. the health schema)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'C-HER</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">cross-resource</span><span class="nv"> </span><span class="s">reference-column</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">that</span>
-<span class="w">                  </span><span class="s">could</span><span class="nv"> </span><span class="s">carry</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">join,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">exposure-record-to-health-layer</span>
-<span class="w">                  </span><span class="s">link</span><span class="nv"> </span><span class="s">field.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Health-layer join-field declaration is instance/integration-layer;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">out of scope for CODATA.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Name of the field in the target health-data layer that carries `provenance_id`.</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">For OMOP this is `external_exposure.exposure_source_value` (the default); other</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">layers name their own field.</span>

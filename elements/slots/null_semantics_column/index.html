@@ -805,10 +805,6 @@
 <td>explanation</td>
 <td>A blank cell or a <code>0</code> can mean three very different things: there was never any data here, we could not compute a value here, or the value is genuinely zero. Each needs different treatment. This names the column that tags every value with which kind it is, so nobody mistakes "no data" for "zero exposure".</td>
 </tr>
-<tr>
-<td>covered_by</td>
-<td>None</td>
-</tr>
 </tbody>
 </table>
 <h3 id="schema-source">Schema Source</h3>
@@ -856,110 +852,6 @@
 <span class="w">      </span><span class="s">never</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">we</span><span class="nv"> </span><span class="s">could</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">compute</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">genuinely</span>
 <span class="w">      </span><span class="s">zero.</span><span class="nv"> </span><span class="s">Each</span><span class="nv"> </span><span class="s">needs</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">treatment.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">every</span>
 <span class="w">      </span><span class="s">value</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">kind</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">nobody</span><span class="nv"> </span><span class="s">mistakes</span><span class="nv"> </span><span class="s">&quot;no</span><span class="nv"> </span><span class="s">data&quot;</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">&quot;zero</span><span class="nv"> </span><span class="s">exposure&quot;.&#39;</span>
-<span class="w">  </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.3.3 Null Handling</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §4.3.3 defines exactly this three-way null taxonomy (structural</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">/ derived / true-zero) and excludes nulls from percentile-ranking denominators</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">on its basis.</span>
-<span class="w">      </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_catalog meta_etl_*.json nodata = [&quot;float4&quot;, &quot;-9999&quot;] (dataset-level</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">sentinel, not per-value null-kind)</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;GAIA</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset-level</span><span class="nv"> </span><span class="s">nodata</span><span class="nv"> </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">daymet</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span>
-<span class="w">              </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">tagging</span><span class="nv"> </span><span class="s">present</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">structural_null</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">derived_null</span><span class="nv"> </span><span class="s">/</span>
-<span class="w">              </span><span class="s">true_zero.</span><span class="nv"> </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.&#39;</span>
-<span class="w">      </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no null-kind indicator column and no missing-value</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">sentinel in its CSV output.</span>
-<span class="w">      </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">sentinel, not per-value null-kind)</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Amadeus</span><span class="nv"> </span><span class="s">declares</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">fill/missing-value</span><span class="nv"> </span><span class="s">sentinel</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">marks</span><span class="nv"> </span><span class="s">structural</span>
-<span class="w">              </span><span class="s">nulls,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">distinguishing</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">three</span><span class="nv"> </span><span class="s">null</span><span class="nv"> </span><span class="s">kinds.</span>
-<span class="w">              </span><span class="s">Conservative:</span><span class="nv"> </span><span class="s">partial.&#39;</span>
-<span class="w">      </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER handles null semantics in its validation rules (§4.3.3 concepts</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">live in CHEL), but binds no per-value null-kind column in table_column_dictionary.</span>
-<span class="w">      </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">          </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">          </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">          </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A per-value null-semantics column binding is instance-layer layout,</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">outside CODATA&#39;s conceptual scope.</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">per-value</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">carrying</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">null-semantics</span><span class="nv"> </span><span class="s">indicator</span><span class="nv"> </span><span class="s">drawn</span>
 <span class="w">  </span><span class="s">from</span><span class="nv"> </span><span class="s">`NullSemanticsEnum`</span><span class="nv"> </span><span class="s">(`present`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`structural_null`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`derived_null`</span><span class="nv"> </span><span class="s">/</span><span class="nv"> </span><span class="s">`true_zero`;</span>
 <span class="w">  </span><span class="s">see</span><span class="nv"> </span><span class="s">envar_common).</span><span class="nv"> </span><span class="s">Bound</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">`DataLayout`</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">mirroring</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">existing</span><span class="nv"> </span><span class="s">per-value</span>

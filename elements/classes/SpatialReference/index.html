@@ -377,33 +377,33 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 grid)</div>
 <div class="envar-cov-note">CHEL states the delivered geometry first-class: H3 Resolution-3 hexagons.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
 <div class="envar-cov-note">GAIA records the source geometry first-class (geom_type, and structure/geometry in the etl metadata).</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS emits no source-geometry field.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml gridDataset/gridSet</div>
 <div class="envar-cov-note">Only implied by the THREDDS gridDataset/gridSet structure; never written as a geometry type in the output.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
 <div class="envar-cov-note">The resolution code prefix separates grid (m/k), H3 (h) and polygon (tract/block/ZIP) layouts (§2.3); it has no line or point code.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS emits no source-geometry field.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Source geometry of a specific product is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
@@ -432,32 +432,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)</div>
 <div class="envar-cov-note">CHEL fixes CRS first-class: every area-based overlay runs in equal-area EPSG:5070 (§4.2.1); the README linkage example builds participant points in EPSG:4326.</div>
 </div>
-<div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom EPSG:4326</div>
 <div class="envar-cov-note">GAIA carries the source-raster CRS first-class via data_source.srid, meta_etl epsg/local_epsg, and the enforced PostGIS geom SRID.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS leaves CRS implicit WGS84 with no column.</div>
-</div>
-<div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml coordinate_system = "WGS84,EPSG:4326"</div>
 <div class="envar-cov-note">Amadeus's THREDDS grid declares the raster CRS explicitly as an EPSG code.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS leaves CRS implicit WGS84 with no column.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER's metadata model (table_dictionary / column dictionary) documents spatial extent/resolution codes but no per-resource CRS/EPSG field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">CRS of a specific extract is an instance-layer representation detail; the conceptual EV/DDI-CDI layer does not carry it.</div>
 </div>
 </details>
@@ -506,30 +506,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)</div>
 <div class="envar-cov-note">CHEL carries the extraction/aggregation operator first-class: area-weighted interpolation (§3.2), population-weighted allocation (§3.3), density and intersection-proportion (§3.4), raster zonal sum (§3.5).</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join semantics of working.spatial_join_exposure exist, undocumented.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">DeGAUSS applies IDW-4-nearest by default but records no extraction-method field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Amadeus emits no extraction-method field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER's data-level codes track processing stage, not the point-to-cell extraction rule; no extraction-method field.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">How a value was extracted from a grid is instance-layer provenance the conceptual EV/DDI-CDI layer deliberately omits.</div>
 </div>
 </details>
@@ -576,32 +576,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 hex target)</div>
 <div class="envar-cov-note">CHEL's target geography is first-class: every value is attached to an H3 Hex3 cell.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type (point); location.geom</div>
 <div class="envar-cov-note">GAIA records the geometry type (point) but not the full EnVar target-geography vocabulary (tract/ZCTA/county); values land on the person's point location.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS attaches values to the geocoded point residence but has no explicit target-geography-type field.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">Amadeus collapses to lat/lon at the THREDDS request with no geography-type field.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary</div>
 <div class="envar-cov-note">C-HER's spatial-resolution code names the geographic unit (county/tract/block group/ZCTA/H3) and column_tag flags the spatial-primary column (§2.3, §6.1).</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS attaches values to the geocoded point residence but has no explicit target-geography-type field.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">Amadeus collapses to lat/lon at the THREDDS request with no geography-type field.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">The target geographic unit of a specific value is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
@@ -641,6 +641,7 @@
 <p><code>500</code> — <span class="egdesc">500 m greenspace buffer; null in the Daymet Tmax scenario (no buffer)</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -665,6 +666,7 @@
 <p><code>GPW v4 (2020)</code> — <span class="egdesc">Gridded Population of the World v4, used in the ACAG PM2.5 scenario</span></p>
 </div>
 </div>
+<div class="envar-cov-row"><span class="k">evidence</span> not yet reviewed against any source</div>
 <details class="envar-why">
 <summary>Why it matters &amp; mappings</summary>
 <div class="envar-whyblock">
@@ -702,32 +704,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)</div>
 <div class="envar-cov-note">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)</div>
 <div class="envar-cov-note">GAIA records geometry type (point/raster) but no human-readable resolution-layout descriptor; the resolution label itself is absent.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS writes no resolution descriptor of any kind.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">No resolution-layout label is emitted; only a derivable axis increment exists.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
 <div class="envar-cov-note">The spatial-resolution code prefix distinguishes grid (m/k), H3 (h), and polygon (tract/block/ZIP) layouts (§2.3), a coded rather than free-text descriptor.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS writes no resolution descriptor of any kind.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">No resolution-layout label is emitted; only a derivable axis increment exists.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Resolution-layout description of a specific product is instance-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
@@ -756,33 +758,33 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
 <div class="envar-cov-note">CHEL's extent is national US (national-scale design, §1.3; US Census TIGER inputs, §2.7), but no bounding box is given. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)</div>
 <div class="envar-cov-note">GAIA records the product footprint as a WKT polygon extent and a DCAT spatialCoverage string.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS emits no product bounding box.</div>
-</div>
-<div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">full coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)</div>
 <div class="envar-cov-note">The THREDDS dataset.xml gives the product footprint as projectionBox and LatLonBox.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</div>
 <div class="envar-cov-note">C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding box.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS emits no product bounding box.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">A product's spatial bounding box is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
@@ -814,32 +816,32 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
 <div class="envar-cov-note">The national-US spatial extent is stated for CHEL products.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage</div>
 <div class="envar-cov-note">GAIA's spatialCoverage string can act as a human-readable extent label, though it is not guaranteed to be a curated prose descriptor.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">DeGAUSS emits no extent descriptor.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
-<div class="envar-cov-note">Amadeus carries a numeric bbox (projectionBox/LatLonBox) but no human-readable extent description.</div>
-</div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">partial coverage</span></div>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)</div>
 <div class="envar-cov-note">The coded spatial-extent prefix conveys a controlled-vocabulary extent label (§2.2) rather than free-text prose.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">DeGAUSS emits no extent descriptor.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
+<div class="envar-cov-note">Amadeus carries a numeric bbox (projectionBox/LatLonBox) but no human-readable extent description.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Human-readable extent of a specific product is instance/discovery-layer detail outside the conceptual layer.</div>
 </div>
 </details>
@@ -880,30 +882,30 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Covered by — 6 standards</summary>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">clad</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">full coverage</span></div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-partial">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)</div>
 <div class="envar-cov-note">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary (mean intensity / mass conservation / occurrence intensity / areal coverage) and selects the operator from it.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">omop_gaia</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant an aggregation holds fixed is not recorded.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">degauss</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">DeGAUSS does point extraction only and records no aggregation-preservation semantics.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Amadeus records no preserved-quantity of any spatial aggregation.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">cher</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">absent coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER captures resolution and data-level but not which quantity a re-gridding operator preserves.</div>
 </div>
-<div class="envar-cov st-asserted">
-<div class="envar-cov-head"><span class="envar-cov-std">codata</span><span class="envar-cov-status st-asserted">asserted</span><span class="envar-cov-extent">out_of_layer coverage</span></div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">The preserved quantity of an aggregation is instance-layer methodological detail outside the conceptual EV/DDI-CDI layer.</div>
 </div>
 </details>
@@ -1224,106 +1226,6 @@
 <span class="w">          </span><span class="s">cells,</span><span class="nv"> </span><span class="s">outlines</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">city</span><span class="nv"> </span><span class="s">boundaries,</span><span class="nv"> </span><span class="s">lines</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">roads,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">single</span>
 <span class="w">          </span><span class="s">points</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">monitoring</span><span class="nv"> </span><span class="s">stations.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">block</span><span class="nv"> </span><span class="s">says</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">shape</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span>
 <span class="w">          </span><span class="s">uses</span><span class="nv"> </span><span class="s">and,</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">makes</span><span class="nv"> </span><span class="s">sense,</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">big</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">pieces</span><span class="nv"> </span><span class="s">are.'</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 Hex3 grid)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">states</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">delivered</span><span class="nv"> </span><span class="s">geometry</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">H3</span><span class="nv"> </span><span class="s">Resolution-3</span>
-<span class="w">                  </span><span class="s">hexagons.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.geom_type; meta_etl_*.json structure/geometry</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(raster)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records the source geometry first-class (geom_type, and</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">structure/geometry in the etl metadata).</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no source-geometry field.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml gridDataset/gridSet</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Only implied by the THREDDS gridDataset/gridSet structure;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">never written as a geometry type in the output.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The resolution code prefix separates grid (m/k), H3 (h) and</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">polygon (tract/block/ZIP) layouts (§2.3); it has no line or point</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">code.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source geometry of a specific product is instance-layer detail</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">outside the conceptual EV/DDI-CDI layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geometry the source product is delivered on, with the resolution</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">slots that apply to it. Describes the source, not the place the value is attached</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to (that is `target_geography_type`).</span>
@@ -1364,105 +1266,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A short plain-English phrase saying what the map data actually looks</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">like — evenly spaced square tiles, honeycomb-shaped cells, irregular neighbourhood</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">outlines, or individual measuring stations dotted around.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.geom_type; meta_etl_*.json structure/geometry</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(raster)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records geometry type (point/raster) but no human-readable</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">resolution-layout descriptor; the resolution label itself is absent.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS writes no resolution descriptor of any kind.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No resolution-layout label is emitted; only a derivable axis</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">increment exists.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The spatial-resolution code prefix distinguishes grid (m/k),</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">H3 (h), and polygon (tract/block/ZIP) layouts (§2.3), a coded rather</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">than free-text descriptor.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Resolution-layout description of a specific product is instance-layer</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">detail outside the conceptual EV/DDI-CDI layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human-readable label for the native resolution, e.g. "1 km regular</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">grid", "H3 hex zoom 8", "census tract polygon", "point station".</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Native Resolution Descriptor</span>
@@ -1492,116 +1295,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">into places on the Earth — the same pair of coordinates means different</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">spots under different systems. Naming the system (usually as a short EPSG</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">code) tells software exactly which convention the numbers follow.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">points)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">fixes</span><span class="nv"> </span><span class="s">CRS</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">area-based</span><span class="nv"> </span><span class="s">overlay</span><span class="nv"> </span><span class="s">runs</span>
-<span class="w">                  </span><span class="s">in</span><span class="nv"> </span><span class="s">equal-area</span><span class="nv"> </span><span class="s">EPSG:5070</span><span class="nv"> </span><span class="s">(§4.2.1);</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">README</span><span class="nv"> </span><span class="s">linkage</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">builds</span>
-<span class="w">                  </span><span class="s">participant</span><span class="nv"> </span><span class="s">points</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">EPSG:4326.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">epsg/local_epsg; location.geom EPSG:4326</span>
-<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §C (CRS of source raster</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">✅)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA carries the source-raster CRS first-class via data_source.srid,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">meta_etl epsg/local_epsg, and the enforced PostGIS geom SRID.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS leaves CRS implicit WGS84 with no column.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml coordinate_system = "WGS84,EPSG:4326"</span>
-<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §C (CRS of source raster</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">✅)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus's THREDDS grid declares the raster CRS explicitly as</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">an EPSG code.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's metadata model (table_dictionary / column dictionary)</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">documents spatial extent/resolution codes but no per-resource CRS/EPSG</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRS of a specific extract is an instance-layer representation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">detail; the conceptual EV/DDI-CDI layer does not carry it.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Coordinate reference system as an EPSG identifier or PROJ string.</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Mandatory. E.g. `EPSG:4326` for Daymet, `EPSG:5072` for NARR Lambert Conformal</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Conic.</span>
@@ -1636,114 +1329,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">all the data — four numbers giving its western, southern, eastern, and northern</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">edges. Anything outside that rectangle was never covered by the dataset</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">in the first place.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3, §2.7 (national US extent)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">extent</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">national</span><span class="nv"> </span><span class="s">US</span><span class="nv"> </span><span class="s">(national-scale</span><span class="nv"> </span><span class="s">design,</span><span class="nv"> </span><span class="s">§1.3;</span>
-<span class="w">                  </span><span class="s">US</span><span class="nv"> </span><span class="s">Census</span><span class="nv"> </span><span class="s">TIGER</span><span class="nv"> </span><span class="s">inputs,</span><span class="nv"> </span><span class="s">§2.7),</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">bounding</span><span class="nv"> </span><span class="s">box</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">given.</span><span class="nv"> </span><span class="s">Conservative:</span>
-<span class="w">                  </span><span class="s">partial.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage;</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">meta_etl_*.json extent (POLYGON WKT)</span>
-<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">coverage ✅)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records the product footprint as a WKT polygon extent</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">and a DCAT spatialCoverage string.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no product bounding box.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">verified</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)</span>
-<span class="w">              </span><span class="nt">evidence</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">coverage ✅)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The THREDDS dataset.xml gives the product footprint as projectionBox</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">and LatLonBox.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER encodes spatial extent as a coded region (§2.2), not</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a numeric min/max bounding box.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A product's spatial bounding box is instance/discovery-layer</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">detail outside the conceptual EV/DDI-CDI layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bounding box of the source *product* (not the extracted subset),</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as `[min_lon, min_lat, max_lon, max_lat]`.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Product Bounding Box</span>
@@ -1775,104 +1360,6 @@
 <span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A plain-English description of where in the world the dataset has data</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">— for example "the continental United States plus Hawaii and Puerto Rico"</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">— so you can tell at a glance whether your study area is covered.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §1.3, §2.7 (national US extent)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The national-US spatial extent is stated for CHEL products.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA's spatialCoverage string can act as a human-readable extent</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">label, though it is not guaranteed to be a curated prose descriptor.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS emits no extent descriptor.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus carries a numeric bbox (projectionBox/LatLonBox) but</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">no human-readable extent description.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">sxx=state)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The coded spatial-extent prefix conveys a controlled-vocabulary</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">extent label (§2.2) rather than free-text prose.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human-readable extent of a specific product is instance/discovery-layer</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">detail outside the conceptual layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human-readable description of the product extent, e.g. "CONUS + Hawaii</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">+ Puerto Rico", "global land surface 60°S-80°N".</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Product Extent Description</span>
@@ -1902,107 +1389,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">tile, so a rule is needed to pick or blend nearby tile values into one number</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">for that spot — take the closest tile, average the four nearest ones, and</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">so on. This field records which rule was used.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="nv"> </span><span class="s">carries</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">extraction/aggregation</span><span class="nv"> </span><span class="s">operator</span><span class="nv"> </span><span class="s">first-class:</span>
-<span class="w">                  </span><span class="s">area-weighted</span><span class="nv"> </span><span class="s">interpolation</span><span class="nv"> </span><span class="s">(§3.2),</span><span class="nv"> </span><span class="s">population-weighted</span><span class="nv"> </span><span class="s">allocation</span>
-<span class="w">                  </span><span class="s">(§3.3),</span><span class="nv"> </span><span class="s">density</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">intersection-proportion</span><span class="nv"> </span><span class="s">(§3.4),</span><span class="nv"> </span><span class="s">raster</span><span class="nv"> </span><span class="s">zonal</span>
-<span class="w">                  </span><span class="s">sum</span><span class="nv"> </span><span class="s">(§3.5).'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No extraction-method slot in gaiaCatalog or gaia-db; only the</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">implicit st_within join semantics of working.spatial_join_exposure</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">exist, undocumented.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS applies IDW-4-nearest by default but records no extraction-method</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">field.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus emits no extraction-method field.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's data-level codes track processing stage, not the point-to-cell</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">extraction rule; no extraction-method field.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How a value was extracted from a grid is instance-layer provenance</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the conceptual EV/DDI-CDI layer deliberately omits.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How a gridded value was extracted at the patient's coordinates. Default</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">for DeGAUSS daymet / narr is `inverse_distance_weighted_4_nearest_cells`.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Extraction Method</span>
@@ -2166,107 +1552,6 @@
 <span class="w">          </span><span class="s">address,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">neighbourhood-sized</span><span class="nv"> </span><span class="s">census</span><span class="nv"> </span><span class="s">area,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ZIP-code</span><span class="nv"> </span><span class="s">area,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">whole</span><span class="nv"> </span><span class="s">county,</span>
 <span class="w">          </span><span class="s">and</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">on.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">bigger</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">unit,</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">more</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">number</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">shared</span><span class="nv"> </span><span class="s">average</span>
 <span class="w">          </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">personal</span><span class="nv"> </span><span class="s">measurement.'</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §2.2.1 (H3 hex target)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">'CHEL</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">geography</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">first-class:</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">attached</span>
-<span class="w">                  </span><span class="s">to</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">H3</span><span class="nv"> </span><span class="s">Hex3</span><span class="nv"> </span><span class="s">cell.'</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">partial</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gaia_db data_source.geom_type (point); location.geom</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GAIA records the geometry type (point) but not the full EnVar</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">target-geography vocabulary (tract/ZCTA/county); values land on</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">the person's point location.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS attaches values to the geocoded point residence but</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">has no explicit target-geography-type field.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus collapses to lat/lon at the THREDDS request with no</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">geography-type field.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER's spatial-resolution code names the geographic unit (county/tract/block</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">group/ZCTA/H3) and column_tag flags the spatial-primary column (§2.3,</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">§6.1).</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The target geographic unit of a specific value is instance-layer</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">detail outside the conceptual EV/DDI-CDI layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Geographic unit the exposure value is attached to.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Target Geography Type</span>
 <span class="w">    </span><span class="nt">examples</span><span class="p">:</span>
@@ -2304,106 +1589,6 @@
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">of an area it covers. This records which of those the conversion was designed</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">to keep true, because the same input handled two different ways produces</span>
 <span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">two different numbers.</span>
-<span class="w">      </span><span class="nt">covered_by</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">covered_by</span>
-<span class="w">        </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">clad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clad</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">full</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">table)</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">(mean intensity / mass conservation / occurrence intensity / areal</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">coverage) and selects the operator from it.</span>
-<span class="w">          </span><span class="nt">omop_gaia</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omop_gaia</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">an aggregation holds fixed is not recorded.</span>
-<span class="w">          </span><span class="nt">degauss</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">degauss</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeGAUSS does point extraction only and records no aggregation-preservation</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">semantics.</span>
-<span class="w">          </span><span class="nt">amadeus</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amadeus</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amadeus records no preserved-quantity of any spatial aggregation.</span>
-<span class="w">          </span><span class="nt">cher</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cher</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C-HER captures resolution and data-level but not which quantity</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">a re-gridding operator preserves.</span>
-<span class="w">          </span><span class="nt">codata</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codata</span>
-<span class="w">            </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">extent</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extent</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_layer</span>
-<span class="w">              </span><span class="nt">status</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asserted</span>
-<span class="w">              </span><span class="nt">where</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">where</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no column</span>
-<span class="w">              </span><span class="nt">note</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">note</span>
-<span class="w">                </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The preserved quantity of an aggregation is instance-layer</span>
-<span class="w">                  </span><span class="l l-Scalar l-Scalar-Plain">methodological detail outside the conceptual EV/DDI-CDI layer.</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What quantity the spatial-aggregation operator is meant to *preserve*</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">when a value on a source spatial support is re-expressed on the target support</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">— not the mechanics of the operator (that is `extraction_method`), but the invariant</span>
