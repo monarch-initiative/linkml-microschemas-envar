@@ -98,8 +98,9 @@ tool_run:
     amadeus::calculate_covariates("gridmet", locs = patient_locations,
     variables = "tmmx", date_start = "2022-07-15", date_end = "2022-07-22")
   run_timestamp_utc: "2026-06-25T08:33:31Z"
-  input_file_sha256: "12cb1bca74dde87d45cabf09ef0af7d13e08589629a75ed15d5ae727470f7fb6"
-  input_row_count: 3
+  input_files:
+  - input_file_sha256: "12cb1bca74dde87d45cabf09ef0af7d13e08589629a75ed15d5ae727470f7fb6"
+    input_row_count: 3
   output_file_sha256: "6677711bb8698788a939bf39772e52f182a4e70d331c472ffef19e64f28f4919"
   output_row_count: 24
 

@@ -95,8 +95,9 @@ tool_run:
   container_image_digest: "sha256:dd4477aa1199..."
   run_arguments: '{"variable": "pm25", "window": "2016-07"}'
   run_timestamp_utc: "2026-05-24T09:11:03Z"
-  input_file_sha256: "ab12cd34..."
-  input_row_count: 3
+  input_files:
+  - input_file_sha256: "ab12cd34..."
+    input_row_count: 3
   output_file_sha256: "ef56ab78..."
   output_row_count: 93
 

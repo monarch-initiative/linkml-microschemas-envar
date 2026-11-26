@@ -121,8 +121,11 @@ tool_run:
     os: "Ubuntu 22.04"
     container_runtime: "docker 24.0.7"
     r_version: "4.3.1"
-  input_file_sha256: "9f8e7d6c5b4a..."
-  input_row_count: 3
+  input_files:
+  - input_file_locator: "inputs/phoenix_aki_2022_addresses.csv"
+    input_file_sha256: "9f8e7d6c5b4a..."
+    input_row_count: 3
+  - input_file_locator: "https://doi.org/10.3334/ORNLDAAC/2129"
   output_file_sha256: "1c2d3e4f5a6b..."
   output_row_count: 459
 

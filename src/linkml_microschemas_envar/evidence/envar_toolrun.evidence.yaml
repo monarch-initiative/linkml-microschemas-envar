@@ -528,3 +528,164 @@ provenance_chain_terminus_type:
       status: asserted
       where: no column
       note: Chain-terminus typing is instance-layer; out of scope for CODATA.
+
+input_files:
+  supported_by:
+  - source: codata
+    support:
+    - type: schema
+      document: ddi-cdi-activity
+      locator: Activity, attributes
+      source_slot: Activity.entityUsed
+      match: full
+      explanation: >-
+        "A thing employed in the activity", multiplicity 0..*. Each entry is a Reference,
+        so an activity lists every input it used.
+      status: verified
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.4.1, p. 13"
+      snippet: A resource may have one parent resource or multiple parent resources.
+      match: partial
+      explanation: >-
+        C-HER records for every derived resource the resources it was made from, one or
+        several. Missing: the parents are resources of the repository and not the files
+        one run read, and the entry has no hash or row count.
+      status: verified
+  - source: chel
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7"
+      snippet: >-
+        These datasets form the full upstream dependency graph for aggregation and
+        spatial linkage.
+      match: partial
+      explanation: >-
+        The Input Lineage Table lists every input of the pipeline. Missing: it is one
+        table in the documentation and not a record of what a given run read, and it has
+        no hashes.
+      status: verified
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-geocoder-readme
+      locator: Geomarker Data
+      snippet: is a SQL database prepared following the instructions
+      match: partial
+      explanation: >-
+        Besides the address file the geocoder reads a reference database
+        (`geocoder.db`). Missing: the second input is only named in the README; the
+        output does not list what was read.
+      status: verified
+  not_supported_by:
+  - source: omop_gaia
+    reason: different_granularity
+    explanation: >-
+      gaiaDB records one source URL per catalogued dataset and not the files a run read.
+      Closest: `data_source.url`.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.url
+      status: verified
+    status: unverified
+  - source: amadeus
+    reason: not_recorded
+    explanation: >-
+      The result does not list the files that were read. Closest: the `path` argument of
+      `process_covariates`, which may be a directory with several raw files.
+    closest:
+    - type: schema
+      document: amadeus-process-covariates
+      locator: arguments
+      source_slot: process_covariates.path
+      status: verified
+    status: unverified
+
+input_file_locator:
+  supported_by:
+  - source: codata
+    support:
+    - type: schema
+      document: ddi-cdi-reference
+      locator: Reference, attributes
+      source_slot: Reference.location
+      match: full
+      explanation: >-
+        "The location of the referenced resource, as appropriate to support retrieval."
+        Reference is the type of `Activity.entityUsed`; it also has a `uri` attribute.
+      status: verified
+  - source: omop_gaia
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.url
+      match: partial
+      explanation: >-
+        URL of the catalogued source dataset. Missing: it is stored once per dataset and
+        not per run.
+      status: verified
+    - type: output
+      document: gaiadb-example-jsonld
+      field: url
+      value: https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html
+      match: partial
+      explanation: >-
+        In the public example the URL is the download page of the source and not the file
+        itself.
+      status: verified
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-geocoder-readme
+      locator: Geomarker Data
+      snippet: >-
+        For this container, it is hosted at
+        https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G80WU1
+      match: partial
+      explanation: >-
+        The README says where the reference database can be found, by DOI. Missing: the
+        locator is not written to the output, and the address file is only identified by
+        its name, which becomes part of the output file name.
+      status: verified
+  - source: chel
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: Input | Native Geometry | Role in CHEL | Source Link
+      match: partial
+      explanation: >-
+        The table has a Source Link column with a URL for each public input. Missing: the
+        links are home or download pages and not the files, and participant geocodes
+        have none ("N/A").
+      status: verified
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-process-covariates
+      locator: arguments
+      source_slot: process_covariates.path
+      match: partial
+      explanation: >-
+        "Directory or file path to raw data". Missing: the path is an argument of the
+        call and is not written to the result.
+      status: verified
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.4.3, p. 13"
+      snippet: >-
+        is an example of a lineage relationship, which is documented via parent resource
+        links and lineage notes
+      match: partial
+      explanation: >-
+        A derived resource links to each of its parents. Missing: the link is to a
+        resource record in the repository, not a URI or path of a file.
+      status: verified

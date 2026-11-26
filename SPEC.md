@@ -208,8 +208,10 @@ The block is Conditionally-Core: required unless the record declares `subject_ty
 | `run_arguments` | Recommended | object | Exact argument map at invocation. | runtime |
 | `run_timestamp_utc` | Recommended | ISO 8601 | When the run started. | runtime |
 | `run_environment` | Optional | object | OS, runtime, language/library versions. | runtime |
-| `input_file_sha256` / `output_file_sha256` | Recommended | string | Hashes for verification that inputs/outputs are what the record claims. | runtime |
-| `input_row_count` / `output_row_count` | Recommended | integer | Row counts; a cheap integrity check. | runtime |
+| `input_files` | Recommended | list of `InputFile` | One entry per file the run read. Many runs fuse several inputs. | runtime |
+| `input_file_locator` | Recommended | string | URI, DOI or path of one input file (in `InputFile`). A hash verifies a file but does not find it. Must not disclose PHI. | runtime |
+| `input_file_sha256` / `input_row_count` | Recommended | string / integer | Hash and row count of one input file (in `InputFile`), not of the run. | runtime |
+| `output_file_sha256` / `output_row_count` | Recommended | string / integer | Hash and row count of the output; verify that the output is what the record claims. | runtime |
 | `provenance_chain` (steps) | Recommended | ordered list | The ordered upstream runs (geocoder → daymet). Lets a consumer walk the full derivation. Patterned on W3C PROV. | [PROV] |
 | `provenance_chain_terminus_type` | Recommended | enum | `raw_source_download` \| `synthetic_data` \| `pre_existing_curated_dataset`. The root of the chain. | EnVar |
 

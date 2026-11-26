@@ -49,7 +49,8 @@ exposure_model:
 tool_run:
   tool_name: amadeus
   tool_version: "1.3.2"
-  input_file_sha256: "3a1b9c..."
+  input_files:
+  - input_file_sha256: "3a1b9c..."
   output_file_sha256: "7f2e4d..."
 
 health_layer_linkage:

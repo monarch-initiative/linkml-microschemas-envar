@@ -86,8 +86,9 @@ tool_run:
   container_image_digest: "sha256:a8b3c2d1e0f9..."
   run_arguments: '{"variables": "tmax"}'
   run_timestamp_utc: "2026-05-23T14:18:42Z"
-  input_file_sha256: "9f8e7d6c5b4a..."
-  input_row_count: 3
+  input_files:
+  - input_file_sha256: "9f8e7d6c5b4a..."
+    input_row_count: 3
   output_file_sha256: "1c2d3e4f5a6b..."
   output_row_count: 459
 

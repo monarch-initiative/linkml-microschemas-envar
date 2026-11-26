@@ -50,8 +50,7 @@ classes:
     - run_timestamp_utc
     - run_duration_seconds
     - run_environment
-    - input_file_sha256
-    - input_row_count
+    - input_files
     - output_file_sha256
     - output_row_count
     - run_log_excerpt
@@ -61,6 +60,19 @@ classes:
         required: true
       tool_version:
         required: true
+
+  InputFile:
+    title: Input File
+    description: >-
+      One file a tool run read, with where to find it, its hash and its row
+      count.
+    annotations:
+      domain_of_use: environmental_exposure
+    class_uri: prov:Entity
+    slots:
+    - input_file_locator
+    - input_file_sha256
+    - input_row_count
 
   ProvenanceChain:
     title: Provenance Chain
@@ -309,10 +321,43 @@ slots:
         A snapshot of the computer setup around the tool — operating system,
         language versions, key libraries. Like noting the oven and altitude
         alongside a recipe, because the surroundings can change the outcome.
+  input_files:
+    title: Input Files
+    slot_uri: prov:used
+    range: InputFile
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    description: >-
+      The files the run read, one entry per file.
+    examples:
+    - object:
+        input_file_locator: inputs/addresses.csv
+        input_file_sha256: "9f8e7d6c5b4a..."
+    annotations:
+      tier: recommended
+      justification: >-
+        Many runs fuse several sources; a single hash leaves the other inputs
+        unrecorded.
+      explanation: The list of ingredients the program was given.
+  input_file_locator:
+    title: Input File Locator
+    range: string
+    description: >-
+      URI, DOI or path where the input file can be found. Omit it when the
+      locator itself would disclose PHI.
+    examples:
+    - value: https://doi.org/10.3334/ORNLDAAC/2129
+    annotations:
+      tier: recommended
+      justification: >-
+        A hash verifies a file you already have; only a locator lets you find
+        it.
+      explanation: The address of the input file.
   input_file_sha256:
     title: Input File SHA-256 Hash
     range: string
-    description: SHA256 of the input file (CSV / parquet).
+    description: SHA256 of this input file (CSV / parquet).
     examples:
     - value: "9f8e7d6c5b4a..."
     see_also:
@@ -332,7 +377,7 @@ slots:
   input_row_count:
     title: Input Row Count
     range: integer
-    description: Number of rows in the input.
+    description: Number of rows in this input file.
     examples:
     - value: "3"
       description: one row per cohort address
@@ -388,7 +433,8 @@ slots:
     title: Run Log Excerpt
     range: string
     description: >-
-      Last ~50 lines of the run log, where useful for debugging or audit.
+      Last ~50 lines of the run log, where useful for debugging or audit. The
+      full log is not expected to ship with the data; provide it on request.
     examples:
     - value: "[2026-05-23 14:19:19] daymet 1.0.0 finished: wrote 459 rows to /output/tmax.csv (0 errors, 0 warnings)"
 
