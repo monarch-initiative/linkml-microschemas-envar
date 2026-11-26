@@ -150,53 +150,6 @@ slots:
         for example a standard error (a ± number saying how far off the
         estimate could plausibly be) versus a prediction interval (a range the
         true value should fall inside, say 95 times out of 100).
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md §4.6.4 (source uncertainty acknowledged, none carried)"
-              note: >-
-                CHEL §4.6.4 acknowledges source uncertainty but carries no
-                per-value uncertainty on its indicators (only the EJI population
-                margin of error `M_TOTPOP` passes through).
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No gaia output carries a per-value uncertainty type.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no per-value uncertainty.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus emits no per-value uncertainty type.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's column_tag Meta value can hold uncertainty columns in
-                principle, but no per-value uncertainty type is a modelled field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Per-value uncertainty is instance-layer; out of scope for CODATA.
   per_value_uncertainty_type_missing_reason:
     title: Reason Uncertainty Type Is Missing
     range: MissingReasonEnum
@@ -242,52 +195,6 @@ slots:
         micrograms per cubic metre, and so on — written in a standard code
         (UCUM) that computers read the same way every time. Usually it matches
         the units of the value itself.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md §4.6.4"
-              note: >-
-                No per-value uncertainty is carried, so its units are absent too.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                With no per-value uncertainty column, gaia carries no uncertainty
-                units.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No per-value uncertainty column exists, so no uncertainty units.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No per-value uncertainty column exists, so no uncertainty units.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No per-value uncertainty field, so no uncertainty units in C-HER.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Per-value uncertainty units are instance-layer; out of scope for
-                CODATA.
   per_value_uncertainty_units_ucum_missing_reason:
     title: Reason Uncertainty Units Are Missing
     range: MissingReasonEnum
@@ -336,54 +243,6 @@ slots:
         by holding some data back and seeing how close its guesses came — for
         example an R² near 1 means the model tracks the true values closely. It
         also records where those scores were published.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md §4.6.4"
-              note: >-
-                CHEL carries no per-value SE / prediction interval /
-                model-aggregate uncertainty; §4.6.4 only acknowledges source
-                uncertainty.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No gaia output carries cross-validation R²/RMSE for the source
-                model (Tmax scenario emits no model-accuracy summary).
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no whole-model cross-validation metrics.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus emits no whole-model cross-validation metrics.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER carries no model cross-validation summary field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Model-aggregate uncertainty is instance-layer; out of scope for
-                CODATA.
   model_aggregate_uncertainty_missing_reason:
     title: Reason Aggregate Uncertainty Is Missing
     range: MissingReasonEnum
@@ -473,56 +332,6 @@ slots:
         guess from nearby days and places, copy the last known value, and so
         on. Filled-in numbers can look just like real measurements, so it
         matters to know which is which.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §4.3.1, §4.3.3 (conservation diagnostics; null taxonomy)"
-              note: >-
-                CHEL §4.3 has conservation diagnostics and a null taxonomy
-                (validation), but no per-value missing-data-handling method slot.
-                Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Gaia's meta_etl nodata registers the missing-value sentinel, not
-                the source's missing-data handling method.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS records no missing-data-handling method.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus's THREDDS metadata declares a _FillValue sentinel but not
-                the source's gap-filling method.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's null taxonomy classifies null cells but carries no
-                source missing-data-handling method field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Missing-data handling method is instance-layer; out of scope for
-                CODATA.
   missing_value_sentinel:
     title: Missing Value Sentinel
     range: string
@@ -601,54 +410,6 @@ slots:
         that actually have a value — 100 means nothing is missing, 60 means
         four in ten slots are blank. It is a quick honesty check on how full
         the dataset really is.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §4.3.1, §4.3.2 (conservation/range checks)"
-              note: >-
-                Completeness is checkable via CHEL's §4.3 conservation/range
-                diagnostics but not carried as a per-value completeness
-                percentage. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No gaia output carries a data-completeness percentage for the
-                extracted window.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits no completeness percentage.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus emits no completeness percentage.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER carries no per-window data-completeness percentage field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Data completeness percentage is instance-layer; out of scope for
-                CODATA.
   data_completeness_pct_missing_reason:
     title: Reason Data Completeness Is Missing
     range: MissingReasonEnum

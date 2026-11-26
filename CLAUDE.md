@@ -20,6 +20,7 @@ Everything here is exploratory and will change. Do not treat schemas, examples, 
 - `just site` — `gen-project` + `gen-doc` + `render-schema-overview` + `gen-datasets-ledger` + `standards-index` (all generated pages).
 - `just check FILE...` — run the completeness checker (`linkml_microschemas_envar.checker`) over sidecar YAML(s).
 - `just lint` — `linkml-lint` over the schema sources.
+- `just check-evidence` — fetch the documents cited in the evidence files, check quotes and fields, update `evidence.lock.yaml` (needs network; CI runs the offline checks only).
 - `just test` — full suite: schema gen, pytest, and `linkml-run-examples` over `tests/data/valid` (the passing `core`/`recommended`/`ideal` gradient) and `tests/data/invalid` (`core_missing` counter-examples that MUST fail validation).
 - `just testdoc` — generate docs and serve locally via `mkdocs serve`.
 - `just clean` — remove generated artifacts.
@@ -57,12 +58,19 @@ The substantive content is the LinkML schema set under `src/linkml_microschemas_
 - Generated but **git-tracked** (never hand-edit): `src/linkml_microschemas_envar/datamodel/` except `__init__.py` (`just gen-python`; installs from git need it) and `docs/standards-index/index.md` (`just standards-index`). **SOP: feature PRs do not update these.** They are regenerated for a release only, in a separate PR for just the model updates. `just test` rewrites the datamodel locally, so discard that before committing: `git checkout -- src/linkml_microschemas_envar/datamodel`.
 - The canonical worked example is `examples/daymet_tmax_phoenix_2022_07_19.yaml`.
 
+### Slot evidence — why each slot exists
+
+- Evidence lives in `src/linkml_microschemas_envar/evidence/`, not in the schema: one `<module>.evidence.yaml` per schema module (keyed by slot), the source registry `sources.yaml`, and `evidence.schema.yaml` for their shape. Design and vocabulary: `specs/2026-11-25-slot-evidence-design.md`. Never put evidence back into slot annotations.
+- A PR that adds a slot (except `*_missing_reason`) checks it against **every** source in `sources.yaml` and adds `supported_by` items, or a `not_supported_by` entry where the source should have the information and does not (never for "out of scope"). The slot ends with at least one support item or a `no_support_found` entry. This outranks diff size. `unreviewed.yaml` is frozen and not open to new slots.
+- Public evidence only, with the document registered in `sources.yaml` at a fixed version. Run `just check-evidence`; only items it passed may say `status: verified` (the lock file enforces this). `confirmed` needs a person's ORCID, date and basis, and means "correct, and may be public". Everything else is `unverified`.
+- `legacy` blocks are the old `covered_by` verdicts, copied word for word. They are replaced source by source in review PRs; do not add new ones.
+- Offline rules: `tests/test_evidence.py` (`slot_evidence.offline_problems`). Class pages show the evidence through fragments from `scripts/gen_evidence_fragments.py`.
+
 ### Keep PR diffs small, without compromising function
 
 - Optimise for few **added/changed** lines; deleted lines do not count. Never drop functionality, tests, validation or required annotations to get there.
 - Before committing, run `git diff --stat <base>...` including generated files, find the cause of every large entry, and remove what is avoidable.
-- Every new slot except `*_missing_reason` gets a populated `covered_by` (all six standards, public evidence only). This outranks diff size.
-- Generators repeat every inherited slot, with all its annotations, for each class and subclass. Do not copy a `covered_by` block that already sits on the enclosing slot (doing so on `geometry_kind` added about 1800 lines to #52).
+- Generators repeat every inherited slot, with all its annotations, for each class and subclass. Keep long text out of annotations on such slots (a duplicated block on `geometry_kind` added about 1800 lines to #52).
 - When choosing between designs, measure the generated diff of each and state it with the recommendation.
 - Do not track new generated files unless something consumes them from git. Keep unrelated cleanups out of the PR.
 

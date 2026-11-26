@@ -6,6 +6,10 @@
 /docs/schema_overview.md
 /docs/overview/
 /docs/datasets/
+# per-slot evidence fragments for the class pages (just gen-evidence-fragments)
+/docs/templates-linkml/_evidence/
+# documents fetched by just check-evidence (never committed: no redistribution licence)
+/.evidence_cache/
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 

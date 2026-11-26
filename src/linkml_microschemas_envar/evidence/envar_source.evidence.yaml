@@ -1,0 +1,554 @@
+# Evidence for the slots of envar_source.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+source_dataset_name:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: full
+      status: asserted
+      where: CHEL Documentation.md §2.7 input lineage table
+      note: >-
+        CHEL names each source dataset first-class in the §2.7 input-lineage table (e.g. EJI
+        2022, EJI 2024, ACS, GPW v4).
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: gaia_db data_source.dataset_name; meta_dcat_*.json dct:title
+      evidence: EnVar/examples/heat/COMPARISON.md §I (Dataset name — ✅ OMOP/GAIA)
+      note: >-
+        GAIA carries the dataset name first-class in data_source and the DCAT title.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary dataset (via table_name {dataset} slot)
+      note: >-
+        C-HER names the dataset first-class as the {dataset} component of the reproducible
+        table_name and as a foreign key on table_dictionary.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS emits no dataset-name field; only the container name is baked into the CSV
+        filename.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus carries no dataset name; it has to be inferred from the THREDDS URL path.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: DDI-CDI dataset-level description (conceptual layer)
+      note: >-
+        Dataset identity sits above the DDI-CDI InstanceVariable layer CODATA scores; conceptual,
+        excluded from instance-layer scoring.
+
+source_dataset_short_code:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table
+      note: >-
+        Source datasets are named in the lineage table but there is no stable short registry
+        code per product.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: gaia_db data_source.dataset_name (no registry short code)
+      note: >-
+        GAIA carries the dataset name but no stable per-product short registry code; scored
+        partial.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary dataset ({dataset} component of table_name)
+      note: >-
+        The {dataset} slot in the reproducible table_name is exactly a stable machine-readable
+        short code keying the product.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no dataset short code.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus emits no dataset short code.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A registry short code is a catalogue/discovery concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_dataset_doi:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (source links)
+      note: The lineage table gives source links, not always DOIs.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: meta_dcat_*.json dct:identifier
+      note: >-
+        GAIA carries a DOI in DCAT dct:identifier for daymet, but not all entries carry one
+        (gridmet has only a url), so scored conservatively as partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: table_dictionary doi (via doi_id FK)
+      note: >-
+        C-HER has a doi field (foreign key doi_id) but it is on the optional-field list, so
+        a DOI is not guaranteed present.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no DOI.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no DOI.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Source-dataset DOI is a discovery/citation concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_dataset_version:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: full
+      status: asserted
+      where: CHEL Documentation.md §5.1, §5.5 (CHEL 2022 / 2024 releases)
+      note: >-
+        CHEL versions its releases first-class (CHEL 2022 vs 2024) with a documented version
+        checklist.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: gaia_db data_source.dataset_version
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §I (Dataset version — ✅ OMOP/GAIA, 'V4 R1')
+      note: >-
+        GAIA carries the upstream dataset version first-class in data_source.dataset_version.
+  - source: degauss
+    legacy:
+      extent: partial
+      status: asserted
+      where: CSV filename token (daymet_1.0.0)
+      note: >-
+        DeGAUSS bakes only the container version into the filename, not the upstream dataset
+        version.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary version ({version} component of table_name)
+      note: >-
+        C-HER carries an auto-generated version code first-class in the table_name and via
+        the version table (§2.6).
+  not_supported_by:
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no dataset version.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Product version is a discovery/lineage concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_dataset_temporal_coverage:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (source vintages)
+      note: >-
+        Source vintages are recorded per input, but product temporal coverage is not a first-class
+        per-value field. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date/end_date
+      evidence: EnVar/examples/heat/COMPARISON.md §H (Dataset time-span — ✅ OMOP/GAIA)
+      note: >-
+        GAIA carries the product time span in DCAT dct:temporal and the variable_source start/end
+        dates.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: thredds_dataset.xml TimeSpan
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §H (Dataset time-span — ✅ Amadeus, TimeSpan 1979→present)
+      note: >-
+        Amadeus records the full dataset time span in the THREDDS dataset.xml TimeSpan element.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary temporal_extent (YYYYMMDDYYYYMMDD in table_name)
+      note: >-
+        C-HER carries temporal extent as a start+end date pair in the reproducible table_name
+        (§2.4).
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no dataset time-span.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Product temporal coverage is a discovery-layer concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_dataset_spatial_extent:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table
+      note: >-
+        Source spatial extent is implicit in the national-US inputs but not a first-class
+        per-source field. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        meta_dcat_*.json spatialCoverage; gaia_db data_source.spatial_coverage; meta_etl_*.json
+        extent (POLYGON WKT)
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §G (Source-dataset spatial coverage — ✅ OMOP/GAIA)
+      note: >-
+        GAIA carries the source spatial coverage in DCAT, in data_source.spatial_coverage,
+        and as a POLYGON WKT extent.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: thredds_dataset.xml projectionBox + LatLonBox
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §G (Source-dataset spatial coverage — ✅ Amadeus,
+        CONUS bbox)
+      note: >-
+        Amadeus records the source bbox via the THREDDS projectionBox and LatLonBox elements.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary spatial_extent (Gxx/Txx/Cxx/sxx code in table_name)
+      note: >-
+        C-HER carries spatial extent first-class as a coded component of the reproducible
+        table_name (§2.2).
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no source spatial coverage.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Product spatial extent is a discovery-layer concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_producer_institution:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (source links)
+      note: >-
+        Provider/publisher is recoverable from the source links but not a first-class per-source
+        field.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: gaia_db data_source.creator/provider; meta_dcat_*.json dct:publisher
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §I (Publisher/creator/provider — ✅ OMOP/GAIA)
+      note: >-
+        GAIA carries publisher/creator/provider first-class in data_source and DCAT dct:publisher.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        table_dictionary org ({org} component of table_name; publishing organization)
+      note: >-
+        C-HER encodes the publishing organization first-class as the {org} component of table_name;
+        selecting a dataset implicitly selects its organization (§1).
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no producer/publisher field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no producer/publisher field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Producer institution is a discovery/attribution concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_citation_apa:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (source links)
+      note: >-
+        Source links are given; a formatted citation is not carried. Conservative: partial.
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: acknowledgement string (acknowledgement = TRUE)
+      note: >-
+        Amadeus can attach a free-text acknowledgement string, which is a citation-like credit
+        but not a formatted APA reference (related-approaches.md §3).
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA carries publisher and DOI but no assembled APA citation string; none is emitted.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no citation.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER carries contributors, rights, and DOI but no assembled APA citation string.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A formatted citation is a discovery/attribution concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_license_spdx:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: gaia_db data_source.license; meta_dcat_*.json dct:license
+      note: >-
+        GAIA carries a license first-class but as a freeform string with no SPDX normalisation,
+        so it only partly satisfies this SPDX-specific slot.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: table_dictionary rights (via rights FK)
+      note: >-
+        C-HER carries a required rights field, but it is not SPDX-coded, so it only partly
+        satisfies this SPDX-specific slot.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no per-source license field)
+      note: >-
+        CHEL operates at the source-dataset layer but carries no per-source license field.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no license field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no license field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        License is a discovery/rights concern above the DDI-CDI InstanceVariable layer CODATA
+        scores.
+
+source_access_url:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (source links)
+      note: >-
+        The lineage table carries source links, which serve as access URLs, though not as
+        a first-class landing-page slot.
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: gaia_db data_source.url; meta_etl_*.json source; JSON-LD url
+      evidence: >-
+        EnVar/examples/heat/COMPARISON.md §I (Source landing-page URL — ✅ OMOP/GAIA)
+      note: >-
+        GAIA carries the source landing-page URL first-class in data_source.url and the JSON-LD
+        url.
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: thredds_dataset.xml @location (NCSS data endpoint)
+      note: >-
+        Amadeus carries only the THREDDS NCSS data-endpoint URL, not the human landing page.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no source landing-page URL.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER records an S3-protocol storage location for the resource, not a source landing-page
+        URL.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A source landing-page URL is a discovery concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.
+
+source_native_format:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage table (native geometry per input)
+      note: >-
+        The lineage table records native geometry/role per input, from which native format
+        is partly recoverable. Conservative: partial.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        meta_etl_*.json structure/geometry (raster); gaia_db data_source.geom_type
+      note: >-
+        GAIA records dataset structure (raster) and geometry type but not the native file
+        format (e.g. NetCDF-4/CF) as a first-class slot.
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: gridmet_tmmx.cf_metadata.json (CF metadata implies NetCDF)
+      note: >-
+        Amadeus's CF metadata blob implies the NetCDF/CF native format but does not declare
+        it in a dedicated format field.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: table_dictionary resource_format (IANA Media Types controlled vocab)
+      note: >-
+        C-HER carries resource_format first-class against the IANA Media Types controlled
+        vocabulary.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS records no source native format.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Native shipping format is a packaging/discovery concern above the DDI-CDI InstanceVariable
+        layer CODATA scores.

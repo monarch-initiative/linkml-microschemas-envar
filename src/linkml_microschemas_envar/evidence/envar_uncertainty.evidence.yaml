@@ -1,0 +1,226 @@
+# Evidence for the slots of envar_uncertainty.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+per_value_uncertainty_type:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        CHEL Documentation.md §4.6.4 (source uncertainty acknowledged, none carried)
+      note: >-
+        CHEL §4.6.4 acknowledges source uncertainty but carries no per-value uncertainty on
+        its indicators (only the EJI population margin of error `M_TOTPOP` passes through).
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No gaia output carries a per-value uncertainty type.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no per-value uncertainty.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus emits no per-value uncertainty type.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's column_tag Meta value can hold uncertainty columns in principle, but no per-value
+        uncertainty type is a modelled field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Per-value uncertainty is instance-layer; out of scope for CODATA.
+
+per_value_uncertainty_units_ucum:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §4.6.4
+      note: No per-value uncertainty is carried, so its units are absent too.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        With no per-value uncertainty column, gaia carries no uncertainty units.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No per-value uncertainty column exists, so no uncertainty units.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No per-value uncertainty column exists, so no uncertainty units.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No per-value uncertainty field, so no uncertainty units in C-HER.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Per-value uncertainty units are instance-layer; out of scope for CODATA.
+
+model_aggregate_uncertainty:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §4.6.4
+      note: >-
+        CHEL carries no per-value SE / prediction interval / model-aggregate uncertainty;
+        §4.6.4 only acknowledges source uncertainty.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No gaia output carries cross-validation R²/RMSE for the source model (Tmax scenario
+        emits no model-accuracy summary).
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no whole-model cross-validation metrics.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus emits no whole-model cross-validation metrics.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER carries no model cross-validation summary field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Model-aggregate uncertainty is instance-layer; out of scope for CODATA.
+
+missing_data_handling_method:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        CHEL Documentation.md §4.3.1, §4.3.3 (conservation diagnostics; null taxonomy)
+      note: >-
+        CHEL §4.3 has conservation diagnostics and a null taxonomy (validation), but no per-value
+        missing-data-handling method slot. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Gaia's meta_etl nodata registers the missing-value sentinel, not the source's missing-data
+        handling method.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS records no missing-data-handling method.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus's THREDDS metadata declares a _FillValue sentinel but not the source's gap-filling
+        method.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's null taxonomy classifies null cells but carries no source missing-data-handling
+        method field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Missing-data handling method is instance-layer; out of scope for CODATA.
+
+data_completeness_pct:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §4.3.1, §4.3.2 (conservation/range checks)
+      note: >-
+        Completeness is checkable via CHEL's §4.3 conservation/range diagnostics but not carried
+        as a per-value completeness percentage. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No gaia output carries a data-completeness percentage for the extracted window.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no completeness percentage.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus emits no completeness percentage.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER carries no per-window data-completeness percentage field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Data completeness percentage is instance-layer; out of scope for CODATA.

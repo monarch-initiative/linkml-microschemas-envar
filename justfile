@@ -124,7 +124,7 @@ lint:
 
 # Generate md documentation for the schema and add artifacts
 [group('model development')]
-gen-doc: _gen-yaml && _add-artifacts
+gen-doc: _gen-yaml gen-evidence-fragments && _add-artifacts
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
