@@ -694,7 +694,7 @@
 
 
 <h1 id="slot-source-dataset-version-source_dataset_version">Slot: Source Dataset Version (source_dataset_version)</h1>
-<p><em>Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs "V6.GL.02" for ACAG PM products. Version differences materially change values.</em></p>
+<p><em>Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs "V6.GL.02" for ACAG PM products. Version differences materially change values. A repository's own table version goes in <code>resource_version</code>.</em></p>
 <p><strong>Tier:</strong> <code>core</code></p>
 <h2 id="why-this-slot-matters">Why this slot matters</h2>
 <p>Version differences materially change values (e.g. ACAG V5 vs V6 PM2.5), so two studies "using Daymet" may in fact use different data; a value without a version is not reproducible.</p>
@@ -836,7 +836,8 @@
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">change between releases. The version says exactly which release the values came</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">from.</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source product version. E.g. &quot;V4 R1&quot; for Daymet; &quot;V5.GL.03&quot; vs &quot;V6.GL.02&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">for ACAG PM products. Version differences materially change values.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">for ACAG PM products. Version differences materially change values. A repository&#39;s</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">own table version goes in `resource_version`.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Source Dataset Version</span>
 <span class="nt">examples</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">V4 R1</span>

@@ -3192,7 +3192,8 @@ slots:
           can change between releases. The version says exactly which release the
           values came from.
     description: Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs "V6.GL.02"
-      for ACAG PM products. Version differences materially change values.
+      for ACAG PM products. Version differences materially change values. A repository's
+      own table version goes in `resource_version`.
     title: Source Dataset Version
     examples:
     - value: V4 R1
@@ -6303,6 +6304,97 @@ slots:
     domain_of:
     - HealthLayerLinkage
     range: MissingReasonEnum
+  resource_identifier:
+    name: resource_identifier
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: '`provenance_id` names the sidecar, so without this slot nothing names
+          the delivered table it describes. Optional because values produced in-house
+          have no producer-issued identifier.'
+      explanation:
+        tag: explanation
+        value: The name or number the data provider gave to the exact table you received.
+    description: The producer's identifier for the delivered table or file, verbatim.
+    title: Resource Identifier
+    examples:
+    - value: exampleorg_daymet_tmax_phoenix_2022_001
+      description: illustrative table name built by a fixed naming scheme
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - DeliveredResource
+    range: string
+  resource_identifier_scheme:
+    name: resource_identifier_scheme
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: A structured identifier can only be decoded with its scheme; a pointer
+          avoids repeating each part in EnVar slots.
+      explanation:
+        tag: explanation
+        value: A link to the rules for reading the identifier, like a key to the parts
+          of a product code.
+    description: URI of the naming scheme that decodes `resource_identifier`.
+    title: Resource Identifier Scheme
+    examples:
+    - value: https://example.org/table-naming-scheme
+      description: illustrative scheme URI
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - DeliveredResource
+    range: uri
+  resource_version:
+    name: resource_version
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: A table re-registered after an error fix has the same `source_dataset_version`
+          as the broken one; only the producer's version tells them apart.
+      explanation:
+        tag: explanation
+        value: Which edition of the table you received. The provider can correct its
+          table while the original dataset stays the same.
+    description: The producer's own version of the delivered resource, independent
+      of the upstream release in `source_dataset_version`.
+    title: Resource Version
+    examples:
+    - value: '001'
+      description: first registration of the table; quoted to keep the zeros
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - DeliveredResource
+    range: string
+  resource_publisher:
+    name: resource_publisher
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: An identifier or version is only unique within the organisation that
+          issued it, which need not be the source's producer.
+      explanation:
+        tag: explanation
+        value: Who prepared and numbered the table you received.
+    description: Organisation that issued the resource's identifier and version.
+    title: Resource Publisher
+    examples:
+    - value: C-HER (ORNL)
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - DeliveredResource
+    range: string
   deposit_doi:
     name: deposit_doi
     annotations:
@@ -7140,6 +7232,27 @@ slots:
     - EnvironmentalExposureRecord
     slot_group: health_data_integration
     range: HealthLayerLinkage
+    inlined: true
+  delivered_resource:
+    name: delivered_resource
+    annotations:
+      tier:
+        tag: tier
+        value: optional
+      justification:
+        tag: justification
+        value: Keeps the producer's table identity and version apart from the upstream
+          release.
+      explanation:
+        tag: explanation
+        value: Which provider's table this record describes, and which edition.
+    description: Identity and version of the delivered table or file, see envar_health_layer.
+    title: Delivered Resource
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    domain_of:
+    - EnvironmentalExposureRecord
+    slot_group: dataset_and_provenance
+    range: DeliveredResource
     inlined: true
   deposit_metadata:
     name: deposit_metadata
@@ -9781,6 +9894,7 @@ classes:
               the values came from.
         description: Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs
           "V6.GL.02" for ACAG PM products. Version differences materially change values.
+          A repository's own table version goes in `resource_version`.
         title: Source Dataset Version
         examples:
         - value: V4 R1
@@ -13532,6 +13646,120 @@ classes:
         domain_of:
         - HealthLayerLinkage
         range: MissingReasonEnum
+  DeliveredResource:
+    name: DeliveredResource
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: environmental_exposure
+    description: Identity of the table or file a producer delivered and this record
+      describes, as opposed to the upstream product (`source_dataset`) and the sidecar
+      itself (`provenance_id`). Copy the values from the producer's metadata, not
+      from parts of the identifier.
+    title: Delivered Resource
+    from_schema: https://w3id.org/linkml/microschemas/envar
+    slots:
+    - resource_identifier
+    - resource_identifier_scheme
+    - resource_version
+    - resource_publisher
+    attributes:
+      resource_identifier:
+        name: resource_identifier
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: '`provenance_id` names the sidecar, so without this slot nothing
+              names the delivered table it describes. Optional because values produced
+              in-house have no producer-issued identifier.'
+          explanation:
+            tag: explanation
+            value: The name or number the data provider gave to the exact table you
+              received.
+        description: The producer's identifier for the delivered table or file, verbatim.
+        title: Resource Identifier
+        examples:
+        - value: exampleorg_daymet_tmax_phoenix_2022_001
+          description: illustrative table name built by a fixed naming scheme
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DeliveredResource
+        domain_of:
+        - DeliveredResource
+        range: string
+      resource_identifier_scheme:
+        name: resource_identifier_scheme
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: A structured identifier can only be decoded with its scheme; a
+              pointer avoids repeating each part in EnVar slots.
+          explanation:
+            tag: explanation
+            value: A link to the rules for reading the identifier, like a key to the
+              parts of a product code.
+        description: URI of the naming scheme that decodes `resource_identifier`.
+        title: Resource Identifier Scheme
+        examples:
+        - value: https://example.org/table-naming-scheme
+          description: illustrative scheme URI
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DeliveredResource
+        domain_of:
+        - DeliveredResource
+        range: uri
+      resource_version:
+        name: resource_version
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: A table re-registered after an error fix has the same `source_dataset_version`
+              as the broken one; only the producer's version tells them apart.
+          explanation:
+            tag: explanation
+            value: Which edition of the table you received. The provider can correct
+              its table while the original dataset stays the same.
+        description: The producer's own version of the delivered resource, independent
+          of the upstream release in `source_dataset_version`.
+        title: Resource Version
+        examples:
+        - value: '001'
+          description: first registration of the table; quoted to keep the zeros
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DeliveredResource
+        domain_of:
+        - DeliveredResource
+        range: string
+      resource_publisher:
+        name: resource_publisher
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: An identifier or version is only unique within the organisation
+              that issued it, which need not be the source's producer.
+          explanation:
+            tag: explanation
+            value: Who prepared and numbered the table you received.
+        description: Organisation that issued the resource's identifier and version.
+        title: Resource Publisher
+        examples:
+        - value: C-HER (ORNL)
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DeliveredResource
+        domain_of:
+        - DeliveredResource
+        range: string
   DepositMetadata:
     name: DepositMetadata
     annotations:
@@ -13842,6 +14070,7 @@ classes:
     - derived_heat_metric
     - data_layout
     - source_dataset
+    - delivered_resource
     - tool_run
     - provenance_chain
     - linkage_method
@@ -14303,6 +14532,28 @@ classes:
         slot_group: dataset_and_provenance
         range: SourceDataset
         required: true
+        inlined: true
+      delivered_resource:
+        name: delivered_resource
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Keeps the producer's table identity and version apart from the
+              upstream release.
+          explanation:
+            tag: explanation
+            value: Which provider's table this record describes, and which edition.
+        description: Identity and version of the delivered table or file, see envar_health_layer.
+        title: Delivered Resource
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: EnvironmentalExposureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: dataset_and_provenance
+        range: DeliveredResource
         inlined: true
       tool_run:
         name: tool_run
@@ -15326,6 +15577,28 @@ classes:
         range: SourceDataset
         required: true
         inlined: true
+      delivered_resource:
+        name: delivered_resource
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Keeps the producer's table identity and version apart from the
+              upstream release.
+          explanation:
+            tag: explanation
+            value: Which provider's table this record describes, and which edition.
+        description: Identity and version of the delivered table or file, see envar_health_layer.
+        title: Delivered Resource
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DailyMaxTemperatureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: dataset_and_provenance
+        range: DeliveredResource
+        inlined: true
       tool_run:
         name: tool_run
         annotations:
@@ -16050,6 +16323,28 @@ classes:
         range: SourceDataset
         required: true
         inlined: true
+      delivered_resource:
+        name: delivered_resource
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Keeps the producer's table identity and version apart from the
+              upstream release.
+          explanation:
+            tag: explanation
+            value: Which provider's table this record describes, and which edition.
+        description: Identity and version of the delivered table or file, see envar_health_layer.
+        title: Delivered Resource
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: DailyMinTemperatureRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: dataset_and_provenance
+        range: DeliveredResource
+        inlined: true
       tool_run:
         name: tool_run
         annotations:
@@ -16761,6 +17056,28 @@ classes:
         slot_group: dataset_and_provenance
         range: SourceDataset
         required: true
+        inlined: true
+      delivered_resource:
+        name: delivered_resource
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Keeps the producer's table identity and version apart from the
+              upstream release.
+          explanation:
+            tag: explanation
+            value: Which provider's table this record describes, and which edition.
+        description: Identity and version of the delivered table or file, see envar_health_layer.
+        title: Delivered Resource
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: WetBulbGlobeTemperatureOutdoorRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: dataset_and_provenance
+        range: DeliveredResource
         inlined: true
       tool_run:
         name: tool_run
@@ -17485,6 +17802,28 @@ classes:
         slot_group: dataset_and_provenance
         range: SourceDataset
         required: true
+        inlined: true
+      delivered_resource:
+        name: delivered_resource
+        annotations:
+          tier:
+            tag: tier
+            value: optional
+          justification:
+            tag: justification
+            value: Keeps the producer's table identity and version apart from the
+              upstream release.
+          explanation:
+            tag: explanation
+            value: Which provider's table this record describes, and which edition.
+        description: Identity and version of the delivered table or file, see envar_health_layer.
+        title: Delivered Resource
+        from_schema: https://w3id.org/linkml/microschemas/envar
+        owner: ExtremeHeatDayFlagRecord
+        domain_of:
+        - EnvironmentalExposureRecord
+        slot_group: dataset_and_provenance
+        range: DeliveredResource
         inlined: true
       tool_run:
         name: tool_run

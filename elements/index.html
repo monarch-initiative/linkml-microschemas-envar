@@ -707,8 +707,8 @@
 <div class="envar-tiles"><a class="envar-tile recommended" href="classes/Uncertainty/"><span class="envar-tilehead"><span class="envar-tilename">Uncertainty and Quality</span><span class="envar-tileslot">Uncertainty · via uncertainty</span></span><span class="envar-tiledesc">Uncertainty and quality character of a value series: per-value uncertainty ty...</span><span class="envar-tilefoot"><span class="envar-tierbadge recommended">recommended</span> · 13 fields</span></a><a class="envar-tile recommended" href="classes/ProvenanceChain/"><span class="envar-tilehead"><span class="envar-tilename">Provenance Chain</span><span class="envar-tileslot">ProvenanceChain · via provenance_chain</span></span><span class="envar-tiledesc">The ordered list of all upstream `ToolRun`s whose outputs were inputs to this...</span><span class="envar-tilefoot"><span class="envar-tierbadge recommended">recommended</span> · 3 fields</span></a><a class="envar-tile recommended" href="classes/HealthLayerLinkage/"><span class="envar-tilehead"><span class="envar-tilename">Health-Layer Linkage</span><span class="envar-tileslot">HealthLayerLinkage · via health_layer_linkage</span></span><span class="envar-tiledesc">Hooks the sidecar uses to be findable from a downstream health-data layer (OM...</span><span class="envar-tilefoot"><span class="envar-tierbadge recommended">recommended</span> · 4 fields</span></a></div>
 </div>
 <div class="envar-tiergroup">
-<div class="envar-grouphead"><span class="envar-groupname">Optional</span><span class="envar-groupnote">Include when available</span><span class="envar-groupcount">1 component</span></div>
-<div class="envar-tiles"><a class="envar-tile optional" href="classes/DepositMetadata/"><span class="envar-tilehead"><span class="envar-tilename">Deposit Metadata</span><span class="envar-tileslot">DepositMetadata · via deposit_metadata</span></span><span class="envar-tiledesc">Deposit-time slots required when the sidecar travels alongside a published FA...</span><span class="envar-tilefoot"><span class="envar-tierbadge optional">optional</span> · 9 fields</span></a></div>
+<div class="envar-grouphead"><span class="envar-groupname">Optional</span><span class="envar-groupnote">Include when available</span><span class="envar-groupcount">2 components</span></div>
+<div class="envar-tiles"><a class="envar-tile optional" href="classes/DeliveredResource/"><span class="envar-tilehead"><span class="envar-tilename">Delivered Resource</span><span class="envar-tileslot">DeliveredResource · via delivered_resource</span></span><span class="envar-tiledesc">Identity of the table or file a producer delivered and this record describes,...</span><span class="envar-tilefoot"><span class="envar-tierbadge optional">optional</span> · 4 fields</span></a><a class="envar-tile optional" href="classes/DepositMetadata/"><span class="envar-tilehead"><span class="envar-tilename">Deposit Metadata</span><span class="envar-tileslot">DepositMetadata · via deposit_metadata</span></span><span class="envar-tiledesc">Deposit-time slots required when the sidecar travels alongside a published FA...</span><span class="envar-tilefoot"><span class="envar-tierbadge optional">optional</span> · 9 fields</span></a></div>
 </div>
 <p class="envar-sectionlabel">Worked variants</p>
 <p class="envar-variantnote">Concrete record subclasses pre-wired for a specific variable — the shapes a workshop dataset actually instantiates.</p>
@@ -738,6 +738,10 @@
 <tr>
 <td><a href="classes/DataLayout/">DataLayout</a></td>
 <td>How the companion data file (CSV / parquet) is laid out and how this record's...</td>
+</tr>
+<tr>
+<td><a href="classes/DeliveredResource/">DeliveredResource</a></td>
+<td>Identity of the table or file a producer delivered and this record describes,...</td>
 </tr>
 <tr>
 <td><a href="classes/DepositMetadata/">DepositMetadata</a></td>
@@ -1245,6 +1249,10 @@
 <td>Reason <code>dcat_distribution_url</code> is null</td>
 </tr>
 <tr>
+<td><a href="slots/delivered_resource/">delivered_resource</a></td>
+<td>Identity and version of the delivered table or file, see envar_health_layer</td>
+</tr>
+<tr>
 <td><a href="slots/deposit_doi/">deposit_doi</a></td>
 <td>DOI assigned by the deposit repository (e</td>
 </tr>
@@ -1743,6 +1751,22 @@
 <tr>
 <td><a href="slots/reported_in/">reported_in</a></td>
 <td>DOI / citation where the aggregate uncertainty is reported</td>
+</tr>
+<tr>
+<td><a href="slots/resource_identifier/">resource_identifier</a></td>
+<td>The producer's identifier for the delivered table or file, verbatim</td>
+</tr>
+<tr>
+<td><a href="slots/resource_identifier_scheme/">resource_identifier_scheme</a></td>
+<td>URI of the naming scheme that decodes <code>resource_identifier</code></td>
+</tr>
+<tr>
+<td><a href="slots/resource_publisher/">resource_publisher</a></td>
+<td>Organisation that issued the resource's identifier and version</td>
+</tr>
+<tr>
+<td><a href="slots/resource_version/">resource_version</a></td>
+<td>The producer's own version of the delivered resource, independent of the upst...</td>
 </tr>
 <tr>
 <td><a href="slots/run_arguments/">run_arguments</a></td>

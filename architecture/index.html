@@ -460,6 +460,7 @@ The sidecar is those modules composed into one object:</p>
 <span class="nt">exposure_model</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># ExposureModel      (profile: methodology)</span>
 <span class="nt">data_layout</span><span class="p">:</span><span class="w">        </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># DataLayout — column bindings into the CSV</span>
 <span class="nt">source_dataset</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># SourceDataset</span>
+<span class="nt">delivered_resource</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># DeliveredResource</span>
 <span class="nt">uncertainty</span><span class="p">:</span><span class="w">        </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># Uncertainty</span>
 <span class="nt">linkage_method</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># LinkageMethod</span>
 <span class="nt">tool_run</span><span class="p">:</span><span class="w">           </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># ToolRun</span>
@@ -493,7 +494,7 @@ The sidecar is those modules composed into one object:</p>
     LM["LinkageMethod"]
     TRN["ToolRun + ProvenanceChain"]
     DHM["DerivedHeatMetric"]
-    HL["HealthLayerLinkage + DepositMetadata"]
+    HL["HealthLayerLinkage + DeliveredResource + DepositMetadata"]
   end
   REC["④ EnvironmentalExposureRecord (envar_record)&lt;br/&gt;instantiates MicroschemaDefinition"]
   EX["⑤ bound contracts (envar_examples)&lt;br/&gt;DailyMaxTemperatureRecord, WBGT…, EHD flag — is_a record"]
@@ -564,6 +565,7 @@ with envar-specific top-level slots. All composed objects are <code>inlined: tru
   EnvironmentalExposureRecord *-- ExposureModel : exposure_model
   EnvironmentalExposureRecord *-- DataLayout : data_layout
   EnvironmentalExposureRecord *-- SourceDataset : source_dataset
+  EnvironmentalExposureRecord *-- DeliveredResource : delivered_resource
   EnvironmentalExposureRecord *-- Uncertainty : uncertainty
   EnvironmentalExposureRecord *-- LinkageMethod : linkage_method
   EnvironmentalExposureRecord *-- ToolRun : tool_run
@@ -575,7 +577,7 @@ with envar-specific top-level slots. All composed objects are <code>inlined: tru
 <code>exposure_model</code>, <code>data_layout</code>, <code>source_dataset</code>, <code>linkage_method</code>, <code>tool_run</code>,
 <code>subject</code>, <code>schema_version</code>, <code>provenance_id</code>, <code>phi_status</code> are <strong>core</strong> (required);
 <code>uncertainty</code>, <code>provenance_chain</code>, <code>health_layer_linkage</code> are <strong>recommended</strong>;
-<code>derived_heat_metric</code> is <strong>conditionally-core</strong>; <code>deposit_metadata</code> is <strong>optional</strong>.)</small></p>
+<code>derived_heat_metric</code> is <strong>conditionally-core</strong>; <code>delivered_resource</code>, <code>deposit_metadata</code> are <strong>optional</strong>.)</small></p>
 <p><strong>Anatomy-slot realisation.</strong> The four complex anatomy slots are realised as
 <strong>readable envar slots</strong> — the validated key is the domain name; the profile name is
 carried via slot-level <code>implements</code> / <code>exact_mappings</code> (and recorded as an <code>alias</code>).
@@ -631,7 +633,7 @@ slot names, so this is profile-conformant (decision recorded in the schema
 </tbody>
 </table>
 <p>The remaining concerns have no profile equivalent, so they are added as <strong>extension
-slots</strong> directly on the record: <code>data_layout</code>, <code>source_dataset</code>, <code>uncertainty</code>,
+slots</strong> directly on the record: <code>data_layout</code>, <code>source_dataset</code>, <code>delivered_resource</code>, <code>uncertainty</code>,
 <code>linkage_method</code>, <code>tool_run</code>, <code>provenance_chain</code>, <code>derived_heat_metric</code>,
 <code>health_layer_linkage</code>, <code>deposit_metadata</code> (plus the root scalars <code>schema_version</code>,
 <code>provenance_id</code>, <code>phi_status</code>).</p>

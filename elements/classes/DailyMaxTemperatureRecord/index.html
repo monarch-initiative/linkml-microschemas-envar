@@ -316,7 +316,7 @@
 <p><span class="envar-classname">DailyMaxTemperatureRecord</span></p>
 <p class="envar-lead">Canonical record for daily maximum 2 m air temperature (Tmax). Pins <code>standard_name = CF:air_temperature</code>, <code>cf_cell_methods = "time: maximum"</code>, <code>units_ucum = Cel</code>, <code>value_data_type = continuous_numeric</code>.</p>
 <div class="envar-meta">
-<p><span class="envar-metachip">18 fields</span>
+<p><span class="envar-metachip">19 fields</span>
 <span class="envar-metachip">11 core</span></p>
 <p><span class="envar-metachip">URI: <a href="https://w3id.org/linkml/microschemas/envar/vocab/class/DailyMaxTemperatureRecord">envar:class/DailyMaxTemperatureRecord</a></span></p>
 </div>
@@ -327,7 +327,7 @@
 <p><span class="envar-sitskey">Specialises</span><span class="envar-chip"><a href="../EnvironmentalExposureRecord/">EnvironmentalExposureRecord</a></span></p>
 </div>
 <div class="envar-sitsrow">
-<p><span class="envar-sitskey">References</span><span class="envar-chip"><a href="../VariableIdentity/">VariableIdentity</a></span><span class="envar-chip"><a href="../SpatialReference/">SpatialReference</a></span><span class="envar-chip"><a href="../TemporalReference/">TemporalReference</a></span><span class="envar-chip"><a href="../ExposureModel/">ExposureModel</a></span><span class="envar-chip"><a href="../Uncertainty/">Uncertainty</a></span><span class="envar-chip"><a href="../DerivedHeatMetric/">DerivedHeatMetric</a></span><span class="envar-chip"><a href="../DataLayout/">DataLayout</a></span><span class="envar-chip"><a href="../SourceDataset/">SourceDataset</a></span><span class="envar-chip"><a href="../ToolRun/">ToolRun</a></span><span class="envar-chip"><a href="../ProvenanceChain/">ProvenanceChain</a></span><span class="envar-chip"><a href="../LinkageMethod/">LinkageMethod</a></span><span class="envar-chip"><a href="../HealthLayerLinkage/">HealthLayerLinkage</a></span><span class="envar-chip"><a href="../DepositMetadata/">DepositMetadata</a></span></p>
+<p><span class="envar-sitskey">References</span><span class="envar-chip"><a href="../VariableIdentity/">VariableIdentity</a></span><span class="envar-chip"><a href="../SpatialReference/">SpatialReference</a></span><span class="envar-chip"><a href="../TemporalReference/">TemporalReference</a></span><span class="envar-chip"><a href="../ExposureModel/">ExposureModel</a></span><span class="envar-chip"><a href="../Uncertainty/">Uncertainty</a></span><span class="envar-chip"><a href="../DerivedHeatMetric/">DerivedHeatMetric</a></span><span class="envar-chip"><a href="../DataLayout/">DataLayout</a></span><span class="envar-chip"><a href="../SourceDataset/">SourceDataset</a></span><span class="envar-chip"><a href="../DeliveredResource/">DeliveredResource</a></span><span class="envar-chip"><a href="../ToolRun/">ToolRun</a></span><span class="envar-chip"><a href="../ProvenanceChain/">ProvenanceChain</a></span><span class="envar-chip"><a href="../LinkageMethod/">LinkageMethod</a></span><span class="envar-chip"><a href="../HealthLayerLinkage/">HealthLayerLinkage</a></span><span class="envar-chip"><a href="../DepositMetadata/">DepositMetadata</a></span></p>
 </div>
 </div>
 <p class="envar-sectionlabel">Fields</p>
@@ -1294,9 +1294,36 @@
 <div class="envar-grouphead">
 <span class="envar-groupname">Optional</span>
 <span class="envar-groupnote">Include when available</span>
-<span class="envar-groupcount">1 field</span>
+<span class="envar-groupcount">2 fields</span>
 </div>
 <div class="envar-cards">
+<div class="envar-card optional">
+<div class="envar-cardhead"><span class="envar-cardtitle">Delivered Resource</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
+<div class="envar-cardmeta">
+<p><code>delivered_resource</code> · range <a href="../DeliveredResource/">DeliveredResource</a> · cardinality 0..1</p>
+</div>
+<div class="envar-explain">
+<p>Which provider's table this record describes, and which edition.</p>
+</div>
+<div class="envar-desc">
+<p>Identity and version of the delivered table or file, see envar_health_layer.</p>
+</div>
+<details class="envar-cov-details">
+<summary>Evidence: 1 supporting, 0 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Each resource has its own identifier and metadata entry, but all of those resources can still be associated with the same source dataset.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §1, p. 4</div>
+<div class="envar-cov-note">C-HER describes the delivered resource apart from the source dataset it belongs to: one dataset, many resources, each with its own identity.</div>
+</div>
+</details>
+<details class="envar-why">
+<summary>Why it matters &amp; mappings</summary>
+<div class="envar-whyblock">
+<p>Keeps the producer's table identity and version apart from the upstream release.</p>
+</div>
+</details>
+</div>
 <div class="envar-card optional">
 <div class="envar-cardhead"><span class="envar-cardtitle">FAIR Deposit Metadata</span><span class="envar-cardbadges"><span class="envar-tierbadge optional">optional</span></span></div>
 <div class="envar-cardmeta">
@@ -1411,6 +1438,13 @@
 <td>Source dataset object — see envar_source</td>
 </tr>
 <tr>
+<td><strong>Delivered Resource</strong></td>
+<td><code>delivered_resource</code></td>
+<td>optional</td>
+<td>0..1 <br/> <a href="../DeliveredResource/">DeliveredResource</a></td>
+<td>Identity and version of the delivered table or file, see envar_health_layer</td>
+</tr>
+<tr>
 <td><strong>Tool Run</strong></td>
 <td><code>tool_run</code></td>
 <td>core</td>
@@ -1505,6 +1539,17 @@
 
         DailyMaxTemperatureRecord --&gt; "1" DataLayout : data_layout
         click DataLayout href "../../classes/DataLayout/"
+
+
+
+      DailyMaxTemperatureRecord : delivered_resource
+
+
+
+
+
+        DailyMaxTemperatureRecord --&gt; "0..1" DeliveredResource : delivered_resource
+        click DeliveredResource href "../../classes/DeliveredResource/"
 
 
 
@@ -2093,6 +2138,29 @@
 <span class="w">    </span><span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_and_provenance</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SourceDataset</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">delivered_resource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delivered_resource</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tier</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optional</span>
+<span class="w">      </span><span class="nt">justification</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">justification</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Keeps the producer's table identity and version apart from the upstream</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">release.</span>
+<span class="w">      </span><span class="nt">explanation</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">explanation</span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which provider's table this record describes, and which edition.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Identity and version of the delivered table or file, see envar_health_layer.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delivered Resource</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/linkml/microschemas/envar</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DailyMaxTemperatureRecord</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EnvironmentalExposureRecord</span>
+<span class="w">    </span><span class="nt">slot_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_and_provenance</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeliveredResource</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">tool_run</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tool_run</span>

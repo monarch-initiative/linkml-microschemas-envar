@@ -446,6 +446,13 @@ name and value type in small print), then four columns:</p>
 <td>🟥 Core<br><em>(required)</em></td>
 </tr>
 <tr>
+<td><strong>Delivered Resource</strong><br><small><code>delivered_resource</code> · <a href="#delivered-resource">Delivered Resource</a> block</small></td>
+<td>Identity and version of the delivered table or file, see envar_health_layer.<br>💡 <em>Which provider's table this record describes, and which edition.</em></td>
+<td>Keeps the producer's table identity and version apart from the upstream release.</td>
+<td>—</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
 <td><strong>Tool Run</strong><br><small><code>tool_run</code> · <a href="#tool-run">Tool Run</a> block</small></td>
 <td>The current ToolRun — see envar_toolrun.<br>💡 <em>This block is the receipt for the software step that produced the values: which program ran, which exact version, with what settings, and when. With it, someone else can re-run the same step and get the same numbers.</em></td>
 <td>Without the exact tool name, version, container image, parameters, and timestamp, the record cannot be re-run: "we used the daymet tool" is not reproducible, but a pinned container invocation is.</td>
@@ -550,14 +557,15 @@ name and value type in small print), then four columns:</p>
   subgraph G2[&quot;Dataset &amp; Provenance&quot;]
     C6[&quot;🗂️ Data Layout&quot;]
     C7[&quot;🛰️ Source Dataset&quot;]
-    C8[&quot;⚙️ Tool Run&quot;]
-    C9[&quot;⚙️ Provenance Chain&quot;]
+    C8[&quot;🏥 Delivered Resource&quot;]
+    C9[&quot;⚙️ Tool Run&quot;]
+    C10[&quot;⚙️ Provenance Chain&quot;]
   end
   R --&gt; G2
   subgraph G3[&quot;Health-Data Integration &amp; Publication&quot;]
-    C10[&quot;🔗 Linkage Method&quot;]
-    C11[&quot;🏥 Health-Layer Linkage&quot;]
-    C12[&quot;🏥 Deposit Metadata&quot;]
+    C11[&quot;🔗 Linkage Method&quot;]
+    C12[&quot;🏥 Health-Layer Linkage&quot;]
+    C13[&quot;🏥 Deposit Metadata&quot;]
   end
   R --&gt; G3
 </code></pre>
@@ -1439,7 +1447,7 @@ name and value type in small print), then four columns:</p>
 </tr>
 <tr>
 <td><strong>Source Dataset Version</strong><br><small><code>source_dataset_version</code> · text</small></td>
-<td>Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs "V6.GL.02" for ACAG PM products. Version differences materially change values.<br>💡 <em>Datasets get updated and re-released like software, and the numbers can change between releases. The version says exactly which release the values came from.</em></td>
+<td>Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs "V6.GL.02" for ACAG PM products. Version differences materially change values. A repository's own table version goes in <code>resource_version</code>.<br>💡 <em>Datasets get updated and re-released like software, and the numbers can change between releases. The version says exactly which release the values came from.</em></td>
 <td>Version differences materially change values (e.g. ACAG V5 vs V6 PM2.5), so two studies "using Daymet" may in fact use different data; a value without a version is not reproducible.</td>
 <td><code>V4 R1</code> — Daymet V4 Release 1<br><code>V5.GL.04</code> — ACAG global PM2.5 product version</td>
 <td>🟥 Core<br><em>(required)</em></td>
@@ -3061,6 +3069,49 @@ name and value type in small print), then four columns:</p>
 <td>Reason <code>cohort_size_anchored</code> is null.<br>💡 <em>When the head count is missing, this slot says why — for example, the tool could have counted but did not, or counting simply does not apply. An explained blank is far more useful than a silent one.</em></td>
 <td>Distinguishes "the cohort size is genuinely unknown" from "the pipeline just did not record it". Without the reason, a null count is uninterpretable and downstream users cannot tell whether to chase the number or accept its absence.</td>
 <td><code>available_but_not_extracted</code> — the pipeline could count anchored persons but does not yet surface it</td>
+<td>⬜ Optional</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delivered-resource">Delivered Resource<a class="headerlink" href="#delivered-resource" title="Permanent link">¶</a></h3>
+<p>Identity of the table or file a producer delivered and this record describes, as opposed to the upstream product (<code>source_dataset</code>) and the sidecar itself (<code>provenance_id</code>). Copy the values from the producer's metadata, not from parts of the identifier.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+<th>Examples</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Resource Identifier</strong><br><small><code>resource_identifier</code> · text</small></td>
+<td>The producer's identifier for the delivered table or file, verbatim.<br>💡 <em>The name or number the data provider gave to the exact table you received.</em></td>
+<td><code>provenance_id</code> names the sidecar, so without this slot nothing names the delivered table it describes. Optional because values produced in-house have no producer-issued identifier.</td>
+<td><code>exampleorg_daymet_tmax_phoenix_2022_001</code> — illustrative table name built by a fixed naming scheme</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
+<td><strong>Resource Identifier Scheme</strong><br><small><code>resource_identifier_scheme</code> · URL</small></td>
+<td>URI of the naming scheme that decodes <code>resource_identifier</code>.<br>💡 <em>A link to the rules for reading the identifier, like a key to the parts of a product code.</em></td>
+<td>A structured identifier can only be decoded with its scheme; a pointer avoids repeating each part in EnVar slots.</td>
+<td><code>https://example.org/table-naming-scheme</code> — illustrative scheme URI</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
+<td><strong>Resource Version</strong><br><small><code>resource_version</code> · text</small></td>
+<td>The producer's own version of the delivered resource, independent of the upstream release in <code>source_dataset_version</code>.<br>💡 <em>Which edition of the table you received. The provider can correct its table while the original dataset stays the same.</em></td>
+<td>A table re-registered after an error fix has the same <code>source_dataset_version</code> as the broken one; only the producer's version tells them apart.</td>
+<td><code>001</code> — first registration of the table; quoted to keep the zeros</td>
+<td>⬜ Optional</td>
+</tr>
+<tr>
+<td><strong>Resource Publisher</strong><br><small><code>resource_publisher</code> · text</small></td>
+<td>Organisation that issued the resource's identifier and version.<br>💡 <em>Who prepared and numbered the table you received.</em></td>
+<td>An identifier or version is only unique within the organisation that issued it, which need not be the source's producer.</td>
+<td><code>C-HER (ORNL)</code></td>
 <td>⬜ Optional</td>
 </tr>
 </tbody>

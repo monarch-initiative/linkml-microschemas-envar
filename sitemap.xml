@@ -45,6 +45,10 @@
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/classes/DeliveredResource/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/classes/DepositMetadata/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
@@ -434,6 +438,10 @@
     </url>
     <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/dcat_distribution_url_missing_reason/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/delivered_resource/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
@@ -934,6 +942,22 @@
     </url>
     <url>
          <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/reported_in/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/resource_identifier/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/resource_identifier_scheme/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/resource_publisher/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://monarch-initiative.github.io/linkml-microschemas-envar/elements/slots/resource_version/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
