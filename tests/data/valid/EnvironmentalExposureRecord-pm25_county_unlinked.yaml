@@ -1,0 +1,45 @@
+# PM2.5, public county-level file linked to no person (illustrative, issue #27).
+# The subject is the county; target_geography_type says what kind of unit it
+# is, and linkage_method is left out because there is no person to link to.
+schema_version: "0.1"
+provenance_id: "01HXDIENSEMBLEML00000PM25-county"
+phi_status: aggregated_no_phi
+subject: "FIPS:37183" # Wake County, NC
+subject_type: population_geographic_unit
+
+variable_identity:
+  variable_name: pm25
+  standard_name: CF:mass_concentration_of_pm2p5_ambient_aerosol_particles_in_air
+  cf_cell_methods: "time: mean"
+  units_ucum: ug/m3
+  concept_status: proposed
+  value_data_type: continuous_numeric
+
+data_layout:
+  table_orientation: wide
+  value_column: pm25
+
+spatial_reference:
+  native_geometry:
+    geometry_kind: RegularGrid
+    native_spatial_resolution_m: 1000
+  crs: "EPSG:4326"
+  extraction_method: area_weighted_polygon_mean
+  target_geography_type: county
+
+temporal_reference:
+  temporal_resolution: daily
+  temporal_aggregation_method: mean
+  day_boundary_convention: utc_midnight
+
+exposure_model:
+  exposure_model_type: ensemble_machine_learning
+  exposure_model_ensemble_member_count: 3
+
+source_dataset:
+  source_dataset_name: "Di et al. ensemble PM2.5 (contiguous US)"
+  source_dataset_version: "v1.0"
+
+tool_run:
+  tool_name: pm25_extract
+  tool_version: "1.0.0"

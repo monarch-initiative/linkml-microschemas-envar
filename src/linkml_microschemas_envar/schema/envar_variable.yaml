@@ -134,61 +134,6 @@ slots:
         maximum temperature. This is that nickname, written down exactly as
         the tool spells it, so you can go back to the source and find the
         same measurement again.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL data/CHEL_hex3_*.csv column codes (EJI E_ / EPL_ / F_ names)"
-              note: >-
-                CHEL carries indicator names (from EJI etc.), but not as a
-                portable variable short-name. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as a bare column header (tmax / tmmx)"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (Variable short name — ✅ for GAIA)"
-              note: >-
-                GAIA carries the variable short name first-class in
-                variable_source.variable_name; the combined stack surfaces it
-                as a named slot.
-          degauss:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "cohort_addresses_geocoded_daymet CSV column header `tmax`"
-              note: >-
-                DeGAUSS carries the short name only as the value column header,
-                not as a first-class named slot. Conservative: partial.
-          amadeus:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "gridmet_tmmx.csv column header `tmmx`; thredds_dataset.xml long_name/standard_name = tmmx"
-              note: >-
-                Amadeus carries the short name as a column header and in the
-                THREDDS long_name, not as a portable variable-name slot.
-                Conservative: partial.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_column_dictionary.column_name (literal column name)"
-              note: >-
-                C-HER records each resource's literal column_name, which serves
-                as the variable's machine-readable handle; not a portable
-                sidecar short-name. Conservative: partial.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A tool-specific short name is an instance-layer handle; the
-                CODATA/I-ADOPT conceptual layer names the property canonically,
-                not the upstream tool's nickname.
   variable_label:
     title: Variable Label
     range: string
@@ -208,60 +153,6 @@ slots:
         A friendly, spelled-out name for the measurement — like "daily maximum
         air temperature at 2 m" instead of the cryptic code `tmax` — so anyone
         reading the record knows what it is without decoding jargon.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §2.3-2.6 (indicator descriptions)"
-              note: >-
-                Indicator labels exist in CHEL's EJI-derived indicators but not as
-                a first-class variable label. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for GAIA)"
-              note: >-
-                GAIA carries a variable long name / description first-class in
-                variable_source.variable_description and the JSON-LD.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS CSVs carry no variable description / long name — only the
-                bare `tmax` column header.
-          amadeus:
-            annotations:
-              extent: full
-              status: verified
-              where: "thredds_dataset.xml description = \"Daily Maximum Temperature (2m)\"; grid named daily_maximum_temperature"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for Amadeus)"
-              note: >-
-                Amadeus's THREDDS metadata carries a human-readable variable
-                description first-class.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_column_dictionary.name (human-readable, optional) / description"
-              note: >-
-                C-HER's optional `name` and required column `description` carry a
-                human-readable label, though `name` is optional. Conservative:
-                partial.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A display label is instance-layer presentation; CODATA's
-                conceptual layer names the property via I-ADOPT Object/Property,
-                not a free-text label.
   standard_name:
     title: Standard Name
     range: uriorcurie
@@ -296,59 +187,6 @@ slots:
         quantities (like "air_temperature"). Tagging the record with the
         official name lets computers tell that two datasets measure the same
         thing, no matter what each dataset called it.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md (no environmental-substance vocabulary; EnVar-Tracker #38)"
-              note: >-
-                CHEL carries no environmental-substance vocabulary; the concept
-                associated with the exposure is unfilled (EnVar-Tracker #38).
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature (NERC/CF mirror)"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (CF standard name — ✅ for GAIA)"
-              note: >-
-                GAIA is the only stack carrying a real CF standard name, via the
-                hand-authored NERC propertyID in variable_source / JSON-LD.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no standard-name identifier — the quantity is
-                implicit in the `tmax` column name.
-          amadeus:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "thredds_dataset.xml standard_name = \"tmmx\" (gridMET shortcode overloaded, not a real CF term)"
-              note: >-
-                Amadeus populates a standard_name slot but with the gridMET
-                shortcode rather than a CF term, so a CF lookup fails. Conservative: partial.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_column_dictionary.column_tag_id (ontology tag planned §8)"
-              note: >-
-                C-HER's column_tag / planned ontology encoding will tag columns
-                to its MORPH-built ontology, but no CF/standard-name binding
-                exists today. Conservative: partial.
-          codata:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "I-ADOPT Object + Property decomposition; DDI-CDI RepresentedVariable (value domain + units)"
-              note: >-
-                Naming the physical quantity canonically is exactly CODATA's
-                RepresentedVariable / I-ADOPT layer — its strongest zone — but
-                it names the concept, not this run's specific CURIE.
   cf_cell_methods:
     title: CF Cell Methods
     range: string
@@ -428,58 +266,6 @@ slots:
         degrees Celsius, `ug/m3` for micrograms per cubic metre — so software
         can convert °C to °F or check units automatically without guessing
         what a human-written unit string means.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile 0-100)"
-              note: >-
-                CHEL values are percentile-normalized 0-100 or native, not
-                first-class UCUM units. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode; external_exposure.unit_concept_id 8653"
-              evidence: "EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for GAIA)"
-              note: >-
-                GAIA carries the unit as a first-class UCUM code (CEL) plus the
-                OMOP unit_concept_id.
-          amadeus:
-            annotations:
-              extent: full
-              status: verified
-              where: "thredds_dataset.xml units = \"K\"; gridmet_tmmx.cf_metadata.json mirrors it"
-              evidence: "EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for Amadeus)"
-              note: >-
-                Amadeus declares the native unit K in a machine-readable CF
-                metadata slot (though not in UCUM syntax).
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS's `tmax` column has no unit annotation; °C is only a
-                container convention.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_column_dictionary.column_unit_id (required for Value-tagged columns)"
-              note: >-
-                C-HER requires column_unit on Value-tagged columns, but the unit
-                vocabulary is not asserted to be UCUM. Conservative: partial.
-          codata:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "DDI-CDI RepresentedVariable (value domain + units); I-ADOPT decomposition"
-              note: >-
-                Units live at CODATA's RepresentedVariable layer — canonical unit
-                semantics — but not the specific UCUM string of this run's file.
   units_display:
     title: Display Units
     range: string
@@ -538,59 +324,6 @@ slots:
         that need unpacking. This field records the unit the source actually
         uses, so anyone going back to the original files knows what the raw
         numbers mean.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile)"
-              note: >-
-                CHEL distinguishes native from percentile-normalized values but
-                carries no first-class UCUM native unit. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA stores °C as if it were always °C; only the OMOP-side unit
-                lands in value_as_number and the upstream native unit is not on
-                the row.
-          amadeus:
-            annotations:
-              extent: full
-              status: verified
-              where: "thredds_dataset.xml units = \"K\" (native) alongside the derived value_celsius; gridmet_tmmx.csv value_kelvin column"
-              evidence: "EnVar/examples/heat/COMPARISON.md §D/§E (Value in native source units — ✅ for Amadeus)"
-              note: >-
-                Amadeus ships the native Kelvin value and its unit declaration
-                side by side with the converted Celsius.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS does the K→°C conversion inside the container, so the
-                native unit never appears in any output.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER records one column_unit per column; it has no notion of a
-                distinct source-native unit and conversion.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A source-native unit and its packing are instance-layer decode
-                details; CODATA's conceptual/represented layers do not carry
-                per-run storage conventions.
   native_value_scale_factor:
     title: Native Value Scale Factor
     range: float
@@ -710,60 +443,6 @@ slots:
         things they record. This slot says which catalogue the record's
         health-data code (and its status) comes from — for example the OMOP
         catalogue used by many hospital research databases.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md (no substance/target vocabulary; EnVar-Tracker #38)"
-              note: >-
-                CHEL carries no environmental-substance or target-concept
-                vocabulary (ENVO/ECTO/CHEBI); the exposure concept is unfilled
-                (EnVar-Tracker #38).
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id (8653) — OMOP vocabulary is the implicit target"
-              evidence: "EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for GAIA)"
-              note: >-
-                The OMOP CDM is the target vocabulary itself; the concept slots
-                land the value against OHDSI concept ids.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits a bare `tmax` value with no target-vocabulary
-                binding.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no target-vocabulary binding; the variable is
-                implicit in the `tmmx` column name.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's controlled vocabs (DCMI Type, IANA media types) describe
-                resource type/format, not a downstream health-data target
-                vocabulary for the variable.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Binding to a downstream health-data layer is an instance/target
-                concern; CODATA aligns concepts across standards but names no
-                single target vocabulary.
   target_concept_id:
     title: Target Concept Identifier
     range: string
@@ -792,55 +471,6 @@ slots:
         catalogue. This is that code for the environmental measurement, when
         one exists, so the exposure value can sit alongside clinical data
         under an identifier the database already knows.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md (exposure concept unfilled; EnVar-Tracker #38)"
-              note: >-
-                CHEL leaves the exposure concept unfilled and binds no
-                target-vocabulary concept id (EnVar-Tracker #38).
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id 32885"
-              evidence: "EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for GAIA)"
-              note: >-
-                GAIA fills the concept-id slot even though no real OMOP concept
-                is yet minted for daily-max-air-temperature; the binding exists.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No concept-id column in DeGAUSS output.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                No concept-id column in Amadeus output.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER binds no downstream concept id for the variable; only
-                planned ontology tags on columns (§8).
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A concrete concept id in a target vocabulary is instance-layer;
-                CODATA names the concept, not this run's downstream id.
   target_concept_id_missing_reason:
     title: Reason Concept ID Is Missing
     range: MissingReasonEnum
@@ -883,55 +513,6 @@ slots:
         A simple status flag saying whether the health-data catalogue already
         has a code for this measurement, has one in the works, or has nothing
         yet. It turns a silent gap into an explicit, reportable fact.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md (no target-vocabulary binding; EnVar-Tracker #38)"
-              note: >-
-                With no target-concept binding, CHEL records no
-                existing/proposed/gap concept status (EnVar-Tracker #38).
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA fills a placeholder exposure_concept_id but carries no
-                existing/proposed/gap status flag saying whether a real OMOP
-                concept exists — an EnVar-novel slot.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS has no concept binding and so no coverage-status flag.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus has no concept binding and so no coverage-status flag.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER carries no existing/proposed/gap coverage status for a
-                target vocabulary.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A gap-status flag against a target vocabulary is instance/target
-                bookkeeping, outside CODATA's conceptual-alignment layer.
   concept_mappings:
     title: Concept Cross-References
     range: uriorcurie
@@ -993,65 +574,6 @@ slots:
         Says what kind of value to expect: a decimal number that can take any
         value (like a temperature), a yes/no flag, or a category. Software
         needs this to know how to read and summarise the data correctly.
-      # First covered_by entry — the step-1 serialization spike of
-      # specs/2026-07-03-standard-coverage-design.md. One standard for now
-      # (omop_gaia); the full five-standard matrix follows once the generator
-      # pipeline is confirmed clean.
-      covered_by:
-        annotations:
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)"
-              evidence: "examples/scenarios/standards/omop_gaia_daymet_tmax.yaml (value_data_type)"
-              note: >-
-                GAIA registers the attribute's numeric qudt:dataType at
-                dataset-registration time; the EnVar translation carries it
-                first-class as value_data_type.
-          clad:
-            annotations:
-              extent: full
-              status: asserted
-              where: "CHEL Documentation.md §3.6-3.7; CSV E_* / EPL_* / F_* column prefixes"
-              note: >-
-                CHEL carries the value data type first-class via column prefix:
-                native estimate (`E_`), percentile 0-100 (`EPL_`), or binary
-                vulnerability flag (`F_`).
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS emits a numeric `tmax` column but declares no explicit
-                value data type; the type is implicit in the data.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus emits numeric value_kelvin/value_celsius columns with no
-                explicit value-data-type declaration.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_column_dictionary.column_tag (Value) + column_unit (unit present ⇒ numeric)"
-              note: >-
-                C-HER's Value tag plus the presence/absence of a column_unit
-                distinguishes numeric from free-text value columns, but not the
-                full continuous/categorical/flag taxonomy. Conservative: partial.
-          codata:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "DDI-CDI RepresentedVariable value domain (numeric vs categorical value domain)"
-              note: >-
-                A value domain is exactly what CDI's RepresentedVariable carries,
-                so the numeric/categorical distinction lives at CODATA's
-                represented layer.
   value_range_plausible_min:
     title: Plausible Minimum Value
     range: float
@@ -1072,55 +594,6 @@ slots:
         The lowest value that would still make physical sense — for example
         -50 °C for outdoor air temperature. Anything below it is probably an
         error; this is a warning signal, not a hard rule.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)"
-              note: >-
-                CHEL has range/domain validation but carries no per-variable
-                plausible min/max as metadata.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)"
-              note: >-
-                GAIA carries a first-class min_value (−50) as variable metadata.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no plausible-range metadata.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no plausible-range bounds; only a _FillValue
-                sentinel.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER column metadata carries no per-variable plausible min/max.
-          codata:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds"
-              note: >-
-                Plausible domain bounds are naturally an I-ADOPT Constraint on
-                the property / a CDI value-domain restriction at the conceptual
-                layer.
   value_range_plausible_max:
     title: Plausible Maximum Value
     range: float
@@ -1140,52 +613,3 @@ slots:
         The highest value that would still make physical sense — for example
         60 °C for outdoor air temperature. Anything above it likely signals a
         unit mix-up or a data error worth investigating.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)"
-              note: >-
-                CHEL has range/domain validation but carries no per-variable
-                plausible min/max as metadata.
-          omop_gaia:
-            annotations:
-              extent: full
-              status: verified
-              where: "gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured"
-              evidence: "EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)"
-              note: >-
-                GAIA carries a first-class max_value (60) as variable metadata.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no plausible-range metadata.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no plausible-range bounds; only a _FillValue
-                sentinel.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER column metadata carries no per-variable plausible min/max.
-          codata:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds"
-              note: >-
-                Plausible domain bounds are naturally an I-ADOPT Constraint on
-                the property / a CDI value-domain restriction at the conceptual
-                layer.

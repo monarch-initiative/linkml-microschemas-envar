@@ -112,6 +112,7 @@ health_layer_linkage:
   health_layer_link_field: exposure_source_value
   cohort_size_anchored: 3
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 # Companion data row (in the accompanying CSV/parquet, not the sidecar):
 #   subject_id: "cohort:phoenix_aki_2022"  date: "2016-07-19"  pm25_daily: 9.7  pm25_monthly_se: 1.3
 phi_status: no_phi

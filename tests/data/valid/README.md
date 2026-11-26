@@ -16,6 +16,8 @@ Files (the `EnvironmentalExposureRecord-` prefix is required by the
 
 - `EnvironmentalExposureRecord-tmax_core.yaml` · `-tmax_recommended.yaml` · `-tmax_ideal.yaml`
 - `EnvironmentalExposureRecord-pm25_core.yaml` · `-pm25_recommended.yaml` · `-pm25_ideal.yaml`
+- `EnvironmentalExposureRecord-pm25_county_unlinked.yaml`: outside the gradient; a public
+  county file (`subject_type: population_geographic_unit`) with no `linkage_method`
 
 Run the whole gradient (valid must pass, invalid must fail) with `just test`
 (or `just _test-examples`).

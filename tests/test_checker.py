@@ -201,6 +201,32 @@ def test_heat_metric_module_only_counts_when_present(checker):
     assert names["equation_variant"].effective_tier == "core"
 
 
+def test_participant_coverage_is_not_grid_completeness(checker):
+    """A complete grid says nothing about how many persons got a value."""
+    for block, slot, other in (
+        ("uncertainty", "data_completeness_pct", "participant_coverage_pct"),
+        ("health_layer_linkage", "participant_coverage_pct", "data_completeness_pct"),
+    ):
+        present = {s.name: s.present for s in checker.check({block: {slot: 100}}).slots}
+        assert present[slot] and not present[other]
+    report = checker.check(
+        {"health_layer_linkage": {"participant_coverage_pct_missing_reason": "under_investigation"}}
+    )
+    assert "participant_coverage_pct" in report.explained_null
+
+
+def test_delivered_resource_version_is_not_the_source_version(checker):
+    """The producer's table version never stands in for the source release."""
+    for block, slot, other in (
+        ("delivered_resource", "resource_version", "source_dataset_version"),
+        ("source_dataset", "source_dataset_version", "resource_version"),
+    ):
+        present = {s.name: s.present for s in checker.check({block: {slot: "002"}}).slots}
+        assert present[slot] and not present[other]
+    ideal = checker.check_file(VALID_DIR / "EnvironmentalExposureRecord-tmax_ideal.yaml")
+    assert {m.name: m.state for m in ideal.modules}["delivered_resource"] == "full"
+
+
 def test_report_round_trips_to_dict_and_text(checker):
     report = checker.check_file(VALID_DIR / "EnvironmentalExposureRecord-tmax_ideal.yaml")
     data = report.as_dict()

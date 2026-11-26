@@ -102,6 +102,7 @@ health_layer_linkage:
   health_layer_target: omop_external_exposure
   health_layer_link_field: exposure_source_value
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 # Companion data row (in the accompanying CSV/parquet, not the sidecar):
 #   subject_id: "cohort:phoenix_aki_2022"  date: "2022-07-19"  tmax: 46.7
 phi_status: no_phi

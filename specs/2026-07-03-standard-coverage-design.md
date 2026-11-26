@@ -1,7 +1,7 @@
 # Standard-coverage design — answering "why not use X?"
 
 **Date:** 2026-07-03
-**Status:** Approved design, pending implementation plan
+**Status:** Data model superseded by `specs/2026-11-25-slot-evidence-design.md` (2026-11-25). The `covered_by` annotation (§3, §10) is gone; the matrix and scorecards (§4, §5) were never built.
 **Author:** Nico Matentzoglu
 
 ## 1. Problem

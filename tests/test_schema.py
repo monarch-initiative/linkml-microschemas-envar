@@ -175,6 +175,12 @@ def test_valid_examples_validate(schema_view: SchemaView, example: Path) -> None
     assert not messages, f"{example.name} should validate but got: {messages}"
 
 
+@pytest.mark.parametrize("pct, valid", [(0, True), (66.7, True), (-1, False), (101, False)])
+def test_participant_coverage_is_a_percentage(schema_view: SchemaView, pct: float, valid: bool) -> None:
+    report = validate({"participant_coverage_pct": pct}, schema_view.schema, "HealthLayerLinkage")
+    assert (not report.results) == valid
+
+
 @pytest.mark.parametrize(
     "counter_example", _example_files(INVALID_DIR), ids=lambda p: p.stem
 )
@@ -255,6 +261,27 @@ def test_datamodel_loads_the_geometry_subclass() -> None:
         **_record_with_geometry({"geometry_kind": "H3Grid", "h3_resolution": 3})
     )
     assert isinstance(record.spatial_reference.native_geometry, dm.H3Grid)
+
+
+@pytest.mark.parametrize("target_class", [TARGET_CLASS, "DailyMinTemperatureRecord"])
+@pytest.mark.parametrize(
+    ("subject_type", "needs_linkage"),
+    [(None, True), ("patient", True), ("cohort", True), ("population_geographic_unit", False)],
+)
+def test_only_geographic_unit_subjects_may_omit_linkage(
+    schema_view: SchemaView, subject_type: str | None, needs_linkage: bool, target_class: str
+) -> None:
+    record = yaml.safe_load((VALID_DIR / f"{TARGET_CLASS}-tmax_core.yaml").read_text())
+    del record["linkage_method"]
+    if subject_type:
+        record["subject_type"] = subject_type
+    # The checker's verdict must agree with validation.
+    report = CompletenessChecker(SCHEMA_PATH, target_class).check(record)
+    missing = "'linkage_method' is a required property in /"
+    assert report.validation_messages == ([missing] if needs_linkage else [])
+    assert report.blocking == (["linkage_method", "linkage_strategy"] if needs_linkage else [])
+    record["linkage_method"] = None  # an explicit null must not pass for a value
+    assert needs_linkage == bool(validate(record, schema_view.schema, target_class).results)
 
 
 @pytest.mark.parametrize(

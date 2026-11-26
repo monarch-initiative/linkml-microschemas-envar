@@ -1,0 +1,304 @@
+# Evidence for the slots of envar_heat_metric.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+heat_metric_family:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §2.6 (EJI extreme-heat-days indicator only)
+      note: >-
+        CHEL carries the EJI-derived extreme-heat-days indicator (§2.6; `E_NEHD` / `EPL_NEHD`
+        in the 2024 hex table), but no heat-metric methodology, so no heat-metric family is
+        recorded.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        The scenario is a plain Tmax extraction, not a heat index; the variable family is
+        implicit in variable_name tmax, with no derived heat-metric family slot.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits plain tmax with no heat-metric family field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus emits plain tmmx with no heat-metric family field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER models no derived heat-metric family.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Heat-metric methodology is instance-layer; out of scope for CODATA.
+
+input_source_short_code:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no derived-heat-metric equation inputs)
+      note: >-
+        CHEL models no derived heat metrics, so per-input source codes for a heat equation
+        are not carried.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Single-input Tmax scenario; no heat-equation input decomposition, so no per-input
+        source short code.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No derived-metric equation inputs, so no per-input source code.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No derived-metric equation inputs, so no per-input source code.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER models no heat-equation inputs.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Heat-equation input decomposition is instance-layer; out of scope for CODATA.
+
+wind_speed_measurement_height_m:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no derived-heat-metric methodology)
+      note: >-
+        CHEL models no WBGT/UTCI heat metrics, so wind-measurement height is not carried.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No WBGT/UTCI methodology, so no wind-measurement height.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No WBGT/UTCI methodology, so no wind-measurement height.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER models no WBGT/UTCI heat metrics.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: WBGT wind-height metadata is instance-layer; out of scope for CODATA.
+
+solar_radiation_basis:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no derived-heat-metric methodology)
+      note: >-
+        CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis is not carried.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No WBGT/UTCI methodology, so no solar-radiation basis.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No WBGT/UTCI methodology, so no solar-radiation basis.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER models no WBGT/UTCI heat metrics.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Solar-radiation basis is instance-layer; out of scope for CODATA.
+
+percentile_reference_geographic_scope:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §3.6 (national percentile ranking, from EJI)
+      note: >-
+        CHEL applies national percentile ranking (0-100) inherited from EJI, so the reference
+        scope is stated (national), but not as a first-class heat-metric percentile-baseline
+        slot. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Tmax scenario computes no percentile-based threshold, so no reference geographic scope.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No percentile-based metric, so no reference geographic scope.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No percentile-based metric, so no reference geographic scope.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's percentile normalization is EJI vulnerability, not a heat-metric percentile
+        baseline scope.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Percentile-baseline scope is instance-layer; out of scope for CODATA.
+
+percentile_reference_seasonal_window:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; no seasonal window)
+      note: >-
+        CHEL's percentile normalization is spatial (EJI), with no temporal/seasonal reference
+        window.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No percentile-based metric in the Tmax scenario, so no seasonal reference window.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No percentile-based metric, so no seasonal reference window.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No percentile-based metric, so no seasonal reference window.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER carries no heat-metric seasonal reference window.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Seasonal reference window is instance-layer; out of scope for CODATA.
+
+metric_temporal_aggregation_rule:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md §2.6 (spatial-only; no multi-day event stamping)
+      note: >-
+        CHEL is spatial-only: its extreme-heat-days count arrives pre-aggregated from EJI,
+        and no multi-day heat events are stamped onto days.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping
+        rule.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No multi-day heat-event flag, so no event-stamping rule.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No multi-day heat-event flag, so no event-stamping rule.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER stamps no multi-day heat events onto days.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: Multi-day event stamping is instance-layer; out of scope for CODATA.

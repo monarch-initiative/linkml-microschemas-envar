@@ -1,0 +1,282 @@
+# Evidence for the slots of envar_model.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+exposure_model_type:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        CHEL Documentation.md Part 3 (aggregation operator explicit; source model inherited
+        from EJI)
+      note: >-
+        CHEL makes the aggregation operator explicit, but the source exposure-model type (reanalysis
+        vs station-interp) is inherited from EJI, not modelled by CLAD.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: table_dictionary data_level (mXX = modeled data)
+      note: >-
+        C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX)
+        from modeled, but does not name the model class (reanalysis vs interpolation).
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA has no first-class exposure-model-type slot; it is present only via the EnVar
+        JSON-LD extension. Natively GAIA carries only a free-text measurement_technique.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no exposure-model-type slot.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no exposure-model-type slot.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The exposure-model class is instance-layer methodology that CDIF / DDI-CDI conceptual
+        and represented layers explicitly do not carry (related-approaches.md §4).
+
+exposure_model_inputs:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §2.7 lineage / Part 3 inputs
+      note: >-
+        Inputs enter mostly via EJI and are listed in the lineage table, but not as a per-value
+        model-input list. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: dataset_lineage (parent resources of a computed/modeled resource)
+      note: >-
+        C-HER's dataset_lineage links parent resources a child was calculated/modeled from,
+        but as resource FKs, not a named model-input variable list.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: GAIA has no slot anywhere for model inputs.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no model-input list.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no model-input list.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Model inputs are instance-layer derivation provenance that the CDIF / DDI-CDI conceptual
+        and represented layers do not carry (related-approaches.md §4).
+
+exposure_model_paper_doi:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)
+      note: >-
+        CHEL validates its own geometry/conservation, not the source model; it carries no
+        source methods-paper DOI.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA carries a dataset DOI (dct:identifier) but no methods-paper DOI describing the
+        exposure model; no such slot exists.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no methods-paper DOI for the source model.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no methods-paper DOI for the source model.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's doi field is the resource's own DOI, not a methods-paper DOI for the model
+        that produced the values.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A model methods-paper DOI is instance-layer derivation metadata the CDIF / DDI-CDI
+        conceptual and represented layers do not carry.
+
+exposure_model_cross_validation_r2:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: >-
+        CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)
+      note: >-
+        CHEL validates its own geometry/conservation, not source-model skill (R2), so it carries
+        no source-model cross-validation R2.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        GAIA carries no model cross-validation R2; no such slot exists in gaiaCatalog or gaia-db.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no model cross-validation R2.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no model cross-validation R2.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER carries no source-model skill/cross-validation field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Model cross-validation skill is instance-layer quality metadata the CDIF / DDI-CDI
+        conceptual and represented layers do not carry.
+
+exposure_model_known_biases:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md Part 4
+      note: >-
+        CHEL validates geometry/conservation, not source-model skill, so it records no source-model
+        biases.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: GAIA carries no known-model-biases field.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no known-model-biases field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no known-model-biases field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER has free-text description/notes but no structured known-biases field for the
+        source model.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Known model biases are instance-layer quality metadata the CDIF / DDI-CDI conceptual
+        and represented layers do not carry.
+
+bias_correction_applied:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md Part 4
+      note: >-
+        CHEL carries no source-model bias-correction flag; it validates its own geometry/conservation,
+        not source-model skill.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: GAIA carries no bias-correction flag for the source model.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS carries no bias-correction flag.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus carries no bias-correction flag.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's data_level codes track processing stage but do not flag whether statistical
+        bias correction was applied.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Bias correction is instance-layer derivation metadata the CDIF / DDI-CDI conceptual
+        and represented layers do not carry.

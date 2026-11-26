@@ -102,6 +102,7 @@ linkage_method:
   linkage_strategy: point_extraction_at_residence
   geocoding_precision_propagated: range
   geocoding_score_propagated: 0.95
+  geocoding_database_version: "TIGER/Line Street Range Address files 2021"
   address_period_alignment: address_history_from_emr
   clinical_date_assignment_convention: local_midnight    # matches exposure-side day_boundary_convention
   partial_day_attribution_rule: not_applicable
@@ -136,10 +137,17 @@ provenance_chain:
     run_timestamp_utc: "2026-05-23T14:02:11Z"
     output_file_sha256: "5b6c7d8e9f0a..."
 
+delivered_resource:    # illustrative producer, identifier and scheme
+  resource_identifier: "exampleorg_daymet_tmax_phoenix_2022_001"
+  resource_identifier_scheme: "https://example.org/table-naming-scheme"
+  resource_version: "001"
+  resource_publisher: "Example Exposure Repository"
+
 health_layer_linkage:
   health_layer_target: omop_external_exposure
   health_layer_link_field: exposure_source_value
   cohort_size_anchored: 3
+  participant_coverage_pct: 100
 deposit_metadata:
   deposit_doi: "10.5281/zenodo.9999999"
   deposit_repository: zenodo
@@ -151,6 +159,7 @@ deposit_metadata:
   dcat_distribution_url: "https://zenodo.org/record/9999999/files/tmax_phoenix.parquet"
 
 subject: "cohort:phoenix_aki_2022"
+subject_type: cohort
 # Companion data row (in the accompanying CSV/parquet, not the sidecar):
 #   date: "2022-07-19"  value: 46.7  unit: Cel  tmax_stderr: 0.8
 phi_status: no_phi
