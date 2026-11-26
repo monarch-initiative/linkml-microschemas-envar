@@ -129,28 +129,9 @@ search:
 </div>
 </div>
 {% endif %}
-{% set cb = s.annotations['covered_by'] if (s.annotations and 'covered_by' in s.annotations) else None %}
-{% if cb and cb.annotations %}
-<details class="envar-cov-details">
-<summary>Covered by — {{ cb.annotations|length }} standard{% if cb.annotations|length != 1 %}s{% endif %}</summary>
-{% for stdkey, stdann in cb.annotations.items() %}
-{% set inner = stdann.annotations or {} %}
-{% set c_extent = inner['extent'].value if 'extent' in inner else '' %}
-{% set c_status = inner['status'].value if 'status' in inner else '' %}
-{% set c_where = inner['where'].value if 'where' in inner else '' %}
-{% set c_evidence = inner['evidence'].value if 'evidence' in inner else '' %}
-{% set c_note = inner['note'].value if 'note' in inner else '' %}
-<div class="envar-cov st-{{ c_status }}">
-<div class="envar-cov-head"><span class="envar-cov-std">{{ stdkey }}</span>{% if c_status %}<span class="envar-cov-status st-{{ c_status }}">{{ c_status }}</span>{% endif %}{% if c_extent %}<span class="envar-cov-extent">{{ c_extent }} coverage</span>{% endif %}</div>
-{# `where` = the grep target in this standard's output. Show it small; skip the
-   noisy "no column" placeholders. `evidence` only when it resolves in-repo. #}
-{% if c_where and c_where|trim|lower != 'no column' %}<div class="envar-cov-row envar-cov-where"><span class="k">where</span> {{ c_where }}</div>{% endif %}
-{% if c_evidence and (c_evidence.startswith('examples/') or c_evidence.startswith('docs/') or c_evidence.startswith('src/') or c_evidence.startswith('tests/')) %}<div class="envar-cov-row"><span class="k">evidence</span> <code>{{ c_evidence }}</code></div>{% endif %}
-{% if c_note %}<div class="envar-cov-note">{{ c_note }}</div>{% endif %}
-</div>
-{% endfor %}
-</details>
-{% endif %}
+{# Evidence for the slot: a fragment rendered from the evidence side files by
+   scripts/gen_evidence_fragments.py (`just gen-doc` runs it first). #}
+{% include ['_evidence/' ~ element.name ~ '.' ~ s.name ~ '.html', '_evidence/' ~ s.name ~ '.html'] ignore missing %}
 {% if s.pattern or s.minimum_value is not none or s.maximum_value is not none or s.equals_string %}
 <div class="envar-block envar-constraints" markdown="1">
 <p class="envar-blocklabel">Constraints</p>

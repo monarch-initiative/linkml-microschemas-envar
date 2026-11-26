@@ -1,0 +1,156 @@
+# Evidence for the slots of envar_common.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+schema_version:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (no schema-version construct)
+      note: >-
+        CHEL is a pipeline, not a metadata sidecar standard; it carries no schema-version
+        field on emitted records.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level
+        construct.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS produces no metadata sidecar and carries no schema-version field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus's native metadata carries no sidecar schema-version field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's version code versions the data resource, not a metadata sidecar schema, so
+        no EnVar-style schema-version field exists.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Sidecar schema versioning is packaging-layer; out of scope for CODATA's conceptual
+        framework.
+
+provenance_id:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §5.5 (Foundry dataset RIDs)
+      note: >-
+        CHEL lists Foundry dataset references (RID) among its per-release documentation items
+        (§5.5), but has no per-sidecar stable record id that a health layer's source-value
+        field carries.
+  - source: omop_gaia
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        external_exposure.exposure_source_value (empty slot that could carry a provenance
+        id) + gaia_db data_source id
+      note: >-
+        The OMOP source-value field exists as the natural carrier, but gaia populates no per-sidecar
+        stable record id into it. Conservative: partial.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        table_name reproducible resource identifier (org_dataset_..._version) + osti_id /
+        ornl_res_pub_id
+      note: >-
+        C-HER assigns each resource a reproducible identifier, but it names the dataset resource,
+        not an EnVar sidecar that a health layer's source-value field carries. Conservative:
+        partial.
+  not_supported_by:
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS produces no sidecar and no stable per-record provenance id.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus produces no stable per-record provenance id; only file hashes for citation.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A per-sidecar provenance id is packaging-layer; out of scope for CODATA.
+
+phi_status:
+  supported_by:
+  - source: chel
+    legacy:
+      extent: partial
+      status: asserted
+      where: CHEL Documentation.md §1.3, §1.9, §2.2.2 (privacy architecture)
+      note: >-
+        Privacy protection is embedded structurally in CHEL (Hex3 chosen partly for HIPAA
+        expert determination; a separate ZIP3 geography for jitter and small-cell suppression),
+        but there is no per-record PHI-status assertion flag.
+  - source: cher
+    legacy:
+      extent: partial
+      status: asserted
+      where: >-
+        PostgreSQL schemas private / embargo (access-tier separation) + rights FK
+      note: >-
+        C-HER separates private/embargoed resources into dedicated schemas and records rights,
+        but has no per-record PHI-status assertion flag. Conservative: partial.
+  not_supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Gaia carries PHI in OMOP person/location tables but emits no per-record PHI-free assertion
+        flag on its metadata.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS's privacy-preserving design keeps PHI on-site, but it emits no per-record
+        PHI-status assertion flag.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: Amadeus handles no PHI and emits no per-record PHI-status flag.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        Per-record PHI assertion is packaging/governance-layer; out of scope for CODATA.

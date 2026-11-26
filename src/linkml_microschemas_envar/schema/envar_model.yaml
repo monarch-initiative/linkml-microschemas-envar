@@ -100,58 +100,6 @@ slots:
         estimates them from weather stations, satellites, or physics
         equations. This field says which kind of machinery produced the
         number, so you know how much to trust it and what could go wrong.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md Part 3 (aggregation operator explicit; source model inherited from EJI)"
-              note: >-
-                CHEL makes the aggregation operator explicit, but the source
-                exposure-model type (reanalysis vs station-interp) is inherited
-                from EJI, not modelled by CLAD.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA has no first-class exposure-model-type slot; it is present
-                only via the EnVar JSON-LD extension. Natively GAIA carries only
-                a free-text measurement_technique.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no exposure-model-type slot.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no exposure-model-type slot.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "table_dictionary data_level (mXX = modeled data)"
-              note: >-
-                C-HER's data_level code flags modeled data (mXX) and distinguishes
-                calculated (dXX) from modeled, but does not name the model class
-                (reanalysis vs interpolation).
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                The exposure-model class is instance-layer methodology that CDIF /
-                DDI-CDI conceptual and represented layers explicitly do not carry
-                (related-approaches.md §4).
   exposure_model_inputs:
     title: Exposure Model Inputs
     range: string
@@ -176,55 +124,6 @@ slots:
         A model is only as good as what you feed it. This lists the raw
         ingredients — station readings, satellite images, other datasets —
         that went into cooking up the final numbers.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "CHEL Documentation.md §2.7 lineage / Part 3 inputs"
-              note: >-
-                Inputs enter mostly via EJI and are listed in the lineage table,
-                but not as a per-value model-input list. Conservative: partial.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA has no slot anywhere for model inputs.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no model-input list.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no model-input list.
-          cher:
-            annotations:
-              extent: partial
-              status: asserted
-              where: "dataset_lineage (parent resources of a computed/modeled resource)"
-              note: >-
-                C-HER's dataset_lineage links parent resources a child was
-                calculated/modeled from, but as resource FKs, not a named
-                model-input variable list.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Model inputs are instance-layer derivation provenance that the
-                CDIF / DDI-CDI conceptual and represented layers do not carry
-                (related-approaches.md §4).
   exposure_model_paper_doi:
     title: Methods Paper DOI
     range: string
@@ -248,54 +147,6 @@ slots:
         a DOI is a permanent web address for that paper. Recording it here
         means anyone can look up the full recipe behind the numbers, even
         years later.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)"
-              note: >-
-                CHEL validates its own geometry/conservation, not the source
-                model; it carries no source methods-paper DOI.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA carries a dataset DOI (dct:identifier) but no methods-paper
-                DOI describing the exposure model; no such slot exists.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no methods-paper DOI for the source model.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no methods-paper DOI for the source model.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's doi field is the resource's own DOI, not a methods-paper
-                DOI for the model that produced the values.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                A model methods-paper DOI is instance-layer derivation metadata
-                the CDIF / DDI-CDI conceptual and represented layers do not carry.
   exposure_model_paper_doi_missing_reason:
     title: Reason Methods Paper DOI Is Missing
     range: MissingReasonEnum
@@ -336,53 +187,6 @@ slots:
         values it had never seen during training — closer to 1 is better. A
         score of 0.90 means the model captures most of the real variation; a
         low score means treat the numbers with caution.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md Part 4 (validates own geometry, not source-model skill)"
-              note: >-
-                CHEL validates its own geometry/conservation, not source-model
-                skill (R2), so it carries no source-model cross-validation R2.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA carries no model cross-validation R2; no such slot exists in
-                gaiaCatalog or gaia-db.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no model cross-validation R2.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no model cross-validation R2.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER carries no source-model skill/cross-validation field.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Model cross-validation skill is instance-layer quality metadata
-                the CDIF / DDI-CDI conceptual and represented layers do not carry.
   exposure_model_cross_validation_r2_missing_reason:
     title: Reason Cross-Validation R² Is Missing
     range: MissingReasonEnum
@@ -430,53 +234,6 @@ slots:
         reliably a bit wrong, like running warm in summer or cold at the
         coast. This slot writes those warnings down so the next person does
         not rediscover them the hard way.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md Part 4"
-              note: >-
-                CHEL validates geometry/conservation, not source-model skill, so
-                it records no source-model biases.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA carries no known-model-biases field.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no known-model-biases field.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no known-model-biases field.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER has free-text description/notes but no structured
-                known-biases field for the source model.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Known model biases are instance-layer quality metadata the CDIF /
-                DDI-CDI conceptual and represented layers do not carry.
   exposure_model_ensemble_member_count:
     title: Ensemble Member Count
     range: integer
@@ -542,53 +299,6 @@ slots:
         observations — that nudging is "bias correction". This slot records
         whether the numbers were adjusted that way and, if so, which
         technique was used.
-      covered_by:
-        annotations:
-          clad:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "CHEL Documentation.md Part 4"
-              note: >-
-                CHEL carries no source-model bias-correction flag; it validates
-                its own geometry/conservation, not source-model skill.
-          omop_gaia:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                GAIA carries no bias-correction flag for the source model.
-          degauss:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                DeGAUSS carries no bias-correction flag.
-          amadeus:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                Amadeus carries no bias-correction flag.
-          cher:
-            annotations:
-              extent: absent
-              status: asserted
-              where: "no column"
-              note: >-
-                C-HER's data_level codes track processing stage but do not flag
-                whether statistical bias correction was applied.
-          codata:
-            annotations:
-              extent: out_of_layer
-              status: asserted
-              where: "no column"
-              note: >-
-                Bias correction is instance-layer derivation metadata the CDIF /
-                DDI-CDI conceptual and represented layers do not carry.
   bias_correction_applied_missing_reason:
     title: Reason Bias Correction Is Missing
     range: MissingReasonEnum

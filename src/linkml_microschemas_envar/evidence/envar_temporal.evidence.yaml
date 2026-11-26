@@ -1,0 +1,441 @@
+# Evidence for the slots of envar_temporal.yaml.
+# Shape: evidence.schema.yaml (EvidenceFile). Design: specs/2026-11-25-slot-evidence-design.md
+# `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
+
+temporal_resolution:
+  supported_by:
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)
+      note: >-
+        Only derivable from the THREDDS time-axis increment; not written as a discrete resolution
+        field.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        table_name temporal-resolution code (§2.4); inheritable temporal_resolution
+      note: >-
+        C-HER carries temporal resolution first-class as a code in the table_name pattern
+        and as an inheritable lineage field.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No first-class temporal_resolution slot in gaiaCatalog or gaia-db.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS's daily grain is implicit in one-row-per-day, with no resolution field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The native temporal grain of a specific run is instance-layer detail outside the conceptual
+        EV/DDI-CDI layer.
+
+temporal_aggregation_method:
+  supported_by:
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: thredds_dataset.xml long_name / grid name (daily_maximum_temperature)
+      note: >-
+        The aggregation (daily maximum) is recoverable only from the variable long_name, not
+        a structured field.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No aggregation-method slot in gaiaCatalog or gaia-db.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no temporal-aggregation field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's data-level codes track processing stage, not which statistic summarises a
+        sub-period; no aggregation-method field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        How sub-period values were aggregated in one run is instance-layer detail outside
+        the conceptual EV/DDI-CDI layer.
+
+temporal_aggregation_window_seconds:
+  supported_by:
+  - source: amadeus
+    legacy:
+      extent: partial
+      status: asserted
+      where: thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)
+      note: >-
+        The 1-day window is derivable in the THREDDS time axis but not emitted as an explicit
+        seconds value.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No aggregation-window field; the temporal grain itself is absent.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no explicit window-length field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER encodes a temporal-resolution code but not a machine seconds-per-step window.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The numeric aggregation window of one run is instance-layer detail outside the conceptual
+        EV/DDI-CDI layer.
+
+day_boundary_convention:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No day-boundary slot anywhere in gaiaCatalog or gaia-db.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS records no day-boundary convention.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        The NetCDF time axis (days since 1900-01-01) has no calendar day-edge clarification
+        — pure ambiguity.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER has no field for where the 24-hour day window starts.
+  - source: codata
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Day-boundary convention is an EnVar-novel commensurability slot no standard carries;
+        not merely out-of-layer — genuinely absent.
+
+temporal_coverage_start:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date
+      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
+      note: >-
+        GAIA records the product time-span via DCAT dct:temporal and variable_source.start_date/end_date.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: thredds_dataset.xml TimeSpan (1979 -> present)
+      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
+      note: >-
+        The THREDDS dataset.xml TimeSpan gives the product's full temporal coverage.
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent
+      note: >-
+        C-HER encodes the coverage start in the concatenated temporal-extent code (§2.4) and
+        as an inheritable lineage field.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no product coverage-start.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A product's coverage start is instance/discovery-layer detail outside the conceptual
+        EV/DDI-CDI layer.
+
+temporal_coverage_end:
+  supported_by:
+  - source: omop_gaia
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.end_date
+      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
+      note: >-
+        GAIA records the product coverage-end via DCAT dct:temporal and variable_source.end_date.
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: thredds_dataset.xml TimeSpan (-> present)
+      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
+      note: >-
+        The THREDDS TimeSpan closes the product's coverage window (open to present for live
+        products).
+  - source: cher
+    legacy:
+      extent: full
+      status: asserted
+      where: >-
+        table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent
+      note: >-
+        C-HER encodes the coverage end in the concatenated temporal-extent code (§2.4) and
+        as an inheritable lineage field.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no product coverage-end.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        A product's coverage end is instance/discovery-layer detail outside the conceptual
+        EV/DDI-CDI layer.
+
+extraction_window_start:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        gaia-native output collapses per-day to the variable's window-wide validity range;
+        the run's actual extraction window start is not recorded.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        DeGAUSS writes per-day rows but records no explicit run extraction-window-start field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus records the product TimeSpan but not the start date this particular run pulled.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's temporal_extent is the dataset's coverage span, not the window an individual
+        extraction job pulled.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The window a specific run pulled is instance-layer provenance outside the conceptual
+        EV/DDI-CDI layer.
+
+extraction_window_end:
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        gaia collapses to the variable's window; no per-run extraction-window-end is recorded.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS records no explicit run extraction-window-end field.
+  - source: amadeus
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        Amadeus records the product TimeSpan but not the end date this particular run pulled.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: >-
+        C-HER's temporal_extent is the dataset span, not the window a specific extraction
+        job pulled.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The window a specific run pulled is instance-layer provenance outside the conceptual
+        EV/DDI-CDI layer.
+
+calendar:
+  supported_by:
+  - source: amadeus
+    legacy:
+      extent: full
+      status: verified
+      where: >-
+        thredds_dataset.xml day axis (days since 1900-01-01, calendar = gregorian)
+      evidence: EnVar/examples/heat/COMPARISON.md §H (time-origin / calendar ✅)
+      note: >-
+        The THREDDS day axis declares the calendar (gregorian) and time origin explicitly.
+  not_supported_by:
+  - source: chel
+    legacy:
+      extent: absent
+      status: asserted
+      where: CHEL Documentation.md (spatial-only; start_date only)
+      note: >-
+        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
+        semantics.
+  - source: omop_gaia
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: No calendar/time-origin slot in gaia.
+  - source: degauss
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: DeGAUSS emits no calendar field.
+  - source: cher
+    legacy:
+      extent: absent
+      status: asserted
+      where: no column
+      note: C-HER has no calendar-of-time-axis field.
+  - source: codata
+    legacy:
+      extent: out_of_layer
+      status: asserted
+      where: no column
+      note: >-
+        The calendar of a specific product's time axis is instance-layer representation detail
+        outside the conceptual EV/DDI-CDI layer.

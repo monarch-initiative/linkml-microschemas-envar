@@ -24,3 +24,11 @@ gen-datasets-ledger:
 standards-index:
     uv run linkml-validate -s docs/standards-index/standards_index.schema.yaml -C StandardsIndex docs/standards-index/standards.yaml
     uv run python scripts/gen_standards_index.py
+
+# Fetch the documents cited in the evidence files, check quotes and fields, update evidence.lock.yaml (needs network)
+check-evidence:
+    uv run python -m linkml_microschemas_envar.slot_evidence --online
+
+# Render the per-slot evidence fragments that the class pages include
+gen-evidence-fragments:
+    uv run python scripts/gen_evidence_fragments.py
