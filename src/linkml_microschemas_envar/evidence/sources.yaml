@@ -32,6 +32,17 @@ sources:
     kind: tool
     url: https://degauss.org/
     standards_index_id: degauss
+    documents:
+      - id: degauss-geocoder-readme
+        title: DeGAUSS geocoder README.md
+        url: https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md
+        version: "4101d63 (2026-09-10)"
+        retrieved: 2026-11-27
+      - id: degauss-geocoder-entrypoint
+        title: DeGAUSS geocoder entrypoint.R
+        url: https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/entrypoint.R
+        version: "4101d63 (2026-09-10)"
+        retrieved: 2026-11-27
   - id: amadeus
     name: amadeus
     kind: tool

@@ -313,3 +313,53 @@ resource_publisher:
       source_slot: data_source.provider
       status: verified
     status: unverified
+
+participant_coverage_pct:
+  supported_by:
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-geocoder-entrypoint
+      locator: "lines 160-163"
+      snippet: addresses were successfully geocoded
+      match: partial
+      explanation: >-
+        The geocoder prints how many of the input addresses were geocoded, as a count and a
+        percentage. Missing: it counts addresses and not persons, it is about a coordinate
+        and not an exposure value, and it goes to the console and not into the output file.
+      status: verified
+    - type: schema
+      document: degauss-geocoder-readme
+      locator: "Using, added columns"
+      source_slot: geocode_result
+      match: partial
+      explanation: >-
+        Result of the geocode for each row. Rows that are not `geocoded` come back without
+        coordinates, so later steps cannot give them a value. Missing: no percentage, and a
+        row is an address, not a person.
+      status: verified
+  - source: chel
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.5.2"
+      snippet: Points falling outside any ZIP3 boundary are logged and reviewed.
+      match: partial
+      explanation: >-
+        CHEL keeps track of the participant points that cannot be linked. Missing: no
+        percentage of participants with a value is reported.
+      status: verified
+  not_supported_by:
+  - source: omop_gaia
+    reason: implicit
+    explanation: >-
+      gaiaDB has no coverage figure. Closest: `working.external_exposure` has one row per
+      computed value with a `person_id`, so the persons with a value can be counted and
+      compared with the entities in `working.location_history`.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.person_id
+      status: verified
+    status: unverified
