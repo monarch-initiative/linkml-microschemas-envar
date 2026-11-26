@@ -72,6 +72,7 @@ classes:
     - derived_heat_metric
     - data_layout
     - source_dataset
+    - delivered_resource
     - tool_run
     - provenance_chain
     - linkage_method
@@ -687,6 +688,21 @@ slots:
         block notes which of those systems the exposure values were wired
         into and through which field, so someone browsing the health data
         can find their way back to this record.
+  delivered_resource:
+    title: Delivered Resource
+    slot_group: dataset_and_provenance
+    range: DeliveredResource
+    inlined: true
+    description: >-
+      Identity and version of the delivered table or file, see
+      envar_health_layer.
+    annotations:
+      tier: optional
+      justification: >-
+        Keeps the producer's table identity and version apart from the
+        upstream release.
+      explanation: >-
+        Which provider's table this record describes, and which edition.
   deposit_metadata:
     title: FAIR Deposit Metadata
     slot_group: health_data_integration

@@ -159,7 +159,7 @@ slots:
     description: >-
       Source product version. E.g. "V4 R1" for Daymet; "V5.GL.03" vs
       "V6.GL.02" for ACAG PM products. Version differences materially change
-      values.
+      values. A repository's own table version goes in `resource_version`.
     examples:
     - value: "V4 R1"
       description: Daymet V4 Release 1

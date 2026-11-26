@@ -45,6 +45,21 @@ classes:
     - cohort_size_anchored
     - cohort_size_anchored_missing_reason
 
+  DeliveredResource:
+    title: Delivered Resource
+    description: >-
+      Identity of the table or file a producer delivered and this record
+      describes, as opposed to the upstream product (`source_dataset`) and
+      the sidecar itself (`provenance_id`). Copy the values from the
+      producer's metadata, not from parts of the identifier.
+    annotations:
+      domain_of_use: environmental_exposure
+    slots:
+    - resource_identifier
+    - resource_identifier_scheme
+    - resource_version
+    - resource_publisher
+
   DepositMetadata:
     title: Deposit Metadata
     description: >-
@@ -170,6 +185,71 @@ slots:
         When the head count is missing, this slot says why — for example,
         the tool could have counted but did not, or counting simply does
         not apply. An explained blank is far more useful than a silent one.
+  resource_identifier:
+    title: Resource Identifier
+    range: string
+    description: >-
+      The producer's identifier for the delivered table or file, verbatim.
+    examples:
+    - value: "exampleorg_daymet_tmax_phoenix_2022_001"
+      description: illustrative table name built by a fixed naming scheme
+    annotations:
+      tier: optional
+      justification: >-
+        `provenance_id` names the sidecar, so without this slot nothing
+        names the delivered table it describes. Optional because values
+        produced in-house have no producer-issued identifier.
+      explanation: >-
+        The name or number the data provider gave to the exact table you
+        received.
+  resource_identifier_scheme:
+    title: Resource Identifier Scheme
+    range: uri
+    description: >-
+      URI of the naming scheme that decodes `resource_identifier`.
+    examples:
+    - value: "https://example.org/table-naming-scheme"
+      description: illustrative scheme URI
+    annotations:
+      tier: optional
+      justification: >-
+        A structured identifier can only be decoded with its scheme; a
+        pointer avoids repeating each part in EnVar slots.
+      explanation: >-
+        A link to the rules for reading the identifier, like a key to the
+        parts of a product code.
+  resource_version:
+    title: Resource Version
+    range: string
+    description: >-
+      The producer's own version of the delivered resource, independent of
+      the upstream release in `source_dataset_version`.
+    examples:
+    - value: "001"
+      description: first registration of the table; quoted to keep the zeros
+    annotations:
+      tier: optional
+      justification: >-
+        A table re-registered after an error fix has the same
+        `source_dataset_version` as the broken one; only the producer's
+        version tells them apart.
+      explanation: >-
+        Which edition of the table you received. The provider can correct
+        its table while the original dataset stays the same.
+  resource_publisher:
+    title: Resource Publisher
+    range: string
+    description: >-
+      Organisation that issued the resource's identifier and version.
+    examples:
+    - value: "C-HER (ORNL)"
+    annotations:
+      tier: optional
+      justification: >-
+        An identifier or version is only unique within the organisation
+        that issued it, which need not be the source's producer.
+      explanation: >-
+        Who prepared and numbered the table you received.
   deposit_doi:
     title: Deposit DOI (Digital Object Identifier)
     range: string

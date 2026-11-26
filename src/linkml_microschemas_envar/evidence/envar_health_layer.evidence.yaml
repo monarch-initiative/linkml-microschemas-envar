@@ -105,3 +105,211 @@ health_layer_link_field:
       note: >-
         Health-layer join-field declaration is instance/integration-layer; out of scope for
         CODATA.
+
+resource_identifier:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 6"
+      snippet: >-
+        Each resource has a unique identifier that is automatically generated based on its
+        metadata entry
+      match: full
+      explanation: >-
+        Every C-HER resource (a table or file) has its own identifier, issued by C-HER. For
+        tables it is also the table name.
+      status: verified
+  - source: omop_gaia
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_id
+      match: full
+      explanation: >-
+        Unique identifier of a catalogued dataset, filled from the `@id` of its JSON-LD
+        metadata.
+      status: verified
+    - type: output
+      document: gaiadb-example-jsonld
+      field: "@id"
+      value: https://gdsc.idsc.miami.edu/detail/ma_2022_svi_tract
+      match: full
+      explanation: >-
+        In the public example the identifier is the catalogue's URL for its own packaging of
+        the source (Massachusetts tracts of the CDC index), not an identifier of the source.
+      status: verified
+  - source: codata
+    support:
+    - type: schema
+      document: ddi-cdi-irdi
+      locator: InternationalRegistrationDataIdentifier
+      source_slot: InternationalRegistrationDataIdentifier.dataIdentifier
+      match: partial
+      explanation: >-
+        Identifier of a registered item within its registration authority. It applies to
+        every registered item, a DataSet included; DDI-CDI does not say that it names the
+        delivered table.
+      status: verified
+  not_supported_by:
+  - source: chel
+    reason: not_sure
+    explanation: >-
+      Closest: §5.5 asks each release to document its "Foundry dataset references (RID)".
+      Whether these identify the delivered hex tables, the inputs or both is not stated.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      status: verified
+    status: unverified
+
+resource_identifier_scheme:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 7"
+      snippet: A resource identifier is assembled from selected identifying metadata.
+      match: partial
+      explanation: >-
+        The identifier follows a fixed pattern of eight segments, given in the report. A
+        resource record has no pointer to that pattern; the report itself is the only
+        reference.
+      status: verified
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 7"
+      snippet: >-
+        We maintain “lookups” that connect each abbreviation or code to its full meaning.
+      match: partial
+      explanation: >-
+        The segments can only be read with C-HER's lookup tables, so the identifier needs
+        its scheme to be decoded. The lookups are not published with a URI.
+      status: verified
+
+resource_version:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 8"
+      snippet: >-
+        The version code ensures that every resource has a unique identifier when its other
+        identifying metadata would not be sufficient to distinguish it.
+      match: full
+      explanation: >-
+        C-HER gives each resource its own version code, starting at 001, apart from the
+        version of the source dataset.
+      status: verified
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 8"
+      snippet: Resources that differ only by version code are still distinct resources.
+      match: full
+      explanation: >-
+        A corrected table is a new resource with the same source and a new version code.
+      status: verified
+  - source: chel
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: >-
+        CHEL must support versioned releases that reflect updated inputs while preserving
+        methodological consistency
+      match: partial
+      explanation: >-
+        CHEL versions its own product as releases (CHEL 2022, CHEL 2024), apart from the
+        vintages of its sources. The text does not say that a table records its release, and
+        there is no version below the release.
+      status: verified
+  - source: omop_gaia
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_version
+      match: partial
+      explanation: >-
+        One version field per catalogued dataset. Nothing says whether it holds the
+        catalogue's own version or the source release.
+      status: verified
+    - type: output
+      document: gaiadb-example-jsonld
+      field: version
+      value: "2026-05-23"
+      match: partial
+      explanation: >-
+        The public example has a date as version for the 2022 CDC index, which reads as the
+        version of the catalogue entry. The file does not say so.
+      status: verified
+  - source: codata
+    support:
+    - type: schema
+      document: ddi-cdi-irdi
+      locator: InternationalRegistrationDataIdentifier
+      source_slot: InternationalRegistrationDataIdentifier.versionIdentifier
+      match: partial
+      explanation: >-
+        Version under which a registered item was submitted or updated. It applies to every
+        registered item, a DataSet included; DDI-CDI does not say that it is the version of
+        the delivered table.
+      status: verified
+
+resource_publisher:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§2.2.1, p. 7"
+      snippet: >-
+        C-HER also has its own organization identifier for datasets created by our team.
+      match: partial
+      explanation: >-
+        The organization of a resource is C-HER only for datasets C-HER created. For
+        external data it is the publisher of the original data, so the issuer of the
+        identifier and version (always C-HER) is not a field.
+      status: verified
+  - source: codata
+    support:
+    - type: schema
+      document: ddi-cdi-irdi
+      locator: InternationalRegistrationDataIdentifier
+      source_slot: InternationalRegistrationDataIdentifier.registrationAuthorityIdentifier
+      match: partial
+      explanation: >-
+        Identifies the authority that registered the item, i.e. who issued its identifier
+        and version. It is an identifier of the authority, not its name, and applies to
+        every registered item.
+      status: verified
+    - type: argument
+      document: ddi-cdi-irdi
+      locator: Definition
+      snippet: >-
+        The uniqueness of an InternationalRegistrationDataIdentifier (IRDI) is determined by
+        the combination of the values of three identifying attributes.
+      explanation: >-
+        The three attributes are the identifier, the registration authority and the version:
+        an identifier and a version are only unique together with who issued them.
+      status: verified
+  not_supported_by:
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      Closest: `data_source.provider`, stored next to `creator`. The public example fills
+      both with the source agency (CDC). The catalogue that issued `dataset_id` is named in
+      the JSON-LD (`includedInDataCatalog`) but is not a column of `data_source`.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.provider
+      status: verified
+    status: unverified

@@ -37,6 +37,7 @@ One exposure record composes a graph of typed objects, one module per concern. A
 | `LinkageMethod` | How a gridded value is attached to a patient's location *and* clinical date (spatiotemporal trajectory resolution) | one per record; may be omitted when `subject_type` is `population_geographic_unit` |
 | `ToolRun` + `ProvenanceChain` | Exact invocation + the ordered chain of upstream runs | one per record |
 | `DerivedHeatMetric` | Equation variant, indoor/outdoor, percentile baseline (heat indices only) | where applicable |
+| `DeliveredResource` | Identifier and version of the delivered table or file | one per record (optional) |
 | `HealthLayerLinkage` + `DepositMetadata` | Health-data-layer findability hooks (OMOP, BDC, …; no single model privileged) + the subset needed to publish as a FAIR (findable, accessible, interoperable, reusable) data deposit | one per record |
 
 Naming note: the top-level keys use **readable domain names** (`variable_identity`, `spatial_reference`, `temporal_reference`, `exposure_model`), and the schema now matches: each maps to its LinkML Microschema Profile anatomy slot (`observation_type`, `location`, `temporality`, `methodology`) via slot-level `implements`/`exact_mappings` — `instantiates` conformance does not constrain slot names. Decided 2026-07; rationale and mechanism in the schema README.
@@ -226,6 +227,10 @@ record-root assertion (it applies to the whole sidecar, not just linkage).
 | `cohort_size_anchored` | Optional | integer (null) | Distinct persons this record was extracted for. | run |
 | `phi_status` | Core (record root) | enum | `no_phi` \| `aggregated_no_phi` \| `phi_present`. A safety assertion; sidecars must be PHI-free. | EnVar |
 | `subject_type` | Recommended (record root) | enum | `patient` \| `cohort` \| `population_geographic_unit`. What `subject` identifies. For a public aggregate linked to no person, `subject` is the unit's code (for several units: the set, with the codes in the column named in `subject_column`), `target_geography_type` is its kind, and `linkage_method` may be omitted. Absent means person-linked. | EnVar |
+| `delivered_resource` (record root) | Optional | object | The table or file a producer delivered, as opposed to the source product and the sidecar. Optional because values produced in-house have none. | EnVar |
+| `resource_identifier` / `resource_identifier_scheme` | Optional | string / URI | The producer's identifier, verbatim, and the naming scheme that decodes it. Other fields are copied from the producer's metadata, not parsed from the identifier. | producer |
+| `resource_version` | Optional | string | The producer's own version, independent of `source_dataset_version`: a re-registered table keeps the source version but gets a new one. | producer |
+| `resource_publisher` | Optional | string | Who issued the identifier and version. | producer |
 | `deposit_*` (DOI, repository, license, citation, DCAT url) | Optional | mixed | The required-for-deposit subset for the published-FAIR-object case. Optional because most records never get deposited. | [SPDX]/[DOI] |
 | `schema_version` | Core | string | The schema version this document targets; downstream branches on it for evolution. | EnVar |
 

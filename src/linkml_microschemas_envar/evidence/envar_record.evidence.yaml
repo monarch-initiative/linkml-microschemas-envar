@@ -653,3 +653,19 @@ health_layer_linkage:
       where: no column
       note: >-
         Health-layer linkage hooks are instance/integration-layer; out of scope for CODATA.
+
+delivered_resource:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: "§1, p. 4"
+      snippet: >-
+        Each resource has its own identifier and metadata entry, but all of those resources
+        can still be associated with the same source dataset.
+      match: full
+      explanation: >-
+        C-HER describes the delivered resource apart from the source dataset it belongs to:
+        one dataset, many resources, each with its own identity.
+      status: verified
