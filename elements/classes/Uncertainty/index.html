@@ -383,7 +383,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “standard error for predicted PM2.5”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
+<div class="envar-cov-note">The README of the `pm` container says what kind of uncertainty its column `pm_se` holds: a standard error. Missing: only in this container; the daymet container has no per-value uncertainty.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No indicator has a described per-value uncertainty. Closest: §4.6.4 says the modeled inputs are uncertain. The tables pass on one margin of error column from EJI (`M_TOTPOP`) without describing it.</div>
@@ -394,10 +400,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No field for the uncertainty of a value. Nothing close was found in the schema or the README.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No per-value uncertainty is passed on or computed. Nothing close was found in the daymet README, entrypoint.R or the example output.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -454,7 +456,10 @@
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">As for `per_value_uncertainty_type`: no per-value uncertainty, so no unit either.</div>
+<div class="envar-cov-note">No unit is given for an uncertainty column. Closest: `pm_se` of the `pm` container, whose unit is not stated (that of `pm_pred` is). The daymet container has no per-value uncertainty.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “standard error for predicted PM2.5”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -581,6 +586,12 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Removing any input file observations where the Daymet cell raster number is missing”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a></div>
 <div class="envar-cov-note">The code drops input rows whose coordinate is outside the Daymet grid. Missing: stated in a code comment only; the README does not say that rows can be dropped, and missing values inside the grid are not mentioned.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “will return `NA` for geomarkers when coordinate values are missing”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd">degauss.org, Using DeGAUSS (using_degauss.Rmd)</a>, Geomarker Assessment</div>
+<div class="envar-cov-note">degauss.org says what containers do with rows that have no coordinate: the geomarker is `NA`. Missing: the general rule only; that the daymet container drops rows outside the Daymet grid is in a code comment.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>

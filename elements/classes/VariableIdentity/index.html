@@ -505,7 +505,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 5 supporting, 1 not supporting</summary>
+<summary>Evidence: 6 supporting, 0 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “This places each indicator on a standardized”</div>
@@ -539,12 +539,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> DDI-CDI RepresentedVariable (value domain + units); I-ADOPT decomposition</div>
 <div class="envar-cov-note">Units live at CODATA's RepresentedVariable layer — canonical unit semantics — but not the specific UCUM string of this run's file.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No unit is given for any variable, in the README or in the output. The code passes Daymet's values on unchanged apart from interpolation and rounding, which the README does not say either.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Rounding the Daymet variables to two decimal places”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a></div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “predicted PM2.5 (micrograms per cubic meter)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
+<div class="envar-cov-note">The README of the `pm` container gives the unit of its value column in words. Missing: in words and not UCUM, in the README only, and the daymet container gives no unit for any variable (its code passes Daymet's values on unchanged apart from interpolation and rounding, which the README does not say either).</div>
 </div>
 </details>
 <details class="envar-why">
@@ -857,10 +856,10 @@
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">As for `units_ucum`: no unit is given. The code converts no units, so the values are in Daymet's own units.</div>
+<div class="envar-cov-note">No container says in which unit the source stores its values. The daymet code converts no units, so its values are in Daymet's own units, which are not stated. Closest: the `pm` container gives the unit of its output.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Rounding the Daymet variables to two decimal places”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a></div>
+<div class="envar-cov-row"><span class="k">quote</span> “predicted PM2.5 (micrograms per cubic meter)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -1016,7 +1015,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
@@ -1028,9 +1027,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.2</div>
 <div class="envar-cov-note">§4.3.2 gives lower bounds per kind of indicator (0 for ranks, flags and densities). Missing: no bound per variable, and none for the native estimates.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No plausible range is given for any variable. Nothing close was found in the daymet README or entrypoint.R.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “is a measure of greenness that ranges from -0.2 to 1”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/greenspace/77faceef327081f09d09a02264bb13d77b66601d/README.md">DeGAUSS greenspace README.md (another container than the one of the heat example)</a>, Geomarker Methods</div>
+<div class="envar-cov-note">The README of the `greenspace` container gives the range of its index; the lower bound is -0.2. Missing: only in this container; no range is given for any Daymet variable.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -1073,7 +1074,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
@@ -1085,9 +1086,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.2</div>
 <div class="envar-cov-note">§4.3.2 gives upper bounds for percentile ranks (100) and binary flags (1). Missing: no bound per variable, and none for densities or native estimates.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No plausible range is given for any variable. Nothing close was found in the daymet README or entrypoint.R.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “is a measure of greenness that ranges from -0.2 to 1”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/greenspace/77faceef327081f09d09a02264bb13d77b66601d/README.md">DeGAUSS greenspace README.md (another container than the one of the heat example)</a>, Geomarker Methods</div>
+<div class="envar-cov-note">The README of the `greenspace` container gives the range of its index; the upper bound is 1. Missing: only in this container; no range is given for any Daymet variable.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

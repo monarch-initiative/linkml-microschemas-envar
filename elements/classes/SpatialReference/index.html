@@ -444,10 +444,16 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>srs_id</code> = <code>4326</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/hex3_grid_with_h3.gpkg">CHEL data/hex3_grid_with_h3.gpkg (GeoPackage, an SQLite file; its tables were read with sqlite3)</a>, gpkg_geometry_columns</div>
+<div class="envar-cov-note">The published grid file records the CRS of its geometry column: `srs_id` 4326, with the definition of WGS 84 in `gpkg_spatial_ref_sys` (read with sqlite3). In the grid file only; the indicator tables have no geometry.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “all geometries are reprojected into a consistent equal-area CRS (e.g., EPSG:5070)”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.2.1</div>
-<div class="envar-cov-note">CHEL names the CRS in which areas are computed. Missing: it is given as an example for the processing step; the CRS of the published hex grid is not stated.</div>
+<div class="envar-cov-note">CHEL names the CRS in which areas are computed. Missing: it is given as an example, and it is the CRS of the processing step, not of the published grid.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
@@ -471,6 +477,12 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Setting Daymet projection”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a></div>
 <div class="envar-cov-note">The code sets the CRS of the Daymet grid (a Lambert conformal conic PROJ string) and reads the input coordinates as longitude and latitude. Missing: neither is stated in the README or written to the output.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “the crs defaults to 4326”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/R/read_lat_lon_csv.R">DeGAUSS helper library dht, R/read_lat_lon_csv.R</a></div>
+<div class="envar-cov-note">The helper library reads the `lat` and `lon` columns as EPSG:4326. Missing: in the documentation of a library function that the daymet container does not call; the daymet README and output state no CRS.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -792,7 +804,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
 <div class="envar-cov-row"><span class="k">output</span> <code>polygon</code> = <code>-73.508142 41.237964 -69.928393 41.237964 -69.928393 42.886589 -73.508142 42.886589 -73.508142 41.237964</code></div>
@@ -809,6 +821,12 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</div>
 <div class="envar-cov-note">C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding box.</div>
 </div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>min_x</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/hex3_grid_with_h3.gpkg">CHEL data/hex3_grid_with_h3.gpkg (GeoPackage, an SQLite file; its tables were read with sqlite3)</a>, gpkg_contents</div>
+<div class="envar-cov-note">The grid file records the bounding box of its layer in `min_x`, `min_y`, `max_x` and `max_y`: longitude -179.92 to 178.44, latitude -15.12 to 71.96 (read with sqlite3). It is the box of the 929 hexagons, and it is in the grid file only.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
 <div class="envar-cov-note">The tool has bounding box arguments (`min_lat`, `max_lat`, `min_lon`, `max_lon`), but they are the box of the download for one run, not the extent of the product.</div>
@@ -819,13 +837,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">A product's spatial bounding box is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No bounding box or other coordinates of the extent are given. Closest: the mention of national-scale datasets in §1.3.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Computational feasibility for national-scale datasets”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
 </div>
 </details>
 <details class="envar-why">
@@ -862,6 +873,12 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Computational feasibility for national-scale datasets”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
 <div class="envar-cov-note">CHEL describes itself as national in scale. Missing: which states and territories the tables include is not said.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “across the continental United States”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://github.com/cladteam/CHEL/wiki/Home/d1ddf6b6ae81ed6a22d8c54fe8d0cb9bebd023c7">CHEL wiki, Home</a>, 1. Introduction</div>
+<div class="envar-cov-note">The wiki gives the extent in words. Missing: the bounding box in the grid file reaches further (to 15°S and across 180° longitude), and no text says which territories are included.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>

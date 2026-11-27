@@ -938,10 +938,10 @@
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
-<div class="envar-cov-note">DeGAUSS adds a random buffer to the bounding box of the Daymet download, which hides the study area from the data provider. The recorded location is not changed, and nothing says so.</div>
+<div class="envar-cov-note">DeGAUSS links every value at the true coordinate. Privacy comes from running locally and removing addresses and coordinates afterwards, and the daymet container adds a random buffer to the bounding box of its download, which hides the study area from the data provider. Neither changes the location a value was linked at, and nothing says so. Closest: the Removing PHI section of degauss.org; the README of the `h3` container also offers a safe harbor geohash as a coarse location.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “to enhance data privacy”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Geomarker Methods</div>
+<div class="envar-cov-row"><span class="k">quote</span> “we are applying the "Safe Harbor" method defined by HIPAA for deidentification”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd">degauss.org, Using DeGAUSS (using_degauss.Rmd)</a>, Removing PHI</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

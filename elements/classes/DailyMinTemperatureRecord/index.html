@@ -460,7 +460,13 @@
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “CHEL adopts H3 Resolution 3 (Hex3), in which each cell has an approximate area of 12,000 square kilometers.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
-<div class="envar-cov-note">Geometry and resolution (§1.3, §2.2.1), the aggregation operators (Part 3) and the processing CRS (§4.2.1) are described. Missing: no bounding box, and the CRS of the published hex grid is not stated.</div>
+<div class="envar-cov-note">Geometry and resolution (§1.3, §2.2.1), the aggregation operators (Part 3) and the processing CRS (§4.2.1) are described. Missing: the CRS and the bounding box of the published grid are not in the documentation; they are in the grid file.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>geometry_type_name</code> = <code>POLYGON</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/hex3_grid_with_h3.gpkg">CHEL data/hex3_grid_with_h3.gpkg (GeoPackage, an SQLite file; its tables were read with sqlite3)</a>, gpkg_geometry_columns</div>
+<div class="envar-cov-note">The grid file records the geometry type, the CRS (4326) and the bounding box of the hexagons. Missing: the indicator tables do not point to the grid file; the README joins the two on `hex_id`.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
@@ -586,7 +592,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “These measures are typically modeled and reported at census tract level or fine modeled grids.”</div>
@@ -598,12 +604,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes</div>
 <div class="envar-cov-note">C-HER's data_level codes signal that a resource is calculated or modeled, but do not carry a structured exposure-model type or inputs. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">Nothing about the Daymet model (type, inputs, paper, skill) is passed on. Closest: the README's links to the Daymet documentation.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Daymet data documentation”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “in the scientific manuscript describing model development”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Geomarker Methods</div>
+<div class="envar-cov-note">For the `pm` container the README points to the model behind the values: its code repository and the methods paper. Missing: pointers only (no type, inputs or skill), and the daymet container passes on nothing about the Daymet model beyond links to its documentation.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -782,6 +787,12 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Optional Argument</div>
 <div class="envar-cov-note">The geocoder writes its name, version and argument into the output file name (`..._geocoder_3.4.2_score_threshold_0.5.csv`), and both READMEs give the image to run. Missing: no image digest, run time, hashes or row counts, and the daymet container adds only `_daymet` to the name.</div>
 </div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “names of supported metadata elements captured using environment variables defined using”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/vignettes/degauss-metadata-specification.Rmd">DeGAUSS helper library dht, vignette DeGAUSS Metadata Specifications</a>, Metadata Elements</div>
+<div class="envar-cov-note">Every container has four metadata elements in its image: name, version, description and argument. Missing: they describe the image and not a run: no run time, hashes or row counts.</div>
+</div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_response_headers.json HTTP Date header (run timestamp only)</div>
@@ -944,22 +955,27 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schemas private / embargo (access-tier separation) + rights FK</div>
 <div class="envar-cov-note">C-HER separates private/embargoed resources into dedicated schemas and records rights, but has no per-record PHI-status assertion flag. Conservative: partial.</div>
 </div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “we can remove the addresses and coordinates from our output file, leaving only the geomarker information”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd">degauss.org, Using DeGAUSS (using_degauss.Rmd)</a>, Removing PHI</div>
+<div class="envar-cov-note">degauss.org says which columns of an output file are PHI (addresses and coordinates) and that the file has none once they are removed. Missing: a statement in the user guide; no field of an output file says whether it contains PHI.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “The analyst can then strip away the PHI (address and location coordinates) in order to create a deidentified dataset.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&amp;id=7378876">Brokamp et al. 2018, Decentralized and reproducible geocoding and characterization of community and environmental exposures for multisite studies (JAMIA 25(3), full text XML from PubMed Central)</a>, Results</div>
+<div class="envar-cov-note">The 2018 paper says the same. Missing: as above, nothing in the file itself.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">gaiaDB holds addresses and coordinates of persons (`working.location`), and nothing marks a table or a dataset as containing PHI. Nothing close was found in the schema or the README.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">The outputs contain the input addresses and coordinates, and nothing states whether a file contains PHI. Closest: the daymet README's remark on privacy, which is about the download bounding box.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “to enhance data privacy”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Geomarker Methods</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -1175,7 +1191,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “For percentile ranking, null values are excluded from ranking denominator N unless otherwise documented.”</div>
@@ -1187,13 +1203,15 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)</div>
 <div class="envar-cov-note">C-HER classifies null cells and encodes QA level, but carries no per-value uncertainty or completeness percentage. Conservative: partial.</div>
 </div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “standard error for predicted PM2.5”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
+<div class="envar-cov-note">The `pm` container passes on a standard error per value (`pm_se`). Missing: only in this container. The daymet container passes on no uncertainty of any kind, and no container gives skill statistics of its model.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No field for the uncertainty of a value or of a source model. Nothing close was found in the schema or the README.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No uncertainty of any kind is passed on or computed. Nothing close was found in the daymet README, entrypoint.R or the example output.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -1229,7 +1247,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Every input entering CHEL follows a defined lineage pathway:”</div>
@@ -1253,9 +1271,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage (parent-child links) + lineage_notes</div>
 <div class="envar-cov-note">C-HER's dataset_lineage links parent and child resources, but is a dataset-lineage graph, not an ordered per-run W3C-PROV chain. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
-<div class="envar-cov-note">Each container appends its name to the output file name (the geocoder also its version and argument), so the sequence of runs can be read from the name. DeGAUSS does not describe this as a chain, and there is no record per step.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “The programs can either be run in parallel on the geocoded file or they can be run sequentially, creating one file with both geomarkers.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd">degauss.org, Using DeGAUSS (using_degauss.Rmd)</a>, A Sample Workflow</div>
+<div class="envar-cov-note">degauss.org describes chaining containers on one file. Each step appends its name, version and argument to the file name (`sample_addresses_geocoded_3.3.0_score_threshold_0.5_roads_400m_buffer.csv`), so the name lists the steps in order. Missing: a naming convention and not a record: no time, input or output per step, and a container can leave parts out (daymet omits its version).</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

@@ -371,7 +371,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “This pathway ensures that the origin, transformation logic, and aggregation assumptions of each variable are explicit and reproducible.”</div>
@@ -395,9 +395,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage table (parent-child links) + lineage_notes</div>
 <div class="envar-cov-note">C-HER's dataset_lineage links parent and child resources but is a dataset-lineage graph, not an ordered per-run W3C-PROV tool chain.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
-<div class="envar-cov-note">As for `provenance_chain`: the steps can be read from the output file name, to which each container appends its name. There is no record per step.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “writes the output csv with container name and version appended to filename”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/vignettes/helper-functions.Rmd">DeGAUSS helper library dht, vignette Helper Functions</a>, Write geomarker output file</div>
+<div class="envar-cov-note">Each step adds its name and version (and argument) to the file name, in the order the steps ran. Missing: no record per step beyond that, and daymet 1.0.0 appends only its name.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

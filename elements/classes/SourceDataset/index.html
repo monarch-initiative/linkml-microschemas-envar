@@ -442,7 +442,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “EJI 2022 and EJI 2024 are distinct source datasets.”</div>
@@ -454,6 +454,18 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary version ({version} component of table_name)</div>
 <div class="envar-cov-note">C-HER carries an auto-generated version code first-class in the table_name and via the version table (§2.6).</div>
 </div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>census_tract_vintage</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/st_census_tract/8e8296970d3aac5d35af5129cdcdda69073d45d8/readme.md">DeGAUSS st_census_tract readme.md (another container than the one of the heat example)</a>, Using</div>
+<div class="envar-cov-note">The `st_census_tract` container writes the vintage of the census geography it used to a column of the output, per row. Missing: only in this container. The daymet container asks the provider for the current Daymet product at run time and does not write the version it got; its README links the Daymet V4 user guide.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “IPUMS National Historical Geographic Information System: Version 15.0”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/census_block_group/f99207afc68e3f5824deb6e8cd5073ba2f0af23f/README.md">DeGAUSS census_block_group README.md (another container than the one of the heat example)</a>, References</div>
+<div class="envar-cov-note">The README of the `census_block_group` container names the version of its source. Missing: in the README only, not in the output.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">Amadeus carries no dataset version.</div>
@@ -461,13 +473,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Product version is a discovery/lineage concern above the DDI-CDI InstanceVariable layer CODATA scores.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">The README links the Daymet V4 user guide, but the tool asks AppEEARS for the current Daymet product at run time and does not write the version it got to the output.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">field</span> <code>ProductAndVersion</code></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a>, daymet_download</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
@@ -610,7 +615,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
 <div class="envar-cov-row"><span class="k">output</span> <code>dct:identifier</code> = <code>https://doi.org/10.7910/DVN/RHIFKL</code></div>
@@ -622,12 +627,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary doi (via doi_id FK)</div>
 <div class="envar-cov-note">C-HER has a doi field (foreign key doi_id) but it is on the optional-field list, so a DOI is not guaranteed present.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">The README links the Daymet user guide and project page; no DOI.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Daymet data documentation”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Minneapolis, MN: IPUMS. 2020. http://doi.org/10.18128/D050.V15.0”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/census_block_group/f99207afc68e3f5824deb6e8cd5073ba2f0af23f/README.md">DeGAUSS census_block_group README.md (another container than the one of the heat example)</a>, References</div>
+<div class="envar-cov-note">The citation in the README of the `census_block_group` container has the DOI of its source dataset. Missing: only in this container; the daymet README links the Daymet user guide and project page, no DOI.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -802,12 +806,18 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Health prevalence indicators derive from CDC PLACES.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.5</div>
 <div class="envar-cov-note">The producer is named in passing for some inputs (CDC for PLACES and, in the README, for EJI). Missing: the input lineage table has no producer column; for ACS, GPW and TIGER only a link is given.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://github.com/cladteam/CHEL/wiki/Home/d1ddf6b6ae81ed6a22d8c54fe8d0cb9bebd023c7">CHEL wiki, Home</a>, 13. References</div>
+<div class="envar-cov-note">The reference list of the wiki names the two agencies behind EJI. Missing: no producer for ACS, GPW and TIGER.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
@@ -826,12 +836,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary org ({org} component of table_name; publishing organization)</div>
 <div class="envar-cov-note">C-HER encodes the publishing organization first-class as the {org} component of table_name; selecting a dataset implicitly selects its organization (§1).</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
-<div class="envar-cov-note">The README points to NASA Earthdata and the ORNL DAAC for data and documentation, from which the producer follows. It is not named as the producer.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Be sure to note your NASA EarthData username and password”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Using</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “block group shapefiles for 2020 were obtained directly from the”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/census_block_group/f99207afc68e3f5824deb6e8cd5073ba2f0af23f/README.md">DeGAUSS census_block_group README.md (another container than the one of the heat example)</a>, Geomarker Data</div>
+<div class="envar-cov-note">The README of the `census_block_group` container says whom its source data were obtained from (the U.S. Census Bureau, and NHGIS for earlier years). Missing: only in other containers. For Daymet the README points to NASA Earthdata and the ORNL DAAC for data and documentation without naming a producer.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -867,11 +876,23 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> acknowledgement string (acknowledgement = TRUE)</div>
 <div class="envar-cov-note">Amadeus can attach a free-text acknowledgement string, which is a citation-like credit but not a formatted APA reference (related-approaches.md §3).</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Centers for Disease Control and Prevention and Agency for Toxic Substances Disease Registry. 2024 Environmental Justice Index.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://github.com/cladteam/CHEL/wiki/Home/d1ddf6b6ae81ed6a22d8c54fe8d0cb9bebd023c7">CHEL wiki, Home</a>, 13. References</div>
+<div class="envar-cov-note">The wiki has a reference list with a citation of the main input, EJI 2024. Missing: not in APA form, and EJI 2022, ACS, GPW and TIGER are not cited (PLACES is listed by name only).</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Steven Manson, Jonathan Schroeder, David Van Riper, Tracy Kugler, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 15.0”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/census_block_group/f99207afc68e3f5824deb6e8cd5073ba2f0af23f/README.md">DeGAUSS census_block_group README.md (another container than the one of the heat example)</a>, References</div>
+<div class="envar-cov-note">The README of the `census_block_group` container gives a full citation of its source dataset. Missing: only in this container; the daymet README gives no citation of Daymet.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -881,26 +902,12 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No citation of Daymet is given. Closest: the README's links to the Daymet documentation.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Daymet data documentation”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
-</div>
-<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER carries contributors, rights, and DOI but no assembled APA citation string.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">A formatted citation is a discovery/attribution concern above the DDI-CDI InstanceVariable layer CODATA scores.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">No citation is given for any input. Closest: the Source Link column of the input lineage table.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">quote</span> “Input | Native Geometry | Role in CHEL | Source Link”</div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.7, Input Lineage Table</div>
 </div>
 </details>
 <details class="envar-why">

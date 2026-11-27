@@ -369,7 +369,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag (Index / Value distinguishes table structure)</div>
@@ -381,12 +381,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md">gaiaDB README.md</a>, Loading Variables and Spatial Joins</div>
 <div class="envar-cov-note">The README says that the attribute tables are long: one row per feature, variable and time window. Missing: for `external_exposure` the long layout follows from its columns only, and there is no field for the orientation.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
-<div class="envar-cov-note">The output is wide (one column per Daymet variable, one row per id and date). That can be seen in the file and in the README's list of added columns, but is not stated.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">output</span> <code>tmax</code></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “These two DeGAUSS containers append new columns to our dataset with their respective geomarkers, while keeping intact our original dataset.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd">degauss.org, Using DeGAUSS (using_degauss.Rmd)</a>, A Sample Workflow</div>
+<div class="envar-cov-note">degauss.org says that each container appends its geomarkers as new columns to the input file, which is the wide layout. Missing: the layout is not named, and no field declares it.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -701,11 +700,17 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Meta value (info about a Value column)</div>
 <div class="envar-cov-note">C-HER's Meta value tag could carry a per-value uncertainty column referencing its Value column, but none is asserted here. Conservative: partial.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “standard error for predicted PM2.5”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
+<div class="envar-cov-note">In the `pm` container the output has a column `pm_se` with the standard error of each predicted value. Missing: only in this container; the daymet container of the heat example has no uncertainty column.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
@@ -717,10 +722,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">`external_exposure` and the attribute tables have no column for the uncertainty of a value. Nothing close was found in the schema or the README.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">The output has the values only. Nothing close was found in the daymet README, entrypoint.R or the example output.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
