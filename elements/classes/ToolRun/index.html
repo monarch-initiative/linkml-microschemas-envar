@@ -371,12 +371,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §5.5 (Foundry RID + CHEL release version)</div>
-<div class="envar-cov-note">CHEL identifies its pipeline via Foundry RID + CHEL release, but not as a discrete tool-name field.</div>
-</div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> output filename stem (e.g. ...daymet_1.0.0.csv / ...geocoder_3.3.0...csv)</div>
@@ -397,6 +392,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Tool-run provenance is instance-layer; CODATA EVs/CDIF operate at the conceptual/represented layer and are excluded from scoring.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No software is named for the pipeline. Closest: §5.5 says a release should document its Foundry dataset references.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 </details>
 <details class="envar-why">
@@ -427,12 +429,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md Part 5 / §5.5 (CHEL release version)</div>
-<div class="envar-cov-note">CHEL release version (2022 / 2024) is documented, but not as a per-tool semver in a run record. Conservative: partial.</div>
-</div>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> output filename container image tag (e.g. daymet_1.0.0) and ghcr.io/degauss-org/... reference</div>
@@ -454,6 +451,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Per-run tool version is instance-layer; out of scope for CODATA EV/CDIF conceptual layer.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
+<div class="envar-cov-note">CHEL versions its data releases (2022, 2024), not the software that builds them.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Two primary releases are currently defined:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.1</div>
 </div>
 </details>
 <details class="envar-why">
@@ -500,9 +504,11 @@
 <div class="envar-cov-note">The repository is implied by the DeGAUSS container reference but not written to any native output column.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §5.5 (Foundry datasets; no container repo)</div>
-<div class="envar-cov-note">CHEL is built as Foundry datasets (§5.5 RIDs), not a container image, so it carries no container image repository.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The environment the pipeline runs in is not described. Closest: §5.5 says a release should document its Foundry dataset references.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -551,9 +557,11 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §5.5 (Foundry datasets; no container digest)</div>
-<div class="envar-cov-note">CHEL is built as Foundry datasets (§5.5 RIDs); it carries no container image digest.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The environment the pipeline runs in is not described. Closest: §5.5 says a release should document its Foundry dataset references.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -606,9 +614,11 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run argument map)</div>
-<div class="envar-cov-note">CHEL carries no per-run argument map.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The parameters of a pipeline run are not published. Closest: §5.5 lists the projection specifications and the privacy threshold as things a release should document.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Privacy threshold specification”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -673,9 +683,11 @@
 <div class="envar-cov-note">C-HER stamps metadata create/update times, which are registration times, not the producing tool-run timestamp.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run timestamp)</div>
-<div class="envar-cov-note">CHEL carries no per-run timestamp on emitted records.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No build or run date is given for a release. Closest: the year in the release name.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Two primary releases are currently defined:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -781,9 +793,8 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run row counts / hashes)</div>
-<div class="envar-cov-note">CHEL carries no per-run input/output file hashes.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No hash of the released tables is published. Nothing close was found in Documentation.md, README.md or the data folder.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -836,9 +847,8 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no per-run row counts / hashes)</div>
-<div class="envar-cov-note">CHEL carries no per-run input/output row counts or hashes.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No row count of the released tables is stated. Nothing close was found in Documentation.md, README.md or the data folder.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

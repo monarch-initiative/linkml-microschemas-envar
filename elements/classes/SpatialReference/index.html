@@ -378,10 +378,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 grid)</div>
-<div class="envar-cov-note">CHEL states the delivered geometry first-class: H3 Resolution-3 hexagons.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “The H3 Resolution 3 grid serves as the analytic backbone of CHEL.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.1</div>
+<div class="envar-cov-note">CHEL states the geometry its tables are delivered on, H3 hexagons. For its own inputs, the lineage table (§2.7) has a Native Geometry column.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -433,10 +434,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)</div>
-<div class="envar-cov-note">CHEL fixes CRS first-class: every area-based overlay runs in equal-area EPSG:5070 (§4.2.1); the README linkage example builds participant points in EPSG:4326.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “all geometries are reprojected into a consistent equal-area CRS (e.g., EPSG:5070)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.2.1</div>
+<div class="envar-cov-note">CHEL names the CRS in which areas are computed. Missing: it is given as an example for the processing step; the CRS of the published hex grid is not stated.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -507,10 +509,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 1 supporting, 5 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)</div>
-<div class="envar-cov-note">CHEL carries the extraction/aggregation operator first-class: area-weighted interpolation (§3.2), population-weighted allocation (§3.3), density and intersection-proportion (§3.4), raster zonal sum (§3.5).</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “To harmonize these with the hex grid, CHEL uses area-weighted interpolation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §3.2</div>
+<div class="envar-cov-note">Part 3 states the operator per kind of input: area-weighted interpolation (§3.2), area-proportional allocation of counts (§3.3), density and intersection proportion (§3.4), raster sum (§3.5).</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -577,10 +580,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 hex target)</div>
-<div class="envar-cov-note">CHEL's target geography is first-class: every value is attached to an H3 Hex3 cell.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Hex3 is the spatial unit at which all environmental, social, health, and climate indicators are ultimately expressed.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.1</div>
+<div class="envar-cov-note">Every value is attached to an H3 cell of resolution 3.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -705,10 +709,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)</div>
-<div class="envar-cov-note">The hex-grid resolution descriptor (H3 Hex3) is stated first-class.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Resolution 3 (Hex3) continues to serve as the base analytic geography.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.2.1</div>
+<div class="envar-cov-note">CHEL has a readable label for its resolution: H3 Resolution 3, or Hex3.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -758,12 +763,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
-<div class="envar-cov-note">CHEL's extent is national US (national-scale design, §1.3; US Census TIGER inputs, §2.7), but no bounding box is given. Conservative: partial.</div>
-</div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json extent (POLYGON WKT)</div>
@@ -786,6 +786,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">A product's spatial bounding box is instance/discovery-layer detail outside the conceptual EV/DDI-CDI layer.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No bounding box or other coordinates of the extent are given. Closest: the mention of national-scale datasets in §1.3.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Computational feasibility for national-scale datasets”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
 </div>
 </details>
 <details class="envar-why">
@@ -817,10 +824,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §2.7 (national US extent)</div>
-<div class="envar-cov-note">The national-US spatial extent is stated for CHEL products.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Computational feasibility for national-scale datasets”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
+<div class="envar-cov-note">CHEL describes itself as national in scale. Missing: which states and territories the tables include is not said.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -883,10 +891,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 1 supporting, 5 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)</div>
-<div class="envar-cov-note">CHEL §3.10 enumerates exactly this preserved-quantity vocabulary (mean intensity / mass conservation / occurrence intensity / areal coverage) and selects the operator from it.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “All CHEL aggregation can be expressed as a mapping from values defined on a source support to a target support (Hex3).”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §3.10</div>
+<div class="envar-cov-note">§3.10 lists the four quantities an operator can preserve (mean intensity, totals, occurrence intensity, areal coverage) and chooses the operator by them. The slot's values were taken from this section.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

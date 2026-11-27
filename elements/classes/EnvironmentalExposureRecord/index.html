@@ -400,10 +400,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (indicator names; no substance vocabulary)</div>
-<div class="envar-cov-note">CHEL carries indicator names but no environmental-substance vocabulary; the exposure concept is unfilled (EnVar-Tracker #38). Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Air pollution indicators include:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.3.1</div>
+<div class="envar-cov-note">§2.3 to §2.6 name the indicators by domain. Missing: names only. No unit, no standard name and no vocabulary term per indicator, and the names are not tied to the column codes.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -461,10 +462,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3/§4.2.1/Part 3 (hex resolution, CRS, aggregation)</div>
-<div class="envar-cov-note">The spatial block is where CHEL is strongest: fixed hex resolution, equal-area CRS, and explicit aggregation operators are all first-class.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “CHEL adopts H3 Resolution 3 (Hex3), in which each cell has an approximate area of 12,000 square kilometers.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
+<div class="envar-cov-note">Geometry and resolution (§1.3, §2.2.1), the aggregation operators (Part 3) and the processing CRS (§4.2.1) are described. Missing: no bounding box, and the CRS of the published hex grid is not stated.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -539,9 +541,11 @@
 <div class="envar-cov-note">C-HER encodes temporal extent and resolution in the table_name and tags temporal columns, but carries no aggregation-method or day-boundary-convention field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (spatial-only; start_date only)</div>
-<div class="envar-cov-note">CHEL is spatial-only; it carries participant start_date but no temporal-aggregation semantics.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No time grain, temporal aggregation or covered period is stated for the indicators. Closest: each release is tied to a set of source data vintages.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Each release corresponds to a specific set of source data vintages and reference geometries.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -584,10 +588,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md Part 3 / Part 4 (aggregation explicit; source model inherited)</div>
-<div class="envar-cov-note">CHEL makes the aggregation operator explicit but inherits the source exposure model from EJI and validates only its own geometry. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “These measures are typically modeled and reported at census tract level or fine modeled grids.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.3.1</div>
+<div class="envar-cov-note">CHEL says that its air pollution inputs are modeled and describes its own aggregation in Part 3. Missing: model type, inputs, methods paper and skill of the source models are not passed on.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -641,10 +646,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL data/CHEL_hex3_*.csv (wide, keyed on hex_id); README.md</div>
-<div class="envar-cov-note">CHEL publishes wide hex-indexed tables keyed on `hex_id`; subject and time live only in the README linkage example, and there is no portable sidecar column layout. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>hex_id</code> = <code>696</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/CHEL_hex3_2024.csv">CHEL data/CHEL_hex3_2024.csv</a></div>
+<div class="envar-cov-note">The published tables have the key column `hex_id` and one column per indicator, and the README joins them to the grid on `hex_id`. Missing: no data dictionary; the columns are not described.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -697,10 +703,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.7 lineage table; §5.5 (name + release + RID)</div>
-<div class="envar-cov-note">CHEL identifies each source dataset first-class in the §2.7 lineage table with its release vintage (EJI 2022 / 2024); §5.5 adds Foundry RIDs to the per-release documentation.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “EJI 2022 | Census Tract | Environmental burden inputs (2022 release)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.7, Input Lineage Table</div>
+<div class="envar-cov-note">The table gives each input's name, release, native geometry, role and a web link. Missing: licence, DOI and citation of the inputs.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -753,12 +760,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 5 supporting, 1 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §5.5 (Foundry RID + CHEL release)</div>
-<div class="envar-cov-note">CHEL identifies its pipeline via Foundry RID + CHEL release, but carries no container digest, run args, timestamps, or hashes. Conservative: partial.</div>
-</div>
+<summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)</div>
@@ -782,6 +784,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Tool-run provenance is instance-layer; out of scope for CODATA.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No run of the pipeline is described: no software name or version, no run date, no hashes. Closest: §5.5 lists what a release should document, including Foundry dataset references.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 </details>
 <details class="envar-why">
@@ -809,12 +818,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no schema-version construct)</div>
-<div class="envar-cov-note">CHEL is a pipeline, not a metadata sidecar standard; it carries no schema-version field on emitted records.</div>
-</div>
+<summary>Evidence: 0 supporting, 5 not supporting</summary>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level construct.</div>
@@ -865,10 +869,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §5.5 (Foundry dataset RIDs)</div>
-<div class="envar-cov-note">CHEL lists Foundry dataset references (RID) among its per-release documentation items (§5.5), but has no per-sidecar stable record id that a health layer's source-value field carries.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
+<div class="envar-cov-note">CHEL names a stable identifier for its datasets, the Foundry RID. Missing: it is listed as something each release should document; no RID is given in the public material, and nothing says that the health data refer back to it.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -929,12 +934,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3, §1.9, §2.2.2 (privacy architecture)</div>
-<div class="envar-cov-note">Privacy protection is embedded structurally in CHEL (Hex3 chosen partly for HIPAA expert determination; a separate ZIP3 geography for jitter and small-cell suppression), but there is no per-record PHI-status assertion flag.</div>
-</div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schemas private / embargo (access-tier separation) + rights FK</div>
@@ -955,6 +955,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">Per-record PHI assertion is packaging/governance-layer; out of scope for CODATA.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">The hex tables hold no participant data and the privacy design is described, but no statement says whether a released file contains PHI. Closest: the privacy basis in §1.3.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Protection of participant privacy under HIPAA expert determination”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
 </div>
 </details>
 <details class="envar-why">
@@ -1020,10 +1027,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.5.2, §2.2.2 (point-to-hex join + deterministic privacy jitter)</div>
-<div class="envar-cov-note">CHEL's linkage is first-class: deterministic participant point to Hex3 join plus a deterministic privacy reassignment (jitter) at the linkage stage.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “It is also the geography used for participant linkage after privacy logic is applied.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.1</div>
+<div class="envar-cov-note">CHEL describes the linkage (participant point to Hex3 cell, §4.5.2) and the privacy reassignment applied with it. Missing: precision and score of the geocodes, and how a participant's location over time is handled.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1092,10 +1100,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id</div>
-<div class="envar-cov-note">The key column implies the subject (hex_id in the released tables, participant_id in the linkage example), but no field states it.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Hex3 is the spatial unit at which all environmental, social, health, and climate indicators are ultimately expressed.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.1</div>
+<div class="envar-cov-note">CHEL says that a row of its indicator tables is a hexagon, not a person. Missing: stated in prose only; no field says whether a row is a hexagon or a participant.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1149,10 +1158,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.3 (conservation/range diagnostics); §4.6.4, §4.7 (source uncertainty acknowledged)</div>
-<div class="envar-cov-note">CHEL has conservation and range/domain validation and a null taxonomy, but carries no per-value uncertainty. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “For percentile ranking, null values are excluded from ranking denominator N unless otherwise documented.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.3</div>
+<div class="envar-cov-note">CHEL describes how missing values are treated. Missing: no per-value uncertainty and no skill statistics; §4.6.4 only says that the modeled inputs are uncertain.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1202,10 +1212,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.1 (Source to Module Assignment pathway)</div>
-<div class="envar-cov-note">CHEL documents a lineage pathway but not an ordered per-run W3C-PROV chain. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Every input entering CHEL follows a defined lineage pathway:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.1</div>
+<div class="envar-cov-note">CHEL gives the ordered stages every input passes through (source, cleaning, spatial harmonization, hex aggregation, normalization, module assignment). Missing: the stages are generic; no tool, version or date per step.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1258,7 +1269,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value / exposure_concept_id + external_exposure.person_id</div>
@@ -1269,10 +1280,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table join to health resources)</div>
 <div class="envar-cov-note">C-HER has a health schema and cross-table reference columns, but no sidecar-to-health-layer link-field declaration. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no unified external_exposure assembly)</div>
-<div class="envar-cov-note">CHEL produces hex tables + a participant-linkage table but no unified (person, start/end, location, concept, value) assembly to link into a health layer (EnVar-Tracker #38).</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “We translate these measures into a common geographic grid so we can link them to participant health data.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/README.md">CHEL README.md</a>, Background</div>
+<div class="envar-cov-note">The README says that the values are linked to participant health data (All of Us). Missing: the target data model and the linking field are not named.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>

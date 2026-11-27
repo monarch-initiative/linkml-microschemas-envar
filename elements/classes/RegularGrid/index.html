@@ -385,10 +385,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)</div>
-<div class="envar-cov-note">CHEL fixes native resolution as an H3 level (Resolution 3) with an approximate cell area (~12,000 km2); it gives no resolution in metres.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “CHEL uses the Gridded Population of the World (GPW v4) raster at 2.5 arc-minute resolution.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.4</div>
+<div class="envar-cov-note">CHEL gives the cell size of its one raster input. Missing: in arc-minutes, not metres. CHEL's own tables are on H3 cells, for which the slot does not apply.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>

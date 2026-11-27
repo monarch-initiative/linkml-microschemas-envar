@@ -369,10 +369,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL data/CHEL_hex3_*.csv column codes (EJI E_ / EPL_ / F_ names)</div>
-<div class="envar-cov-note">CHEL carries indicator names (from EJI etc.), but not as a portable variable short-name. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>E_NEHD</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/CHEL_hex3_2024.csv">CHEL data/CHEL_hex3_2024.csv</a></div>
+<div class="envar-cov-note">Each indicator has a short code as its column name, taken from EJI (`E_NEHD`, `EPL_NEHD`). Missing: CHEL's documentation does not list or explain the codes.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -449,9 +450,11 @@
 <div class="envar-cov-note">Naming the physical quantity canonically is exactly CODATA's RepresentedVariable / I-ADOPT layer — its strongest zone — but it names the concept, not this run's specific CURIE.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no environmental-substance vocabulary; EnVar-Tracker #38)</div>
-<div class="envar-cov-note">CHEL carries no environmental-substance vocabulary; the concept associated with the exposure is unfilled (EnVar-Tracker #38).</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No indicator has a standard name or a term from a vocabulary. Closest: the readable names in §2.3 to §2.6.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Air pollution indicators include:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.3.1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -490,10 +493,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile 0-100)</div>
-<div class="envar-cov-note">CHEL values are percentile-normalized 0-100 or native, not first-class UCUM units. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “This places each indicator on a standardized”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §3.6</div>
+<div class="envar-cov-note">For the percentile ranks CHEL states the scale, 0 to 100. Missing: no unit for the native estimates (`E_` columns), and the published `EPL_` columns are on a 0 to 1 scale.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -556,12 +560,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no target-vocabulary binding; EnVar-Tracker #38)</div>
-<div class="envar-cov-note">With no target-concept binding, CHEL records no existing/proposed/gap concept status (EnVar-Tracker #38).</div>
-</div>
+<summary>Evidence: 0 supporting, 5 not supporting</summary>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap status flag saying whether a real OMOP concept exists — an EnVar-novel slot.</div>
@@ -624,10 +623,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)</div>
 <div class="envar-cov-note">GAIA registers the attribute's numeric qudt:dataType at dataset-registration time; the EnVar translation carries it first-class as value_data_type.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6-3.7; CSV E_* / EPL_* / F_* column prefixes</div>
-<div class="envar-cov-note">CHEL carries the value data type first-class via column prefix: native estimate (`E_`), percentile 0-100 (`EPL_`), or binary vulnerability flag (`F_`).</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Binary flags are constrained to”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.2</div>
+<div class="envar-cov-note">§4.3.2 gives the value domain per kind of indicator (percentile rank, binary flag, density, composite score). Missing: no data type per column.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -748,10 +748,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §2.3-2.6 (indicator descriptions)</div>
-<div class="envar-cov-note">Indicator labels exist in CHEL's EJI-derived indicators but not as a first-class variable label. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Climate hazard indicators include:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.6</div>
+<div class="envar-cov-note">§2.3 to §2.6 give readable names of the indicators (extreme heat days, wildfire smoke days). Missing: the names are not tied to the column codes of the tables.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -802,12 +803,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile)</div>
-<div class="envar-cov-note">CHEL distinguishes native from percentile-normalized values but carries no first-class UCUM native unit. Conservative: partial.</div>
-</div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml units = "K" (native) alongside the derived value_celsius; gridmet_tmmx.csv value_kelvin column</div>
@@ -828,6 +824,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
 <div class="envar-cov-note">A source-native unit and its packing are instance-layer decode details; CODATA's conceptual/represented layers do not carry per-run storage conventions.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The tables keep the native estimate (`E_` columns) next to its percentile rank (`EPL_`), but no unit is given for the native values.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>E_NEHD</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/CHEL_hex3_2024.csv">CHEL data/CHEL_hex3_2024.csv</a></div>
 </div>
 </details>
 <details class="envar-why">
@@ -865,9 +868,8 @@
 <div class="envar-cov-note">The OMOP CDM is the target vocabulary itself; the concept slots land the value against OHDSI concept ids.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (no substance/target vocabulary; EnVar-Tracker #38)</div>
-<div class="envar-cov-note">CHEL carries no environmental-substance or target-concept vocabulary (ENVO/ECTO/CHEBI); the exposure concept is unfilled (EnVar-Tracker #38).</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in Documentation.md or README.md.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -921,9 +923,8 @@
 <div class="envar-cov-note">GAIA fills the concept-id slot even though no real OMOP concept is yet minted for daily-max-air-temperature; the binding exists.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md (exposure concept unfilled; EnVar-Tracker #38)</div>
-<div class="envar-cov-note">CHEL leaves the exposure concept unfilled and binds no target-vocabulary concept id (EnVar-Tracker #38).</div>
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in Documentation.md or README.md.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -970,7 +971,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured</div>
@@ -981,10 +982,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
 <div class="envar-cov-note">Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI value-domain restriction at the conceptual layer.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)</div>
-<div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Density measures are non-negative.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.2</div>
+<div class="envar-cov-note">§4.3.2 gives lower bounds per kind of indicator (0 for ranks, flags and densities). Missing: no bound per variable, and none for the native estimates.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -1024,7 +1026,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured</div>
@@ -1035,10 +1037,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
 <div class="envar-cov-note">Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI value-domain restriction at the conceptual layer.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)</div>
-<div class="envar-cov-note">CHEL has range/domain validation but carries no per-variable plausible min/max as metadata.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Percentile ranks are constrained to”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.2</div>
+<div class="envar-cov-note">§4.3.2 gives upper bounds for percentile ranks (100) and binary flags (1). Missing: no bound per variable, and none for densities or native estimates.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
