@@ -23,15 +23,20 @@ health_layer_target:
       note: >-
         C-HER has a health schema for health resources, but does not name a downstream health-data
         model as an exposure-record target. Conservative: partial.
-  not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no unified external_exposure assembly)
-      note: >-
-        CHEL emits no unified exposure-assignment table and names no downstream health-layer
-        target first-class (EnVar-Tracker #38).
+    support:
+    - type: documentation
+      document: chel-readme
+      locator: Background
+      snippet: >-
+        developed the CLAD Hex Environmental Linkage (CHEL) dataset for the All of Us Research
+        Program
+      match: partial
+      explanation: >-
+        The README names the programme whose participant data CHEL is linked to. Missing: the
+        data model or table that receives the values is not named.
+      status: verified
+  not_supported_by:
   - source: degauss
     legacy:
       extent: absent
@@ -78,13 +83,17 @@ health_layer_link_field:
         but declares no exposure-record-to-health-layer link field. Conservative: partial.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no unified external_exposure assembly)
-      note: >-
-        With no unified assembly table, CHEL declares no health-layer join field (EnVar-Tracker
-        #38).
+    reason: not_recorded
+    explanation: >-
+      No field of the health data is named as the link. Closest: the README example keys its
+      example participants on `participant_id`.
+    closest:
+    - type: schema
+      document: chel-readme
+      locator: Python Example
+      source_slot: participant_id
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent

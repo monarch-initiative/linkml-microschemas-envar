@@ -5,13 +5,18 @@
 subject_type:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL data/CHEL_hex3_*.csv hex_id; README.md participant_id
-      note: >-
-        The key column implies the subject (hex_id in the released tables, participant_id
-        in the linkage example), but no field states it.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.2.1"
+      snippet: >-
+        Hex3 is the spatial unit at which all environmental, social, health, and climate
+        indicators are ultimately expressed.
+      match: partial
+      explanation: >-
+        CHEL says that a row of its indicator tables is a hexagon, not a person. Missing: stated
+        in prose only; no field says whether a row is a hexagon or a participant.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -58,13 +63,17 @@ subject_type:
 variable_identity:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md (indicator names; no substance vocabulary)
-      note: >-
-        CHEL carries indicator names but no environmental-substance vocabulary; the exposure
-        concept is unfilled (EnVar-Tracker #38). Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.3.1"
+      snippet: "Air pollution indicators include:"
+      match: partial
+      explanation: >-
+        §2.3 to §2.6 name the indicators by domain. Missing: names only. No unit, no standard
+        name and no vocabulary term per indicator, and the names are not tied to the column
+        codes.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -115,14 +124,19 @@ variable_identity:
 spatial_reference:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        CHEL Documentation.md §1.3/§4.2.1/Part 3 (hex resolution, CRS, aggregation)
-      note: >-
-        The spatial block is where CHEL is strongest: fixed hex resolution, equal-area CRS,
-        and explicit aggregation operators are all first-class.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: >-
+        CHEL adopts H3 Resolution 3 (Hex3), in which each cell has an approximate area of 12,000
+        square kilometers.
+      match: partial
+      explanation: >-
+        Geometry and resolution (§1.3, §2.2.1), the aggregation operators (Part 3) and the
+        processing CRS (§4.2.1) are described. Missing: no bounding box, and the CRS of the
+        published hex grid is not stated.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -204,13 +218,19 @@ temporal_reference:
         partial.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      No time grain, temporal aggregation or covered period is stated for the indicators.
+      Closest: each release is tied to a set of source data vintages.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: >-
+        Each release corresponds to a specific set of source data vintages and reference
+        geometries.
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -230,14 +250,19 @@ temporal_reference:
 exposure_model:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        CHEL Documentation.md Part 3 / Part 4 (aggregation explicit; source model inherited)
-      note: >-
-        CHEL makes the aggregation operator explicit but inherits the source exposure model
-        from EJI and validates only its own geometry. Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.3.1"
+      snippet: >-
+        These measures are typically modeled and reported at census tract level or fine modeled
+        grids.
+      match: partial
+      explanation: >-
+        CHEL says that its air pollution inputs are modeled and describes its own aggregation in
+        Part 3. Missing: model type, inputs, methods paper and skill of the source models are
+        not passed on.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -280,14 +305,17 @@ exposure_model:
 data_layout:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL data/CHEL_hex3_*.csv (wide, keyed on hex_id); README.md
-      note: >-
-        CHEL publishes wide hex-indexed tables keyed on `hex_id`; subject and time live only
-        in the README linkage example, and there is no portable sidecar column layout. Conservative:
-        partial.
+    support:
+    - type: output
+      document: chel-hex3-2024
+      field: hex_id
+      value: "696"
+      match: partial
+      explanation: >-
+        The published tables have the key column `hex_id` and one column per indicator, and the
+        README joins them to the grid on `hex_id`. Missing: no data dictionary; the columns are
+        not described.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -339,13 +367,16 @@ data_layout:
 source_dataset:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table; §5.5 (name + release + RID)
-      note: >-
-        CHEL identifies each source dataset first-class in the §2.7 lineage table with its
-        release vintage (EJI 2022 / 2024); §5.5 adds Foundry RIDs to the per-release documentation.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "EJI 2022 | Census Tract | Environmental burden inputs (2022 release)"
+      match: partial
+      explanation: >-
+        The table gives each input's name, release, native geometry, role and a web link.
+        Missing: licence, DOI and citation of the inputs.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -395,15 +426,18 @@ source_dataset:
 uncertainty:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.3 (conservation/range diagnostics); §4.6.4, §4.7 (source
-        uncertainty acknowledged)
-      note: >-
-        CHEL has conservation and range/domain validation and a null taxonomy, but carries
-        no per-value uncertainty. Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.3"
+      snippet: >-
+        For percentile ranking, null values are excluded from ranking denominator N unless
+        otherwise documented.
+      match: partial
+      explanation: >-
+        CHEL describes how missing values are treated. Missing: no per-value uncertainty and no
+        skill statistics; §4.6.4 only says that the modeled inputs are uncertain.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -444,14 +478,18 @@ uncertainty:
 linkage_method:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.5.2, §2.2.2 (point-to-hex join + deterministic privacy jitter)
-      note: >-
-        CHEL's linkage is first-class: deterministic participant point to Hex3 join plus a
-        deterministic privacy reassignment (jitter) at the linkage stage.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.2.1"
+      snippet: >-
+        It is also the geography used for participant linkage after privacy logic is applied.
+      match: partial
+      explanation: >-
+        CHEL describes the linkage (participant point to Hex3 cell, §4.5.2) and the privacy
+        reassignment applied with it. Missing: precision and score of the geocodes, and how a
+        participant's location over time is handled.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -501,14 +539,6 @@ linkage_method:
 
 tool_run:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §5.5 (Foundry RID + CHEL release)
-      note: >-
-        CHEL identifies its pipeline via Foundry RID + CHEL release, but carries no container
-        digest, run args, timestamps, or hashes. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: partial
@@ -552,17 +582,33 @@ tool_run:
       status: asserted
       where: no column
       note: Tool-run provenance is instance-layer; out of scope for CODATA.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      No run of the pipeline is described: no software name or version, no run date, no hashes.
+      Closest: §5.5 lists what a release should document, including Foundry dataset references.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      status: verified
+    status: unverified
 
 provenance_chain:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.1 (Source to Module Assignment pathway)
-      note: >-
-        CHEL documents a lineage pathway but not an ordered per-run W3C-PROV chain. Conservative:
-        partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.1"
+      snippet: "Every input entering CHEL follows a defined lineage pathway:"
+      match: partial
+      explanation: >-
+        CHEL gives the ordered stages every input passes through (source, cleaning, spatial
+        harmonization, hex aggregation, normalization, module assignment). Missing: the stages
+        are generic; no tool, version or date per step.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -622,15 +668,20 @@ health_layer_linkage:
       note: >-
         C-HER has a health schema and cross-table reference columns, but no sidecar-to-health-layer
         link-field declaration. Conservative: partial.
-  not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no unified external_exposure assembly)
-      note: >-
-        CHEL produces hex tables + a participant-linkage table but no unified (person, start/end,
-        location, concept, value) assembly to link into a health layer (EnVar-Tracker #38).
+    support:
+    - type: documentation
+      document: chel-readme
+      locator: Background
+      snippet: >-
+        We translate these measures into a common geographic grid so we can link them to
+        participant health data.
+      match: partial
+      explanation: >-
+        The README says that the values are linked to participant health data (All of Us).
+        Missing: the target data model and the linking field are not named.
+      status: verified
+  not_supported_by:
   - source: degauss
     legacy:
       extent: absent

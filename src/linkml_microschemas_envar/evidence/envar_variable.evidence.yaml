@@ -5,13 +5,15 @@
 variable_name:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL data/CHEL_hex3_*.csv column codes (EJI E_ / EPL_ / F_ names)
-      note: >-
-        CHEL carries indicator names (from EJI etc.), but not as a portable variable short-name.
-        Conservative: partial.
+    support:
+    - type: output
+      document: chel-hex3-2024
+      field: E_NEHD
+      match: partial
+      explanation: >-
+        Each indicator has a short code as its column name, taken from EJI (`E_NEHD`,
+        `EPL_NEHD`). Missing: CHEL's documentation does not list or explain the codes.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -63,13 +65,16 @@ variable_name:
 variable_label:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.3-2.6 (indicator descriptions)
-      note: >-
-        Indicator labels exist in CHEL's EJI-derived indicators but not as a first-class variable
-        label. Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.6"
+      snippet: "Climate hazard indicators include:"
+      match: partial
+      explanation: >-
+        §2.3 to §2.6 give readable names of the indicators (extreme heat days, wildfire smoke
+        days). Missing: the names are not tied to the column codes of the tables.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -161,14 +166,17 @@ standard_name:
         CURIE.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md (no environmental-substance vocabulary; EnVar-Tracker #38)
-      note: >-
-        CHEL carries no environmental-substance vocabulary; the concept associated with the
-        exposure is unfilled (EnVar-Tracker #38).
+    reason: not_recorded
+    explanation: >-
+      No indicator has a standard name or a term from a vocabulary. Closest: the readable names
+      in §2.3 to §2.6.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.3.1"
+      snippet: "Air pollution indicators include:"
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -181,14 +189,16 @@ standard_name:
 units_ucum:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile 0-100)
-      note: >-
-        CHEL values are percentile-normalized 0-100 or native, not first-class UCUM units.
-        Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§3.6"
+      snippet: This places each indicator on a standardized
+      match: partial
+      explanation: >-
+        For the percentile ranks CHEL states the scale, 0 to 100. Missing: no unit for the
+        native estimates (`E_` columns), and the published `EPL_` columns are on a 0 to 1 scale.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -240,14 +250,6 @@ units_ucum:
 
 native_units_ucum:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §3.6; CSV E_* (native) vs EPL_* (percentile)
-      note: >-
-        CHEL distinguishes native from percentile-normalized values but carries no first-class
-        UCUM native unit. Conservative: partial.
   - source: amadeus
     legacy:
       extent: full
@@ -293,6 +295,17 @@ native_units_ucum:
       note: >-
         A source-native unit and its packing are instance-layer decode details; CODATA's conceptual/represented
         layers do not carry per-run storage conventions.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      The tables keep the native estimate (`E_` columns) next to its percentile rank (`EPL_`),
+      but no unit is given for the native values.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: E_NEHD
+      status: verified
+    status: unverified
 
 target_concept_vocabulary:
   supported_by:
@@ -311,14 +324,11 @@ target_concept_vocabulary:
         OHDSI concept ids.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md (no substance/target vocabulary; EnVar-Tracker #38)
-      note: >-
-        CHEL carries no environmental-substance or target-concept vocabulary (ENVO/ECTO/CHEBI);
-        the exposure concept is unfilled (EnVar-Tracker #38).
+    reason: not_recorded
+    explanation: >-
+      No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
+      Documentation.md or README.md.
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -367,13 +377,11 @@ target_concept_id:
         daily-max-air-temperature; the binding exists.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: 'CHEL Documentation.md (exposure concept unfilled; EnVar-Tracker #38)'
-      note: >-
-        CHEL leaves the exposure concept unfilled and binds no target-vocabulary concept id
-        (EnVar-Tracker #38).
+    reason: not_recorded
+    explanation: >-
+      No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
+      Documentation.md or README.md.
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -405,15 +413,6 @@ target_concept_id:
 
 concept_status:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md (no target-vocabulary binding; EnVar-Tracker #38)
-      note: >-
-        With no target-concept binding, CHEL records no existing/proposed/gap concept status
-        (EnVar-Tracker #38).
   - source: omop_gaia
     legacy:
       extent: absent
@@ -463,13 +462,16 @@ value_data_type:
         GAIA registers the attribute's numeric qudt:dataType at dataset-registration time;
         the EnVar translation carries it first-class as value_data_type.
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §3.6-3.7; CSV E_* / EPL_* / F_* column prefixes
-      note: >-
-        CHEL carries the value data type first-class via column prefix: native estimate (`E_`),
-        percentile 0-100 (`EPL_`), or binary vulnerability flag (`F_`).
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.2"
+      snippet: Binary flags are constrained to
+      match: partial
+      explanation: >-
+        §4.3.2 gives the value domain per kind of indicator (percentile rank, binary flag,
+        density, composite score). Missing: no data type per column.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -525,16 +527,18 @@ value_range_plausible_min:
       note: >-
         Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI
         value-domain restriction at the conceptual layer.
-  not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)
-      note: >-
-        CHEL has range/domain validation but carries no per-variable plausible min/max as
-        metadata.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.2"
+      snippet: Density measures are non-negative.
+      match: partial
+      explanation: >-
+        §4.3.2 gives lower bounds per kind of indicator (0 for ranks, flags and densities).
+        Missing: no bound per variable, and none for the native estimates.
+      status: verified
+  not_supported_by:
   - source: degauss
     legacy:
       extent: absent
@@ -572,16 +576,18 @@ value_range_plausible_max:
       note: >-
         Plausible domain bounds are naturally an I-ADOPT Constraint on the property / a CDI
         value-domain restriction at the conceptual layer.
-  not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.3.2 (range/domain checks, not per-value plausible bounds)
-      note: >-
-        CHEL has range/domain validation but carries no per-variable plausible min/max as
-        metadata.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.2"
+      snippet: Percentile ranks are constrained to
+      match: partial
+      explanation: >-
+        §4.3.2 gives upper bounds for percentile ranks (100) and binary flags (1). Missing: no
+        bound per variable, and none for densities or native estimates.
+      status: verified
+  not_supported_by:
   - source: degauss
     legacy:
       extent: absent

@@ -5,12 +5,16 @@
 native_geometry:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
-      note: >-
-        CHEL states the delivered geometry first-class: H3 Resolution-3 hexagons.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.2.1"
+      snippet: The H3 Resolution 3 grid serves as the analytic backbone of CHEL.
+      match: full
+      explanation: >-
+        CHEL states the geometry its tables are delivered on, H3 hexagons. For its own inputs,
+        the lineage table (§2.7) has a Native Geometry column.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -55,11 +59,16 @@ native_geometry:
 h3_resolution:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.2.1 (H3 Hex3 grid)
-      note: CHEL states the H3 resolution first-class (Resolution 3).
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: >-
+        CHEL adopts H3 Resolution 3 (Hex3), in which each cell has an approximate area of 12,000
+        square kilometers.
+      match: full
+      explanation: "The H3 resolution is stated: 3."
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -70,13 +79,18 @@ h3_resolution:
 native_spatial_resolution_m:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §1.3/§2.2.1 (H3 Hex3 ~12,000 km2)
-      note: >-
-        CHEL fixes native resolution as an H3 level (Resolution 3) with an approximate cell
-        area (~12,000 km2); it gives no resolution in metres.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.2.4"
+      snippet: >-
+        CHEL uses the Gridded Population of the World (GPW v4) raster at 2.5 arc-minute
+        resolution.
+      match: partial
+      explanation: >-
+        CHEL gives the cell size of its one raster input. Missing: in arc-minutes, not metres.
+        CHEL's own tables are on H3 cells, for which the slot does not apply.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -122,11 +136,14 @@ native_spatial_resolution_m:
 native_spatial_resolution_descriptor:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.2.1 (H3 Hex3 descriptor)
-      note: The hex-grid resolution descriptor (H3 Hex3) is stated first-class.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.2.1"
+      snippet: Resolution 3 (Hex3) continues to serve as the base analytic geography.
+      match: full
+      explanation: "CHEL has a readable label for its resolution: H3 Resolution 3, or Hex3."
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -170,13 +187,17 @@ native_spatial_resolution_descriptor:
 crs:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §4.2.1 (EPSG:5070); README.md (EPSG:4326 points)
-      note: >-
-        CHEL fixes CRS first-class: every area-based overlay runs in equal-area EPSG:5070
-        (§4.2.1); the README linkage example builds participant points in EPSG:4326.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.2.1"
+      snippet: >-
+        all geometries are reprojected into a consistent equal-area CRS (e.g., EPSG:5070)
+      match: partial
+      explanation: >-
+        CHEL names the CRS in which areas are computed. Missing: it is given as an example for
+        the processing step; the CRS of the published hex grid is not stated.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -222,14 +243,6 @@ crs:
 
 spatial_extent_bbox:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §1.3, §2.7 (national US extent)
-      note: >-
-        CHEL's extent is national US (national-scale design, §1.3; US Census TIGER inputs,
-        §2.7), but no bounding box is given. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: full
@@ -274,15 +287,32 @@ spatial_extent_bbox:
       note: >-
         A product's spatial bounding box is instance/discovery-layer detail outside the conceptual
         EV/DDI-CDI layer.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      No bounding box or other coordinates of the extent are given. Closest: the mention of
+      national-scale datasets in §1.3.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: Computational feasibility for national-scale datasets
+      status: verified
+    status: unverified
 
 spatial_extent_descriptor:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §1.3, §2.7 (national US extent)
-      note: The national-US spatial extent is stated for CHEL products.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: Computational feasibility for national-scale datasets
+      match: partial
+      explanation: >-
+        CHEL describes itself as national in scale. Missing: which states and territories the
+        tables include is not said.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -327,14 +357,17 @@ spatial_extent_descriptor:
 extraction_method:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md Part 3 (§3.2-3.5 aggregation operators)
-      note: >-
-        CHEL carries the extraction/aggregation operator first-class: area-weighted interpolation
-        (§3.2), population-weighted allocation (§3.3), density and intersection-proportion
-        (§3.4), raster zonal sum (§3.5).
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§3.2"
+      snippet: To harmonize these with the hex grid, CHEL uses area-weighted interpolation.
+      match: full
+      explanation: >-
+        Part 3 states the operator per kind of input: area-weighted interpolation (§3.2),
+        area-proportional allocation of counts (§3.3), density and intersection proportion
+        (§3.4), raster sum (§3.5).
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -377,12 +410,16 @@ extraction_method:
 target_geography_type:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.2.1 (H3 hex target)
-      note: >-
-        CHEL's target geography is first-class: every value is attached to an H3 Hex3 cell.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.2.1"
+      snippet: >-
+        Hex3 is the spatial unit at which all environmental, social, health, and climate
+        indicators are ultimately expressed.
+      match: full
+      explanation: Every value is attached to an H3 cell of resolution 3.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -427,15 +464,19 @@ target_geography_type:
 spatial_aggregation_preserves:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        CHEL Documentation.md §3.10 (geometry-weighted operator; preserved-quantity table)
-      note: >-
-        CHEL §3.10 enumerates exactly this preserved-quantity vocabulary (mean intensity /
-        mass conservation / occurrence intensity / areal coverage) and selects the operator
-        from it.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§3.10"
+      snippet: >-
+        All CHEL aggregation can be expressed as a mapping from values defined on a source
+        support to a target support (Hex3).
+      match: full
+      explanation: >-
+        §3.10 lists the four quantities an operator can preserve (mean intensity, totals,
+        occurrence intensity, areal coverage) and chooses the operator by them. The slot's
+        values were taken from this section.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
