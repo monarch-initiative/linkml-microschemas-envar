@@ -5,13 +5,14 @@
 temporal_resolution:
   supported_by:
   - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)
-      note: >-
-        Only derivable from the THREDDS time-axis increment; not written as a discrete resolution
-        field.
+    support:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: 'Temporal resolution: daily; each download is an annual NetCDF file for one variable.'
+      match: full
+      explanation: The vignette of each dataset gives its temporal resolution; gridMET is daily.
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -68,13 +69,16 @@ temporal_resolution:
 temporal_aggregation_method:
   supported_by:
   - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml long_name / grid name (daily_maximum_temperature)
-      note: >-
-        The aggregation (daily maximum) is recoverable only from the variable long_name, not
-        a structured field.
+    support:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: Maximum Near-Surface Air Temperature
+      match: partial
+      explanation: 'For temperature the daily summary is in the variable name (maximum, minimum). With
+        `.by_time` amadeus itself summarises over a time unit with `fun`. Missing: not a structured
+        field.'
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -130,16 +134,18 @@ temporal_aggregation_method:
         the conceptual EV/DDI-CDI layer.
 
 temporal_aggregation_window_seconds:
-  supported_by:
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml day axis increment = 1.0 (days since 1900-01-01)
-      note: >-
-        The 1-day window is derivable in the THREDDS time axis but not emitted as an explicit
-        seconds value.
   not_supported_by:
+  - source: amadeus
+    reason: implicit
+    explanation: 'The grain is given in words, not as a number of seconds. Closest: "Temporal resolution:
+      daily" in the vignette.'
+    closest:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: 'Temporal resolution: daily; each download is an annual NetCDF file for one variable.'
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -193,6 +199,25 @@ temporal_aggregation_window_seconds:
         EV/DDI-CDI layer.
 
 day_boundary_convention:
+  supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-goes-vignette
+      locator: Temporal domain
+      snippet: Daily archive by UTC day
+      match: partial
+      explanation: 'For GOES the vignette says the daily archive is by UTC day. Missing: only for GOES;
+        for gridMET nothing says where the day starts.'
+      status: verified
+    - type: documentation
+      document: amadeus-process-aqs
+      locator: arguments
+      snippet: for time zone associated with hourly data.
+      match: partial
+      explanation: 'For AQS the user chooses whether hourly data are in local time or GMT. Missing:
+        only for AQS, and it is the clock of hourly data, not a daily window.'
+      status: verified
   not_supported_by:
   - source: omop_gaia
     reason: not_recorded
@@ -218,14 +243,6 @@ day_boundary_convention:
       snippet: The Daymet calendar is based on a standard calendar year.
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        The NetCDF time axis (days since 1900-01-01) has no calendar day-edge clarification
-        — pure ambiguity.
   - source: cher
     legacy:
       extent: absent
@@ -243,6 +260,16 @@ day_boundary_convention:
 
 temporal_coverage_start:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-narr
+      locator: arguments
+      snippet: All years must be between 1979 and the current
+      match: partial
+      explanation: 'For NARR the first year that can be requested is 1979. Missing: only for NARR, as
+        a year, and as a check on the argument; nothing for gridMET.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -259,14 +286,6 @@ temporal_coverage_start:
       match: full
       explanation: The value in the public example, per variable.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml TimeSpan (1979 -> present)
-      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
-      note: >-
-        The THREDDS dataset.xml TimeSpan gives the product's full temporal coverage.
   - source: cher
     legacy:
       extent: full
@@ -311,6 +330,16 @@ temporal_coverage_start:
 
 temporal_coverage_end:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-narr
+      locator: arguments
+      snippet: All years must be between 1979 and the current
+      match: partial
+      explanation: 'For NARR the last year that can be requested is the current year. Missing: only
+        for NARR, and as a check on the argument; nothing for gridMET.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -327,15 +356,6 @@ temporal_coverage_end:
       match: full
       explanation: The value in the public example, per variable.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml TimeSpan (-> present)
-      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
-      note: >-
-        The THREDDS TimeSpan closes the product's coverage window (open to present for live
-        products).
   - source: cher
     legacy:
       extent: full
@@ -380,6 +400,17 @@ temporal_coverage_end:
 
 extraction_window_start:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-process-gridmet
+      locator: arguments
+      source_slot: process_gridmet.date
+      match: partial
+      explanation: 'The first date is an argument, and the README shows the message "Returning daily
+        weasd data from 2022-01-01 to 2022-01-05." Missing: not stored in the result, though it is the
+        first value of its `time` column.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -404,13 +435,6 @@ extraction_window_start:
         recorded.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus records the product TimeSpan but not the start date this particular run pulled.
   - source: cher
     legacy:
       extent: absent
@@ -430,6 +454,16 @@ extraction_window_start:
 
 extraction_window_end:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-process-gridmet
+      locator: arguments
+      source_slot: process_gridmet.date
+      match: partial
+      explanation: 'The last date is an argument and is printed when the data are returned. Missing:
+        not stored in the result, though it is the last value of its `time` column.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -454,13 +488,6 @@ extraction_window_end:
         recorded.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus records the product TimeSpan but not the end date this particular run pulled.
   - source: cher
     legacy:
       extent: absent
@@ -480,15 +507,6 @@ extraction_window_end:
 
 calendar:
   supported_by:
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: >-
-        thredds_dataset.xml day axis (days since 1900-01-01, calendar = gregorian)
-      evidence: EnVar/examples/heat/COMPARISON.md §H (time-origin / calendar ✅)
-      note: >-
-        The THREDDS day axis declares the calendar (gregorian) and time origin explicitly.
   - source: degauss
     support:
     - type: documentation
@@ -501,6 +519,17 @@ calendar:
         29 is kept and December 31 is dropped.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: implicit
+    explanation: 'Dates are R dates, so the calendar is implicitly Gregorian; nothing says so. Closest:
+      the `date` argument (format YYYY-MM-DD).'
+    closest:
+    - type: schema
+      document: amadeus-process-gridmet
+      locator: arguments
+      source_slot: process_gridmet.date
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-

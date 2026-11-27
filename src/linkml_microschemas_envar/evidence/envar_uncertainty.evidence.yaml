@@ -17,6 +17,17 @@ per_value_uncertainty_type:
         uncertainty.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'The kind of uncertainty is not given. Closest: the MODIS AOD uncertainty layers, whose
+      type is not stated.'
+    closest:
+    - type: schema
+      document: amadeus-modis-vignette
+      locator: MCD19A2 subdatasets
+      source_slot: MCD19A2.AOD_Uncertainty_1
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -38,12 +49,6 @@ per_value_uncertainty_type:
       No field for the uncertainty of a value. Nothing close was found in the schema or the
       README.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no per-value uncertainty type.
   - source: cher
     legacy:
       extent: absent
@@ -61,6 +66,16 @@ per_value_uncertainty_type:
 
 per_value_uncertainty_units_ucum:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No units of an uncertainty are given. Closest: the MODIS AOD uncertainty layers.'
+    closest:
+    - type: schema
+      document: amadeus-modis-vignette
+      locator: MCD19A2 subdatasets
+      source_slot: MCD19A2.AOD_Uncertainty_1
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -90,12 +105,6 @@ per_value_uncertainty_units_ucum:
       snippet: standard error for predicted PM2.5
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No per-value uncertainty column exists, so no uncertainty units.
   - source: cher
     legacy:
       extent: absent
@@ -112,6 +121,16 @@ per_value_uncertainty_units_ucum:
 
 model_aggregate_uncertainty:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No model performance is given. Closest: the cited gridMET methods paper.'
+    closest:
+    - type: schema
+      document: amadeus-download-gridmet
+      locator: references
+      source_slot: references.article_abatzoglou2013development
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -150,12 +169,6 @@ model_aggregate_uncertainty:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no whole-model cross-validation metrics.
   - source: cher
     legacy:
       extent: absent
@@ -172,6 +185,17 @@ model_aggregate_uncertainty:
 
 missing_data_handling_method:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-modis
+      locator: arguments
+      snippet: Fusion method used only when
+      match: partial
+      explanation: 'For MODIS a second satellite can fill gaps: "primary_first" uses the first and falls
+        back to the second, "mean" ignores missing values. Missing: only for MODIS; nothing on how the
+        source handles gaps.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -220,14 +244,6 @@ missing_data_handling_method:
         data is not passed on.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus's THREDDS metadata declares a _FillValue sentinel but not the source's gap-filling
-        method.
   - source: cher
     legacy:
       extent: absent
@@ -246,6 +262,17 @@ missing_data_handling_method:
 
 data_completeness_pct:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No completeness is computed. Closest: the download summary of failed files, which
+      says whether all files arrived.'
+    closest:
+    - type: schema
+      document: amadeus-download-data
+      locator: Value
+      source_slot: download_data.failed_files
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -263,12 +290,6 @@ data_completeness_pct:
       No completeness figure is written, and rows without a Daymet cell are dropped without a
       count. Nothing close was found in the daymet README or the example output.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no completeness percentage.
   - source: cher
     legacy:
       extent: absent

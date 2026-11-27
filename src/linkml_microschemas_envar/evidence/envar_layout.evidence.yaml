@@ -4,6 +4,16 @@
 
 table_orientation:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: Description
+      snippet: column name reflects the gridMET variable and circular buffer radius.
+      match: partial
+      explanation: 'The result has one row per location and time and one column per variable and radius,
+        so it is wide. Missing: the layout is not declared; it follows from the column naming.'
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -40,12 +50,6 @@ table_orientation:
         it.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus's gridmet_tmmx.csv is wide but declares no orientation field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -68,6 +72,24 @@ table_orientation:
 
 value_column:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: Description
+      snippet: column name reflects the gridMET variable and circular buffer radius.
+      match: full
+      explanation: 'The value column has a documented name: variable code and buffer radius, e.g. `tmmx_0`
+        in the gridMET vignette.'
+      status: verified
+    - type: documentation
+      document: amadeus-calc-setcolumns
+      locator: Description
+      snippet: temporal lag, and 5 digit buffer radius (in meters)
+      match: partial
+      explanation: '`calc_setcolumns` renames value columns to a fixed pattern of genre, variable, lag
+        and radius. Missing: it is an internal helper for beethoven and is not applied by `calculate_covariates`.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -96,14 +118,6 @@ value_column:
       match: full
       explanation: "The output of the daymet container has the value in the column `tmax`."
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: gridmet_tmmx.csv `value_celsius` column
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for Amadeus)
-      note: Amadeus writes the converted value to a stable `value_celsius` column.
   - source: cher
     legacy:
       extent: full
@@ -134,6 +148,16 @@ value_column:
 
 subject_column:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs_id
+      match: full
+      explanation: '"Name of unique identifier." The identifier column of the locations is named by
+        the caller and kept in the result.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -154,14 +178,6 @@ subject_column:
         The identifier is in the column `id` on every row; the README names `id` as the ID
         column of the input.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: '`person_loc_id` / `person_id` column on every row'
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for Amadeus)
-      note: Amadeus carries the person identifier on every row.
   - source: cher
     legacy:
       extent: partial
@@ -194,6 +210,16 @@ subject_column:
 
 time_column:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-utils-calculate
+      locator: calc_time
+      snippet: Type of time to return in the
+      match: full
+      explanation: Every time-dependent result has a `time` column ("`$time` column" in the code, and
+        the `time` column of the README example).
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -214,14 +240,6 @@ time_column:
       match: full
       explanation: "The output has one row per id and day, with the day in the column `date`."
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: one row per (person × day) in gridmet_tmmx.csv (per-day date)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for Amadeus)
-      note: Amadeus emits a per-day date on every row (24 rows, per-day).
   - source: cher
     legacy:
       extent: partial
@@ -254,6 +272,17 @@ time_column:
 
 value_uncertainty_column:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-modis-vignette
+      locator: MCD19A2 subdatasets
+      source_slot: MCD19A2.AOD_Uncertainty_1
+      match: partial
+      explanation: 'For MODIS MCD19A2 the AOD uncertainty layers can be processed and extracted like
+        any other layer. Missing: only for MODIS AOD; no column is marked as the uncertainty of another,
+        and gridMET has none.'
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -294,12 +323,6 @@ value_uncertainty_column:
       `external_exposure` and the attribute tables have no column for the uncertainty of a
       value. Nothing close was found in the schema or the README.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus's gridmet_tmmx.csv carries no per-value uncertainty column.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -323,17 +346,18 @@ null_semantics_column:
         derived null, true zero). Missing: the published tables have no column that says which
         kind a given null is.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        thredds_dataset.xml _FillValue / missing_value = 32767 (dataset-level sentinel, not
-        per-value null-kind)
-      note: >-
-        Amadeus declares a fill/missing-value sentinel that marks structural nulls, but no
-        per-value column distinguishing the three null kinds. Conservative: partial.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No column says why a value is missing. Closest: the MODIS fusion of two satellites
+      takes the mean while ignoring missing values, so a missing value is left out silently.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-modis
+      locator: arguments
+      snippet: Fusion method used only when
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-

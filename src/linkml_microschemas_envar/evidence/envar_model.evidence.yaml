@@ -4,6 +4,16 @@
 
 exposure_model_type:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Download
+      snippet: North American Regional Reanalysis
+      match: partial
+      explanation: 'For NARR (and MERRA-2) the model class is in the dataset name, reanalysis. Missing:
+        only in the name, and only for those datasets; for gridMET nothing says how it was produced.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -50,12 +60,6 @@ exposure_model_type:
       source_slot: data_source.measurement_technique
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no exposure-model-type slot.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -76,6 +80,17 @@ exposure_model_inputs:
         C-HER's dataset_lineage links parent resources a child was calculated/modeled from,
         but as resource FKs, not a named model-input variable list.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No model inputs are listed. Closest: the gridMET methods paper is cited in the `download_gridmet`
+      references, where the inputs are described.'
+    closest:
+    - type: schema
+      document: amadeus-download-gridmet
+      locator: references
+      source_slot: references.article_abatzoglou2013development
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -100,12 +115,6 @@ exposure_model_inputs:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no model-input list.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -131,6 +140,24 @@ exposure_model_inputs:
 
 exposure_model_paper_doi:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-download-gridmet
+      locator: references
+      source_slot: references.article_abatzoglou2013development
+      match: partial
+      explanation: 'The help page of `download_gridmet` cites the gridMET methods paper (Abatzoglou
+        2013). Missing: the package bibliography gives no DOI for it, and the citation is not in the
+        result.'
+      status: verified
+    - type: documentation
+      document: amadeus-references
+      locator: article_abatzoglou2013development
+      snippet: Development of gridded surface meteorological data for ecological applications and modelling
+      match: partial
+      explanation: 'The bibliography entry has title, journal, volume and pages. Missing: no DOI.'
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -168,12 +195,6 @@ exposure_model_paper_doi:
       source_slot: data_source.url
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no methods-paper DOI for the source model.
   - source: cher
     legacy:
       extent: absent
@@ -193,6 +214,17 @@ exposure_model_paper_doi:
 
 exposure_model_cross_validation_r2:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No model performance is given. Closest: the cited methods paper of gridMET, where
+      it is reported.'
+    closest:
+    - type: schema
+      document: amadeus-download-gridmet
+      locator: references
+      source_slot: references.article_abatzoglou2013development
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -232,12 +264,6 @@ exposure_model_cross_validation_r2:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no model cross-validation R2.
   - source: cher
     legacy:
       extent: absent
@@ -268,6 +294,17 @@ exposure_model_known_biases:
         behind the indicators are not passed on.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No known biases are listed. Closest: the MODIS help page tells users to read the product''s
+      technical documentation to get the scale right.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-modis
+      locator: arguments
+      snippet: It is crucial that users review the technical documentation of the MODIS
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -292,12 +329,6 @@ exposure_model_known_biases:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no known-model-biases field.
   - source: cher
     legacy:
       extent: absent
@@ -317,6 +348,17 @@ exposure_model_known_biases:
 
 bias_correction_applied:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus applies no bias correction and does not say so. Closest: the MODIS `scale`
+      argument, which rescales raw values but is not a bias correction.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-modis
+      locator: arguments
+      source_slot: calculate_modis.scale
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -352,12 +394,6 @@ bias_correction_applied:
       snippet: Rounding the Daymet variables to two decimal places
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no bias-correction flag.
   - source: cher
     legacy:
       extent: absent

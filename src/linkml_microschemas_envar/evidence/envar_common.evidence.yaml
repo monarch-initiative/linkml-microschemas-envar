@@ -5,11 +5,16 @@
 schema_version:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus's native metadata carries no sidecar schema-version field.
+    reason: not_recorded
+    explanation: 'amadeus returns R objects and writes no metadata document, so there is nothing to
+      carry a schema version. Closest: the package version in DESCRIPTION.'
+    closest:
+    - type: schema
+      document: amadeus-description
+      locator: DESCRIPTION
+      source_slot: DESCRIPTION.Version
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -75,19 +80,23 @@ provenance_id:
         not an EnVar sidecar that a health layer's source-value field carries. Conservative:
         partial.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No identifier is given to a result. Closest: `download_data` can return a combined
+      MD5 hash of the download directory, which identifies the raw files, not the result.'
+    closest:
+    - type: documentation
+      document: amadeus-download-data
+      locator: Value
+      snippet: combined MD5 hash of the source's output directory
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
       A run or its output has no identifier. Closest: the output file name, into which the
       geocoder writes its name, version and argument.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus produces no stable per-record provenance id; only file hashes for citation.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -132,6 +141,17 @@ phi_status:
         The 2018 paper says the same. Missing: as above, nothing in the file itself.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'Nothing says whether a result holds PHI. Closest: the locations come from the user
+      with an identifier column of the user''s choice (`locs_id`), which may or may not identify a person.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs_id
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -139,12 +159,6 @@ phi_status:
       a table or a dataset as containing PHI. Nothing close was found in the schema or the
       README.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus handles no PHI and emits no per-record PHI-status flag.
   - source: codata
     legacy:
       extent: out_of_layer

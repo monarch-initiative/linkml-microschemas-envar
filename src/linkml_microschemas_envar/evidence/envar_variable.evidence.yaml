@@ -4,6 +4,16 @@
 
 variable_name:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Note
+      snippet: Layer names of the returned
+      match: full
+      explanation: Layer names contain the variable code (e.g. `tmmx`), and so does the value column
+        of the extracted result.
+      status: verified
   - source: chel
     support:
     - type: output
@@ -42,16 +52,6 @@ variable_name:
         The README lists the short name of each variable (`dayl`, `prcp`, `srad`, `swe`, `tmax`,
         `tmin`, `vp`), which is also its column name in the output.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gridmet_tmmx.csv column header `tmmx`; thredds_dataset.xml long_name/standard_name
-        = tmmx
-      note: >-
-        Amadeus carries the short name as a column header and in the THREDDS long_name, not
-        as a portable variable-name slot. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -72,6 +72,23 @@ variable_name:
 
 variable_label:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: Daily Accumulated Snow at Surface
+      match: partial
+      explanation: 'The processed raster carries a long name (`terra::longnames`), as the README example
+        shows for NARR. Missing: the extracted data.frame keeps only the code.'
+      status: verified
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: Maximum Near-Surface Air Temperature
+      match: partial
+      explanation: 'The vignette lists a label for each gridMET code. Missing: documentation only.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -99,16 +116,6 @@ variable_label:
       match: full
       explanation: A variable description in the public example.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: >-
-        thredds_dataset.xml description = "Daily Maximum Temperature (2m)"; grid named daily_maximum_temperature
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for Amadeus)
-      note: >-
-        Amadeus's THREDDS metadata carries a human-readable variable description first-class.
   - source: cher
     legacy:
       extent: partial
@@ -142,16 +149,6 @@ variable_label:
 
 standard_name:
   supported_by:
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        thredds_dataset.xml standard_name = "tmmx" (gridMET shortcode overloaded, not a real
-        CF term)
-      note: >-
-        Amadeus populates a standard_name slot but with the gridMET shortcode rather than
-        a CF term, so a CF lookup fails. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -172,6 +169,17 @@ standard_name:
         I-ADOPT layer — its strongest zone — but it names the concept, not this run's specific
         CURIE.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'Variables are named by the source''s code (gridMET `tmmx`), not by a standard name.
+      The old entry cited the gridMET server, not amadeus. Closest: the layer names.'
+    closest:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Note
+      snippet: Layer names of the returned
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -213,6 +221,16 @@ standard_name:
 
 units_ucum:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: Daily Accumulated Snow at Surface
+      match: partial
+      explanation: 'The processed raster keeps the unit of the source file (`kg/m^2` in the README example).
+        Missing: not UCUM, and the extracted data.frame has no unit.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -242,17 +260,6 @@ units_ucum:
       match: partial
       explanation: "The public example gives the unit as text only. Missing: no unit code."
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: >-
-        thredds_dataset.xml units = "K"; gridmet_tmmx.cf_metadata.json mirrors it
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for Amadeus)
-      note: >-
-        Amadeus declares the native unit K in a machine-readable CF metadata slot (though
-        not in UCUM syntax).
   - source: cher
     legacy:
       extent: partial
@@ -287,18 +294,6 @@ units_ucum:
 
 native_units_ucum:
   supported_by:
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: >-
-        thredds_dataset.xml units = "K" (native) alongside the derived value_celsius; gridmet_tmmx.csv
-        value_kelvin column
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D/§E (Value in native source units — ✅ for Amadeus)
-      note: >-
-        Amadeus ships the native Kelvin value and its unit declaration side by side with the
-        converted Celsius.
   - source: omop_gaia
     support:
     - type: schema
@@ -312,6 +307,18 @@ native_units_ucum:
         were converted.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus does not convert units, so there is no second unit to record; gridMET temperature
+      stays in kelvin. The `value_celsius` column of the old entry came from our own example script.
+      Closest: the unit on the processed raster.'
+    closest:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: Daily Accumulated Snow at Surface
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -366,20 +373,22 @@ target_concept_vocabulary:
         Concepts are from the OMOP vocabulary tables, where each concept names its vocabulary.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No health vocabulary is named. Closest: the source''s variable code.'
+    closest:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Note
+      snippet: Layer names of the returned
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
       No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
       Documentation.md or README.md.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus carries no target-vocabulary binding; the variable is implicit in the `tmmx`
-        column name.
   - source: cher
     legacy:
       extent: absent
@@ -419,18 +428,22 @@ target_concept_id:
         written as text.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No concept identifier is given. Closest: the source''s variable code.'
+    closest:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Note
+      snippet: Layer names of the returned
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
       No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
       Documentation.md or README.md.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No concept-id column in Amadeus output.
   - source: cher
     legacy:
       extent: absent
@@ -464,11 +477,9 @@ concept_status:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus has no concept binding and so no coverage-status flag.
+    reason: not_recorded
+    explanation: 'No concept binding, so no status. Closest: nothing.'
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -534,6 +545,17 @@ value_data_type:
         A value domain is exactly what CDI's RepresentedVariable carries, so the numeric/categorical
         distinction lives at CODATA's represented layer.
   not_supported_by:
+  - source: amadeus
+    reason: implicit
+    explanation: 'Values are numeric R columns; the type is not declared. Closest: the description of
+      the result.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-covariates
+      locator: Value
+      snippet: Calculated covariates as a data.frame or SpatVector object
+      status: verified
+    status: unverified
   - source: degauss
     reason: implicit
     explanation: >-
@@ -545,14 +567,6 @@ value_data_type:
       snippet: Rounding the Daymet variables to two decimal places
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus emits numeric value_kelvin/value_celsius columns with no explicit value-data-type
-        declaration.
 
 value_range_plausible_min:
   supported_by:
@@ -588,11 +602,16 @@ value_range_plausible_min:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no plausible-range bounds; only a _FillValue sentinel.
+    reason: not_recorded
+    explanation: 'No plausible range is given. Closest: the MODIS `scale` argument, which the user must
+      set from the product documentation.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-modis
+      locator: arguments
+      source_slot: calculate_modis.scale
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -647,11 +666,15 @@ value_range_plausible_max:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no plausible-range bounds; only a _FillValue sentinel.
+    reason: not_recorded
+    explanation: 'No plausible range is given. Closest: the MODIS `scale` argument.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-modis
+      locator: arguments
+      source_slot: calculate_modis.scale
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent

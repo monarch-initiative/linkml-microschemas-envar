@@ -186,7 +186,106 @@ sources:
     name: amadeus
     kind: tool
     url: https://github.com/NIEHS/amadeus
+    reviewed:
+      date: 2026-11-27
+      note: >-
+        Checked against the R package at a620aca (version 2.1.2): README, DESCRIPTION, the
+        bibliography, the help pages and vignettes of the gridMET workflow and of the download,
+        process and calculate wrappers, and the help pages of other datasets where they state
+        something gridMET does not. An item says so when it comes from another dataset's functions.
+        Not checked: NIEHS/amadeus_schema (#81), the HEW profile and beethoven. Every slot that has
+        evidence is checked. The slots in unreviewed.yaml are not.
     documents:
+      - id: amadeus-readme
+        title: amadeus README.md
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-description
+        title: amadeus DESCRIPTION
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/DESCRIPTION
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-references
+        title: amadeus inst/REFERENCES.bib
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/inst/REFERENCES.bib
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-download-data
+        title: amadeus man/download_data.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_data.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-download-gridmet
+        title: amadeus man/download_gridmet.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_gridmet.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-process-gridmet
+        title: amadeus man/process_gridmet.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_gridmet.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-calculate-covariates
+        title: amadeus man/calculate_covariates.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_covariates.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-calculate-gridmet
+        title: amadeus man/calculate_gridmet.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-calculate-lagged
+        title: amadeus man/calculate_lagged.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_lagged.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-calc-setcolumns
+        title: amadeus man/calc_setcolumns.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calc_setcolumns.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-calculate-modis
+        title: amadeus man/calculate_modis.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_modis.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-download-modis
+        title: amadeus man/download_modis.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_modis.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-download-narr
+        title: amadeus man/download_narr.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_narr.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-process-aqs
+        title: amadeus man/process_aqs.Rd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_aqs.Rd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-utils-calculate
+        title: amadeus R/utils-calculate.R
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/R/utils-calculate.R
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-gridmet-vignette
+        title: amadeus vignettes/gridmet_workflow.Rmd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/gridmet_workflow.Rmd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-modis-vignette
+        title: amadeus vignettes/modis_workflow.Rmd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/modis_workflow.Rmd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
+      - id: amadeus-goes-vignette
+        title: amadeus vignettes/noaa_goes_workflow.Rmd
+        url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/noaa_goes_workflow.Rmd
+        version: "2.1.2, a620aca (2026-11-23)"
+        retrieved: 2026-11-27
       - id: amadeus-process-covariates
         title: amadeus man/process_covariates.Rd
         url: https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_covariates.Rd
