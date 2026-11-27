@@ -4,6 +4,24 @@
 
 exposure_model_type:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Modeled data products.
+      match: partial
+      explanation: 'The data level mXX marks modeled products, dXX calculated ones. Missing: the kind
+        of model is not named.'
+      status: verified
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.4
+      snippet: FAQSD is a Bayesian space-time downscaler model
+      match: partial
+      explanation: 'The paper names the model class of some sources (FAQSD downscaler, an ensemble for
+        elemental carbon, Senseiver for C-HER''s own PM2.5). Missing: in the paper, not a metadata field.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -26,14 +44,6 @@ exposure_model_type:
         for the other indicators it only says they are typically modeled (§2.3.1), and no model
         class is given per indicator.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_dictionary data_level (mXX = modeled data)
-      note: >-
-        C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX)
-        from modeled, but does not name the model class (reanalysis vs interpolation).
   - source: degauss
     support:
     - type: documentation
@@ -72,13 +82,24 @@ exposure_model_type:
 exposure_model_inputs:
   supported_by:
   - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: dataset_lineage (parent resources of a computed/modeled resource)
-      note: >-
-        C-HER's dataset_lineage links parent resources a child was calculated/modeled from,
-        but as resource FKs, not a named model-input variable list.
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.4.1, p. 14
+      snippet: a resource might have multiple parent resources when data are generated from a model
+        created at ORNL
+      match: partial
+      explanation: 'A modeled resource links the resources it was made from. Missing: they are resource
+        links, not a list of input variables.'
+      status: verified
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.3
+      snippet: 'Data from the following sources were extracted from C-HER and used to train the model:'
+      match: partial
+      explanation: 'For C-HER''s PM2.5 model the paper lists the inputs (GMTED, gridMET, NLCD, LandScan,
+        AQS). Missing: in the paper only.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -173,6 +194,17 @@ exposure_model_paper_doi:
         README links the Daymet user guide and project page, no paper.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'The DOI field is for C-HER''s own published resources. The paper cites the Senseiver
+      paper without a DOI. Closest: the pointer to the literature.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.3
+      snippet: A more detailed description of this model can be found in the literature.
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -195,14 +227,6 @@ exposure_model_paper_doi:
       source_slot: data_source.url
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's doi field is the resource's own DOI, not a methods-paper DOI for the model
-        that produced the values.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -213,6 +237,17 @@ exposure_model_paper_doi:
         conceptual and represented layers do not carry.
 
 exposure_model_cross_validation_r2:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.4
+      snippet: yielding overall R2 values ranging from 0.910 to 0.970 on the training sets
+      match: partial
+      explanation: 'For elemental carbon the paper reports the producer''s cross-validated R2. Missing:
+        one dataset, in the paper, not a metadata field.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -264,12 +299,6 @@ exposure_model_cross_validation_r2:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER carries no source-model skill/cross-validation field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -281,6 +310,16 @@ exposure_model_cross_validation_r2:
 
 exposure_model_known_biases:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.1.3, p. 5
+      snippet: known limitations or exclusions
+      match: partial
+      explanation: 'Known limitations are one of the things free-text fields record. Missing: free text,
+        and not about the source model in particular.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -329,14 +368,6 @@ exposure_model_known_biases:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER has free-text description/notes but no structured known-biases field for the
-        source model.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -348,6 +379,17 @@ exposure_model_known_biases:
 
 bias_correction_applied:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No field says whether values were bias corrected. Closest: free text records material
+      differences from the parent after a transformation.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.1.3, p. 5
+      snippet: when data have been transformed, noted material differences from the parent
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus applies no bias correction and does not say so. Closest: the MODIS `scale`
@@ -394,14 +436,6 @@ bias_correction_applied:
       snippet: Rounding the Daymet variables to two decimal places
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's data_level codes track processing stage but do not flag whether statistical
-        bias correction was applied.
   - source: codata
     legacy:
       extent: out_of_layer

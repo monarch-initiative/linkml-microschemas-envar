@@ -4,6 +4,17 @@
 
 schema_version:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No version of the metadata framework is recorded with a resource. Closest: the version
+      code, which versions the resource, not the metadata.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: The version code ensures that every resource has a unique identifier
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus returns R objects and writes no metadata document, so there is nothing to
@@ -15,14 +26,6 @@ schema_version:
       source_slot: DESCRIPTION.Version
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's version code versions the data resource, not a metadata sidecar schema, so
-        no EnVar-style schema-version field exists.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -34,6 +37,17 @@ schema_version:
 
 provenance_id:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 6
+      snippet: Each resource has a unique identifier that is automatically generated based on its metadata
+        entry
+      match: partial
+      explanation: 'Every resource has a stable identifier generated from its metadata. Missing: it
+        names the table or file, and nothing says a health record carries it to point back to the metadata.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -68,17 +82,6 @@ provenance_id:
         The join code shows that `exposure_source_value` receives the `variable_source_id`.
         Missing: as above.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_name reproducible resource identifier (org_dataset_..._version) + osti_id /
-        ornl_res_pub_id
-      note: >-
-        C-HER assigns each resource a reproducible identifier, but it names the dataset resource,
-        not an EnVar sidecar that a health layer's source-value field carries. Conservative:
-        partial.
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -107,15 +110,6 @@ provenance_id:
 
 phi_status:
   supported_by:
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        PostgreSQL schemas private / embargo (access-tier separation) + rights FK
-      note: >-
-        C-HER separates private/embargoed resources into dedicated schemas and records rights,
-        but has no per-record PHI-status assertion flag. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -141,6 +135,18 @@ phi_status:
         The 2018 paper says the same. Missing: as above, nothing in the file itself.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No field says whether a resource holds personal data. Closest: the paper says access
+      is controlled by role.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: We have enabled strict role-based access control mechanisms to ensure that only authorized
+        users and systems can access data.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'Nothing says whether a result holds PHI. Closest: the locations come from the user

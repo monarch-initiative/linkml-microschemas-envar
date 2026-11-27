@@ -4,6 +4,16 @@
 
 temporal_resolution:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal resolution is the frequency or granularity
+      match: full
+      explanation: Temporal resolution is a coded field of every resource (A00 annual, M00 monthly,
+        W00 weekly).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -13,15 +23,6 @@ temporal_resolution:
       match: full
       explanation: The vignette of each dataset gives its temporal resolution; gridMET is daily.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_name temporal-resolution code (§2.4); inheritable temporal_resolution
-      note: >-
-        C-HER carries temporal resolution first-class as a code in the table_name pattern
-        and as an inheritable lineage field.
   - source: degauss
     support:
     - type: documentation
@@ -68,6 +69,16 @@ temporal_resolution:
 
 temporal_aggregation_method:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.3, p. 13
+      snippet: Arithmetic mean of valid PM2.5 observations assigned to the cell and date
+      match: partial
+      explanation: 'The column description says how a value was calculated. Missing: free text, not
+        a coded method.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -116,14 +127,6 @@ temporal_aggregation_method:
       source_slot: variable_source.variable_description
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's data-level codes track processing stage, not which statistic summarises a
-        sub-period; no aggregation-method field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -135,6 +138,17 @@ temporal_aggregation_method:
 
 temporal_aggregation_window_seconds:
   not_supported_by:
+  - source: cher
+    reason: implicit
+    explanation: 'The grain is a code (A00, M00), not a number of seconds. Closest: the temporal resolution
+      codes.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal resolution is the frequency or granularity
+      status: verified
+    status: unverified
   - source: amadeus
     reason: implicit
     explanation: 'The grain is given in words, not as a number of seconds. Closest: "Temporal resolution:
@@ -182,13 +196,6 @@ temporal_aggregation_window_seconds:
       snippet: Daymet weather variables include daily day length
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER encodes a temporal-resolution code but not a machine seconds-per-step window.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -219,6 +226,17 @@ day_boundary_convention:
         only for AQS, and it is the clock of hourly data, not a daily window.'
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'Where a day starts is not recorded. Closest: a time zone column can be tagged Temporal
+      - Secondary.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 13
+      snippet: Supporting time field.
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -243,12 +261,6 @@ day_boundary_convention:
       snippet: The Daymet calendar is based on a standard calendar year.
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER has no field for where the 24-hour day window starts.
   - source: codata
     legacy:
       extent: absent
@@ -260,6 +272,17 @@ day_boundary_convention:
 
 temporal_coverage_start:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'The start date is recorded. Missing: of the resource, which may cover part of the
+        source.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -286,15 +309,6 @@ temporal_coverage_start:
       match: full
       explanation: The value in the public example, per variable.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent
-      note: >-
-        C-HER encodes the coverage start in the concatenated temporal-extent code (§2.4) and
-        as an inheritable lineage field.
   - source: degauss
     support:
     - type: documentation
@@ -330,6 +344,17 @@ temporal_coverage_start:
 
 temporal_coverage_end:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'The end date is recorded. Missing: of the resource, which may cover part of the
+        source.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -356,15 +381,6 @@ temporal_coverage_end:
       match: full
       explanation: The value in the public example, per variable.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent
-      note: >-
-        C-HER encodes the coverage end in the concatenated temporal-extent code (§2.4) and
-        as an inheritable lineage field.
   - source: degauss
     support:
     - type: documentation
@@ -400,6 +416,17 @@ temporal_coverage_end:
 
 extraction_window_start:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'A resource is one cut of a dataset (e.g. TIGER 2024), and its start date is recorded.
+        Missing: it is the period of the resource, not of a run.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -435,14 +462,6 @@ extraction_window_start:
         recorded.
       status: verified
   not_supported_by:
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's temporal_extent is the dataset's coverage span, not the window an individual
-        extraction job pulled.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -454,6 +473,17 @@ extraction_window_start:
 
 extraction_window_end:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'The end date of the resource is recorded. Missing: the period of the resource, not
+        of a run.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -488,14 +518,6 @@ extraction_window_end:
         recorded.
       status: verified
   not_supported_by:
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's temporal_extent is the dataset span, not the window a specific extraction
-        job pulled.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -519,6 +541,17 @@ calendar:
         29 is kept and December 31 is dropped.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: implicit
+    explanation: 'Dates are ISO 8601, so the calendar is implicitly Gregorian. Closest: the unit of
+      the example date column.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.3, p. 13
+      snippet: Calendar date represented by the aggregated value.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: implicit
     explanation: 'Dates are R dates, so the calendar is implicitly Gregorian; nothing says so. Closest:
@@ -536,12 +569,6 @@ calendar:
       Dates are plain SQL dates. No field for the calendar of a source that uses another one.
       Nothing close was found in the schema or the README.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER has no calendar-of-time-axis field.
   - source: codata
     legacy:
       extent: out_of_layer

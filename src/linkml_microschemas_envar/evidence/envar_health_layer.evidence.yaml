@@ -4,6 +4,18 @@
 
 health_layer_target:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.5
+      snippet: C-HER data was extracted and used to create a relational database that can be used by
+        SEER
+      match: partial
+      explanation: 'The paper names a downstream health system, the SEER CONNECT database for cancer
+        patients (and a similar process for the VA). Missing: described in the paper, not a metadata
+        field.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -15,14 +27,6 @@ health_layer_target:
         gaiaDB writes its results to the `external_exposure` table of the OMOP GIS extension.
         The target is fixed by design and not declared per dataset.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: PostgreSQL schema=health (health-resource bucket)
-      note: >-
-        C-HER has a health schema for health resources, but does not name a downstream health-data
-        model as an exposure-record target. Conservative: partial.
   - source: chel
     support:
     - type: documentation
@@ -69,17 +73,18 @@ health_layer_link_field:
         The field of the health data that leads back to the metadata is `exposure_source_value`;
         the join fills it with the id of the variable's metadata record.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary.reference_column_id (FK to a column in another resource, e.g.
-        the health schema)
-      note: >-
-        C-HER models a cross-resource reference-column mechanism that could carry such a join,
-        but declares no exposure-record-to-health-layer link field. Conservative: partial.
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No field of a health data model is named. Closest: the paper says partners link the
+      data on the hexagon identifier.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: efficiently link the data by using the associated hexagonal identifier.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No field of a health data model is named. Closest: the result joins back to the user''s

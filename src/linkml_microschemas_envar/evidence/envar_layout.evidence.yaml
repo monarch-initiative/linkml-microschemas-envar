@@ -4,6 +4,16 @@
 
 table_orientation:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 12
+      snippet: They identify whether a column contains the measured value
+      match: partial
+      explanation: 'Column tags say which columns hold values and which locate the row in space and
+        time, so the layout can be read off. Missing: wide or long is not stated.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -14,15 +24,6 @@ table_orientation:
       explanation: 'The result has one row per location and time and one column per variable and radius,
         so it is wide. Missing: the layout is not declared; it follows from the column naming.'
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary.column_tag (Index / Value distinguishes table structure)
-      note: >-
-        C-HER's per-column tags (Index vs Value) expose table structure, though not a wide/long
-        orientation flag. Conservative: partial.
   - source: omop_gaia
     support:
     - type: documentation
@@ -72,6 +73,15 @@ table_orientation:
 
 value_column:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 12
+      snippet: Measured, observed, modeled, or calculated quantity.
+      match: full
+      explanation: Columns that hold values carry the tag Value (e.g. pm25_mean).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -118,13 +128,6 @@ value_column:
       match: full
       explanation: "The output of the daymet container has the value in the column `tmax`."
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_column_dictionary column tagged Value (column_tag = Value)
-      note: >-
-        C-HER identifies the value-carrying column first-class via the Value column tag.
   not_supported_by:
   - source: codata
     legacy:
@@ -148,6 +151,16 @@ value_column:
 
 subject_column:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 13
+      snippet: Most specific spatial identifier used to locate the record.
+      match: partial
+      explanation: 'The row subject of a C-HER table is a place, and its column is tagged Spatial -
+        Primary (e.g. h3_index). Missing: there is no tag for a person or cohort identifier.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -178,15 +191,6 @@ subject_column:
         The identifier is in the column `id` on every row; the README names `id` as the ID
         column of the input.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary column tagged Index / Foreign Reference (participant linkage)
-      note: >-
-        C-HER can tag a subject/participant column via Index or Foreign Reference, but not
-        as a dedicated sidecar subject binding. Conservative: partial.
   not_supported_by:
   - source: codata
     legacy:
@@ -210,6 +214,15 @@ subject_column:
 
 time_column:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 13
+      snippet: Most specific time field used to locate the observation.
+      match: full
+      explanation: The time column is tagged Temporal - Primary (e.g. observation_date).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -240,14 +253,6 @@ time_column:
       match: full
       explanation: "The output has one row per id and day, with the day in the column `date`."
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_column_dictionary column tagged Temporal – Primary
-      note: >-
-        C-HER tags time columns first-class via the Temporal – Primary tag, but not as a portable
-        sidecar time binding. Conservative: partial.
   not_supported_by:
   - source: codata
     legacy:
@@ -272,6 +277,16 @@ time_column:
 
 value_uncertainty_column:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 12
+      snippet: Information that qualifies or describes a value field.
+      match: partial
+      explanation: 'Columns that qualify a value are tagged Meta Value; the examples include estimate_margin_error.
+        Missing: the tag also covers quality flags, so an uncertainty column is not marked as such.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -283,15 +298,6 @@ value_uncertainty_column:
         any other layer. Missing: only for MODIS AOD; no column is marked as the uncertainty of another,
         and gridMET has none.'
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary column tagged Meta value (info about a Value column)
-      note: >-
-        C-HER's Meta value tag could carry a per-value uncertainty column referencing its
-        Value column, but none is asserted here. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -347,6 +353,17 @@ null_semantics_column:
         kind a given null is.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No column says why a value is missing. Closest: a quality flag column (Meta Value)
+      that codes completeness or review conditions of a value.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.3, p. 13
+      snippet: Code that identifies completeness or review conditions associated with pm25_mean.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No column says why a value is missing. Closest: the MODIS fusion of two satellites
@@ -370,14 +387,6 @@ null_semantics_column:
       source_slot: geocode_result
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER handles null semantics in its validation rules (§4.3.3 concepts live in CHEL),
-        but binds no per-value null-kind column in table_column_dictionary.
   - source: codata
     legacy:
       extent: out_of_layer

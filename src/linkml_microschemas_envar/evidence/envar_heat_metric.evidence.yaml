@@ -18,6 +18,17 @@ heat_metric_family:
         a column is.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'C-HER describes no heat metric. Closest: gridMET meteorological variables are among
+      its data.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.3
+      snippet: Seven meteorological variables from the GridMet database
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus has no heat metrics; it returns the variables of the source, such as gridMET
@@ -41,12 +52,6 @@ heat_metric_family:
       field: E_NEHD
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER models no derived heat-metric family.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -55,6 +60,18 @@ heat_metric_family:
       note: Heat-metric methodology is instance-layer; out of scope for CODATA.
 
 input_source_short_code:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.4.1, p. 14
+      snippet: A resource may have one parent resource or multiple parent resources.
+      match: partial
+      explanation: 'A derived resource links its parents, and each parent''s identifier starts with
+        the abbreviation of its organization and dataset (e.g. census_tiger). Missing: not for heat
+        metrics, and the code is C-HER''s abbreviation.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -67,12 +84,6 @@ input_source_short_code:
       source_slot: download_data.dataset_name
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER models no heat-equation inputs.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -83,6 +94,10 @@ input_source_short_code:
 
 wind_speed_measurement_height_m:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'C-HER computes no WBGT or UTCI. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No WBGT or UTCI is computed. Closest: the gridMET variable list names the height of
@@ -94,12 +109,6 @@ wind_speed_measurement_height_m:
       snippet: Wind speed at 10 m
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER models no WBGT/UTCI heat metrics.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -109,6 +118,18 @@ wind_speed_measurement_height_m:
 
 solar_radiation_basis:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'C-HER computes no WBGT or UTCI. Closest: the paper uses Daymet daily total shortwave
+      radiation, averaged over a year, for a radiation measure.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.4
+      snippet: Solar radiation, or daily total shortwave radiation, measures from 2019 DayMet data were
+        averaged across the year
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No WBGT or UTCI is computed. Closest: gridMET solar radiation is offered as a variable.'
@@ -119,12 +140,6 @@ solar_radiation_basis:
       snippet: Surface Downwelling Solar Radiation
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER models no WBGT/UTCI heat metrics.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -146,19 +161,22 @@ percentile_reference_geographic_scope:
         states it for its indicator ranks in general, not for a heat threshold.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No percentile metric is described. Closest: the paper''s maps use fixed AQI thresholds,
+      not a reference distribution.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: Figure 2
+      snippet: AQI thresholds for PM2.5 were used
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus computes no percentile metric, so there is no reference distribution. Closest:
       nothing.'
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's percentile normalization is EJI vulnerability, not a heat-metric percentile
-        baseline scope.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -168,17 +186,15 @@ percentile_reference_geographic_scope:
 
 percentile_reference_seasonal_window:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No percentile metric is described. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus computes no percentile metric, so there is no seasonal reference window. Closest:
       nothing.'
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER carries no heat-metric seasonal reference window.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -188,6 +204,10 @@ percentile_reference_seasonal_window:
 
 metric_temporal_aggregation_rule:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No multi-day event flag is described. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No multi-day event flag is computed. Closest: `.by_time` summarises values over a
@@ -199,12 +219,6 @@ metric_temporal_aggregation_rule:
       source_slot: calculate_covariates..by_time
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER stamps no multi-day heat events onto days.
   - source: codata
     legacy:
       extent: out_of_layer

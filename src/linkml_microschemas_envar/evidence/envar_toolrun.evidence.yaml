@@ -4,6 +4,15 @@
 
 tool_name:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: Links to the code used to ingest, transform, and create data are stored in the database.
+      match: partial
+      explanation: 'The code that made a resource is linked. Missing: a link to code, not a tool name.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -55,14 +64,6 @@ tool_name:
       explanation: "The ETL file names the download tool. Missing: no version."
       status: verified
   not_supported_by:
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's table_dictionary carries dataset/resource metadata, not a per-run producing-tool
-        name.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -124,15 +125,18 @@ tool_version:
         `..._geocoder_3.4.2_...csv`). Missing: a container can write its file itself; daymet
         1.0.0 appends only `_daymet`, without the version.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_dictionary.version (resource version 001/002...) via §2.6
-      note: >-
-        C-HER carries a resource version code, but it versions the dataset resource, not a
-        per-run producing tool.
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No version of the producing code is recorded; the version code versions the resource.
+      Closest: the link to the code.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: Links to the code used to ingest, transform, and create data are stored in the database.
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -178,6 +182,16 @@ container_image_repository:
         with the output.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No container image is mentioned. Closest: the software stack named in the paper.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: We utilize open-source software such as S3, PostgreSQL, Prefect, and Python
+      status: verified
+    status: unverified
   - source: amadeus
     reason: different_concept
     explanation: 'amadeus is an R package installed from CRAN or GitHub, not a container image. Closest:
@@ -213,12 +227,6 @@ container_image_repository:
       value: gaia-db
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no producing-tool container image repository.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -228,6 +236,16 @@ container_image_repository:
 
 container_image_digest:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No container image is mentioned. Closest: the software stack named in the paper.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: We utilize open-source software such as S3, PostgreSQL, Prefect, and Python
+      status: verified
+    status: unverified
   - source: amadeus
     reason: different_concept
     explanation: 'There is no container image. Closest: the package version in DESCRIPTION.'
@@ -274,12 +292,6 @@ container_image_digest:
       snippet: previously published versions of images will not be changed
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no producing-tool container image digest.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -343,6 +355,16 @@ run_arguments:
         ETL, not the arguments of a join run.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No arguments of a run are recorded. Closest: the link to the code.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: Links to the code used to ingest, transform, and create data are stored in the database.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'The arguments are those of the R call and are not stored with the result. Closest:
@@ -366,12 +388,6 @@ run_arguments:
       snippet: Privacy threshold specification
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no per-run argument map.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -381,6 +397,16 @@ run_arguments:
 
 run_timestamp_utc:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 10
+      snippet: Source download date or derived product creation date.
+      match: partial
+      explanation: 'The resource date records when it was downloaded or generated. Missing: a date,
+        not a UTC time of a run.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -401,16 +427,6 @@ run_timestamp_utc:
         The ETL file of a catalogue entry records when the dataset was last loaded, in UTC.
         Missing: it is the time of the ETL, not of the join.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_dictionary.metadata_created_at/metadata_updated_at (metadata time, not producing-run
-        time)
-      note: >-
-        C-HER stamps metadata create/update times, which are registration times, not the producing
-        tool-run timestamp.
   - source: chel
     support:
     - type: output
@@ -468,6 +484,17 @@ input_file_sha256:
         filled (TBD), and neither the algorithm nor the file it belongs to is stated.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No file hash is mentioned. Closest: raw files are kept in their native format.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: Supplement 2
+      snippet: Large source files are maintained in their native formats to preserve integrity and facilitate
+        access.
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -480,12 +507,6 @@ input_file_sha256:
       No hash of the input is written. Nothing close was found in the READMEs, the code or the
       example outputs.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no per-run input-file hash.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -495,6 +516,10 @@ input_file_sha256:
 
 input_row_count:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No row count is recorded. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No row count of the inputs is given. Closest: the download summary counts files (`success`,
@@ -530,12 +555,6 @@ input_row_count:
       No row count of the input is written. Nothing close was found in the READMEs, the code or
       the example outputs.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no per-run input row count.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -545,6 +564,10 @@ input_row_count:
 
 output_file_sha256:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No hash of a resource is recorded. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus returns R objects and does not hash them. Closest: the MD5 hash of the download
@@ -581,12 +604,6 @@ output_file_sha256:
       No hash of the output is written. Nothing close was found in the READMEs, the code or the
       example outputs.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no per-run output-file hash.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -608,6 +625,10 @@ output_row_count:
         grid file only; no row count is given for the indicator tables.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No row count is recorded. Closest: nothing.'
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'The number of rows is not recorded; it is the size of the returned object. Closest:
@@ -640,12 +661,6 @@ output_row_count:
       source_slot: geocode_summary
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER records no per-run output row count.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -655,6 +670,16 @@ output_row_count:
 
 provenance_chain_steps:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.4.1, p. 14
+      snippet: A resource may have one parent resource or multiple parent resources.
+      match: partial
+      explanation: 'Parents are linked, so the chain can be followed back. Missing: resources, not tool
+        runs, and no order is stored.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -689,14 +714,6 @@ provenance_chain_steps:
         derive). Missing: written as pseudo code, without the versions of the tools or the time
         of a run.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: dataset_lineage table (parent-child links) + lineage_notes
-      note: >-
-        C-HER's dataset_lineage links parent and child resources but is a dataset-lineage
-        graph, not an ordered per-run W3C-PROV tool chain.
   - source: degauss
     support:
     - type: documentation
@@ -730,6 +747,17 @@ provenance_chain_steps:
         Ordered tool-run provenance is instance-layer; out of scope for CODATA.
 
 provenance_chain_terminus_type:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Raw source data imported without substantive transformation.
+      match: partial
+      explanation: 'The root of a lineage is a raw import, marked with data level 000. Missing: not
+        typed as the root of a chain.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -766,12 +794,6 @@ provenance_chain_terminus_type:
       snippet: as NetCDF file(s) using the
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER's lineage graph has no typed terminus field on the chain.
   - source: codata
     legacy:
       extent: out_of_layer
