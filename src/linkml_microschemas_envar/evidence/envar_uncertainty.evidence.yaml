@@ -20,11 +20,11 @@ per_value_uncertainty_type:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia output carries a per-value uncertainty type.
+    reason: not_recorded
+    explanation: >-
+      No field for the uncertainty of a value. Nothing close was found in the schema or the
+      README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -66,12 +66,10 @@ per_value_uncertainty_units_ucum:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        With no per-value uncertainty column, gaia carries no uncertainty units.
+    reason: not_recorded
+    explanation: >-
+      As for `per_value_uncertainty_type`: no per-value uncertainty, so no unit either.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -114,13 +112,17 @@ model_aggregate_uncertainty:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No gaia output carries cross-validation R²/RMSE for the source model (Tmax scenario
-        emits no model-accuracy summary).
+    reason: not_recorded
+    explanation: >-
+      No field for summary statistics of a source model. Closest: the free-text `description` of
+      the dataset.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.description
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -180,15 +182,19 @@ missing_data_handling_method:
         in a code comment only; the README does not say that rows can be dropped, and missing
         values inside the grid are not mentioned.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Gaia's meta_etl nodata registers the missing-value sentinel, not the source's missing-data
-        handling method.
+    support:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Raster Sources
+      snippet: nodata or outside the raster gives no row
+      match: partial
+      explanation: >-
+        The README says what the join does with missing source values (no exposure row), and the
+        nodata value of a variable is registered. Missing: how the source itself treated missing
+        data is not passed on.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -216,12 +222,16 @@ missing_data_handling_method:
 data_completeness_pct:
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No gaia output carries a data-completeness percentage for the extracted window.
+    reason: not_recorded
+    explanation: >-
+      No completeness figure is stored. Closest: `working.exposure_statistics()`, which counts
+      persons, variables and rows on request.
+    closest:
+    - type: documentation
+      document: gaiadb-spatial-join
+      snippet: Get summary statistics about exposure calculations
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-

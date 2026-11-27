@@ -26,13 +26,18 @@ exposure_model_type:
         from modeled, but does not name the model class (reanalysis vs interpolation).
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA has no first-class exposure-model-type slot; it is present only via the EnVar
-        JSON-LD extension. Natively GAIA carries only a free-text measurement_technique.
+    reason: different_concept
+    explanation: >-
+      `data_source` has a field `measurement_technique`, but in the catalogue it says how the
+      data are represented (raster, vector, geometry type), not what kind of model produced the
+      values.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.measurement_technique
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -72,11 +77,17 @@ exposure_model_inputs:
         but as resource FKs, not a named model-input variable list.
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: GAIA has no slot anywhere for model inputs.
+    reason: not_recorded
+    explanation: >-
+      No field for the inputs of the model behind a dataset. Closest: `isBasedOn` in the
+      catalogue schema, for a source the dataset is derived from, and the free-text description.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Dataset
+      source_slot: Dataset.is_based_on
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -133,13 +144,15 @@ exposure_model_paper_doi:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA carries a dataset DOI (dct:identifier) but no methods-paper DOI describing the
-        exposure model; no such slot exists.
+    reason: not_recorded
+    explanation: "No field for a methods paper. Closest: the `url` of the dataset."
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.url
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -192,12 +205,17 @@ exposure_model_cross_validation_r2:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA carries no model cross-validation R2; no such slot exists in gaiaCatalog or gaia-db.
+    reason: not_recorded
+    explanation: >-
+      No field for a skill statistic of the source model. Closest: the free-text `description`
+      of the dataset.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.description
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -247,11 +265,17 @@ exposure_model_known_biases:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: GAIA carries no known-model-biases field.
+    reason: not_recorded
+    explanation: >-
+      No field for known issues of the source data. Closest: the free-text `description` of the
+      dataset.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.description
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -302,11 +326,17 @@ bias_correction_applied:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: GAIA carries no bias-correction flag for the source model.
+    reason: not_recorded
+    explanation: >-
+      No field says whether values were bias-corrected. Closest: the free-text `description` of
+      the dataset.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.description
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-

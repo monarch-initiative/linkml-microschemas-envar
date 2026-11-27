@@ -18,13 +18,16 @@ subject_type:
         in prose only; no field says whether a row is a hexagon or a participant.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: external_exposure.person_id; location_history.domain_id/entity_id
-      note: >-
-        person_id makes every exposure row person-level and location_history.domain_id types
-        the entity, but no subject-type field exists.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location_history
+      source_slot: location_history.domain_id
+      match: full
+      explanation: >-
+        `domain_id` says what kind of entity (a person, a care site) the `entity_id` of a
+        location period is. The join writes `person_id` only for the person domain.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -79,15 +82,16 @@ variable_identity:
         codes.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db variable_source.variable_name/variable_description + JSON-LD variableMeasured.propertyID
-        (NERC air_temperature); unit_concept_id 8653
-      note: >-
-        Gaia carries variable name, description, unit, and a CF-mirror propertyID, but CF
-        cell_methods has no slot. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.variable_name
+      match: full
+      explanation: >-
+        `variable_source` describes each variable: name, description, property id, data type,
+        unit, value range and concept ids.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -147,15 +151,16 @@ spatial_reference:
         published hex grid is not stated.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db location.geom EPSG:4326 / data_source.srid; meta_etl_*.json epsg / extent;
-        data_source.spatial_coverage
-      note: >-
-        Gaia carries CRS/SRID and dataset spatial coverage, but has no first-class native-resolution
-        or extraction-method slot. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.srid
+      match: partial
+      explanation: >-
+        A dataset has its CRS (`srid`), geometry type and spatial coverage, and each exposure
+        row says how it was joined. Missing: no cell size or resolution of the source.
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -201,14 +206,16 @@ spatial_reference:
 temporal_reference:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db variable_source.start_date/end_date; meta_dcat_*.json dct:temporal
-      note: >-
-        Gaia carries the dataset time span but has no first-class temporal-resolution, aggregation-method,
-        or day-boundary slot. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.start_date
+      match: partial
+      explanation: >-
+        A variable has the period it covers, and each value its own time window. Missing: no
+        field for the time grain, the aggregation over the window or the day boundary.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -281,16 +288,6 @@ exposure_model:
         Part 3. Missing: model type, inputs, methods paper and skill of the source models are
         not passed on.
       status: verified
-  - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db data_source.measurement_technique + meta_dcat_*.json measurementTechnique
-        (free-text)
-      note: >-
-        Gaia carries a free-text method description but no structured exposure-model type
-        or model-inputs list. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -325,6 +322,19 @@ exposure_model:
       status: asserted
       where: no column
       note: Exposure-model identity is instance-layer; out of scope for CODATA.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      `data_source` has a field `measurement_technique`, but in the catalogue it says how the
+      data are represented (raster, vector), not how the values were modelled. Model type,
+      inputs and skill have no field.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.measurement_technique
+      status: verified
+    status: unverified
 
 data_layout:
   supported_by:
@@ -341,15 +351,16 @@ data_layout:
         not described.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure.person_id/value_as_number + gaia_db location.csv columns (implicit
-        layout)
-      note: >-
-        Gaia's OMOP/gaia-db tables have value/subject/time columns but no portable sidecar
-        column-binding document. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.value_as_number
+      match: full
+      explanation: >-
+        The output table has a fixed definition: person, period, value, unit and the source
+        value that identifies the variable.
+      status: verified
   - source: degauss
     support:
     - type: output
@@ -406,18 +417,16 @@ source_dataset:
         Missing: licence, DOI and citation of the inputs.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_name
+      match: full
+      explanation: >-
+        `data_source` describes each source dataset: name, version, description, creator,
+        provider, licence, coverage, dates and URL.
       status: verified
-      where: >-
-        gaia_db data_source.dataset_name/dataset_version/license/creator/date_published +
-        meta_dcat_*.json dct:title/dct:identifier(DOI)/dct:license
-      evidence: >-
-        COMPARISON.md §I — dataset name ✅, version ✅, DOI ✅, license ✅, publisher ✅, date
-        published/modified ✅
-      note: >-
-        Gaia natively carries full dataset-level discovery metadata (name, version, DOI, license,
-        publisher).
   - source: cher
     legacy:
       extent: full
@@ -485,13 +494,11 @@ uncertainty:
         or completeness percentage. Conservative: partial.
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No gaia output carries per-value or model-aggregate uncertainty (per-value uncertainty
-        is ❌ across all pipelines).
+    reason: not_recorded
+    explanation: >-
+      No field for the uncertainty of a value or of a source model. Nothing close was found in
+      the schema or the README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -527,14 +534,16 @@ linkage_method:
         participant's location over time is handled.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        working.spatial_join_exposure (st_within with hard-coded buffer), captured in gaia_db/spatial_join_log.txt
-      note: >-
-        Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented
-        linkage-strategy column. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_relationship_concept_id
+      match: partial
+      explanation: >-
+        Each exposure row says how it was joined, and the residence periods come from
+        `location_history`. Missing: nothing about the quality or origin of the geocodes.
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -576,14 +585,16 @@ linkage_method:
 tool_run:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db data_source.created_at/updated_at (load time); spatial_join_log.txt (SQL functions)
-      note: >-
-        Gaia carries per-row load times and a join log, but no tool name/version, container
-        digest, run args, or hashes. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.created_at
+      match: partial
+      explanation: >-
+        Rows have the time they were written, and the join method is on each exposure row.
+        Missing: no name or version of the software, no hashes and no row counts.
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -650,14 +661,27 @@ provenance_chain:
         are generic; no tool, version or date per step.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt
-      note: >-
-        Gaia's ETL descriptor plus join log capture upstream steps but not as an ordered per-run
-        W3C-PROV chain. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.etl_metadata
+      match: partial
+      explanation: >-
+        The ETL steps of a dataset (download from the source, the tool used, the result) are
+        kept from the `about` part of its JSON-LD. Missing: they describe the ETL of the dataset
+        as planned, not runs: no time or version per step, and the join is not part of it.
+      status: verified
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "prov:wasGeneratedBy"
+      value: GDSC automation (see Process Step)
+      match: partial
+      explanation: >-
+        The DCAT record of a catalogue entry has the process steps of its ETL as a script-like
+        text (`prov:action`, also the `processStep` file of the entry). Missing: a description
+        of the ETL, not a record of runs.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -691,14 +715,16 @@ provenance_chain:
 health_layer_linkage:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure.exposure_source_value / exposure_concept_id + external_exposure.person_id
-      note: >-
-        Gaia lands values in OMOP external_exposure with a person link and a source-value
-        hook, but names no explicit sidecar provenance-id join field. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_source_value
+      match: full
+      explanation: >-
+        Values go into OMOP `external_exposure` with the person, and `exposure_source_value`
+        leads back to the variable's metadata record.
+      status: verified
   - source: cher
     legacy:
       extent: partial

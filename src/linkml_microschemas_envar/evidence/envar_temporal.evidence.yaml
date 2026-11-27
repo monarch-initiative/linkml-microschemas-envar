@@ -30,6 +30,17 @@ temporal_resolution:
       match: full
       explanation: "The README says the variables are daily; the output has one row per day."
       status: verified
+  - source: omop_gaia
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.attr_template
+      source_slot: attr_template.attr_start_date
+      match: partial
+      explanation: >-
+        Every value has its own time window (`attr_start_date`, `attr_end_date`). Missing: the
+        grain is not named (daily, monthly); it follows from the length of the window.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -45,12 +56,6 @@ temporal_resolution:
         geometries.
       status: verified
     status: unverified
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No first-class temporal_resolution slot in gaiaCatalog or gaia-db.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -96,11 +101,17 @@ temporal_aggregation_method:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No aggregation-method slot in gaiaCatalog or gaia-db.
+    reason: not_recorded
+    explanation: >-
+      No field says how a value summarises its time window (mean, maximum, sum). Closest: the
+      free-text description of the variable.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.variable_description
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -144,11 +155,17 @@ temporal_aggregation_window_seconds:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No aggregation-window field; the temporal grain itself is absent.
+    reason: implicit
+    explanation: >-
+      The length of the window follows from the two dates of each value; it is not given as a
+      number.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.attr_template
+      source_slot: attr_template.attr_start_date
+      status: verified
+    status: unverified
   - source: degauss
     reason: implicit
     explanation: "The window follows from the word daily; no length is given."
@@ -178,11 +195,17 @@ temporal_aggregation_window_seconds:
 day_boundary_convention:
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No day-boundary slot anywhere in gaiaCatalog or gaia-db.
+    reason: not_recorded
+    explanation: >-
+      Periods are dates, and nothing says where a day starts or in which time zone. Closest: the
+      exposure datetime columns, which the join fills from the dates.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_start_datetime
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -221,14 +244,21 @@ day_boundary_convention:
 temporal_coverage_start:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.start_date
+      match: full
+      explanation: The first date a variable covers.
       status: verified
-      where: >-
-        gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date
-      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
-      note: >-
-        GAIA records the product time-span via DCAT dct:temporal and variable_source.start_date/end_date.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: startDate
+      value: "2022-01-01"
+      match: full
+      explanation: The value in the public example, per variable.
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -282,14 +312,21 @@ temporal_coverage_start:
 temporal_coverage_end:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.end_date
+      match: full
+      explanation: The last date a variable covers.
       status: verified
-      where: >-
-        gaia_catalog meta_dcat_*.json dct:temporal; gaia_db variable_source.end_date
-      evidence: EnVar/examples/heat/COMPARISON.md §H (dataset time-span ✅)
-      note: >-
-        GAIA records the product coverage-end via DCAT dct:temporal and variable_source.end_date.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: endDate
+      value: "2022-12-31"
+      match: full
+      explanation: The value in the public example, per variable.
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -354,15 +391,19 @@ extraction_window_start:
         The input column `start_date` sets the first day extracted. Missing: it is given per
         input row, not once for the run, and the output keeps only the single dates.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        gaia-native output collapses per-day to the variable's window-wide validity range;
-        the run's actual extraction window start is not recorded.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_start_date
+      match: partial
+      explanation: >-
+        Each exposure row has the start of the period it was made for (the value's window cut to
+        the residence period). Missing: per row; the window of a join run as a whole is not
+        recorded.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -400,14 +441,19 @@ extraction_window_end:
         The input column `end_date` sets the last day extracted. Missing: it is given per input
         row, not once for the run, and the output keeps only the single dates.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        gaia collapses to the variable's window; no per-run extraction-window-end is recorded.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_end_date
+      match: partial
+      explanation: >-
+        Each exposure row has the end of the period it was made for (the value's window cut to
+        the residence period). Missing: per row; the window of a join run as a whole is not
+        recorded.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -456,11 +502,11 @@ calendar:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No calendar/time-origin slot in gaia.
+    reason: not_recorded
+    explanation: >-
+      Dates are plain SQL dates. No field for the calendar of a source that uses another one.
+      Nothing close was found in the schema or the README.
+    status: unverified
   - source: cher
     legacy:
       extent: absent

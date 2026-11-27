@@ -29,7 +29,38 @@ sources:
     kind: standard
     url: https://ohdsi.github.io/GIS/
     standards_index_id: omop-cdm
+    reviewed:
+      date: 2026-11-27
+      note: >-
+        Checked against gaiaDB (schema, README, join code, bundled example) and gaiaCatalog
+        (schema, ETL and DCAT file of one entry). Every slot that has evidence is checked. The
+        slots in unreviewed.yaml are not.
     documents:
+      - id: gaiadb-readme
+        title: gaiaDB README.md
+        url: https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md
+        version: "2f918c8"
+        retrieved: 2026-11-27
+      - id: gaiadb-spatial-join
+        title: gaiaDB sql/04_spatial_join_functions.sql
+        url: https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/04_spatial_join_functions.sql
+        version: "2f918c8"
+        retrieved: 2026-11-27
+      - id: gaiacatalog-schema
+        title: gaiaCatalog schema/gaia_catalog.yaml
+        url: https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml
+        version: "6f51cd2 (2026-11-18)"
+        retrieved: 2026-11-27
+      - id: gaiacatalog-example-etl
+        title: gaiaCatalog ETL file of global_pm25_concentration_1998_2016
+        url: https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json
+        version: "6f51cd2 (2026-11-18)"
+        retrieved: 2026-11-27
+      - id: gaiacatalog-example-dcat
+        title: gaiaCatalog DCAT record of global_pm25_concentration_1998_2016
+        url: https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json
+        version: "6f51cd2 (2026-11-18)"
+        retrieved: 2026-11-27
       - id: gaiadb-init-schema
         title: gaiaDB sql/01_init_schema.sql
         url: https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql

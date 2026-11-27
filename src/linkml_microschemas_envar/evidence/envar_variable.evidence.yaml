@@ -15,17 +15,21 @@ variable_name:
         `EPL_NEHD`). Missing: CHEL's documentation does not list or explain the codes.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.variable_name
+      match: full
+      explanation: The name of the variable, a required field.
       status: verified
-      where: >-
-        gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as
-        a bare column header (tmax / tmmx)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §F (Variable short name — ✅ for GAIA)
-      note: >-
-        GAIA carries the variable short name first-class in variable_source.variable_name;
-        the combined stack surfaces it as a named slot.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: name
+      value: area_sqmi
+      match: full
+      explanation: A variable name in the public example.
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -80,16 +84,21 @@ variable_label:
         days). Missing: the names are not tied to the column codes of the tables.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.variable_description
+      match: full
+      explanation: The description of the variable.
       status: verified
-      where: >-
-        gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §F (Variable description / long name — ✅ for GAIA)
-      note: >-
-        GAIA carries a variable long name / description first-class in variable_source.variable_description
-        and the JSON-LD.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: description
+      value: Tract area in square miles
+      match: full
+      explanation: A variable description in the public example.
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -133,17 +142,6 @@ variable_label:
 
 standard_name:
   supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: full
-      status: verified
-      where: >-
-        gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature
-        (NERC/CF mirror)
-      evidence: EnVar/examples/heat/COMPARISON.md §F (CF standard name — ✅ for GAIA)
-      note: >-
-        GAIA is the only stack carrying a real CF standard name, via the hand-authored NERC
-        propertyID in variable_source / JSON-LD.
   - source: amadeus
     legacy:
       extent: partial
@@ -198,6 +196,20 @@ standard_name:
       source_slot: tmax
       status: verified
     status: unverified
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      A variable's `propertyID` is defined in the catalogue schema as an OMOP concept id, and
+      gaiaDB loads it into `property_id` and `attr_concept_id`. That binds the variable to the
+      health vocabulary. A standard name of the physical quantity, such as a CF name, has no
+      field.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.property_id
+      status: verified
+    status: unverified
 
 units_ucum:
   supported_by:
@@ -213,16 +225,23 @@ units_ucum:
         native estimates (`E_` columns), and the published `EPL_` columns are on a 0 to 1 scale.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.unit_code
+      match: partial
+      explanation: >-
+        A variable has a unit code, a unit text and an OMOP unit concept. Missing: nothing says
+        that the code is UCUM.
       status: verified
-      where: >-
-        gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode;
-        external_exposure.unit_concept_id 8653
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §E (Native unit declared — ✅ for GAIA)
-      note: >-
-        GAIA carries the unit as a first-class UCUM code (CEL) plus the OMOP unit_concept_id.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: unitText
+      value: square miles
+      match: partial
+      explanation: "The public example gives the unit as text only. Missing: no unit code."
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -280,15 +299,19 @@ native_units_ucum:
       note: >-
         Amadeus ships the native Kelvin value and its unit declaration side by side with the
         converted Celsius.
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number
-        and the upstream native unit is not on the row.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.attr_template
+      source_slot: attr_template.unit_source_value
+      match: partial
+      explanation: >-
+        Next to the unit concept, a value keeps the unit as the source gave it
+        (`unit_source_value`). Missing: free text, not UCUM, and nothing says whether values
+        were converted.
+      status: verified
+  not_supported_by:
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -331,18 +354,15 @@ native_units_ucum:
 target_concept_vocabulary:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: vocabulary.concept
+      source_slot: concept.vocabulary_id
+      match: full
+      explanation: >-
+        Concepts are from the OMOP vocabulary tables, where each concept names its vocabulary.
       status: verified
-      where: >-
-        external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id
-        (8653) — OMOP vocabulary is the implicit target
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for
-        GAIA)
-      note: >-
-        The OMOP CDM is the target vocabulary itself; the concept slots land the value against
-        OHDSI concept ids.
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -378,18 +398,24 @@ target_concept_vocabulary:
 target_concept_id:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_concept_id
+      match: full
+      explanation: >-
+        The concept of the exposure; the variable's metadata has the same as `attr_concept_id`.
       status: verified
-      where: >-
-        external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id
-        32885
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (Exposure concept / variable identity — ✅ for
-        GAIA)
-      note: >-
-        GAIA fills the concept-id slot even though no real OMOP concept is yet minted for
-        daily-max-air-temperature; the binding exists.
+    - type: schema
+      document: gaiacatalog-schema
+      locator: types
+      source_slot: ConceptIdText
+      match: full
+      explanation: >-
+        In the catalogue the concept of a variable is its `propertyID`, an OMOP concept id
+        written as text.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -421,15 +447,20 @@ target_concept_id:
         not this run's downstream id.
 
 concept_status:
-  not_supported_by:
+  supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap
-        status flag saying whether a real OMOP concept exists — an EnVar-novel slot.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: vocabulary.concept
+      source_slot: concept.standard_concept
+      match: partial
+      explanation: >-
+        The vocabulary says whether a concept is a standard one, and the join code uses the
+        concept id 0 where nothing is mapped. Missing: no status for a concept that is proposed
+        or known to be missing.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -455,15 +486,21 @@ concept_status:
 value_data_type:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.data_type
+      match: full
+      explanation: The data type of the variable.
       status: verified
-      where: gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)
-      evidence: >-
-        examples/scenarios/standards/omop_gaia_daymet_tmax.yaml (value_data_type)
-      note: >-
-        GAIA registers the attribute's numeric qudt:dataType at dataset-registration time;
-        the EnVar translation carries it first-class as value_data_type.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: "qudt:dataType"
+      value: float8
+      match: full
+      explanation: The value in the public example, per variable.
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -517,14 +554,6 @@ value_data_type:
 
 value_range_plausible_min:
   supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: full
-      status: verified
-      where: gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)
-      note: GAIA carries a first-class min_value (−50) as variable metadata.
   - source: codata
     legacy:
       extent: partial
@@ -563,17 +592,22 @@ value_range_plausible_min:
       status: asserted
       where: no column
       note: C-HER column metadata carries no per-variable plausible min/max.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue stores a `minValue` per variable (gaiaDB: `min_value`). In the public
+      example it is the smallest value found in the data (8 for a column of codes, -1 for a
+      concentration), not a bound for plausible values.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.min_value
+      status: verified
+    status: unverified
 
 value_range_plausible_max:
   supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: full
-      status: verified
-      where: gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §F (Variable valid range min/max — ✅ for GAIA)
-      note: GAIA carries a first-class max_value (60) as variable metadata.
   - source: codata
     legacy:
       extent: partial
@@ -612,3 +646,16 @@ value_range_plausible_max:
       status: asserted
       where: no column
       note: C-HER column metadata carries no per-variable plausible min/max.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue stores a `maxValue` per variable (gaiaDB: `max_value`). In the public
+      example it is the largest value found in the data (94650 for a column of codes), not a
+      bound for plausible values.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.max_value
+      status: verified
+    status: unverified

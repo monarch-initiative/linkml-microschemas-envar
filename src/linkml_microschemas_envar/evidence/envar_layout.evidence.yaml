@@ -13,15 +13,19 @@ table_orientation:
       note: >-
         C-HER's per-column tags (Index vs Value) expose table structure, though not a wide/long
         orientation flag. Conservative: partial.
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        The OMOP external_exposure table is implicitly long, but no orientation flag is declared
-        as a field — it is a structural property a consumer must infer.
+    support:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Loading Variables and Spatial Joins
+      snippet: one row per feature, variable, and time window
+      match: partial
+      explanation: >-
+        The README says that the attribute tables are long: one row per feature, variable and
+        time window. Missing: for `external_exposure` the long layout follows from its columns
+        only, and there is no field for the orientation.
+      status: verified
+  not_supported_by:
   - source: degauss
     reason: implicit
     explanation: >-
@@ -62,14 +66,14 @@ table_orientation:
 value_column:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.value_as_number
+      match: full
+      explanation: "The value is in the fixed column `value_as_number`."
       status: verified
-      where: external_exposure.value_as_number (Cel)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for GAIA)
-      note: >-
-        The OMOP CDM binds the value to the stable external_exposure.value_as_number column.
   - source: degauss
     support:
     - type: schema
@@ -128,15 +132,14 @@ value_column:
 subject_column:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.person_id
+      match: full
+      explanation: "The person is in the fixed column `person_id`."
       status: verified
-      where: external_exposure.person_id; person.person_id; location.location_id
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for OMOP/GAIA)
-      note: >-
-        OMOP carries the subject identifier first-class on external_exposure.person_id (and
-        person/location).
   - source: degauss
     support:
     - type: output
@@ -189,14 +192,16 @@ subject_column:
 time_column:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure attr_start_date / attr_end_date (window-wide, not per-day)
-      note: >-
-        GAIA carries date columns but collapses every row to the variable's window-wide attr_start_date/attr_end_date
-        — per-day external_exposure does not come out. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_start_date
+      match: partial
+      explanation: >-
+        The time of a value is in fixed columns. Missing: it is a period in two columns
+        (`exposure_start_date`, `exposure_end_date`), not one date column.
+      status: verified
   - source: degauss
     support:
     - type: output
@@ -269,13 +274,11 @@ value_uncertainty_column:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No per-value uncertainty column on external_exposure; the OMOP stack carries no measurement-error
-        column for the value.
+    reason: not_recorded
+    explanation: >-
+      `external_exposure` and the attribute tables have no column for the uncertainty of a
+      value. Nothing close was found in the schema or the README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -311,16 +314,6 @@ null_semantics_column:
         derived null, true zero). Missing: the published tables have no column that says which
         kind a given null is.
       status: verified
-  - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_catalog meta_etl_*.json nodata = ["float4", "-9999"] (dataset-level sentinel,
-        not per-value null-kind)
-      note: >-
-        GAIA declares a dataset-level nodata sentinel for daymet but no per-value column tagging
-        present / structural_null / derived_null / true_zero. Conservative: partial.
   - source: amadeus
     legacy:
       extent: partial
@@ -360,3 +353,20 @@ null_semantics_column:
       note: >-
         A per-value null-semantics column binding is instance-layer layout, outside CODATA's
         conceptual scope.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue gives the nodata value of a dataset (`nodata` in the ETL file) and gaiaDB
+      registers it per variable (`attr_no_value_as_number`). That is the marker of a missing
+      value, not a column that says for each value why it is empty.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.attr_index
+      source_slot: attr_index.attr_no_value_as_number
+      status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: nodata
+      status: verified
+    status: unverified
