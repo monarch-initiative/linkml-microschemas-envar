@@ -176,6 +176,19 @@ def test_missing_reason_explains_recommended_but_not_core(checker):
     assert "day_boundary_convention" in report.blocking
 
 
+@pytest.mark.parametrize(
+    "convention",
+    ["starting_0600_gmt", "starting_0700_gmt", "starting_0900_gmt", "ending_0900_gmt"]
+    + ["starting_0900_local", "ending_0900_local", "local_standard_midnight"],
+)
+def test_day_boundary_accepts_fixed_hour_days(checker, convention):
+    """A day cut at a fixed hour is declared together with the date it is filed under."""
+    record = yaml.safe_load((VALID_DIR / "EnvironmentalExposureRecord-tmax_core.yaml").read_text())
+    record["temporal_reference"]["day_boundary_convention"] = convention
+    report = checker.check(record)
+    assert report.valid, report.validation_messages
+
+
 def test_tool_run_accepts_several_located_inputs(checker):
     """Locator, hash and row count are given per input file, not once per run."""
     path = VALID_DIR / "EnvironmentalExposureRecord-tmax_core.yaml"
