@@ -228,22 +228,21 @@ resource_version:
   - source: omop_gaia
     support:
     - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.dataset_version
-      match: partial
+      document: gaiacatalog-schema
+      locator: types
+      source_slot: VersionString
+      match: full
       explanation: >-
-        One version field per catalogued dataset. Nothing says whether it holds the
-        catalogue's own version or the source release.
+        The catalogue schema defines the `version` of an entry as a release date (YYYY-MM-DD).
+        gaiaDB loads it into `data_source.dataset_version`.
       status: verified
     - type: output
       document: gaiadb-example-jsonld
       field: version
       value: "2026-05-23"
-      match: partial
+      match: full
       explanation: >-
-        The public example has a date as version for the 2022 CDC index, which reads as the
-        version of the catalogue entry. The file does not say so.
+        The version of the catalogue entry for the 2022 CDC index in the public example.
       status: verified
   - source: codata
     support:
@@ -295,20 +294,18 @@ resource_publisher:
         The three attributes are the identifier, the registration authority and the version:
         an identifier and a version are only unique together with who issued them.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    reason: different_concept
-    explanation: >-
-      Closest: `data_source.provider`, stored next to `creator`. The public example fills
-      both with the source agency (CDC). The catalogue that issued `dataset_id` is named in
-      the JSON-LD (`includedInDataCatalog`) but is not a column of `data_source`.
-    closest:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.provider
+    support:
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "dct:publisher"
+      match: partial
+      explanation: >-
+        The DCAT record of a catalogue entry names who publishes the catalogued copy (in the
+        PM2.5 example the University of Miami GDSC), next to the creators of the source. In the
+        JSON-LD and in gaiaDB this is `provider`. Missing: the entries are not consistent: the
+        bundled SVI example gives the source agency (CDC) as provider.
       status: verified
-    status: unverified
 
 participant_coverage_pct:
   supported_by:

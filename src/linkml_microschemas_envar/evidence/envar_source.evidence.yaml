@@ -115,6 +115,18 @@ source_dataset_short_code:
 
 source_dataset_doi:
   supported_by:
+  - source: omop_gaia
+    support:
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "dct:identifier"
+      value: "https://doi.org/10.7910/DVN/RHIFKL"
+      match: partial
+      explanation: >-
+        The DCAT record of a catalogue entry gives the DOI of the source dataset as
+        `dct:identifier`. Missing: only in the DCAT record. The JSON-LD that gaiaDB loads has no
+        field for it, so `data_source` has no DOI.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -160,18 +172,6 @@ source_dataset_doi:
       snippet: "Input | Native Geometry | Role in CHEL | Source Link"
       status: verified
     status: unverified
-  - source: omop_gaia
-    reason: not_recorded
-    explanation: >-
-      No field for a DOI. Closest: `dataset_id`, the catalogue's own identifier of the dataset
-      (a URL).
-    closest:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.dataset_id
-      status: verified
-    status: unverified
 
 source_dataset_version:
   supported_by:
@@ -186,25 +186,6 @@ source_dataset_version:
         The release of the main input (EJI) and of the boundary files (TIGER 2019 and 2020,
         §2.2.2) is given per CHEL release. Missing: for ACS, §5.3.2 only says that the releases
         use different rolling periods, without naming them.
-      status: verified
-  - source: omop_gaia
-    support:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.dataset_version
-      match: partial
-      explanation: >-
-        A dataset has a version field. Missing: nothing says whose version it is. In the public
-        example it is a date (2026-05-23) for the 2022 SVI, which reads as the version of the
-        catalogue entry and not of the source product.
-      status: verified
-    - type: output
-      document: gaiadb-example-jsonld
-      field: version
-      value: "2026-05-23"
-      match: partial
-      explanation: "The value in the public example. Missing: as above."
       status: verified
   - source: cher
     legacy:
@@ -241,6 +222,19 @@ source_dataset_version:
       source_slot: ProductAndVersion
       status: verified
     status: unverified
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue's `version` is a release date of the catalogue entry (YYYY-MM-DD), which
+      gaiaDB loads into `dataset_version`. The version of the source product has no field; in
+      the public PM2.5 example it is only part of the dataset name and of the source URL (v1).
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: types
+      source_slot: VersionString
+      status: verified
+    status: unverified
 
 source_dataset_temporal_coverage:
   supported_by:
@@ -251,9 +245,16 @@ source_dataset_temporal_coverage:
       locator: backbone.variable_source
       source_slot: variable_source.start_date
       match: full
+      explanation: "Each variable has the period it covers (`start_date`, `end_date`)."
+      status: verified
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Dataset
+      source_slot: Dataset.temporal_coverage
+      match: full
       explanation: >-
-        Each variable has the period it covers (`start_date`, `end_date`). The README (Variable
-        dates) also allows a `temporalCoverage` interval for the whole dataset.
+        A catalogue entry can give the period of the whole dataset as `temporalCoverage`,
+        written start/end. It is a recommended field.
       status: verified
   - source: amadeus
     legacy:
@@ -508,13 +509,22 @@ source_license_spdx:
   - source: omop_gaia
     support:
     - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.license
+      document: gaiacatalog-schema
+      locator: Dataset
+      source_slot: Dataset.license
       match: partial
       explanation: >-
-        A dataset has a licence field. Missing: it is free text, not an SPDX identifier, and the
-        public example gives no licence.
+        A catalogue entry has a `license`, a short identifier from a list of four (cc0-1.0,
+        cc_by, odbl, odc_by); a missing one is reported as a warning. Missing: the list is the
+        catalogue's own, not SPDX.
+      status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: rights
+      value: Public Domain
+      match: partial
+      explanation: >-
+        The ETL file of the example gives the rights of the source. Missing: free text.
       status: verified
   - source: cher
     legacy:
@@ -623,6 +633,17 @@ source_access_url:
 
 source_native_format:
   supported_by:
+  - source: omop_gaia
+    support:
+    - type: output
+      document: gaiacatalog-example-etl
+      field: format
+      value: shp
+      match: full
+      explanation: >-
+        The ETL file of a catalogue entry gives the format of the source file (`format`: shp)
+        and of the download (`extension`: zip).
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -667,18 +688,5 @@ source_native_format:
       document: chel-documentation
       locator: "§2.7, Input Lineage Table"
       snippet: "Input | Native Geometry | Role in CHEL | Source Link"
-      status: verified
-    status: unverified
-  - source: omop_gaia
-    reason: different_concept
-    explanation: >-
-      The ETL metadata gives the format of the file the catalogue distributes (`encodingFormat`:
-      sql), and `measurementTechnique` says raster or vector. The format the source ships in is
-      not recorded.
-    closest:
-    - type: output
-      document: gaiadb-example-jsonld
-      field: encodingFormat
-      value: sql
       status: verified
     status: unverified

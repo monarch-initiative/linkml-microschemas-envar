@@ -79,13 +79,13 @@ exposure_model_inputs:
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
-      No field for the inputs of the model behind a dataset. Closest: the free-text
-      `description` of the dataset.
+      No field for the inputs of the model behind a dataset. Closest: `isBasedOn` in the
+      catalogue schema, for a source the dataset is derived from, and the free-text description.
     closest:
     - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.data_source
-      source_slot: data_source.description
+      document: gaiacatalog-schema
+      locator: Dataset
+      source_slot: Dataset.is_based_on
       status: verified
     status: unverified
   - source: degauss

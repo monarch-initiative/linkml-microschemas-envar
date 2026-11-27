@@ -356,12 +356,17 @@ null_semantics_column:
   - source: omop_gaia
     reason: different_concept
     explanation: >-
-      gaiaDB registers the nodata value of a variable (`attr_no_value_as_number`). That is the
-      marker of a missing value, not a column that says for each value why it is empty.
+      The catalogue gives the nodata value of a dataset (`nodata` in the ETL file) and gaiaDB
+      registers it per variable (`attr_no_value_as_number`). That is the marker of a missing
+      value, not a column that says for each value why it is empty.
     closest:
     - type: schema
       document: gaiadb-init-schema
       locator: backbone.attr_index
       source_slot: attr_index.attr_no_value_as_number
+      status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: nodata
       status: verified
     status: unverified

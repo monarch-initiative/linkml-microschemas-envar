@@ -672,6 +672,16 @@ provenance_chain:
         kept from the `about` part of its JSON-LD. Missing: they describe the ETL of the dataset
         as planned, not runs: no time or version per step, and the join is not part of it.
       status: verified
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "prov:wasGeneratedBy"
+      value: GDSC automation (see Process Step)
+      match: partial
+      explanation: >-
+        The DCAT record of a catalogue entry has the process steps of its ETL as a script-like
+        text (`prov:action`, also the `processStep` file of the entry). Missing: a description
+        of the ETL, not a record of runs.
+      status: verified
   - source: cher
     legacy:
       extent: partial

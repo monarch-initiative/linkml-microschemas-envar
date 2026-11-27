@@ -142,26 +142,6 @@ variable_label:
 
 standard_name:
   supported_by:
-  - source: omop_gaia
-    support:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.variable_source
-      source_slot: variable_source.property_id
-      match: partial
-      explanation: >-
-        A variable has a `property_id`, an identifier of what it measures. Missing: any
-        identifier can go there, and nothing asks for a standard name of the physical quantity.
-      status: verified
-    - type: output
-      document: gaiadb-example-jsonld
-      field: propertyID
-      value: "2052497175"
-      match: partial
-      explanation: >-
-        In the public example the property id is an OMOP concept id. Missing: not a standard
-        name such as a CF name.
-      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -214,6 +194,20 @@ standard_name:
       document: degauss-daymet-readme
       locator: Using
       source_slot: tmax
+      status: verified
+    status: unverified
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      A variable's `propertyID` is defined in the catalogue schema as an OMOP concept id, and
+      gaiaDB loads it into `property_id` and `attr_concept_id`. That binds the variable to the
+      health vocabulary. A standard name of the physical quantity, such as a CF name, has no
+      field.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.property_id
       status: verified
     status: unverified
 
@@ -413,6 +407,15 @@ target_concept_id:
       explanation: >-
         The concept of the exposure; the variable's metadata has the same as `attr_concept_id`.
       status: verified
+    - type: schema
+      document: gaiacatalog-schema
+      locator: types
+      source_slot: ConceptIdText
+      match: full
+      explanation: >-
+        In the catalogue the concept of a variable is its `propertyID`, an OMOP concept id
+        written as text.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -551,17 +554,6 @@ value_data_type:
 
 value_range_plausible_min:
   supported_by:
-  - source: omop_gaia
-    support:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.variable_source
-      source_slot: variable_source.min_value
-      match: partial
-      explanation: >-
-        A variable has a `min_value`. Missing: nothing says whether it is a plausible bound or
-        the smallest value observed, and the public example does not fill it.
-      status: verified
   - source: codata
     legacy:
       extent: partial
@@ -600,20 +592,22 @@ value_range_plausible_min:
       status: asserted
       where: no column
       note: C-HER column metadata carries no per-variable plausible min/max.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue stores a `minValue` per variable (gaiaDB: `min_value`). In the public
+      example it is the smallest value found in the data (8 for a column of codes, -1 for a
+      concentration), not a bound for plausible values.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.min_value
+      status: verified
+    status: unverified
 
 value_range_plausible_max:
   supported_by:
-  - source: omop_gaia
-    support:
-    - type: schema
-      document: gaiadb-init-schema
-      locator: backbone.variable_source
-      source_slot: variable_source.max_value
-      match: partial
-      explanation: >-
-        A variable has a `max_value`. Missing: nothing says whether it is a plausible bound or
-        the largest value observed, and the public example does not fill it.
-      status: verified
   - source: codata
     legacy:
       extent: partial
@@ -652,3 +646,16 @@ value_range_plausible_max:
       status: asserted
       where: no column
       note: C-HER column metadata carries no per-variable plausible min/max.
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The catalogue stores a `maxValue` per variable (gaiaDB: `max_value`). In the public
+      example it is the largest value found in the data (94650 for a column of codes), not a
+      bound for plausible values.
+    closest:
+    - type: schema
+      document: gaiacatalog-schema
+      locator: Variable
+      source_slot: Variable.max_value
+      status: verified
+    status: unverified

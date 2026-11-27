@@ -27,6 +27,13 @@ tool_name:
         `featureList` and a repository URL). Missing: the gaiaDB functions that load and join
         the data are not recorded with the output.
       status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: download
+      value: wget
+      match: partial
+      explanation: "The ETL file names the download tool. Missing: no version."
+      status: verified
   not_supported_by:
   - source: amadeus
     legacy:
@@ -155,12 +162,13 @@ container_image_repository:
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
-      gaiaDB is a Docker image that the README tells the user to build; the image is not
-      recorded with any output.
+      The image that ran a load or a join is not recorded. Closest: the ETL file of a catalogue
+      entry names the pod it runs in (`podID`: gaia-db).
     closest:
-    - type: documentation
-      document: gaiadb-readme
-      snippet: A PostGIS Docker image for the
+    - type: output
+      document: gaiacatalog-example-etl
+      field: podID
+      value: gaia-db
       status: verified
     status: unverified
   - source: amadeus
@@ -199,12 +207,13 @@ container_image_digest:
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
-      gaiaDB is a Docker image that the README tells the user to build; no digest is recorded
-      with any output.
+      No digest of an image is recorded. Closest: the ETL file of a catalogue entry names the
+      pod it runs in (`podID`: gaia-db).
     closest:
-    - type: documentation
-      document: gaiadb-readme
-      snippet: A PostGIS Docker image for the
+    - type: output
+      document: gaiacatalog-example-etl
+      field: podID
+      value: gaia-db
       status: verified
     status: unverified
   - source: degauss
@@ -263,6 +272,16 @@ run_arguments:
         type concept it was given. Missing: the buffer distance and the nodata value are not
         written, and there is no record of all arguments of a run.
       status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: local_epsg
+      value: "EPSG:3857"
+      match: partial
+      explanation: >-
+        The settings of a dataset's ETL are in its ETL file: download tool, source file and
+        format, EPSG codes, nodata value, derived formats. Missing: they are the settings of the
+        ETL, not the arguments of a join run.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -308,6 +327,15 @@ run_timestamp_utc:
         Each exposure row has the time it was written. Missing: per row, in the server's time
         without a zone, and not the start of the run.
       status: verified
+    - type: output
+      document: gaiacatalog-example-etl
+      field: last_updated
+      value: "2025-05-23T08:47:15Z"
+      match: partial
+      explanation: >-
+        The ETL file of a catalogue entry records when the dataset was last loaded, in UTC.
+        Missing: it is the time of the ETL, not of the join.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -352,17 +380,25 @@ run_timestamp_utc:
       note: Run timestamp is instance-layer; out of scope for CODATA.
 
 input_file_sha256:
+  supported_by:
+  - source: omop_gaia
+    support:
+    - type: output
+      document: gaiacatalog-example-etl
+      field: checksum
+      value: TBD
+      match: partial
+      explanation: >-
+        The ETL file of a catalogue entry has a `checksum` field next to the source URL and file
+        name, and the DCAT record has `spdx:checksum`. Missing: in the public example it is not
+        filled (TBD), and neither the algorithm nor the file it belongs to is stated.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
     explanation: >-
       No hash of an input file is published. Nothing close was found in Documentation.md,
       README.md or the data folder.
-    status: unverified
-  - source: omop_gaia
-    reason: not_recorded
-    explanation: >-
-      No hash of a loaded file is recorded. Nothing close was found in the schema or the README.
     status: unverified
   - source: degauss
     reason: not_recorded
@@ -445,7 +481,15 @@ output_file_sha256:
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
-      No hash of the output is recorded. Nothing close was found in the schema or the README.
+      No hash of the exposure output is recorded. Closest: the `checksum` of a catalogue entry,
+      which is not filled in the public example and belongs to the dataset, not to the output of
+      a join.
+    closest:
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "spdx:checksum"
+      value: TBD
+      status: verified
     status: unverified
   - source: degauss
     reason: not_recorded
@@ -546,6 +590,15 @@ provenance_chain_steps:
         The ETL steps of a dataset are stored as a list, each with the action, its input, the
         tool and the result. Missing: they are a description of the ETL, not runs with times and
         versions, and the join is not a step.
+      status: verified
+    - type: output
+      document: gaiacatalog-example-dcat
+      field: "prov:action"
+      match: partial
+      explanation: >-
+        The DCAT record lists the ETL commands step by step (download, unzip, load, clean,
+        derive). Missing: written as pseudo code, without the versions of the tools or the time
+        of a run.
       status: verified
   - source: cher
     legacy:
@@ -690,9 +743,14 @@ input_files:
   - source: omop_gaia
     reason: different_granularity
     explanation: >-
-      gaiaDB records one source URL per catalogued dataset and not the files a run read.
-      Closest: `data_source.url`.
+      The ETL file of a catalogue entry names the source file a dataset is loaded from
+      (`source`, `file`), once per dataset. Which files a given load or join read is not
+      recorded.
     closest:
+    - type: output
+      document: gaiacatalog-example-etl
+      field: file
+      status: verified
     - type: schema
       document: gaiadb-init-schema
       locator: backbone.data_source
@@ -727,22 +785,33 @@ input_file_locator:
       status: verified
   - source: omop_gaia
     support:
+    - type: output
+      document: gaiacatalog-example-etl
+      field: source
+      value: >-
+        https://sedac.ciesin.columbia.edu/downloads/data/sdei/sdei-annual-pm2-5-concentrations-countries-urban-areas-v1-1998-2016/sdei-annual-pm2-5-concentrations-countries-urban-areas-v1-1998-2016-urban-areas-shp.zip
+      match: partial
+      explanation: >-
+        The ETL file of a catalogue entry gives the URL of the file that is downloaded. Missing:
+        it is stored once per dataset and not per run.
+      status: verified
     - type: schema
       document: gaiadb-init-schema
       locator: backbone.data_source
       source_slot: data_source.url
       match: partial
       explanation: >-
-        URL of the catalogued source dataset. Missing: it is stored once per dataset and
-        not per run.
+        URL of the catalogued source dataset. Missing: it is stored once per dataset and not per
+        run.
       status: verified
     - type: output
       document: gaiadb-example-jsonld
       field: url
-      value: https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html
+      value: >-
+        https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html
       match: partial
       explanation: >-
-        In the public example the URL is the download page of the source and not the file
+        In the public example this URL is the download page of the source and not the file
         itself.
       status: verified
   - source: degauss
