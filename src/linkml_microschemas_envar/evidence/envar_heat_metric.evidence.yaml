@@ -18,6 +18,17 @@ heat_metric_family:
         a column is.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus has no heat metrics; it returns the variables of the source, such as gridMET
+      `tmmx`. Closest: the gridMET variable list.'
+    closest:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: Maximum Near-Surface Air Temperature
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -30,12 +41,6 @@ heat_metric_family:
       field: E_NEHD
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits plain tmmx with no heat-metric family field.
   - source: cher
     legacy:
       extent: absent
@@ -52,11 +57,16 @@ heat_metric_family:
 input_source_short_code:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No derived-metric equation inputs, so no per-input source code.
+    reason: not_recorded
+    explanation: 'amadeus computes no metric from several inputs, so there are no inputs to name. Closest:
+      the dataset name of a call (`dataset_name`, e.g. "gridmet").'
+    closest:
+    - type: schema
+      document: amadeus-download-data
+      locator: arguments
+      source_slot: download_data.dataset_name
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -74,11 +84,16 @@ input_source_short_code:
 wind_speed_measurement_height_m:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No WBGT/UTCI methodology, so no wind-measurement height.
+    reason: not_recorded
+    explanation: 'No WBGT or UTCI is computed. Closest: the gridMET variable list names the height of
+      its wind speed (10 m) in the variable name only.'
+    closest:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: Wind speed at 10 m
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -95,11 +110,15 @@ wind_speed_measurement_height_m:
 solar_radiation_basis:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No WBGT/UTCI methodology, so no solar-radiation basis.
+    reason: not_recorded
+    explanation: 'No WBGT or UTCI is computed. Closest: gridMET solar radiation is offered as a variable.'
+    closest:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: Surface Downwelling Solar Radiation
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -128,11 +147,10 @@ percentile_reference_geographic_scope:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No percentile-based metric, so no reference geographic scope.
+    reason: not_recorded
+    explanation: 'amadeus computes no percentile metric, so there is no reference distribution. Closest:
+      nothing.'
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -151,11 +169,10 @@ percentile_reference_geographic_scope:
 percentile_reference_seasonal_window:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No percentile-based metric, so no seasonal reference window.
+    reason: not_recorded
+    explanation: 'amadeus computes no percentile metric, so there is no seasonal reference window. Closest:
+      nothing.'
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -172,11 +189,16 @@ percentile_reference_seasonal_window:
 metric_temporal_aggregation_rule:
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No multi-day heat-event flag, so no event-stamping rule.
+    reason: not_recorded
+    explanation: 'No multi-day event flag is computed. Closest: `.by_time` summarises values over a
+      time unit such as a month, which is not an event rule.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates..by_time
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent

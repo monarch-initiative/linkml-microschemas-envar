@@ -4,6 +4,24 @@
 
 linkage_strategy:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: Description
+      snippet: column name reflects the gridMET variable and circular buffer radius.
+      match: partial
+      explanation: 'The buffer radius is in the column name, so `_0` means a point extraction and any
+        other value a buffer. Missing: the strategy is not named, and polygon locations are not marked
+        as such.'
+      status: verified
+    - type: documentation
+      document: amadeus-readme
+      locator: Calculate_* buffer radius information
+      snippet: output column names often encode that radius
+      match: partial
+      explanation: 'The README says the radius is encoded "often". Missing: not for every dataset.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -57,14 +75,6 @@ linkage_strategy:
         range.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus carries no linkage-strategy slot; the value is extracted at request coordinates
-        with no recorded strategy.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -97,6 +107,17 @@ geocoding_precision_propagated:
         The column is still there in the output of the daymet container, next to each value.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus takes locations that already have coordinates and does no geocoding. Closest:
+      the `locs` argument.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -109,14 +130,6 @@ geocoding_precision_propagated:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus collapses the address to lat/lon at the THREDDS request and carries no geocoding
-        precision.
   - source: cher
     legacy:
       extent: absent
@@ -166,6 +179,16 @@ geocoding_score_propagated:
         The column is still there in the output of the daymet container, next to each value.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus does no geocoding and takes no geocoding score. Closest: the `locs` argument.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -178,12 +201,6 @@ geocoding_score_propagated:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no geocoder match score.
   - source: cher
     legacy:
       extent: absent
@@ -225,6 +242,17 @@ geocoding_database_version:
         is stated in the README only; no output column repeats it.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus takes locations that already have coordinates, so no address database is used.
+      Closest: the `locs` argument.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -249,16 +277,6 @@ geocoding_database_version:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        amadeus R/utils-calculate.R (calc_prepare_locs input, calc_return_locs output), version
-        2.1.2
-      note: >-
-        Amadeus takes locations that already have coordinates, and its output names no reference
-        address database.
   - source: cher
     legacy:
       extent: absent
@@ -311,6 +329,17 @@ address_period_alignment:
       explanation: The table of person, location and period that the join reads.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'A location has no time period; every location gets the values of all dates in `from`.
+      Closest: "Unique locations." in the `locs` argument.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-covariates
+      locator: arguments
+      snippet: Unique locations. Should include
+      status: verified
+    status: unverified
   - source: chel
     reason: implicit
     explanation: >-
@@ -323,12 +352,6 @@ address_period_alignment:
       snippet: Each participant will be assigned attributes from the correct CHEL dataset
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus takes fixed lat/lon and models no address period.
   - source: cher
     legacy:
       extent: absent
@@ -347,6 +370,10 @@ address_period_alignment:
 
 partial_day_attribution_rule:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'Locations do not change over time in amadeus, so no day is split. Closest: nothing.'
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -359,13 +386,6 @@ partial_day_attribution_rule:
       snippet: and the exposure dates are clipped to the overlap
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus models no trajectory transitions, so no partial-day attribution is carried.
   - source: cher
     legacy:
       extent: absent
@@ -382,14 +402,19 @@ partial_day_attribution_rule:
         conceptual scope.
 
 lag_alignment_applied:
-  not_supported_by:
+  supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus emits per-day values at native dates with no lag-alignment record.
+    support:
+    - type: documentation
+      document: amadeus-calculate-lagged
+      locator: Description
+      snippet: function calculates daily temporal lagged covariates
+      match: partial
+      explanation: '`calculate_lagged` shifts daily covariates by a number of lag days (`lag`). Missing:
+        the lag is relative to a date range, not to a clinical event, and the result does not record
+        that a lag was applied unless `calc_setcolumns` naming is used.'
+      status: verified
+  not_supported_by:
   - source: cher
     legacy:
       extent: absent
@@ -431,6 +456,17 @@ privacy_transformation:
         C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy
         jitter this slot models — it is the motivating case.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'Values are extracted at the coordinates given, and no transformation is applied or
+      recorded. Closest: the buffer radius, which averages over an area but does not move the location.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-gridmet
+      locator: arguments
+      source_slot: calculate_gridmet.radius
+      status: verified
+    status: unverified
   - source: degauss
     reason: different_concept
     explanation: >-
@@ -448,13 +484,6 @@ privacy_transformation:
         we are applying the "Safe Harbor" method defined by HIPAA for deidentification
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus extracts at the true request coordinates with no privacy-transformation record.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -491,12 +520,9 @@ privacy_transformation_note:
         — exactly the detail this note slot captures.
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No privacy transform is applied by Amadeus, so there is no transform detail to record.
+    reason: not_recorded
+    explanation: 'No privacy transformation is applied, so there is no detail to record. Closest: nothing.'
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer

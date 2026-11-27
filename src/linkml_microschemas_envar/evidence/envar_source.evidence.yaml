@@ -4,6 +4,16 @@
 
 source_dataset_name:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-gridmet
+      locator: Description
+      snippet: Climatology Lab's gridMET dataset.
+      match: partial
+      explanation: 'The help page names the dataset ("University of California Merced Climatology Lab''s
+        gridMET dataset"). Missing: only in the documentation, not in the result.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -49,13 +59,6 @@ source_dataset_name:
         named as Daymet only, without its full name, and the name is not written to the output.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus carries no dataset name; it has to be inferred from the THREDDS URL path.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -67,6 +70,16 @@ source_dataset_name:
 
 source_dataset_short_code:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-download-data
+      locator: arguments
+      source_slot: download_data.dataset_name
+      match: partial
+      explanation: 'amadeus has its own short codes for datasets (`gridmet`, `narr`, `prism`). Missing:
+        they are amadeus''s names, not keys of the EnVar registry, and they are not in the result.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -92,12 +105,6 @@ source_dataset_short_code:
     explanation: >-
       There is no code for the source product. Closest: the container itself is called `daymet`.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no dataset short code.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -115,6 +122,16 @@ source_dataset_short_code:
 
 source_dataset_doi:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-references
+      locator: data_SEDAC_population
+      source_slot: data_SEDAC_population.doi
+      match: partial
+      explanation: 'The bibliography gives a DOI for some datasets, e.g. SEDAC population density (10.7927/H4F47M65).
+        Missing: only for some datasets (not gridMET), and not in the result.'
+      status: verified
   - source: omop_gaia
     support:
     - type: output
@@ -148,12 +165,6 @@ source_dataset_doi:
         guide and project page, no DOI.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no DOI.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -177,6 +188,16 @@ source_dataset_doi:
 
 source_dataset_version:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-modis
+      locator: arguments
+      snippet: Requested CMR version, default
+      match: partial
+      explanation: 'For MODIS (and EDGAR, SPEI) the dataset version is an argument of the download,
+        default 061. Missing: only for those datasets, not for gridMET, and not in the result.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -220,12 +241,6 @@ source_dataset_version:
         Missing: in the README only, not in the output.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no dataset version.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -250,6 +265,16 @@ source_dataset_version:
 
 source_dataset_temporal_coverage:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-narr
+      locator: arguments
+      snippet: All years must be between 1979 and the current
+      match: partial
+      explanation: 'For NARR the years that can be requested are given (1979 to the current year). Missing:
+        as a check on the argument, not as coverage; nothing for gridMET.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -268,15 +293,6 @@ source_dataset_temporal_coverage:
         A catalogue entry can give the period of the whole dataset as `temporalCoverage`,
         written start/end. It is a recommended field.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml TimeSpan
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §H (Dataset time-span — ✅ Amadeus, TimeSpan 1979→present)
-      note: >-
-        Amadeus records the full dataset time span in the THREDDS dataset.xml TimeSpan element.
   - source: cher
     legacy:
       extent: full
@@ -324,6 +340,16 @@ source_dataset_temporal_coverage:
 
 source_dataset_spatial_extent:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Download
+      snippet: Contiguous United States
+      match: full
+      explanation: The README table gives the spatial extent of each dataset; gridMET is "Contiguous
+        United States".
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -335,16 +361,6 @@ source_dataset_spatial_extent:
         The spatial coverage of the dataset; in the public example a place name and a bounding
         polygon.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml projectionBox + LatLonBox
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §G (Source-dataset spatial coverage — ✅ Amadeus,
-        CONUS bbox)
-      note: >-
-        Amadeus records the source bbox via the THREDDS projectionBox and LatLonBox elements.
   - source: cher
     legacy:
       extent: full
@@ -389,6 +405,16 @@ source_dataset_spatial_extent:
 
 source_producer_institution:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-gridmet
+      locator: Description
+      snippet: surface meteorological data from the University of California Merced
+      match: partial
+      explanation: 'The help page names the producer, the University of California Merced Climatology
+        Lab. Missing: only in the documentation.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -451,12 +477,6 @@ source_producer_institution:
         and documentation without naming a producer.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no producer/publisher field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -469,13 +489,17 @@ source_producer_institution:
 source_citation_apa:
   supported_by:
   - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: acknowledgement string (acknowledgement = TRUE)
-      note: >-
-        Amadeus can attach a free-text acknowledgement string, which is a citation-like credit
-        but not a formatted APA reference (related-approaches.md §3).
+    support:
+    - type: documentation
+      document: amadeus-references
+      locator: article_abatzoglou2013development
+      snippet: Development of gridded surface meteorological data for ecological applications and modelling
+      match: partial
+      explanation: 'The help page of `download_gridmet` cites the gridMET paper from the package bibliography.
+        Missing: it is the methods paper, not a citation of the dataset, it is not in APA form and not
+        in the result. (The old entry cited `acknowledgement`, which only confirms that downloads can
+        be large.)'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -563,6 +587,17 @@ source_license_spdx:
         C-HER carries a required rights field, but it is not SPDX-coded, so it only partly
         satisfies this SPDX-specific slot.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No license of a dataset is given. Closest: the README links each dataset''s landing
+      page, where the terms are.'
+    closest:
+    - type: documentation
+      document: amadeus-readme
+      locator: Download
+      snippet: Contiguous United States
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -575,12 +610,6 @@ source_license_spdx:
       No licence or terms of use of Daymet are passed on. Nothing close was found in the daymet
       README or entrypoint.R.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no license field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -592,6 +621,15 @@ source_license_spdx:
 
 source_access_url:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Download
+      snippet: Climatology Lab GridMet
+      match: full
+      explanation: The README table links the landing page of each dataset, for gridMET https://www.climatologylab.org/gridmet.html.
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -621,13 +659,6 @@ source_access_url:
       explanation: >-
         In the public example it is the documentation and download page of the source.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml @location (NCSS data endpoint)
-      note: >-
-        Amadeus carries only the THREDDS NCSS data-endpoint URL, not the human landing page.
   - source: degauss
     support:
     - type: documentation
@@ -661,6 +692,16 @@ source_access_url:
 
 source_native_format:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: 'Temporal resolution: daily; each download is an annual NetCDF file for one variable.'
+      match: full
+      explanation: 'The format is documented: gridMET is one NetCDF file per variable and year; the
+        README table gives the file type of every dataset.'
+      status: verified
   - source: omop_gaia
     support:
     - type: output
@@ -672,14 +713,6 @@ source_native_format:
         The ETL file of a catalogue entry gives the format of the source file (`format`: shp)
         and of the download (`extension`: zip).
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: gridmet_tmmx.cf_metadata.json (CF metadata implies NetCDF)
-      note: >-
-        Amadeus's CF metadata blob implies the NetCDF/CF native format but does not declare
-        it in a dedicated format field.
   - source: cher
     legacy:
       extent: full

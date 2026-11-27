@@ -4,6 +4,17 @@
 
 native_geometry:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: ensuring a coordinate reference system is present
+      match: partial
+      explanation: '`process_covariates` returns a SpatRaster for gridded data and a SpatVector for
+        vector data, so the geometry kind is the class of the object. Missing: it is not stated as a
+        geometry type.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -33,14 +44,6 @@ native_geometry:
         In the public example the data structure (vector) and the geometry (multipolygon) are
         given as terms of `measurementTechnique`.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml gridDataset/gridSet
-      note: >-
-        Only implied by the THREDDS gridDataset/gridSet structure; never written as a geometry
-        type in the output.
   - source: cher
     legacy:
       extent: partial
@@ -90,6 +93,16 @@ h3_resolution:
 
 native_spatial_resolution_m:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-gridmet
+      locator: Details
+      snippet: approximately 4-km grid
+      match: partial
+      explanation: 'The help page gives the gridMET grid as approximately 4 km. Missing: approximate,
+        in km, and in a paragraph on SPEI; the processed raster has the resolution in degrees.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -113,14 +126,6 @@ native_spatial_resolution_m:
         12,000 km²). Missing: approximate and in km, and the slot is defined for regular grids,
         not for H3 cells.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_dataset.xml axis lat/lon increment (0.041666 deg)
-      note: >-
-        Only derivable from the grid-axis increment in thredds_dataset.xml; never written
-        as a resolution number in metres.
   - source: cher
     legacy:
       extent: full
@@ -161,6 +166,15 @@ native_spatial_resolution_m:
 
 native_spatial_resolution_descriptor:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Details
+      snippet: 1/24-degree grid and five-day observation dates.
+      match: full
+      explanation: The help page describes the native grid as 1/24 degree.
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -189,13 +203,6 @@ native_spatial_resolution_descriptor:
         The README has a readable label for the resolution: a 1 km x 1 km gridded surface.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No resolution-layout label is emitted; only a derivable axis increment exists.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -219,6 +226,24 @@ native_spatial_resolution_descriptor:
 
 crs:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: ensuring a coordinate reference system is present
+      match: partial
+      explanation: '`process_covariates` makes sure the raster has a CRS, and with `geom` the result
+        keeps the CRS of `from`. Missing: the default data.frame result has no CRS.'
+      status: verified
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: arguments
+      snippet: Should the function return with geometry?
+      match: partial
+      explanation: '"The coordinate reference system of the sf or SpatVector is that of from." Missing:
+        only when geometry is returned.'
+      status: verified
   - source: chel
     support:
     - type: output
@@ -260,14 +285,6 @@ crs:
         In the public example the spatial reference system is an `additionalProperty` with an
         EPSG URL.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml coordinate_system = "WGS84,EPSG:4326"
-      evidence: EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)
-      note: >-
-        Amadeus's THREDDS grid declares the raster CRS explicitly as an EPSG code.
   - source: degauss
     support:
     - type: documentation
@@ -308,6 +325,16 @@ crs:
 
 spatial_extent_bbox:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-process-gridmet
+      locator: arguments
+      source_slot: process_gridmet.extent
+      match: partial
+      explanation: 'The processed raster has an extent. Missing: it is the extent that was loaded (`extent`
+        crops it), not the box of the product, and it is not in the extracted result.'
+      status: verified
   - source: omop_gaia
     support:
     - type: output
@@ -321,15 +348,6 @@ spatial_extent_bbox:
         The public example gives the bounding box of the dataset as a polygon in
         `spatialCoverage`.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: full
-      status: verified
-      where: thredds_dataset.xml projectionBox + LatLonBox (CONUS bbox)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)
-      note: >-
-        The THREDDS dataset.xml gives the product footprint as projectionBox and LatLonBox.
   - source: cher
     legacy:
       extent: partial
@@ -374,6 +392,16 @@ spatial_extent_bbox:
 
 spatial_extent_descriptor:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Download
+      snippet: Contiguous United States
+      match: full
+      explanation: The README table describes the extent of each dataset in words; gridMET is "Contiguous
+        United States".
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -425,14 +453,6 @@ spatial_extent_descriptor:
       explanation: The README describes the extent of the product in words.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus carries a numeric bbox (projectionBox/LatLonBox) but no human-readable extent
-        description.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -444,6 +464,17 @@ spatial_extent_descriptor:
 
 extraction_method:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: arguments
+      snippet: Function used to summarize multiple raster cells
+      match: partial
+      explanation: 'Points get the value of the cell they fall in (radius 0), buffers and polygons the
+        summary `fun` (default mean) over the cells. Missing: the method is not named and not recorded
+        in the result.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -482,12 +513,6 @@ extraction_method:
         each exposure row.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no extraction-method field.
   - source: cher
     legacy:
       extent: absent
@@ -507,6 +532,16 @@ extraction_method:
 
 target_geography_type:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-covariates
+      locator: Description
+      snippet: function extracts values at point
+      match: partial
+      explanation: 'Values are extracted at point locations, or over polygons when polygons are given.
+        Missing: the kind of location is not recorded.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -547,13 +582,6 @@ target_geography_type:
       explanation: Values are attached to a point, the coordinate of each input row.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus collapses to lat/lon at the THREDDS request with no geography-type field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -580,6 +608,17 @@ spatial_aggregation_preserves:
         values were taken from this section.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: implicit
+    explanation: 'The summary function is given (default mean), but not what it is meant to preserve.
+      Closest: the `fun` argument.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: arguments
+      snippet: Function used to summarize multiple raster cells
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
@@ -592,12 +631,6 @@ spatial_aggregation_preserves:
       snippet: the mean of the cells whose centre is within
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus records no preserved-quantity of any spatial aggregation.
   - source: cher
     legacy:
       extent: absent

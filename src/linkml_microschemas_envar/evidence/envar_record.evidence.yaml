@@ -47,6 +47,17 @@ subject_type:
         UnitType states the class of unit, for example Person or State, at the conceptual
         layer; it does not declare one delivered record's subject.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'The result keeps the identifier of each location (`locs_id`) and does not say whether
+      it stands for a person, a site or an area. Closest: `locs_id`.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs_id
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -58,17 +69,20 @@ subject_type:
       field: id
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: amadeus R/utils-calculate.R locs_id, version 2.1.2
-      note: >-
-        Amadeus output keeps a location identifier (locs_id) and does not declare whether
-        it stands for a patient, a cohort or a geographic unit.
 
 variable_identity:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-process-gridmet
+      locator: Note
+      snippet: Layer names of the returned
+      match: partial
+      explanation: 'The processed raster names each layer by variable code and date and sets the long
+        name (`terra::longnames`). Missing: no standard name, and the extracted data.frame keeps only
+        the code with the radius.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -92,16 +106,6 @@ variable_identity:
         `variable_source` describes each variable: name, description, property id, data type,
         unit, value range and concept ids.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        thredds_dataset.xml long_name/standard_name/description + gridmet_tmmx.cf_metadata.json
-        units
-      note: >-
-        Amadeus carries a CF-style blob (long_name, units K), but standard_name is overloaded
-        with the gridMET shortcode, not a real CF term. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -136,6 +140,17 @@ variable_identity:
 
 spatial_reference:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-readme
+      locator: Process
+      snippet: ensuring a coordinate reference system is present
+      match: partial
+      explanation: 'The processed raster has a CRS, extent and resolution, as the README example shows.
+        Missing: the extracted data.frame has none of them unless `geom` is set, and the extraction
+        method is not recorded.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -185,15 +200,6 @@ spatial_reference:
         extraction. Missing: the CRS is only in the code, and nothing of this is written to the
         output.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        thredds_dataset.xml coordinate_system=WGS84,EPSG:4326 + axis lat/lon increment + projectionBox/LatLonBox
-      note: >-
-        Amadeus declares source-raster CRS and bbox and grid increment, but no extraction-method
-        slot and resolution is only derivable. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -216,6 +222,16 @@ spatial_reference:
 
 temporal_reference:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-gridmet-vignette
+      locator: Available inputs and data availability
+      snippet: 'Temporal resolution: daily; each download is an annual NetCDF file for one variable.'
+      match: partial
+      explanation: 'The grain is documented per dataset, and each layer and row has a date. Missing:
+        no day boundary for gridMET and no aggregation method.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -227,16 +243,6 @@ temporal_reference:
         A variable has the period it covers, and each value its own time window. Missing: no
         field for the time grain, the aggregation over the window or the day boundary.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        thredds_dataset.xml day axis (days since 1900-01-01, calendar=gregorian) + TimeSpan;
-        long_name daily_maximum_temperature
-      note: >-
-        Amadeus carries time-origin, calendar, and dataset span, and aggregation is encoded
-        only in the long_name; day-boundary is pure ambiguity. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -285,6 +291,16 @@ temporal_reference:
 
 exposure_model:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-download-gridmet
+      locator: references
+      source_slot: references.article_abatzoglou2013development
+      match: partial
+      explanation: 'The methods paper of gridMET is cited, and for reanalysis products the model class
+        is in the name. Missing: no structured description of the model.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -322,12 +338,6 @@ exposure_model:
         documentation.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus records no exposure-model type or model description.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -350,6 +360,16 @@ exposure_model:
 
 data_layout:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: Description
+      snippet: Extract gridMET values at point locations.
+      match: partial
+      explanation: 'The help page names the columns of the result: `locs_id`, `time` and one column
+        per variable and radius. Missing: there is no separate column binding; it is documentation.'
+      status: verified
   - source: chel
     support:
     - type: output
@@ -385,16 +405,6 @@ data_layout:
         Daymet variable; the README lists the input columns and the added ones. Missing: no
         machine-readable description of the columns.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gridmet_tmmx.csv columns person_loc_id / lat / lon / value_kelvin / value_celsius
-        (implicit layout)
-      note: >-
-        Amadeus's CSV has value/subject columns but no portable sidecar column-binding document.
-        Conservative: partial.
   - source: cher
     legacy:
       extent: full
@@ -417,6 +427,17 @@ data_layout:
 
 source_dataset:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-gridmet
+      locator: Description
+      snippet: surface meteorological data from the University of California Merced
+      match: partial
+      explanation: 'The help pages name the dataset and its producer, and the README links the landing
+        page and gives the file type. Missing: no version or DOI for gridMET, and none of it is in the
+        result.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -464,13 +485,6 @@ source_dataset:
         licence or citation, and nothing in the output.
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus carries no dataset-identity metadata (no name, DOI, license, publisher) natively.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -482,6 +496,16 @@ source_dataset:
 
 uncertainty:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-modis-vignette
+      locator: MCD19A2 subdatasets
+      source_slot: MCD19A2.AOD_Uncertainty_1
+      match: partial
+      explanation: 'MODIS AOD uncertainty layers can be processed and extracted. Missing: only for MODIS
+        AOD, its type and units are not given, and gridMET has no uncertainty.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -523,12 +547,6 @@ uncertainty:
       No field for the uncertainty of a value or of a source model. Nothing close was found in
       the schema or the README.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no uncertainty block; only a _FillValue sentinel.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -538,6 +556,17 @@ uncertainty:
 
 linkage_method:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: arguments
+      snippet: Function used to summarize multiple raster cells
+      match: partial
+      explanation: 'A call takes a buffer radius and a summary function, and the radius goes into the
+        column name. Missing: the function is not recorded in the result, and there is no geocoding
+        or address period.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -585,14 +614,6 @@ linkage_method:
         C-HER models cross-table join references and spatial-column tags, but no patient-to-place
         linkage-strategy field. Conservative: partial.
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus collapses the address to lat/lon at the THREDDS request and records no linkage/geocoding
-        quality.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -602,6 +623,17 @@ linkage_method:
 
 tool_run:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-description
+      locator: DESCRIPTION
+      source_slot: DESCRIPTION.Version
+      match: partial
+      explanation: 'Tool name and version are in DESCRIPTION (amadeus 2.1.2), the arguments are those
+        of the call, and `download_data` can return a hash of the downloaded files. Missing: none of
+        it is written to the result.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -638,14 +670,6 @@ tool_run:
         argument. Missing: they describe the image and not a run: no run time, hashes or row
         counts.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_response_headers.json HTTP Date header (run timestamp only)
-      note: >-
-        Amadeus records only the HTTP Date header; no tool name/version, container, run args,
-        or hashes natively. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -738,11 +762,16 @@ provenance_chain:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus emits no ordered upstream-run chain.
+    reason: not_recorded
+    explanation: 'The three steps (download, process, calculate) are documented but not recorded. Closest:
+      the package description of the three steps.'
+    closest:
+    - type: documentation
+      document: amadeus-description
+      locator: Description
+      snippet: processing the raw data files into clean spatial objects
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -789,12 +818,16 @@ health_layer_linkage:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus emits a data CSV with no downstream health-layer target or join field.
+    reason: not_recorded
+    explanation: 'No downstream health data model is named. Closest: the CHORDS program named in the
+      README.'
+    closest:
+    - type: documentation
+      document: amadeus-readme
+      locator: Connecting Health Outcomes Research Data Systems
+      snippet: has been developed as part of the National Institute of Environmental Health Science's
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer

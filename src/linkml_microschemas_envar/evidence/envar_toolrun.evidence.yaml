@@ -4,6 +4,16 @@
 
 tool_name:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-description
+      locator: DESCRIPTION
+      source_slot: DESCRIPTION.Package
+      match: partial
+      explanation: 'The package is amadeus, and the function names say which step ran. Missing: not
+        written to the result.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -45,12 +55,6 @@ tool_name:
       explanation: "The ETL file names the download tool. Missing: no version."
       status: verified
   not_supported_by:
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus output file records the tool name.
   - source: cher
     legacy:
       extent: absent
@@ -82,6 +86,15 @@ tool_name:
 
 tool_version:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-description
+      locator: DESCRIPTION
+      source_slot: DESCRIPTION.Version
+      match: partial
+      explanation: 'The package version is 2.1.2 (DESCRIPTION). Missing: not written to the result.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -131,14 +144,6 @@ tool_version:
       field: downloadUrl
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Amadeus's R package version lives in the object attributes but no native file records
-        it.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -173,6 +178,17 @@ container_image_repository:
         with the output.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: different_concept
+    explanation: 'amadeus is an R package installed from CRAN or GitHub, not a container image. Closest:
+      the installation instructions in the README.'
+    closest:
+    - type: documentation
+      document: amadeus-readme
+      locator: Installation
+      snippet: can be installed from CRAN with
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -197,12 +213,6 @@ container_image_repository:
       value: gaia-db
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus is an R package, not a container; no image repository applies.
   - source: cher
     legacy:
       extent: absent
@@ -218,6 +228,16 @@ container_image_repository:
 
 container_image_digest:
   not_supported_by:
+  - source: amadeus
+    reason: different_concept
+    explanation: 'There is no container image. Closest: the package version in DESCRIPTION.'
+    closest:
+    - type: schema
+      document: amadeus-description
+      locator: DESCRIPTION
+      source_slot: DESCRIPTION.Version
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -254,12 +274,6 @@ container_image_digest:
       snippet: previously published versions of images will not be changed
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No container image digest is emitted.
   - source: cher
     legacy:
       extent: absent
@@ -329,6 +343,17 @@ run_arguments:
         ETL, not the arguments of a join run.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'The arguments are those of the R call and are not stored with the result. Closest:
+      the radius in the column name.'
+    closest:
+    - type: documentation
+      document: amadeus-calculate-gridmet
+      locator: Description
+      snippet: column name reflects the gridMET variable and circular buffer radius.
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -341,12 +366,6 @@ run_arguments:
       snippet: Privacy threshold specification
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records the run argument map.
   - source: cher
     legacy:
       extent: absent
@@ -382,14 +401,6 @@ run_timestamp_utc:
         The ETL file of a catalogue entry records when the dataset was last loaded, in UTC.
         Missing: it is the time of the ETL, not of the join.
       status: verified
-  - source: amadeus
-    legacy:
-      extent: partial
-      status: asserted
-      where: thredds_response_headers.json HTTP Date header
-      note: >-
-        The HTTP Date header is the only timestamp captured, recoverable but not a first-class
-        run-timestamp field.
   - source: cher
     legacy:
       extent: partial
@@ -413,6 +424,11 @@ run_timestamp_utc:
         run, and the indicator tables have no date.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No time of the run is recorded. The old entry cited the HTTP Date header of the gridMET
+      data server, which is not written by amadeus. Closest: nothing.'
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -428,6 +444,17 @@ run_timestamp_utc:
 
 input_file_sha256:
   supported_by:
+  - source: amadeus
+    support:
+    - type: documentation
+      document: amadeus-download-data
+      locator: Value
+      snippet: combined MD5 hash of the source's output directory
+      match: partial
+      explanation: 'With `hash = TRUE` the download returns a hash of the downloaded files. Missing:
+        MD5, one hash for the whole directory (which can include other files), and only returned, not
+        stored.'
+      status: verified
   - source: omop_gaia
     support:
     - type: output
@@ -453,12 +480,6 @@ input_file_sha256:
       No hash of the input is written. Nothing close was found in the READMEs, the code or the
       example outputs.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records an input-file SHA256 in this scenario.
   - source: cher
     legacy:
       extent: absent
@@ -474,6 +495,17 @@ input_file_sha256:
 
 input_row_count:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No row count of the inputs is given. Closest: the download summary counts files (`success`,
+      `failed`, `skipped`).'
+    closest:
+    - type: schema
+      document: amadeus-download-data
+      locator: Value
+      source_slot: download_data.success
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -498,12 +530,6 @@ input_row_count:
       No row count of the input is written. Nothing close was found in the READMEs, the code or
       the example outputs.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records an input row count.
   - source: cher
     legacy:
       extent: absent
@@ -519,6 +545,17 @@ input_row_count:
 
 output_file_sha256:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'amadeus returns R objects and does not hash them. Closest: the MD5 hash of the download
+      directory, which covers the inputs.'
+    closest:
+    - type: documentation
+      document: amadeus-download-data
+      locator: Value
+      snippet: combined MD5 hash of the source's output directory
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -544,12 +581,6 @@ output_file_sha256:
       No hash of the output is written. Nothing close was found in the READMEs, the code or the
       example outputs.
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records an output-file SHA256 in this scenario.
   - source: cher
     legacy:
       extent: absent
@@ -577,6 +608,17 @@ output_row_count:
         grid file only; no row count is given for the indicator tables.
       status: verified
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'The number of rows is not recorded; it is the size of the returned object. Closest:
+      the `n_files` of the download preview, which counts files.'
+    closest:
+    - type: schema
+      document: amadeus-download-data
+      locator: Value
+      source_slot: download_data.n_files
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: not_recorded
     explanation: The number of exposure rows a join wrote is printed as a notice and not stored.
@@ -598,12 +640,6 @@ output_row_count:
       source_slot: geocode_summary
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records an output row count.
   - source: cher
     legacy:
       extent: absent
@@ -675,11 +711,16 @@ provenance_chain_steps:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native Amadeus file records an ordered upstream-run chain.
+    reason: not_recorded
+    explanation: 'The steps are documented but no record of them is kept. Closest: the package description
+      of download, process and calculate.'
+    closest:
+    - type: documentation
+      document: amadeus-description
+      locator: Description
+      snippet: processing the raw data files into clean spatial objects
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -690,6 +731,17 @@ provenance_chain_steps:
 
 provenance_chain_terminus_type:
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No chain is recorded, so it has no typed root. Closest: the first step downloads raw
+      files from the source.'
+    closest:
+    - type: documentation
+      document: amadeus-description
+      locator: Description
+      snippet: processing the raw data files into clean spatial objects
+      status: verified
+    status: unverified
   - source: omop_gaia
     reason: implicit
     explanation: >-
@@ -714,12 +766,6 @@ provenance_chain_terminus_type:
       snippet: as NetCDF file(s) using the
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus carries no typed provenance-chain terminus.
   - source: cher
     legacy:
       extent: absent
@@ -749,6 +795,17 @@ provenance_chain_terminus_type:
 
 input_files:
   supported_by:
+  - source: amadeus
+    support:
+    - type: schema
+      document: amadeus-download-data
+      locator: Value
+      source_slot: download_data.destfiles
+      match: partial
+      explanation: 'The download preview lists the files (`urls`, `destfiles`), and the summary lists
+        failed files. Missing: the preview is only returned with `download = FALSE`, and the processed
+        result does not list the files it read.'
+      status: verified
   - source: codata
     support:
     - type: schema
@@ -816,21 +873,27 @@ input_files:
       source_slot: data_source.url
       status: verified
     status: unverified
+
+input_file_locator:
+  supported_by:
   - source: amadeus
-    reason: not_recorded
-    explanation: >-
-      The result does not list the files that were read. Closest: the `path` argument of
-      `process_covariates`, which may be a directory with several raw files.
-    closest:
+    support:
     - type: schema
       document: amadeus-process-covariates
       locator: arguments
       source_slot: process_covariates.path
+      match: partial
+      explanation: '"Directory or file path to raw data". Missing: the path is an argument of the call
+        and is not written to the result.'
       status: verified
-    status: unverified
-
-input_file_locator:
-  supported_by:
+    - type: schema
+      document: amadeus-download-data
+      locator: Value
+      source_slot: download_data.urls
+      match: partial
+      explanation: 'The download preview returns the source URLs of the files. Missing: only in the
+        preview, not with the downloaded data.'
+      status: verified
   - source: codata
     support:
     - type: schema
@@ -898,17 +961,6 @@ input_file_locator:
         The table has a Source Link column with a URL for each public input. Missing: the
         links are home or download pages and not the files, and participant geocodes
         have none ("N/A").
-      status: verified
-  - source: amadeus
-    support:
-    - type: schema
-      document: amadeus-process-covariates
-      locator: arguments
-      source_slot: process_covariates.path
-      match: partial
-      explanation: >-
-        "Directory or file path to raw data". Missing: the path is an argument of the
-        call and is not written to the result.
       status: verified
   - source: cher
     support:

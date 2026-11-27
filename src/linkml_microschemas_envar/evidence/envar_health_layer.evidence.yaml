@@ -38,11 +38,16 @@ health_layer_target:
       status: verified
   not_supported_by:
   - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus names no downstream health-layer target.
+    reason: not_recorded
+    explanation: 'No downstream health data model is named. Closest: the README says amadeus was developed
+      for the NIEHS CHORDS program, which links environment and health data.'
+    closest:
+    - type: documentation
+      document: amadeus-readme
+      locator: Connecting Health Outcomes Research Data Systems
+      snippet: has been developed as part of the National Institute of Environmental Health Science's
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -75,6 +80,17 @@ health_layer_link_field:
         C-HER models a cross-resource reference-column mechanism that could carry such a join,
         but declares no exposure-record-to-health-layer link field. Conservative: partial.
   not_supported_by:
+  - source: amadeus
+    reason: not_recorded
+    explanation: 'No field of a health data model is named. Closest: the result joins back to the user''s
+      locations on `locs_id`.'
+    closest:
+    - type: schema
+      document: amadeus-calculate-covariates
+      locator: arguments
+      source_slot: calculate_covariates.locs_id
+      status: verified
+    status: unverified
   - source: chel
     reason: not_recorded
     explanation: >-
@@ -87,12 +103,6 @@ health_layer_link_field:
       source_slot: participant_id
       status: verified
     status: unverified
-  - source: amadeus
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Amadeus declares no health-layer join field.
   - source: codata
     legacy:
       extent: out_of_layer
