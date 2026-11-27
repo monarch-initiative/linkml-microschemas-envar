@@ -5,14 +5,17 @@
 heat_metric_family:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §2.6 (EJI extreme-heat-days indicator only)
-      note: >-
-        CHEL carries the EJI-derived extreme-heat-days indicator (§2.6; `E_NEHD` / `EPL_NEHD`
-        in the 2024 hex table), but no heat-metric methodology, so no heat-metric family is
-        recorded.
+    reason: not_recorded
+    explanation: >-
+      CHEL has an extreme heat days indicator from EJI, but does not say which heat metric
+      defines an extreme heat day. Closest: the column `E_NEHD` of the 2024 table and the
+      indicator list in §2.6.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: E_NEHD
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -48,14 +51,6 @@ heat_metric_family:
 
 input_source_short_code:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no derived-heat-metric equation inputs)
-      note: >-
-        CHEL models no derived heat metrics, so per-input source codes for a heat equation
-        are not carried.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -92,13 +87,6 @@ input_source_short_code:
 
 wind_speed_measurement_height_m:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no derived-heat-metric methodology)
-      note: >-
-        CHEL models no WBGT/UTCI heat metrics, so wind-measurement height is not carried.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -133,13 +121,6 @@ wind_speed_measurement_height_m:
 
 solar_radiation_basis:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no derived-heat-metric methodology)
-      note: >-
-        CHEL models no WBGT/UTCI heat metrics, so a solar-radiation basis is not carried.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -175,14 +156,16 @@ solar_radiation_basis:
 percentile_reference_geographic_scope:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §3.6 (national percentile ranking, from EJI)
-      note: >-
-        CHEL applies national percentile ranking (0-100) inherited from EJI, so the reference
-        scope is stated (national), but not as a first-class heat-metric percentile-baseline
-        slot. Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§3.6"
+      snippet: CHEL applies national percentile ranking aggregated from the EJI source.
+      match: full
+      explanation: >-
+        The reference set of the percentile ranks is stated: national, over all hexes. CHEL
+        states it for its indicator ranks in general, not for a heat threshold.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -220,14 +203,6 @@ percentile_reference_geographic_scope:
 
 percentile_reference_seasonal_window:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; no seasonal window)
-      note: >-
-        CHEL's percentile normalization is spatial (EJI), with no temporal/seasonal reference
-        window.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -262,14 +237,6 @@ percentile_reference_seasonal_window:
 
 metric_temporal_aggregation_rule:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §2.6 (spatial-only; no multi-day event stamping)
-      note: >-
-        CHEL is spatial-only: its extreme-heat-days count arrives pre-aggregated from EJI,
-        and no multi-day heat events are stamped onto days.
   - source: omop_gaia
     legacy:
       extent: absent

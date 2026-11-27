@@ -5,13 +5,14 @@
 source_dataset_name:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §2.7 input lineage table
-      note: >-
-        CHEL names each source dataset first-class in the §2.7 input-lineage table (e.g. EJI
-        2022, EJI 2024, ACS, GPW v4).
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "ACS NOHSDP | Census Tract | Social vulnerability indicators"
+      match: full
+      explanation: Each input is named in the Input column of the table.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -55,14 +56,6 @@ source_dataset_name:
 
 source_dataset_short_code:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table
-      note: >-
-        Source datasets are named in the lineage table but there is no stable short registry
-        code per product.
   - source: omop_gaia
     legacy:
       extent: partial
@@ -100,15 +93,15 @@ source_dataset_short_code:
       note: >-
         A registry short code is a catalogue/discovery concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      Inputs are named in full in the input lineage table (§2.7); there is no short code per
+      input.
+    status: unverified
 
 source_dataset_doi:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (source links)
-      note: The lineage table gives source links, not always DOIs.
   - source: omop_gaia
     legacy:
       extent: partial
@@ -146,17 +139,33 @@ source_dataset_doi:
       note: >-
         Source-dataset DOI is a discovery/citation concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      The input lineage table gives a web link per input; none of them is a DOI. Closest: the
+      Source Link column.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "Input | Native Geometry | Role in CHEL | Source Link"
+      status: verified
+    status: unverified
 
 source_dataset_version:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §5.1, §5.5 (CHEL 2022 / 2024 releases)
-      note: >-
-        CHEL versions its releases first-class (CHEL 2022 vs 2024) with a documented version
-        checklist.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.3.1"
+      snippet: EJI 2022 and EJI 2024 are distinct source datasets.
+      match: partial
+      explanation: >-
+        The release of the main input (EJI) and of the boundary files (TIGER 2019 and 2020,
+        §2.2.2) is given per CHEL release. Missing: for ACS, §5.3.2 only says that the releases
+        use different rolling periods, without naming them.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -200,14 +209,6 @@ source_dataset_version:
 
 source_dataset_temporal_coverage:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (source vintages)
-      note: >-
-        Source vintages are recorded per input, but product temporal coverage is not a first-class
-        per-value field. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: full
@@ -250,17 +251,23 @@ source_dataset_temporal_coverage:
       note: >-
         Product temporal coverage is a discovery-layer concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      Inputs are identified by release year (EJI 2022, TIGER 2019); the period the data cover is
+      not given. Closest: the statement that each release is tied to source data vintages.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: >-
+        Each release corresponds to a specific set of source data vintages and reference
+        geometries.
+      status: verified
+    status: unverified
 
 source_dataset_spatial_extent:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table
-      note: >-
-        Source spatial extent is implicit in the national-US inputs but not a first-class
-        per-source field. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: full
@@ -306,17 +313,33 @@ source_dataset_spatial_extent:
       note: >-
         Product spatial extent is a discovery-layer concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      That the inputs are national US datasets follows from the text, but no extent is given per
+      input. Closest: the mention of national-scale datasets in §1.3.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: Computational feasibility for national-scale datasets
+      status: verified
+    status: unverified
 
 source_producer_institution:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (source links)
-      note: >-
-        Provider/publisher is recoverable from the source links but not a first-class per-source
-        field.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.5"
+      snippet: Health prevalence indicators derive from CDC PLACES.
+      match: partial
+      explanation: >-
+        The producer is named in passing for some inputs (CDC for PLACES and, in the README, for
+        EJI). Missing: the input lineage table has no producer column; for ACS, GPW and TIGER
+        only a link is given.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -359,13 +382,6 @@ source_producer_institution:
 
 source_citation_apa:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (source links)
-      note: >-
-        Source links are given; a formatted citation is not carried. Conservative: partial.
   - source: amadeus
     legacy:
       extent: partial
@@ -403,6 +419,18 @@ source_citation_apa:
       note: >-
         A formatted citation is a discovery/attribution concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      No citation is given for any input. Closest: the Source Link column of the input lineage
+      table.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "Input | Native Geometry | Role in CHEL | Source Link"
+      status: verified
+    status: unverified
 
 source_license_spdx:
   supported_by:
@@ -424,12 +452,11 @@ source_license_spdx:
         satisfies this SPDX-specific slot.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-source license field)
-      note: >-
-        CHEL operates at the source-dataset layer but carries no per-source license field.
+    reason: not_recorded
+    explanation: >-
+      No licence is given for any input, and the CHEL repository has no licence file. Nothing
+      close was found in Documentation.md or README.md.
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -454,13 +481,16 @@ source_license_spdx:
 source_access_url:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (source links)
-      note: >-
-        The lineage table carries source links, which serve as access URLs, though not as
-        a first-class landing-page slot.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "Input | Native Geometry | Role in CHEL | Source Link"
+      match: full
+      explanation: >-
+        The Source Link column gives a URL for each public input, in most rows a landing or
+        download page of the dataset.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: full
@@ -504,14 +534,6 @@ source_access_url:
 
 source_native_format:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 lineage table (native geometry per input)
-      note: >-
-        The lineage table records native geometry/role per input, from which native format
-        is partly recoverable. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: partial
@@ -552,3 +574,15 @@ source_native_format:
       note: >-
         Native shipping format is a packaging/discovery concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
+  - source: chel
+    reason: different_concept
+    explanation: >-
+      The input lineage table has a Native Geometry column (census tract, raster, polygon,
+      point). That is the geometry of the input, not its file format.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7, Input Lineage Table"
+      snippet: "Input | Native Geometry | Role in CHEL | Source Link"
+      status: verified
+    status: unverified

@@ -4,14 +4,6 @@
 
 schema_version:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no schema-version construct)
-      note: >-
-        CHEL is a pipeline, not a metadata sidecar standard; it carries no schema-version
-        field on emitted records.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -53,14 +45,17 @@ schema_version:
 provenance_id:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §5.5 (Foundry dataset RIDs)
-      note: >-
-        CHEL lists Foundry dataset references (RID) among its per-release documentation items
-        (§5.5), but has no per-sidecar stable record id that a health layer's source-value
-        field carries.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      match: partial
+      explanation: >-
+        CHEL names a stable identifier for its datasets, the Foundry RID. Missing: it is listed
+        as something each release should document; no RID is given in the public material, and
+        nothing says that the health data refer back to it.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -106,15 +101,6 @@ provenance_id:
 
 phi_status:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §1.3, §1.9, §2.2.2 (privacy architecture)
-      note: >-
-        Privacy protection is embedded structurally in CHEL (Hex3 chosen partly for HIPAA
-        expert determination; a separate ZIP3 geography for jitter and small-cell suppression),
-        but there is no per-record PHI-status assertion flag.
   - source: cher
     legacy:
       extent: partial
@@ -154,3 +140,15 @@ phi_status:
       where: no column
       note: >-
         Per-record PHI assertion is packaging/governance-layer; out of scope for CODATA.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      The hex tables hold no participant data and the privacy design is described, but no
+      statement says whether a released file contains PHI. Closest: the privacy basis in §1.3.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§1.3"
+      snippet: Protection of participant privacy under HIPAA expert determination
+      status: verified
+    status: unverified

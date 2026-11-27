@@ -5,14 +5,20 @@
 per_value_uncertainty_type:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.6.4 (source uncertainty acknowledged, none carried)
-      note: >-
-        CHEL §4.6.4 acknowledges source uncertainty but carries no per-value uncertainty on
-        its indicators (only the EJI population margin of error `M_TOTPOP` passes through).
+    reason: not_recorded
+    explanation: >-
+      No indicator has a described per-value uncertainty. Closest: §4.6.4 says the modeled
+      inputs are uncertain. The tables pass on one margin of error column from EJI (`M_TOTPOP`)
+      without describing it.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.6.4"
+      snippet: >-
+        Modeled environmental exposures (e.g., air pollution estimates) contain inherent
+        uncertainty independent of spatial aggregation.
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -49,11 +55,16 @@ per_value_uncertainty_type:
 per_value_uncertainty_units_ucum:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §4.6.4
-      note: No per-value uncertainty is carried, so its units are absent too.
+    reason: not_recorded
+    explanation: >-
+      As for `per_value_uncertainty_type`: no per-value uncertainty is described, so no unit
+      either. Closest: the undescribed column `M_TOTPOP`.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: M_TOTPOP
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -90,13 +101,19 @@ per_value_uncertainty_units_ucum:
 model_aggregate_uncertainty:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §4.6.4
-      note: >-
-        CHEL carries no per-value SE / prediction interval / model-aggregate uncertainty;
-        §4.6.4 only acknowledges source uncertainty.
+    reason: not_recorded
+    explanation: >-
+      No summary statistic (R², RMSE, interval) is given for the source models or for CHEL's
+      interpolation. Closest: §4.6.4.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.6.4"
+      snippet: >-
+        Modeled environmental exposures (e.g., air pollution estimates) contain inherent
+        uncertainty independent of spatial aggregation.
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -134,14 +151,18 @@ model_aggregate_uncertainty:
 missing_data_handling_method:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        CHEL Documentation.md §4.3.1, §4.3.3 (conservation diagnostics; null taxonomy)
-      note: >-
-        CHEL §4.3 has conservation diagnostics and a null taxonomy (validation), but no per-value
-        missing-data-handling method slot. Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.3"
+      snippet: >-
+        For percentile ranking, null values are excluded from ranking denominator N unless
+        otherwise documented.
+      match: partial
+      explanation: >-
+        CHEL says how missing values enter the percentile ranking. Missing: §4.3.3 says the
+        propagation rules are defined but does not give them for the aggregation steps.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -182,15 +203,6 @@ missing_data_handling_method:
         Missing-data handling method is instance-layer; out of scope for CODATA.
 
 data_completeness_pct:
-  supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §4.3.1, §4.3.2 (conservation/range checks)
-      note: >-
-        Completeness is checkable via CHEL's §4.3 conservation/range diagnostics but not carried
-        as a per-value completeness percentage. Conservative: partial.
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -224,3 +236,15 @@ data_completeness_pct:
       where: no column
       note: >-
         Data completeness percentage is instance-layer; out of scope for CODATA.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      No completeness figure is given for an indicator or a release. Closest: the kinds of null
+      in §4.3.3.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.3"
+      snippet: Structural nulls (no source data available)
+      status: verified
+    status: unverified

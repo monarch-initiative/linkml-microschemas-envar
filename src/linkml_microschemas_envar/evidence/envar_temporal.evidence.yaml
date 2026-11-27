@@ -23,13 +23,19 @@ temporal_resolution:
         and as an inheritable lineage field.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      No time grain is stated for the indicators. Closest: each release is tied to a set of
+      source data vintages.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: >-
+        Each release corresponds to a specific set of source data vintages and reference
+        geometries.
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -64,13 +70,18 @@ temporal_aggregation_method:
         a structured field.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      Indicators such as extreme heat days and wildfire smoke days are counts over a period, but
+      neither the period nor the way of summarising is given. Closest: the indicator list in
+      §2.6.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.6"
+      snippet: "Climate hazard indicators include:"
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -112,13 +123,19 @@ temporal_aggregation_window_seconds:
         seconds value.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      As for `temporal_resolution`: no time grain is stated for the indicators. Closest: each
+      release is tied to a set of source data vintages.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: >-
+        Each release corresponds to a specific set of source data vintages and reference
+        geometries.
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -149,14 +166,6 @@ temporal_aggregation_window_seconds:
 
 day_boundary_convention:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -222,13 +231,17 @@ temporal_coverage_start:
         as an inheritable lineage field.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      A release has a year in its name (CHEL 2022, CHEL 2024); the period its values cover is
+      not given.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: "Two primary releases are currently defined:"
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -275,13 +288,17 @@ temporal_coverage_end:
         as an inheritable lineage field.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
+    reason: not_recorded
+    explanation: >-
+      A release has a year in its name (CHEL 2022, CHEL 2024); the period its values cover is
+      not given.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: "Two primary releases are currently defined:"
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -299,14 +316,6 @@ temporal_coverage_end:
 
 extraction_window_start:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -348,14 +357,6 @@ extraction_window_start:
 
 extraction_window_end:
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
   - source: omop_gaia
     legacy:
       extent: absent
@@ -405,14 +406,6 @@ calendar:
       note: >-
         The THREDDS day axis declares the calendar (gregorian) and time origin explicitly.
   not_supported_by:
-  - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (spatial-only; start_date only)
-      note: >-
-        CHEL is spatial-only; it carries participant start_date but no temporal-aggregation
-        semantics.
   - source: omop_gaia
     legacy:
       extent: absent

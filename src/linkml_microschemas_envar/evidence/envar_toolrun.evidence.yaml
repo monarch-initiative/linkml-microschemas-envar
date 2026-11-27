@@ -4,14 +4,6 @@
 
 tool_name:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §5.5 (Foundry RID + CHEL release version)
-      note: >-
-        CHEL identifies its pipeline via Foundry RID + CHEL release, but not as a discrete
-        tool-name field.
   - source: degauss
     legacy:
       extent: partial
@@ -52,17 +44,21 @@ tool_name:
       note: >-
         Tool-run provenance is instance-layer; CODATA EVs/CDIF operate at the conceptual/represented
         layer and are excluded from scoring.
+  - source: chel
+    reason: not_recorded
+    explanation: >-
+      No software is named for the pipeline. Closest: §5.5 says a release should document its
+      Foundry dataset references.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      status: verified
+    status: unverified
 
 tool_version:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md Part 5 / §5.5 (CHEL release version)
-      note: >-
-        CHEL release version (2022 / 2024) is documented, but not as a per-tool semver in
-        a run record. Conservative: partial.
   - source: degauss
     legacy:
       extent: full
@@ -105,6 +101,17 @@ tool_version:
       note: >-
         Per-run tool version is instance-layer; out of scope for CODATA EV/CDIF conceptual
         layer.
+  - source: chel
+    reason: different_concept
+    explanation: >-
+      CHEL versions its data releases (2022, 2024), not the software that builds them.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: "Two primary releases are currently defined:"
+      status: verified
+    status: unverified
 
 container_image_repository:
   supported_by:
@@ -118,13 +125,17 @@ container_image_repository:
         native output column.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §5.5 (Foundry datasets; no container repo)
-      note: >-
-        CHEL is built as Foundry datasets (§5.5 RIDs), not a container image, so it carries
-        no container image repository.
+    reason: not_recorded
+    explanation: >-
+      The environment the pipeline runs in is not described. Closest: §5.5 says a release should
+      document its Foundry dataset references.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -153,12 +164,17 @@ container_image_repository:
 container_image_digest:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §5.5 (Foundry datasets; no container digest)
-      note: >-
-        CHEL is built as Foundry datasets (§5.5 RIDs); it carries no container image digest.
+    reason: not_recorded
+    explanation: >-
+      The environment the pipeline runs in is not described. Closest: §5.5 says a release should
+      document its Foundry dataset references.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Foundry dataset references (RID)
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -194,11 +210,17 @@ container_image_digest:
 run_arguments:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run argument map)
-      note: CHEL carries no per-run argument map.
+    reason: not_recorded
+    explanation: >-
+      The parameters of a pipeline run are not published. Closest: §5.5 lists the projection
+      specifications and the privacy threshold as things a release should document.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.5"
+      snippet: Privacy threshold specification
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -262,11 +284,16 @@ run_timestamp_utc:
         tool-run timestamp.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run timestamp)
-      note: CHEL carries no per-run timestamp on emitted records.
+    reason: not_recorded
+    explanation: >-
+      No build or run date is given for a release. Closest: the year in the release name.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§5.1"
+      snippet: "Two primary releases are currently defined:"
+      status: verified
+    status: unverified
   - source: degauss
     legacy:
       extent: absent
@@ -283,11 +310,11 @@ run_timestamp_utc:
 input_file_sha256:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run row counts / hashes)
-      note: CHEL carries no per-run input/output file hashes.
+    reason: not_recorded
+    explanation: >-
+      No hash of an input file is published. Nothing close was found in Documentation.md,
+      README.md or the data folder.
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -322,11 +349,11 @@ input_file_sha256:
 input_row_count:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run row counts / hashes)
-      note: CHEL carries no per-run input/output row counts or hashes.
+    reason: not_recorded
+    explanation: >-
+      No row count of an input is published. Nothing close was found in Documentation.md,
+      README.md or the data folder.
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -361,11 +388,11 @@ input_row_count:
 output_file_sha256:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run row counts / hashes)
-      note: CHEL carries no per-run input/output file hashes.
+    reason: not_recorded
+    explanation: >-
+      No hash of the released tables is published. Nothing close was found in Documentation.md,
+      README.md or the data folder.
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -400,11 +427,11 @@ output_file_sha256:
 output_row_count:
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md (no per-run row counts / hashes)
-      note: CHEL carries no per-run input/output row counts or hashes.
+    reason: not_recorded
+    explanation: >-
+      No row count of the released tables is stated. Nothing close was found in
+      Documentation.md, README.md or the data folder.
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -439,14 +466,18 @@ output_row_count:
 provenance_chain_steps:
   supported_by:
   - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.1 (Source to Module Assignment pathway)
-      note: >-
-        CHEL documents a lineage pathway (Source to Cleaning to Harmonization to Hex Aggregation
-        to Normalization to Module Assignment), but not as an ordered per-run W3C-PROV chain.
-        Conservative: partial.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.1"
+      snippet: >-
+        This pathway ensures that the origin, transformation logic, and aggregation assumptions
+        of each variable are explicit and reproducible.
+      match: partial
+      explanation: >-
+        §2.1 gives the ordered processing stages of every input. Missing: the stages are not
+        runs; no tool, version, date or output per step.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
@@ -487,15 +518,6 @@ provenance_chain_steps:
         Ordered tool-run provenance is instance-layer; out of scope for CODATA.
 
 provenance_chain_terminus_type:
-  supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL Documentation.md §2.7 (raw source inputs)
-      note: >-
-        CHEL's lineage terminates at raw source downloads (EJI, ACS, GPW v4, etc.), but the
-        terminus type is not a first-class typed field. Conservative: partial.
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -528,6 +550,20 @@ provenance_chain_terminus_type:
       status: asserted
       where: no column
       note: Chain-terminus typing is instance-layer; out of scope for CODATA.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      The input lineage table starts from public datasets with their download links, so the
+      chain ends at downloaded sources. The kind of root is not stated as such.
+    closest:
+    - type: documentation
+      document: chel-documentation
+      locator: "§2.7"
+      snippet: >-
+        These datasets form the full upstream dependency graph for aggregation and spatial
+        linkage.
+      status: verified
+    status: unverified
 
 input_files:
   supported_by:

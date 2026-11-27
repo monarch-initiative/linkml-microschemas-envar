@@ -4,15 +4,6 @@
 
 table_orientation:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        CHEL data/CHEL_hex3_2022.csv, CHEL_hex3_2024.csv (wide, one row per hex_id)
-      note: >-
-        CHEL publishes wide hex-indexed tables (one row per `hex_id`, one column per indicator),
-        but not as a portable sidecar layout declaration. Conservative: partial.
   - source: cher
     legacy:
       extent: partial
@@ -52,17 +43,20 @@ table_orientation:
       note: >-
         File orientation is an instance-layer layout detail; CODATA's conceptual layer does
         not describe physical table shape.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      The wide layout can be seen in the published tables (one row per `hex_id`, one column per
+      indicator) but is not stated. Closest: the key column `hex_id`.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: hex_id
+      status: verified
+    status: unverified
 
 value_column:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL data/CHEL_hex3_*.csv (E_* / EPL_* / F_* indicator columns)
-      note: >-
-        Each indicator is its own value column in CHEL's hex tables, but the column binding
-        is not a portable sidecar declaration. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: full
@@ -104,17 +98,20 @@ value_column:
       note: >-
         Binding a value to a physical column is instance-layer; CODATA's conceptual layer
         does not name file columns.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      Each indicator is its own column in the hex tables, but nothing declares which column
+      holds the values of which variable. Closest: an indicator column such as `EPL_NEHD`.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: EPL_NEHD
+      status: verified
+    status: unverified
 
 subject_column:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL README.md linkage example (participant_id)
-      note: >-
-        The README linkage example carries a `participant_id` subject column, but not as a
-        portable sidecar binding. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: full
@@ -159,18 +156,20 @@ subject_column:
       note: >-
         The subject/cohort column binding is instance-layer layout, outside CODATA's conceptual
         scope.
+  - source: chel
+    reason: implicit
+    explanation: >-
+      The released tables are keyed on `hex_id`, and the README example keys participants on
+      `participant_id`. Neither is declared as the subject column.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: hex_id
+      status: verified
+    status: unverified
 
 time_column:
   supported_by:
-  - source: chel
-    legacy:
-      extent: partial
-      status: asserted
-      where: CHEL README.md linkage example (start_date)
-      note: >-
-        The README linkage example carries a participant `start_date` column (used to pick
-        the CHEL release); the hex tables themselves have no time column, and neither is a
-        portable sidecar binding. Conservative: partial.
   - source: omop_gaia
     legacy:
       extent: partial
@@ -213,6 +212,19 @@ time_column:
       where: no column
       note: >-
         The time-column binding is instance-layer layout, outside CODATA's conceptual scope.
+  - source: chel
+    reason: different_granularity
+    explanation: >-
+      The hex tables have no time column: the year is part of the release (file) name. Closest:
+      the participant `start_date` of the README example, which selects the release and is not
+      the time of a value.
+    closest:
+    - type: schema
+      document: chel-readme
+      locator: Python Example
+      source_slot: start_date
+      status: verified
+    status: unverified
 
 value_uncertainty_column:
   supported_by:
@@ -227,13 +239,17 @@ value_uncertainty_column:
         Value column, but none is asserted here. Conservative: partial.
   not_supported_by:
   - source: chel
-    legacy:
-      extent: absent
-      status: asserted
-      where: CHEL Documentation.md §4.6.4 (no per-value uncertainty carried)
-      note: >-
-        CHEL carries no per-value uncertainty for its indicators (only the EJI population
-        margin of error `M_TOTPOP` passes through), so no uncertainty column is bound.
+    reason: implicit
+    explanation: >-
+      The tables have a column `M_TOTPOP` next to `E_TOTPOP` (in EJI, `M_` is the margin of
+      error). It exists for this one variable only and CHEL's documentation does not describe
+      it. No other indicator has an uncertainty column.
+    closest:
+    - type: output
+      document: chel-hex3-2024
+      field: M_TOTPOP
+      status: verified
+    status: unverified
   - source: omop_gaia
     legacy:
       extent: absent
@@ -267,13 +283,17 @@ value_uncertainty_column:
 null_semantics_column:
   supported_by:
   - source: chel
-    legacy:
-      extent: full
-      status: asserted
-      where: CHEL Documentation.md §4.3.3 Null Handling
-      note: >-
-        CHEL §4.3.3 defines exactly this three-way null taxonomy (structural / derived / true-zero)
-        and excludes nulls from percentile-ranking denominators on its basis.
+    support:
+    - type: documentation
+      document: chel-documentation
+      locator: "§4.3.3"
+      snippet: Structural nulls (no source data available)
+      match: partial
+      explanation: >-
+        CHEL defines the three kinds of empty value the column distinguishes (structural null,
+        derived null, true zero). Missing: the published tables have no column that says which
+        kind a given null is.
+      status: verified
   - source: omop_gaia
     legacy:
       extent: partial
