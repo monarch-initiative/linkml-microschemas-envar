@@ -4,6 +4,16 @@
 
 subject_type:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial resolution refers to how the resource is organized geographically.
+      match: partial
+      explanation: 'The spatial resolution code says what unit a row is (c00 county, h08 H3 cell, pnt
+        points). Missing: whether that unit stands for people, a place or a population is not stated.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -28,16 +38,6 @@ subject_type:
         `domain_id` says what kind of entity (a person, a care site) the `entity_id` of a
         location period is. The join writes `person_id` only for the person domain.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution code; Spatial Primary column
-        tag (§2.3.2)
-      note: >-
-        The spatial resolution code gives the geographic unit (c00 is county-level data),
-        but no field declares the subject kind.
   - source: codata
     legacy:
       extent: partial
@@ -72,6 +72,17 @@ subject_type:
 
 variable_identity:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.1, p. 12
+      snippet: Definition of the field, including calculation or coding details that are needed for
+        interpretation.
+      match: partial
+      explanation: 'Each column has a name, display name, description, tag and unit. Missing: no standard
+        name or vocabulary term.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -106,15 +117,6 @@ variable_identity:
         `variable_source` describes each variable: name, description, property id, data type,
         unit, value range and concept ids.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary.column_tag=Value + column_unit_id (+ planned ontology tag)
-      note: >-
-        C-HER tags a Value column with a unit and (planned) ontology tag, but carries no CF
-        standard name / cell-methods identity.
   - source: degauss
     support:
     - type: documentation
@@ -140,6 +142,16 @@ variable_identity:
 
 spatial_reference:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial extent and spatial resolution are selected from separate controlled lookup tables.
+      match: partial
+      explanation: 'Extent and resolution are coded fields of every resource. Missing: no CRS, and they
+        describe the C-HER resource, which may be converted from the source.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -200,17 +212,6 @@ spatial_reference:
         extraction. Missing: the CRS is only in the code, and nothing of this is written to the
         output.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_name spatial extent + spatial resolution codes (e.g. h08 / k05 / m30); column_tag
-        Spatial-Primary
-      note: >-
-        C-HER encodes spatial extent and organisation resolution in the table_name and tags
-        spatial columns, but carries no per-value extraction method or CRS field. Conservative:
-        partial.
   not_supported_by:
   - source: codata
     legacy:
@@ -222,6 +223,17 @@ spatial_reference:
 
 temporal_reference:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'Temporal extent and resolution are fields of every resource. Missing: no summary
+        method or day boundary.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -243,17 +255,6 @@ temporal_reference:
         A variable has the period it covers, and each value its own time window. Missing: no
         field for the time grain, the aggregation over the window or the day boundary.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_name temporal extent (YYYYMMDDYYYYMMDD) + temporal resolution code; column_tag
-        Temporal-Primary
-      note: >-
-        C-HER encodes temporal extent and resolution in the table_name and tags temporal columns,
-        but carries no aggregation-method or day-boundary-convention field. Conservative:
-        partial.
   - source: degauss
     support:
     - type: documentation
@@ -291,6 +292,16 @@ temporal_reference:
 
 exposure_model:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Modeled data products.
+      match: partial
+      explanation: 'The data level marks a resource as modeled or calculated, and lineage links its
+        inputs. Missing: no description of the model; the paper describes some models in prose.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -315,15 +326,6 @@ exposure_model:
         Part 3. Missing: model type, inputs, methods paper and skill of the source models are
         not passed on.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes
-      note: >-
-        C-HER's data_level codes signal that a resource is calculated or modeled, but do not
-        carry a structured exposure-model type or inputs. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -360,6 +362,17 @@ exposure_model:
 
 data_layout:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3, p. 11
+      snippet: column metadata explain what each field in the tabular resource means and how it should
+        be used.
+      match: full
+      explanation: Every column of a tabular resource has a record with name, description, role tag
+        and unit.
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -405,17 +418,6 @@ data_layout:
         Daymet variable; the README lists the input columns and the added ones. Missing: no
         machine-readable description of the columns.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_column_dictionary (column_name, description, column_tag Index/Value/Temporal/Spatial,
-        column_unit)
-      note: >-
-        C-HER's column dictionary is a first-class, portable per-column layout with a role
-        tag and unit for every column — the closest analogue to the sidecar's data-layout
-        block.
   not_supported_by:
   - source: codata
     legacy:
@@ -427,6 +429,16 @@ data_layout:
 
 source_dataset:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 6
+      snippet: Identifies the original publisher and source dataset.
+      match: partial
+      explanation: 'Every resource belongs to a dataset with its publisher, and has rights and format.
+        Missing: no DOI or version of the source dataset (the DOI field is for C-HER''s own resources).'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -460,16 +472,6 @@ source_dataset:
         `data_source` describes each source dataset: name, version, description, creator,
         provider, licence, coverage, dates and URL.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_dictionary (dataset, doi, rights, resource_type/format, contributors) + version
-        + source_update_frequency
-      note: >-
-        C-HER's table_dictionary and its foreign-key vocabularies identify the source dataset
-        first-class (dataset, rights, DOI, contributors, version).
   - source: degauss
     support:
     - type: documentation
@@ -496,6 +498,23 @@ source_dataset:
 
 uncertainty:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 12
+      snippet: Information that qualifies or describes a value field.
+      match: partial
+      explanation: 'Meta Value columns can hold margins of error. Missing: no type or summary of uncertainty.'
+      status: verified
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: Figure 8
+      snippet: Standard deviation of average daily PM2.5 exposure in 2018
+      match: partial
+      explanation: 'For C-HER''s own PM2.5 model the paper maps a standard deviation. Missing: in the
+        paper only.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -519,15 +538,6 @@ uncertainty:
         CHEL describes how missing values are treated. Missing: no per-value uncertainty and no
         skill statistics; §4.6.4 only says that the modeled inputs are uncertain.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)
-      note: >-
-        C-HER classifies null cells and encodes QA level, but carries no per-value uncertainty
-        or completeness percentage. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -556,6 +566,17 @@ uncertainty:
 
 linkage_method:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §3.4
+      snippet: enables exposure measures at different spatial resolutions to be assigned based on the
+        geocode level
+      match: partial
+      explanation: 'The SEER linkage geocodes addresses to a point or ZIP code and assigns exposure
+        at that level. Missing: described in the paper, not recorded.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -603,16 +624,6 @@ linkage_method:
         every row, its README names the address database, and the daymet README says how values
         are attached to the coordinate.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary
-        (cross-table join descriptors)
-      note: >-
-        C-HER models cross-table join references and spatial-column tags, but no patient-to-place
-        linkage-strategy field. Conservative: partial.
   not_supported_by:
   - source: codata
     legacy:
@@ -623,6 +634,16 @@ linkage_method:
 
 tool_run:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.1
+      snippet: Links to the code used to ingest, transform, and create data are stored in the database.
+      match: partial
+      explanation: 'The code that made a resource is linked, and metadata entries have created, updated
+        and uploaded-by fields. Missing: no tool name, version or arguments of a run.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -670,15 +691,6 @@ tool_run:
         argument. Missing: they describe the image and not a run: no run time, hashes or row
         counts.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_dictionary.metadata_created_at/updated_at + uploaded_by + version
-      note: >-
-        C-HER records registration time, uploader, and version, but no per-run producing-tool
-        name/version, container digest, args, or hashes. Conservative: partial.
   not_supported_by:
   - source: codata
     legacy:
@@ -701,6 +713,17 @@ tool_run:
 
 provenance_chain:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.4.1, p. 14
+      snippet: Lineage relationships identify the C-HER resources that were utilized in the creation
+        of a new
+      match: partial
+      explanation: 'Each derived resource links its parents, with notes on how it differs. Missing:
+        a graph of resources, not an ordered list of tool runs.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -735,14 +758,6 @@ provenance_chain:
         text (`prov:action`, also the `processStep` file of the entry). Missing: a description
         of the ETL, not a record of runs.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: dataset_lineage (parent-child links) + lineage_notes
-      note: >-
-        C-HER's dataset_lineage links parent and child resources, but is a dataset-lineage
-        graph, not an ordered per-run W3C-PROV chain. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -782,6 +797,17 @@ provenance_chain:
 
 health_layer_linkage:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.5
+      snippet: C-HER data was extracted and used to create a relational database that can be used by
+        SEER
+      match: partial
+      explanation: 'The paper describes the link to SEER cancer data through CONNECT. Missing: no metadata
+        field names the target or the join.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -793,16 +819,6 @@ health_layer_linkage:
         Values go into OMOP `external_exposure` with the person, and `exposure_source_value`
         leads back to the variable's metadata record.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table
-        join to health resources)
-      note: >-
-        C-HER has a health schema and cross-table reference columns, but no sidecar-to-health-layer
-        link-field declaration. Conservative: partial.
   - source: chel
     support:
     - type: documentation

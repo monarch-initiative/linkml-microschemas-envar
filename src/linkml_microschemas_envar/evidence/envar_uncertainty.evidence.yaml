@@ -4,6 +4,16 @@
 
 per_value_uncertainty_type:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.2, p. 12
+      snippet: Information that qualifies or describes a value field.
+      match: partial
+      explanation: 'A Meta Value column such as estimate_margin_error has a description. Missing: the
+        kind of uncertainty is only in that free text or the name.'
+      status: verified
   - source: degauss
     support:
     - type: documentation
@@ -49,14 +59,6 @@ per_value_uncertainty_type:
       No field for the uncertainty of a value. Nothing close was found in the schema or the
       README.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's column_tag Meta value can hold uncertainty columns in principle, but no per-value
-        uncertainty type is a modelled field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -65,6 +67,16 @@ per_value_uncertainty_type:
       note: Per-value uncertainty is instance-layer; out of scope for CODATA.
 
 per_value_uncertainty_units_ucum:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.5.2, p. 15
+      snippet: value or meta value tagged columns have a unit assigned, where applicable
+      match: partial
+      explanation: 'Meta Value columns get a unit. Missing: not UCUM.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -105,12 +117,6 @@ per_value_uncertainty_units_ucum:
       snippet: standard error for predicted PM2.5
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No per-value uncertainty field, so no uncertainty units in C-HER.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -120,6 +126,17 @@ per_value_uncertainty_units_ucum:
         Per-value uncertainty units are instance-layer; out of scope for CODATA.
 
 model_aggregate_uncertainty:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.4
+      snippet: yielding overall R2 values ranging from 0.910 to 0.970 on the training sets
+      match: partial
+      explanation: 'For elemental carbon the paper gives the producer''s cross-validated R2 on training
+        and test sets. Missing: one dataset, in the paper only.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -169,12 +186,6 @@ model_aggregate_uncertainty:
       snippet: Daymet data documentation
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER carries no model cross-validation summary field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -185,6 +196,17 @@ model_aggregate_uncertainty:
 
 missing_data_handling_method:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §1.2, p. 4
+      snippet: We also create derived resources through transformations such as hexification, spatial
+        downscaling, treatment of missing
+      match: partial
+      explanation: 'Treating missing data makes a new derived resource, described in its lineage notes.
+        Missing: free text, and nothing on how the source handles gaps.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -244,14 +266,6 @@ missing_data_handling_method:
         data is not passed on.
       status: verified
   not_supported_by:
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's null taxonomy classifies null cells but carries no source missing-data-handling
-        method field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -261,6 +275,17 @@ missing_data_handling_method:
         Missing-data handling method is instance-layer; out of scope for CODATA.
 
 data_completeness_pct:
+  supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.3.3, p. 13
+      snippet: Code that identifies completeness or review conditions associated with pm25_mean.
+      match: partial
+      explanation: 'A quality flag column can code the completeness of a value. Missing: a code per
+        value, not a percentage.'
+      status: verified
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -290,12 +315,6 @@ data_completeness_pct:
       No completeness figure is written, and rows without a Daymet cell are dropped without a
       count. Nothing close was found in the daymet README or the example output.
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER carries no per-window data-completeness percentage field.
   - source: codata
     legacy:
       extent: out_of_layer

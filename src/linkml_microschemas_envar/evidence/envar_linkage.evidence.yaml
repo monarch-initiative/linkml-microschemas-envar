@@ -4,6 +4,18 @@
 
 linkage_strategy:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §3.4
+      snippet: enables exposure measures at different spatial resolutions to be assigned based on the
+        geocode level
+      match: partial
+      explanation: 'For the SEER linkage, addresses are geocoded to a point or a ZIP code and the exposure
+        is assigned at the matching resolution (hex8 or ZIP). Missing: described in the paper, not recorded
+        per resource.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -53,16 +65,6 @@ linkage_strategy:
         The join code maps the operator and the buffer to an OMOP GIS geometry relationship
         concept.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        table_column_dictionary column tagged Spatial – Primary + reference to boundaries
-        schema
-      note: >-
-        C-HER's Spatial tags and boundaries-schema references encode a spatial join relationship,
-        though not EnVar's linkage-strategy enum. Conservative: partial.
   - source: degauss
     support:
     - type: documentation
@@ -86,6 +88,16 @@ linkage_strategy:
 
 geocoding_precision_propagated:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §3.4
+      snippet: were geocoded to the point level, and 1,060,257 were geocoded to the zip code.
+      match: partial
+      explanation: 'The geocode level (point or ZIP code) is known per address and decides which exposure
+        is assigned. Missing: described for the SEER pipeline, not a field of C-HER metadata.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -130,13 +142,6 @@ geocoding_precision_propagated:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER geocodes participants to points but does not carry the precision of the geocode.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -179,6 +184,16 @@ geocoding_score_propagated:
         The column is still there in the output of the daymet container, next to each value.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No geocoder score is mentioned. Closest: the geocode level (point or ZIP code).'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §3.4
+      snippet: were geocoded to the point level, and 1,060,257 were geocoded to the zip code.
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus does no geocoding and takes no geocoding score. Closest: the `locs` argument.'
@@ -201,12 +216,6 @@ geocoding_score_propagated:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER carries no geocoder confidence score.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -242,6 +251,18 @@ geocoding_database_version:
         is stated in the README only; no output column repeats it.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'The paper names the geocoder (ORNL''s ADDRESS) but not its reference database. Closest:
+      the geocoder named in the paper. (The ADDRESS report cited by the old entry was not read for this
+      review.)'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §3.4
+      snippet: geocoded using the ADDRESS (Automated Determination of Detailed Regional
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'amadeus takes locations that already have coordinates, so no address database is used.
@@ -277,15 +298,6 @@ geocoding_database_version:
       source_slot: location.latitude
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column fields
-      note: >-
-        The published C-HER metadata fields include no geocoding database. The ORNL ADDRESS
-        report (doi:10.2172/3827145, Table 2) names OSM/Nominatim without a version, outside
-        that metadata.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -297,6 +309,18 @@ geocoding_database_version:
 
 address_period_alignment:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: This can be accomplished by linking exposure measures with longitudinal residential history
+        data
+      match: partial
+      explanation: 'Exposures are linked to residential histories (addresses from 1995 to 2024). Missing:
+        how an address period is aligned with the exposure dates is not described; the paper points
+        to prior work.'
+      status: verified
   - source: degauss
     support:
     - type: schema
@@ -352,13 +376,6 @@ address_period_alignment:
       snippet: Each participant will be assigned attributes from the correct CHEL dataset
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER joins a participant point to a hex with no location-over- time alignment.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -370,6 +387,17 @@ address_period_alignment:
 
 partial_day_attribution_rule:
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No rule for days with a move is described. Closest: the residential histories.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: This can be accomplished by linking exposure measures with longitudinal residential history
+        data
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'Locations do not change over time in amadeus, so no day is split. Closest: nothing.'
@@ -386,12 +414,6 @@ partial_day_attribution_rule:
       snippet: and the exposure dates are clipped to the overlap
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER is spatial-only and models no transition-day attribution.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -416,11 +438,16 @@ lag_alignment_applied:
       status: verified
   not_supported_by:
   - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: C-HER is spatial-only and carries no lag-alignment record.
+    reason: not_recorded
+    explanation: 'No lag is described. Closest: the paper says exposure must cover the long window in
+      which risk builds up.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: can take years or even decades, so exposomics data must correspond to the long
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -445,17 +472,20 @@ privacy_transformation:
         CHEL names the transformation applied at linkage: a deterministic reassignment (jitter)
         of participants, based on ZIP3 x Hex3 slivers (§2.2.2).
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same
-        ZIP3)
-      note: >-
-        C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy
-        jitter this slot models — it is the motivating case.
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No change of a linked location is described. Exposure data are shared at hex level
+      so that addresses stay with the registry. The old entry described CHEL''s hex reassignment, which
+      belongs to another source. Closest: the paper''s sharing by hexagon.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: it can be shared with external institutions to facilitate exposomic research with standardized
+        datasets while ensuring privacy
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'Values are extracted at the coordinates given, and no transformation is applied or
@@ -508,17 +538,19 @@ privacy_transformation_note:
         the rule for the new hex are not published; §5.5 only lists the privacy threshold as
         something a release should document.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        C-HER §4.5 trigger (hex∩ZIP3 population threshold), deterministic rule, HIPAA expert-determination
-        basis
-      note: >-
-        C-HER spells out the concrete trigger, determinism, and legal basis of its jitter
-        — exactly the detail this note slot captures.
   not_supported_by:
+  - source: cher
+    reason: not_recorded
+    explanation: 'No privacy transformation is described, so there is no detail. The old entry described
+      CHEL. Closest: the paper''s sharing by hexagon.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §1
+      snippet: it can be shared with external institutions to facilitate exposomic research with standardized
+        datasets while ensuring privacy
+      status: verified
+    status: unverified
   - source: amadeus
     reason: not_recorded
     explanation: 'No privacy transformation is applied, so there is no detail to record. Closest: nothing.'

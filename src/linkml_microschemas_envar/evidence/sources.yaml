@@ -295,12 +295,25 @@ sources:
     name: C-HER
     kind: dataset_repository
     url: https://doi.org/10.2172/3451859
+    reviewed:
+      date: 2026-11-27
+      note: >-
+        Checked against the two public C-HER documents: the metadata report (ORNL/TM-2026/4743)
+        and the arXiv paper it cites (2511.03750v1). Items from the paper describe the pipeline,
+        not a metadata field, and say so. The report says the database schema, code and QA/QC
+        material are kept internally; they were not read, and neither was the ADDRESS geocoder
+        report. Every slot that has evidence is checked. The slots in unreviewed.yaml are not.
     documents:
       - id: cher-metadata-overview
         title: C-HER Metadata Overview (ORNL/TM-2026/4743)
         url: https://www.osti.gov/servlets/purl/3451859
         version: "doi:10.2172/3451859"
         retrieved: 2026-11-26
+      - id: cher-arxiv-paper
+        title: "Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)"
+        url: https://arxiv.org/pdf/2511.03750v1
+        version: "v1 (2025-11-04)"
+        retrieved: 2026-11-27
   - id: codata
     name: CODATA Essential Variables / DDI-CDI
     kind: standard

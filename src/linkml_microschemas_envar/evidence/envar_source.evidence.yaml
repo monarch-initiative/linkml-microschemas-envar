@@ -4,6 +4,16 @@
 
 source_dataset_name:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 6
+      snippet: Identifies the original publisher and source dataset.
+      match: full
+      explanation: Every resource names its source dataset, with an abbreviation and its full meaning
+        (e.g. tiger, Topologically Integrated Geographic Encoding and Referencing system).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -39,14 +49,6 @@ source_dataset_name:
       match: full
       explanation: The name in the public example.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary dataset (via table_name {dataset} slot)
-      note: >-
-        C-HER names the dataset first-class as the {dataset} component of the reproducible
-        table_name and as a foreign key on table_dictionary.
   - source: degauss
     support:
     - type: documentation
@@ -70,6 +72,16 @@ source_dataset_name:
 
 source_dataset_short_code:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: The organization and dataset segments use approved abbreviations
+      match: partial
+      explanation: 'Each dataset has a short abbreviation (tiger). Missing: it is C-HER''s own code,
+        not a key of the EnVar registry.'
+      status: verified
   - source: amadeus
     support:
     - type: schema
@@ -91,14 +103,6 @@ source_dataset_short_code:
         Every dataset has a unique `dataset_id` (the `@id` of its JSON-LD), which ends in the
         short table id the catalogue uses for it, for example `ma_2022_svi_tract`.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary dataset ({dataset} component of table_name)
-      note: >-
-        The {dataset} slot in the reproducible table_name is exactly a stable machine-readable
-        short code keying the product.
   not_supported_by:
   - source: degauss
     reason: not_recorded
@@ -144,14 +148,6 @@ source_dataset_doi:
         `dct:identifier`. Missing: only in the DCAT record. The JSON-LD that gaiaDB loads has no
         field for it, so `data_source` has no DOI.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_dictionary doi (via doi_id FK)
-      note: >-
-        C-HER has a doi field (foreign key doi_id) but it is on the optional-field list, so
-        a DOI is not guaranteed present.
   - source: degauss
     support:
     - type: documentation
@@ -165,6 +161,17 @@ source_dataset_doi:
         guide and project page, no DOI.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: different_concept
+    explanation: 'The DOI field connects a resource C-HER itself published to its record, not the source
+      dataset. Closest: that DOI field.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 10
+      snippet: Connects a formally published resource to persistent or institutional records.
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -188,6 +195,16 @@ source_dataset_doi:
 
 source_dataset_version:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 9
+      snippet: The version notes identify it as a direct pull from the 2024 Census TIGER state data.
+      match: partial
+      explanation: 'The source release can be named in the version notes. Missing: free text; the version
+        code itself is C-HER''s own (that is `resource_version`).'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -210,14 +227,6 @@ source_dataset_version:
         §2.2.2) is given per CHEL release. Missing: for ACS, §5.3.2 only says that the releases
         use different rolling periods, without naming them.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary version ({version} component of table_name)
-      note: >-
-        C-HER carries an auto-generated version code first-class in the table_name and via
-        the version table (§2.6).
   - source: degauss
     support:
     - type: schema
@@ -265,6 +274,17 @@ source_dataset_version:
 
 source_dataset_temporal_coverage:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 8
+      snippet: Temporal extent is the period covered by the resource and is recorded as a start date
+        and
+      match: partial
+      explanation: 'Start and end dates are recorded. Missing: for the resource, which can be one year
+        of a longer source.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -293,14 +313,6 @@ source_dataset_temporal_coverage:
         A catalogue entry can give the period of the whole dataset as `temporalCoverage`,
         written start/end. It is a recommended field.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary temporal_extent (YYYYMMDDYYYYMMDD in table_name)
-      note: >-
-        C-HER carries temporal extent as a start+end date pair in the reproducible table_name
-        (§2.4).
   - source: degauss
     support:
     - type: documentation
@@ -340,6 +352,16 @@ source_dataset_temporal_coverage:
 
 source_dataset_spatial_extent:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial extent describes the geographic area covered by a resource
+      match: partial
+      explanation: 'Extent is a coded field with a meaning in words (C00 CONUS, GLB global). Missing:
+        of the resource, not of the source product.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -361,14 +383,6 @@ source_dataset_spatial_extent:
         The spatial coverage of the dataset; in the public example a place name and a bounding
         polygon.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary spatial_extent (Gxx/Txx/Cxx/sxx code in table_name)
-      note: >-
-        C-HER carries spatial extent first-class as a coded component of the reproducible
-        table_name (§2.2).
   - source: degauss
     support:
     - type: documentation
@@ -405,6 +419,15 @@ source_dataset_spatial_extent:
 
 source_producer_institution:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 6
+      snippet: Identifies the original publisher and source dataset.
+      match: full
+      explanation: Every dataset names its publishing organization (e.g. United States Census Bureau).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -454,15 +477,6 @@ source_producer_institution:
       match: full
       explanation: The creator in the public example, with its ROR identifier.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        table_dictionary org ({org} component of table_name; publishing organization)
-      note: >-
-        C-HER encodes the publishing organization first-class as the {org} component of table_name;
-        selecting a dataset implicitly selects its organization (§1).
   - source: degauss
     support:
     - type: documentation
@@ -488,6 +502,16 @@ source_producer_institution:
 
 source_citation_apa:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 11
+      snippet: any attribution or credit requirements that users must follow
+      match: partial
+      explanation: 'The rights field records how the source must be credited. Missing: a credit requirement,
+        not a formatted citation.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -540,13 +564,6 @@ source_citation_apa:
       source_slot: data_source.date_published
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER carries contributors, rights, and DOI but no assembled APA citation string.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -558,6 +575,15 @@ source_citation_apa:
 
 source_license_spdx:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 10
+      snippet: Records licensing, redistribution, attribution, or other use conditions.
+      match: partial
+      explanation: 'Rights are a required field. Missing: in words, not an SPDX identifier.'
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -578,14 +604,6 @@ source_license_spdx:
       explanation: >-
         The ETL file of the example gives the rights of the source. Missing: free text.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_dictionary rights (via rights FK)
-      note: >-
-        C-HER carries a required rights field, but it is not SPDX-coded, so it only partly
-        satisfies this SPDX-specific slot.
   not_supported_by:
   - source: amadeus
     reason: not_recorded
@@ -674,13 +692,16 @@ source_access_url:
       status: verified
   not_supported_by:
   - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER records an S3-protocol storage location for the resource, not a source landing-page
-        URL.
+    reason: not_recorded
+    explanation: 'No landing page of the source is a field. Closest: the rights field says where the
+      authoritative rights statement can be found.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 11
+      snippet: and where users can find the authoritative rights statement
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -692,6 +713,16 @@ source_access_url:
 
 source_native_format:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.2, p. 10
+      snippet: State the broad type of resource and how the resource is encoded or stored.
+      match: partial
+      explanation: 'Resource format is a required field (Parquet, GeoTIFF, NetCDF, text/csv, database
+        table). Missing: the format of the C-HER resource; it is the source format only for raw imports.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -713,14 +744,6 @@ source_native_format:
         The ETL file of a catalogue entry gives the format of the source file (`format`: shp)
         and of the download (`extension`: zip).
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_dictionary resource_format (IANA Media Types controlled vocab)
-      note: >-
-        C-HER carries resource_format first-class against the IANA Media Types controlled
-        vocabulary.
   - source: degauss
     support:
     - type: documentation

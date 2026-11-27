@@ -4,6 +4,16 @@
 
 native_geometry:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial resolution refers to how the resource is organized geographically.
+      match: partial
+      explanation: 'The resolution code tells grid (m30), H3 (h08), polygons (c00, t00) and points (pnt)
+        apart. Missing: of the resource, and not as a geometry type.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -44,14 +54,6 @@ native_geometry:
         In the public example the data structure (vector) and the geometry (multipolygon) are
         given as terms of `measurementTechnique`.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_name spatial-res code prefix (m/k/h/c/t/b/s/z)
-      note: >-
-        The resolution code prefix separates grid (m/k), H3 (h) and polygon (tract/block/ZIP)
-        layouts (§2.3); it has no line or point code.
   - source: degauss
     support:
     - type: documentation
@@ -73,6 +75,15 @@ native_geometry:
 
 h3_resolution:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: H3 resolution 8
+      match: full
+      explanation: The spatial resolution code gives the H3 resolution (h08 = H3 resolution 8).
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -84,15 +95,19 @@ h3_resolution:
       match: full
       explanation: "The H3 resolution is stated: 3."
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_name spatial-res code (e.g. h08)
-      note: C-HER encodes the H3 resolution in the table_name code (§2.3).
 
 native_spatial_resolution_m:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial resolution m30
+      match: partial
+      explanation: 'Grid resolutions are coded in metres (m30 = 30 m grid). Missing: of the resource,
+        which may have been converted from the source grid.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -126,14 +141,6 @@ native_spatial_resolution_m:
         12,000 km²). Missing: approximate and in km, and the slot is defined for regular grids,
         not for H3 cells.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: table_name spatial-res code (e.g. m30, k05, h08)
-      note: >-
-        C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3
-        metric/H3 codes) and as the inheritable spatial_resolution field.
   - source: degauss
     support:
     - type: documentation
@@ -166,6 +173,16 @@ native_spatial_resolution_m:
 
 native_spatial_resolution_descriptor:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial resolution refers to how the resource is organized geographically.
+      match: partial
+      explanation: 'Every resolution code has a meaning in words (County-level data, H3 resolution 8).
+        Missing: of the resource, not of the source product.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -184,14 +201,6 @@ native_spatial_resolution_descriptor:
       match: full
       explanation: "CHEL has a readable label for its resolution: H3 Resolution 3, or Hex3."
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_name spatial-res code prefix (m/k/h/c/t/b/s/z)
-      note: >-
-        The spatial-resolution code prefix distinguishes grid (m/k), H3 (h), and polygon (tract/block/ZIP)
-        layouts (§2.3), a coded rather than free-text descriptor.
   - source: degauss
     support:
     - type: documentation
@@ -307,13 +316,16 @@ crs:
       status: verified
   not_supported_by:
   - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's metadata model (table_dictionary / column dictionary) documents spatial extent/resolution
-        codes but no per-resource CRS/EPSG field.
+    reason: not_recorded
+    explanation: 'No CRS is recorded. Closest: the paper says data may be re-projected before conversion
+      to H3.'
+    closest:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: Supplement 1
+      snippet: This may include re-projecting, converting rasters to tiff
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -348,14 +360,6 @@ spatial_extent_bbox:
         The public example gives the bounding box of the dataset as a polygon in
         `spatialCoverage`.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)
-      note: >-
-        C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding
-        box.
   - source: chel
     support:
     - type: output
@@ -369,6 +373,16 @@ spatial_extent_bbox:
         is the box of the 929 hexagons, and it is in the grid file only.
       status: verified
   not_supported_by:
+  - source: cher
+    reason: different_granularity
+    explanation: 'The extent is a coded region, not a box. Closest: the spatial extent field.'
+    closest:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial extent describes the geographic area covered by a resource
+      status: verified
+    status: unverified
   - source: degauss
     reason: different_concept
     explanation: >-
@@ -392,6 +406,16 @@ spatial_extent_bbox:
 
 spatial_extent_descriptor:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial extent describes the geographic area covered by a resource
+      match: partial
+      explanation: 'Every extent code has a meaning in words (CONUS; the United States, its territories,
+        and American Indian areas). Missing: of the resource, not of the source product.'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -433,15 +457,6 @@ spatial_extent_descriptor:
       explanation: >-
         The public example names the covered place in `spatialCoverage`, with its GeoNames id.
       status: verified
-  - source: cher
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)
-      note: >-
-        The coded spatial-extent prefix conveys a controlled-vocabulary extent label (§2.2)
-        rather than free-text prose.
   - source: degauss
     support:
     - type: documentation
@@ -464,6 +479,18 @@ spatial_extent_descriptor:
 
 extraction_method:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: §2.2
+      snippet: convert exposure values from the native grid to the hex8 grid using a spatially weighted
+        average.
+      match: partial
+      explanation: 'The paper describes how values are moved to hex8 (area-weighted average, and other
+        methods in Supplement 1). Missing: in the paper; per resource only in free-text lineage notes
+        such as "County values aggregated to H3 cells".'
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -513,14 +540,6 @@ extraction_method:
         each exposure row.
       status: verified
   not_supported_by:
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER's data-level codes track processing stage, not the point-to-cell extraction
-        rule; no extraction-method field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -532,6 +551,16 @@ extraction_method:
 
 target_geography_type:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-metadata-overview
+      locator: §2.2.1, p. 7
+      snippet: Spatial resolution refers to how the resource is organized geographically.
+      match: full
+      explanation: The resolution code names the unit a value is attached to (county, census tract,
+        H3 resolution 8, points).
+      status: verified
   - source: amadeus
     support:
     - type: documentation
@@ -564,14 +593,6 @@ target_geography_type:
         Values are attached to a location, which the schema defines as a point. Missing: no
         field for the kind of target; it is always the location point.
       status: verified
-  - source: cher
-    legacy:
-      extent: full
-      status: asserted
-      where: spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary
-      note: >-
-        C-HER's spatial-resolution code names the geographic unit (county/tract/block group/ZCTA/H3)
-        and column_tag flags the spatial-primary column (§2.3, §6.1).
   - source: degauss
     support:
     - type: documentation
@@ -593,6 +614,17 @@ target_geography_type:
 
 spatial_aggregation_preserves:
   supported_by:
+  - source: cher
+    support:
+    - type: documentation
+      document: cher-arxiv-paper
+      locator: Supplement 1
+      snippet: counts, averages, and per-capita values are structurally similar but require different
+        H3 conversion strategies.
+      match: partial
+      explanation: 'The paper says counts and averages need different conversions (Tobler''s intensive
+        and extensive options). Missing: not recorded per resource.'
+      status: verified
   - source: chel
     support:
     - type: documentation
@@ -631,14 +663,6 @@ spatial_aggregation_preserves:
       snippet: the mean of the cells whose centre is within
       status: verified
     status: unverified
-  - source: cher
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        C-HER captures resolution and data-level but not which quantity a re-gridding operator
-        preserves.
   - source: codata
     legacy:
       extent: out_of_layer
