@@ -1325,7 +1325,7 @@ name and value type in small print), then four columns:</p>
 </tbody>
 </table>
 <h3 id="day-boundary-convention">Day-Boundary Convention<a class="headerlink" href="#day-boundary-convention" title="Permanent link">¶</a></h3>
-<p>Where the 24-hour day window starts. The single most-omitted slot in the environmental-health literature.</p>
+<p>Where the 24-hour day window starts. The single most-omitted slot in the environmental-health literature. A <code>starting_</code> value files the window under the date it starts on, an <code>ending_</code> value under the date it ends on.</p>
 <table>
 <thead>
 <tr>
@@ -1345,6 +1345,34 @@ name and value type in small print), then four columns:</p>
 <tr>
 <td><strong>24h ending 1200 GMT</strong></td>
 <td>24-hour window ending 12:00 GMT, used by PRISM and historically common in US station-network products.</td>
+</tr>
+<tr>
+<td><strong>24h starting 0600 GMT</strong></td>
+<td>From 06:00 UTC on the date to 06:00 UTC on the next day. Climatological day of Canadian stations that observe around the clock. Climate Engine documents its copy of gridMET radiation and wind as "6 UTC to 6 UTC".</td>
+</tr>
+<tr>
+<td><strong>24h starting 0700 GMT</strong></td>
+<td>From 07:00 UTC on the date to 07:00 UTC on the next day, which is midnight to midnight Mountain Standard Time. gridMET states it in its files, for every cell and variable.</td>
+</tr>
+<tr>
+<td><strong>24h starting 0900 GMT</strong></td>
+<td>From 09:00 UTC on the date to 09:00 UTC on the next day. HadUK-Grid daily maximum temperature and rainfall.</td>
+</tr>
+<tr>
+<td><strong>24h ending 0900 GMT</strong></td>
+<td>From 09:00 UTC on the day before to 09:00 UTC on the date. HadUK-Grid daily minimum temperature.</td>
+</tr>
+<tr>
+<td><strong>24h starting 9 am local time</strong></td>
+<td>From 9 am local time on the date to 9 am on the next day. Australian Bureau of Meteorology daily maximum temperature.</td>
+</tr>
+<tr>
+<td><strong>24h ending 9 am local time</strong></td>
+<td>From 9 am local time on the day before to 9 am on the date. Australian Bureau of Meteorology daily rainfall and minimum temperature.</td>
+</tr>
+<tr>
+<td><strong>local standard midnight</strong></td>
+<td>Day starts at midnight local standard time all year, also while daylight saving time is in force. US EPA daily PM2.5 values.</td>
 </tr>
 <tr>
 <td><strong>solar noon centered</strong></td>

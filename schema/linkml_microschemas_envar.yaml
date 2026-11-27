@@ -584,7 +584,8 @@ enums:
   DayBoundaryConventionEnum:
     name: DayBoundaryConventionEnum
     description: Where the 24-hour day window starts. The single most-omitted slot
-      in the environmental-health literature.
+      in the environmental-health literature. A `starting_` value files the window
+      under the date it starts on, an `ending_` value under the date it ends on.
     title: Day-Boundary Convention
     from_schema: https://w3id.org/linkml/microschemas/envar
     permissible_values:
@@ -600,6 +601,57 @@ enums:
         description: 24-hour window ending 12:00 GMT, used by PRISM and historically
           common in US station-network products.
         title: 24h ending 1200 GMT
+      starting_0600_gmt:
+        text: starting_0600_gmt
+        description: From 06:00 UTC on the date to 06:00 UTC on the next day. Climatological
+          day of Canadian stations that observe around the clock. Climate Engine documents
+          its copy of gridMET radiation and wind as "6 UTC to 6 UTC".
+        title: 24h starting 0600 GMT
+        see_also:
+        - https://climate.weather.gc.ca/glossary_e.html
+        - https://climateengine.org/datasets/climatehydrology/gridmet_daily_4000/
+      starting_0700_gmt:
+        text: starting_0700_gmt
+        description: From 07:00 UTC on the date to 07:00 UTC on the next day, which
+          is midnight to midnight Mountain Standard Time. gridMET states it in its
+          files, for every cell and variable.
+        title: 24h starting 0700 GMT
+        see_also:
+        - https://www.climatologylab.org/gridmet.html
+      starting_0900_gmt:
+        text: starting_0900_gmt
+        description: From 09:00 UTC on the date to 09:00 UTC on the next day. HadUK-Grid
+          daily maximum temperature and rainfall.
+        title: 24h starting 0900 GMT
+        see_also:
+        - https://www.metoffice.gov.uk/research/climate/maps-and-data/data/haduk-grid/datasets
+      ending_0900_gmt:
+        text: ending_0900_gmt
+        description: From 09:00 UTC on the day before to 09:00 UTC on the date. HadUK-Grid
+          daily minimum temperature.
+        title: 24h ending 0900 GMT
+        see_also:
+        - https://www.metoffice.gov.uk/research/climate/maps-and-data/data/haduk-grid/datasets
+      starting_0900_local:
+        text: starting_0900_local
+        description: From 9 am local time on the date to 9 am on the next day. Australian
+          Bureau of Meteorology daily maximum temperature.
+        title: 24h starting 9 am local time
+        see_also:
+        - https://www.bom.gov.au/climate/extremes/about_climate_extremes_tables.shtml
+      ending_0900_local:
+        text: ending_0900_local
+        description: From 9 am local time on the day before to 9 am on the date. Australian
+          Bureau of Meteorology daily rainfall and minimum temperature.
+        title: 24h ending 9 am local time
+        see_also:
+        - https://www.bom.gov.au/climate/extremes/about_climate_extremes_tables.shtml
+      local_standard_midnight:
+        text: local_standard_midnight
+        description: Day starts at midnight local standard time all year, also while
+          daylight saving time is in force. US EPA daily PM2.5 values.
+        see_also:
+        - https://www.law.cornell.edu/cfr/text/40/appendix-N_to_part_50
       solar_noon_centered:
         text: solar_noon_centered
         description: 24-hour window centered on local solar noon.
