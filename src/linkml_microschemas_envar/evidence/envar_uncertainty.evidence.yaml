@@ -26,11 +26,11 @@ per_value_uncertainty_type:
       where: no column
       note: No gaia output carries a per-value uncertainty type.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no per-value uncertainty.
+    reason: not_recorded
+    explanation: >-
+      No per-value uncertainty is passed on or computed. Nothing close was found in the daymet
+      README, entrypoint.R or the example output.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -73,11 +73,10 @@ per_value_uncertainty_units_ucum:
       note: >-
         With no per-value uncertainty column, gaia carries no uncertainty units.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No per-value uncertainty column exists, so no uncertainty units.
+    reason: not_recorded
+    explanation: >-
+      As for `per_value_uncertainty_type`: no per-value uncertainty, so no unit either.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -123,11 +122,17 @@ model_aggregate_uncertainty:
         No gaia output carries cross-validation R²/RMSE for the source model (Tmax scenario
         emits no model-accuracy summary).
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no whole-model cross-validation metrics.
+    reason: not_recorded
+    explanation: >-
+      No summary statistic of the Daymet model is passed on. Closest: the README's links to the
+      Daymet documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -163,6 +168,18 @@ missing_data_handling_method:
         CHEL says how missing values enter the percentile ranking. Missing: §4.3.3 says the
         propagation rules are defined but does not give them for the aggregation steps.
       status: verified
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: >-
+        Removing any input file observations where the Daymet cell raster number is missing
+      match: partial
+      explanation: >-
+        The code drops input rows whose coordinate is outside the Daymet grid. Missing: stated
+        in a code comment only; the README does not say that rows can be dropped, and missing
+        values inside the grid are not mentioned.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -172,12 +189,6 @@ missing_data_handling_method:
       note: >-
         Gaia's meta_etl nodata registers the missing-value sentinel, not the source's missing-data
         handling method.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS records no missing-data-handling method.
   - source: amadeus
     legacy:
       extent: absent
@@ -212,11 +223,11 @@ data_completeness_pct:
       note: >-
         No gaia output carries a data-completeness percentage for the extracted window.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no completeness percentage.
+    reason: not_recorded
+    explanation: >-
+      No completeness figure is written, and rows without a Daymet cell are dropped without a
+      count. Nothing close was found in the daymet README or the example output.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent

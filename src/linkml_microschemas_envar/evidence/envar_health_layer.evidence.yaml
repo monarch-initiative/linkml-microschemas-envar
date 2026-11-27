@@ -37,13 +37,6 @@ health_layer_target:
         data model or table that receives the values is not named.
       status: verified
   not_supported_by:
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS appends columns to the cohort CSV and names no downstream health-layer target.
   - source: amadeus
     legacy:
       extent: absent
@@ -94,12 +87,6 @@ health_layer_link_field:
       source_slot: participant_id
       status: verified
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS declares no health-layer join field.
   - source: amadeus
     legacy:
       extent: absent

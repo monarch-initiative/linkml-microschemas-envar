@@ -12,13 +12,6 @@ schema_version:
       note: >-
         No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level
         construct.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS produces no metadata sidecar and carries no schema-version field.
   - source: amadeus
     legacy:
       extent: absent
@@ -79,11 +72,11 @@ provenance_id:
         partial.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS produces no sidecar and no stable per-record provenance id.
+    reason: not_recorded
+    explanation: >-
+      A run or its output has no identifier. Closest: the output file name, into which the
+      geocoder writes its name, version and argument.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -120,13 +113,18 @@ phi_status:
         Gaia carries PHI in OMOP person/location tables but emits no per-record PHI-free assertion
         flag on its metadata.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS's privacy-preserving design keeps PHI on-site, but it emits no per-record
-        PHI-status assertion flag.
+    reason: not_recorded
+    explanation: >-
+      The outputs contain the input addresses and coordinates, and nothing states whether a file
+      contains PHI. Closest: the daymet README's remark on privacy, which is about the download
+      bounding box.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Geomarker Methods
+      snippet: to enhance data privacy
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent

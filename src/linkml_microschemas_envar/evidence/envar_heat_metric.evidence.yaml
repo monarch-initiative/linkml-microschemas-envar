@@ -3,6 +3,20 @@
 # `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
 
 heat_metric_family:
+  supported_by:
+  - source: degauss
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: tmax
+      source_label: maximum temperature
+      match: partial
+      explanation: >-
+        The README names the variable and what it is, maximum temperature, which is one of the
+        families. Missing: the output has only the column name; no field says which heat metric
+        a column is.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -24,12 +38,6 @@ heat_metric_family:
       note: >-
         The scenario is a plain Tmax extraction, not a heat index; the variable family is
         implicit in variable_name tmax, with no derived heat-metric family slot.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits plain tmax with no heat-metric family field.
   - source: amadeus
     legacy:
       extent: absent
@@ -59,12 +67,6 @@ input_source_short_code:
       note: >-
         Single-input Tmax scenario; no heat-equation input decomposition, so no per-input
         source short code.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No derived-metric equation inputs, so no per-input source code.
   - source: amadeus
     legacy:
       extent: absent
@@ -94,12 +96,6 @@ wind_speed_measurement_height_m:
       where: no column
       note: >-
         Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No WBGT/UTCI methodology, so no wind-measurement height.
   - source: amadeus
     legacy:
       extent: absent
@@ -128,12 +124,6 @@ solar_radiation_basis:
       where: no column
       note: >-
         Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No WBGT/UTCI methodology, so no solar-radiation basis.
   - source: amadeus
     legacy:
       extent: absent
@@ -174,12 +164,6 @@ percentile_reference_geographic_scope:
       where: no column
       note: >-
         Tmax scenario computes no percentile-based threshold, so no reference geographic scope.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No percentile-based metric, so no reference geographic scope.
   - source: amadeus
     legacy:
       extent: absent
@@ -210,12 +194,6 @@ percentile_reference_seasonal_window:
       where: no column
       note: >-
         No percentile-based metric in the Tmax scenario, so no seasonal reference window.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No percentile-based metric, so no seasonal reference window.
   - source: amadeus
     legacy:
       extent: absent
@@ -245,12 +223,6 @@ metric_temporal_aggregation_rule:
       note: >-
         Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping
         rule.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No multi-day heat-event flag, so no event-stamping rule.
   - source: amadeus
     legacy:
       extent: absent

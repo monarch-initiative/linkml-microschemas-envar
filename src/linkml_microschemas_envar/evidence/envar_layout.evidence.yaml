@@ -23,12 +23,16 @@ table_orientation:
         The OMOP external_exposure table is implicitly long, but no orientation flag is declared
         as a field — it is a structural property a consumer must infer.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS's daymet CSV is wide (a `tmax` column) but declares no orientation field.
+    reason: implicit
+    explanation: >-
+      The output is wide (one column per Daymet variable, one row per id and date). That can be
+      seen in the file and in the README's list of added columns, but is not stated.
+    closest:
+    - type: output
+      document: degauss-daymet-output
+      field: tmax
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -67,13 +71,24 @@ value_column:
       note: >-
         The OMOP CDM binds the value to the stable external_exposure.value_as_number column.
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: tmax
+      source_label: maximum temperature
+      match: full
+      explanation: >-
+        The README lists the columns the tool adds, one per Daymet variable, with what each
+        holds.
       status: verified
-      where: cohort_addresses_geocoded_daymet CSV `tmax` column
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (Value in human-friendly °C — ✅ for DeGAUSS)
-      note: DeGAUSS writes the value to a stable `tmax` column on every row.
+    - type: output
+      document: degauss-daymet-output
+      field: tmax
+      value: "44.61"
+      match: full
+      explanation: "The output of the daymet container has the value in the column `tmax`."
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -123,13 +138,16 @@ subject_column:
         OMOP carries the subject identifier first-class on external_exposure.person_id (and
         person/location).
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: output
+      document: degauss-daymet-output
+      field: id
+      value: "91204"
+      match: full
+      explanation: >-
+        The identifier is in the column `id` on every row; the README names `id` as the ID
+        column of the input.
       status: verified
-      where: '`id` column on every CSV row'
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §A (Person identifier — ✅ for DeGAUSS)
-      note: DeGAUSS carries the person identifier in the `id` column on every row.
   - source: amadeus
     legacy:
       extent: full
@@ -180,14 +198,14 @@ time_column:
         GAIA carries date columns but collapses every row to the variable's window-wide attr_start_date/attr_end_date
         — per-day external_exposure does not come out. Conservative: partial.
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: output
+      document: degauss-daymet-output
+      field: date
+      value: "2022-07-15"
+      match: full
+      explanation: "The output has one row per id and day, with the day in the column `date`."
       status: verified
-      where: >-
-        one row per (person × day) in cohort_addresses_geocoded_daymet CSV (per-day date)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §D (One row per person × day — ✅ for DeGAUSS)
-      note: DeGAUSS emits a per-day date on every row (24 rows, per-day).
   - source: amadeus
     legacy:
       extent: full
@@ -259,12 +277,11 @@ value_uncertainty_column:
         No per-value uncertainty column on external_exposure; the OMOP stack carries no measurement-error
         column for the value.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS's daymet CSV carries the value only, no per-value standard-error column.
+    reason: not_recorded
+    explanation: >-
+      The output has the values only. Nothing close was found in the daymet README, entrypoint.R
+      or the example output.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -316,13 +333,17 @@ null_semantics_column:
         per-value column distinguishing the three null kinds. Conservative: partial.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS emits no null-kind indicator column and no missing-value sentinel in its CSV
-        output.
+    reason: not_recorded
+    explanation: >-
+      No column says why a value is empty. Closest: the geocoder's `geocode_result`, which says
+      why a coordinate is missing (PO box, no address text, imprecise geocode).
+    closest:
+    - type: schema
+      document: degauss-geocoder-readme
+      locator: Using
+      source_slot: geocode_result
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent

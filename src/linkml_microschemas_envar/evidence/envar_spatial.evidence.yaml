@@ -40,13 +40,16 @@ native_geometry:
       note: >-
         The resolution code prefix separates grid (m/k), H3 (h) and polygon (tract/block/ZIP)
         layouts (§2.3); it has no line or point code.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no source-geometry field.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Geomarker Methods
+      snippet: the four nearest Daymet 1 km x 1 km raster cell numbers
+      match: full
+      explanation: The README says the source is a raster of 1 km x 1 km cells.
+      status: verified
+  not_supported_by:
   - source: codata
     legacy:
       extent: out_of_layer
@@ -107,6 +110,15 @@ native_spatial_resolution_m:
       note: >-
         C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3
         metric/H3 codes) and as the inheritable spatial_resolution field.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: produced on a 1 km x 1 km gridded surface
+      match: full
+      explanation: "The cell size of the source is stated: 1 km."
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -116,14 +128,6 @@ native_spatial_resolution_m:
       note: >-
         gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar
         extension PropertyValue envar:native_spatial_resolution_m, not natively.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS emits no resolution field; "Daymet = 1 km" is out-of-band knowledge, not written
-        to any output.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -161,13 +165,17 @@ native_spatial_resolution_descriptor:
       note: >-
         The spatial-resolution code prefix distinguishes grid (m/k), H3 (h), and polygon (tract/block/ZIP)
         layouts (§2.3), a coded rather than free-text descriptor.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS writes no resolution descriptor of any kind.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: produced on a 1 km x 1 km gridded surface
+      match: full
+      explanation: >-
+        The README has a readable label for the resolution: a 1 km x 1 km gridded surface.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -217,13 +225,18 @@ crs:
       evidence: EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)
       note: >-
         Amadeus's THREDDS grid declares the raster CRS explicitly as an EPSG code.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS leaves CRS implicit WGS84 with no column.
+    support:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: Setting Daymet projection
+      match: partial
+      explanation: >-
+        The code sets the CRS of the Daymet grid (a Lambert conformal conic PROJ string) and
+        reads the input coordinates as longitude and latitude. Missing: neither is stated in the
+        README or written to the output.
+      status: verified
+  not_supported_by:
   - source: cher
     legacy:
       extent: absent
@@ -274,11 +287,17 @@ spatial_extent_bbox:
         box.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no product bounding box.
+    reason: different_concept
+    explanation: >-
+      The tool has bounding box arguments (`min_lat`, `max_lat`, `min_lon`, `max_lon`), but they
+      are the box of the download for one run, not the extent of the product.
+    closest:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Optional Arguments
+      source_slot: min_lat
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -330,13 +349,17 @@ spatial_extent_descriptor:
       note: >-
         The coded spatial-extent prefix conveys a controlled-vocabulary extent label (§2.2)
         rather than free-text prose.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no extent descriptor.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        over continental North America and Hawaii from 1980 and over Puerto Rico from 1950
+      match: full
+      explanation: The README describes the extent of the product in words.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -368,6 +391,19 @@ extraction_method:
         area-proportional allocation of counts (§3.3), density and intersection proportion
         (§3.4), raster sum (§3.5).
       status: verified
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Geomarker Methods
+      snippet: >-
+        A weighted average of the Daymet weather variable values within these four nearest
+        raster cells is then calculated to provide the final Daymet weather variable estimate
+      match: full
+      explanation: >-
+        The README states the extraction rule: the inverse-distance weighted average of the four
+        nearest cells.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -377,13 +413,6 @@ extraction_method:
       note: >-
         No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join
         semantics of working.spatial_join_exposure exist, undocumented.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS applies IDW-4-nearest by default but records no extraction-method field.
   - source: amadeus
     legacy:
       extent: absent
@@ -436,15 +465,16 @@ target_geography_type:
       note: >-
         C-HER's spatial-resolution code names the geographic unit (county/tract/block group/ZCTA/H3)
         and column_tag flags the spatial-primary column (§2.3, §6.1).
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS attaches values to the geocoded point residence but has no explicit target-geography-type
-        field.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Geomarker Methods
+      snippet: is linked to coordinate data within the
+      match: full
+      explanation: Values are attached to a point, the coordinate of each input row.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -486,13 +516,6 @@ spatial_aggregation_preserves:
       note: >-
         No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant an aggregation
         holds fixed is not recorded.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS does point extraction only and records no aggregation-preservation semantics.
   - source: amadeus
     legacy:
       extent: absent
