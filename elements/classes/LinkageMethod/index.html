@@ -383,6 +383,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “enables exposure measures at different spatial resolutions to be assigned based on the geocode level”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §3.4</div>
+<div class="envar-cov-note">For the SEER linkage, addresses are geocoded to a point or a ZIP code and the exposure is assigned at the matching resolution (hex8 or ZIP). Missing: described in the paper, not recorded per resource.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “column name reflects the gridMET variable and circular buffer radius.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd">amadeus man/calculate_gridmet.Rd</a>, Description</div>
@@ -411,11 +417,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Map the spatial operator (and buffer) used for a join to an OMOP GIS”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/04_spatial_join_functions.sql">gaiaDB sql/04_spatial_join_functions.sql</a></div>
 <div class="envar-cov-note">The join code maps the operator and the buffer to an OMOP GIS geometry relationship concept.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Spatial – Primary + reference to boundaries schema</div>
-<div class="envar-cov-note">C-HER's Spatial tags and boundaries-schema references encode a spatial join relationship, though not EnVar's linkage-strategy enum. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -604,7 +605,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “were geocoded to the point level, and 1,060,257 were geocoded to the zip code.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §3.4</div>
+<div class="envar-cov-note">The geocode level (point or ZIP code) is known per address and decides which exposure is assigned. Missing: described for the SEER pipeline, not a field of C-HER metadata.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>precision</code> (The method/precision of the geocode)</div>
@@ -630,10 +637,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>location.latitude</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.location</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER geocodes participants to points but does not carry the precision of the geocode.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -689,6 +692,13 @@
 <div class="envar-cov-note">The column is still there in the output of the daymet container, next to each value.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No geocoder score is mentioned. Closest: the geocode level (point or ZIP code).</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “were geocoded to the point level, and 1,060,257 were geocoded to the zip code.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §3.4</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus does no geocoding and takes no geocoding score. Closest: the `locs` argument.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -701,10 +711,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>location.latitude</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.location</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER carries no geocoder confidence score.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -755,7 +761,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “This can be accomplished by linking exposure measures with longitudinal residential history data”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §1</div>
+<div class="envar-cov-note">Exposures are linked to residential histories (addresses from 1995 to 2024). Missing: how an address period is aligned with the exposure dates is not described; the paper points to prior work.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>start_date</code></div>
@@ -787,10 +799,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Each participant will be assigned attributes from the correct CHEL dataset”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/README.md">CHEL README.md</a>, Result</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER joins a participant point to a hex with no location-over- time alignment.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -834,6 +842,13 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 4 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No rule for days with a move is described. Closest: the residential histories.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “This can be accomplished by linking exposure measures with longitudinal residential history data”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §1</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">Locations do not change over time in amadeus, so no day is split. Closest: nothing.</div>
 </div>
@@ -843,10 +858,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “and the exposure dates are clipped to the overlap”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md">gaiaDB README.md</a>, Time windows</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER is spatial-only and models no transition-day attribution.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -894,8 +905,11 @@
 <div class="envar-cov-note">`calculate_lagged` shifts daily covariates by a number of lag days (`lag`). Missing: the lag is relative to a date range, not to a clinical event, and the result does not record that a lag was applied unless `calc_setcolumns` naming is used.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER is spatial-only and carries no lag-alignment record.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No lag is described. Closest: the paper says exposure must cover the long window in which risk builds up.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “can take years or even decades, so exposomics data must correspond to the long”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -943,17 +957,19 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 3 not supporting</summary>
+<summary>Evidence: 1 supporting, 4 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “raster zonal aggregation, tract-to-hex interpolation, density normalization, and deterministic privacy reassignment”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.1</div>
 <div class="envar-cov-note">CHEL names the transformation applied at linkage: a deterministic reassignment (jitter) of participants, based on ZIP3 x Hex3 slivers (§2.2.2).</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER hex-reassignment privacy jitter (small-population hex → largest hex in same ZIP3)</div>
-<div class="envar-cov-note">C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy jitter this slot models — it is the motivating case.</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No change of a linked location is described. Exposure data are shared at hex level so that addresses stay with the registry. The old entry described CHEL's hex reassignment, which belongs to another source. Closest: the paper's sharing by hexagon.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “it can be shared with external institutions to facilitate exposomic research with standardized datasets while ensuring privacy”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -1002,17 +1018,19 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 2 not supporting</summary>
+<summary>Evidence: 1 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Protection of participant privacy under HIPAA expert determination”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §1.3</div>
 <div class="envar-cov-note">The governance basis is stated (HIPAA expert determination), and §4.1 says the reassignment is deterministic. Missing: the threshold that triggers a reassignment and the rule for the new hex are not published; §5.5 only lists the privacy threshold as something a release should document.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER §4.5 trigger (hex∩ZIP3 population threshold), deterministic rule, HIPAA expert-determination basis</div>
-<div class="envar-cov-note">C-HER spells out the concrete trigger, determinism, and legal basis of its jitter — exactly the detail this note slot captures.</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No privacy transformation is described, so there is no detail. The old entry described CHEL. Closest: the paper's sharing by hexagon.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “it can be shared with external institutions to facilitate exposomic research with standardized datasets while ensuring privacy”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -1229,6 +1247,13 @@
 <div class="envar-cov-note">The README names the address database of this geocoder version and its release year. It is stated in the README only; no output column repeats it.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The paper names the geocoder (ORNL's ADDRESS) but not its reference database. Closest: the geocoder named in the paper. (The ADDRESS report cited by the old entry was not read for this review.)</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “geocoded using the ADDRESS (Automated Determination of Detailed Regional”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §3.4</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus takes locations that already have coordinates, so no address database is used. Closest: the `locs` argument.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -1248,11 +1273,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>location.latitude</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.location</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> ORNL/TM-2026/4743 (doi:10.2172/3451859) resource and column fields</div>
-<div class="envar-cov-note">The published C-HER metadata fields include no geocoding database. The ORNL ADDRESS report (doi:10.2172/3827145, Table 2) names OSM/Nominatim without a version, outside that metadata.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

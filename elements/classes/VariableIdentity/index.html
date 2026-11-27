@@ -370,6 +370,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Literal field name in the resource.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+<div class="envar-cov-note">Each column has its literal name (pm25_mean). Missing: it is the column name, not a separate variable name.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Layer names of the returned”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_gridmet.Rd">amadeus man/process_gridmet.Rd</a>, Note</div>
@@ -398,11 +404,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>tmax</code> (maximum temperature)</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Using</div>
 <div class="envar-cov-note">The README lists the short name of each variable (`dayl`, `prcp`, `srad`, `swe`, `tmax`, `tmin`, `vp`), which is also its column name in the output.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_name (literal column name)</div>
-<div class="envar-cov-note">C-HER records each resource's literal column_name, which serves as the variable's machine-readable handle; not a portable sidecar short-name. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -437,16 +438,18 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag_id (ontology tag planned §8)</div>
-<div class="envar-cov-note">C-HER's column_tag / planned ontology encoding will tag columns to its MORPH-built ontology, but no CF/standard-name binding exists today. Conservative: partial.</div>
-</div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Object + Property decomposition; DDI-CDI RepresentedVariable (value domain + units)</div>
 <div class="envar-cov-note">Naming the physical quantity canonically is exactly CODATA's RepresentedVariable / I-ADOPT layer — its strongest zone — but it names the concept, not this run's specific CURIE.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No standard name or vocabulary term is recorded for a column. Closest: the column description.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Definition of the field, including calculation or coding details that are needed for interpretation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -510,6 +513,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 6 supporting, 0 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Unit of a measured or calculated value”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+<div class="envar-cov-note">Value columns must have a unit (µg/m3 in the example). Missing: not UCUM.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Daily Accumulated Snow at Surface”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Process</div>
@@ -532,11 +541,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>unitText</code> = <code>square miles</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">The public example gives the unit as text only. Missing: no unit code.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_unit_id (required for Value-tagged columns)</div>
-<div class="envar-cov-note">C-HER requires column_unit on Value-tagged columns, but the unit vocabulary is not asserted to be UCUM. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -594,12 +598,12 @@
 <div class="envar-cov-note">The vocabulary says whether a concept is a standard one, and the join code uses the concept id 0 where nothing is mapped. Missing: no status for a concept that is proposed or known to be missing.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No concept binding, so no status. Closest: nothing.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER carries no existing/proposed/gap coverage status for a target vocabulary.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No concept binding, so no status. Closest: nothing.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -641,7 +645,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>variable_source.data_type</code></div>
@@ -661,14 +665,16 @@
 <div class="envar-cov-note">§4.3.2 gives the value domain per kind of indicator (percentile rank, binary flag, density, composite score). Missing: no data type per column.</div>
 </div>
 <div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag (Value) + column_unit (unit present ⇒ numeric)</div>
-<div class="envar-cov-note">C-HER's Value tag plus the presence/absence of a column_unit distinguishes numeric from free-text value columns, but not the full continuous/categorical/flag taxonomy. Conservative: partial.</div>
-</div>
-<div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> DDI-CDI RepresentedVariable value domain (numeric vs categorical value domain)</div>
 <div class="envar-cov-note">A value domain is exactly what CDI's RepresentedVariable carries, so the numeric/categorical distinction lives at CODATA's represented layer.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">The data type of a column is not a field. Closest: the unit, which marks a measured value.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Unit of a measured or calculated value”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
@@ -786,6 +792,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “More readable label for cases when the literal name is”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+<div class="envar-cov-note">Columns have a display name (Mean PM2.5 concentration).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Daily Accumulated Snow at Surface”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Process</div>
@@ -814,11 +826,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>description</code> = <code>Tract area in square miles</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">A variable description in the public example.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.name (human-readable, optional) / description</div>
-<div class="envar-cov-note">C-HER's optional `name` and required column `description` carry a human-readable label, though `name` is optional. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -864,6 +871,13 @@
 <div class="envar-cov-note">Next to the unit concept, a value keeps the unit as the source gave it (`unit_source_value`). Missing: free text, not UCUM, and nothing says whether values were converted.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">A column has one unit; a conversion from the source unit is not recorded apart from free text. Closest: notes on material differences from the parent.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “when data have been transformed, noted material differences from the parent”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.1.3, p. 5</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus does not convert units, so there is no second unit to record; gridMET temperature stays in kelvin. The `value_celsius` column of the old entry came from our own example script. Closest: the unit on the processed raster.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -876,10 +890,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “predicted PM2.5 (micrograms per cubic meter)”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md">DeGAUSS pm README.md (another container than the one of the heat example)</a>, Using</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER records one column_unit per column; it has no notion of a distinct source-native unit and conversion.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -929,6 +939,13 @@
 <div class="envar-cov-note">Concepts are from the OMOP vocabulary tables, where each concept names its vocabulary.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No health vocabulary is named for a column. Closest: the column description.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Definition of the field, including calculation or coding details that are needed for interpretation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No health vocabulary is named. Closest: the source's variable code.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -938,10 +955,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in Documentation.md or README.md.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's controlled vocabs (DCMI Type, IANA media types) describe resource type/format, not a downstream health-data target vocabulary for the variable.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -990,6 +1003,13 @@
 <div class="envar-cov-note">In the catalogue the concept of a variable is its `propertyID`, an OMOP concept id written as text.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No concept identifier is recorded for a column. Closest: the column description.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Definition of the field, including calculation or coding details that are needed for interpretation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No concept identifier is given. Closest: the source's variable code.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -999,10 +1019,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in Documentation.md or README.md.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER binds no downstream concept id for the variable; only planned ontology tags on columns (§8).</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -1056,15 +1072,18 @@
 <div class="envar-cov-note">The README of the `greenspace` container gives the range of its index; the lower bound is -0.2. Missing: only in this container; no range is given for any Daymet variable.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No plausible range is recorded. Closest: the report says QA/QC thresholds are kept in separate internal material.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “or dataset-specific QA/QC thresholds”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, p. 1</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No plausible range is given. Closest: the MODIS `scale` argument, which the user must set from the product documentation.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>calculate_modis.scale</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_modis.Rd">amadeus man/calculate_modis.Rd</a>, arguments</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
@@ -1118,15 +1137,18 @@
 <div class="envar-cov-note">The README of the `greenspace` container gives the range of its index; the upper bound is 1. Missing: only in this container; no range is given for any Daymet variable.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No plausible range is recorded. Closest: the QA/QC thresholds kept separately.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “or dataset-specific QA/QC thresholds”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, p. 1</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No plausible range is given. Closest: the MODIS `scale` argument.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>calculate_modis.scale</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_modis.Rd">amadeus man/calculate_modis.Rd</a>, arguments</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>

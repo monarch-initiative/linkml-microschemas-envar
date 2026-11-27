@@ -387,6 +387,18 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Modeled data products.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The data level mXX marks modeled products, dXX calculated ones. Missing: the kind of model is not named.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “FAQSD is a Bayesian space-time downscaler model”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.4</div>
+<div class="envar-cov-note">The paper names the model class of some sources (FAQSD downscaler, an ensemble for elemental carbon, Senseiver for C-HER's own PM2.5). Missing: in the paper, not a metadata field.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “North American Regional Reanalysis”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Download</div>
@@ -397,11 +409,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “These measures are estimated at tract level using small-area modeling.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.5</div>
 <div class="envar-cov-note">For the health prevalence inputs CHEL says how the source values were produced. Missing: for the other indicators it only says they are typically modeled (§2.3.1), and no model class is given per indicator.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary data_level (mXX = modeled data)</div>
-<div class="envar-cov-note">C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX) from modeled, but does not name the model class (reanalysis vs interpolation).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -496,10 +503,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 1 supporting, 5 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage (parent resources of a computed/modeled resource)</div>
-<div class="envar-cov-note">C-HER's dataset_lineage links parent resources a child was calculated/modeled from, but as resource FKs, not a named model-input variable list.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “a resource might have multiple parent resources when data are generated from a model created at ORNL”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.4.1, p. 14</div>
+<div class="envar-cov-note">A modeled resource links the resources it was made from. Missing: they are resource links, not a list of input variables.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Data from the following sources were extracted from C-HER and used to train the model:”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.3</div>
+<div class="envar-cov-note">For C-HER's PM2.5 model the paper lists the inputs (GMTED, gridMET, NLCD, LandScan, AQS). Missing: in the paper only.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -582,6 +596,13 @@
 <div class="envar-cov-note">The README of the `pm` container cites the methods paper of its model, with a link to the publisher. Missing: a link and not a DOI, and only in this container: the daymet README links the Daymet user guide and project page, no paper.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The DOI field is for C-HER's own published resources. The paper cites the Senseiver paper without a DOI. Closest: the pointer to the literature.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “A more detailed description of this model can be found in the literature.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.3</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No methods paper is cited for any of the source models. Closest: the pointer to the EJI technical documentation in §3.6, as a web link.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -594,10 +615,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>data_source.url</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's doi field is the resource's own DOI, not a methods-paper DOI for the model that produced the values.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -632,7 +649,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “yielding overall R2 values ranging from 0.910 to 0.970 on the training sets”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.4</div>
+<div class="envar-cov-note">For elemental carbon the paper reports the producer's cross-validated R2. Missing: one dataset, in the paper, not a metadata field.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No model performance is given. Closest: the cited methods paper of gridMET, where it is reported.</div>
@@ -660,10 +683,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Daymet data documentation”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER carries no source-model skill/cross-validation field.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -701,7 +720,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “known limitations or exclusions”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.1.3, p. 5</div>
+<div class="envar-cov-note">Known limitations are one of the things free-text fields record. Missing: free text, and not about the source model in particular.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Area-weighted interpolation assumes uniform distribution within tracts.”</div>
@@ -728,10 +753,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Daymet data documentation”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER has free-text description/notes but no structured known-biases field for the source model.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -778,6 +799,13 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No field says whether values were bias corrected. Closest: free text records material differences from the parent after a transformation.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “when data have been transformed, noted material differences from the parent”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.1.3, p. 5</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus applies no bias correction and does not say so. Closest: the MODIS `scale` argument, which rescales raw values but is not a bias correction.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -804,10 +832,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Rounding the Daymet variables to two decimal places”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a></div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's data_level codes track processing stage but do not flag whether statistical bias correction was applied.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

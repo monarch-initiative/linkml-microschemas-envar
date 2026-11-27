@@ -379,6 +379,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial resolution refers to how the resource is organized geographically.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">The resolution code tells grid (m30), H3 (h08), polygons (c00, t00) and points (pnt) apart. Missing: of the resource, and not as a geometry type.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “ensuring a coordinate reference system is present”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Process</div>
@@ -401,11 +407,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>termCode</code> = <code>multipolygon</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">In the public example the data structure (vector) and the geometry (multipolygon) are given as terms of `measurementTechnique`.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
-<div class="envar-cov-note">The resolution code prefix separates grid (m/k), H3 (h) and polygon (tract/block/ZIP) layouts (§2.3); it has no line or point code.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -493,8 +494,11 @@
 <div class="envar-cov-note">The helper library reads the `lat` and `lon` columns as EPSG:4326. Missing: in the documentation of a library function that the daymet container does not call; the daymet README and output state no CRS.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's metadata model (table_dictionary / column dictionary) documents spatial extent/resolution codes but no per-resource CRS/EPSG field.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No CRS is recorded. Closest: the paper says data may be re-projected before conversion to H3.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “This may include re-projecting, converting rasters to tiff”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, Supplement 1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -546,7 +550,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<summary>Evidence: 5 supporting, 1 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “convert exposure values from the native grid to the hex8 grid using a spatially weighted average.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.2</div>
+<div class="envar-cov-note">The paper describes how values are moved to hex8 (area-weighted average, and other methods in Supplement 1). Missing: in the paper; per resource only in free-text lineage notes such as "County values aggregated to H3 cells".</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Function used to summarize multiple raster cells”</div>
@@ -570,10 +580,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “the value of the cell containing the location”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md">gaiaDB README.md</a>, Raster Sources</div>
 <div class="envar-cov-note">The README defines the methods (for rasters: point, buffer mean, class fraction; for points: nearest and inverse-distance weighted), and the join writes the method used to each exposure row.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's data-level codes track processing stage, not the point-to-cell extraction rule; no extraction-method field.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -625,6 +631,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial resolution refers to how the resource is organized geographically.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">The resolution code names the unit a value is attached to (county, census tract, H3 resolution 8, points).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “function extracts values at point”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_covariates.Rd">amadeus man/calculate_covariates.Rd</a>, Description</div>
@@ -641,11 +653,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>location.geom</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.location</div>
 <div class="envar-cov-note">Values are attached to a location, which the schema defines as a point. Missing: no field for the kind of target; it is always the location point.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-res code (c/t/b/z/h) + column_tag Spatial – Primary</div>
-<div class="envar-cov-note">C-HER's spatial-resolution code names the geographic unit (county/tract/block group/ZCTA/H3) and column_tag flags the spatial-primary column (§2.3, §6.1).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -759,6 +766,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial resolution refers to how the resource is organized geographically.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">Every resolution code has a meaning in words (County-level data, H3 resolution 8). Missing: of the resource, not of the source product.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “1/24-degree grid and five-day observation dates.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_gridmet.Rd">amadeus man/process_gridmet.Rd</a>, Details</div>
@@ -769,11 +782,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Resolution 3 (Hex3) continues to serve as the base analytic geography.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.2.1</div>
 <div class="envar-cov-note">CHEL has a readable label for its resolution: H3 Resolution 3, or Hex3.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code prefix (m/k/h/c/t/b/s/z)</div>
-<div class="envar-cov-note">The spatial-resolution code prefix distinguishes grid (m/k), H3 (h), and polygon (tract/block/ZIP) layouts (§2.3), a coded rather than free-text descriptor.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -818,7 +826,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 4 supporting, 2 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>process_gridmet.extent</code></div>
@@ -831,16 +839,18 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">The public example gives the bounding box of the dataset as a polygon in `spatialCoverage`.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-extent code (Gxx/Txx/Cxx/sxx/bxx/cdX)</div>
-<div class="envar-cov-note">C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding box.</div>
-</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
 <div class="envar-cov-row"><span class="k">output</span> <code>min_x</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/hex3_grid_with_h3.gpkg">CHEL data/hex3_grid_with_h3.gpkg (GeoPackage, an SQLite file; its tables were read with sqlite3)</a>, gpkg_contents</div>
 <div class="envar-cov-note">The grid file records the bounding box of its layer in `min_x`, `min_y`, `max_x` and `max_y`: longitude -179.92 to 178.44, latitude -15.12 to 71.96 (read with sqlite3). It is the box of the 929 hexagons, and it is in the grid file only.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different granularity</span></div>
+<div class="envar-cov-note">The extent is a coded region, not a box. Closest: the spatial extent field.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial extent describes the geographic area covered by a resource”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
@@ -884,6 +894,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial extent describes the geographic area covered by a resource”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">Every extent code has a meaning in words (CONUS; the United States, its territories, and American Indian areas). Missing: of the resource, not of the source product.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Contiguous United States”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Download</div>
@@ -906,11 +922,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>name</code> = <code>Massachusetts</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">The public example names the covered place in `spatialCoverage`, with its GeoNames id.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> spatial-extent code prefix (Gxx=global, Txx=US+Terr, Cxx=CONUS, sxx=state)</div>
-<div class="envar-cov-note">The coded spatial-extent prefix conveys a controlled-vocabulary extent label (§2.2) rather than free-text prose.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -960,7 +971,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 4 not supporting</summary>
+<summary>Evidence: 2 supporting, 3 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “counts, averages, and per-capita values are structurally similar but require different H3 conversion strategies.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, Supplement 1</div>
+<div class="envar-cov-note">The paper says counts and averages need different conversions (Tobler's intensive and extensive options). Missing: not recorded per resource.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “All CHEL aggregation can be expressed as a mapping from values defined on a source support to a target support (Hex3).”</div>
@@ -980,10 +997,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “the mean of the cells whose centre is within”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md">gaiaDB README.md</a>, Raster Sources</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER captures resolution and data-level but not which quantity a re-gridding operator preserves.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

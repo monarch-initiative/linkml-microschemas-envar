@@ -385,15 +385,16 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal resolution is the frequency or granularity”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">Temporal resolution is a coded field of every resource (A00 annual, M00 monthly, W00 weekly).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Temporal resolution: daily; each download is an annual NetCDF file for one variable.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/gridmet_workflow.Rmd">amadeus vignettes/gridmet_workflow.Rmd</a>, Available inputs and data availability</div>
 <div class="envar-cov-note">The vignette of each dataset gives its temporal resolution; gridMET is daily.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-resolution code (§2.4); inheritable temporal_resolution</div>
-<div class="envar-cov-note">C-HER carries temporal resolution first-class as a code in the table_name pattern and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -461,7 +462,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Arithmetic mean of valid PM2.5 observations assigned to the cell and date”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.3, p. 13</div>
+<div class="envar-cov-note">The column description says how a value was calculated. Missing: free text, not a coded method.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Maximum Near-Surface Air Temperature”</div>
@@ -487,10 +494,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>variable_source.variable_description</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's data-level codes track processing stage, not which statistic summarises a sub-period; no aggregation-method field.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -560,6 +563,13 @@
 <div class="envar-cov-note">For AQS the user chooses whether hourly data are in local time or GMT. Missing: only for AQS, and it is the clock of hourly data, not a daily window.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">Where a day starts is not recorded. Closest: a time zone column can be tagged Temporal - Secondary.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Supporting time field.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 13</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">Periods are dates, and nothing says where a day starts or in which time zone. Closest: the exposure datetime columns, which the join fills from the dates.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -572,10 +582,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “The Daymet calendar is based on a standard calendar year.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER has no field for where the 24-hour day window starts.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -624,6 +630,13 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 6 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">The grain is a code (A00, M00), not a number of seconds. Closest: the temporal resolution codes.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal resolution is the frequency or granularity”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
 <div class="envar-cov-note">The grain is given in words, not as a number of seconds. Closest: "Temporal resolution: daily" in the vignette.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -650,10 +663,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Daymet weather variables include daily day length”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER encodes a temporal-resolution code but not a machine seconds-per-step window.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -687,6 +696,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal extent is the period covered by the resource and is recorded as a start date and”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The start date is recorded. Missing: of the resource, which may cover part of the source.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “All years must be between 1979 and the current”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_narr.Rd">amadeus man/download_narr.Rd</a>, arguments</div>
@@ -703,11 +718,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>startDate</code> = <code>2022-01-01</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">The value in the public example, per variable.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (start); inheritable temporal_extent</div>
-<div class="envar-cov-note">C-HER encodes the coverage start in the concatenated temporal-extent code (§2.4) and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
@@ -754,6 +764,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal extent is the period covered by the resource and is recorded as a start date and”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The end date is recorded. Missing: of the resource, which may cover part of the source.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “All years must be between 1979 and the current”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_narr.Rd">amadeus man/download_narr.Rd</a>, arguments</div>
@@ -770,11 +786,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>endDate</code> = <code>2022-12-31</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 <div class="envar-cov-note">The value in the public example, per variable.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal-extent YYYYMMDDYYYYMMDD (end); inheritable temporal_extent</div>
-<div class="envar-cov-note">C-HER encodes the coverage end in the concatenated temporal-extent code (§2.4) and as an inheritable lineage field.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -819,7 +830,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 2 not supporting</summary>
+<summary>Evidence: 4 supporting, 1 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal extent is the period covered by the resource and is recorded as a start date and”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">A resource is one cut of a dataset (e.g. TIGER 2024), and its start date is recorded. Missing: it is the period of the resource, not of a run.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>process_gridmet.date</code></div>
@@ -837,10 +854,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.exposure_start_date</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
 <div class="envar-cov-note">Each exposure row has the start of the period it was made for (the value's window cut to the residence period). Missing: per row; the window of a join run as a whole is not recorded.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's temporal_extent is the dataset's coverage span, not the window an individual extraction job pulled.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -872,7 +885,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 2 not supporting</summary>
+<summary>Evidence: 4 supporting, 1 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal extent is the period covered by the resource and is recorded as a start date and”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The end date of the resource is recorded. Missing: the period of the resource, not of a run.</div>
+</div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>process_gridmet.date</code></div>
@@ -890,10 +909,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.exposure_end_date</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
 <div class="envar-cov-note">Each exposure row has the end of the period it was made for (the value's window cut to the residence period). Missing: per row; the window of a join run as a whole is not recorded.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's temporal_extent is the dataset span, not the window a specific extraction job pulled.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -948,6 +963,13 @@
 <div class="envar-cov-note">The README describes the calendar: every year has 365 days, and in leap years February 29 is kept and December 31 is dropped.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">Dates are ISO 8601, so the calendar is implicitly Gregorian. Closest: the unit of the example date column.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Calendar date represented by the aggregated value.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.3, p. 13</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
 <div class="envar-cov-note">Dates are R dates, so the calendar is implicitly Gregorian; nothing says so. Closest: the `date` argument (format YYYY-MM-DD).</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -957,10 +979,6 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">Dates are plain SQL dates. No field for the calendar of a source that uses another one. Nothing close was found in the schema or the README.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER has no calendar-of-time-axis field.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

@@ -383,6 +383,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Definition of the field, including calculation or coding details that are needed for interpretation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.1, p. 12</div>
+<div class="envar-cov-note">Each column has a name, display name, description, tag and unit. Missing: no standard name or vocabulary term.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Layer names of the returned”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/process_gridmet.Rd">amadeus man/process_gridmet.Rd</a>, Note</div>
@@ -399,11 +405,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>variable_source.variable_name</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
 <div class="envar-cov-note">`variable_source` describes each variable: name, description, property id, data type, unit, value range and concept ids.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag=Value + column_unit_id (+ planned ontology tag)</div>
-<div class="envar-cov-note">C-HER tags a Value column with a unit and (planned) ontology tag, but carries no CF standard name / cell-methods identity.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -449,6 +450,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial extent and spatial resolution are selected from separate controlled lookup tables.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">Extent and resolution are coded fields of every resource. Missing: no CRS, and they describe the C-HER resource, which may be converted from the source.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “ensuring a coordinate reference system is present”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/README.md">amadeus README.md</a>, Process</div>
@@ -477,11 +484,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “produced on a 1 km x 1 km gridded surface over continental North America and Hawaii”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Background</div>
 <div class="envar-cov-note">Grid, cell size and extent of the source are stated, and Geomarker Methods describes the extraction. Missing: the CRS is only in the code, and nothing of this is written to the output.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial extent + spatial resolution codes (e.g. h08 / k05 / m30); column_tag Spatial-Primary</div>
-<div class="envar-cov-note">C-HER encodes spatial extent and organisation resolution in the table_name and tags spatial columns, but carries no per-value extraction method or CRS field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -521,6 +523,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Temporal extent is the period covered by the resource and is recorded as a start date and”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">Temporal extent and resolution are fields of every resource. Missing: no summary method or day boundary.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Temporal resolution: daily; each download is an annual NetCDF file for one variable.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/gridmet_workflow.Rmd">amadeus vignettes/gridmet_workflow.Rmd</a>, Available inputs and data availability</div>
@@ -531,11 +539,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>variable_source.start_date</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
 <div class="envar-cov-note">A variable has the period it covers, and each value its own time window. Missing: no field for the time grain, the aggregation over the window or the day boundary.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name temporal extent (YYYYMMDDYYYYMMDD) + temporal resolution code; column_tag Temporal-Primary</div>
-<div class="envar-cov-note">C-HER encodes temporal extent and resolution in the table_name and tags temporal columns, but carries no aggregation-method or day-boundary-convention field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -588,6 +591,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Modeled data products.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The data level marks a resource as modeled or calculated, and lineage links its inputs. Missing: no description of the model; the paper describes some models in prose.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>references.article_abatzoglou2013development</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_gridmet.Rd">amadeus man/download_gridmet.Rd</a>, references</div>
@@ -598,11 +607,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “These measures are typically modeled and reported at census tract level or fine modeled grids.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.3.1</div>
 <div class="envar-cov-note">CHEL says that its air pollution inputs are modeled and describes its own aggregation in Part 3. Missing: model type, inputs, methods paper and skill of the source models are not passed on.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary.data_level codes (dXX calculated / mXX modeled) + description/notes</div>
-<div class="envar-cov-note">C-HER's data_level codes signal that a resource is calculated or modeled, but do not carry a structured exposure-model type or inputs. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -652,6 +656,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “column metadata explain what each field in the tabular resource means and how it should be used.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3, p. 11</div>
+<div class="envar-cov-note">Every column of a tabular resource has a record with name, description, role tag and unit.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Extract gridMET values at point locations.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd">amadeus man/calculate_gridmet.Rd</a>, Description</div>
@@ -674,11 +684,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>date</code> = <code>2022-07-15</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
 <div class="envar-cov-note">The output is the input table with one row per id and date and one added column per Daymet variable; the README lists the input columns and the added ones. Missing: no machine-readable description of the columns.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary (column_name, description, column_tag Index/Value/Temporal/Spatial, column_unit)</div>
-<div class="envar-cov-note">C-HER's column dictionary is a first-class, portable per-column layout with a role tag and unit for every column — the closest analogue to the sidecar's data-layout block.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -712,6 +717,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Identifies the original publisher and source dataset.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 6</div>
+<div class="envar-cov-note">Every resource belongs to a dataset with its publisher, and has rights and format. Missing: no DOI or version of the source dataset (the DOI field is for C-HER's own resources).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “surface meteorological data from the University of California Merced”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_gridmet.Rd">amadeus man/download_gridmet.Rd</a>, Description</div>
@@ -728,11 +739,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>data_source.dataset_name</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
 <div class="envar-cov-note">`data_source` describes each source dataset: name, version, description, creator, provider, licence, coverage, dates and URL.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary (dataset, doi, rights, resource_type/format, contributors) + version + source_update_frequency</div>
-<div class="envar-cov-note">C-HER's table_dictionary and its foreign-key vocabularies identify the source dataset first-class (dataset, rights, DOI, contributors, version).</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -775,6 +781,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Links to the code used to ingest, transform, and create data are stored in the database.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.1</div>
+<div class="envar-cov-note">The code that made a resource is linked, and metadata entries have created, updated and uploaded-by fields. Missing: no tool name, version or arguments of a run.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>DESCRIPTION.Version</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/DESCRIPTION">amadeus DESCRIPTION</a>, DESCRIPTION</div>
@@ -797,11 +809,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “names of supported metadata elements captured using environment variables defined using”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/vignettes/degauss-metadata-specification.Rmd">DeGAUSS helper library dht, vignette DeGAUSS Metadata Specifications</a>, Metadata Elements</div>
 <div class="envar-cov-note">Every container has four metadata elements in its image: name, version, description and argument. Missing: they describe the image and not a run: no run time, hashes or row counts.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_dictionary.metadata_created_at/updated_at + uploaded_by + version</div>
-<div class="envar-cov-note">C-HER records registration time, uploader, and version, but no per-run producing-tool name/version, container digest, args, or hashes. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -842,15 +849,18 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 3 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No version of the metadata framework is recorded with a resource. Closest: the version code, which versions the resource, not the metadata.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “The version code ensures that every resource has a unique identifier”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus returns R objects and writes no metadata document, so there is nothing to carry a schema version. Closest: the package version in DESCRIPTION.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>DESCRIPTION.Version</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/DESCRIPTION">amadeus DESCRIPTION</a>, DESCRIPTION</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's version code versions the data resource, not a metadata sidecar schema, so no EnVar-style schema-version field exists.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -887,6 +897,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Each resource has a unique identifier that is automatically generated based on its metadata entry”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 6</div>
+<div class="envar-cov-note">Every resource has a stable identifier generated from its metadata. Missing: it names the table or file, and nothing says a health record carries it to point back to the metadata.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Foundry dataset references (RID)”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
@@ -903,11 +919,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “exposure_source_value (variable_source_id)”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/04_spatial_join_functions.sql">gaiaDB sql/04_spatial_join_functions.sql</a>, spatial_join_from_catalog</div>
 <div class="envar-cov-note">The join code shows that `exposure_source_value` receives the `variable_source_id`. Missing: as above.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name reproducible resource identifier (org_dataset_..._version) + osti_id / ornl_res_pub_id</div>
-<div class="envar-cov-note">C-HER assigns each resource a reproducible identifier, but it names the dataset resource, not an EnVar sidecar that a health layer's source-value field carries. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -961,12 +972,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schemas private / embargo (access-tier separation) + rights FK</div>
-<div class="envar-cov-note">C-HER separates private/embargoed resources into dedicated schemas and records rights, but has no per-record PHI-status assertion flag. Conservative: partial.</div>
-</div>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “we can remove the addresses and coordinates from our output file, leaving only the geomarker information”</div>
@@ -978,6 +984,13 @@
 <div class="envar-cov-row"><span class="k">quote</span> “The analyst can then strip away the PHI (address and location coordinates) in order to create a deidentified dataset.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&amp;id=7378876">Brokamp et al. 2018, Decentralized and reproducible geocoding and characterization of community and environmental exposures for multisite studies (JAMIA 25(3), full text XML from PubMed Central)</a>, Results</div>
 <div class="envar-cov-note">The 2018 paper says the same. Missing: as above, nothing in the file itself.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No field says whether a resource holds personal data. Closest: the paper says access is controlled by role.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “We have enabled strict role-based access control mechanisms to ensure that only authorized users and systems can access data.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.1</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -1066,6 +1079,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 5 supporting, 1 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “enables exposure measures at different spatial resolutions to be assigned based on the geocode level”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §3.4</div>
+<div class="envar-cov-note">The SEER linkage geocodes addresses to a point or ZIP code and assigns exposure at that level. Missing: described in the paper, not recorded.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Function used to summarize multiple raster cells”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd">amadeus man/calculate_gridmet.Rd</a>, arguments</div>
@@ -1088,11 +1107,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “The method/precision of the geocode.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Using</div>
 <div class="envar-cov-note">The geocoder documents and writes precision, score, result and the matched address for every row, its README names the address database, and the daymet README says how values are attached to the coordinate.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary reference_column_id + column_tag Foreign Reference / Spatial-Primary (cross-table join descriptors)</div>
-<div class="envar-cov-note">C-HER models cross-table join references and spatial-column tags, but no patient-to-place linkage-strategy field. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -1143,6 +1157,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial resolution refers to how the resource is organized geographically.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">The spatial resolution code says what unit a row is (c00 county, h08 H3 cell, pnt points). Missing: whether that unit stands for people, a place or a population is not stated.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Hex3 is the spatial unit at which all environmental, social, health, and climate indicators are ultimately expressed.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.2.1</div>
@@ -1153,11 +1173,6 @@
 <div class="envar-cov-row"><span class="k">field</span> <code>location_history.domain_id</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.location_history</div>
 <div class="envar-cov-note">`domain_id` says what kind of entity (a person, a care site) the `entity_id` of a location period is. The join writes `person_id` only for the person domain.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> ORNL/TM-2026/4743 (doi:10.2172/3451859) spatial resolution code; Spatial Primary column tag (§2.3.2)</div>
-<div class="envar-cov-note">The spatial resolution code gives the geographic unit (c00 is county-level data), but no field declares the subject kind.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1206,6 +1221,18 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Information that qualifies or describes a value field.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 12</div>
+<div class="envar-cov-note">Meta Value columns can hold margins of error. Missing: no type or summary of uncertainty.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Standard deviation of average daily PM2.5 exposure in 2018”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, Figure 8</div>
+<div class="envar-cov-note">For C-HER's own PM2.5 model the paper maps a standard deviation. Missing: in the paper only.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>MCD19A2.AOD_Uncertainty_1</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/modis_workflow.Rmd">amadeus vignettes/modis_workflow.Rmd</a>, MCD19A2 subdatasets</div>
@@ -1216,11 +1243,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “For percentile ranking, null values are excluded from ranking denominator N unless otherwise documented.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §4.3.3</div>
 <div class="envar-cov-note">CHEL describes how missing values are treated. Missing: no per-value uncertainty and no skill statistics; §4.6.4 only says that the modeled inputs are uncertain.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> C-HER null taxonomy (structural/derived null) + data_level QA codes (aXX/bXX)</div>
-<div class="envar-cov-note">C-HER classifies null cells and encodes QA level, but carries no per-value uncertainty or completeness percentage. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -1264,6 +1286,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Lineage relationships identify the C-HER resources that were utilized in the creation of a new”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.4.1, p. 14</div>
+<div class="envar-cov-note">Each derived resource links its parents, with notes on how it differs. Missing: a graph of resources, not an ordered list of tool runs.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Every input entering CHEL follows a defined lineage pathway:”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.1</div>
@@ -1280,11 +1308,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>prov:wasGeneratedBy</code> = <code>GDSC automation (see Process Step)</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json">gaiaCatalog DCAT record of global_pm25_concentration_1998_2016</a></div>
 <div class="envar-cov-note">The DCAT record of a catalogue entry has the process steps of its ETL as a script-like text (`prov:action`, also the `processStep` file of the entry). Missing: a description of the ETL, not a record of runs.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage (parent-child links) + lineage_notes</div>
-<div class="envar-cov-note">C-HER's dataset_lineage links parent and child resources, but is a dataset-lineage graph, not an ordered per-run W3C-PROV chain. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -1334,15 +1357,16 @@
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “C-HER data was extracted and used to create a relational database that can be used by SEER”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.5</div>
+<div class="envar-cov-note">The paper describes the link to SEER cancer data through CONNECT. Missing: no metadata field names the target or the join.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.exposure_source_value</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
 <div class="envar-cov-note">Values go into OMOP `external_exposure` with the person, and `exposure_source_value` leads back to the variable's metadata record.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> PostgreSQL schema=health + table_column_dictionary.reference_column_id (cross-table join to health resources)</div>
-<div class="envar-cov-note">C-HER has a health schema and cross-table reference columns, but no sidecar-to-health-layer link-field declaration. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>

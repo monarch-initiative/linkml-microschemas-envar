@@ -396,6 +396,13 @@
 <div class="envar-cov-note">The README names the variable and what it is, maximum temperature, which is one of the families. Missing: the output has only the column name; no field says which heat metric a column is.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">C-HER describes no heat metric. Closest: gridMET meteorological variables are among its data.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Seven meteorological variables from the GridMet database”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.3</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">amadeus has no heat metrics; it returns the variables of the source, such as gridMET `tmmx`. Closest: the gridMET variable list.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -408,10 +415,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">output</span> <code>E_NEHD</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/CHEL_hex3_2024.csv">CHEL data/CHEL_hex3_2024.csv</a></div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER models no derived heat-metric family.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -711,15 +714,15 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 3 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">C-HER computes no WBGT or UTCI. Closest: nothing.</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No WBGT or UTCI is computed. Closest: the gridMET variable list names the height of its wind speed (10 m) in the variable name only.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Wind speed at 10 m”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/gridmet_workflow.Rmd">amadeus vignettes/gridmet_workflow.Rmd</a>, Available inputs and data availability</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -764,15 +767,18 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 3 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">C-HER computes no WBGT or UTCI. Closest: the paper uses Daymet daily total shortwave radiation, averaged over a year, for a radiation measure.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Solar radiation, or daily total shortwave radiation, measures from 2019 DayMet data were averaged across the year”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, §2.4</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No WBGT or UTCI is computed. Closest: gridMET solar radiation is offered as a variable.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Surface Downwelling Solar Radiation”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/gridmet_workflow.Rmd">amadeus vignettes/gridmet_workflow.Rmd</a>, Available inputs and data availability</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER models no WBGT/UTCI heat metrics.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -812,12 +818,15 @@
 <div class="envar-cov-note">The reference set of the percentile ranks is stated: national, over all hexes. CHEL states it for its indicator ranks in general, not for a heat threshold.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">amadeus computes no percentile metric, so there is no reference distribution. Closest: nothing.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No percentile metric is described. Closest: the paper's maps use fixed AQI thresholds, not a reference distribution.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “AQI thresholds for PM2.5 were used”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://arxiv.org/pdf/2511.03750v1">Hanson et al., Centralized Health and Exposomic Resource (C-HER): Analytic and AI-Ready Data for External Exposomic Research (arXiv:2511.03750)</a>, Figure 2</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's percentile normalization is EJI vulnerability, not a heat-metric percentile baseline scope.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">amadeus computes no percentile metric, so there is no reference distribution. Closest: nothing.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -851,12 +860,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 3 not supporting</summary>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
-<div class="envar-cov-note">amadeus computes no percentile metric, so there is no seasonal reference window. Closest: nothing.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No percentile metric is described. Closest: nothing.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER carries no heat-metric seasonal reference window.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">amadeus computes no percentile metric, so there is no seasonal reference window. Closest: nothing.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -890,15 +899,15 @@
 <details class="envar-cov-details">
 <summary>Evidence: 0 supporting, 3 not supporting</summary>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No multi-day event flag is described. Closest: nothing.</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No multi-day event flag is computed. Closest: `.by_time` summarises values over a time unit such as a month, which is not an event rule.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>calculate_covariates..by_time</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_covariates.Rd">amadeus man/calculate_covariates.Rd</a>, arguments</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER stamps no multi-day heat events onto days.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

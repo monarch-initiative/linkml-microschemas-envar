@@ -386,6 +386,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Spatial resolution m30”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 7</div>
+<div class="envar-cov-note">Grid resolutions are coded in metres (m30 = 30 m grid). Missing: of the resource, which may have been converted from the source grid.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “approximately 4-km grid”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/download_gridmet.Rd">amadeus man/download_gridmet.Rd</a>, Details</div>
@@ -402,11 +408,6 @@
 <div class="envar-cov-row"><span class="k">quote</span> “Edge length: ~59.8 km”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://github.com/cladteam/CHEL/wiki/Home/d1ddf6b6ae81ed6a22d8c54fe8d0cb9bebd023c7">CHEL wiki, Home</a>, 3. Spatial Framework and Grid Selection</div>
 <div class="envar-cov-note">The wiki gives the approximate size of a Hex3 cell (edge about 59.8 km, area about 12,000 km²). Missing: approximate and in km, and the slot is defined for regular grids, not for H3 cells.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_name spatial-res code (e.g. m30, k05, h08)</div>
-<div class="envar-cov-note">C-HER encodes native spatial resolution first-class in the table_name pattern (§2.3 metric/H3 codes) and as the inheritable spatial_resolution field.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>

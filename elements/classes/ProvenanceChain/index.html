@@ -373,6 +373,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “A resource may have one parent resource or multiple parent resources.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.4.1, p. 14</div>
+<div class="envar-cov-note">Parents are linked, so the chain can be followed back. Missing: resources, not tool runs, and no order is stored.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “This pathway ensures that the origin, transformation logic, and aggregation assumptions of each variable are explicit and reproducible.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.1</div>
@@ -389,11 +395,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>prov:action</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json">gaiaCatalog DCAT record of global_pm25_concentration_1998_2016</a></div>
 <div class="envar-cov-note">The DCAT record lists the ETL commands step by step (download, unzip, load, clean, derive). Missing: written as pseudo code, without the versions of the tools or the time of a run.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> dataset_lineage table (parent-child links) + lineage_notes</div>
-<div class="envar-cov-note">C-HER's dataset_lineage links parent and child resources but is a dataset-lineage graph, not an ordered per-run W3C-PROV tool chain.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -449,7 +450,13 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Raw source data imported without substantive transformation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.2.1, p. 8</div>
+<div class="envar-cov-note">The root of a lineage is a raw import, marked with data level 000. Missing: not typed as the root of a chain.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No chain is recorded, so it has no typed root. Closest: the first step downloads raw files from the source.</div>
@@ -470,10 +477,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “as NetCDF file(s) using the”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Geomarker Data</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER's lineage graph has no typed terminus field on the chain.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>

@@ -371,15 +371,16 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “They identify whether a column contains the measured value”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 12</div>
+<div class="envar-cov-note">Column tags say which columns hold values and which locate the row in space and time, so the layout can be read off. Missing: wide or long is not stated.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “column name reflects the gridMET variable and circular buffer radius.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd">amadeus man/calculate_gridmet.Rd</a>, Description</div>
 <div class="envar-cov-note">The result has one row per location and time and one column per variable and radius, so it is wide. Missing: the layout is not declared; it follows from the column naming.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary.column_tag (Index / Value distinguishes table structure)</div>
-<div class="envar-cov-note">C-HER's per-column tags (Index vs Value) expose table structure, though not a wide/long orientation flag. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -438,6 +439,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Measured, observed, modeled, or calculated quantity.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 12</div>
+<div class="envar-cov-note">Columns that hold values carry the tag Value (e.g. pm25_mean).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “column name reflects the gridMET variable and circular buffer radius.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_gridmet.Rd">amadeus man/calculate_gridmet.Rd</a>, Description</div>
@@ -466,11 +473,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>tmax</code> = <code>44.61</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
 <div class="envar-cov-note">The output of the daymet container has the value in the column `tmax`.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Value (column_tag = Value)</div>
-<div class="envar-cov-note">C-HER identifies the value-carrying column first-class via the Value column tag.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -588,6 +590,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Most specific spatial identifier used to locate the record.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 13</div>
+<div class="envar-cov-note">The row subject of a C-HER table is a place, and its column is tagged Spatial - Primary (e.g. h3_index). Missing: there is no tag for a person or cohort identifier.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>calculate_covariates.locs_id</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/man/calculate_covariates.Rd">amadeus man/calculate_covariates.Rd</a>, arguments</div>
@@ -604,11 +612,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>id</code> = <code>91204</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
 <div class="envar-cov-note">The identifier is in the column `id` on every row; the README names `id` as the ID column of the input.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Index / Foreign Reference (participant linkage)</div>
-<div class="envar-cov-note">C-HER can tag a subject/participant column via Index or Foreign Reference, but not as a dedicated sidecar subject binding. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -652,6 +655,12 @@
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Most specific time field used to locate the observation.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 13</div>
+<div class="envar-cov-note">The time column is tagged Temporal - Primary (e.g. observation_date).</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, full match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “Type of time to return in the”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/R/utils-calculate.R">amadeus R/utils-calculate.R</a>, calc_time</div>
@@ -668,11 +677,6 @@
 <div class="envar-cov-row"><span class="k">output</span> <code>date</code> = <code>2022-07-15</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
 <div class="envar-cov-note">The output has one row per id and day, with the day in the column `date`.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Temporal – Primary</div>
-<div class="envar-cov-note">C-HER tags time columns first-class via the Temporal – Primary tag, but not as a portable sidecar time binding. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
@@ -713,15 +717,16 @@
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “Information that qualifies or describes a value field.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.2, p. 12</div>
+<div class="envar-cov-note">Columns that qualify a value are tagged Meta Value; the examples include estimate_margin_error. Missing: the tag also covers quality flags, so an uncertainty column is not marked as such.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>MCD19A2.AOD_Uncertainty_1</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/NIEHS/amadeus/a620aca6a9237c4be245bf2788fd617e0c645ec0/vignettes/modis_workflow.Rmd">amadeus vignettes/modis_workflow.Rmd</a>, MCD19A2 subdatasets</div>
 <div class="envar-cov-note">For MODIS MCD19A2 the AOD uncertainty layers can be processed and extracted like any other layer. Missing: only for MODIS AOD; no column is marked as the uncertainty of another, and gridMET has none.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> table_column_dictionary column tagged Meta value (info about a Value column)</div>
-<div class="envar-cov-note">C-HER's Meta value tag could carry a per-value uncertainty column referencing its Value column, but none is asserted here. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -778,6 +783,13 @@
 <div class="envar-cov-note">CHEL defines the three kinds of empty value the column distinguishes (structural null, derived null, true zero). Missing: the published tables have no column that says which kind a given null is.</div>
 </div>
 <div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No column says why a value is missing. Closest: a quality flag column (Meta Value) that codes completeness or review conditions of a value.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Code that identifies completeness or review conditions associated with pm25_mean.”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://www.osti.gov/servlets/purl/3451859">C-HER Metadata Overview (ORNL/TM-2026/4743)</a>, §2.3.3, p. 13</div>
+</div>
+<div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No column says why a value is missing. Closest: the MODIS fusion of two satellites takes the mean while ignoring missing values, so a missing value is left out silently.</div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
@@ -790,10 +802,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>geocode_result</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Using</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">C-HER handles null semantics in its validation rules (§4.3.3 concepts live in CHEL), but binds no per-value null-kind column in table_column_dictionary.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">out of layer (old verdict)</span></div>
