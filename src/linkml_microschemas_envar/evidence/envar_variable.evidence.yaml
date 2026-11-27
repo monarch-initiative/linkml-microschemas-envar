@@ -27,13 +27,17 @@ variable_name:
         GAIA carries the variable short name first-class in variable_source.variable_name;
         the combined stack surfaces it as a named slot.
   - source: degauss
-    legacy:
-      extent: partial
-      status: asserted
-      where: cohort_addresses_geocoded_daymet CSV column header `tmax`
-      note: >-
-        DeGAUSS carries the short name only as the value column header, not as a first-class
-        named slot. Conservative: partial.
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: tmax
+      source_label: maximum temperature
+      match: full
+      explanation: >-
+        The README lists the short name of each variable (`dayl`, `prcp`, `srad`, `swe`, `tmax`,
+        `tmin`, `vp`), which is also its column name in the output.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -104,15 +108,20 @@ variable_label:
       note: >-
         C-HER's optional `name` and required column `description` carry a human-readable label,
         though `name` is optional. Conservative: partial.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS CSVs carry no variable description / long name — only the bare `tmax` column
-        header.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        Daymet weather variables include daily day length, precipitation, shortwave radiation,
+        snow water equivalent, maximum and minimum temperature, and vapor pressure
+      match: full
+      explanation: >-
+        The README gives a readable name for each variable, and the list under Using ties each
+        name to its column.
+      status: verified
+  not_supported_by:
   - source: codata
     legacy:
       extent: out_of_layer
@@ -178,13 +187,17 @@ standard_name:
       status: verified
     status: unverified
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS carries no standard-name identifier — the quantity is implicit in the `tmax`
-        column name.
+    reason: not_recorded
+    explanation: >-
+      No variable has a standard name or a term from a vocabulary. Closest: the short names and
+      labels in the README.
+    closest:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: tmax
+      status: verified
+    status: unverified
 
 units_ucum:
   supported_by:
@@ -241,12 +254,17 @@ units_ucum:
         not the specific UCUM string of this run's file.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS's `tmax` column has no unit annotation; °C is only a container convention.
+    reason: not_recorded
+    explanation: >-
+      No unit is given for any variable, in the README or in the output. The code passes
+      Daymet's values on unchanged apart from interpolation and rounding, which the README does
+      not say either.
+    closest:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: Rounding the Daymet variables to two decimal places
+      status: verified
+    status: unverified
 
 native_units_ucum:
   supported_by:
@@ -272,13 +290,16 @@ native_units_ucum:
         GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number
         and the upstream native unit is not on the row.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS does the K→°C conversion inside the container, so the native unit never appears
-        in any output.
+    reason: not_recorded
+    explanation: >-
+      As for `units_ucum`: no unit is given. The code converts no units, so the values are in
+      Daymet's own units.
+    closest:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: Rounding the Daymet variables to two decimal places
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -329,12 +350,6 @@ target_concept_vocabulary:
       No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
       Documentation.md or README.md.
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits a bare `tmax` value with no target-vocabulary binding.
   - source: amadeus
     legacy:
       extent: absent
@@ -382,12 +397,6 @@ target_concept_id:
       No indicator is bound to a concept of a health-data vocabulary. Nothing close was found in
       Documentation.md or README.md.
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No concept-id column in DeGAUSS output.
   - source: amadeus
     legacy:
       extent: absent
@@ -421,12 +430,6 @@ concept_status:
       note: >-
         GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap
         status flag saying whether a real OMOP concept exists — an EnVar-novel slot.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS has no concept binding and so no coverage-status flag.
   - source: amadeus
     legacy:
       extent: absent
@@ -493,13 +496,16 @@ value_data_type:
         distinction lives at CODATA's represented layer.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS emits a numeric `tmax` column but declares no explicit value data type; the
-        type is implicit in the data.
+    reason: implicit
+    explanation: >-
+      The values are numbers rounded to two decimals, which follows from the code and the
+      output. No data type is declared.
+    closest:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: Rounding the Daymet variables to two decimal places
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -540,11 +546,11 @@ value_range_plausible_min:
       status: verified
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no plausible-range metadata.
+    reason: not_recorded
+    explanation: >-
+      No plausible range is given for any variable. Nothing close was found in the daymet README
+      or entrypoint.R.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -589,11 +595,11 @@ value_range_plausible_max:
       status: verified
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no plausible-range metadata.
+    reason: not_recorded
+    explanation: >-
+      No plausible range is given for any variable. Nothing close was found in the daymet README
+      or entrypoint.R.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent

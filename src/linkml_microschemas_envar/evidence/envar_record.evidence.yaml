@@ -45,12 +45,16 @@ subject_type:
         layer; it does not declare one delivered record's subject.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: output CSV id column (daymet 1.0.0 README.md)
-      note: >-
-        DeGAUSS keeps the user's own id column and has no field saying what the id identifies.
+    reason: not_recorded
+    explanation: >-
+      The tools keep the user's `id` column; nothing says what an id identifies (a person, a
+      visit, an address).
+    closest:
+    - type: output
+      document: degauss-daymet-output
+      field: id
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -103,15 +107,20 @@ variable_identity:
       note: >-
         C-HER tags a Value column with a unit and (planned) ontology tag, but carries no CF
         standard name / cell-methods identity.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Variable identity is implicit in the column header tmax with no CF standard name,
-        cell methods, or unit annotation.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        Daymet weather variables include daily day length, precipitation, shortwave radiation,
+        snow water equivalent, maximum and minimum temperature, and vapor pressure
+      match: partial
+      explanation: >-
+        The README names each variable and its column. Missing: no unit, no standard name and no
+        vocabulary term.
+      status: verified
+  not_supported_by:
   - source: codata
     legacy:
       extent: out_of_layer
@@ -148,13 +157,18 @@ spatial_reference:
         Gaia carries CRS/SRID and dataset spatial coverage, but has no first-class native-resolution
         or extraction-method slot. Conservative: partial.
   - source: degauss
-    legacy:
-      extent: partial
-      status: asserted
-      where: lat / lon columns on the geocoded CSV (implicit WGS84)
-      note: >-
-        DeGAUSS carries coordinates but no explicit CRS, native resolution, or extraction
-        method.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        produced on a 1 km x 1 km gridded surface over continental North America and Hawaii
+      match: partial
+      explanation: >-
+        Grid, cell size and extent of the source are stated, and Geomarker Methods describes the
+        extraction. Missing: the CRS is only in the code, and nothing of this is written to the
+        output.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -216,6 +230,18 @@ temporal_reference:
         C-HER encodes temporal extent and resolution in the table_name and tags temporal columns,
         but carries no aggregation-method or day-boundary-convention field. Conservative:
         partial.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: The Daymet calendar is based on a standard calendar year.
+      match: partial
+      explanation: >-
+        The README states that the variables are daily, the years covered and the 365-day
+        calendar. Missing: where a day starts, and the aggregation for the variables other than
+        maximum and minimum temperature.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -231,14 +257,6 @@ temporal_reference:
         geometries.
       status: verified
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Temporal resolution is implicit (one row per day); aggregation method and day boundary
-        are absent.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -284,11 +302,17 @@ exposure_model:
         carry a structured exposure-model type or inputs. Conservative: partial.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS records no exposure-model type or model description.
+    reason: not_recorded
+    explanation: >-
+      Nothing about the Daymet model (type, inputs, paper, skill) is passed on. Closest: the
+      README's links to the Daymet documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -327,13 +351,17 @@ data_layout:
         Gaia's OMOP/gaia-db tables have value/subject/time columns but no portable sidecar
         column-binding document. Conservative: partial.
   - source: degauss
-    legacy:
-      extent: partial
-      status: asserted
-      where: geocoded CSV columns id / lat / lon / tmax / date (implicit layout)
-      note: >-
-        DeGAUSS's CSV has value/subject/date columns but no portable sidecar layout describing
-        them. Conservative: partial.
+    support:
+    - type: output
+      document: degauss-daymet-output
+      field: date
+      value: "2022-07-15"
+      match: partial
+      explanation: >-
+        The output is the input table with one row per id and date and one added column per
+        Daymet variable; the README lists the input columns and the added ones. Missing: no
+        machine-readable description of the columns.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -400,13 +428,21 @@ source_dataset:
       note: >-
         C-HER's table_dictionary and its foreign-key vocabularies identify the source dataset
         first-class (dataset, rights, DOI, contributors, version).
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no dataset name, version, DOI, license, or publisher.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        over continental North America and Hawaii from 1980 and over Puerto Rico from 1950
+        through the end of the most recent full calendar year
+      match: partial
+      explanation: >-
+        The README names the source (Daymet), links its user guide and project page, and gives
+        its coverage and cell size. Missing: the version is only visible in a link, no DOI,
+        licence or citation, and nothing in the output.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -457,11 +493,11 @@ uncertainty:
         No gaia output carries per-value or model-aggregate uncertainty (per-value uncertainty
         is ❌ across all pipelines).
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no uncertainty block.
+    reason: not_recorded
+    explanation: >-
+      No uncertainty of any kind is passed on or computed. Nothing close was found in the daymet
+      README, entrypoint.R or the example output.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -500,17 +536,17 @@ linkage_method:
         Gaia's linkage lives in the SQL-join semantics and its NOTICE log, not as a documented
         linkage-strategy column. Conservative: partial.
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: documentation
+      document: degauss-geocoder-readme
+      locator: Using
+      snippet: The method/precision of the geocode.
+      match: full
+      explanation: >-
+        The geocoder documents and writes precision, score, result and the matched address for
+        every row, its README names the address database, and the daymet README says how values
+        are attached to the coordinate.
       status: verified
-      where: >-
-        geocoded CSV columns score, precision, geocode_result, matched_street/zip/city/state
-      evidence: >-
-        COMPARISON.md §B — geocoder match score ✅, precision ✅, geocode-result flag ✅ on every
-        row
-      note: >-
-        DeGAUSS's linkage event (geocoding precision, match score, result flag, matched address)
-        is first-class per row.
   - source: cher
     legacy:
       extent: partial
@@ -549,15 +585,19 @@ tool_run:
         Gaia carries per-row load times and a join log, but no tool name/version, container
         digest, run args, or hashes. Conservative: partial.
   - source: degauss
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        output filename tool name + container image tag (e.g. daymet_1.0.0); ghcr.io/degauss-org/...
-        reference
-      note: >-
-        DeGAUSS pins tool name and version via the filename/container tag, but no digest,
-        run args, timestamp, or hashes. Conservative: partial.
+    support:
+    - type: documentation
+      document: degauss-geocoder-readme
+      locator: Optional Argument
+      snippet: >-
+        This threshold can be changed by including an optional argument in the docker call
+      match: partial
+      explanation: >-
+        The geocoder writes its name, version and argument into the output file name
+        (`..._geocoder_3.4.2_score_threshold_0.5.csv`), and both READMEs give the image to run.
+        Missing: no image digest, run time, hashes or row counts, and the daymet container adds
+        only `_daymet` to the name.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -628,11 +668,12 @@ provenance_chain:
         graph, not an ordered per-run W3C-PROV chain. Conservative: partial.
   not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no ordered upstream-run chain.
+    reason: implicit
+    explanation: >-
+      Each container appends its name to the output file name (the geocoder also its version and
+      argument), so the sequence of runs can be read from the name. DeGAUSS does not describe
+      this as a chain, and there is no record per step.
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -682,14 +723,6 @@ health_layer_linkage:
         Missing: the target data model and the linking field are not named.
       status: verified
   not_supported_by:
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS appends geomarker columns to the cohort CSV but names no downstream health-layer
-        target or join field.
   - source: amadeus
     legacy:
       extent: absent

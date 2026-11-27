@@ -34,15 +34,18 @@ linkage_strategy:
       note: >-
         C-HER's Spatial tags and boundaries-schema references encode a spatial join relationship,
         though not EnVar's linkage-strategy enum. Conservative: partial.
-  not_supported_by:
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS carries no structured linkage-strategy slot; the point-extraction rule is
-        implicit.
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Using
+      snippet: linked by date and coordinate
+      match: full
+      explanation: >-
+        Values are attached to the coordinate of each row, for each date of the row's date
+        range.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -63,15 +66,25 @@ linkage_strategy:
 geocoding_precision_propagated:
   supported_by:
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: degauss-geocoder-readme
+      locator: Using
+      source_slot: precision
+      source_label: The method/precision of the geocode
+      match: full
+      explanation: >-
+        The geocoder writes the precision category (range, street, intersection, zip, city) to
+        the column `precision`.
       status: verified
-      where: geocoder + daymet CSV `precision` column (range/street/zip/etc.)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §B (Geocoding precision — ✅ for DeGAUSS)
-      note: >-
-        DeGAUSS carries the geocoding precision category first-class in the `precision` column
-        — the motivating source for this slot.
+    - type: output
+      document: degauss-daymet-output
+      field: precision
+      value: range
+      match: full
+      explanation: >-
+        The column is still there in the output of the daymet container, next to each value.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -119,14 +132,23 @@ geocoding_precision_propagated:
 geocoding_score_propagated:
   supported_by:
   - source: degauss
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: degauss-geocoder-readme
+      locator: Using
+      source_slot: score
+      match: full
+      explanation: >-
+        The geocoder writes the match score, a number between 0 and 1, to the column `score`.
       status: verified
-      where: geocoder + daymet CSV `score` column
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §B (Geocoder match score — ✅ for DeGAUSS)
-      note: >-
-        DeGAUSS carries the geocoder match score first-class in the `score` column.
+    - type: output
+      document: degauss-daymet-output
+      field: score
+      value: "0.818"
+      match: full
+      explanation: >-
+        The column is still there in the output of the daymet container, next to each value.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -171,15 +193,16 @@ geocoding_score_propagated:
 geocoding_database_version:
   supported_by:
   - source: degauss
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        degauss-org/geocoder README.md, Geomarker Data (3.3.0, v3.4.2); geocoder output filename
-        tag
-      note: >-
-        No output column names the database; the filename gives the container version, whose
-        README names the 2021 TIGER/Line Street Range Address files.
+    support:
+    - type: documentation
+      document: degauss-geocoder-readme
+      locator: Geomarker Data
+      snippet: using 2021 TIGER/Line Street Range Address files from the Census
+      match: full
+      explanation: >-
+        The README names the address database of this geocoder version and its release year. It
+        is stated in the README only; no output column repeats it.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -231,6 +254,19 @@ geocoding_database_version:
         CODATA's conceptual scope.
 
 address_period_alignment:
+  supported_by:
+  - source: degauss
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: start_date
+      match: partial
+      explanation: >-
+        The input has one row per location with `start_date` and `end_date`, so a person's
+        locations over time are given as dated rows. Missing: nothing says how the periods were
+        made (one fixed address, an address history).
+      status: verified
   not_supported_by:
   - source: chel
     reason: implicit
@@ -252,13 +288,6 @@ address_period_alignment:
       note: >-
         GAIA/OMOP models a single static location per person and no address-history / location-over-time
         alignment.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS geocodes one address per row and models no location-over- time period.
   - source: amadeus
     legacy:
       extent: absent
@@ -291,13 +320,6 @@ partial_day_attribution_rule:
       note: >-
         GAIA/OMOP models no trajectory transitions, so no partial-day attribution rule is
         carried.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS models no travel/transition days, so no partial-day attribution is carried.
   - source: amadeus
     legacy:
       extent: absent
@@ -328,13 +350,6 @@ lag_alignment_applied:
       status: asserted
       where: no column
       note: GAIA/OMOP emits values at native dates with no lag-alignment record.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS emits per-day values at native dates with no lag-alignment record.
   - source: amadeus
     legacy:
       extent: absent
@@ -392,13 +407,18 @@ privacy_transformation:
         The heat-scenario GAIA/OMOP join carries the true geocoded location with no privacy-transformation
         record on location.csv or external_exposure.csv.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS runs inside the institution and emits the true geocoded location; no privacy
-        transform is recorded in its CSVs.
+    reason: different_concept
+    explanation: >-
+      DeGAUSS adds a random buffer to the bounding box of the Daymet download, which hides the
+      study area from the data provider. The recorded location is not changed, and nothing says
+      so.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Geomarker Methods
+      snippet: to enhance data privacy
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -449,14 +469,6 @@ privacy_transformation_note:
       note: >-
         No privacy transform is applied in the GAIA/OMOP heat scenario, so there is no trigger/threshold/governance
         detail to record.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No privacy transform is applied by DeGAUSS here, so there is no transform detail to
-        record.
   - source: amadeus
     legacy:
       extent: absent

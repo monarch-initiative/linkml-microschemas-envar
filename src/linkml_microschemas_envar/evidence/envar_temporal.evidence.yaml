@@ -21,6 +21,15 @@ temporal_resolution:
       note: >-
         C-HER carries temporal resolution first-class as a code in the table_name pattern
         and as an inheritable lineage field.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet weather variables include daily day length
+      match: full
+      explanation: "The README says the variables are daily; the output has one row per day."
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -42,13 +51,6 @@ temporal_resolution:
       status: asserted
       where: no column
       note: No first-class temporal_resolution slot in gaiaCatalog or gaia-db.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS's daily grain is implicit in one-row-per-day, with no resolution field.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -68,6 +70,17 @@ temporal_aggregation_method:
       note: >-
         The aggregation (daily maximum) is recoverable only from the variable long_name, not
         a structured field.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: maximum and minimum temperature, and vapor pressure
+      match: partial
+      explanation: >-
+        For temperature the summary over the day is in the variable name (maximum, minimum).
+        Missing: nothing for the other variables (precipitation, radiation, vapor pressure).
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -88,12 +101,6 @@ temporal_aggregation_method:
       status: asserted
       where: no column
       note: No aggregation-method slot in gaiaCatalog or gaia-db.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no temporal-aggregation field.
   - source: cher
     legacy:
       extent: absent
@@ -143,11 +150,15 @@ temporal_aggregation_window_seconds:
       where: no column
       note: No aggregation-window field; the temporal grain itself is absent.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no explicit window-length field.
+    reason: implicit
+    explanation: "The window follows from the word daily; no length is given."
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet weather variables include daily day length
+      status: verified
+    status: unverified
   - source: cher
     legacy:
       extent: absent
@@ -173,11 +184,17 @@ day_boundary_convention:
       where: no column
       note: No day-boundary slot anywhere in gaiaCatalog or gaia-db.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS records no day-boundary convention.
+    reason: not_recorded
+    explanation: >-
+      Nothing says when a Daymet day starts and ends. Closest: the README's note on the Daymet
+      calendar.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: The Daymet calendar is based on a standard calendar year.
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -229,6 +246,17 @@ temporal_coverage_start:
       note: >-
         C-HER encodes the coverage start in the concatenated temporal-extent code (§2.4) and
         as an inheritable lineage field.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: >-
+        over continental North America and Hawaii from 1980 and over Puerto Rico from 1950
+      match: full
+      explanation: >-
+        The README gives the first year of the product: 1980, and 1950 for Puerto Rico.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -242,12 +270,6 @@ temporal_coverage_start:
       snippet: "Two primary releases are currently defined:"
       status: verified
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no product coverage-start.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -286,6 +308,17 @@ temporal_coverage_end:
       note: >-
         C-HER encodes the coverage end in the concatenated temporal-extent code (§2.4) and
         as an inheritable lineage field.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: through the end of the most recent full calendar year
+      match: partial
+      explanation: >-
+        The README says how far the product reaches. Missing: relative to the day of reading; no
+        date.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -299,12 +332,6 @@ temporal_coverage_end:
       snippet: "Two primary releases are currently defined:"
       status: verified
     status: unverified
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no product coverage-end.
   - source: codata
     legacy:
       extent: out_of_layer
@@ -315,6 +342,18 @@ temporal_coverage_end:
         EV/DDI-CDI layer.
 
 extraction_window_start:
+  supported_by:
+  - source: degauss
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: start_date
+      match: partial
+      explanation: >-
+        The input column `start_date` sets the first day extracted. Missing: it is given per
+        input row, not once for the run, and the output keeps only the single dates.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -324,13 +363,6 @@ extraction_window_start:
       note: >-
         gaia-native output collapses per-day to the variable's window-wide validity range;
         the run's actual extraction window start is not recorded.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        DeGAUSS writes per-day rows but records no explicit run extraction-window-start field.
   - source: amadeus
     legacy:
       extent: absent
@@ -356,6 +388,18 @@ extraction_window_start:
         EV/DDI-CDI layer.
 
 extraction_window_end:
+  supported_by:
+  - source: degauss
+    support:
+    - type: schema
+      document: degauss-daymet-readme
+      locator: Using
+      source_slot: end_date
+      match: partial
+      explanation: >-
+        The input column `end_date` sets the last day extracted. Missing: it is given per input
+        row, not once for the run, and the output keeps only the single dates.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -364,12 +408,6 @@ extraction_window_end:
       where: no column
       note: >-
         gaia collapses to the variable's window; no per-run extraction-window-end is recorded.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS records no explicit run extraction-window-end field.
   - source: amadeus
     legacy:
       extent: absent
@@ -405,6 +443,17 @@ calendar:
       evidence: EnVar/examples/heat/COMPARISON.md §H (time-origin / calendar ✅)
       note: >-
         The THREDDS day axis declares the calendar (gregorian) and time origin explicitly.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: The Daymet calendar is based on a standard calendar year.
+      match: full
+      explanation: >-
+        The README describes the calendar: every year has 365 days, and in leap years February
+        29 is kept and December 31 is dropped.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     legacy:
@@ -412,12 +461,6 @@ calendar:
       status: asserted
       where: no column
       note: No calendar/time-origin slot in gaia.
-  - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS emits no calendar field.
   - source: cher
     legacy:
       extent: absent

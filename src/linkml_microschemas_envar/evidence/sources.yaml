@@ -45,7 +45,27 @@ sources:
     kind: tool
     url: https://degauss.org/
     standards_index_id: degauss
+    reviewed:
+      date: 2026-11-27
+      note: >-
+        Checked against the geocoder and daymet containers. Every slot that has evidence is
+        checked. The slots in unreviewed.yaml are not.
     documents:
+      - id: degauss-daymet-readme
+        title: DeGAUSS daymet README.md
+        url: https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md
+        version: "1.0.0, 959eb09 (2026-02-27)"
+        retrieved: 2026-11-27
+      - id: degauss-daymet-entrypoint
+        title: DeGAUSS daymet entrypoint.R
+        url: https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R
+        version: "1.0.0, 959eb09 (2026-02-27)"
+        retrieved: 2026-11-27
+      - id: degauss-daymet-output
+        title: Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs
+        url: https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv
+        version: "627038d (2026-10-16)"
+        retrieved: 2026-11-27
       - id: degauss-geocoder-readme
         title: DeGAUSS geocoder README.md
         url: https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md

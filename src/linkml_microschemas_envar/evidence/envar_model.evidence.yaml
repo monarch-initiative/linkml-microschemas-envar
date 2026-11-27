@@ -34,11 +34,17 @@ exposure_model_type:
         GAIA has no first-class exposure-model-type slot; it is present only via the EnVar
         JSON-LD extension. Natively GAIA carries only a free-text measurement_technique.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no exposure-model-type slot.
+    reason: not_recorded
+    explanation: >-
+      Nothing says what kind of model Daymet is. Closest: the README's links to the Daymet
+      documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -72,11 +78,17 @@ exposure_model_inputs:
       where: no column
       note: GAIA has no slot anywhere for model inputs.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no model-input list.
+    reason: not_recorded
+    explanation: >-
+      The inputs of the Daymet model are not passed on. Closest: the README's links to the
+      Daymet documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -129,11 +141,16 @@ exposure_model_paper_doi:
         GAIA carries a dataset DOI (dct:identifier) but no methods-paper DOI describing the
         exposure model; no such slot exists.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no methods-paper DOI for the source model.
+    reason: not_recorded
+    explanation: >-
+      The README links the Daymet user guide and project page; no methods paper and no DOI.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -182,11 +199,17 @@ exposure_model_cross_validation_r2:
       note: >-
         GAIA carries no model cross-validation R2; no such slot exists in gaiaCatalog or gaia-db.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no model cross-validation R2.
+    reason: not_recorded
+    explanation: >-
+      No skill statistic of Daymet is passed on. Closest: the README's links to the Daymet
+      documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -230,11 +253,17 @@ exposure_model_known_biases:
       where: no column
       note: GAIA carries no known-model-biases field.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no known-model-biases field.
+    reason: not_recorded
+    explanation: >-
+      No known bias of Daymet is passed on. Closest: the README's links to the Daymet
+      documentation.
+    closest:
+    - type: documentation
+      document: degauss-daymet-readme
+      locator: Background
+      snippet: Daymet data documentation
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -279,11 +308,16 @@ bias_correction_applied:
       where: no column
       note: GAIA carries no bias-correction flag for the source model.
   - source: degauss
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: DeGAUSS carries no bias-correction flag.
+    reason: not_recorded
+    explanation: >-
+      Nothing says whether the values are bias-corrected. The code only interpolates and rounds
+      them (entrypoint.R).
+    closest:
+    - type: documentation
+      document: degauss-daymet-entrypoint
+      snippet: Rounding the Daymet variables to two decimal places
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
