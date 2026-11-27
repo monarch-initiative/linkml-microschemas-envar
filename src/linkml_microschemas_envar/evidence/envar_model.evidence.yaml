@@ -24,6 +24,18 @@ exposure_model_type:
       note: >-
         C-HER's data_level code flags modeled data (mXX) and distinguishes calculated (dXX)
         from modeled, but does not name the model class (reanalysis vs interpolation).
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Geomarker Methods
+      snippet: More information on the development of the spatial model can be found at the
+      match: partial
+      explanation: >-
+        The README of the `pm` container says that its values are predictions of a
+        spatiotemporal model. Missing: the class of model is not named (it is in the paper), and
+        nothing says what kind of model Daymet is.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     reason: different_concept
@@ -36,18 +48,6 @@ exposure_model_type:
       document: gaiadb-init-schema
       locator: backbone.data_source
       source_slot: data_source.measurement_technique
-      status: verified
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      Nothing says what kind of model Daymet is. Closest: the README's links to the Daymet
-      documentation.
-    closest:
-    - type: documentation
-      document: degauss-daymet-readme
-      locator: Background
-      snippet: Daymet data documentation
       status: verified
     status: unverified
   - source: amadeus
@@ -130,6 +130,21 @@ exposure_model_inputs:
     status: unverified
 
 exposure_model_paper_doi:
+  supported_by:
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Geomarker Methods
+      snippet: >-
+        A High Resolution Spatiotemporal Fine Particulate Matter Exposure Assessment Model for
+        the Contiguous United States.
+      match: partial
+      explanation: >-
+        The README of the `pm` container cites the methods paper of its model, with a link to
+        the publisher. Missing: a link and not a DOI, and only in this container: the daymet
+        README links the Daymet user guide and project page, no paper.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -151,17 +166,6 @@ exposure_model_paper_doi:
       document: gaiadb-init-schema
       locator: backbone.data_source
       source_slot: data_source.url
-      status: verified
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      The README links the Daymet user guide and project page; no methods paper and no DOI.
-    closest:
-    - type: documentation
-      document: degauss-daymet-readme
-      locator: Background
-      snippet: Daymet data documentation
       status: verified
     status: unverified
   - source: amadeus

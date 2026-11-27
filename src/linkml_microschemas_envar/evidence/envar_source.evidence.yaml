@@ -135,17 +135,19 @@ source_dataset_doi:
       note: >-
         C-HER has a doi field (foreign key doi_id) but it is on the optional-field list, so
         a DOI is not guaranteed present.
-  not_supported_by:
   - source: degauss
-    reason: not_recorded
-    explanation: "The README links the Daymet user guide and project page; no DOI."
-    closest:
+    support:
     - type: documentation
-      document: degauss-daymet-readme
-      locator: Background
-      snippet: Daymet data documentation
+      document: degauss-census-block-group-readme
+      locator: References
+      snippet: "Minneapolis, MN: IPUMS. 2020. http://doi.org/10.18128/D050.V15.0"
+      match: partial
+      explanation: >-
+        The citation in the README of the `census_block_group` container has the DOI of its
+        source dataset. Missing: only in this container; the daymet README links the Daymet user
+        guide and project page, no DOI.
       status: verified
-    status: unverified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -195,6 +197,28 @@ source_dataset_version:
       note: >-
         C-HER carries an auto-generated version code first-class in the table_name and via
         the version table (§2.6).
+  - source: degauss
+    support:
+    - type: schema
+      document: degauss-st-census-tract-readme
+      locator: Using
+      source_slot: census_tract_vintage
+      match: partial
+      explanation: >-
+        The `st_census_tract` container writes the vintage of the census geography it used to a
+        column of the output, per row. Missing: only in this container. The daymet container
+        asks the provider for the current Daymet product at run time and does not write the
+        version it got; its README links the Daymet V4 user guide.
+      status: verified
+    - type: documentation
+      document: degauss-census-block-group-readme
+      locator: References
+      snippet: "IPUMS National Historical Geographic Information System: Version 15.0"
+      match: partial
+      explanation: >-
+        The README of the `census_block_group` container names the version of its source.
+        Missing: in the README only, not in the output.
+      status: verified
   not_supported_by:
   - source: amadeus
     legacy:
@@ -210,18 +234,6 @@ source_dataset_version:
       note: >-
         Product version is a discovery/lineage concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      The README links the Daymet V4 user guide, but the tool asks AppEEARS for the current
-      Daymet product at run time and does not write the version it got to the output.
-    closest:
-    - type: schema
-      document: degauss-daymet-entrypoint
-      locator: daymet_download
-      source_slot: ProductAndVersion
-      status: verified
-    status: unverified
   - source: omop_gaia
     reason: different_concept
     explanation: >-
@@ -389,6 +401,17 @@ source_producer_institution:
         EJI). Missing: the input lineage table has no producer column; for ACS, GPW and TIGER
         only a link is given.
       status: verified
+    - type: documentation
+      document: chel-wiki-home
+      locator: "13. References"
+      snippet: >-
+        Centers for Disease Control and Prevention and Agency for Toxic Substances Disease
+        Registry
+      match: partial
+      explanation: >-
+        The reference list of the wiki names the two agencies behind EJI. Missing: no producer
+        for ACS, GPW and TIGER.
+      status: verified
   - source: omop_gaia
     support:
     - type: schema
@@ -414,19 +437,20 @@ source_producer_institution:
       note: >-
         C-HER encodes the publishing organization first-class as the {org} component of table_name;
         selecting a dataset implicitly selects its organization (§1).
-  not_supported_by:
   - source: degauss
-    reason: implicit
-    explanation: >-
-      The README points to NASA Earthdata and the ORNL DAAC for data and documentation, from
-      which the producer follows. It is not named as the producer.
-    closest:
+    support:
     - type: documentation
-      document: degauss-daymet-readme
-      locator: Using
-      snippet: Be sure to note your NASA EarthData username and password
+      document: degauss-census-block-group-readme
+      locator: Geomarker Data
+      snippet: block group shapefiles for 2020 were obtained directly from the
+      match: partial
+      explanation: >-
+        The README of the `census_block_group` container says whom its source data were obtained
+        from (the U.S. Census Bureau, and NHGIS for earlier years). Missing: only in other
+        containers. For Daymet the README points to NASA Earthdata and the ORNL DAAC for data
+        and documentation without naming a producer.
       status: verified
-    status: unverified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -452,6 +476,33 @@ source_citation_apa:
       note: >-
         Amadeus can attach a free-text acknowledgement string, which is a citation-like credit
         but not a formatted APA reference (related-approaches.md §3).
+  - source: chel
+    support:
+    - type: documentation
+      document: chel-wiki-home
+      locator: "13. References"
+      snippet: >-
+        Centers for Disease Control and Prevention and Agency for Toxic Substances Disease
+        Registry. 2024 Environmental Justice Index.
+      match: partial
+      explanation: >-
+        The wiki has a reference list with a citation of the main input, EJI 2024. Missing: not
+        in APA form, and EJI 2022, ACS, GPW and TIGER are not cited (PLACES is listed by name
+        only).
+      status: verified
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-census-block-group-readme
+      locator: References
+      snippet: >-
+        Steven Manson, Jonathan Schroeder, David Van Riper, Tracy Kugler, and Steven Ruggles.
+        IPUMS National Historical Geographic Information System: Version 15.0
+      match: partial
+      explanation: >-
+        The README of the `census_block_group` container gives a full citation of its source
+        dataset. Missing: only in this container; the daymet README gives no citation of Daymet.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     reason: not_recorded
@@ -463,17 +514,6 @@ source_citation_apa:
       document: gaiadb-init-schema
       locator: backbone.data_source
       source_slot: data_source.date_published
-      status: verified
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No citation of Daymet is given. Closest: the README's links to the Daymet documentation.
-    closest:
-    - type: documentation
-      document: degauss-daymet-readme
-      locator: Background
-      snippet: Daymet data documentation
       status: verified
     status: unverified
   - source: cher
@@ -491,18 +531,6 @@ source_citation_apa:
       note: >-
         A formatted citation is a discovery/attribution concern above the DDI-CDI InstanceVariable
         layer CODATA scores.
-  - source: chel
-    reason: not_recorded
-    explanation: >-
-      No citation is given for any input. Closest: the Source Link column of the input lineage
-      table.
-    closest:
-    - type: documentation
-      document: chel-documentation
-      locator: "§2.7, Input Lineage Table"
-      snippet: "Input | Native Geometry | Role in CHEL | Source Link"
-      status: verified
-    status: unverified
 
 source_license_spdx:
   supported_by:

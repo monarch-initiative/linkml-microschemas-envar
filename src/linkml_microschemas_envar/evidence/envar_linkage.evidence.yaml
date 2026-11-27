@@ -434,14 +434,18 @@ privacy_transformation:
   - source: degauss
     reason: different_concept
     explanation: >-
-      DeGAUSS adds a random buffer to the bounding box of the Daymet download, which hides the
-      study area from the data provider. The recorded location is not changed, and nothing says
-      so.
+      DeGAUSS links every value at the true coordinate. Privacy comes from running locally and
+      removing addresses and coordinates afterwards, and the daymet container adds a random
+      buffer to the bounding box of its download, which hides the study area from the data
+      provider. Neither changes the location a value was linked at, and nothing says so.
+      Closest: the Removing PHI section of degauss.org; the README of the `h3` container also
+      offers a safe harbor geohash as a coarse location.
     closest:
     - type: documentation
-      document: degauss-daymet-readme
-      locator: Geomarker Methods
-      snippet: to enhance data privacy
+      document: degauss-using
+      locator: Removing PHI
+      snippet: >-
+        we are applying the "Safe Harbor" method defined by HIPAA for deidentification
       status: verified
     status: unverified
   - source: amadeus

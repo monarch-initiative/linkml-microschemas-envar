@@ -3,6 +3,19 @@
 # `legacy` blocks are covered_by verdicts copied word for word; they are unverified until reviewed.
 
 per_value_uncertainty_type:
+  supported_by:
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Using
+      snippet: standard error for predicted PM2.5
+      match: partial
+      explanation: >-
+        The README of the `pm` container says what kind of uncertainty its column `pm_se` holds:
+        a standard error. Missing: only in this container; the daymet container has no per-value
+        uncertainty.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -24,12 +37,6 @@ per_value_uncertainty_type:
     explanation: >-
       No field for the uncertainty of a value. Nothing close was found in the schema or the
       README.
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No per-value uncertainty is passed on or computed. Nothing close was found in the daymet
-      README, entrypoint.R or the example output.
     status: unverified
   - source: amadeus
     legacy:
@@ -73,7 +80,15 @@ per_value_uncertainty_units_ucum:
   - source: degauss
     reason: not_recorded
     explanation: >-
-      As for `per_value_uncertainty_type`: no per-value uncertainty, so no unit either.
+      No unit is given for an uncertainty column. Closest: `pm_se` of the `pm` container, whose
+      unit is not stated (that of `pm_pred` is). The daymet container has no per-value
+      uncertainty.
+    closest:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Using
+      snippet: standard error for predicted PM2.5
+      status: verified
     status: unverified
   - source: amadeus
     legacy:
@@ -181,6 +196,16 @@ missing_data_handling_method:
         The code drops input rows whose coordinate is outside the Daymet grid. Missing: stated
         in a code comment only; the README does not say that rows can be dropped, and missing
         values inside the grid are not mentioned.
+      status: verified
+    - type: documentation
+      document: degauss-using
+      locator: Geomarker Assessment
+      snippet: "will return `NA` for geomarkers when coordinate values are missing"
+      match: partial
+      explanation: >-
+        degauss.org says what containers do with rows that have no coordinate: the geomarker is
+        `NA`. Missing: the general rule only; that the daymet container drops rows outside the
+        Daymet grid is in a code comment.
       status: verified
   - source: omop_gaia
     support:

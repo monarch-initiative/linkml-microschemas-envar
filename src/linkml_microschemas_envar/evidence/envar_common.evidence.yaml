@@ -107,6 +107,30 @@ phi_status:
       note: >-
         C-HER separates private/embargoed resources into dedicated schemas and records rights,
         but has no per-record PHI-status assertion flag. Conservative: partial.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-using
+      locator: Removing PHI
+      snippet: >-
+        we can remove the addresses and coordinates from our output file, leaving only the
+        geomarker information
+      match: partial
+      explanation: >-
+        degauss.org says which columns of an output file are PHI (addresses and coordinates) and
+        that the file has none once they are removed. Missing: a statement in the user guide; no
+        field of an output file says whether it contains PHI.
+      status: verified
+    - type: documentation
+      document: degauss-paper-2018
+      locator: Results
+      snippet: >-
+        The analyst can then strip away the PHI (address and location coordinates) in order to
+        create a deidentified dataset.
+      match: partial
+      explanation: >-
+        The 2018 paper says the same. Missing: as above, nothing in the file itself.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     reason: not_recorded
@@ -114,19 +138,6 @@ phi_status:
       gaiaDB holds addresses and coordinates of persons (`working.location`), and nothing marks
       a table or a dataset as containing PHI. Nothing close was found in the schema or the
       README.
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      The outputs contain the input addresses and coordinates, and nothing states whether a file
-      contains PHI. Closest: the daymet README's remark on privacy, which is about the download
-      bounding box.
-    closest:
-    - type: documentation
-      document: degauss-daymet-readme
-      locator: Geomarker Methods
-      snippet: to enhance data privacy
-      status: verified
     status: unverified
   - source: amadeus
     legacy:

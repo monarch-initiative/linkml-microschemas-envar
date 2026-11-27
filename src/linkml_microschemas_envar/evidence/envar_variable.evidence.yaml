@@ -271,19 +271,19 @@ units_ucum:
       note: >-
         Units live at CODATA's RepresentedVariable layer — canonical unit semantics — but
         not the specific UCUM string of this run's file.
-  not_supported_by:
   - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No unit is given for any variable, in the README or in the output. The code passes
-      Daymet's values on unchanged apart from interpolation and rounding, which the README does
-      not say either.
-    closest:
+    support:
     - type: documentation
-      document: degauss-daymet-entrypoint
-      snippet: Rounding the Daymet variables to two decimal places
+      document: degauss-pm-readme
+      locator: Using
+      snippet: predicted PM2.5 (micrograms per cubic meter)
+      match: partial
+      explanation: >-
+        The README of the `pm` container gives the unit of its value column in words. Missing:
+        in words and not UCUM, in the README only, and the daymet container gives no unit for
+        any variable (its code passes Daymet's values on unchanged apart from interpolation and
+        rounding, which the README does not say either).
       status: verified
-    status: unverified
 
 native_units_ucum:
   supported_by:
@@ -315,12 +315,14 @@ native_units_ucum:
   - source: degauss
     reason: not_recorded
     explanation: >-
-      As for `units_ucum`: no unit is given. The code converts no units, so the values are in
-      Daymet's own units.
+      No container says in which unit the source stores its values. The daymet code converts no
+      units, so its values are in Daymet's own units, which are not stated. Closest: the `pm`
+      container gives the unit of its output.
     closest:
     - type: documentation
-      document: degauss-daymet-entrypoint
-      snippet: Rounding the Daymet variables to two decimal places
+      document: degauss-pm-readme
+      locator: Using
+      snippet: predicted PM2.5 (micrograms per cubic meter)
       status: verified
     status: unverified
   - source: cher
@@ -573,13 +575,18 @@ value_range_plausible_min:
         §4.3.2 gives lower bounds per kind of indicator (0 for ranks, flags and densities).
         Missing: no bound per variable, and none for the native estimates.
       status: verified
-  not_supported_by:
   - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No plausible range is given for any variable. Nothing close was found in the daymet README
-      or entrypoint.R.
-    status: unverified
+    support:
+    - type: documentation
+      document: degauss-greenspace-readme
+      locator: Geomarker Methods
+      snippet: is a measure of greenness that ranges from -0.2 to 1
+      match: partial
+      explanation: >-
+        The README of the `greenspace` container gives the range of its index; the lower bound
+        is -0.2. Missing: only in this container; no range is given for any Daymet variable.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -627,13 +634,18 @@ value_range_plausible_max:
         §4.3.2 gives upper bounds for percentile ranks (100) and binary flags (1). Missing: no
         bound per variable, and none for densities or native estimates.
       status: verified
-  not_supported_by:
   - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No plausible range is given for any variable. Nothing close was found in the daymet README
-      or entrypoint.R.
-    status: unverified
+    support:
+    - type: documentation
+      document: degauss-greenspace-readme
+      locator: Geomarker Methods
+      snippet: is a measure of greenness that ranges from -0.2 to 1
+      match: partial
+      explanation: >-
+        The README of the `greenspace` container gives the range of its index; the upper bound
+        is 1. Missing: only in this container; no range is given for any Daymet variable.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent

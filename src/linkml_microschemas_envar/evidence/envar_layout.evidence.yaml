@@ -25,18 +25,21 @@ table_orientation:
         time window. Missing: for `external_exposure` the long layout follows from its columns
         only, and there is no field for the orientation.
       status: verified
-  not_supported_by:
   - source: degauss
-    reason: implicit
-    explanation: >-
-      The output is wide (one column per Daymet variable, one row per id and date). That can be
-      seen in the file and in the README's list of added columns, but is not stated.
-    closest:
-    - type: output
-      document: degauss-daymet-output
-      field: tmax
+    support:
+    - type: documentation
+      document: degauss-using
+      locator: A Sample Workflow
+      snippet: >-
+        These two DeGAUSS containers append new columns to our dataset with their respective
+        geomarkers, while keeping intact our original dataset.
+      match: partial
+      explanation: >-
+        degauss.org says that each container appends its geomarkers as new columns to the input
+        file, which is the wide layout. Missing: the layout is not named, and no field declares
+        it.
       status: verified
-    status: unverified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -260,6 +263,18 @@ value_uncertainty_column:
       note: >-
         C-HER's Meta value tag could carry a per-value uncertainty column referencing its
         Value column, but none is asserted here. Conservative: partial.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Using
+      snippet: standard error for predicted PM2.5
+      match: partial
+      explanation: >-
+        In the `pm` container the output has a column `pm_se` with the standard error of each
+        predicted value. Missing: only in this container; the daymet container of the heat
+        example has no uncertainty column.
+      status: verified
   not_supported_by:
   - source: chel
     reason: implicit
@@ -278,12 +293,6 @@ value_uncertainty_column:
     explanation: >-
       `external_exposure` and the attribute tables have no column for the uncertainty of a
       value. Nothing close was found in the schema or the README.
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      The output has the values only. Nothing close was found in the daymet README, entrypoint.R
-      or the example output.
     status: unverified
   - source: amadeus
     legacy:
