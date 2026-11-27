@@ -7,8 +7,21 @@ sources:
     url: https://github.com/cladteam/CHEL
     reviewed:
       date: 2026-11-27
-      note: Every slot that has evidence is checked. The slots in unreviewed.yaml are not.
+      note: >-
+        Checked against everything in the repository at 4dd219e (Documentation.md, README.md, both
+        tables, the grid file) and its wiki. Every slot that has evidence is checked. The slots in
+        unreviewed.yaml are not.
     documents:
+      - id: chel-hex3-grid
+        title: CHEL data/hex3_grid_with_h3.gpkg (GeoPackage, an SQLite file; its tables were read with sqlite3)
+        url: https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/hex3_grid_with_h3.gpkg
+        version: "4dd219e (2026-10-28)"
+        retrieved: 2026-11-27
+      - id: chel-wiki-home
+        title: CHEL wiki, Home
+        url: https://github.com/cladteam/CHEL/wiki/Home/d1ddf6b6ae81ed6a22d8c54fe8d0cb9bebd023c7
+        version: "d1ddf6b (2025-12-08)"
+        retrieved: 2026-11-27
       - id: chel-documentation
         title: CHEL Documentation.md
         url: https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md
@@ -79,9 +92,71 @@ sources:
     reviewed:
       date: 2026-11-27
       note: >-
-        Checked against the geocoder and daymet containers. Every slot that has evidence is
-        checked. The slots in unreviewed.yaml are not.
+        Checked against the geocoder and daymet containers, the READMEs of the other core
+        containers, the helper library dht, the degauss.org pages and the 2018 paper. An item says
+        so when it comes from another container than daymet or geocoder. Every slot that has
+        evidence is checked. The slots in unreviewed.yaml are not.
     documents:
+      - id: degauss-dht-metadata-spec
+        title: DeGAUSS helper library dht, vignette DeGAUSS Metadata Specifications
+        url: https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/vignettes/degauss-metadata-specification.Rmd
+        version: "f0b59bb (2023-10-23)"
+        retrieved: 2026-11-27
+      - id: degauss-dht-helper-functions
+        title: DeGAUSS helper library dht, vignette Helper Functions
+        url: https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/vignettes/helper-functions.Rmd
+        version: "f0b59bb (2023-10-23)"
+        retrieved: 2026-11-27
+      - id: degauss-dht-write-geomarker-file
+        title: DeGAUSS helper library dht, R/write_geomarker_file.R
+        url: https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/R/write_geomarker_file.R
+        version: "f0b59bb (2023-10-23)"
+        retrieved: 2026-11-27
+      - id: degauss-dht-read-lat-lon-csv
+        title: DeGAUSS helper library dht, R/read_lat_lon_csv.R
+        url: https://raw.githubusercontent.com/degauss-org/dht/f0b59bbb91697a55074d065642ed012b652e7d31/R/read_lat_lon_csv.R
+        version: "f0b59bb (2023-10-23)"
+        retrieved: 2026-11-27
+      - id: degauss-daymet-dockerfile
+        title: DeGAUSS daymet Dockerfile
+        url: https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/Dockerfile
+        version: "1.0.0, 959eb09 (2026-02-27)"
+        retrieved: 2026-11-27
+      - id: degauss-using
+        title: degauss.org, Using DeGAUSS (using_degauss.Rmd)
+        url: https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/using_degauss.Rmd
+        version: "b59e284 (2026-09-09)"
+        retrieved: 2026-11-27
+      - id: degauss-migrate
+        title: degauss.org, Migrate (migrate.Rmd)
+        url: https://raw.githubusercontent.com/degauss-org/degauss-org.github.io/b59e28406b7265f4f069bfd65ac1e9ef9393741b/migrate.Rmd
+        version: "b59e284 (2026-09-09)"
+        retrieved: 2026-11-27
+      - id: degauss-pm-readme
+        title: DeGAUSS pm README.md (another container than the one of the heat example)
+        url: https://raw.githubusercontent.com/degauss-org/pm/3093955ee5a3cb9a3f574ae4ee1e2687a2504460/README.md
+        version: "0.2.0, 3093955 (2022-03-16)"
+        retrieved: 2026-11-27
+      - id: degauss-greenspace-readme
+        title: DeGAUSS greenspace README.md (another container than the one of the heat example)
+        url: https://raw.githubusercontent.com/degauss-org/greenspace/77faceef327081f09d09a02264bb13d77b66601d/README.md
+        version: "0.3.1, 77facee (2025-05-02)"
+        retrieved: 2026-11-27
+      - id: degauss-census-block-group-readme
+        title: DeGAUSS census_block_group README.md (another container than the one of the heat example)
+        url: https://raw.githubusercontent.com/degauss-org/census_block_group/f99207afc68e3f5824deb6e8cd5073ba2f0af23f/README.md
+        version: "1.1.1, f99207a (2026-02-25)"
+        retrieved: 2026-11-27
+      - id: degauss-st-census-tract-readme
+        title: DeGAUSS st_census_tract readme.md (another container than the one of the heat example)
+        url: https://raw.githubusercontent.com/degauss-org/st_census_tract/8e8296970d3aac5d35af5129cdcdda69073d45d8/readme.md
+        version: "0.2.3, 8e82969 (2026-02-25)"
+        retrieved: 2026-11-27
+      - id: degauss-paper-2018
+        title: Brokamp et al. 2018, Decentralized and reproducible geocoding and characterization of community and environmental exposures for multisite studies (JAMIA 25(3), full text XML from PubMed Central)
+        url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7378876
+        version: "doi:10.1093/jamia/ocx128"
+        retrieved: 2026-11-27
       - id: degauss-daymet-readme
         title: DeGAUSS daymet README.md
         url: https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md

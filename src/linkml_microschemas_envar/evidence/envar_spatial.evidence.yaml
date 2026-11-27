@@ -103,6 +103,16 @@ native_spatial_resolution_m:
         CHEL gives the cell size of its one raster input. Missing: in arc-minutes, not metres.
         CHEL's own tables are on H3 cells, for which the slot does not apply.
       status: verified
+    - type: documentation
+      document: chel-wiki-home
+      locator: "3. Spatial Framework and Grid Selection"
+      snippet: "Edge length: ~59.8 km"
+      match: partial
+      explanation: >-
+        The wiki gives the approximate size of a Hex3 cell (edge about 59.8 km, area about
+        12,000 km²). Missing: approximate and in km, and the slot is defined for regular grids,
+        not for H3 cells.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -211,6 +221,17 @@ crs:
   supported_by:
   - source: chel
     support:
+    - type: output
+      document: chel-hex3-grid
+      locator: gpkg_geometry_columns
+      field: srs_id
+      value: "4326"
+      match: full
+      explanation: >-
+        The published grid file records the CRS of its geometry column: `srs_id` 4326, with the
+        definition of WGS 84 in `gpkg_spatial_ref_sys` (read with sqlite3). In the grid file
+        only; the indicator tables have no geometry.
+      status: verified
     - type: documentation
       document: chel-documentation
       locator: "§4.2.1"
@@ -218,8 +239,8 @@ crs:
         all geometries are reprojected into a consistent equal-area CRS (e.g., EPSG:5070)
       match: partial
       explanation: >-
-        CHEL names the CRS in which areas are computed. Missing: it is given as an example for
-        the processing step; the CRS of the published hex grid is not stated.
+        CHEL names the CRS in which areas are computed. Missing: it is given as an example, and
+        it is the CRS of the processing step, not of the published grid.
       status: verified
   - source: omop_gaia
     support:
@@ -257,6 +278,15 @@ crs:
         The code sets the CRS of the Daymet grid (a Lambert conformal conic PROJ string) and
         reads the input coordinates as longitude and latitude. Missing: neither is stated in the
         README or written to the output.
+      status: verified
+    - type: documentation
+      document: degauss-dht-read-lat-lon-csv
+      snippet: the crs defaults to 4326
+      match: partial
+      explanation: >-
+        The helper library reads the `lat` and `lon` columns as EPSG:4326. Missing: in the
+        documentation of a library function that the daymet container does not call; the daymet
+        README and output state no CRS.
       status: verified
   not_supported_by:
   - source: cher
@@ -308,6 +338,18 @@ spatial_extent_bbox:
       note: >-
         C-HER encodes spatial extent as a coded region (§2.2), not a numeric min/max bounding
         box.
+  - source: chel
+    support:
+    - type: output
+      document: chel-hex3-grid
+      locator: gpkg_contents
+      field: min_x
+      match: full
+      explanation: >-
+        The grid file records the bounding box of its layer in `min_x`, `min_y`, `max_x` and
+        `max_y`: longitude -179.92 to 178.44, latitude -15.12 to 71.96 (read with sqlite3). It
+        is the box of the 929 hexagons, and it is in the grid file only.
+      status: verified
   not_supported_by:
   - source: degauss
     reason: different_concept
@@ -329,18 +371,6 @@ spatial_extent_bbox:
       note: >-
         A product's spatial bounding box is instance/discovery-layer detail outside the conceptual
         EV/DDI-CDI layer.
-  - source: chel
-    reason: not_recorded
-    explanation: >-
-      No bounding box or other coordinates of the extent are given. Closest: the mention of
-      national-scale datasets in §1.3.
-    closest:
-    - type: documentation
-      document: chel-documentation
-      locator: "§1.3"
-      snippet: Computational feasibility for national-scale datasets
-      status: verified
-    status: unverified
 
 spatial_extent_descriptor:
   supported_by:
@@ -354,6 +384,16 @@ spatial_extent_descriptor:
       explanation: >-
         CHEL describes itself as national in scale. Missing: which states and territories the
         tables include is not said.
+      status: verified
+    - type: documentation
+      document: chel-wiki-home
+      locator: "1. Introduction"
+      snippet: across the continental United States
+      match: partial
+      explanation: >-
+        The wiki gives the extent in words. Missing: the bounding box in the grid file reaches
+        further (to 15°S and across 180° longitude), and no text says which territories are
+        included.
       status: verified
   - source: omop_gaia
     support:

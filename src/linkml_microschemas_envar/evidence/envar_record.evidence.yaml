@@ -147,8 +147,19 @@ spatial_reference:
       match: partial
       explanation: >-
         Geometry and resolution (§1.3, §2.2.1), the aggregation operators (Part 3) and the
-        processing CRS (§4.2.1) are described. Missing: no bounding box, and the CRS of the
-        published hex grid is not stated.
+        processing CRS (§4.2.1) are described. Missing: the CRS and the bounding box of the
+        published grid are not in the documentation; they are in the grid file.
+      status: verified
+    - type: output
+      document: chel-hex3-grid
+      locator: gpkg_geometry_columns
+      field: geometry_type_name
+      value: POLYGON
+      match: partial
+      explanation: >-
+        The grid file records the geometry type, the CRS (4326) and the bounding box of the
+        hexagons. Missing: the indicator tables do not point to the grid file; the README joins
+        the two on `hex_id`.
       status: verified
   - source: omop_gaia
     support:
@@ -297,19 +308,20 @@ exposure_model:
       note: >-
         C-HER's data_level codes signal that a resource is calculated or modeled, but do not
         carry a structured exposure-model type or inputs. Conservative: partial.
-  not_supported_by:
   - source: degauss
-    reason: not_recorded
-    explanation: >-
-      Nothing about the Daymet model (type, inputs, paper, skill) is passed on. Closest: the
-      README's links to the Daymet documentation.
-    closest:
+    support:
     - type: documentation
-      document: degauss-daymet-readme
-      locator: Background
-      snippet: Daymet data documentation
+      document: degauss-pm-readme
+      locator: Geomarker Methods
+      snippet: in the scientific manuscript describing model development
+      match: partial
+      explanation: >-
+        For the `pm` container the README points to the model behind the values: its code
+        repository and the methods paper. Missing: pointers only (no type, inputs or skill), and
+        the daymet container passes on nothing about the Daymet model beyond links to its
+        documentation.
       status: verified
-    status: unverified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -492,18 +504,24 @@ uncertainty:
       note: >-
         C-HER classifies null cells and encodes QA level, but carries no per-value uncertainty
         or completeness percentage. Conservative: partial.
+  - source: degauss
+    support:
+    - type: documentation
+      document: degauss-pm-readme
+      locator: Using
+      snippet: standard error for predicted PM2.5
+      match: partial
+      explanation: >-
+        The `pm` container passes on a standard error per value (`pm_se`). Missing: only in this
+        container. The daymet container passes on no uncertainty of any kind, and no container
+        gives skill statistics of its model.
+      status: verified
   not_supported_by:
   - source: omop_gaia
     reason: not_recorded
     explanation: >-
       No field for the uncertainty of a value or of a source model. Nothing close was found in
       the schema or the README.
-    status: unverified
-  - source: degauss
-    reason: not_recorded
-    explanation: >-
-      No uncertainty of any kind is passed on or computed. Nothing close was found in the daymet
-      README, entrypoint.R or the example output.
     status: unverified
   - source: amadeus
     legacy:
@@ -609,6 +627,17 @@ tool_run:
         Missing: no image digest, run time, hashes or row counts, and the daymet container adds
         only `_daymet` to the name.
       status: verified
+    - type: documentation
+      document: degauss-dht-metadata-spec
+      locator: Metadata Elements
+      snippet: >-
+        names of supported metadata elements captured using environment variables defined using
+      match: partial
+      explanation: >-
+        Every container has four metadata elements in its image: name, version, description and
+        argument. Missing: they describe the image and not a run: no run time, hashes or row
+        counts.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -690,14 +719,24 @@ provenance_chain:
       note: >-
         C-HER's dataset_lineage links parent and child resources, but is a dataset-lineage
         graph, not an ordered per-run W3C-PROV chain. Conservative: partial.
-  not_supported_by:
   - source: degauss
-    reason: implicit
-    explanation: >-
-      Each container appends its name to the output file name (the geocoder also its version and
-      argument), so the sequence of runs can be read from the name. DeGAUSS does not describe
-      this as a chain, and there is no record per step.
-    status: unverified
+    support:
+    - type: documentation
+      document: degauss-using
+      locator: A Sample Workflow
+      snippet: >-
+        The programs can either be run in parallel on the geocoded file or they can be run
+        sequentially, creating one file with both geomarkers.
+      match: partial
+      explanation: >-
+        degauss.org describes chaining containers on one file. Each step appends its name,
+        version and argument to the file name
+        (`sample_addresses_geocoded_3.3.0_score_threshold_0.5_roads_400m_buffer.csv`), so the
+        name lists the steps in order. Missing: a naming convention and not a record: no time,
+        input or output per step, and a container can leave parts out (daymet omits its
+        version).
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent

@@ -6,14 +6,24 @@ tool_name:
   supported_by:
   - source: degauss
     support:
-    - type: documentation
-      document: degauss-daymet-readme
-      locator: DeGAUSS Details
-      snippet: The Daymet DeGAUSS tool was created by
-      match: partial
+    - type: schema
+      document: degauss-dht-metadata-spec
+      locator: Metadata Elements
+      source_slot: degauss_name
+      match: full
       explanation: >-
-        Each tool has a name (daymet, geocoder), used in its image and appended to the output
-        file name. Missing: no field in the output names the tool.
+        The DeGAUSS metadata specification defines `degauss_name`, the name of the container. It
+        is set in the Dockerfile and stored in the image as an environment variable and as the
+        label `org.degauss.name`.
+      status: verified
+    - type: output
+      document: degauss-daymet-dockerfile
+      field: degauss_name
+      value: daymet
+      match: full
+      explanation: >-
+        The daymet image has the name `daymet`. The container appends it to the output file name
+        (`..._daymet.csv`); no column of the output has it.
       status: verified
   - source: omop_gaia
     support:
@@ -74,16 +84,32 @@ tool_version:
   supported_by:
   - source: degauss
     support:
+    - type: schema
+      document: degauss-dht-metadata-spec
+      locator: Metadata Elements
+      source_slot: degauss_version
+      match: full
+      explanation: >-
+        The specification defines `degauss_version`, the version of the container, which is also
+        the GitHub release and the image tag. It is stored in the image as an environment
+        variable and as the label `org.degauss.version`.
+      status: verified
+    - type: output
+      document: degauss-daymet-dockerfile
+      field: degauss_version
+      value: "1.0.0"
+      match: full
+      explanation: The daymet image has the version 1.0.0.
+      status: verified
     - type: documentation
-      document: degauss-geocoder-readme
-      locator: Using
-      snippet: >-
-        docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/geocoder:3.4.2 my_address_file.csv
+      document: degauss-dht-helper-functions
+      locator: Write geomarker output file
+      snippet: writes the output csv with container name and version appended to filename
       match: partial
       explanation: >-
-        The version is the tag of the image, and the geocoder also writes it into the output
-        file name (`..._geocoder_3.4.2_...csv`). Missing: the daymet container does not put its
-        version into the output name, and no field in the output has it.
+        The helper library writes name and version into the output file name (the geocoder:
+        `..._geocoder_3.4.2_...csv`). Missing: a container can write its file itself; daymet
+        1.0.0 appends only `_daymet`, without the version.
       status: verified
   - source: cher
     legacy:
@@ -218,12 +244,14 @@ container_image_digest:
     status: unverified
   - source: degauss
     reason: not_recorded
-    explanation: "Only the tag of the image is given, which can be moved; no digest."
+    explanation: >-
+      Only the tag of the image is given; no digest. degauss.org says that published versions of
+      images will not be changed, so a tag is meant to stay on the same image.
     closest:
     - type: documentation
-      document: degauss-daymet-readme
-      locator: Using
-      snippet: "ghcr.io/degauss-org/daymet:1.0.0 my_addresses.csv"
+      document: degauss-migrate
+      locator: Migrate
+      snippet: previously published versions of images will not be changed
       status: verified
     status: unverified
   - source: amadeus
@@ -259,6 +287,24 @@ run_arguments:
         The geocoder writes the value of its one argument into the output file name
         (`..._score_threshold_0.5.csv`). Missing: the daymet container documents its arguments
         but does not record the values used.
+      status: verified
+    - type: schema
+      document: degauss-dht-metadata-spec
+      locator: Metadata Elements
+      source_slot: degauss_argument
+      match: partial
+      explanation: >-
+        The specification has one element for the argument of a container: its name and default
+        value. Missing: the default and not the value used in a run, and one argument only. The
+        daymet container has several arguments and leaves the element at the template text.
+      status: verified
+    - type: documentation
+      document: degauss-dht-write-geomarker-file
+      snippet: for example, a selected buffer radius, care site, or geocoding threshold
+      match: partial
+      explanation: >-
+        The helper library appends the value of the argument to the output file name. Missing:
+        only when the container passes it on; daymet does not.
       status: verified
   - source: omop_gaia
     support:
@@ -354,18 +400,19 @@ run_timestamp_utc:
       note: >-
         C-HER stamps metadata create/update times, which are registration times, not the producing
         tool-run timestamp.
-  not_supported_by:
   - source: chel
-    reason: not_recorded
-    explanation: >-
-      No build or run date is given for a release. Closest: the year in the release name.
-    closest:
-    - type: documentation
-      document: chel-documentation
-      locator: "§5.1"
-      snippet: "Two primary releases are currently defined:"
+    support:
+    - type: output
+      document: chel-hex3-grid
+      locator: gpkg_contents
+      field: last_change
+      match: partial
+      explanation: >-
+        The grid file records when its layer was last written: 2025-11-24T19:48:49Z (read with
+        sqlite3). Missing: it is the write time of the grid file and not the start of a pipeline
+        run, and the indicator tables have no date.
       status: verified
-    status: unverified
+  not_supported_by:
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -517,13 +564,19 @@ output_file_sha256:
       note: File checksums are instance-layer; out of scope for CODATA.
 
 output_row_count:
-  not_supported_by:
+  supported_by:
   - source: chel
-    reason: not_recorded
-    explanation: >-
-      No row count of the released tables is stated. Nothing close was found in
-      Documentation.md, README.md or the data folder.
-    status: unverified
+    support:
+    - type: output
+      document: chel-hex3-grid
+      locator: gpkg_ogr_contents
+      field: feature_count
+      match: partial
+      explanation: >-
+        The grid file records its number of features, 929 (read with sqlite3). Missing: for the
+        grid file only; no row count is given for the indicator tables.
+      status: verified
+  not_supported_by:
   - source: omop_gaia
     reason: not_recorded
     explanation: The number of exposure rows a join wrote is printed as a notice and not stored.
@@ -608,13 +661,19 @@ provenance_chain_steps:
       note: >-
         C-HER's dataset_lineage links parent and child resources but is a dataset-lineage
         graph, not an ordered per-run W3C-PROV tool chain.
-  not_supported_by:
   - source: degauss
-    reason: implicit
-    explanation: >-
-      As for `provenance_chain`: the steps can be read from the output file name, to which each
-      container appends its name. There is no record per step.
-    status: unverified
+    support:
+    - type: documentation
+      document: degauss-dht-helper-functions
+      locator: Write geomarker output file
+      snippet: writes the output csv with container name and version appended to filename
+      match: partial
+      explanation: >-
+        Each step adds its name and version (and argument) to the file name, in the order the
+        steps ran. Missing: no record per step beyond that, and daymet 1.0.0 appends only its
+        name.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
