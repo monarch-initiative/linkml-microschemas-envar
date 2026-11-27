@@ -380,8 +380,11 @@
 <div class="envar-cov-note">The OMOP external_exposure table is implicitly long, but no orientation flag is declared as a field — it is a structural property a consumer must infer.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">DeGAUSS's daymet CSV is wide (a `tmax` column) but declares no orientation field.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: implicit</span></div>
+<div class="envar-cov-note">The output is wide (one column per Daymet variable, one row per id and date). That can be seen in the file and in the README's list of added columns, but is not stated.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>tmax</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -436,10 +439,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.value_as_number (Cel)</div>
 <div class="envar-cov-note">The OMOP CDM binds the value to the stable external_exposure.value_as_number column.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> cohort_addresses_geocoded_daymet CSV `tmax` column</div>
-<div class="envar-cov-note">DeGAUSS writes the value to a stable `tmax` column on every row.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>tmax</code> (maximum temperature)</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Using</div>
+<div class="envar-cov-note">The README lists the columns the tool adds, one per Daymet variable, with what each holds.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>tmax</code> = <code>44.61</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
+<div class="envar-cov-note">The output of the daymet container has the value in the column `tmax`.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -571,10 +581,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.person_id; person.person_id; location.location_id</div>
 <div class="envar-cov-note">OMOP carries the subject identifier first-class on external_exposure.person_id (and person/location).</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> `id` column on every CSV row</div>
-<div class="envar-cov-note">DeGAUSS carries the person identifier in the `id` column on every row.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>id</code> = <code>91204</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
+<div class="envar-cov-note">The identifier is in the column `id` on every row; the README names `id` as the ID column of the input.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -632,10 +643,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure attr_start_date / attr_end_date (window-wide, not per-day)</div>
 <div class="envar-cov-note">GAIA carries date columns but collapses every row to the variable's window-wide attr_start_date/attr_end_date — per-day external_exposure does not come out. Conservative: partial.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> one row per (person × day) in cohort_addresses_geocoded_daymet CSV (per-day date)</div>
-<div class="envar-cov-note">DeGAUSS emits a per-day date on every row (24 rows, per-day).</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>date</code> = <code>2022-07-15</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/monarch-initiative/envar/627038dd6133635a655f8c1a5cc18b40c5e94ce8/examples/heat/degauss/outputs/cohort_addresses_geocoded_daymet_1.0.0.csv">Output of the DeGAUSS daymet 1.0.0 container, monarch-initiative/envar examples/heat/degauss/outputs</a></div>
+<div class="envar-cov-note">The output has one row per id and day, with the day in the column `date`.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -702,8 +714,8 @@
 <div class="envar-cov-note">No per-value uncertainty column on external_exposure; the OMOP stack carries no measurement-error column for the value.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">DeGAUSS's daymet CSV carries the value only, no per-value standard-error column.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The output has the values only. Nothing close was found in the daymet README, entrypoint.R or the example output.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -757,8 +769,11 @@
 <div class="envar-cov-note">Amadeus declares a fill/missing-value sentinel that marks structural nulls, but no per-value column distinguishing the three null kinds. Conservative: partial.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">DeGAUSS emits no null-kind indicator column and no missing-value sentinel in its CSV output.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No column says why a value is empty. Closest: the geocoder's `geocode_result`, which says why a coordinate is missing (PO box, no address text, imprecise geocode).</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>geocode_result</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Using</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
