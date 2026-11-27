@@ -371,16 +371,24 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “The Daymet DeGAUSS tool was created by”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, DeGAUSS Details</div>
 <div class="envar-cov-note">Each tool has a name (daymet, geocoder), used in its image and appended to the output file name. Missing: no field in the output names the tool.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia table records a tool-name field; the gaia-db image name is not carried on any native output.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>featureList</code> = <code>wget</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">The ETL metadata of a dataset names the software of each ETL step (`instrument`, with `featureList` and a repository URL). Missing: the gaiaDB functions that load and join the data are not recorded with the output.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>download</code> = <code>wget</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file names the download tool. Missing: no version.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -443,8 +451,11 @@
 <div class="envar-cov-note">C-HER carries a resource version code, but it versions the dataset resource, not a per-run producing tool.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia table records the gaia-db image version.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No version of the ETL software or of gaiaDB is recorded. Closest: the repository URL of the ETL tool in the JSON-LD.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>downloadUrl</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -514,8 +525,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia table records a container image repository.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The image that ran a load or a join is not recorded. Closest: the ETL file of a catalogue entry names the pod it runs in (`podID`: gaia-db).</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>podID</code> = <code>gaia-db</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -567,8 +581,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">Container image digest is not carried by any native gaia output.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No digest of an image is recorded. Closest: the ETL file of a catalogue entry names the pod it runs in (`podID`: gaia-db).</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>podID</code> = <code>gaia-db</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -618,12 +635,24 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “This threshold can be changed by including an optional argument in the docker call”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/geocoder/4101d63dfe9a2dc1cf7966b948a97074bd1fb503/README.md">DeGAUSS geocoder README.md</a>, Optional Argument</div>
 <div class="envar-cov-note">The geocoder writes the value of its one argument into the output file name (`..._score_threshold_0.5.csv`). Missing: the daymet container documents its arguments but does not record the values used.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
+<div class="envar-cov-row"><span class="k">quote</span> “exposure_relationship_source_value (verbatim operator)”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/04_spatial_join_functions.sql">gaiaDB sql/04_spatial_join_functions.sql</a>, spatial_join_from_catalog</div>
+<div class="envar-cov-note">The join writes its operator or method verbatim to each exposure row, and the exposure type concept it was given. Missing: the buffer distance and the nodata value are not written, and there is no record of all arguments of a run.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>local_epsg</code> = <code>EPSG:3857</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The settings of a dataset's ETL are in its ETL file: download tool, source file and format, EPSG codes, nodata value, derived formats. Missing: they are the settings of the ETL, not the arguments of a join run.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -631,10 +660,6 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">quote</span> “Privacy threshold specification”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.5</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia output records the invocation argument map.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -675,10 +700,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.created_at/updated_at and location.created_at (load time, not run timestamp)</div>
-<div class="envar-cov-note">Gaia records per-row load times, which approximate but are not the tool-run start timestamp.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.created_at</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
+<div class="envar-cov-note">Each exposure row has the time it was written. Missing: per row, in the server's time without a zone, and not the start of the run.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>last_updated</code> = <code>2025-05-23T08:47:15Z</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file of a catalogue entry records when the dataset was last loaded, in UTC. Missing: it is the time of the ETL, not of the join.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -761,7 +793,10 @@
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different granularity</span></div>
-<div class="envar-cov-note">gaiaDB records one source URL per catalogued dataset and not the files a run read. Closest: `data_source.url`.</div>
+<div class="envar-cov-note">The ETL file of a catalogue entry names the source file a dataset is loaded from (`source`, `file`), once per dataset. Which files a given load or join read is not recorded.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>file</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>data_source.url</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
@@ -805,8 +840,11 @@
 <div class="envar-cov-note">No hash of the released tables is published. Nothing close was found in Documentation.md, README.md or the data folder.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia output records an output-file SHA256.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No hash of the exposure output is recorded. Closest: the `checksum` of a catalogue entry, which is not filled in the public example and belongs to the dataset, not to the output of a join.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">output</span> <code>spdx:checksum</code> = <code>TBD</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json">gaiaCatalog DCAT record of global_pm25_concentration_1998_2016</a></div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -859,8 +897,11 @@
 <div class="envar-cov-note">No row count of the released tables is stated. Nothing close was found in Documentation.md, README.md or the data folder.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No native gaia output records an output row count; you would wc -l.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">The number of exposure rows a join wrote is printed as a notice and not stored.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Catalog spatial join complete. Inserted”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/04_spatial_join_functions.sql">gaiaDB sql/04_spatial_join_functions.sql</a>, spatial_join_from_catalog</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>

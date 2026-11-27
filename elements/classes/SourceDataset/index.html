@@ -378,10 +378,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.7, Input Lineage Table</div>
 <div class="envar-cov-note">Each input is named in the Input column of the table.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.dataset_name; meta_dcat_*.json dct:title</div>
-<div class="envar-cov-note">GAIA carries the dataset name first-class in data_source and the DCAT title.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.dataset_name</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov-note">The name of the dataset, a required field.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>name</code> = <code>2022 Massachusetts CDC Social Vulnerability Index (tracts)</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">The name in the public example.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -435,17 +442,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “EJI 2022 and EJI 2024 are distinct source datasets.”</div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §5.3.1</div>
 <div class="envar-cov-note">The release of the main input (EJI) and of the boundary files (TIGER 2019 and 2020, §2.2.2) is given per CHEL release. Missing: for ACS, §5.3.2 only says that the releases use different rolling periods, without naming them.</div>
-</div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.dataset_version</div>
-<div class="envar-cov-note">GAIA carries the upstream dataset version first-class in data_source.dataset_version.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -466,6 +468,13 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>ProductAndVersion</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/entrypoint.R">DeGAUSS daymet entrypoint.R</a>, daymet_download</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
+<div class="envar-cov-note">The catalogue's `version` is a release date of the catalogue entry (YYYY-MM-DD), which gaiaDB loads into `dataset_version`. The version of the source product has no field; in the public PM2.5 example it is only part of the dataset name and of the source URL (v1).</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>VersionString</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, types</div>
 </div>
 </details>
 <details class="envar-why">
@@ -548,10 +557,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.dataset_name (no registry short code)</div>
-<div class="envar-cov-note">GAIA carries the dataset name but no stable per-product short registry code; scored partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.dataset_id</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov-note">Every dataset has a unique `dataset_id` (the `@id` of its JSON-LD), which ends in the short table id the catalogue uses for it, for example `ma_2022_svi_tract`.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -601,10 +611,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> meta_dcat_*.json dct:identifier</div>
-<div class="envar-cov-note">GAIA carries a DOI in DCAT dct:identifier for daymet, but not all entries carry one (gridmet has only a url), so scored conservatively as partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>dct:identifier</code> = <code>https://doi.org/10.7910/DVN/RHIFKL</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json">gaiaCatalog DCAT record of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The DCAT record of a catalogue entry gives the DOI of the source dataset as `dct:identifier`. Missing: only in the DCAT record. The JSON-LD that gaiaDB loads has no field for it, so `data_source` has no DOI.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -663,10 +674,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date/end_date</div>
-<div class="envar-cov-note">GAIA carries the product time span in DCAT dct:temporal and the variable_source start/end dates.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>variable_source.start_date</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
+<div class="envar-cov-note">Each variable has the period it covers (`start_date`, `end_date`).</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Dataset.temporal_coverage</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, Dataset</div>
+<div class="envar-cov-note">A catalogue entry can give the period of the whole dataset as `temporalCoverage`, written start/end. It is a recommended field.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -725,10 +743,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> meta_dcat_*.json spatialCoverage; gaia_db data_source.spatial_coverage; meta_etl_*.json extent (POLYGON WKT)</div>
-<div class="envar-cov-note">GAIA carries the source spatial coverage in DCAT, in data_source.spatial_coverage, and as a POLYGON WKT extent.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.spatial_coverage</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov-note">The spatial coverage of the dataset; in the public example a place name and a bounding polygon.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -790,10 +809,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.5</div>
 <div class="envar-cov-note">The producer is named in passing for some inputs (CDC for PLACES and, in the README, for EJI). Missing: the input lineage table has no producer column; for ACS, GPW and TIGER only a link is given.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.creator/provider; meta_dcat_*.json dct:publisher</div>
-<div class="envar-cov-note">GAIA carries publisher/creator/provider first-class in data_source and DCAT dct:publisher.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.creator</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov-note">A dataset has its creator and its provider.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>name</code> = <code>Center for Disease Control</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">The creator in the public example, with its ROR identifier.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -848,8 +874,11 @@
 <div class="envar-cov-note">Amadeus can attach a free-text acknowledgement string, which is a citation-like credit but not a formatted APA reference (related-approaches.md §3).</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">GAIA carries publisher and DOI but no assembled APA citation string; none is emitted.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No field for a citation. Closest: creator, name and publication date, from which one can be built.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.date_published</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -903,10 +932,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 2 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.license; meta_dcat_*.json dct:license</div>
-<div class="envar-cov-note">GAIA carries a license first-class but as a freeform string with no SPDX normalisation, so it only partly satisfies this SPDX-specific slot.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Dataset.license</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, Dataset</div>
+<div class="envar-cov-note">A catalogue entry has a `license`, a short identifier from a list of four (cc0-1.0, cc_by, odbl, odc_by); a missing one is reported as a warning. Missing: the list is the catalogue's own, not SPDX.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>rights</code> = <code>Public Domain</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file of the example gives the rights of the source. Missing: free text.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -965,10 +1001,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.7, Input Lineage Table</div>
 <div class="envar-cov-note">The Source Link column gives a URL for each public input, in most rows a landing or download page of the dataset.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db data_source.url; meta_etl_*.json source; JSON-LD url</div>
-<div class="envar-cov-note">GAIA carries the source landing-page URL first-class in data_source.url and the JSON-LD url.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>data_source.url</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov-note">The URL of the source dataset.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>url</code> = <code>https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">In the public example it is the documentation and download page of the source.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -1029,10 +1072,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> meta_etl_*.json structure/geometry (raster); gaia_db data_source.geom_type</div>
-<div class="envar-cov-note">GAIA records dataset structure (raster) and geometry type but not the native file format (e.g. NetCDF-4/CF) as a first-class slot.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>format</code> = <code>shp</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file of a catalogue entry gives the format of the source file (`format`: shp) and of the download (`extension`: zip).</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>

@@ -377,10 +377,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 3 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure table (OMOP CDM GIS extension) — the target is OMOP but is implicit, not a named slot</div>
-<div class="envar-cov-note">Gaia lands values into OMOP external_exposure, so the target layer is effectively OMOP, but it is baked into the pipeline rather than declared in a target field. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>working.external_exposure</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working schema</div>
+<div class="envar-cov-note">gaiaDB writes its results to the `external_exposure` table of the OMOP GIS extension. The target is fixed by design and not declared per dataset.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
@@ -431,10 +432,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 2 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_source_value (the OMOP field that would carry a provenance id)</div>
-<div class="envar-cov-note">The OMOP external_exposure.exposure_source_value field exists and is the natural provenance-id carrier, but gaia does not populate it with a sidecar provenance id. Conservative: partial.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.exposure_source_value</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
+<div class="envar-cov-note">The field of the health data that leads back to the metadata is `exposure_source_value`; the join fills it with the id of the variable's metadata record.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>

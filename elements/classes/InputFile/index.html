@@ -367,6 +367,12 @@
 <div class="envar-cov-note">"The location of the referenced resource, as appropriate to support retrieval." Reference is the type of `Activity.entityUsed`; it also has a `uri` attribute.</div>
 </div>
 <div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>source</code> = <code>https://sedac.ciesin.columbia.edu/downloads/data/sdei/sdei-annual-pm2-5-concentrations-countries-urban-areas-v1-1998-2016/sdei-annual-pm2-5-concentrations-countries-urban-areas-v1-1998-2016-urban-areas-shp.zip</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file of a catalogue entry gives the URL of the file that is downloaded. Missing: it is stored once per dataset and not per run.</div>
+</div>
+<div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
 <div class="envar-cov-row"><span class="k">field</span> <code>data_source.url</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
@@ -376,7 +382,7 @@
 <div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
 <div class="envar-cov-row"><span class="k">output</span> <code>url</code> = <code>https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
-<div class="envar-cov-note">In the public example the URL is the download page of the source and not the file itself.</div>
+<div class="envar-cov-note">In the public example this URL is the download page of the source and not the file itself.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -428,14 +434,16 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 6 not supporting</summary>
+<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>checksum</code> = <code>TBD</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_etl_global_pm25_concentration_1998_2016.json">gaiaCatalog ETL file of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The ETL file of a catalogue entry has a `checksum` field next to the source URL and file name, and the DCAT record has `spdx:checksum`. Missing: in the public example it is not filled (TBD), and neither the algorithm nor the file it belongs to is stated.</div>
+</div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
 <div class="envar-cov-note">No hash of an input file is published. Nothing close was found in Documentation.md, README.md or the data folder.</div>
-</div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No gaia output records an input-file SHA256.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -488,8 +496,11 @@
 <div class="envar-cov-note">No row count of an input is published. Nothing close was found in Documentation.md, README.md or the data folder.</div>
 </div>
 <div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">No native gaia output records an input row count; you would wc -l.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
+<div class="envar-cov-note">No row count of the loaded locations or source tables is stored. Closest: `working.location_statistics()`, which prints summary counts on request.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">quote</span> “Data quality checks and summary counts”</div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/README.md">gaiaDB README.md</a>, Function Reference</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>

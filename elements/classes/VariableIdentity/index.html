@@ -375,10 +375,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/data/CHEL_hex3_2024.csv">CHEL data/CHEL_hex3_2024.csv</a></div>
 <div class="envar-cov-note">Each indicator has a short code as its column name, taken from EJI (`E_NEHD`, `EPL_NEHD`). Missing: CHEL's documentation does not list or explain the codes.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_name; DeGAUSS/Amadeus emit the short name only as a bare column header (tmax / tmmx)</div>
-<div class="envar-cov-note">GAIA carries the variable short name first-class in variable_source.variable_name; the combined stack surfaces it as a named slot.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>variable_source.variable_name</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
+<div class="envar-cov-note">The name of the variable, a required field.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>name</code> = <code>area_sqmi</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">A variable name in the public example.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
@@ -429,12 +436,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.property_id and JSON-LD variableMeasured.propertyID → vocab.nerc.ac.uk/standard_name/air_temperature (NERC/CF mirror)</div>
-<div class="envar-cov-note">GAIA is the only stack carrying a real CF standard name, via the hand-authored NERC propertyID in variable_source / JSON-LD.</div>
-</div>
+<summary>Evidence: 3 supporting, 3 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml standard_name = "tmmx" (gridMET shortcode overloaded, not a real CF term)</div>
@@ -463,6 +465,13 @@
 <div class="envar-cov-row"><span class="k">closest</span> </div>
 <div class="envar-cov-row"><span class="k">field</span> <code>tmax</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/degauss-org/daymet/959eb094c3fae632686a6ce8d98053fc879638d8/README.md">DeGAUSS daymet README.md</a>, Using</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
+<div class="envar-cov-note">A variable's `propertyID` is defined in the catalogue schema as an OMOP concept id, and gaiaDB loads it into `property_id` and `attr_concept_id`. That binds the variable to the health vocabulary. A standard name of the physical quantity, such as a CF name, has no field.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Variable.property_id</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, Variable</div>
 </div>
 </details>
 <details class="envar-why">
@@ -503,10 +512,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §3.6</div>
 <div class="envar-cov-note">For the percentile ranks CHEL states the scale, 0 to 100. Missing: no unit for the native estimates (`E_` columns), and the published `EPL_` columns are on a 0 to 1 scale.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.unit_code (UCUM `CEL`) + unit_text; JSON-LD variableMeasured.unitCode; external_exposure.unit_concept_id 8653</div>
-<div class="envar-cov-note">GAIA carries the unit as a first-class UCUM code (CEL) plus the OMOP unit_concept_id.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>variable_source.unit_code</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
+<div class="envar-cov-note">A variable has a unit code, a unit text and an OMOP unit concept. Missing: nothing says that the code is UCUM.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>unitText</code> = <code>square miles</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">The public example gives the unit as text only. Missing: no unit code.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -567,10 +583,12 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 0 supporting, 4 not supporting</summary>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">GAIA fills a placeholder exposure_concept_id but carries no existing/proposed/gap status flag saying whether a real OMOP concept exists — an EnVar-novel slot.</div>
+<summary>Evidence: 1 supporting, 3 not supporting</summary>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>concept.standard_concept</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, vocabulary.concept</div>
+<div class="envar-cov-note">The vocabulary says whether a concept is a standard one, and the join code uses the concept id 0 where nothing is mapped. Missing: no status for a concept that is proposed or known to be missing.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
@@ -621,10 +639,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 4 supporting, 2 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_catalog meta_etl_*.json qudt:dataType (numeric/float4)</div>
-<div class="envar-cov-note">GAIA registers the attribute's numeric qudt:dataType at dataset-registration time; the EnVar translation carries it first-class as value_data_type.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>variable_source.data_type</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
+<div class="envar-cov-note">The data type of the variable.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>qudt:dataType</code> = <code>float8</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">The value in the public example, per variable.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
@@ -760,10 +785,17 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/cladteam/CHEL/4dd219e256ba664a9151d4d8d7aefac65ef2ce28/Documentation.md">CHEL Documentation.md</a>, §2.6</div>
 <div class="envar-cov-note">§2.3 to §2.6 give readable names of the indicators (extreme heat days, wildfire smoke days). Missing: the names are not tied to the column codes of the tables.</div>
 </div>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.variable_description; JSON-LD variableMeasured.description</div>
-<div class="envar-cov-note">GAIA carries a variable long name / description first-class in variable_source.variable_description and the JSON-LD.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>variable_source.variable_description</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.variable_source</div>
+<div class="envar-cov-note">The description of the variable.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>description</code> = <code>Tract area in square miles</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
+<div class="envar-cov-note">A variable description in the public example.</div>
 </div>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
@@ -811,15 +843,17 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 1 supporting, 5 not supporting</summary>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">amadeus</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> thredds_dataset.xml units = "K" (native) alongside the derived value_celsius; gridmet_tmmx.csv value_kelvin column</div>
 <div class="envar-cov-note">Amadeus ships the native Kelvin value and its unit declaration side by side with the converted Celsius.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
-<div class="envar-cov-note">GAIA stores °C as if it were always °C; only the OMOP-side unit lands in value_as_number and the upstream native unit is not on the row.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>attr_template.unit_source_value</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.attr_template</div>
+<div class="envar-cov-note">Next to the unit concept, a value keeps the unit as the source gave it (`unit_source_value`). Missing: free text, not UCUM, and nothing says whether values were converted.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">DeGAUSS</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -873,10 +907,11 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 1 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id + exposure_type_concept_id (32885) + unit_concept_id (8653) — OMOP vocabulary is the implicit target</div>
-<div class="envar-cov-note">The OMOP CDM is the target vocabulary itself; the concept slots land the value against OHDSI concept ids.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>concept.vocabulary_id</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, vocabulary.concept</div>
+<div class="envar-cov-note">Concepts are from the OMOP vocabulary tables, where each concept names its vocabulary.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -924,10 +959,17 @@
 </div>
 <details class="envar-cov-details">
 <summary>Evidence: 1 supporting, 4 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> external_exposure.exposure_concept_id (placeholder concept present) + exposure_type_concept_id 32885</div>
-<div class="envar-cov-note">GAIA fills the concept-id slot even though no real OMOP concept is yet minted for daily-max-air-temperature; the binding exists.</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>external_exposure.exposure_concept_id</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, working.external_exposure</div>
+<div class="envar-cov-note">The concept of the exposure; the variable's metadata has the same as `attr_concept_id`.</div>
+</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>ConceptIdText</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, types</div>
+<div class="envar-cov-note">In the catalogue the concept of a variable is its `propertyID`, an OMOP concept id written as text.</div>
 </div>
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">CHEL</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: not recorded</span></div>
@@ -974,12 +1016,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.min_value (−50); also JSON-LD variableMeasured</div>
-<div class="envar-cov-note">GAIA carries a first-class min_value (−50) as variable metadata.</div>
-</div>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
@@ -1002,6 +1039,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
+<div class="envar-cov-note">The catalogue stores a `minValue` per variable (gaiaDB: `min_value`). In the public example it is the smallest value found in the data (8 for a column of codes, -1 for a concentration), not a bound for plausible values.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Variable.min_value</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, Variable</div>
 </div>
 </details>
 <details class="envar-why">
@@ -1029,12 +1073,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 3 supporting, 3 not supporting</summary>
-<div class="envar-cov st-partial">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">full coverage (old verdict)</span></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> gaia_db/variable_source.max_value (60); also JSON-LD variableMeasured</div>
-<div class="envar-cov-note">GAIA carries a first-class max_value (60) as variable metadata.</div>
-</div>
+<summary>Evidence: 2 supporting, 4 not supporting</summary>
 <div class="envar-cov st-partial">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-partial">unverified, to be reviewed</span><span class="envar-cov-extent">partial coverage (old verdict)</span></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> I-ADOPT Constraint on the Property; DDI-CDI value-domain bounds</div>
@@ -1057,6 +1096,13 @@
 <div class="envar-cov st-absent">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-absent">unverified, to be reviewed</span><span class="envar-cov-extent">absent (old verdict)</span></div>
 <div class="envar-cov-note">C-HER column metadata carries no per-variable plausible min/max.</div>
+</div>
+<div class="envar-cov st-absent">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
+<div class="envar-cov-note">The catalogue stores a `maxValue` per variable (gaiaDB: `max_value`). In the public example it is the largest value found in the data (94650 for a column of codes), not a bound for plausible values.</div>
+<div class="envar-cov-row"><span class="k">closest</span> </div>
+<div class="envar-cov-row"><span class="k">field</span> <code>Variable.max_value</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, Variable</div>
 </div>
 </details>
 <details class="envar-why">

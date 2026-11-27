@@ -476,16 +476,16 @@
 <div class="envar-cov-note">CHEL versions its own product as releases (CHEL 2022, CHEL 2024), apart from the vintages of its sources. The text does not say that a table records its release, and there is no version below the release.</div>
 </div>
 <div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
-<div class="envar-cov-row"><span class="k">field</span> <code>data_source.dataset_version</code></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
-<div class="envar-cov-note">One version field per catalogued dataset. Nothing says whether it holds the catalogue's own version or the source release.</div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, full match</span></div>
+<div class="envar-cov-row"><span class="k">field</span> <code>VersionString</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/schema/gaia_catalog.yaml">gaiaCatalog schema/gaia_catalog.yaml</a>, types</div>
+<div class="envar-cov-note">The catalogue schema defines the `version` of an entry as a release date (YYYY-MM-DD). gaiaDB loads it into `data_source.dataset_version`.</div>
 </div>
 <div class="envar-cov st-verified">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, full match</span></div>
 <div class="envar-cov-row"><span class="k">output</span> <code>version</code> = <code>2026-05-23</code></div>
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/extras/ma_2022_svi_tract/meta_json-ld_ma_2022_svi_tract.json">gaiaDB example metadata, meta_json-ld_ma_2022_svi_tract.json</a></div>
-<div class="envar-cov-note">The public example has a date as version for the 2022 CDC index, which reads as the version of the catalogue entry. The file does not say so.</div>
+<div class="envar-cov-note">The version of the catalogue entry for the 2022 CDC index in the public example.</div>
 </div>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">CODATA Essential Variables / DDI-CDI</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">schema, partial match</span></div>
@@ -519,7 +519,7 @@
 </div>
 </div>
 <details class="envar-cov-details">
-<summary>Evidence: 2 supporting, 1 not supporting</summary>
+<summary>Evidence: 3 supporting, 0 not supporting</summary>
 <div class="envar-cov st-verified">
 <div class="envar-cov-head"><span class="envar-cov-std">C-HER</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">documentation, partial match</span></div>
 <div class="envar-cov-row"><span class="k">quote</span> “C-HER also has its own organization identifier for datasets created by our team.”</div>
@@ -538,12 +538,11 @@
 <div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/ddi-cdi/ddi-cdi/3225434e27a2644652888b35dc157a8a29b8c38b/build/field-level-documentation/DDICDILibrary/DataTypes/StructuredDataTypes/InternationalRegistrationDataIdentifier.html">DDI-CDI 1.0, InternationalRegistrationDataIdentifier</a>, Definition</div>
 <div class="envar-cov-note">The three attributes are the identifier, the registration authority and the version: an identifier and a version are only unique together with who issued them.</div>
 </div>
-<div class="envar-cov st-absent">
-<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-absent">unverified</span><span class="envar-cov-extent">should record it, does not: different concept</span></div>
-<div class="envar-cov-note">Closest: `data_source.provider`, stored next to `creator`. The public example fills both with the source agency (CDC). The catalogue that issued `dataset_id` is named in the JSON-LD (`includedInDataCatalog`) but is not a column of `data_source`.</div>
-<div class="envar-cov-row"><span class="k">closest</span> </div>
-<div class="envar-cov-row"><span class="k">field</span> <code>data_source.provider</code></div>
-<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaDB/2f918c8368f3a2891bbe288a2886ef4356e22ba9/sql/01_init_schema.sql">gaiaDB sql/01_init_schema.sql</a>, backbone.data_source</div>
+<div class="envar-cov st-verified">
+<div class="envar-cov-head"><span class="envar-cov-std">OMOP / GAIA</span><span class="envar-cov-status st-verified">verified</span><span class="envar-cov-extent">output, partial match</span></div>
+<div class="envar-cov-row"><span class="k">output</span> <code>dct:publisher</code></div>
+<div class="envar-cov-row envar-cov-where"><span class="k">where</span> <a href="https://raw.githubusercontent.com/OHDSI/gaiaCatalog/6f51cd26f16bdb013b697efda818b940ec97c957/datastore/data/global_pm25_concentration_1998_2016/meta_dcat_global_pm25_concentration_1998_2016.json">gaiaCatalog DCAT record of global_pm25_concentration_1998_2016</a></div>
+<div class="envar-cov-note">The DCAT record of a catalogue entry names who publishes the catalogued copy (in the PM2.5 example the University of Miami GDSC), next to the creators of the source. In the JSON-LD and in gaiaDB this is `provider`. Missing: the entries are not consistent: the bundled SVI example gives the source agency (CDC) as provider.</div>
 </div>
 </details>
 <details class="envar-why">
