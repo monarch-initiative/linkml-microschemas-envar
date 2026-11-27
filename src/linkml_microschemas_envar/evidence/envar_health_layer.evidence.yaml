@@ -5,16 +5,16 @@
 health_layer_target:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure table (OMOP CDM GIS extension) — the target is OMOP but is implicit,
-        not a named slot
-      note: >-
-        Gaia lands values into OMOP external_exposure, so the target layer is effectively
-        OMOP, but it is baked into the pipeline rather than declared in a target field. Conservative:
-        partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working schema
+      source_slot: working.external_exposure
+      match: full
+      explanation: >-
+        gaiaDB writes its results to the `external_exposure` table of the OMOP GIS extension.
+        The target is fixed by design and not declared per dataset.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -54,16 +54,16 @@ health_layer_target:
 health_layer_link_field:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure.exposure_source_value (the OMOP field that would carry a provenance
-        id)
-      note: >-
-        The OMOP external_exposure.exposure_source_value field exists and is the natural provenance-id
-        carrier, but gaia does not populate it with a sidecar provenance id. Conservative:
-        partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_source_value
+      match: full
+      explanation: >-
+        The field of the health data that leads back to the metadata is `exposure_source_value`;
+        the join fills it with the id of the variable's metadata record.
+      status: verified
   - source: cher
     legacy:
       extent: partial

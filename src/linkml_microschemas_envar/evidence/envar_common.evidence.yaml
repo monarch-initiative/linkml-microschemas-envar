@@ -4,14 +4,6 @@
 
 schema_version:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No native gaia output carries a sidecar schema-version field; this is an EnVar-sidecar-level
-        construct.
   - source: amadeus
     legacy:
       extent: absent
@@ -50,15 +42,27 @@ provenance_id:
         nothing says that the health data refer back to it.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        external_exposure.exposure_source_value (empty slot that could carry a provenance
-        id) + gaia_db data_source id
-      note: >-
-        The OMOP source-value field exists as the natural carrier, but gaia populates no per-sidecar
-        stable record id into it. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.variable_source_id
+      match: partial
+      explanation: >-
+        Every variable has a metadata record with an id, and the join writes that id to each
+        exposure row (`exposure_source_value`), so a value leads back to its metadata. Missing:
+        the id is a serial number of one database, not a stable identifier across installations,
+        and it identifies the variable, not a run.
+      status: verified
+    - type: documentation
+      document: gaiadb-spatial-join
+      locator: spatial_join_from_catalog
+      snippet: exposure_source_value (variable_source_id)
+      match: partial
+      explanation: >-
+        The join code shows that `exposure_source_value` receives the `variable_source_id`.
+        Missing: as above.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -105,13 +109,12 @@ phi_status:
         but has no per-record PHI-status assertion flag. Conservative: partial.
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Gaia carries PHI in OMOP person/location tables but emits no per-record PHI-free assertion
-        flag on its metadata.
+    reason: not_recorded
+    explanation: >-
+      gaiaDB holds addresses and coordinates of persons (`working.location`), and nothing marks
+      a table or a dataset as containing PHI. Nothing close was found in the schema or the
+      README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-

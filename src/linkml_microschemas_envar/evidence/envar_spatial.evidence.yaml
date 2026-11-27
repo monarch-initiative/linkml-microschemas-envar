@@ -16,14 +16,23 @@ native_geometry:
         the lineage table (§2.7) has a Native Geometry column.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
-      status: asserted
-      where: >-
-        gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)
-      note: >-
-        GAIA records the source geometry first-class (geom_type, and structure/geometry in
-        the etl metadata).
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.geom_type
+      match: full
+      explanation: The geometry type of the source dataset.
+      status: verified
+    - type: output
+      document: gaiadb-example-jsonld
+      field: termCode
+      value: multipolygon
+      match: full
+      explanation: >-
+        In the public example the data structure (vector) and the geometry (multipolygon) are
+        given as terms of `measurementTechnique`.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -121,13 +130,16 @@ native_spatial_resolution_m:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        gaiaCatalog has no first-class native-resolution slot; it appears only via the EnVar
-        extension PropertyValue envar:native_spatial_resolution_m, not natively.
+    reason: not_recorded
+    explanation: >-
+      No field for the cell size of a raster source. Closest: the geometry type of the dataset.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.geom_type
+      status: verified
+    status: unverified
   - source: codata
     legacy:
       extent: out_of_layer
@@ -148,15 +160,6 @@ native_spatial_resolution_descriptor:
       match: full
       explanation: "CHEL has a readable label for its resolution: H3 Resolution 3, or Hex3."
       status: verified
-  - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db data_source.geom_type; meta_etl_*.json structure/geometry (raster)
-      note: >-
-        GAIA records geometry type (point/raster) but no human-readable resolution-layout
-        descriptor; the resolution label itself is absent.
   - source: cher
     legacy:
       extent: partial
@@ -191,6 +194,18 @@ native_spatial_resolution_descriptor:
       note: >-
         Resolution-layout description of a specific product is instance-layer detail outside
         the conceptual EV/DDI-CDI layer.
+  - source: omop_gaia
+    reason: not_recorded
+    explanation: >-
+      No field for a readable resolution label. Closest: the geometry type of the dataset; in
+      the public example the unit (tracts) is only part of the dataset name.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.geom_type
+      status: verified
+    status: unverified
 
 crs:
   supported_by:
@@ -207,16 +222,23 @@ crs:
         the processing step; the CRS of the published hex grid is not stated.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.srid
+      match: full
+      explanation: The SRID of the source dataset.
       status: verified
-      where: >-
-        gaia_db data_source.srid (4326); gaia_catalog meta_etl_*.json epsg/local_epsg; location.geom
-        EPSG:4326
-      evidence: EnVar/examples/heat/COMPARISON.md §C (CRS of source raster ✅)
-      note: >-
-        GAIA carries the source-raster CRS first-class via data_source.srid, meta_etl epsg/local_epsg,
-        and the enforced PostGIS geom SRID.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: value
+      value: "https://epsg.io/4269"
+      match: full
+      explanation: >-
+        In the public example the spatial reference system is an `additionalProperty` with an
+        EPSG URL.
+      status: verified
   - source: amadeus
     legacy:
       extent: full
@@ -257,17 +279,18 @@ crs:
 spatial_extent_bbox:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: polygon
+      value: >-
+        -73.508142 41.237964 -69.928393 41.237964 -69.928393 42.886589 -73.508142 42.886589
+        -73.508142 41.237964
+      match: full
+      explanation: >-
+        The public example gives the bounding box of the dataset as a polygon in
+        `spatialCoverage`.
       status: verified
-      where: >-
-        gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage; meta_etl_*.json
-        extent (POLYGON WKT)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §G (source-dataset spatial coverage ✅)
-      note: >-
-        GAIA records the product footprint as a WKT polygon extent and a DCAT spatialCoverage
-        string.
   - source: amadeus
     legacy:
       extent: full
@@ -333,13 +356,15 @@ spatial_extent_descriptor:
         tables include is not said.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: gaia_db data_source.spatial_coverage; meta_dcat_*.json spatialCoverage
-      note: >-
-        GAIA's spatialCoverage string can act as a human-readable extent label, though it
-        is not guaranteed to be a curated prose descriptor.
+    support:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: name
+      value: Massachusetts
+      match: full
+      explanation: >-
+        The public example names the covered place in `spatialCoverage`, with its GeoNames id.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -404,15 +429,19 @@ extraction_method:
         The README states the extraction rule: the inverse-distance weighted average of the four
         nearest cells.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No extraction-method slot in gaiaCatalog or gaia-db; only the implicit st_within join
-        semantics of working.spatial_join_exposure exist, undocumented.
+    support:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Raster Sources
+      snippet: the value of the cell containing the location
+      match: full
+      explanation: >-
+        The README defines the methods (for rasters: point, buffer mean, class fraction; for
+        points: nearest and inverse-distance weighted), and the join writes the method used to
+        each exposure row.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -450,13 +479,16 @@ target_geography_type:
       explanation: Every value is attached to an H3 cell of resolution 3.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: gaia_db data_source.geom_type (point); location.geom
-      note: >-
-        GAIA records the geometry type (point) but not the full EnVar target-geography vocabulary
-        (tract/ZCTA/county); values land on the person's point location.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location
+      source_slot: location.geom
+      match: partial
+      explanation: >-
+        Values are attached to a location, which the schema defines as a point. Missing: no
+        field for the kind of target; it is always the location point.
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -509,13 +541,17 @@ spatial_aggregation_preserves:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No preserved-quantity slot in gaiaCatalog or gaia-db; the invariant an aggregation
-        holds fixed is not recorded.
+    reason: not_recorded
+    explanation: >-
+      gaiaDB aggregates (buffer mean, class fraction), but nothing says which quantity an
+      operator is meant to preserve. Closest: the README's definition of the buffer mean.
+    closest:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Raster Sources
+      snippet: the mean of the cells whose centre is within
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent

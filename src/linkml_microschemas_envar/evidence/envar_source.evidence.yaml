@@ -14,13 +14,21 @@ source_dataset_name:
       explanation: Each input is named in the Input column of the table.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_name
+      match: full
+      explanation: The name of the dataset, a required field.
       status: verified
-      where: gaia_db data_source.dataset_name; meta_dcat_*.json dct:title
-      evidence: EnVar/examples/heat/COMPARISON.md §I (Dataset name — ✅ OMOP/GAIA)
-      note: >-
-        GAIA carries the dataset name first-class in data_source and the DCAT title.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: name
+      value: "2022 Massachusetts CDC Social Vulnerability Index (tracts)"
+      match: full
+      explanation: The name in the public example.
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -60,13 +68,16 @@ source_dataset_name:
 source_dataset_short_code:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: gaia_db data_source.dataset_name (no registry short code)
-      note: >-
-        GAIA carries the dataset name but no stable per-product short registry code; scored
-        partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_id
+      match: full
+      explanation: >-
+        Every dataset has a unique `dataset_id` (the `@id` of its JSON-LD), which ends in the
+        short table id the catalogue uses for it, for example `ma_2022_svi_tract`.
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -104,14 +115,6 @@ source_dataset_short_code:
 
 source_dataset_doi:
   supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: meta_dcat_*.json dct:identifier
-      note: >-
-        GAIA carries a DOI in DCAT dct:identifier for daymet, but not all entries carry one
-        (gridmet has only a url), so scored conservatively as partial.
   - source: cher
     legacy:
       extent: partial
@@ -157,6 +160,18 @@ source_dataset_doi:
       snippet: "Input | Native Geometry | Role in CHEL | Source Link"
       status: verified
     status: unverified
+  - source: omop_gaia
+    reason: not_recorded
+    explanation: >-
+      No field for a DOI. Closest: `dataset_id`, the catalogue's own identifier of the dataset
+      (a URL).
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_id
+      status: verified
+    status: unverified
 
 source_dataset_version:
   supported_by:
@@ -173,14 +188,24 @@ source_dataset_version:
         use different rolling periods, without naming them.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.dataset_version
+      match: partial
+      explanation: >-
+        A dataset has a version field. Missing: nothing says whose version it is. In the public
+        example it is a date (2026-05-23) for the 2022 SVI, which reads as the version of the
+        catalogue entry and not of the source product.
       status: verified
-      where: gaia_db data_source.dataset_version
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §I (Dataset version — ✅ OMOP/GAIA, 'V4 R1')
-      note: >-
-        GAIA carries the upstream dataset version first-class in data_source.dataset_version.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: version
+      value: "2026-05-23"
+      match: partial
+      explanation: "The value in the public example. Missing: as above."
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -220,15 +245,16 @@ source_dataset_version:
 source_dataset_temporal_coverage:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.variable_source
+      source_slot: variable_source.start_date
+      match: full
+      explanation: >-
+        Each variable has the period it covers (`start_date`, `end_date`). The README (Variable
+        dates) also allows a `temporalCoverage` interval for the whole dataset.
       status: verified
-      where: >-
-        meta_dcat_*.json dct:temporal; gaia_db variable_source.start_date/end_date
-      evidence: EnVar/examples/heat/COMPARISON.md §H (Dataset time-span — ✅ OMOP/GAIA)
-      note: >-
-        GAIA carries the product time span in DCAT dct:temporal and the variable_source start/end
-        dates.
   - source: amadeus
     legacy:
       extent: full
@@ -286,17 +312,16 @@ source_dataset_temporal_coverage:
 source_dataset_spatial_extent:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.spatial_coverage
+      match: full
+      explanation: >-
+        The spatial coverage of the dataset; in the public example a place name and a bounding
+        polygon.
       status: verified
-      where: >-
-        meta_dcat_*.json spatialCoverage; gaia_db data_source.spatial_coverage; meta_etl_*.json
-        extent (POLYGON WKT)
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §G (Source-dataset spatial coverage — ✅ OMOP/GAIA)
-      note: >-
-        GAIA carries the source spatial coverage in DCAT, in data_source.spatial_coverage,
-        and as a POLYGON WKT extent.
   - source: amadeus
     legacy:
       extent: full
@@ -364,14 +389,21 @@ source_producer_institution:
         only a link is given.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.creator
+      match: full
+      explanation: A dataset has its creator and its provider.
       status: verified
-      where: gaia_db data_source.creator/provider; meta_dcat_*.json dct:publisher
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §I (Publisher/creator/provider — ✅ OMOP/GAIA)
-      note: >-
-        GAIA carries publisher/creator/provider first-class in data_source and DCAT dct:publisher.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: name
+      value: Center for Disease Control
+      match: full
+      explanation: The creator in the public example, with its ROR identifier.
+      status: verified
   - source: cher
     legacy:
       extent: full
@@ -421,12 +453,17 @@ source_citation_apa:
         but not a formatted APA reference (related-approaches.md §3).
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA carries publisher and DOI but no assembled APA citation string; none is emitted.
+    reason: not_recorded
+    explanation: >-
+      No field for a citation. Closest: creator, name and publication date, from which one can
+      be built.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.date_published
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -469,13 +506,16 @@ source_citation_apa:
 source_license_spdx:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: gaia_db data_source.license; meta_dcat_*.json dct:license
-      note: >-
-        GAIA carries a license first-class but as a freeform string with no SPDX normalisation,
-        so it only partly satisfies this SPDX-specific slot.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.license
+      match: partial
+      explanation: >-
+        A dataset has a licence field. Missing: it is free text, not an SPDX identifier, and the
+        public example gives no licence.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -526,15 +566,23 @@ source_access_url:
         download page of the dataset.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: full
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.url
+      match: full
+      explanation: The URL of the source dataset.
       status: verified
-      where: gaia_db data_source.url; meta_etl_*.json source; JSON-LD url
-      evidence: >-
-        EnVar/examples/heat/COMPARISON.md §I (Source landing-page URL — ✅ OMOP/GAIA)
-      note: >-
-        GAIA carries the source landing-page URL first-class in data_source.url and the JSON-LD
-        url.
+    - type: output
+      document: gaiadb-example-jsonld
+      field: url
+      value: >-
+        https://www.atsdr.cdc.gov/place-health/php/svi/svi-data-documentation-download.html
+      match: full
+      explanation: >-
+        In the public example it is the documentation and download page of the source.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -575,15 +623,6 @@ source_access_url:
 
 source_native_format:
   supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        meta_etl_*.json structure/geometry (raster); gaia_db data_source.geom_type
-      note: >-
-        GAIA records dataset structure (raster) and geometry type but not the native file
-        format (e.g. NetCDF-4/CF) as a first-class slot.
   - source: amadeus
     legacy:
       extent: partial
@@ -628,5 +667,18 @@ source_native_format:
       document: chel-documentation
       locator: "§2.7, Input Lineage Table"
       snippet: "Input | Native Geometry | Role in CHEL | Source Link"
+      status: verified
+    status: unverified
+  - source: omop_gaia
+    reason: different_concept
+    explanation: >-
+      The ETL metadata gives the format of the file the catalogue distributes (`encodingFormat`:
+      sql), and `measurementTechnique` says raster or vector. The format the source ships in is
+      not recorded.
+    closest:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: encodingFormat
+      value: sql
       status: verified
     status: unverified

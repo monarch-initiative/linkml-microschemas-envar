@@ -30,14 +30,6 @@ heat_metric_family:
       field: E_NEHD
       status: verified
     status: unverified
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        The scenario is a plain Tmax extraction, not a heat index; the variable family is
-        implicit in variable_name tmax, with no derived heat-metric family slot.
   - source: amadeus
     legacy:
       extent: absent
@@ -59,14 +51,6 @@ heat_metric_family:
 
 input_source_short_code:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Single-input Tmax scenario; no heat-equation input decomposition, so no per-input
-        source short code.
   - source: amadeus
     legacy:
       extent: absent
@@ -89,13 +73,6 @@ input_source_short_code:
 
 wind_speed_measurement_height_m:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Tmax scenario carries no WBGT/UTCI inputs, so no wind-measurement height.
   - source: amadeus
     legacy:
       extent: absent
@@ -117,13 +94,6 @@ wind_speed_measurement_height_m:
 
 solar_radiation_basis:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Tmax scenario carries no WBGT/UTCI inputs, so no solar-radiation basis.
   - source: amadeus
     legacy:
       extent: absent
@@ -157,13 +127,6 @@ percentile_reference_geographic_scope:
         states it for its indicator ranks in general, not for a heat threshold.
       status: verified
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Tmax scenario computes no percentile-based threshold, so no reference geographic scope.
   - source: amadeus
     legacy:
       extent: absent
@@ -187,13 +150,6 @@ percentile_reference_geographic_scope:
 
 percentile_reference_seasonal_window:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No percentile-based metric in the Tmax scenario, so no seasonal reference window.
   - source: amadeus
     legacy:
       extent: absent
@@ -215,14 +171,6 @@ percentile_reference_seasonal_window:
 
 metric_temporal_aggregation_rule:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Tmax scenario is per-day values, not a heat-wave flag; no multi-day event-stamping
-        rule.
   - source: amadeus
     legacy:
       extent: absent

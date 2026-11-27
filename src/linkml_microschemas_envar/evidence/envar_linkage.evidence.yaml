@@ -16,14 +16,25 @@ linkage_strategy:
         the same as a spatial join of points to hexes.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        working.spatial_join_exposure SQL (st_within with a hard-coded buffer); spatial_join_log.txt
-      note: >-
-        GAIA's linkage strategy is only implicit in the st_within SQL join semantics, not
-        exposed as a documented structured slot. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.exposure_relationship_source_value
+      match: full
+      explanation: >-
+        Every exposure row says how it was joined: the operator or method verbatim in
+        `exposure_relationship_source_value`, and as a concept in
+        `exposure_relationship_concept_id`.
+      status: verified
+    - type: documentation
+      document: gaiadb-spatial-join
+      snippet: Map the spatial operator (and buffer) used for a join to an OMOP GIS
+      match: full
+      explanation: >-
+        The join code maps the operator and the buffer to an OMOP GIS geometry relationship
+        concept.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -87,12 +98,17 @@ geocoding_precision_propagated:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No geocoding-precision column on location.csv or external_exposure.csv.
+    reason: not_recorded
+    explanation: >-
+      `working.location` holds geocoded locations with latitude and longitude, and no column for
+      the precision of the geocode.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location
+      source_slot: location.latitude
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -151,12 +167,17 @@ geocoding_score_propagated:
       status: verified
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No geocoder match-score column on location.csv or external_exposure.csv.
+    reason: not_recorded
+    explanation: >-
+      `working.location` holds geocoded locations with latitude and longitude, and no column for
+      a geocoder score.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location
+      source_slot: location.latitude
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -217,14 +238,17 @@ geocoding_database_version:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: >-
-        gaiaDB sql/01_init_schema.sql working.location; gaiaDocker docker/gaia-degauss/Dockerfile
-      note: >-
-        working.location has coordinates but no geocoder or address-database column, and the
-        gaia-degauss image uses an untagged DeGAUSS geocoder.
+    reason: not_recorded
+    explanation: >-
+      `working.location` has no column for the geocoder or the address database behind a
+      coordinate.
+    closest:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location
+      source_slot: location.latitude
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -267,6 +291,25 @@ address_period_alignment:
         locations over time are given as dated rows. Missing: nothing says how the periods were
         made (one fixed address, an address history).
       status: verified
+  - source: omop_gaia
+    support:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Time windows
+      snippet: and the exposure dates are clipped to the overlap
+      match: full
+      explanation: >-
+        A person's locations over time are rows of `location_history` with a start and an end
+        date. A location is matched when its period overlaps the window of a value, and the
+        exposure dates are cut to the overlap.
+      status: verified
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.location_history
+      source_slot: location_history.start_date
+      match: full
+      explanation: The table of person, location and period that the join reads.
+      status: verified
   not_supported_by:
   - source: chel
     reason: implicit
@@ -280,14 +323,6 @@ address_period_alignment:
       snippet: Each participant will be assigned attributes from the correct CHEL dataset
       status: verified
     status: unverified
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA/OMOP models a single static location per person and no address-history / location-over-time
-        alignment.
   - source: amadeus
     legacy:
       extent: absent
@@ -313,13 +348,17 @@ address_period_alignment:
 partial_day_attribution_rule:
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        GAIA/OMOP models no trajectory transitions, so no partial-day attribution rule is
-        carried.
+    reason: not_recorded
+    explanation: >-
+      Residence periods are dates, and nothing says to which location the day of a move belongs.
+      Closest: the README's rule that exposure dates are cut to the overlap of the periods.
+    closest:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Time windows
+      snippet: and the exposure dates are clipped to the overlap
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -344,12 +383,6 @@ partial_day_attribution_rule:
 
 lag_alignment_applied:
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: GAIA/OMOP emits values at native dates with no lag-alignment record.
   - source: amadeus
     legacy:
       extent: absent
@@ -398,14 +431,6 @@ privacy_transformation:
         C-HER (the CHEL platform, §2.2.2) applies the deterministic hex-reassignment privacy
         jitter this slot models — it is the motivating case.
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        The heat-scenario GAIA/OMOP join carries the true geocoded location with no privacy-transformation
-        record on location.csv or external_exposure.csv.
   - source: degauss
     reason: different_concept
     explanation: >-
@@ -461,14 +486,6 @@ privacy_transformation_note:
         C-HER spells out the concrete trigger, determinism, and legal basis of its jitter
         — exactly the detail this note slot captures.
   not_supported_by:
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No privacy transform is applied in the GAIA/OMOP heat scenario, so there is no trigger/threshold/governance
-        detail to record.
   - source: amadeus
     legacy:
       extent: absent

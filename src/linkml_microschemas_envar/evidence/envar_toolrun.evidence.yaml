@@ -15,15 +15,19 @@ tool_name:
         Each tool has a name (daymet, geocoder), used in its image and appended to the output
         file name. Missing: no field in the output names the tool.
       status: verified
-  not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        No gaia table records a tool-name field; the gaia-db image name is not carried on
-        any native output.
+    support:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: featureList
+      value: wget
+      match: partial
+      explanation: >-
+        The ETL metadata of a dataset names the software of each ETL step (`instrument`, with
+        `featureList` and a repository URL). Missing: the gaiaDB functions that load and join
+        the data are not recorded with the output.
+      status: verified
+  not_supported_by:
   - source: amadeus
     legacy:
       extent: absent
@@ -84,11 +88,16 @@ tool_version:
         per-run producing tool.
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia table records the gaia-db image version.
+    reason: not_recorded
+    explanation: >-
+      No version of the ETL software or of gaiaDB is recorded. Closest: the repository URL of
+      the ETL tool in the JSON-LD.
+    closest:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: downloadUrl
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -144,11 +153,16 @@ container_image_repository:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia table records a container image repository.
+    reason: not_recorded
+    explanation: >-
+      gaiaDB is a Docker image that the README tells the user to build; the image is not
+      recorded with any output.
+    closest:
+    - type: documentation
+      document: gaiadb-readme
+      snippet: A PostGIS Docker image for the
+      status: verified
+    status: unverified
   - source: amadeus
     legacy:
       extent: absent
@@ -183,11 +197,16 @@ container_image_digest:
       status: verified
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: Container image digest is not carried by any native gaia output.
+    reason: not_recorded
+    explanation: >-
+      gaiaDB is a Docker image that the README tells the user to build; no digest is recorded
+      with any output.
+    closest:
+    - type: documentation
+      document: gaiadb-readme
+      snippet: A PostGIS Docker image for the
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: "Only the tag of the image is given, which can be moved; no digest."
@@ -232,6 +251,18 @@ run_arguments:
         (`..._score_threshold_0.5.csv`). Missing: the daymet container documents its arguments
         but does not record the values used.
       status: verified
+  - source: omop_gaia
+    support:
+    - type: documentation
+      document: gaiadb-spatial-join
+      locator: spatial_join_from_catalog
+      snippet: exposure_relationship_source_value (verbatim operator)
+      match: partial
+      explanation: >-
+        The join writes its operator or method verbatim to each exposure row, and the exposure
+        type concept it was given. Missing: the buffer distance and the nodata value are not
+        written, and there is no record of all arguments of a run.
+      status: verified
   not_supported_by:
   - source: chel
     reason: not_recorded
@@ -245,12 +276,6 @@ run_arguments:
       snippet: Privacy threshold specification
       status: verified
     status: unverified
-  - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia output records the invocation argument map.
   - source: amadeus
     legacy:
       extent: absent
@@ -273,15 +298,16 @@ run_arguments:
 run_timestamp_utc:
   supported_by:
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_db data_source.created_at/updated_at and location.created_at (load time, not
-        run timestamp)
-      note: >-
-        Gaia records per-row load times, which approximate but are not the tool-run start
-        timestamp.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: working.external_exposure
+      source_slot: external_exposure.created_at
+      match: partial
+      explanation: >-
+        Each exposure row has the time it was written. Missing: per row, in the server's time
+        without a zone, and not the start of the run.
+      status: verified
   - source: amadeus
     legacy:
       extent: partial
@@ -334,11 +360,10 @@ input_file_sha256:
       README.md or the data folder.
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia output records an input-file SHA256.
+    reason: not_recorded
+    explanation: >-
+      No hash of a loaded file is recorded. Nothing close was found in the schema or the README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -373,11 +398,17 @@ input_row_count:
       README.md or the data folder.
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native gaia output records an input row count; you would wc -l.
+    reason: not_recorded
+    explanation: >-
+      No row count of the loaded locations or source tables is stored. Closest:
+      `working.location_statistics()`, which prints summary counts on request.
+    closest:
+    - type: documentation
+      document: gaiadb-readme
+      locator: Function Reference
+      snippet: Data quality checks and summary counts
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -412,11 +443,10 @@ output_file_sha256:
       README.md or the data folder.
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No gaia output records an output-file SHA256.
+    reason: not_recorded
+    explanation: >-
+      No hash of the output is recorded. Nothing close was found in the schema or the README.
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -451,11 +481,15 @@ output_row_count:
       Documentation.md, README.md or the data folder.
     status: unverified
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: No native gaia output records an output row count; you would wc -l.
+    reason: not_recorded
+    explanation: The number of exposure rows a join wrote is printed as a notice and not stored.
+    closest:
+    - type: documentation
+      document: gaiadb-spatial-join
+      locator: spatial_join_from_catalog
+      snippet: Catalog spatial join complete. Inserted
+      status: verified
+    status: unverified
   - source: degauss
     reason: not_recorded
     explanation: >-
@@ -502,15 +536,17 @@ provenance_chain_steps:
         runs; no tool, version, date or output per step.
       status: verified
   - source: omop_gaia
-    legacy:
-      extent: partial
-      status: asserted
-      where: >-
-        gaia_catalog/meta_etl_*.json (ETL recipe) + gaia_db/spatial_join_log.txt (SQL NOTICE
-        lines)
-      note: >-
-        Gaia's ETL descriptor plus the spatial-join log capture upstream steps, but not as
-        an ordered per-run W3C-PROV chain. Conservative: partial.
+    support:
+    - type: schema
+      document: gaiadb-init-schema
+      locator: backbone.data_source
+      source_slot: data_source.etl_metadata
+      match: partial
+      explanation: >-
+        The ETL steps of a dataset are stored as a list, each with the action, its input, the
+        tool and the result. Missing: they are a description of the ETL, not runs with times and
+        versions, and the join is not a step.
+      status: verified
   - source: cher
     legacy:
       extent: partial
@@ -543,12 +579,17 @@ provenance_chain_steps:
 provenance_chain_terminus_type:
   not_supported_by:
   - source: omop_gaia
-    legacy:
-      extent: absent
-      status: asserted
-      where: no column
-      note: >-
-        Gaia's meta_etl points at raw source downloads but has no typed chain-terminus field.
+    reason: implicit
+    explanation: >-
+      In the public example the first ETL step is a download from the producer's page, described
+      as direct from source. The kind of root has no field of its own.
+    closest:
+    - type: output
+      document: gaiadb-example-jsonld
+      field: producer
+      value: Center for Disease Control
+      status: verified
+    status: unverified
   - source: degauss
     reason: implicit
     explanation: >-
